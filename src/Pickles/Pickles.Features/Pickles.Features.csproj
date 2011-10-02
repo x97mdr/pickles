@@ -55,7 +55,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GenerateHtmlForSingleFile.feature.cs">
+    <Compile Include="Examples\MultilineString\GenerateHtmlForMultilineString1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GenerateHtmlForMultilineString.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Examples\SimplestFile\GenerateHtmlForSingleFile.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GenerateHtmlForSingleFile.feature</DependentUpon>
@@ -66,9 +71,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="GenerateHtmlForSingleFile.feature">
+    <None Include="Examples\MultilineString\GenerateHtmlForMultilineString.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GenerateHtmlForMultilineString1.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Examples\MultilineString\MultilineString.feature">
+      <LastGenOutput>SimplestFile.feature.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Examples\MultilineString\MultilineString.xhtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Examples\SimplestFile\GenerateHtmlForSingleFile.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GenerateHtmlForSingleFile.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Examples\SimplestFile\SimplestFile.feature">
+      <LastGenOutput>SimplestFile.feature.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -77,6 +97,11 @@
       <Project>{38BAD6E0-78AB-4AC3-91A8-BF72AF5EE394}</Project>
       <Name>Pickles</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Examples\SimplestFile\SimplestFile.xhtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

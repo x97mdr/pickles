@@ -10,7 +10,7 @@
 //  </auto-generated>
 // ------------------------------------------------------------------------------
 #region Designer generated code
-namespace Pickles.Features
+namespace Pickles.Features.Examples.SimplestFile
 {
     using TechTalk.SpecFlow;
     
@@ -72,45 +72,12 @@ namespace Pickles.Features
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate XHTML from single feature", ((string[])(null)));
 #line 6
  this.ScenarioSetup(scenarioInfo);
-#line hidden
-#line 7
-  testRunner.Given("this feature file", "Feature: Test\r\n    In order to do something\r\n    As a user\r\n    I want to run thi" +
-                    "s scenario\r\n\r\n    Scenario: A scenario\r\n\t    Given some feature\r\n        When it" +
-                    " runs\r\n        Then I should see that this thing happens", ((TechTalk.SpecFlow.Table)(null)));
-#line 19
+#line 8
+  testRunner.Given("the feature file at Examples\\SimplestFile\\SimplestFile.feature");
+#line 9
   testRunner.When("I generate documentation");
-#line hidden
-#line 20
-  testRunner.Then("I should see this XHTML file", @"<?xml version=""1.0"" encoding=""UTF-8"" ?>
-<!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 1.0 Strict//EN"" ""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd""[]>
-<html xml:lang=""en"" xmlns=""http://www.w3.org/1999/xhtml"">
-	<head>
-		<title>Feature: Test</title>
-	</head>
-	<body>
-		<div id=""feature"" class=""feature"">
-			<h1>Feature: Test</h1>
-				<p>In order to do something</p>
-				<p>As a user</p>
-				<p>I want to run this scenario</p>
-		</div>
-		<ul class=""scenarios"">
-			<li id=""0"" class=""scenario"">
-				<div class=""scenario-heading"">
-					<h2>Scenario: A scenario</h2>
-					<p></p>
-				</div>
-				<div class=""steps"">
-					<ul>
-						<li class=""step""><span class=""keyword"">Given </span>some feature</li>
-						<li class=""step""><span class=""keyword"">When </span>it runs</li>
-						<li class=""step""><span class=""keyword"">Then </span>I should see that this thing happens</li>
-					</ul>
-				</div>
-			</li>
-		</ul>
-	</body>
-</html>", ((TechTalk.SpecFlow.Table)(null)));
+#line 10
+  testRunner.Then("I should get the XHTML file at Examples\\SimplestFile\\SimplestFile.xhtml");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -27,6 +27,12 @@ namespace Pickles.Features.Steps
             this.context.FeatureFileContent = featureFile;
         }
 
+        [Given(@"the feature file at (.*)")]
+        public void GivenTheFeatureFileAt(string path)
+        {
+            this.context.FeatureFileContent = File.ReadAllText(path);
+        }
+
         [When(@"I generate documentation")]
         public void WhenIGenerateDocumentation()
         {
@@ -44,7 +50,15 @@ namespace Pickles.Features.Steps
             var expected = XDocument.Parse(expectedHtmlOutput).ToString(SaveOptions.DisableFormatting);
             var actual = this.context.ParserOutput.ToString(SaveOptions.DisableFormatting);
 
-            //Assert.IsTrue(XDocument.DeepEquals(expected, actual), "The actual XML was:\n" + actual.ToString(SaveOptions.OmitDuplicateNamespaces));
+            StringAssert.AreEqualIgnoringCase(expected, actual);
+        }
+
+        [Then(@"I should get the XHTML file at (.*)")]
+        public void ThenIShouldGetTheXHTMLFileAt(string path)
+        {
+            var expected = XDocument.Load(path).ToString(SaveOptions.DisableFormatting);
+            var actual = this.context.ParserOutput.ToString(SaveOptions.DisableFormatting);
+
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
     }

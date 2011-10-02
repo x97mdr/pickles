@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pickles", "Pickles\Pickles.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pickles.Features", "Pickles.Features\Pickles.Features.csproj", "{D5269D2E-5EFA-42F2-8141-E2A75444D12B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pickles.Test", "Pickles.Test\Pickles.Test.csproj", "{8BD9FCD2-7ED5-46B5-B6A4-7FA3775E159F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{D5269D2E-5EFA-42F2-8141-E2A75444D12B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5269D2E-5EFA-42F2-8141-E2A75444D12B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5269D2E-5EFA-42F2-8141-E2A75444D12B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BD9FCD2-7ED5-46B5-B6A4-7FA3775E159F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BD9FCD2-7ED5-46B5-B6A4-7FA3775E159F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BD9FCD2-7ED5-46B5-B6A4-7FA3775E159F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BD9FCD2-7ED5-46B5-B6A4-7FA3775E159F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

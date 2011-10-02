@@ -1,9 +1,9 @@
 ﻿using System.Globalization;
 using System.IO;
 using System.Xml.Linq;
+using Pickles.Formatters;
 using TechTalk.SpecFlow.Parser;
 using TechTalk.SpecFlow.Parser.Gherkin;
-using System;
 using TechTalk.SpecFlow.Parser.GherkinBuilder;
 
 namespace Pickles
@@ -31,8 +31,8 @@ namespace Pickles
 
             var feature = gherkinListener.GetResult();
 
-            var featureFormatter = new HtmlFeatureFormatter();
-            return featureFormatter.BuildFrom(feature);
+            var featureFormatter = new HtmlFeatureFormatter(new HtmlScenarioFormatter(new HtmlStepFormatter(new HtmlTableFormatter(), new HtmlMultilineStringFormatter())));
+            return featureFormatter.Format(feature);
         }
     }
 }

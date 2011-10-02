@@ -61,8 +61,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HtmlFeatureFormatter.cs" />
+    <Compile Include="FeatureCrawler.cs" />
+    <Compile Include="Formatters\HtmlFeatureFormatter.cs" />
     <Compile Include="HtmlFeatureParser.cs" />
+    <Compile Include="Formatters\HtmlMultilineStringFormatter.cs" />
+    <Compile Include="Formatters\HtmlScenarioFormatter.cs" />
+    <Compile Include="Formatters\HtmlStepFormatter.cs" />
+    <Compile Include="Formatters\HtmlTableFormatter.cs" />
+    <Compile Include="ICrawlerListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
