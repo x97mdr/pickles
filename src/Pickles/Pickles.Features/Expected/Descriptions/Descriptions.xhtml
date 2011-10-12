@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"[]>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Feature: Test</title>
+	</head>
+	<body>
+        <div id="toc">
+            <ul>
+                <li><a href="#">Descriptions</a></li>
+                <li><a href="../Features/FeatureAndScenarios.xhtml">FeatureAndScenario</a></li>
+                <li><a href="../MultilineString/MultilineString.xhtml">MultilineString</a></li>
+                <li><a href="../ScenarioOutline/ScenarioOutline.xhtml">ScenarioOutline</a></li>
+                <li><a href="../Table/Table.xhtml">Table</a></li>
+                <li><a href="../TableOfContents/TableOfContents.xhtml">TableOfContents</a></li>
+           </ul>
+        </div>
+		<div id="feature" class="feature">
+			<h1>Feature: Descriptions</h1>
+				<p>In order to see all of the relevant information contained in the feature file</p>
+				<p>As a Pickles user</p>
+				<p>I want to see the descriptions associated with each step</p>
+		</div>
+		<ul class="scenarios">
+			<li id="0" class="scenario">
+				<div class="scenario-heading">
+					<h2>Scenario: Display descriptions</h2>
+					<p>This is a description that is used to provide further context</p>
+				</div>
+				<div class="steps">
+					<ul>
+						<li class="step"><span class="keyword">Given </span>a feature file containing a scenario with a description</li>
+						<li class="step"><span class="keyword">When </span>I generate documentation</li>
+						<li class="step"><span class="keyword">Then </span>I should get an HTML file with the descriptions listed in a distinctive text</li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+	</body>
+</html>

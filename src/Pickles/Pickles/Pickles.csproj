@@ -49,6 +49,9 @@
     <Reference Include="IKVM.Runtime">
       <HintPath>..\..\..\lib\specflow-parser\IKVM.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="NGenerics">
+      <HintPath>..\..\..\lib\ngenerics\NGenerics.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -61,14 +64,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FeatureNode.cs" />
+    <Compile Include="DocumentationBuilder.cs" />
     <Compile Include="FeatureCrawler.cs" />
+    <Compile Include="FeatureSet.cs" />
     <Compile Include="Formatters\HtmlFeatureFormatter.cs" />
+    <Compile Include="Formatters\HtmlTableOfContentsFormatter.cs" />
     <Compile Include="HtmlFeatureParser.cs" />
     <Compile Include="Formatters\HtmlMultilineStringFormatter.cs" />
     <Compile Include="Formatters\HtmlScenarioFormatter.cs" />
     <Compile Include="Formatters\HtmlStepFormatter.cs" />
     <Compile Include="Formatters\HtmlTableFormatter.cs" />
     <Compile Include="ICrawlerListener.cs" />
+    <Compile Include="IDocumentationBuilder.cs" />
+    <Compile Include="IFeatureParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

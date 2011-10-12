@@ -8,7 +8,7 @@ using TechTalk.SpecFlow.Parser.GherkinBuilder;
 
 namespace Pickles
 {
-    public class HtmlFeatureParser
+    public class HtmlFeatureParser : IFeatureParser<XDocument>
     {
         private readonly GherkinDialectServices dialectServices;
 

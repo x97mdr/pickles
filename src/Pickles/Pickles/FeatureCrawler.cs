@@ -3,27 +3,41 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using NGenerics.DataStructures.Trees;
+using NGenerics.Patterns.Visitor;
 
 namespace Pickles
 {
     public class FeatureCrawler
     {
-        public void Crawl(string basePath, ICrawlerListener crawlerListener)
+        public GeneralTree<FeatureNode> Crawl(string directory)
         {
-            Crawl(new DirectoryInfo(basePath), crawlerListener);
+            return Crawl(new DirectoryInfo(directory));
         }
 
-        public void Crawl(DirectoryInfo basePath, ICrawlerListener crawlerListener)
+        public GeneralTree<FeatureNode> Crawl(DirectoryInfo directory)
         {
-            foreach (var file in basePath.GetFiles())
+            var tree = new GeneralTree<FeatureNode>(new FeatureNode
             {
-                crawlerListener.FeatureFileFound(file);
+                Location = directory,
+                Url = new Uri(directory.FullName)
+            });
+
+            foreach (var file in directory.GetFiles("*.feature"))
+            {
+                tree.Add(new FeatureNode
+                {
+                    Location = file,
+                    Url = new Uri(file.FullName)
+                });
             }
 
-            foreach (var directory in basePath.GetDirectories())
+            foreach (var subDirectory in directory.GetDirectories())
             {
-                Crawl(directory, crawlerListener);
+                tree.Add(Crawl(subDirectory));
             }
+
+            return tree;
         }
     }
 }

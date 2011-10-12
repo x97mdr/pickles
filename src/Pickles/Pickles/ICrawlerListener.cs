@@ -8,6 +8,7 @@ namespace Pickles
 {
     public interface ICrawlerListener
     {
-        void FeatureFileFound(FileInfo file);
+        void FeatureFileFound(FileSystemInfo file);
+        IEnumerable<FileSystemInfo> GetResult();
     }
 }

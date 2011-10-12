@@ -65,6 +65,36 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GenerateHtmlForSingleFile.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Descriptions\Descriptions.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Descriptions.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Features\FeatureAndScenario.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FeatureAndScenario.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\MultilineString\MultilineString.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MultilineString.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\ScenarioOutline\ScenarioOutline.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScenarioOutline.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\TableOfContents\TableOfContents.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TableOfContents.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Table\Table.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Table.feature</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\Context.cs" />
     <Compile Include="Steps\Steps.cs" />
@@ -90,6 +120,48 @@
       <LastGenOutput>SimplestFile.feature.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Expected\Descriptions\Descriptions.xhtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Expected\Features\FeatureAndScenarios.xhtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Expected\MultilineString\MultilineString.xhtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Expected\ScenarioOutline\ScenarioOutline.xhtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Expected\TableOfContents\TableOfContents.xhtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Expected\Table\Table.xhtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Descriptions\Descriptions.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Descriptions.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Features\FeatureAndScenario.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>FeatureAndScenario.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\MultilineString\MultilineString.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>MultilineString.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\ScenarioOutline\ScenarioOutline.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ScenarioOutline.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\TableOfContents\TableOfContents.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TableOfContents.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Table\Table.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Table.feature.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +175,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
