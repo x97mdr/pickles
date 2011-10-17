@@ -81,6 +81,7 @@
     <Compile Include="ICrawlerListener.cs" />
     <Compile Include="IDocumentationBuilder.cs" />
     <Compile Include="IFeatureParser.cs" />
+    <Compile Include="PathExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

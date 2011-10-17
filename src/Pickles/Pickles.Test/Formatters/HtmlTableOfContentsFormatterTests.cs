@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using Pickles.Formatters;
+using NGenerics.DataStructures.Trees;
 
 namespace Pickles.Test.Formatters
 {

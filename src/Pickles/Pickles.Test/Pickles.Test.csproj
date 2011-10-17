@@ -89,7 +89,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FeatureCrawlerTests.cs" />
+    <Compile Include="WhenCrawlingFoldersForFeatures.cs" />
     <Compile Include="Formatters\HtmlTableOfContentsFormatterTests.cs" />
     <Compile Include="ParserFileFactory.cs" />
     <Compile Include="ParserTests.cs" />

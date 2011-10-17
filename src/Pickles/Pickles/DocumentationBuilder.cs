@@ -27,6 +27,9 @@ namespace Pickles
         {
             var features = this.featureCrawler.Crawl(inputPath);
             // enumerate features, generating HTML documentation to output folder building table of contents as moving along.
+            var actionVisitor = new ActionVisitor<FeatureNode>(node =>
+                {
+                });
         }
     }
 }

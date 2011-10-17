@@ -10,10 +10,10 @@ using NGenerics.DataStructures.Trees;
 namespace Pickles.Test
 {
     [TestFixture]
-    public class FeatureCrawlerTests
+    public class WhenCrawlingFoldersForFeatures
     {
         [Test]
-        public void Can_crawl_directory_tree_for_features_successfully()
+        public void Then_can_crawl_all_folders_including_subfolders_for_features_successfully()
         {
             var rootPath = @"FakeFolderStructures\FeatureCrawlerTests";
             var features = new FeatureCrawler().Crawl(rootPath);
@@ -23,22 +23,32 @@ namespace Pickles.Test
             var a = features.ChildNodes[0].Data;
             Assert.NotNull(a);
             Assert.AreEqual("LevelOne.feature", a.Name);
+            Assert.AreEqual(@"LevelOne.feature", a.RelativePathFromRoot);
 
             var b = features.ChildNodes[1].Data;
             Assert.NotNull(b);
             Assert.AreEqual("SubLevelOne", b.Name);
+            Assert.AreEqual(@"SubLevelOne\", b.RelativePathFromRoot);
 
             var c = features.ChildNodes[1].ChildNodes[0].Data;
             Assert.NotNull(c);
             Assert.AreEqual("LevelOneSublevelOne.feature", c.Name);
+            Assert.AreEqual(@"SubLevelOne\LevelOneSublevelOne.feature", c.RelativePathFromRoot);
 
             var d = features.ChildNodes[1].ChildNodes[1].Data;
             Assert.NotNull(d);
             Assert.AreEqual("LevelOneSublevelTwo.feature", d.Name);
+            Assert.AreEqual(@"SubLevelOne\LevelOneSublevelTwo.feature", d.RelativePathFromRoot);
 
-            var e = features.ChildNodes[1].ChildNodes[2].ChildNodes[0].Data;
+            var e = features.ChildNodes[1].ChildNodes[2].Data;
             Assert.NotNull(e);
-            Assert.AreEqual("LevelOneSublevelOneSubLevelTwo.feature", e.Name);
+            Assert.AreEqual("SubLevelTwo", e.Name);
+            Assert.AreEqual(@"SubLevelOne\SubLevelTwo\", e.RelativePathFromRoot);
+
+            var f = features.ChildNodes[1].ChildNodes[2].ChildNodes[0].Data;
+            Assert.NotNull(f);
+            Assert.AreEqual("LevelOneSublevelOneSubLevelTwo.feature", f.Name);
+            Assert.AreEqual(@"SubLevelOne\SubLevelTwo\LevelOneSublevelOneSubLevelTwo.feature", f.RelativePathFromRoot);
         }
     }
 }

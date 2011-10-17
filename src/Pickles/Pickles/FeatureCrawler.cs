@@ -12,29 +12,43 @@ namespace Pickles
     {
         public GeneralTree<FeatureNode> Crawl(string directory)
         {
-            return Crawl(new DirectoryInfo(directory));
+            return Crawl(new DirectoryInfo(directory), null);
         }
 
         public GeneralTree<FeatureNode> Crawl(DirectoryInfo directory)
         {
-            var tree = new GeneralTree<FeatureNode>(new FeatureNode
+            return Crawl(directory, null);
+        }
+
+        private GeneralTree<FeatureNode> Crawl(DirectoryInfo directory, FeatureNode rootNode)
+        {
+            var currentNode = new FeatureNode
             {
                 Location = directory,
-                Url = new Uri(directory.FullName)
-            });
+                Url = new Uri(directory.FullName),
+                RelativePathFromRoot = rootNode == null ? @".\" : PathExtensions.MakeRelativePath(rootNode.Location, directory)
+            };
+
+            if (rootNode == null)
+            {
+                rootNode = currentNode;
+            }
+
+            var tree = new GeneralTree<FeatureNode>(currentNode);
 
             foreach (var file in directory.GetFiles("*.feature"))
             {
                 tree.Add(new FeatureNode
                 {
                     Location = file,
-                    Url = new Uri(file.FullName)
+                    Url = new Uri(file.FullName),
+                    RelativePathFromRoot = PathExtensions.MakeRelativePath(rootNode.Location, file)
                 });
             }
 
             foreach (var subDirectory in directory.GetDirectories())
             {
-                tree.Add(Crawl(subDirectory));
+                tree.Add(Crawl(subDirectory, rootNode));
             }
 
             return tree;

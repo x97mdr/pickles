@@ -11,6 +11,7 @@ namespace Pickles
     public class FeatureNode
     {
         public FileSystemInfo Location { get; set; }
+        public string RelativePathFromRoot { get; set; }
         public Uri Url { get; set; }
         public string Name { get { return Location.Name; } }
     }
