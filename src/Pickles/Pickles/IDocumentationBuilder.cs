@@ -1,8 +1,9 @@
 ﻿using System;
+using System.IO;
 namespace Pickles
 {
     public interface IDocumentationBuilder
     {
-        void Build(NGenerics.DataStructures.Trees.GeneralTree<System.IO.FileSystemInfo> featureFiles);
+        void Build(DirectoryInfo inputPath, DirectoryInfo outputPath);
     }
 }
