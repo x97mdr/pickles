@@ -28,7 +28,7 @@ namespace Pickles.Formatters
             var xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
 
             var head = new XElement(xmlns + "head");
-            head.Add(new XElement(xmlns + "title", string.Format("Feature: {0}", featureNode.Feature.Title)));
+            head.Add(new XElement(xmlns + "title", string.Format("{0}", featureNode.Feature.Title)));
 
             var body = new XElement(xmlns + "body");
             if (features != null)

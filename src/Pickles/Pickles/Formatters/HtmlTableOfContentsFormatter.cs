@@ -10,21 +10,21 @@ namespace Pickles.Formatters
 {
     public class HtmlTableOfContentsFormatter
     {
-        private XElement BuildListItems(Uri file, GeneralTree<FeatureNode> features)
+        private XElement BuildListItems(XNamespace xmlns, Uri file, GeneralTree<FeatureNode> features)
         {
-            var ul = new XElement("ul");
+            var ul = new XElement(xmlns + "ul");
 
             foreach (var childNode in features.ChildNodes)
             {
                 if (childNode.IsLeafNode)
                 {
-                    ul.Add(new XElement("li",
-                                new XElement("a",
+                    ul.Add(new XElement(xmlns + "li",
+                                new XElement(xmlns + "a",
                                     new XAttribute("href", childNode.Data.Location.FullName != file.LocalPath ? file.MakeRelativeUri(childNode.Data.Url).ToString() : "#"))));
                 }
                 else
                 {
-                    ul.Add(BuildListItems(file, childNode));
+                    ul.Add(BuildListItems(xmlns, file, childNode));
                 }
             }
 
@@ -38,10 +38,12 @@ namespace Pickles.Formatters
 
         public XElement Format(Uri file, GeneralTree<FeatureNode> features)
         {
-            return new XElement("div",
+            var xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
+
+            return new XElement(xmlns + "div",
                        new XAttribute("id", "toc"),
                        new XAttribute("class", "toc"),
-                       BuildListItems(file, features)
+                       BuildListItems(xmlns, file, features)
                    );
         }
     }

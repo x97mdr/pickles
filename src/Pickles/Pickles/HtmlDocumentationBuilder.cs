@@ -13,13 +13,11 @@ namespace Pickles
 {
     public class HtmlDocumentationBuilder : IDocumentationBuilder
     {
-        private readonly FeatureParser htmlFeatureParser;
         private readonly FeatureCrawler featureCrawler;
         private readonly HtmlDocumentFormatter htmlDocumentFormatter;
 
-        public HtmlDocumentationBuilder(FeatureParser htmlFeatureParser, FeatureCrawler featureCrawler, HtmlDocumentFormatter htmlDocumentFormatter)
+        public HtmlDocumentationBuilder(FeatureCrawler featureCrawler, HtmlDocumentFormatter htmlDocumentFormatter)
         {
-            this.htmlFeatureParser = htmlFeatureParser;
             this.featureCrawler = featureCrawler;
             this.htmlDocumentFormatter = htmlDocumentFormatter;
         }
@@ -33,7 +31,8 @@ namespace Pickles
 
                     if (!node.IsDirectory)
                     {
-                        using (var writer = new StreamWriter(nodePath))
+                        var htmlFilePath = nodePath.Replace(".feature", ".xhtml");
+                        using (var writer = new StreamWriter(htmlFilePath))
                         {
                             var document = this.htmlDocumentFormatter.Format(node, features);
                             document.Save(writer);
@@ -45,6 +44,7 @@ namespace Pickles
                         Directory.CreateDirectory(nodePath);
                     }
                 });
+            features.AcceptVisitor(actionVisitor);
         }
     }
 }

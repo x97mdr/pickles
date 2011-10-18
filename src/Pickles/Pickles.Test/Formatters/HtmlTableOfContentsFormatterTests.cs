@@ -16,6 +16,7 @@ namespace Pickles.Test.Formatters
         {
             var rootPath = @"FakeFolderStructures\FeatureCrawlerTests";
             var features = new FeatureCrawler(new FeatureParser()).Crawl(rootPath);
+
             var formatter = new HtmlTableOfContentsFormatter();
             var toc = formatter.Format(features.ChildNodes[0].Data.Url, features);
 
