@@ -20,7 +20,8 @@ namespace Pickles.Formatters
                 {
                     ul.Add(new XElement(xmlns + "li",
                                 new XElement(xmlns + "a",
-                                    new XAttribute("href", childNode.Data.Location.FullName != file.LocalPath ? file.MakeRelativeUri(childNode.Data.Url).ToString() : "#"))));
+                                    new XAttribute("href", childNode.Data.Location.FullName != file.LocalPath ? file.MakeRelativeUri(childNode.Data.Url).ToString().Replace(".feature", ".xhtml") : "#"),
+                                    childNode.Data.Name)));
                 }
                 else
                 {
