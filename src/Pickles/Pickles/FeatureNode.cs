@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Diagnostics;
+using TechTalk.SpecFlow.Parser.SyntaxElements;
 
 namespace Pickles
 {
@@ -14,5 +15,7 @@ namespace Pickles
         public string RelativePathFromRoot { get; set; }
         public Uri Url { get; set; }
         public string Name { get { return Location.Name; } }
+        public Feature Feature { get; set; }
+        public bool IsDirectory { get { return Location is DirectoryInfo; } }
     }
 }

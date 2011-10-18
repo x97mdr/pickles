@@ -5,19 +5,37 @@ using Pickles.Formatters;
 using TechTalk.SpecFlow.Parser;
 using TechTalk.SpecFlow.Parser.Gherkin;
 using TechTalk.SpecFlow.Parser.GherkinBuilder;
+using TechTalk.SpecFlow.Parser.SyntaxElements;
 
 namespace Pickles
 {
-    public class HtmlFeatureParser : IFeatureParser<XDocument>
+    public class FeatureParser
     {
         private readonly GherkinDialectServices dialectServices;
 
-        public HtmlFeatureParser(CultureInfo defaultLanguage)
+        public FeatureParser()
+            : this(System.Threading.Thread.CurrentThread.CurrentCulture)
+        {
+        }
+
+        public FeatureParser(CultureInfo defaultLanguage)
         {
             this.dialectServices = new GherkinDialectServices(defaultLanguage);
         }
 
-        public XDocument Parse(TextReader featureFileReader)
+        public Feature Parse(string filename)
+        {
+            Feature feature = null;
+            using (var reader = new StreamReader(filename))
+            {
+                feature = Parse(reader);
+                reader.Close();
+            }
+
+            return feature;
+        }
+
+        public Feature Parse(TextReader featureFileReader)
         {
             var fileContent = featureFileReader.ReadToEnd();
 
@@ -29,10 +47,7 @@ namespace Pickles
             GherkinScanner scanner = new GherkinScanner(gherkinDialect, fileContent);
             scanner.Scan(gherkinListener);
 
-            var feature = gherkinListener.GetResult();
-
-            var featureFormatter = new HtmlFeatureFormatter(new HtmlScenarioFormatter(new HtmlStepFormatter(new HtmlTableFormatter(), new HtmlMultilineStringFormatter())));
-            return featureFormatter.Format(feature);
+            return gherkinListener.GetResult();
         }
     }
 }

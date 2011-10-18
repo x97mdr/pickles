@@ -16,7 +16,7 @@ namespace Pickles.Test
         public void Then_can_crawl_all_folders_including_subfolders_for_features_successfully()
         {
             var rootPath = @"FakeFolderStructures\FeatureCrawlerTests";
-            var features = new FeatureCrawler().Crawl(rootPath);
+            var features = new FeatureCrawler(new FeatureParser()).Crawl(rootPath);
 
             Assert.NotNull(features);
 

@@ -10,6 +10,13 @@ namespace Pickles
 {
     public class FeatureCrawler
     {
+        private readonly FeatureParser featureParser;
+
+        public FeatureCrawler(FeatureParser featureParser)
+        {
+            this.featureParser = featureParser;
+        }
+
         public GeneralTree<FeatureNode> Crawl(string directory)
         {
             return Crawl(new DirectoryInfo(directory), null);
@@ -42,7 +49,8 @@ namespace Pickles
                 {
                     Location = file,
                     Url = new Uri(file.FullName),
-                    RelativePathFromRoot = PathExtensions.MakeRelativePath(rootNode.Location, file)
+                    RelativePathFromRoot = PathExtensions.MakeRelativePath(rootNode.Location, file),
+                    Feature = this.featureParser.Parse(file.FullName)
                 });
             }
 

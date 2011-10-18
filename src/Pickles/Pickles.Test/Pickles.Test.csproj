@@ -142,7 +142,7 @@
       <LastGenOutput>LevelOne.feature.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="HtmlFormatterTestFiles\Background.xhtml" />
+    <EmbeddedResource Include="HtmlFormatterTestFiles\Background.xhtml" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
