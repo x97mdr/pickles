@@ -15,15 +15,20 @@ namespace Pickles
     {
         private readonly FeatureCrawler featureCrawler;
         private readonly HtmlDocumentFormatter htmlDocumentFormatter;
+        private readonly StylesheetWriter stylesheetWriter;
 
-        public HtmlDocumentationBuilder(FeatureCrawler featureCrawler, HtmlDocumentFormatter htmlDocumentFormatter)
+        public HtmlDocumentationBuilder(FeatureCrawler featureCrawler, HtmlDocumentFormatter htmlDocumentFormatter, StylesheetWriter stylesheetWriter)
         {
             this.featureCrawler = featureCrawler;
             this.htmlDocumentFormatter = htmlDocumentFormatter;
+            this.stylesheetWriter = stylesheetWriter;
         }
 
         public void Build(DirectoryInfo inputPath, DirectoryInfo outputPath)
         {
+            var stylesheetPath = new Uri(Path.Combine(outputPath.FullName, "styles.css"));
+            this.stylesheetWriter.WriteTo(stylesheetPath.LocalPath);
+
             var features = this.featureCrawler.Crawl(inputPath);
             var actionVisitor = new ActionVisitor<FeatureNode>(node =>
                 {
@@ -34,7 +39,7 @@ namespace Pickles
                         var htmlFilePath = nodePath.Replace(".feature", ".xhtml");
                         using (var writer = new StreamWriter(htmlFilePath))
                         {
-                            var document = this.htmlDocumentFormatter.Format(node, features);
+                            var document = this.htmlDocumentFormatter.Format(node, features, stylesheetPath);
                             document.Save(writer);
                             writer.Close();
                         }

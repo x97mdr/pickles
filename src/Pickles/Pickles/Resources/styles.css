@@ -1,0 +1,51 @@
+﻿body {
+	font: 75% helvetica, sans-serif;
+	color: #222;
+}
+
+#container
+{
+margin: 10px auto;
+background-color: #fff;
+color: #333;
+border: 1px solid gray;
+line-height: 130%;
+}
+
+#top
+{
+padding: .5em;
+background-color: #ddd;
+border-bottom: 1px solid gray;
+}
+
+#top h1
+{
+padding: 0;
+margin: 0;
+}
+
+#toc
+{
+float: left;
+margin: 0;
+padding: 1em;
+}
+
+#feature
+{
+float: left;
+padding: 1em;
+border-left: 1px solid gray;
+height: 100%;
+}
+
+#footer
+{
+clear: both;
+margin: 0;
+padding: .5em;
+color: #333;
+background-color: #ddd;
+border-top: 1px solid gray;
+}

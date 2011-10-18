@@ -43,7 +43,6 @@ namespace Pickles.Formatters
 
             return new XElement(xmlns + "div",
                        new XAttribute("id", "toc"),
-                       new XAttribute("class", "toc"),
                        BuildListItems(xmlns, file, features)
                    );
         }

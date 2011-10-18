@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FeatureNode.cs" />
+    <Compile Include="Formatters\HtmlFooterFormatter.cs" />
     <Compile Include="HtmlDocumentationBuilder.cs" />
     <Compile Include="FeatureCrawler.cs" />
     <Compile Include="FeatureSet.cs" />
@@ -83,6 +84,10 @@
     <Compile Include="IDocumentationBuilder.cs" />
     <Compile Include="PathExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StylesheetWriter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\styles.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />

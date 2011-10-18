@@ -11,7 +11,7 @@ namespace Pickles.Test.HtmlFormatterTestFiles
     {
         public HtmlDocumentFormatter BuildDocumentFormatter()
         {
-            return new HtmlDocumentFormatter(new HtmlTableOfContentsFormatter(), new HtmlFeatureFormatter(new HtmlScenarioFormatter(new HtmlStepFormatter(new HtmlTableFormatter(), new HtmlMultilineStringFormatter()))));
+            return new HtmlDocumentFormatter(new HtmlTableOfContentsFormatter(), new HtmlFeatureFormatter(new HtmlScenarioFormatter(new HtmlStepFormatter(new HtmlTableFormatter(), new HtmlMultilineStringFormatter()))), new HtmlFooterFormatter());
         }
 
         [Test, TestCaseSource(typeof(ParserFileFactory), "Files")]
@@ -27,7 +27,7 @@ namespace Pickles.Test.HtmlFormatterTestFiles
                 var document = htmlDocumentFormatter.Format(new FeatureNode
                 {
                     Feature = feature
-                });
+                }, null);
                 actual = document.ToString(SaveOptions.DisableFormatting);
             }
 
