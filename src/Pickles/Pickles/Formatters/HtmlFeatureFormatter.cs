@@ -23,7 +23,8 @@ namespace Pickles.Formatters
 
             var div = new XElement(xmlns + "div",
                         new XAttribute("id", "feature"),
-                        new XElement(xmlns + "h1", feature.Title), feature.Description.Split('\n').Select(s => new XElement(xmlns + "p", s.Trim()))
+                        new XElement(xmlns + "h1", feature.Title), 
+                        !string.IsNullOrWhiteSpace(feature.Description) ? new XElement(xmlns + "p", feature.Description) : null
                     );
 
             var scenarios = new XElement(xmlns + "ul", new XAttribute("id", "scenarios"));
