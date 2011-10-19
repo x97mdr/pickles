@@ -37,14 +37,14 @@ namespace Pickles
                     if (!node.IsDirectory)
                     {
                         var htmlFilePath = nodePath.Replace(".feature", ".xhtml");
-                        using (var writer = new StreamWriter(htmlFilePath))
+                        using (var writer = new StreamWriter(htmlFilePath, false, Encoding.UTF8))
                         {
                             var document = this.htmlDocumentFormatter.Format(node, features, stylesheetPath);
                             document.Save(writer);
                             writer.Close();
                         }
                     }
-                    else 
+                    else if (!node.IsEmpty)
                     {
                         Directory.CreateDirectory(nodePath);
                     }

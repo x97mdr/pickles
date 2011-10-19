@@ -17,5 +17,11 @@ namespace Pickles
         public string Name { get { return IsDirectory ? Location.Name : Location.Name.Replace(".feature", string.Empty); } }
         public Feature Feature { get; set; }
         public bool IsDirectory { get { return Location is DirectoryInfo; } }
+        public bool IsEmpty { get { return IsDirectory ? !((Location as DirectoryInfo).GetFileSystemInfos().Any()) : true; } }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

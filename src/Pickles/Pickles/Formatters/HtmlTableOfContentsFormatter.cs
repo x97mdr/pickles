@@ -25,7 +25,7 @@ namespace Pickles.Formatters
                 }
                 else
                 {
-                    ul.Add(BuildListItems(xmlns, file, childNode));
+                    ul.Add(new XElement(xmlns + "li", new XText(childNode.Data.Name), BuildListItems(xmlns, file, childNode)));
                 }
             }
 
