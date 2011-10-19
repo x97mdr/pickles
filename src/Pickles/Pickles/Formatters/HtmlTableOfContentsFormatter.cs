@@ -16,7 +16,7 @@ namespace Pickles.Formatters
 
             foreach (var childNode in features.ChildNodes)
             {
-                if (childNode.IsLeafNode)
+                if (childNode.IsLeafNode && !childNode.Data.IsDirectory)
                 {
                     ul.Add(new XElement(xmlns + "li",
                                 new XElement(xmlns + "a",
