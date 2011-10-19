@@ -1,0 +1,193 @@
+#container
+{
+width: 90%;
+margin: 10px auto;
+background-color: #EAEAEA;
+color: #333;
+border: 1px solid gray;
+line-height: 130%;
+}
+
+#top
+{
+padding: .5em;
+background-color: #ddd;
+border-bottom: 1px solid gray;
+}
+
+#top h1
+{
+padding: 0;
+margin: 0;
+}
+
+#toc
+{
+float: left;
+width: auto;
+margin-right: auto;
+padding: 1em;
+}
+
+#feature
+{
+float:left;
+margin-left: auto;
+border-left: 1px solid gray;
+padding: 1em;
+/*max-width: 36em;*/
+}
+
+#footer
+{
+clear: both;
+margin: 0;
+padding: .5em;
+color: #333;
+background-color: #ddd;
+border-top: 1px solid gray;
+}
+
+#toc p { margin: 0 0 1em 0; }
+
+ul#features {
+	margin-left:0;
+	padding: 0 0 1.25em 0;
+	list-style:none;
+	list-style-image:none;
+}
+
+/***************************************************
+ * Feature styling  
+ ***************************************************/
+#feature
+{
+float:left;
+margin-left: auto;
+border-left: 1px solid gray;
+padding: 1em;
+max-width: 50em;
+}
+
+#feature h1 { 
+margin: 0 0 .5em 0; 
+}
+
+ul.features {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #e8e8e8; }
+  ul.features li {
+    list-style-type: none; }
+    ul.features li .directory {
+      padding: 5px 10px 6px;
+      background: #f9f9f9;
+      border-bottom: 1px solid #ddd;
+      border-top: 1px solid #fff;
+      font-weight: bold; }
+      ul.features li .directory a {
+        text-decoration: none; }
+      ul.features li .directory a:hover {
+        text-decoration: underline; }
+    ul.features li .no_directory {
+      border-bottom: 1px solid #e8e8e8;
+      padding: 3px 10px 4px; }
+      ul.features li .no_directory a {
+        text-decoration: none; }
+      ul.features li .no_directory a:hover {
+        text-decoration: underline; }
+    ul.features li ul {
+      margin: 0;
+      padding: 0; }
+      ul.features li ul li {
+        border-bottom: 1px solid #e8e8e8;
+        padding: 3px 20px 4px; }
+        ul.features li ul li a {
+          text-decoration: none; }
+        ul.features li ul li a:hover {
+          text-decoration: underline; }
+
+ul#scenarios {
+  margin: 0;
+  padding: 0;
+  list-style-type: none; }
+  ul#scenarios li.scenario {
+    margin-top: 1.5em;
+    background: #fdffec; }
+    ul#scenarios li.scenario .scenario-heading {
+      padding: 7px 10px 11px; }
+      ul#scenarios li.scenario .scenario-heading h2 {
+        font-weight: bold;
+        margin: 0; }
+        ul#scenarios li.scenario .scenario-heading h2 a {
+          text-decoration: none;
+          color: inherit; }
+        ul#scenarios li.scenario .scenario-heading h2 span {
+          color: #5dc800; }
+    ul#scenarios li.scenario .description {
+      margin-top: 8px;
+      margin-bottom: 0px;
+      padding-left: 24px; }
+      ul#scenarios li.scenario .description p {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em; }
+    ul#scenarios li.scenario .steps {
+      padding: 12px 0 21px; }
+      ul#scenarios li.scenario .steps ul {
+        list-style-type: none;
+        margin: 0 25px;
+        padding: 0; }
+        ul#scenarios li.scenario .steps ul span.keyword {
+          color: #5db500; }
+      ul#scenarios li.scenario .steps .step {
+        padding-top: 0.4em; }
+    ul#scenarios li.scenario .examples ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 12px; }
+    ul#scenarios li.scenario .examples table {
+      width: auto;
+      margin-top: 2px;
+      border-top: 1px solid #fff;
+      border-left: 1px solid #fff;
+      background-color: #eee; }
+      ul#scenarios li.scenario .examples table td, ul#scenarios li.scenario .examples table th {
+        padding: 3px 10px;
+        border-right: 1px solid #fff;
+        border-bottom: 1px solid #fff; }
+    ul#scenarios li.scenario .examples .scenario-heading {
+      background: white;
+      padding: 7px 10px 11px; }
+      ul#scenarios li.scenario .examples .scenario-heading h5 {
+        font-weight: bold;
+        margin: 0; }
+        ul#scenarios li.scenario .examples .scenario-heading h5 span {
+          color: #5dc800; }
+ 
+.step pre {
+  background-color: #E0F8E0;
+  font-size: 0.85em;
+  border-color: #fff;
+  border-size: 1px;
+  margin: 0.5em 0 0.5em 1.2em;
+  overflow: auto; }
+  
+.step table {
+  width: auto;
+  margin-top: 2px;
+  margin-bottom: 0px;
+  border-top: 1px solid #fff;
+  border-left: 1px solid #fff;
+  background-color: #E0F8E0;
+  font-size: 0.85em; }
+  .step table td, .step table th {
+    padding: 3px 10px;
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff; }
+	
+pre code{
+font:0.95em 'monaco', 'lucida console', monospace;
+display:block;
+padding:.5em;
+background:#000;
+color:#f8f8f8}

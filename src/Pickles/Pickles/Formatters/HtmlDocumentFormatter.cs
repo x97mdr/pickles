@@ -25,7 +25,7 @@ namespace Pickles.Formatters
             return Format(featureNode, null, stylesheet);
         }
 
-        public XDocument Format(FeatureNode featureNode, GeneralTree<FeatureNode> features, Uri stylesheet)
+        public XDocument Format(FeatureNode featureNode, GeneralTree<FeatureNode> features, Uri stylesheetUri)
         {
             var xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
 
@@ -33,7 +33,7 @@ namespace Pickles.Formatters
             head.Add(new XElement(xmlns + "title", string.Format("{0}", featureNode.Feature.Title)));
             head.Add(new XElement(xmlns + "link",
                          new XAttribute("rel", "stylesheet"),
-                         new XAttribute("href", featureNode.Url.MakeRelativeUri(stylesheet)),
+                         new XAttribute("href", stylesheetUri),
                          new XAttribute("type", "text/css")));
 
             var body = new XElement(xmlns + "body");

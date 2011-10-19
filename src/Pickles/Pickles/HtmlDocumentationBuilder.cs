@@ -26,8 +26,8 @@ namespace Pickles
 
         public void Build(DirectoryInfo inputPath, DirectoryInfo outputPath)
         {
-            var stylesheetPath = new Uri(Path.Combine(outputPath.FullName, "styles.css"));
-            this.stylesheetWriter.WriteTo(stylesheetPath.LocalPath);
+            var masterCssPath = this.stylesheetWriter.WriteTo(outputPath.FullName);
+            var masterCssUri = new Uri(masterCssPath);
 
             var features = this.featureCrawler.Crawl(inputPath);
             var actionVisitor = new ActionVisitor<FeatureNode>(node =>
@@ -36,10 +36,13 @@ namespace Pickles
 
                     if (!node.IsDirectory)
                     {
+                        var nodeUri = new Uri(nodePath);
+                        var relativeMasterCssUri = nodeUri.MakeRelativeUri(masterCssUri);
+
                         var htmlFilePath = nodePath.Replace(".feature", ".xhtml");
                         using (var writer = new StreamWriter(htmlFilePath, false, Encoding.UTF8))
                         {
-                            var document = this.htmlDocumentFormatter.Format(node, features, stylesheetPath);
+                            var document = this.htmlDocumentFormatter.Format(node, features, relativeMasterCssUri);
                             document.Save(writer);
                             writer.Close();
                         }
