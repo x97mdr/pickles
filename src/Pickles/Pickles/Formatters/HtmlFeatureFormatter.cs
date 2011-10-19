@@ -26,7 +26,7 @@ namespace Pickles.Formatters
                         new XElement(xmlns + "h1", feature.Title), feature.Description.Split('\n').Select(s => new XElement(xmlns + "p", s.Trim()))
                     );
 
-            var scenarios = new XElement(xmlns + "ul", new XAttribute("class", "scenarios"));
+            var scenarios = new XElement(xmlns + "ul", new XAttribute("id", "scenarios"));
             int id = 0;
             foreach (var scenario in feature.Scenarios)
             {

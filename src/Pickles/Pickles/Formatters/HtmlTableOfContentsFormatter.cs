@@ -12,7 +12,7 @@ namespace Pickles.Formatters
     {
         private XElement BuildListItems(XNamespace xmlns, Uri file, GeneralTree<FeatureNode> features)
         {
-            var ul = new XElement(xmlns + "ul");
+            var ul = new XElement(xmlns + "ul", new XAttribute("class", "features"));
 
             foreach (var childNode in features.ChildNodes)
             {
