@@ -2,10 +2,7 @@
 using System.IO;
 using System.Xml.Linq;
 using Pickles.Formatters;
-using TechTalk.SpecFlow.Parser;
-using TechTalk.SpecFlow.Parser.Gherkin;
-using TechTalk.SpecFlow.Parser.GherkinBuilder;
-using TechTalk.SpecFlow.Parser.SyntaxElements;
+using Pickles.Parser;
 
 namespace Pickles
 {

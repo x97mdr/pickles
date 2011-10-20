@@ -34,23 +34,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gherkin">
-      <HintPath>..\..\..\lib\specflow-parser\Gherkin.dll</HintPath>
+    <Reference Include="gherkin-2.5.3">
+      <HintPath>..\..\..\lib\gherkin\gherkin-2.5.3.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Core">
       <HintPath>..\..\..\lib\specflow-parser\IKVM.OpenJDK.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Security">
-      <HintPath>..\..\..\lib\specflow-parser\IKVM.OpenJDK.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Text">
-      <HintPath>..\..\..\lib\specflow-parser\IKVM.OpenJDK.Text.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Util">
-      <HintPath>..\..\..\lib\specflow-parser\IKVM.OpenJDK.Util.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.Runtime">
-      <HintPath>..\..\..\lib\specflow-parser\IKVM.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="NDesk.Options">
       <HintPath>..\packages\NDesk.Options.0.2.1\lib\NDesk.Options.dll</HintPath>
@@ -65,11 +53,12 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TechTalk.SpecFlow.Parser">
-      <HintPath>..\..\..\lib\specflow-parser\TechTalk.SpecFlow.Parser.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Parser\Table.cs" />
+    <Compile Include="Parser\Feature.cs" />
+    <Compile Include="Parser\Keyword.cs" />
+    <Compile Include="Parser\PicklesListener.cs" />
     <Compile Include="FeatureNode.cs" />
     <Compile Include="Formatters\HtmlFooterFormatter.cs" />
     <Compile Include="HtmlDocumentationBuilder.cs" />
@@ -85,6 +74,10 @@
     <Compile Include="Formatters\HtmlTableFormatter.cs" />
     <Compile Include="ICrawlerListener.cs" />
     <Compile Include="IDocumentationBuilder.cs" />
+    <Compile Include="Parser\Scenario.cs" />
+    <Compile Include="Parser\ScenarioOutline.cs" />
+    <Compile Include="Parser\Step.cs" />
+    <Compile Include="Parser\TableRow.cs" />
     <Compile Include="PathExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StylesheetWriter.cs" />

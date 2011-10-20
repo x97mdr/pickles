@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
-using TechTalk.SpecFlow.Parser.SyntaxElements;
 using NGenerics.DataStructures.Trees;
+using Pickles.Parser;
 
 namespace Pickles.Formatters
 {

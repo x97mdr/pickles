@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
-using TechTalk.SpecFlow.Parser.SyntaxElements;
+using Pickles.Parser;
 
 namespace Pickles.Formatters
 {
@@ -20,7 +20,7 @@ namespace Pickles.Formatters
             xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
         }
 
-        public XElement Format(ScenarioStep step)
+        public XElement Format(Step step)
         {
             var li =  new XElement(xmlns + "li",
                           new XAttribute("class", "step"),
