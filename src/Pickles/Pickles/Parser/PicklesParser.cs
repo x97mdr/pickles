@@ -47,13 +47,28 @@ namespace Pickles.Parser
             }
         }
 
-        private void FinalizeBackground()
+        private void CaptureAndStoreRemainingElements()
         {
             if (this.featureElementState.IsBackgroundActive)
             {
                 this.backgroundBuilder.AddStep(this.stepBuilder.GetResult());
                 this.theFeature.Background = this.backgroundBuilder.GetResult();
             }
+            else if (this.featureElementState.IsScenarioActive)
+            {
+                if (this.stepBuilder != null) this.scenarioBuilder.AddStep(this.stepBuilder.GetResult());
+                this.theFeature.AddScenario(this.scenarioBuilder.GetResult());
+            }
+            else if (this.featureElementState.IsScenarioOutlineActive)
+            {
+                if (this.stepBuilder != null) this.scenarioOutlineBuilder.AddStep(this.stepBuilder.GetResult());
+                this.theFeature.AddScenarioOutline(this.scenarioOutlineBuilder.GetResult());
+            }
+
+            this.stepBuilder = null;
+            this.scenarioBuilder = null;
+            this.scenarioOutlineBuilder = null;
+            this.backgroundBuilder = null;
         }
 
         #region Listener Members
@@ -97,7 +112,7 @@ namespace Pickles.Parser
 
         public void scenario(string keyword, string name, string description, int line)
         {
-            FinalizeBackground();
+            CaptureAndStoreRemainingElements();
 
             this.isInExample = false;
             this.featureElementState.SetScenarioActive();
@@ -110,7 +125,7 @@ namespace Pickles.Parser
 
         public void scenarioOutline(string keyword, string name, string description, int line)
         {
-            FinalizeBackground();
+            CaptureAndStoreRemainingElements();
 
             this.isInExample = false;
             this.featureElementState.SetScenarioOutlineActive();
@@ -157,9 +172,7 @@ namespace Pickles.Parser
 
         public void eof()
         {
-            if (this.stepBuilder != null) AddStepToElement(this.stepBuilder.GetResult());
-            if (this.featureElementState.IsScenarioActive) this.theFeature.AddScenario(this.scenarioBuilder.GetResult());
-            if (this.featureElementState.IsScenarioOutlineActive) this.theFeature.AddScenarioOutline(this.scenarioOutlineBuilder.GetResult());
+            CaptureAndStoreRemainingElements();
         }
 
         #endregion

@@ -60,6 +60,90 @@ Feature: Test
         }
 
         [Test]
+        public void Then_can_parse_feature_with_multiple_scenarios_successfully()
+        {
+            string featureText = @"# ignore this comment
+Feature: Test
+    In order to do something
+    As a user
+    I want to run this scenario
+
+	Scenario: A scenario
+		Given some feature
+		When it runs
+		Then I should see that this thing happens	
+
+    Scenario: Another scenario
+		Given some other feature
+		When it runs
+		Then I should see that this other thing happens
+        And something else";
+
+            var parser = new FeatureParser();
+            var feature = parser.Parse(new StringReader(featureText));
+
+            Assert.AreNotEqual(null, feature);
+            Assert.AreEqual("Test", feature.Name);
+            Assert.AreEqual("  In order to do something\r\n  As a user\r\n  I want to run this scenario", feature.Description);
+            Assert.AreEqual(2, feature.Scenarios.Count);
+            Assert.AreEqual(0, feature.Tags.Count);
+
+            var scenario = feature.Scenarios[0];
+            Assert.AreEqual("A scenario", scenario.Name);
+            Assert.AreEqual(string.Empty, scenario.Description);
+            Assert.AreEqual(3, scenario.Steps.Count);
+            Assert.AreEqual(0, scenario.Tags.Count);
+
+            var givenStep = scenario.Steps[0];
+            Assert.AreEqual(Keyword.Given, givenStep.Keyword);
+            Assert.AreEqual("some feature", givenStep.Name);
+            Assert.AreEqual(null, givenStep.DocStringArgument);
+            Assert.AreEqual(null, givenStep.TableArgument);
+
+            var whenStep = scenario.Steps[1];
+            Assert.AreEqual(Keyword.When, whenStep.Keyword);
+            Assert.AreEqual("it runs", whenStep.Name);
+            Assert.AreEqual(null, whenStep.DocStringArgument);
+            Assert.AreEqual(null, whenStep.TableArgument);
+
+            var thenStep = scenario.Steps[2];
+            Assert.AreEqual(Keyword.Then, thenStep.Keyword);
+            Assert.AreEqual("I should see that this thing happens", thenStep.Name);
+            Assert.AreEqual(null, thenStep.DocStringArgument);
+            Assert.AreEqual(null, thenStep.TableArgument);
+
+            var scenario2 = feature.Scenarios[1];
+            Assert.AreEqual("Another scenario", scenario2.Name);
+            Assert.AreEqual(string.Empty, scenario2.Description);
+            Assert.AreEqual(4, scenario2.Steps.Count);
+            Assert.AreEqual(0, scenario2.Tags.Count);
+
+            var givenStep2 = scenario2.Steps[0];
+            Assert.AreEqual(Keyword.Given, givenStep2.Keyword);
+            Assert.AreEqual("some other feature", givenStep2.Name);
+            Assert.AreEqual(null, givenStep2.DocStringArgument);
+            Assert.AreEqual(null, givenStep2.TableArgument);
+
+            var whenStep2 = scenario2.Steps[1];
+            Assert.AreEqual(Keyword.When, whenStep2.Keyword);
+            Assert.AreEqual("it runs", whenStep2.Name);
+            Assert.AreEqual(null, whenStep2.DocStringArgument);
+            Assert.AreEqual(null, whenStep2.TableArgument);
+
+            var thenStep2 = scenario2.Steps[2];
+            Assert.AreEqual(Keyword.Then, thenStep2.Keyword);
+            Assert.AreEqual("I should see that this other thing happens", thenStep2.Name);
+            Assert.AreEqual(null, thenStep2.DocStringArgument);
+            Assert.AreEqual(null, thenStep2.TableArgument);
+
+            var thenStep3 = scenario2.Steps[3];
+            Assert.AreEqual(Keyword.And, thenStep3.Keyword);
+            Assert.AreEqual("something else", thenStep3.Name);
+            Assert.AreEqual(null, thenStep3.DocStringArgument);
+            Assert.AreEqual(null, thenStep3.TableArgument);
+        }
+
+        [Test]
         public void Then_can_parse_scenario_with_table_successfully()
         {
             string featureText = @"# ignore this comment
