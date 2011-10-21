@@ -13,6 +13,7 @@ namespace Pickles
 {
     public class HtmlDocumentationBuilder : IDocumentationBuilder
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private readonly FeatureCrawler featureCrawler;
         private readonly HtmlDocumentFormatter htmlDocumentFormatter;
         private readonly StylesheetWriter stylesheetWriter;
@@ -26,6 +27,11 @@ namespace Pickles
 
         public void Build(DirectoryInfo inputPath, DirectoryInfo outputPath)
         {
+            if (log.IsInfoEnabled)
+            {
+                log.InfoFormat("Writing HTML to {0}", outputPath.FullName);
+            }
+
             var masterCssPath = this.stylesheetWriter.WriteTo(outputPath.FullName);
             var masterCssUri = new Uri(masterCssPath);
 
