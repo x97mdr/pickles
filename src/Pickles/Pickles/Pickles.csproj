@@ -14,7 +14,7 @@
     <FileAlignment>512</FileAlignment>
     <RestorePackages>true</RestorePackages>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <BuildPackage>true</BuildPackage>
+    <BuildPackage>false</BuildPackage>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,8 +37,12 @@
     <Reference Include="gherkin-2.5.3">
       <HintPath>..\..\..\lib\gherkin\gherkin-2.5.3.dll</HintPath>
     </Reference>
-    <Reference Include="IKVM.OpenJDK.Core">
-      <HintPath>..\..\..\lib\specflow-parser\IKVM.OpenJDK.Core.dll</HintPath>
+    <Reference Include="IKVM.OpenJDK.Core, Version=0.44.0.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\ikvm\IKVM.OpenJDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Runtime">
+      <HintPath>..\..\..\lib\ikvm\IKVM.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="NDesk.Options">
       <HintPath>..\packages\NDesk.Options.0.2.1\lib\NDesk.Options.dll</HintPath>
@@ -55,10 +59,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Parser\Example.cs" />
+    <Compile Include="Parser\FeatureElementState.cs" />
+    <Compile Include="Parser\PicklesParser.cs" />
+    <Compile Include="Parser\ScenarioBuilder.cs" />
+    <Compile Include="Parser\ScenarioOutlineBuilder.cs" />
+    <Compile Include="Parser\StepBuilder.cs" />
     <Compile Include="Parser\Table.cs" />
     <Compile Include="Parser\Feature.cs" />
     <Compile Include="Parser\Keyword.cs" />
-    <Compile Include="Parser\PicklesListener.cs" />
     <Compile Include="FeatureNode.cs" />
     <Compile Include="Formatters\HtmlFooterFormatter.cs" />
     <Compile Include="HtmlDocumentationBuilder.cs" />
@@ -77,6 +86,7 @@
     <Compile Include="Parser\Scenario.cs" />
     <Compile Include="Parser\ScenarioOutline.cs" />
     <Compile Include="Parser\Step.cs" />
+    <Compile Include="Parser\TableBuilder.cs" />
     <Compile Include="Parser\TableRow.cs" />
     <Compile Include="PathExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

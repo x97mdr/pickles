@@ -11,16 +11,7 @@ namespace Pickles.Parser
 
         public string Name { get; set; }
         public string Description { get; set; }
-        public IEnumerable<Step> Steps { get { return this.steps; } }
-
-        public Scenario()
-        {
-            this.steps = new List<Step>();
-        }
-
-        public void AddStep(Step step)
-        {
-            this.steps.Add(step);
-        }
+        public List<Step> Steps { get; set; }
+        public List<string> Tags { get; set; }
     }
 }

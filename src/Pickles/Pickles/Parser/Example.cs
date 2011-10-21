@@ -5,12 +5,10 @@ using System.Text;
 
 namespace Pickles.Parser
 {
-    public class ScenarioOutline
+    public class Example
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public List<Step> Steps { get; set; }
-        public List<string> Tags { get; set; }
-        public Example Example { get; set; }
+        public Table TableArgument { get; set; }
     }
 }

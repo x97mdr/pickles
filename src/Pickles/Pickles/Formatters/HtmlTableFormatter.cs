@@ -21,12 +21,12 @@ namespace Pickles.Formatters
             return new XElement(xmlns + "table",
                             new XElement(xmlns + "thead",
                                 new XElement(xmlns + "tr",
-                                    table.Header.Cells.Select(cell => new XElement(xmlns + "th", cell.Value))
+                                    table.HeaderRow.Select(cell => new XElement(xmlns + "th", cell))
                                 )
                             ),
                             new XElement(xmlns + "tbody",
-                                table.Body.Select(row => new XElement(xmlns + "tr",
-                                    row.Cells.Select(cell => new XElement(xmlns + "td", cell.Value)))
+                                table.DataRows.Select(row => new XElement(xmlns + "tr",
+                                    row.Select(cell => new XElement(xmlns + "td", cell)))
                                 )
                             )
                         );

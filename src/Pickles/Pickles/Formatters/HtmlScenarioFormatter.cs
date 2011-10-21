@@ -25,7 +25,7 @@ namespace Pickles.Formatters
                        new XAttribute("class", "scenario"),
                        new XElement(xmlns + "div",
                            new XAttribute("class", "scenario-heading"),
-                           new XElement(xmlns + "h2", scenario.Title),
+                           new XElement(xmlns + "h2", scenario.Name),
                            !string.IsNullOrWhiteSpace(scenario.Description) ? new XElement(xmlns + "p", scenario.Description) : null
                        ),
                        new XElement(xmlns + "div",

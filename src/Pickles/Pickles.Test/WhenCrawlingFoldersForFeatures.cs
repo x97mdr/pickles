@@ -22,7 +22,7 @@ namespace Pickles.Test
 
             var a = features.ChildNodes[0].Data;
             Assert.NotNull(a);
-            Assert.AreEqual("LevelOne.feature", a.Name);
+            Assert.AreEqual("LevelOne", a.Name);
             Assert.AreEqual(@"LevelOne.feature", a.RelativePathFromRoot);
 
             var b = features.ChildNodes[1].Data;
@@ -32,12 +32,12 @@ namespace Pickles.Test
 
             var c = features.ChildNodes[1].ChildNodes[0].Data;
             Assert.NotNull(c);
-            Assert.AreEqual("LevelOneSublevelOne.feature", c.Name);
+            Assert.AreEqual("LevelOneSublevelOne", c.Name);
             Assert.AreEqual(@"SubLevelOne\LevelOneSublevelOne.feature", c.RelativePathFromRoot);
 
             var d = features.ChildNodes[1].ChildNodes[1].Data;
             Assert.NotNull(d);
-            Assert.AreEqual("LevelOneSublevelTwo.feature", d.Name);
+            Assert.AreEqual("LevelOneSublevelTwo", d.Name);
             Assert.AreEqual(@"SubLevelOne\LevelOneSublevelTwo.feature", d.RelativePathFromRoot);
 
             var e = features.ChildNodes[1].ChildNodes[2].Data;
@@ -47,7 +47,7 @@ namespace Pickles.Test
 
             var f = features.ChildNodes[1].ChildNodes[2].ChildNodes[0].Data;
             Assert.NotNull(f);
-            Assert.AreEqual("LevelOneSublevelOneSubLevelTwo.feature", f.Name);
+            Assert.AreEqual("LevelOneSublevelOneSubLevelTwo", f.Name);
             Assert.AreEqual(@"SubLevelOne\SubLevelTwo\LevelOneSublevelOneSubLevelTwo.feature", f.RelativePathFromRoot);
         }
     }

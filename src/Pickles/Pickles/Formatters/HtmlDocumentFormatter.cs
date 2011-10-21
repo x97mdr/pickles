@@ -20,9 +20,9 @@ namespace Pickles.Formatters
             this.htmlFooterFormatter = htmlFooterFormatter;
         }
 
-        public XDocument Format(FeatureNode featureNode, Uri stylesheet)
+        public XDocument Format(FeatureNode featureNode)
         {
-            return Format(featureNode, null, stylesheet);
+            return Format(featureNode, null, null);
         }
 
         public XDocument Format(FeatureNode featureNode, GeneralTree<FeatureNode> features, Uri stylesheetUri)
@@ -30,11 +30,15 @@ namespace Pickles.Formatters
             var xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
 
             var head = new XElement(xmlns + "head");
-            head.Add(new XElement(xmlns + "title", string.Format("{0}", featureNode.Feature.Title)));
-            head.Add(new XElement(xmlns + "link",
-                         new XAttribute("rel", "stylesheet"),
-                         new XAttribute("href", stylesheetUri),
-                         new XAttribute("type", "text/css")));
+            head.Add(new XElement(xmlns + "title", string.Format("{0}", featureNode.Feature.Name)));
+
+            if (stylesheetUri != null)
+            {
+                head.Add(new XElement(xmlns + "link",
+                             new XAttribute("rel", "stylesheet"),
+                             new XAttribute("href", stylesheetUri),
+                             new XAttribute("type", "text/css")));
+            }
 
             var body = new XElement(xmlns + "body");
             var container = new XElement(xmlns + "div", new XAttribute("id", "container"));

@@ -25,17 +25,17 @@ namespace Pickles.Formatters
             var li =  new XElement(xmlns + "li",
                           new XAttribute("class", "step"),
                           new XElement(xmlns + "span", new XAttribute("class", "keyword"), step.Keyword),
-                          step.Text
+                          step.Name
                       );
 
-            if (step.TableArg != null)
+            if (step.TableArgument != null)
             {
-                li.Add(this.htmlTableFormatter.Format(step.TableArg));
+                li.Add(this.htmlTableFormatter.Format(step.TableArgument));
             }
 
-            if (!string.IsNullOrEmpty(step.MultiLineTextArgument))
+            if (!string.IsNullOrEmpty(step.DocStringArgument))
             {
-                li.Add(this.htmlMultilineStringFormatter.Format(step.MultiLineTextArgument));
+                li.Add(this.htmlMultilineStringFormatter.Format(step.DocStringArgument));
             }
 
             return li;

@@ -1,7 +1,8 @@
 ﻿using System.Xml.Linq;
 using NUnit.Framework;
 using Pickles.Formatters;
-using TechTalk.SpecFlow.Parser.SyntaxElements;
+using Pickles.Parser;
+using System.Collections.Generic;
 
 namespace Pickles.Test
 {
@@ -11,14 +12,12 @@ namespace Pickles.Test
         [Test]
         public void Simple_steps_are_formatted_as_list_items()
         {
-            var step = new ScenarioStep
+            var step = new Step
             {
-                Keyword = "Given",
-                StepKeyword = TechTalk.SpecFlow.Parser.Gherkin.StepKeyword.Given,
-                TableArg = null,
-                MultiLineTextArgument = null,
-                ScenarioBlock = TechTalk.SpecFlow.Parser.Gherkin.ScenarioBlock.Given,
-                Text = "a simple step"
+                Keyword = Keyword.Given,
+                Name = "a simple step",
+                TableArgument = null,
+                DocStringArgument = null,
             };
 
             var formatter = new HtmlStepFormatter(new HtmlTableFormatter(), new HtmlMultilineStringFormatter());
@@ -37,20 +36,18 @@ namespace Pickles.Test
         [Test]
         public void Tables_are_formatted_as_list_items_with_tables_internal()
         {
-            var table = new GherkinTable
+            var table = new Table
             {
-                Header = new GherkinTableRow(new GherkinTableCell("Column 1"), new GherkinTableCell("Column 2")),
-                Body = new GherkinTableRow[] { new GherkinTableRow(new GherkinTableCell("Value 1"), new GherkinTableCell("Value 2")) } 
+                HeaderRow = new TableRow("Column 1", "Column 2"),
+                DataRows = new List<TableRow> { new TableRow("Value 1", "Value 2") } 
             };
 
-            var step = new ScenarioStep
+            var step = new Step
             {
-                Keyword = "Given",
-                StepKeyword = TechTalk.SpecFlow.Parser.Gherkin.StepKeyword.Given,
-                TableArg = table,
-                MultiLineTextArgument = null,
-                ScenarioBlock = TechTalk.SpecFlow.Parser.Gherkin.ScenarioBlock.Given,
-                Text = "a simple step"
+                Keyword = Keyword.Given,
+                Name = "a simple step",
+                TableArgument = table,
+                DocStringArgument = null,
             };
 
             var formatter = new HtmlStepFormatter(new HtmlTableFormatter(), new HtmlMultilineStringFormatter());
@@ -83,14 +80,12 @@ namespace Pickles.Test
         [Test]
         public void Multiline_strings_are_formatted_as_list_items_with_pre_elements_formatted_as_code_internal()
         {
-            var step = new ScenarioStep
+            var step = new Step
             {
-                Keyword = "Given",
-                StepKeyword = TechTalk.SpecFlow.Parser.Gherkin.StepKeyword.Given,
-                TableArg = null,
-                MultiLineTextArgument = "this is a\nmultiline table\nargument",
-                ScenarioBlock = TechTalk.SpecFlow.Parser.Gherkin.ScenarioBlock.Given,
-                Text = "a simple step"
+                Keyword = Keyword.Given,
+                Name = "a simple step",
+                TableArgument = null,
+                DocStringArgument = "this is a\nmultiline table\nargument",
             };
 
             var formatter = new HtmlStepFormatter(new HtmlTableFormatter(), new HtmlMultilineStringFormatter());

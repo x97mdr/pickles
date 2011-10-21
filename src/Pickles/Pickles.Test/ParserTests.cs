@@ -1,8 +1,10 @@
 ﻿using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Xml.Linq;
 using NUnit.Framework;
 using Pickles.Formatters;
+using Pickles.Parser;
 
 namespace Pickles.Test.HtmlFormatterTestFiles
 {
@@ -17,7 +19,7 @@ namespace Pickles.Test.HtmlFormatterTestFiles
         [Test, TestCaseSource(typeof(ParserFileFactory), "Files")]
         public void Can_Parse_Feature_Files_Successfully(string featureText, string xhtmlText)
         {
-            var parser = new FeatureParser(new CultureInfo("en"));
+            var parser = new FeatureParser();
             var htmlDocumentFormatter = BuildDocumentFormatter();
 
             string actual;
@@ -27,7 +29,7 @@ namespace Pickles.Test.HtmlFormatterTestFiles
                 var document = htmlDocumentFormatter.Format(new FeatureNode
                 {
                     Feature = feature
-                }, null);
+                });
                 actual = document.ToString(SaveOptions.DisableFormatting);
             }
 
@@ -35,5 +37,6 @@ namespace Pickles.Test.HtmlFormatterTestFiles
 
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
+
     }
 }

@@ -9,5 +9,7 @@ namespace Pickles.Parser
     {
         public Keyword Keyword { get; set; }
         public string Name { get; set; }
+        public Table TableArgument { get; set; }
+        public string DocStringArgument { get; set; }
     }
 }
