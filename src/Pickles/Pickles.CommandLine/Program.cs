@@ -10,13 +10,17 @@ namespace Pickles.CommandLine
     {
         static void Main(string[] args)
         {
-            var input = args[0];
-            var output = args[1];
+            var configuration = new Configuration();
+            var commandLineArgumentParser = new CommandLineArgumentParser();
+            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, Console.Out);
 
-            var documentFormatter = new HtmlDocumentFormatter(new HtmlTableOfContentsFormatter(), new HtmlFeatureFormatter(new HtmlScenarioFormatter(new HtmlStepFormatter(new HtmlTableFormatter(), new HtmlMultilineStringFormatter()))), new HtmlFooterFormatter());
-            var documentationBuilder = new HtmlDocumentationBuilder(new FeatureCrawler(new FeatureParser()), documentFormatter, new StylesheetWriter());
+            if (shouldContinue)
+            {
+                var documentFormatter = new HtmlDocumentFormatter(new HtmlTableOfContentsFormatter(), new HtmlFeatureFormatter(new HtmlScenarioFormatter(new HtmlStepFormatter(new HtmlTableFormatter(), new HtmlMultilineStringFormatter()))), new HtmlFooterFormatter());
+                var documentationBuilder = new HtmlDocumentationBuilder(new FeatureCrawler(new FeatureParser()), documentFormatter, new StylesheetWriter());
 
-            documentationBuilder.Build(new System.IO.DirectoryInfo(input), new System.IO.DirectoryInfo(output));
+                documentationBuilder.Build(configuration.FeatureFolder, configuration.OutputFolder);
+            }
         }
     }
 }
