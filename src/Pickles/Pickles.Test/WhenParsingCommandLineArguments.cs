@@ -10,8 +10,7 @@ namespace Pickles.Test
     [TestFixture]
     public class WhenParsingCommandLineArguments
     {
-        private static readonly string expectedHelpString = @"Pickles version 1.0.0.0
-  -f, --feature-directory=VALUE
+        private static readonly string expectedHelpString = @"  -f, --feature-directory=VALUE
                              directory to start scanning recursively for 
                                features
   -o, --output-directory=VALUE
@@ -19,7 +18,7 @@ namespace Pickles.Test
   -v, --version              
   -h, -?, --help";
 
-        private static readonly string expectedVersionString = @"Pickles version 1.0.0.0";
+        private static readonly string expectedVersionString = @"Pickles version [0-9].[0-9].[0-9].[0-9]";
 
         [Test]
         public void Then_can_parse_short_form_arguments_successfully()
@@ -59,7 +58,7 @@ namespace Pickles.Test
             var commandLineArgumentParser = new CommandLineArgumentParser();
             bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
 
-            StringAssert.AreEqualIgnoringCase(expectedHelpString, writer.GetStringBuilder().ToString().Trim());
+            StringAssert.Contains(expectedHelpString, writer.GetStringBuilder().ToString().Trim());
             Assert.AreEqual(false, shouldContinue);
             Assert.AreEqual(null, configuration.FeatureFolder);
             Assert.AreEqual(null, configuration.OutputFolder);
@@ -75,7 +74,7 @@ namespace Pickles.Test
             var commandLineArgumentParser = new CommandLineArgumentParser();
             bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
 
-            StringAssert.AreEqualIgnoringCase(expectedHelpString, writer.GetStringBuilder().ToString().Trim());
+            StringAssert.Contains(expectedHelpString, writer.GetStringBuilder().ToString().Trim());
             Assert.AreEqual(false, shouldContinue);
             Assert.AreEqual(null, configuration.FeatureFolder);
             Assert.AreEqual(null, configuration.OutputFolder);
@@ -91,7 +90,7 @@ namespace Pickles.Test
             var commandLineArgumentParser = new CommandLineArgumentParser();
             bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
 
-            StringAssert.AreEqualIgnoringCase(expectedHelpString, writer.GetStringBuilder().ToString().Trim());
+            StringAssert.Contains(expectedHelpString, writer.GetStringBuilder().ToString().Trim());
             Assert.AreEqual(false, shouldContinue);
             Assert.AreEqual(null, configuration.FeatureFolder);
             Assert.AreEqual(null, configuration.OutputFolder);
@@ -107,7 +106,7 @@ namespace Pickles.Test
             var commandLineArgumentParser = new CommandLineArgumentParser();
             bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
 
-            StringAssert.AreEqualIgnoringCase(expectedVersionString, writer.GetStringBuilder().ToString().Trim());
+            StringAssert.IsMatch(expectedVersionString, writer.GetStringBuilder().ToString().Trim());
             Assert.AreEqual(false, shouldContinue);
             Assert.AreEqual(null, configuration.FeatureFolder);
             Assert.AreEqual(null, configuration.OutputFolder);
@@ -123,7 +122,7 @@ namespace Pickles.Test
             var commandLineArgumentParser = new CommandLineArgumentParser();
             bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
 
-            StringAssert.AreEqualIgnoringCase(expectedVersionString, writer.GetStringBuilder().ToString().Trim());
+            StringAssert.IsMatch(expectedVersionString, writer.GetStringBuilder().ToString().Trim());
             Assert.AreEqual(false, shouldContinue);
             Assert.AreEqual(null, configuration.FeatureFolder);
             Assert.AreEqual(null, configuration.OutputFolder);

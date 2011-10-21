@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<project name="pickles" default="zip" basedir=".">
+	<description>Builds and tests the Pickles project</description>
+		
+	<!-- set the major and minor version number here -->
+	<property name="version.major" value="0" />
+	<property name="version.minor" value="1" />
+	
+	<!-- set build number from continuous integration tool -->
+	<if test="${environment::variable-exists('BUILD_NUMBER')}">
+		<property name="build.number" value="${environment::get-variable('BUILD_NUMBER')}" />
+	</if>
+
+	<ifnot test="${property::exists('build.number')}">
+		<property name="build.number" value="0" />
+	</ifnot>
+	
+	<!-- Set revision number from source control ... note that for git this is difficult to do because it only uses SHA hashes for commits -->
+	<if test="${environment::variable-exists('SVN_REVISION')}">
+		<property name="revision" value="${environment::get-variable('SVN_REVISION')}" />
+	</if>
+	
+	<if test="${environment::variable-exists('BZR_REVISION')}">
+		<property name="revision" value="${environment::get-variable('BZR_REVISION')}" />
+	</if>
+	
+	<ifnot test="${property::exists('revision')}">
+		<property name="revision" value="0" />
+	</ifnot>
+	
+	<property name="version" value="${version.major}.${version.minor}.${build.number}.0" />
+	<property name="msbuild.dir" value="C:\Windows\Microsoft.NET\Framework\v4.0.30319" />
+	<property name="deploy.dir" value="deploy" />
+	<property name="report.dir" value="reports" />
+	<property name="report.nunit.dir" value="${report.dir}\nunit" />
+	<property name="assemblies.dir" value="C:\dev\pickles\src\Pickles\Pickles.CommandLine\bin\Release" />
+	<property name="merged.dir" value="merged" />
+
+	<target name="init">
+		<mkdir dir="${deploy.dir}" />
+		<mkdir dir="${report.nunit.dir}" />
+	</target>
+	
+	<target name="set" depends="init">
+		<exec program="tools\AssemblyInfoUtil.exe">
+			<arg value="-setver:${version}" />
+			<arg value="src\Pickles\VersionInfo.cs" />
+		</exec>
+	</target>
+	
+	<target name="build" depends="set">
+		<exec program="msbuild.exe" basedir="${msbuild.dir}">
+			<arg value="src\Pickles\Pickles.sln" />
+			<arg value="/p:Configuration=Release" />
+			<arg value="/p:NoWarn=1591 3001 3002 3003 3005 3008 3009" />
+			<arg value="/l:FileLogger,Microsoft.Build.Engine;logfile=build.log;verbosity=detailed;encoding=utf-8" />
+		</exec>
+	</target>
+	
+	<target name="test" depends="build">
+		<exec program="nunit-console.exe" basedir=".\tools\nunit-2.5.10\bin\net-2.0">
+			<arg value="/xml:${report.nunit.dir}\results.xml" />
+			<arg value=".\src\Pickles\Pickles.Test\bin\Release\Pickles.Test.dll" />
+		</exec>
+	</target>
+	
+	<target name="zip" depends="test">
+		<zip zipfile="${deploy.dir}\pickles-${version}.zip">
+		    <fileset basedir="${assemblies.dir}" prefix="pickles-${version}">
+		        <include name="**/*" />
+		    </fileset>
+		</zip>
+	</target>
+
+</project>

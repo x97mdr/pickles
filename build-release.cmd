@@ -1,0 +1,1 @@
+tools\nant-0.85\binaries\nant -buildfile:project.build
