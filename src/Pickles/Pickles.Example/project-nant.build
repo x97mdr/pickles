@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<project name="pickles-example" default="document" basedir=".">
+	<description>Generates example documentation for the Pickles.Example project using the NAnt task</description>
+	<loadtasks assembly="..\..\..\src\Pickles\Pickles.NAnt\bin\Release\Pickles.NAnt.Tasks.dll" />
+		
+	<property name="features.dir" value="Features" />
+	<property name="documentation.dir" value="Documentation-ViaNAnt" />
+
+	<target name="init">
+		<mkdir dir="${documentation.dir}" />
+	</target>
+	
+	<target name="document" depends="init">
+		<pickles features="${features.dir}" output="${documentation.dir}" />
+	</target>
+
+</project>

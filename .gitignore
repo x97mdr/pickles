@@ -51,3 +51,4 @@ packages/
 #build artifacts
 deploy/
 reports/
+Documentation-*/

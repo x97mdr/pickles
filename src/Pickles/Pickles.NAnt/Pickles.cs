@@ -9,12 +9,15 @@ using Pickles.Formatters;
 
 namespace Pickles.NAnt
 {
+    [TaskName("pickles")]
     public class Pickles : Task
     {
-        [TaskAttribute("FeatureDirectory", Required = true)]
+        [TaskAttribute("features", Required = true)]
+        [StringValidator(AllowEmpty=false)]
         public string FeatureDirectory { get; set; }
 
-        [TaskAttribute("OutputDirectory", Required = true)]
+        [TaskAttribute("output", Required = true)]
+        [StringValidator(AllowEmpty = false)]
         public string OutputDirectory { get; set; }
 
         protected override void ExecuteTask()
