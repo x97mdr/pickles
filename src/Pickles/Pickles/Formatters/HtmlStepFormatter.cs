@@ -24,7 +24,7 @@ namespace Pickles.Formatters
         {
             var li =  new XElement(xmlns + "li",
                           new XAttribute("class", "step"),
-                          new XElement(xmlns + "span", new XAttribute("class", "keyword"), step.Keyword),
+                          new XElement(xmlns + "span", new XAttribute("class", "keyword"), step.Keyword + " "),
                           step.Name
                       );
 
