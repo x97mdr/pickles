@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Ninject;
 using Pickles.Formatters;
 
 namespace Pickles.CommandLine
@@ -14,8 +15,9 @@ namespace Pickles.CommandLine
         {
             log4net.Config.XmlConfigurator.Configure();
 
-            var configuration = new Configuration();
-            var commandLineArgumentParser = new CommandLineArgumentParser();
+            var kernel = new StandardKernel(new PicklesModule());
+            var configuration = kernel.Get<Configuration>();
+            var commandLineArgumentParser = kernel.Get<CommandLineArgumentParser>();
             bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, Console.Out);
 
             if (shouldContinue)
@@ -26,9 +28,7 @@ namespace Pickles.CommandLine
                     log.InfoFormat("Reading features from {0}", configuration.FeatureFolder.FullName);
                 }
 
-                var documentFormatter = new HtmlDocumentFormatter(new HtmlTableOfContentsFormatter(), new HtmlFeatureFormatter(new HtmlScenarioFormatter(new HtmlStepFormatter(new HtmlTableFormatter(), new HtmlMultilineStringFormatter()))), new HtmlFooterFormatter());
-                var documentationBuilder = new HtmlDocumentationBuilder(new FeatureCrawler(new FeatureParser()), documentFormatter, new StylesheetWriter());
-
+                var documentationBuilder = kernel.Get<HtmlDocumentationBuilder>();
                 documentationBuilder.Build(configuration.FeatureFolder, configuration.OutputFolder);
 
                 if (log.IsInfoEnabled)

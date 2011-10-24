@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using Ninject;
 using NUnit.Framework;
 using Pickles.Parser;
-using System.IO;
 
 namespace Pickles.Test
 {
     [TestFixture]
-    public class WhenParsingFeatureFiles
+    public class WhenParsingFeatureFiles : BaseFixture
     {
         [Test]
         public void Then_can_parse_most_basic_feature_successfully()
@@ -25,7 +26,7 @@ Feature: Test
 		When it runs
 		Then I should see that this thing happens";
 
-            var parser = new FeatureParser();
+            var parser = Kernel.Get<FeatureParser>();
             var feature = parser.Parse(new StringReader(featureText));
 
             Assert.AreNotEqual(null, feature);
@@ -79,7 +80,7 @@ Feature: Test
 		Then I should see that this other thing happens
         And something else";
 
-            var parser = new FeatureParser();
+            var parser = Kernel.Get<FeatureParser>();
             var feature = parser.Parse(new StringReader(featureText));
 
             Assert.AreNotEqual(null, feature);
@@ -159,7 +160,7 @@ Feature: Test
 		When it runs
 		Then I should see that this thing happens";
 
-            var parser = new FeatureParser();
+            var parser = Kernel.Get<FeatureParser>();
             var feature = parser.Parse(new StringReader(featureText));
 
             var table = feature.Scenarios[0].Steps[0].TableArgument;
@@ -209,7 +210,7 @@ Feature: Test
                                  "        When it runs\n" + 
                                  "        Then I should see that this thing happens\n";
 
-            var parser = new FeatureParser();
+            var parser = Kernel.Get<FeatureParser>();
             var feature = parser.Parse(new StringReader(featureText));
 
             Assert.AreEqual("This is a document string\nit can be many lines long", feature.Scenarios[0].Steps[0].DocStringArgument);
@@ -233,7 +234,7 @@ Feature: Test
 		When it runs
 		Then I should see that this thing happens";
 
-            var parser = new FeatureParser();
+            var parser = Kernel.Get<FeatureParser>();
             var feature = parser.Parse(new StringReader(featureText));
 
             Assert.AreNotEqual(null, feature.Background);
@@ -273,7 +274,7 @@ Feature: Test
     | keyword1 | keyword2 |
     | this     | that     |";
 
-            var parser = new FeatureParser();
+            var parser = Kernel.Get<FeatureParser>();
             var feature = parser.Parse(new StringReader(featureText));
 
             var scenarioOutline = feature.ScenarioOutlines[0];

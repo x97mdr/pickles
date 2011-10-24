@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using NAnt.Core;
 using NAnt.Core.Attributes;
+using Ninject;
 using Pickles.Formatters;
 
 namespace Pickles.NAnt
@@ -28,8 +29,8 @@ namespace Pickles.NAnt
                 Project.Log(Level.Info, "Reading features from {0}", FeatureDirectory ?? string.Empty);
                 Project.Log(Level.Info, "Writing output to {0}", OutputDirectory ?? string.Empty);
 
-                var documentFormatter = new HtmlDocumentFormatter(new HtmlTableOfContentsFormatter(), new HtmlFeatureFormatter(new HtmlScenarioFormatter(new HtmlStepFormatter(new HtmlTableFormatter(), new HtmlMultilineStringFormatter()))), new HtmlFooterFormatter());
-                var documentationBuilder = new HtmlDocumentationBuilder(new FeatureCrawler(new FeatureParser()), documentFormatter, new StylesheetWriter());
+                var kernel = new StandardKernel(new PicklesModule());
+                var documentationBuilder = kernel.Get<HtmlDocumentationBuilder>();
 
                 var featureDirectoryInfo = new DirectoryInfo(FeatureDirectory);
                 var OutputDirectoryInfo = new DirectoryInfo(OutputDirectory);

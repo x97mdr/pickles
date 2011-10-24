@@ -11,10 +11,12 @@ namespace Pickles.Formatters
     {
         private readonly XNamespace xmlns;
         private readonly HtmlStepFormatter htmlStepFormatter;
+        private readonly HtmlDescriptionFormatter htmlDescriptionFormatter;
 
-        public HtmlScenarioFormatter(HtmlStepFormatter htmlStepFormatter)
+        public HtmlScenarioFormatter(HtmlStepFormatter htmlStepFormatter, HtmlDescriptionFormatter htmlDescriptionFormatter)
         {
             this.htmlStepFormatter = htmlStepFormatter;
+            this.htmlDescriptionFormatter = htmlDescriptionFormatter;
             this.xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
         }
 
@@ -26,7 +28,7 @@ namespace Pickles.Formatters
                        new XElement(xmlns + "div",
                            new XAttribute("class", "scenario-heading"),
                            new XElement(xmlns + "h2", scenario.Name),
-                           !string.IsNullOrWhiteSpace(scenario.Description) ? new XElement(xmlns + "p", scenario.Description) : null
+                           !string.IsNullOrWhiteSpace(scenario.Description) ? this.htmlDescriptionFormatter.Format(scenario.Description) : null
                        ),
                        new XElement(xmlns + "div",
                            new XAttribute("class", "steps"),

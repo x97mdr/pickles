@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
+using Ninject;
 using Pickles.Formatters;
-using System.IO;
 
 namespace Pickles.MSBuild
 {
@@ -25,8 +26,8 @@ namespace Pickles.MSBuild
                 Log.LogMessage("Reading features from {0}", FeatureDirectory ?? string.Empty);
                 Log.LogMessage("Writing output to {0}", OutputDirectory ?? string.Empty);
 
-                var documentFormatter = new HtmlDocumentFormatter(new HtmlTableOfContentsFormatter(), new HtmlFeatureFormatter(new HtmlScenarioFormatter(new HtmlStepFormatter(new HtmlTableFormatter(), new HtmlMultilineStringFormatter()))), new HtmlFooterFormatter());
-                var documentationBuilder = new HtmlDocumentationBuilder(new FeatureCrawler(new FeatureParser()), documentFormatter, new StylesheetWriter());
+                var kernel = new StandardKernel(new PicklesModule());
+                var documentationBuilder = kernel.Get<HtmlDocumentationBuilder>();
 
                 var featureDirectoryInfo = new DirectoryInfo(FeatureDirectory);
                 var OutputDirectoryInfo = new DirectoryInfo(OutputDirectory);
