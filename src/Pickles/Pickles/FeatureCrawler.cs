@@ -11,10 +11,12 @@ namespace Pickles
     public class FeatureCrawler
     {
         private readonly FeatureParser featureParser;
+        private readonly RelevantFileDetector relevantFileDetector;
 
-        public FeatureCrawler(FeatureParser featureParser)
+        public FeatureCrawler(FeatureParser featureParser, RelevantFileDetector relevantFileDetector)
         {
             this.featureParser = featureParser;
+            this.relevantFileDetector = relevantFileDetector;
         }
 
         public GeneralTree<FeatureNode> Crawl(string directory)
@@ -43,8 +45,10 @@ namespace Pickles
 
             var tree = new GeneralTree<FeatureNode>(currentNode);
 
-            foreach (var file in directory.GetFiles("*.feature"))
+            bool isRelevantFileFound = false;
+            foreach (var file in directory.GetFiles().Where(file => this.relevantFileDetector.IsRelevant(file)))
             {
+                isRelevantFileFound = true;
                 tree.Add(new FeatureNode
                 {
                     Location = file,
@@ -54,10 +58,18 @@ namespace Pickles
                 });
             }
 
+            bool isRelevantDirectoryFound = false;
             foreach (var subDirectory in directory.GetDirectories())
             {
-                tree.Add(Crawl(subDirectory, rootNode));
+                var subTree = Crawl(subDirectory, rootNode);
+                if (subTree != null)
+                {
+                    isRelevantDirectoryFound = true;
+                    tree.Add(subTree);
+                }
             }
+
+            if (!isRelevantFileFound && !isRelevantDirectoryFound) return null;
 
             return tree;
         }

@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using NGenerics.DataStructures.Trees;
+using Ninject;
 using NUnit.Framework;
 using Pickles.Formatters;
-using NGenerics.DataStructures.Trees;
 
 namespace Pickles.Test.Formatters
 {
     [TestFixture]
-    public class HtmlTableOfContentsFormatterTests
+    public class HtmlTableOfContentsFormatterTests : BaseFixture
     {
         [Test]
-        [Ignore("This change needs some changes based ont he latets changes to the formatter")]
+        [Ignore("This change needs some changes based on the latest changes to the formatter")]
         public void Can_crawl_directory_tree_for_features_successfully()
         {
             var rootPath = @"FakeFolderStructures\FeatureCrawlerTests";
-            var features = new FeatureCrawler(new FeatureParser()).Crawl(rootPath);
+            var features = Kernel.Get<FeatureCrawler>().Crawl(rootPath);
 
             var formatter = new HtmlTableOfContentsFormatter();
             var toc = formatter.Format(features.ChildNodes[0].Data.Url, features);
