@@ -91,19 +91,6 @@ namespace Pickles
             return GetRelativeUriTo(other, ".xhtml");
         }
 
-        public FeatureNodeType Type
-        {
-            get
-            {
-                if (IsDirectory) return FeatureNodeType.Directory;
-
-                var file = Location as FileInfo;
-                if (file.Extension == ".feature") return FeatureNodeType.Feature;
-                else if (file.Extension == ".md") return FeatureNodeType.Markdown;
-                else return FeatureNodeType.Unknown;
-            }
-        }
-
         public override string ToString()
         {
             return Name;

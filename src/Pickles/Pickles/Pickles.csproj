@@ -74,13 +74,9 @@
     <Compile Include="CommandLineArgumentParser.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="FeatureNodeType.cs" />
-<<<<<<< HEAD
-    <Compile Include="Formatters\HtmlDescriptionFormatter.cs" />
-=======
     <Compile Include="Formatters\HtmlContentFormatter.cs" />
     <Compile Include="Formatters\HtmlDescriptionFormatter.cs" />
     <Compile Include="Formatters\HtmlHeaderFormatter.cs" />
->>>>>>> 6b4884549b208cd99282c1179c9b3c0ef4d3225c
     <Compile Include="Formatters\HtmlMarkdownFormatter.cs" />
     <Compile Include="Parser\Example.cs" />
     <Compile Include="Parser\FeatureElementState.cs" />
