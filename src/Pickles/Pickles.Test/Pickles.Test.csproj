@@ -81,6 +81,7 @@
     <Compile Include="ParserFileFactory.cs" />
     <Compile Include="ParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WhenDeterminingFeatureType.cs" />
     <Compile Include="WhenFormattingFeatures.cs" />
     <Compile Include="WhenFormattingStep.cs" />
     <Compile Include="WhenParsingCommandLineArguments.cs" />
@@ -114,6 +115,9 @@
     </EmbeddedResource>
     <None Include="FakeFolderStructures\AcceptanceTest\LevelOne.feature">
       <LastGenOutput>LevelOne.feature.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="FakeFolderStructures\FeatureCrawlerTests\index.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="FakeFolderStructures\FeatureCrawlerTests\LevelOne.feature">

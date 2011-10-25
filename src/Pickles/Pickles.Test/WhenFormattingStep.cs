@@ -1,13 +1,14 @@
-﻿using System.Xml.Linq;
+﻿using System.Collections.Generic;
+using System.Xml.Linq;
+using Ninject;
 using NUnit.Framework;
 using Pickles.Formatters;
 using Pickles.Parser;
-using System.Collections.Generic;
 
 namespace Pickles.Test
 {
     [TestFixture]
-    public class WhenFormattingStep
+    public class WhenFormattingStep : BaseFixture
     {
         [Test]
         public void Simple_steps_are_formatted_as_list_items()
@@ -20,7 +21,7 @@ namespace Pickles.Test
                 DocStringArgument = null,
             };
 
-            var formatter = new HtmlStepFormatter(new HtmlTableFormatter(), new HtmlMultilineStringFormatter());
+            var formatter = Kernel.Get<HtmlStepFormatter>();
             var actual = formatter.Format(step);
 
             var xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
@@ -50,7 +51,7 @@ namespace Pickles.Test
                 DocStringArgument = null,
             };
 
-            var formatter = new HtmlStepFormatter(new HtmlTableFormatter(), new HtmlMultilineStringFormatter());
+            var formatter = Kernel.Get<HtmlStepFormatter>();
             var actual = formatter.Format(step);
 
             var xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
@@ -88,7 +89,7 @@ namespace Pickles.Test
                 DocStringArgument = "this is a\nmultiline table\nargument",
             };
 
-            var formatter = new HtmlStepFormatter(new HtmlTableFormatter(), new HtmlMultilineStringFormatter());
+            var formatter = Kernel.Get<HtmlStepFormatter>();
             var actual = formatter.Format(step);
 
             var xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
@@ -109,6 +110,5 @@ namespace Pickles.Test
 
             Assert.IsTrue(XElement.DeepEquals(expected, actual));
         }
-
     }
 }

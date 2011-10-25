@@ -21,41 +21,53 @@ namespace Pickles.Test
 
             Assert.NotNull(features);
 
-            var a = features.ChildNodes[0].Data;
-            Assert.NotNull(a);
-            Assert.AreEqual("LevelOne", a.Name);
-            Assert.AreEqual(@"LevelOne.feature", a.RelativePathFromRoot);
+            var indexMd = features.ChildNodes[0].Data;
+            Assert.NotNull(indexMd);
+            Assert.AreEqual("index", indexMd.Name);
+            Assert.AreEqual(@"index.md", indexMd.RelativePathFromRoot);
+            Assert.AreEqual(FeatureNodeType.Markdown, indexMd.Type);
 
-            var b = features.ChildNodes[1].Data;
-            Assert.NotNull(b);
-            Assert.AreEqual("SubLevelOne", b.Name);
-            Assert.AreEqual(@"SubLevelOne\", b.RelativePathFromRoot);
+            var levelOneFeature = features.ChildNodes[1].Data;
+            Assert.NotNull(levelOneFeature);
+            Assert.AreEqual("LevelOne", levelOneFeature.Name);
+            Assert.AreEqual(@"LevelOne.feature", levelOneFeature.RelativePathFromRoot);
+            Assert.AreEqual(FeatureNodeType.Feature, levelOneFeature.Type);
 
-            var subLevelOne = features.ChildNodes[1];
-            Assert.AreEqual(3, subLevelOne.ChildNodes.Count);
+            var subLevelOneDirectory = features.ChildNodes[2].Data;
+            Assert.NotNull(subLevelOneDirectory);
+            Assert.AreEqual("SubLevelOne", subLevelOneDirectory.Name);
+            Assert.AreEqual(@"SubLevelOne\", subLevelOneDirectory.RelativePathFromRoot);
+            Assert.AreEqual(FeatureNodeType.Directory, subLevelOneDirectory.Type);
 
-            var levelOneSublevelOneFeature = subLevelOne.ChildNodes[0].Data;
+            var subLevelOneNode = features.ChildNodes[2];
+            Assert.AreEqual(3, subLevelOneNode.ChildNodes.Count);
+
+            var levelOneSublevelOneFeature = subLevelOneNode.ChildNodes[0].Data;
             Assert.NotNull(levelOneSublevelOneFeature);
             Assert.AreEqual("LevelOneSublevelOne", levelOneSublevelOneFeature.Name);
             Assert.AreEqual(@"SubLevelOne\LevelOneSublevelOne.feature", levelOneSublevelOneFeature.RelativePathFromRoot);
+            Assert.AreEqual(FeatureNodeType.Feature, levelOneSublevelOneFeature.Type);
 
-            var levelOneSublevelTwoFeature = subLevelOne.ChildNodes[1].Data;
+            var levelOneSublevelTwoFeature = subLevelOneNode.ChildNodes[1].Data;
             Assert.NotNull(levelOneSublevelTwoFeature);
             Assert.AreEqual("LevelOneSublevelTwo", levelOneSublevelTwoFeature.Name);
             Assert.AreEqual(@"SubLevelOne\LevelOneSublevelTwo.feature", levelOneSublevelTwoFeature.RelativePathFromRoot);
+            Assert.AreEqual(FeatureNodeType.Feature, levelOneSublevelTwoFeature.Type);
 
-            var subLevelTwo = subLevelOne.ChildNodes[2];
-            Assert.AreEqual(1, subLevelTwo.ChildNodes.Count);
+            var subLevelTwoNode = subLevelOneNode.ChildNodes[2];
+            Assert.AreEqual(1, subLevelTwoNode.ChildNodes.Count);
 
-            var subLevelTwoNode = subLevelOne.ChildNodes[2].Data;
-            Assert.NotNull(subLevelTwoNode);
-            Assert.AreEqual("SubLevelTwo", subLevelTwoNode.Name);
-            Assert.AreEqual(@"SubLevelOne\SubLevelTwo\", subLevelTwoNode.RelativePathFromRoot);
+            var subLevelTwoDirectory = subLevelOneNode.ChildNodes[2].Data;
+            Assert.NotNull(subLevelTwoDirectory);
+            Assert.AreEqual("SubLevelTwo", subLevelTwoDirectory.Name);
+            Assert.AreEqual(@"SubLevelOne\SubLevelTwo\", subLevelTwoDirectory.RelativePathFromRoot);
+            Assert.AreEqual(FeatureNodeType.Directory, subLevelTwoDirectory.Type);
 
-            var levelOneSublevelOneSubLevelTwo = subLevelOne.ChildNodes[2].ChildNodes[0].Data;
-            Assert.NotNull(levelOneSublevelOneSubLevelTwo);
-            Assert.AreEqual("LevelOneSublevelOneSubLevelTwo", levelOneSublevelOneSubLevelTwo.Name);
-            Assert.AreEqual(@"SubLevelOne\SubLevelTwo\LevelOneSublevelOneSubLevelTwo.feature", levelOneSublevelOneSubLevelTwo.RelativePathFromRoot);
+            var levelOneSublevelOneSubLevelTwoDirectory = subLevelOneNode.ChildNodes[2].ChildNodes[0].Data;
+            Assert.NotNull(levelOneSublevelOneSubLevelTwoDirectory);
+            Assert.AreEqual("LevelOneSublevelOneSubLevelTwo", levelOneSublevelOneSubLevelTwoDirectory.Name);
+            Assert.AreEqual(@"SubLevelOne\SubLevelTwo\LevelOneSublevelOneSubLevelTwo.feature", levelOneSublevelOneSubLevelTwoDirectory.RelativePathFromRoot);
+            Assert.AreEqual(FeatureNodeType.Feature, levelOneSublevelOneSubLevelTwoDirectory.Type);
         }
     }
 }

@@ -45,7 +45,8 @@ namespace Pickles
                         var nodeUri = new Uri(nodePath);
                         var relativeMasterCssUri = nodeUri.MakeRelativeUri(masterCssUri);
 
-                        var htmlFilePath = nodePath.Replace(".feature", ".xhtml");
+                        var htmlFilePath = node.Type == FeatureNodeType.Feature ? nodePath.Replace(".feature", ".xhtml") : nodePath.Replace(".md", ".xhtml");
+
                         using (var writer = new StreamWriter(htmlFilePath, false, Encoding.UTF8))
                         {
                             var document = this.htmlDocumentFormatter.Format(node, features, relativeMasterCssUri);
@@ -58,6 +59,7 @@ namespace Pickles
                         Directory.CreateDirectory(nodePath);
                     }
                 });
+
             features.AcceptVisitor(actionVisitor);
         }
     }
