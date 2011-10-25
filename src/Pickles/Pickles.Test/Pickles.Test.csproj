@@ -81,6 +81,7 @@
     <Compile Include="ParserFileFactory.cs" />
     <Compile Include="ParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WhenDeterminingFeatureType.cs" />
     <Compile Include="WhenFormattingFeatures.cs" />
     <Compile Include="WhenFormattingStep.cs" />
     <Compile Include="WhenParsingCommandLineArguments.cs" />

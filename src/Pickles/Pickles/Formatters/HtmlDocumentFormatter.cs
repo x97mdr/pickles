@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using NGenerics.DataStructures.Trees;
+using System.IO;
 
 namespace Pickles.Formatters
 {
@@ -11,12 +12,14 @@ namespace Pickles.Formatters
     {
         private readonly HtmlTableOfContentsFormatter htmlTableOfContentsFormatter;
         private readonly HtmlFeatureFormatter htmlFeatureFormatter;
+        private readonly HtmlMarkdownFormatter htmlMarkdownFormatter;
         private readonly HtmlFooterFormatter htmlFooterFormatter;
 
-        public HtmlDocumentFormatter(HtmlTableOfContentsFormatter htmlTableOfContentsFormatter, HtmlFeatureFormatter htmlFeatureFormatter, HtmlFooterFormatter htmlFooterFormatter)
+        public HtmlDocumentFormatter(HtmlTableOfContentsFormatter htmlTableOfContentsFormatter, HtmlFeatureFormatter htmlFeatureFormatter, HtmlMarkdownFormatter htmlMarkdownFormatter, HtmlFooterFormatter htmlFooterFormatter)
         {
             this.htmlTableOfContentsFormatter = htmlTableOfContentsFormatter;
             this.htmlFeatureFormatter = htmlFeatureFormatter;
+            this.htmlMarkdownFormatter = htmlMarkdownFormatter;
             this.htmlFooterFormatter = htmlFooterFormatter;
         }
 
@@ -45,7 +48,16 @@ namespace Pickles.Formatters
             body.Add(container);
             container.Add(new XElement(xmlns + "div", new XAttribute("id", "top")));
             if (features != null) container.Add(this.htmlTableOfContentsFormatter.Format(featureNode.Url, features));
-            container.Add(this.htmlFeatureFormatter.Format(featureNode.Feature));
+
+            if (featureNode.Type == FeatureNodeType.Feature)
+            {
+                container.Add(this.htmlFeatureFormatter.Format(featureNode.Feature));
+            }
+            else if (featureNode.Type == FeatureNodeType.Markdown)
+            {
+                container.Add(this.htmlMarkdownFormatter.Format(File.ReadAllText(featureNode.Location.FullName)));
+            }
+            
             container.Add(new XElement(xmlns + "div", new XAttribute("id", "footer"), this.htmlFooterFormatter.Format()));
 
             var html = new XElement(xmlns + "html",

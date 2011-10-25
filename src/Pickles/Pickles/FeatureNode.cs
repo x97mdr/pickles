@@ -19,6 +19,19 @@ namespace Pickles
         public bool IsDirectory { get { return Location is DirectoryInfo; } }
         public bool IsEmpty { get { return IsDirectory ? !((Location as DirectoryInfo).GetFileSystemInfos().Any()) : true; } }
 
+        public FeatureNodeType Type
+        {
+            get
+            {
+                if (IsDirectory) return FeatureNodeType.Directory;
+
+                var file = Location as FileInfo;
+                if (file.Extension == ".feature") return FeatureNodeType.Feature;
+                else if (file.Extension == ".md") return FeatureNodeType.Markdown;
+                else return FeatureNodeType.Unknown;
+            }
+        }
+
         public override string ToString()
         {
             return Name;
