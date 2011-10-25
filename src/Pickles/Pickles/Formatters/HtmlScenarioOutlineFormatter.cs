@@ -7,20 +7,22 @@ using Pickles.Parser;
 
 namespace Pickles.Formatters
 {
-    public class HtmlScenarioFormatter
+    public class HtmlScenarioOutlineFormatter
     {
         private readonly XNamespace xmlns;
         private readonly HtmlStepFormatter htmlStepFormatter;
         private readonly HtmlDescriptionFormatter htmlDescriptionFormatter;
+        private readonly HtmlTableFormatter htmlTableFormatter;
 
-        public HtmlScenarioFormatter(HtmlStepFormatter htmlStepFormatter, HtmlDescriptionFormatter htmlDescriptionFormatter)
+        public HtmlScenarioOutlineFormatter(HtmlStepFormatter htmlStepFormatter, HtmlDescriptionFormatter htmlDescriptionFormatter, HtmlTableFormatter htmlTableFormatter)
         {
             this.htmlStepFormatter = htmlStepFormatter;
             this.htmlDescriptionFormatter = htmlDescriptionFormatter;
+            this.htmlTableFormatter = htmlTableFormatter;
             this.xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
         }
 
-        public XElement Format(Scenario scenario, int id)
+        public XElement Format(ScenarioOutline scenario, int id)
         {
             return new XElement(xmlns + "li",
                        new XAttribute("id", id),
@@ -33,6 +35,12 @@ namespace Pickles.Formatters
                        new XElement(xmlns + "div",
                            new XAttribute("class", "steps"),
                            new XElement(xmlns + "ul", scenario.Steps.Select(step => this.htmlStepFormatter.Format(step)))
+                       ),
+                       new XElement(xmlns + "div",
+                           new XAttribute("class", "examples"),
+                           new XElement(xmlns + "h3",  "Examples"),
+                           this.htmlDescriptionFormatter.Format(scenario.Example.Description),
+                           this.htmlTableFormatter.Format(scenario.Example.TableArgument)
                        )
                    );
         }

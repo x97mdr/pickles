@@ -18,6 +18,8 @@ namespace Pickles.Formatters
 
         public XElement Format(string descriptionText)
         {
+            if (String.IsNullOrWhiteSpace(descriptionText)) return null;
+
             var markdownResult = "<div class=\"description\" xmlns=\"http://www.w3.org/1999/xhtml\">" + markdown.Transform(descriptionText) + "</div>";
             var descriptionElements = XElement.Parse(markdownResult);
 
