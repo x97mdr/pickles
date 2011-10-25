@@ -16,11 +16,11 @@ namespace Pickles.Formatters
 
             foreach (var childNode in features.ChildNodes)
             {
-                if (childNode.IsLeafNode && !childNode.Data.IsDirectory)
+                if (childNode.Data.IsContent)
                 {
                     ul.Add(new XElement(xmlns + "li",
                                 new XElement(xmlns + "a",
-                                    new XAttribute("href", childNode.Data.Location.FullName != file.LocalPath ? file.MakeRelativeUri(childNode.Data.Url).ToString().Replace(".feature", ".xhtml") : "#"),
+                                    new XAttribute("href", childNode.Data.GetRelativeUriTo(file)),
                                     childNode.Data.Name)));
                 }
                 else

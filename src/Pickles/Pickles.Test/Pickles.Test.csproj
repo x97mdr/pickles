@@ -117,6 +117,9 @@
       <LastGenOutput>LevelOne.feature.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="FakeFolderStructures\FeatureCrawlerTests\index.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="FakeFolderStructures\FeatureCrawlerTests\LevelOne.feature">
       <LastGenOutput>LevelOne.feature.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

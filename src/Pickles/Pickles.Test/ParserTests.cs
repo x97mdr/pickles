@@ -17,16 +17,13 @@ namespace Pickles.Test.HtmlFormatterTestFiles
         public void Can_Parse_Feature_Files_Successfully(string featureText, string xhtmlText)
         {
             var parser = Kernel.Get<FeatureParser>();
-            var htmlDocumentFormatter = Kernel.Get<HtmlDocumentFormatter>();
+            var htmlDocumentFormatter = Kernel.Get<HtmlFeatureFormatter>();
 
             string actual;
             using (var reader = new StringReader(featureText))
             {
                 var feature = parser.Parse(reader);
-                var document = htmlDocumentFormatter.Format(new FeatureNode
-                {
-                    Feature = feature
-                });
+                var document = htmlDocumentFormatter.Format(feature);
                 actual = document.ToString(SaveOptions.DisableFormatting);
             }
 

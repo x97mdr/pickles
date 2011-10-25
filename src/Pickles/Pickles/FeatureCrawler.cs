@@ -49,13 +49,15 @@ namespace Pickles
             foreach (var file in directory.GetFiles().Where(file => this.relevantFileDetector.IsRelevant(file)))
             {
                 isRelevantFileFound = true;
-                tree.Add(new FeatureNode
+                var node = new FeatureNode
                 {
                     Location = file,
                     Url = new Uri(file.FullName),
-                    RelativePathFromRoot = PathExtensions.MakeRelativePath(rootNode.Location, file),
-                    Feature = this.featureParser.Parse(file.FullName)
-                });
+                    RelativePathFromRoot = PathExtensions.MakeRelativePath(rootNode.Location, file)
+                };
+
+                if (node.Type == FeatureNodeType.Feature) node.Feature = this.featureParser.Parse(file.FullName);
+                tree.Add(node);
             }
 
             bool isRelevantDirectoryFound = false;

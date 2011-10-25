@@ -10,7 +10,14 @@ namespace Pickles
     {
         public bool IsRelevant(FileInfo file)
         {
-            return file.Extension == ".feature";
+            switch(file.Extension.ToLowerInvariant())
+            {
+                case ".feature":
+                case ".md":
+                    return true;
+            }
+
+            return false;
         }
     }
 }
