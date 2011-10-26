@@ -6,8 +6,8 @@
 {
   width: 90%;
   margin: 10px auto;
-  background-color: #F2F2F2;
   color: #333;
+  background-color: #F2F2F2;
   border: 1px solid gray;
   line-height: 130%;
 }
@@ -19,7 +19,7 @@
 #top
 {
   padding: .5em;
-  background-color: #ddd;
+  background-color: #F2F2F2;
   border-bottom: 1px solid gray;
 }
 
@@ -38,7 +38,7 @@
   float: left;
   width: auto;
   margin-right: auto;
-  padding: 1em;
+  max-width: 20em;
 }
 
 #toc p 
@@ -46,33 +46,29 @@
   margin: 0 0 1em 0; 
 }
 
-ul.features {
+#toc ul {
   margin: 0;
   padding: 0;
-  border-top: 1px solid #e8e8e8;
-  list-style-type: none;  }
-  ul.features li ul {
-    margin: 0;
-    padding: 0; }
-      ul.features li ul li {
-        border-bottom: 1px solid #e8e8e8;
-        padding: 3px 20px 4px; }
-  ul.features a {
+  background-color: #BDBDBD;
+  border-bottom: 1px solid #e8e8e8;
+  list-style-type: none; }
+  #toc ul li {
+    text-indent: 0;
+    border-top: 1px solid #e8e8e8; }
+    #toc ul ul {
+      text-indent: 10px; }
+      #toc ul ul ul {
+        text-indent: 20px; }
+  #toc li ul {
+    background-color: #F2F2F2; }
+  #toc ul li a {
     text-decoration: none; }
-  ul.features a:hover {
+  #toc ul li a:hover {
     text-decoration: underline; }
 
 /*************************************************************************
  * Feature
  *************************************************************************/
-
-ul#features 
-{
-	margin-left:0;
-	padding: 0 0 1.25em 0;
-	list-style:none;
-	list-style-image:none;
-}
 
 #feature
 {
@@ -180,6 +176,6 @@ ul#scenarios {
   margin : 0;
   padding : .5em;
   color: #333;
-  background-color : #ddd;
+  background-color : #F2F2F2;
   border-top : 1px solid gray;
 }
