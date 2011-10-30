@@ -21,11 +21,11 @@ namespace Pickles.Formatters
                     ul.Add(new XElement(xmlns + "li",
                                 new XElement(xmlns + "a",
                                     new XAttribute("href", childNode.Data.GetRelativeUriTo(file)),
-                                    childNode.Data.Name)));
+                                    childNode.Data.Name.ExpandWikiWord())));
                 }
                 else
                 {
-                    ul.Add(new XElement(xmlns + "li", new XText(childNode.Data.Name), BuildListItems(xmlns, file, childNode)));
+                    ul.Add(new XElement(xmlns + "li", new XText(childNode.Data.Name.ExpandWikiWord()), BuildListItems(xmlns, file, childNode)));
                 }
             }
 

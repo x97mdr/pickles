@@ -48,19 +48,16 @@
 
 #toc ul {
   margin: 0;
-  padding: 0;
-  background-color: #BDBDBD;
+  padding: 1em 1em 1em 1em;
   border-bottom: 1px solid #e8e8e8;
-  list-style-type: none; }
+  list-style-type: none;  }
   #toc ul li {
     text-indent: 0;
     border-top: 1px solid #e8e8e8; }
-    #toc ul ul {
+    #toc > ul > ul {
       text-indent: 10px; }
-      #toc ul ul ul {
+      #toc > ul > ul > ul {
         text-indent: 20px; }
-  #toc li ul {
-    background-color: #F2F2F2; }
   #toc ul li a {
     text-decoration: none; }
   #toc ul li a:hover {
@@ -79,27 +76,28 @@
   max-width: 50em;
 }
 
-#feature h1 
+#feature h1, #feature h2
 { 
-  margin: 0 0 .5em 0; 
+  margin: 0 0 .5em 0;
+  line-height: 105%;
 }
 
 /*************************************************************************
  * Feature - formatting tables (example or step tables)
  *************************************************************************/
-
+    
 #feature table {
-  width: auto;
-  margin: 10px;
-  border-top: 1px solid #fff;
-  border-left: 1px solid #fff;
-  background-color: #eee; }
-  #feature table th, #feature table td {
-    padding: 3px 10px;
-    border-right: 1px solid #fff;
-    border-bottom: 1px solid #fff; }
-  #feature table th {
-    font-weight: bold; }
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 8px 0px 8px 0px; }
+  #feature th, td {
+    border: 1px solid black;
+    padding: 3px; }
+  #feature td {
+    background-color: white;
+    vertical-align: top; }
+  #feature th { 
+    background-color: #C3D9FF; }
 
 /*************************************************************************
  * Feature - formatting scenarios and steps
@@ -108,41 +106,12 @@
 ul#scenarios {
   margin: 0;
   padding: 0;
-  list-style-type: none; }
-  ul#scenarios li.scenario {
-    margin-top: 1.5em;
-    background: #fdffec; }
-    ul#scenarios li.scenario .scenario-heading {
-      padding: 7px 10px 11px; }
-      ul#scenarios li.scenario .scenario-heading h2 {
-        font-weight: bold;
-        margin: 0; }
-        ul#scenarios li.scenario .scenario-heading h2 a {
-          text-decoration: none;
-          color: inherit; }
-        ul#scenarios li.scenario .scenario-heading h2 span {
-          color: #5dc800; }
-    ul#scenarios li.scenario .description {
-      margin-top: 8px;
-      margin-bottom: 0px;
-      padding-left: 24px; }
-      ul#scenarios li.scenario .description p {
-        margin-top: 0.5em;
-        margin-bottom: 0.5em; }
-    ul#scenarios li.scenario .steps {
-      padding: 12px 0 21px; }
-      ul#scenarios li.scenario .steps ul {
-        list-style-type: none;
-        margin: 0 25px;
-        padding: 0; }
-        ul#scenarios li.scenario .steps ul span.keyword {
-          color: #5db500; }
-      ul#scenarios li.scenario .steps .step {
-        padding-top: 0.4em; }
-    ul#scenarios li.scenario .examples ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 12px; }
+  list-style-type: none; } 
+li.scenario {
+  padding: 2px 12px 6px 12px;
+  border: 1px solid #C3D9FF;
+  margin: 6px 0px 28px 0px;
+  background-color: #F5F9FD; }
 
 /*************************************************************************
  * Feature - Formatting the docStrings
@@ -165,6 +134,13 @@ ul#scenarios {
   background:#000;
   color:#f8f8f8 
 }
+
+/*************************************************************************
+ * Feature - Formatting the step keywords
+ *************************************************************************/
+
+.keyword {
+  font-weight: bold; }
 
 /*************************************************************************
  * Footer

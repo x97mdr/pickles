@@ -84,6 +84,7 @@
     <Compile Include="WhenDeterminingFeatureType.cs" />
     <Compile Include="WhenFormattingFeatures.cs" />
     <Compile Include="WhenFormattingStep.cs" />
+    <Compile Include="WhenFormattingWikiWords.cs" />
     <Compile Include="WhenParsingCommandLineArguments.cs" />
     <Compile Include="WhenParsingFeatureFiles.cs" />
   </ItemGroup>
