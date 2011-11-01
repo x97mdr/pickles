@@ -88,6 +88,7 @@
     <Compile Include="WhenParsingCommandLineArguments.cs" />
     <Compile Include="WhenParsingFeatureFiles.cs" />
     <Compile Include="WhenParsingNUnitResultsFile.cs" />
+    <Compile Include="WhenWorkingWithHtmlResources.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pickles\Pickles.csproj">

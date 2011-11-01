@@ -34,16 +34,18 @@ namespace Pickles.Formatters
         private readonly HtmlTableOfContentsFormatter htmlTableOfContentsFormatter;
         private readonly HtmlContentFormatter htmlContentFormatter;
         private readonly HtmlFooterFormatter htmlFooterFormatter;
+        private readonly HtmlResourceSet htmlResources;
 
-        public HtmlDocumentFormatter(HtmlHeaderFormatter htmlHeaderFormatter, HtmlTableOfContentsFormatter htmlTableOfContentsFormatter, HtmlContentFormatter htmlContentFormatter, HtmlFooterFormatter htmlFooterFormatter)
+        public HtmlDocumentFormatter(HtmlHeaderFormatter htmlHeaderFormatter, HtmlTableOfContentsFormatter htmlTableOfContentsFormatter, HtmlContentFormatter htmlContentFormatter, HtmlFooterFormatter htmlFooterFormatter, HtmlResourceSet htmlResources)
         {
             this.htmlHeaderFormatter = htmlHeaderFormatter;
             this.htmlTableOfContentsFormatter = htmlTableOfContentsFormatter;
             this.htmlContentFormatter = htmlContentFormatter;
             this.htmlFooterFormatter = htmlFooterFormatter;
+            this.htmlResources = htmlResources;
         }
 
-        public XDocument Format(FeatureNode featureNode, GeneralTree<FeatureNode> features, Uri stylesheetUri)
+        public XDocument Format(FeatureNode featureNode, GeneralTree<FeatureNode> features)
         {
             var xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
 
@@ -59,13 +61,10 @@ namespace Pickles.Formatters
             var head = new XElement(xmlns + "head");
             head.Add(new XElement(xmlns + "title", string.Format("{0}", featureNode.Name)));
 
-            if (stylesheetUri != null)
-            {
-                head.Add(new XElement(xmlns + "link",
-                             new XAttribute("rel", "stylesheet"),
-                             new XAttribute("href", stylesheetUri),
-                             new XAttribute("type", "text/css")));
-            }
+            head.Add(new XElement(xmlns + "link",
+                         new XAttribute("rel", "stylesheet"),
+                         new XAttribute("href", featureNode.Url.MakeRelativeUri(this.htmlResources.MasterStylesheet)),
+                         new XAttribute("type", "text/css")));
 
             var html = new XElement(xmlns + "html",
                            new XAttribute(XNamespace.Xml + "lang", "en"),
