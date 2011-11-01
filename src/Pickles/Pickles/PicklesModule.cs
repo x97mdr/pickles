@@ -30,6 +30,8 @@ namespace Pickles
     {
         public override void Load()
         {
+            Bind<Configuration>().ToSelf().InSingletonScope();
+
             Bind<IDocumentationBuilder>().To<HtmlDocumentationBuilder>().InSingletonScope();
 
             Bind<HtmlTableOfContentsFormatter>().ToSelf().InSingletonScope();

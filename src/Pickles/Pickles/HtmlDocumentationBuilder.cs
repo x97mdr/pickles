@@ -36,13 +36,13 @@ namespace Pickles
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private readonly FeatureCrawler featureCrawler;
         private readonly HtmlDocumentFormatter htmlDocumentFormatter;
-        private readonly StylesheetWriter stylesheetWriter;
+        private readonly HtmlResourceWriter htmlResourceWriter;
 
-        public HtmlDocumentationBuilder(FeatureCrawler featureCrawler, HtmlDocumentFormatter htmlDocumentFormatter, StylesheetWriter stylesheetWriter)
+        public HtmlDocumentationBuilder(FeatureCrawler featureCrawler, HtmlDocumentFormatter htmlDocumentFormatter, HtmlResourceWriter htmlResourceWriter)
         {
             this.featureCrawler = featureCrawler;
             this.htmlDocumentFormatter = htmlDocumentFormatter;
-            this.stylesheetWriter = stylesheetWriter;
+            this.htmlResourceWriter = htmlResourceWriter;
         }
 
         public void Build(DirectoryInfo inputPath, DirectoryInfo outputPath)
@@ -52,8 +52,7 @@ namespace Pickles
                 log.InfoFormat("Writing HTML to {0}", outputPath.FullName);
             }
 
-            var masterCssPath = this.stylesheetWriter.WriteTo(outputPath.FullName);
-            var masterCssUri = new Uri(masterCssPath);
+            this.htmlResourceWriter.WriteTo(outputPath.FullName);
 
             var features = this.featureCrawler.Crawl(inputPath);
             var actionVisitor = new ActionVisitor<FeatureNode>(node =>
@@ -62,14 +61,11 @@ namespace Pickles
 
                     if (!node.IsDirectory)
                     {
-                        var nodeUri = new Uri(nodePath);
-                        var relativeMasterCssUri = nodeUri.MakeRelativeUri(masterCssUri);
-
-                        var htmlFilePath = node.Type == FeatureNodeType.Feature ? nodePath.Replace(".feature", ".xhtml") : nodePath.Replace(".md", ".xhtml");
+                        var htmlFilePath = nodePath.Replace(Path.GetExtension(nodePath), ".xhtml");
 
                         using (var writer = new StreamWriter(htmlFilePath, false, Encoding.UTF8))
                         {
-                            var document = this.htmlDocumentFormatter.Format(node, features, relativeMasterCssUri);
+                            var document = this.htmlDocumentFormatter.Format(node, features);
                             document.Save(writer);
                             writer.Close();
                         }

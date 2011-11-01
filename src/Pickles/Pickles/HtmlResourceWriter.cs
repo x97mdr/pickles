@@ -23,12 +23,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace Pickles
 {
-    public class StylesheetWriter
+    public class HtmlResourceWriter
     {
-        private void Write(string folder, string filename)
+        private void WriteStyleSheet(string folder, string filename)
         {
             string path = Path.Combine(folder, filename);
             using (var reader = new StreamReader(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Resources." + filename)))
@@ -41,14 +43,26 @@ namespace Pickles
             }
         }
 
-        public string WriteTo(string folder)
+        private void WriteImage(string folder, string filename)
         {
-            Write(folder, "master.css");
-            Write(folder, "reset.css");
-            Write(folder, "global.css");
-            Write(folder, "structure.css");
+            string path = Path.Combine(folder, filename);
+            using (var image = Image.FromStream(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Resources.images." + filename)))
+            {
+                image.Save(path, ImageFormat.Png);
+            }
+        }
 
-            return Path.Combine(folder, "master.css");
+        public void WriteTo(string folder)
+        {
+            WriteStyleSheet(folder, "master.css");
+            WriteStyleSheet(folder, "reset.css");
+            WriteStyleSheet(folder, "global.css");
+            WriteStyleSheet(folder, "structure.css");
+
+            var imagesFolder = Path.Combine(folder, "images");
+            if (!Directory.Exists(imagesFolder)) Directory.CreateDirectory(imagesFolder);
+            WriteImage(imagesFolder, "success.png");
+            WriteImage(imagesFolder, "failure.png");
         }
     }
 }
