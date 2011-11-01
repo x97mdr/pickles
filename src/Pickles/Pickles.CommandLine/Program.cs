@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text;
 using Ninject;
 using Pickles.Formatters;
+using Pickles.TestFrameworks;
 
 namespace Pickles.CommandLine
 {
@@ -46,6 +47,12 @@ namespace Pickles.CommandLine
                 {
                     log.InfoFormat("Pickles v.{0}{1}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(), Environment.NewLine);
                     log.InfoFormat("Reading features from {0}", configuration.FeatureFolder.FullName);
+                }
+
+                if (configuration.ShouldLinkResults)
+                {
+                    var results = kernel.Get<Results>();
+                    results.Load(configuration.LinkedTestFrameworkResultsFile);
                 }
 
                 var documentationBuilder = kernel.Get<HtmlDocumentationBuilder>();

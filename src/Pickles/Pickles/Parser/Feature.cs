@@ -48,11 +48,13 @@ namespace Pickles.Parser
 
         public void AddScenario(Scenario scenario)
         {
+            scenario.Feature = this;
             this.Scenarios.Add(scenario);
         }
 
         public void AddScenarioOutline(ScenarioOutline scenarioOutline)
         {
+            scenarioOutline.Feature = this;
             this.ScenarioOutlines.Add(scenarioOutline);
         }
     }

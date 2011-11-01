@@ -27,11 +27,10 @@ namespace Pickles.Parser
 {
     public class Scenario
     {
-        private readonly List<Step> steps;
-
         public string Name { get; set; }
         public string Description { get; set; }
         public List<Step> Steps { get; set; }
         public List<string> Tags { get; set; }
+        public Feature Feature { get; set; }
     }
 }
