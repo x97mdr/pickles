@@ -10,11 +10,14 @@ namespace Pickles.Test
     [TestFixture]
     public class WhenParsingCommandLineArguments
     {
-        private static readonly string expectedHelpString = @"  -f, --feature-directory=VALUE
+        private static readonly string expectedHelpString = @"-f, --feature-directory=VALUE
                              directory to start scanning recursively for 
                                features
   -o, --output-directory=VALUE
                              directory where output files will be placed
+      --lr, --link-results-file=VALUE
+                             a file containing the results of testing the 
+                               features
   -v, --version              
   -h, -?, --help";
 
@@ -32,6 +35,8 @@ namespace Pickles.Test
             Assert.AreEqual(true, shouldContinue);
             Assert.AreEqual(@"c:\features", configuration.FeatureFolder.FullName);
             Assert.AreEqual(@"c:\features-output", configuration.OutputFolder.FullName);
+            Assert.AreEqual(false, configuration.ShouldLinkResults);
+            Assert.AreEqual(null, configuration.LinkedResults);
         }
 
         [Test]
@@ -46,6 +51,24 @@ namespace Pickles.Test
             Assert.AreEqual(true, shouldContinue);
             Assert.AreEqual(@"c:\features", configuration.FeatureFolder.FullName);
             Assert.AreEqual(@"c:\features-output", configuration.OutputFolder.FullName);
+            Assert.AreEqual(false, configuration.ShouldLinkResults);
+            Assert.AreEqual(null, configuration.LinkedResults);
+        }
+
+        [Test]
+        public void Then_can_parse_results_file_with_short_form_successfully()
+        {
+            var args = new string[] { @"-lr=c:\results.xml" };
+
+            var configuration = new Configuration();
+            var commandLineArgumentParser = new CommandLineArgumentParser();
+            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+
+            Assert.AreEqual(true, shouldContinue);
+            Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
+            Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")), configuration.OutputFolder.FullName);
+            Assert.AreEqual(true, configuration.ShouldLinkResults);
+            Assert.AreEqual(@"c:\results.xml", configuration.LinkedResults.FullName);
         }
 
         [Test]
@@ -60,8 +83,10 @@ namespace Pickles.Test
 
             StringAssert.Contains(expectedHelpString, writer.GetStringBuilder().ToString().Trim());
             Assert.AreEqual(false, shouldContinue);
-            Assert.AreEqual(null, configuration.FeatureFolder);
-            Assert.AreEqual(null, configuration.OutputFolder);
+            Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
+            Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")), configuration.OutputFolder.FullName);
+            Assert.AreEqual(false, configuration.ShouldLinkResults);
+            Assert.AreEqual(null, configuration.LinkedResults);
         }
 
         [Test]
@@ -76,8 +101,10 @@ namespace Pickles.Test
 
             StringAssert.Contains(expectedHelpString, writer.GetStringBuilder().ToString().Trim());
             Assert.AreEqual(false, shouldContinue);
-            Assert.AreEqual(null, configuration.FeatureFolder);
-            Assert.AreEqual(null, configuration.OutputFolder);
+            Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
+            Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")), configuration.OutputFolder.FullName);
+            Assert.AreEqual(false, configuration.ShouldLinkResults);
+            Assert.AreEqual(null, configuration.LinkedResults);
         }
 
         [Test]
@@ -92,8 +119,10 @@ namespace Pickles.Test
 
             StringAssert.Contains(expectedHelpString, writer.GetStringBuilder().ToString().Trim());
             Assert.AreEqual(false, shouldContinue);
-            Assert.AreEqual(null, configuration.FeatureFolder);
-            Assert.AreEqual(null, configuration.OutputFolder);
+            Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
+            Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")), configuration.OutputFolder.FullName);
+            Assert.AreEqual(false, configuration.ShouldLinkResults);
+            Assert.AreEqual(null, configuration.LinkedResults);
         }
 
         [Test]
@@ -108,8 +137,10 @@ namespace Pickles.Test
 
             StringAssert.IsMatch(expectedVersionString, writer.GetStringBuilder().ToString().Trim());
             Assert.AreEqual(false, shouldContinue);
-            Assert.AreEqual(null, configuration.FeatureFolder);
-            Assert.AreEqual(null, configuration.OutputFolder);
+            Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
+            Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")), configuration.OutputFolder.FullName);
+            Assert.AreEqual(false, configuration.ShouldLinkResults);
+            Assert.AreEqual(null, configuration.LinkedResults);
         }
 
         [Test]
@@ -124,8 +155,10 @@ namespace Pickles.Test
 
             StringAssert.IsMatch(expectedVersionString, writer.GetStringBuilder().ToString().Trim());
             Assert.AreEqual(false, shouldContinue);
-            Assert.AreEqual(null, configuration.FeatureFolder);
-            Assert.AreEqual(null, configuration.OutputFolder);
+            Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
+            Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")), configuration.OutputFolder.FullName);
+            Assert.AreEqual(false, configuration.ShouldLinkResults);
+            Assert.AreEqual(null, configuration.LinkedResults);
         }
     }
 }

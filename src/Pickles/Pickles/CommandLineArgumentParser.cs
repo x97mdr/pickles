@@ -34,13 +34,15 @@ namespace Pickles
         private string outputDirectory;
         private bool versionRequested;
         private bool helpRequested;
+        private string resultsFile;
 
         public CommandLineArgumentParser()
         {
             this.options = new OptionSet
             {
-   	            { "f|feature-directory=", "directory to start scanning recursively for features", v => featureDirectory = v },
-   	            { "o|output-directory=", "directory where output files will be placed", v => outputDirectory = v },
+   	            { "f|feature-directory=", "directory to start scanning recursively for features", v => this.featureDirectory = v },
+   	            { "o|output-directory=", "directory where output files will be placed", v => this.outputDirectory = v },
+   	            { "lr|link-results-file=", "a file containing the results of testing the features", v => this.resultsFile = v },
    	            { "v|version",  v => versionRequested = v != null },
    	            { "h|?|help",   v => helpRequested = v != null }
             };
@@ -59,6 +61,9 @@ namespace Pickles
 
         public bool Parse(string[] args, Configuration configuration, TextWriter stdout)
         {
+            configuration.FeatureFolder = new DirectoryInfo(Directory.GetCurrentDirectory());
+            configuration.OutputFolder = new DirectoryInfo(Environment.GetEnvironmentVariable("TEMP"));
+
             var extra = this.options.Parse(args);
 
             if (versionRequested)
@@ -72,8 +77,10 @@ namespace Pickles
                 return false;
             }
 
-            configuration.FeatureFolder = new System.IO.DirectoryInfo(this.featureDirectory);
-            configuration.OutputFolder = new System.IO.DirectoryInfo(this.outputDirectory);
+            if (!string.IsNullOrWhiteSpace(this.featureDirectory)) configuration.FeatureFolder = new System.IO.DirectoryInfo(this.featureDirectory);
+            if (!string.IsNullOrWhiteSpace(this.outputDirectory)) configuration.OutputFolder = new System.IO.DirectoryInfo(this.outputDirectory);
+            if (!string.IsNullOrWhiteSpace(this.resultsFile)) configuration.LinkedResults = new FileInfo(this.resultsFile);
+
             return true;
         }
     }

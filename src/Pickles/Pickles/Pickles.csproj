@@ -81,7 +81,7 @@
     <Compile Include="Formatters\HtmlMarkdownFormatter.cs" />
     <Compile Include="Formatters\HtmlScenarioOutlineFormatter.cs" />
     <Compile Include="HtmlResource.cs" />
-    <Compile Include="HtmlResources.cs" />
+    <Compile Include="HtmlResourceSet.cs" />
     <Compile Include="Parser\Example.cs" />
     <Compile Include="Parser\FeatureElementState.cs" />
     <Compile Include="Parser\PicklesParser.cs" />

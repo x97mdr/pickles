@@ -28,7 +28,30 @@ namespace Pickles
 {
     public class Configuration
     {
-        public DirectoryInfo FeatureFolder { get; set; }
-        public DirectoryInfo OutputFolder { get; set; }
+        public DirectoryInfo FeatureFolder 
+        { 
+            get; 
+            set; 
+        }
+
+        public DirectoryInfo OutputFolder 
+        { 
+            get; 
+            set; 
+        }
+        
+        public bool ShouldLinkResults 
+        {
+            get
+            {
+                return LinkedResults != null;
+            }
+        }
+
+        public FileInfo LinkedResults 
+        { 
+            get; 
+            set; 
+        }
     }
 }
