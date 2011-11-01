@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using Pickles.Parser;
+using Pickles.TestFrameworks;
 
 namespace Pickles.Formatters
 {
@@ -33,34 +34,60 @@ namespace Pickles.Formatters
         private readonly HtmlStepFormatter htmlStepFormatter;
         private readonly HtmlDescriptionFormatter htmlDescriptionFormatter;
         private readonly HtmlTableFormatter htmlTableFormatter;
+        private readonly Results results;
+        private readonly HtmlResourceSet htmlResourceSet;
 
-        public HtmlScenarioOutlineFormatter(HtmlStepFormatter htmlStepFormatter, HtmlDescriptionFormatter htmlDescriptionFormatter, HtmlTableFormatter htmlTableFormatter)
+        public HtmlScenarioOutlineFormatter(
+            HtmlStepFormatter htmlStepFormatter, 
+            HtmlDescriptionFormatter htmlDescriptionFormatter, 
+            HtmlTableFormatter htmlTableFormatter,
+            Results results,
+            HtmlResourceSet htmlResourceSet)
         {
             this.htmlStepFormatter = htmlStepFormatter;
             this.htmlDescriptionFormatter = htmlDescriptionFormatter;
             this.htmlTableFormatter = htmlTableFormatter;
+            this.results = results;
+            this.htmlResourceSet = htmlResourceSet;
             this.xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
         }
 
-        public XElement Format(ScenarioOutline scenario, int id)
+        private XElement BuildResultImage(ScenarioOutline scenario)
+        {
+            return null;
+            //TestResult scenarioResult = this.results.GetExampleResult(scenario);
+            //if (!scenarioResult.WasExecuted || !scenarioResult.IsSuccessful) return null;
+
+            //return new XElement("div",
+            //           new XAttribute("class", "float-right"),
+            //           new XElement("img",
+            //               new XAttribute("src", scenarioResult.IsSuccessful ? this.htmlResourceSet.SuccessImage : this.htmlResourceSet.FailureImage),
+            //               new XAttribute("title", scenarioResult.IsSuccessful ? "Successful" : "Failed"),
+            //               new XAttribute("alt", scenarioResult.IsSuccessful ? "Successful" : "Failed")
+            //            )
+            //        );
+        }
+
+        public XElement Format(ScenarioOutline scenarioOutline, int id)
         {
             return new XElement(xmlns + "li",
                        new XAttribute("id", id),
                        new XAttribute("class", "scenario"),
+                       BuildResultImage(scenarioOutline),
                        new XElement(xmlns + "div",
                            new XAttribute("class", "scenario-heading"),
-                           new XElement(xmlns + "h2", scenario.Name),
-                           this.htmlDescriptionFormatter.Format(scenario.Description)
+                           new XElement(xmlns + "h2", scenarioOutline.Name),
+                           this.htmlDescriptionFormatter.Format(scenarioOutline.Description)
                        ),
                        new XElement(xmlns + "div",
                            new XAttribute("class", "steps"),
-                           new XElement(xmlns + "ul", scenario.Steps.Select(step => this.htmlStepFormatter.Format(step)))
+                           new XElement(xmlns + "ul", scenarioOutline.Steps.Select(step => this.htmlStepFormatter.Format(step)))
                        ),
                        new XElement(xmlns + "div",
                            new XAttribute("class", "examples"),
                            new XElement(xmlns + "h3",  "Examples"),
-                           this.htmlDescriptionFormatter.Format(scenario.Example.Description),
-                           this.htmlTableFormatter.Format(scenario.Example.TableArgument)
+                           this.htmlDescriptionFormatter.Format(scenarioOutline.Example.Description),
+                           this.htmlTableFormatter.Format(scenarioOutline.Example.TableArgument)
                        )
                    );
         }

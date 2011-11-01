@@ -27,6 +27,7 @@ using NAnt.Core;
 using NAnt.Core.Attributes;
 using Ninject;
 using Pickles.Formatters;
+using Pickles.TestFrameworks;
 
 namespace Pickles.NAnt
 {
@@ -49,7 +50,7 @@ namespace Pickles.NAnt
         {
             configuration.FeatureFolder = new DirectoryInfo(FeatureDirectory);
             configuration.OutputFolder = new DirectoryInfo(OutputDirectory);
-            if (!string.IsNullOrWhiteSpace(ResultsFile)) configuration.LinkedResults = new FileInfo(ResultsFile);
+            if (!string.IsNullOrWhiteSpace(ResultsFile)) configuration.LinkedTestFrameworkResultsFile = new FileInfo(ResultsFile);
         }
 
         protected override void ExecuteTask()
@@ -64,6 +65,12 @@ namespace Pickles.NAnt
 
                 Configuration configuration = kernel.Get<Configuration>();
                 CaptureConfiguration(configuration);
+
+                if (configuration.ShouldLinkResults)
+                {
+                    var results = kernel.Get<Results>();
+                    results.Load(configuration.LinkedTestFrameworkResultsFile);
+                }
 
                 var documentationBuilder = kernel.Get<HtmlDocumentationBuilder>();
                 documentationBuilder.Build(configuration.FeatureFolder, configuration.OutputFolder);

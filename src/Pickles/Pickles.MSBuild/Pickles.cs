@@ -27,6 +27,7 @@ using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using Ninject;
 using Pickles.Formatters;
+using Pickles.TestFrameworks;
 
 namespace Pickles.MSBuild
 {
@@ -44,7 +45,7 @@ namespace Pickles.MSBuild
         {
             configuration.FeatureFolder = new DirectoryInfo(FeatureDirectory);
             configuration.OutputFolder = new DirectoryInfo(OutputDirectory);
-            if (!string.IsNullOrWhiteSpace(ResultsFile)) configuration.LinkedResults = new FileInfo(ResultsFile);
+            if (!string.IsNullOrWhiteSpace(ResultsFile)) configuration.LinkedTestFrameworkResultsFile = new FileInfo(ResultsFile);
         }
 
         public override bool Execute()
@@ -59,6 +60,12 @@ namespace Pickles.MSBuild
 
                 Configuration configuration = kernel.Get<Configuration>();
                 CaptureConfiguration(configuration);
+
+                if (configuration.ShouldLinkResults)
+                {
+                    var results = kernel.Get<Results>();
+                    results.Load(configuration.LinkedTestFrameworkResultsFile);
+                }
 
                 var documentationBuilder = kernel.Get<HtmlDocumentationBuilder>();
                 documentationBuilder.Build(configuration.FeatureFolder, configuration.OutputFolder);

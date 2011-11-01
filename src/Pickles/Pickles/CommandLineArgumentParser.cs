@@ -79,7 +79,7 @@ namespace Pickles
 
             if (!string.IsNullOrWhiteSpace(this.featureDirectory)) configuration.FeatureFolder = new System.IO.DirectoryInfo(this.featureDirectory);
             if (!string.IsNullOrWhiteSpace(this.outputDirectory)) configuration.OutputFolder = new System.IO.DirectoryInfo(this.outputDirectory);
-            if (!string.IsNullOrWhiteSpace(this.resultsFile)) configuration.LinkedResults = new FileInfo(this.resultsFile);
+            if (!string.IsNullOrWhiteSpace(this.resultsFile)) configuration.LinkedTestFrameworkResultsFile = new FileInfo(this.resultsFile);
 
             return true;
         }

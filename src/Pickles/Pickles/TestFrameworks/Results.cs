@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml.Linq;
 using System.IO;
 using System.Text.RegularExpressions;
+using Pickles.Parser;
 
 namespace Pickles.TestFrameworks
 {
@@ -21,14 +22,24 @@ namespace Pickles.TestFrameworks
         public bool WasExecuted;
     }
 
+    internal struct ElementAttributes
+    {
+        internal string Name;
+        internal string Description;
+        internal bool WasExecuted;
+        internal bool IsSuccessful;
+    }
+
     public class Results
     {
         private readonly Dictionary<string, TestResult> featureResults;
         private readonly Dictionary<string, TestResult> scenarioResults;
         private readonly Dictionary<string, List<ExampleRowResult>> exampleResults;
+        private readonly ResultsKeyGenerator resultsKeyGenerator;
 
-        public Results()
+        public Results(ResultsKeyGenerator resultsKeyGenerator)
         {
+            this.resultsKeyGenerator = resultsKeyGenerator;
             this.featureResults = new Dictionary<string, TestResult>();
             this.scenarioResults = new Dictionary<string, TestResult>();
             this.exampleResults = new Dictionary<string, List<ExampleRowResult>>();
@@ -50,6 +61,17 @@ namespace Pickles.TestFrameworks
                 if (a[index] != b[index]) return false;
             }
             return true;
+        }
+
+        private ElementAttributes CaptureElementAttributes(XElement element)
+        {
+            return new ElementAttributes
+            {
+                Name = (element.Attribute("name") != null) ? element.Attribute("name").Value : string.Empty,
+                Description = (element.Attribute("description") != null) ? element.Attribute("description").Value : string.Empty,
+                WasExecuted = (element.Attribute("executed") != null) ? element.Attribute("executed").Value.ToLowerInvariant() == "true" : false,
+                IsSuccessful = (element.Attribute("success") != null) ? element.Attribute("executed").Value.ToLowerInvariant() == "true" : false
+            };
         }
 
         public void Load(string filePath)
@@ -77,68 +99,75 @@ namespace Pickles.TestFrameworks
 
             foreach (var featureElement in featureElements)
             {
-                this.featureResults.Add(featureElement.Attribute("description").Value, new TestResult
+                ElementAttributes featureAttributes = CaptureElementAttributes(featureElement);
+                this.featureResults.Add(this.resultsKeyGenerator.GetFeatureKey(featureAttributes.Description), new TestResult
                 {
-                    IsSuccessful = featureElement.Attribute("success").Value.ToLowerInvariant() == "true",
-                    WasExecuted = featureElement.Attribute("executed").Value.ToLowerInvariant() == "true"
+                    WasExecuted = featureAttributes.WasExecuted,
+                    IsSuccessful = featureAttributes.IsSuccessful
                 });
 
                 var scenarioElements = featureElement.Element("results").Elements("test-case");
                 foreach (var scenarioElement in scenarioElements)
                 {
-                    this.scenarioResults.Add(scenarioElement.Attribute("description").Value, new TestResult
+                    ElementAttributes scenarioAttributes = CaptureElementAttributes(scenarioElement);
+                    this.scenarioResults.Add(this.resultsKeyGenerator.GetScenarioKey(featureAttributes.Description, scenarioAttributes.Description), new TestResult
                     {
-                        IsSuccessful = scenarioElement.Attribute("success").Value.ToLowerInvariant() == "true",
-                        WasExecuted = scenarioElement.Attribute("executed").Value.ToLowerInvariant() == "true"
+                        WasExecuted = scenarioAttributes.WasExecuted,
+                        IsSuccessful = scenarioAttributes.IsSuccessful
                     });
                 }
 
                 var scenarioOutlineElements = featureElement.Element("results").Elements("test-suite");
                 foreach (var scenarioOutlineElement in scenarioOutlineElements)
                 {
-                    var examples = scenarioOutlineElement.Element("results").Elements("test-case");
+                    ElementAttributes scenarioOutlineAttributes = CaptureElementAttributes(scenarioOutlineElement);
+
+                    var exampleElements = scenarioOutlineElement.Element("results").Elements("test-case");
                     var exampleResults = new List<ExampleRowResult>();
-                    foreach (var example in examples)
+                    foreach (var exampleElement in exampleElements)
                     {
+                        ElementAttributes exampleAttributes = CaptureElementAttributes(exampleElement);
                         exampleResults.Add(new ExampleRowResult
                         {
-                            RowValues = ExtractRowValuesFromName(example.Attribute("name").Value),
-                            IsSuccessful = scenarioOutlineElement.Attribute("success").Value.ToLowerInvariant() == "true",
-                            WasExecuted = scenarioOutlineElement.Attribute("executed").Value.ToLowerInvariant() == "true"
+                            WasExecuted = exampleAttributes.WasExecuted,
+                            IsSuccessful = exampleAttributes.IsSuccessful,
+                            RowValues = ExtractRowValuesFromName(exampleAttributes.Name)
                         });
                     }
-                    this.exampleResults.Add(scenarioOutlineElement.Attribute("description").Value, exampleResults);
+                    this.exampleResults.Add(this.resultsKeyGenerator.GetScenarioOutlineKey(featureAttributes.Description, scenarioOutlineAttributes.Description), exampleResults);
                 }
-
             }
         }
 
         public TestResult GetFeatureResult(string name)
         {
             TestResult testResult;
+            testResult.WasExecuted = false;
             if (this.featureResults.TryGetValue(name, out testResult))
             {
                 return testResult;
             }
 
-            throw new InvalidOperationException("Cannot retrieve test results for feature named " + name);
+            return testResult;
         }
 
-        public TestResult GetScenarioResult(string name)
+        public TestResult GetScenarioResult(Scenario scenario)
         {
             TestResult testResult;
-            if (this.scenarioResults.TryGetValue(name, out testResult))
+            testResult.WasExecuted = false;
+
+            if (this.scenarioResults.TryGetValue(this.resultsKeyGenerator.GetScenarioKey(scenario), out testResult))
             {
                 return testResult;
             }
 
-            throw new InvalidOperationException("Cannot retrieve test results for scenario named " + name);
+            return testResult;
         }
 
-        public TestResult GetExampleResult(string name, string[] row)
+        public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] row)
         {
             List<ExampleRowResult> exampleRowResults;
-            if (this.exampleResults.TryGetValue(name, out exampleRowResults))
+            if (this.exampleResults.TryGetValue(this.resultsKeyGenerator.GetScenarioOutlineKey(scenarioOutline), out exampleRowResults))
             {
                 var result = exampleRowResults.Single(x => IsRowMatched(row, x.RowValues));
                 return new TestResult
@@ -148,7 +177,7 @@ namespace Pickles.TestFrameworks
                 };
             }
 
-            throw new InvalidOperationException("Cannot retrieve test results for scenario named " + name);
+            return new TestResult { WasExecuted = false };
         }
     }
 }

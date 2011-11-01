@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using Pickles.Parser;
+using Pickles.TestFrameworks;
 
 namespace Pickles.Formatters
 {
@@ -32,12 +33,35 @@ namespace Pickles.Formatters
         private readonly XNamespace xmlns;
         private readonly HtmlStepFormatter htmlStepFormatter;
         private readonly HtmlDescriptionFormatter htmlDescriptionFormatter;
+        private readonly Results results;
+        private readonly HtmlResourceSet htmlResourceSet;
 
-        public HtmlScenarioFormatter(HtmlStepFormatter htmlStepFormatter, HtmlDescriptionFormatter htmlDescriptionFormatter)
+        public HtmlScenarioFormatter(
+            HtmlStepFormatter htmlStepFormatter, 
+            HtmlDescriptionFormatter htmlDescriptionFormatter,
+            Results results,
+            HtmlResourceSet htmlResourceSet)
         {
             this.htmlStepFormatter = htmlStepFormatter;
             this.htmlDescriptionFormatter = htmlDescriptionFormatter;
+            this.results = results;
+            this.htmlResourceSet = htmlResourceSet;
             this.xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
+        }
+
+        private XElement BuildResultImage(Scenario scenario)
+        {
+            TestResult scenarioResult = this.results.GetScenarioResult(scenario);
+            if (!scenarioResult.WasExecuted || !scenarioResult.IsSuccessful) return null;
+
+            return new XElement(this.xmlns + "div",
+                       new XAttribute("class", "float-right"),
+                       new XElement(this.xmlns + "img",
+                           new XAttribute("src", scenarioResult.IsSuccessful ? this.htmlResourceSet.SuccessImage : this.htmlResourceSet.FailureImage),
+                           new XAttribute("title", scenarioResult.IsSuccessful ? "Successful" : "Failed"),
+                           new XAttribute("alt", scenarioResult.IsSuccessful ? "Successful" : "Failed")
+                        )
+                    );
         }
 
         public XElement Format(Scenario scenario, int id)
@@ -45,6 +69,7 @@ namespace Pickles.Formatters
             return new XElement(xmlns + "li",
                        new XAttribute("id", id),
                        new XAttribute("class", "scenario"),
+                       BuildResultImage(scenario),
                        new XElement(xmlns + "div",
                            new XAttribute("class", "scenario-heading"),
                            new XElement(xmlns + "h2", scenario.Name),

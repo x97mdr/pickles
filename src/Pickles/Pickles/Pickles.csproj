@@ -118,6 +118,7 @@
     <Compile Include="TestFrameworks\Results.cs" />
     <Compile Include="StringExtensions.cs" />
     <Compile Include="HtmlResourceWriter.cs" />
+    <Compile Include="TestFrameworks\ResultsKeyGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

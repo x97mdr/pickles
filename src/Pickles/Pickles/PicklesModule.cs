@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Pickles.Formatters;
+using Pickles.TestFrameworks;
 
 namespace Pickles
 {
@@ -33,6 +34,9 @@ namespace Pickles
             Bind<Configuration>().ToSelf().InSingletonScope();
 
             Bind<IDocumentationBuilder>().To<HtmlDocumentationBuilder>().InSingletonScope();
+
+            Bind<Results>().ToSelf().InSingletonScope();
+            Bind<ResultsKeyGenerator>().ToSelf().InSingletonScope();
 
             Bind<HtmlTableOfContentsFormatter>().ToSelf().InSingletonScope();
             Bind<HtmlFooterFormatter>().ToSelf().InSingletonScope();

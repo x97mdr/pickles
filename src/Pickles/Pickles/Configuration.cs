@@ -44,11 +44,11 @@ namespace Pickles
         {
             get
             {
-                return LinkedResults != null;
+                return LinkedTestFrameworkResultsFile != null;
             }
         }
 
-        public FileInfo LinkedResults 
+        public FileInfo LinkedTestFrameworkResultsFile 
         { 
             get; 
             set; 
