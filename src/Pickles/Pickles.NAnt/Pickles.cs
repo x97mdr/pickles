@@ -41,6 +41,17 @@ namespace Pickles.NAnt
         [StringValidator(AllowEmpty = false)]
         public string OutputDirectory { get; set; }
 
+        [TaskAttribute("results", Required = false)]
+        [StringValidator(AllowEmpty = true)]
+        public string ResultsFile { get; set; }
+
+        private void CaptureConfiguration(Configuration configuration)
+        {
+            configuration.FeatureFolder = new DirectoryInfo(FeatureDirectory);
+            configuration.OutputFolder = new DirectoryInfo(OutputDirectory);
+            if (!string.IsNullOrWhiteSpace(ResultsFile)) configuration.LinkedResults = new FileInfo(ResultsFile);
+        }
+
         protected override void ExecuteTask()
         {
             try
@@ -50,12 +61,12 @@ namespace Pickles.NAnt
                 Project.Log(Level.Info, "Writing output to {0}", OutputDirectory ?? string.Empty);
 
                 var kernel = new StandardKernel(new PicklesModule());
+
+                Configuration configuration = kernel.Get<Configuration>();
+                CaptureConfiguration(configuration);
+
                 var documentationBuilder = kernel.Get<HtmlDocumentationBuilder>();
-
-                var featureDirectoryInfo = new DirectoryInfo(FeatureDirectory);
-                var OutputDirectoryInfo = new DirectoryInfo(OutputDirectory);
-
-                documentationBuilder.Build(featureDirectoryInfo, OutputDirectoryInfo);
+                documentationBuilder.Build(configuration.FeatureFolder, configuration.OutputFolder);
             }
             catch (Exception e)
             {
