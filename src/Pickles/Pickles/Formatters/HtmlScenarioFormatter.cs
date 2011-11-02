@@ -33,17 +33,20 @@ namespace Pickles.Formatters
         private readonly XNamespace xmlns;
         private readonly HtmlStepFormatter htmlStepFormatter;
         private readonly HtmlDescriptionFormatter htmlDescriptionFormatter;
+        private readonly Configuration configuration;
         private readonly Results results;
         private readonly HtmlResourceSet htmlResourceSet;
 
         public HtmlScenarioFormatter(
             HtmlStepFormatter htmlStepFormatter, 
             HtmlDescriptionFormatter htmlDescriptionFormatter,
+            Configuration configuration,
             Results results,
             HtmlResourceSet htmlResourceSet)
         {
             this.htmlStepFormatter = htmlStepFormatter;
             this.htmlDescriptionFormatter = htmlDescriptionFormatter;
+            this.configuration = configuration;
             this.results = results;
             this.htmlResourceSet = htmlResourceSet;
             this.xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
@@ -51,17 +54,22 @@ namespace Pickles.Formatters
 
         private XElement BuildResultImage(Scenario scenario)
         {
-            TestResult scenarioResult = this.results.GetScenarioResult(scenario);
-            if (!scenarioResult.WasExecuted || !scenarioResult.IsSuccessful) return null;
+            if (configuration.ShouldLinkResults)
+            {
+                TestResult scenarioResult = this.results.GetScenarioResult(scenario);
+                if (!scenarioResult.WasExecuted || !scenarioResult.IsSuccessful) return null;
 
-            return new XElement(this.xmlns + "div",
-                       new XAttribute("class", "float-right"),
-                       new XElement(this.xmlns + "img",
-                           new XAttribute("src", scenarioResult.IsSuccessful ? this.htmlResourceSet.SuccessImage : this.htmlResourceSet.FailureImage),
-                           new XAttribute("title", scenarioResult.IsSuccessful ? "Successful" : "Failed"),
-                           new XAttribute("alt", scenarioResult.IsSuccessful ? "Successful" : "Failed")
-                        )
-                    );
+                return new XElement(this.xmlns + "div",
+                           new XAttribute("class", "float-right"),
+                           new XElement(this.xmlns + "img",
+                               new XAttribute("src", scenarioResult.IsSuccessful ? this.htmlResourceSet.SuccessImage : this.htmlResourceSet.FailureImage),
+                               new XAttribute("title", scenarioResult.IsSuccessful ? "Successful" : "Failed"),
+                               new XAttribute("alt", scenarioResult.IsSuccessful ? "Successful" : "Failed")
+                            )
+                        );
+            }
+
+            return null;
         }
 
         public XElement Format(Scenario scenario, int id)

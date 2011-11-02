@@ -11,15 +11,8 @@ namespace Pickles.TestFrameworks
 {
     public struct TestResult
     {
-        public bool IsSuccessful;
         public bool WasExecuted;
-    }
-
-    public struct ExampleRowResult
-    {
-        public string[] RowValues;
         public bool IsSuccessful;
-        public bool WasExecuted;
     }
 
     internal struct ElementAttributes
@@ -32,17 +25,22 @@ namespace Pickles.TestFrameworks
 
     public class Results
     {
-        private readonly Dictionary<string, TestResult> featureResults;
-        private readonly Dictionary<string, TestResult> scenarioResults;
-        private readonly Dictionary<string, List<ExampleRowResult>> exampleResults;
-        private readonly ResultsKeyGenerator resultsKeyGenerator;
+        private readonly Configuration configuration;
+        private readonly Lazy<XDocument> resultsDocument;
 
-        public Results(ResultsKeyGenerator resultsKeyGenerator)
+        public Results(Configuration configuration)
         {
-            this.resultsKeyGenerator = resultsKeyGenerator;
-            this.featureResults = new Dictionary<string, TestResult>();
-            this.scenarioResults = new Dictionary<string, TestResult>();
-            this.exampleResults = new Dictionary<string, List<ExampleRowResult>>();
+            this.configuration = configuration;
+            this.resultsDocument = new Lazy<XDocument>(() => 
+                {
+                    XDocument document;
+                    using (var stream = this.configuration.LinkedTestFrameworkResultsFile.OpenRead())
+                    {
+                        document = XDocument.Load(stream);
+                        stream.Close();
+                    }
+                    return document;
+                }, true);
         }
 
         private string[] ExtractRowValuesFromName(string exampleName)
@@ -63,121 +61,51 @@ namespace Pickles.TestFrameworks
             return true;
         }
 
-        private ElementAttributes CaptureElementAttributes(XElement element)
+        private XElement GetFeatureElement(string featureName)
         {
-            return new ElementAttributes
-            {
-                Name = (element.Attribute("name") != null) ? element.Attribute("name").Value : string.Empty,
-                Description = (element.Attribute("description") != null) ? element.Attribute("description").Value : string.Empty,
-                WasExecuted = (element.Attribute("executed") != null) ? element.Attribute("executed").Value.ToLowerInvariant() == "true" : false,
-                IsSuccessful = (element.Attribute("success") != null) ? element.Attribute("executed").Value.ToLowerInvariant() == "true" : false
-            };
-        }
-
-        public void Load(string filePath)
-        {
-            Load(new FileInfo(filePath));
-        }
-
-        public void Load(FileInfo file)
-        {
-            using (var stream = file.OpenRead())
-            {
-                Load(stream);
-            }
-        }
-
-        public void Load(Stream stream)
-        {
-            var resultsDocument = XDocument.Load(stream);
-
-            var featureElements = from element in resultsDocument.Root.Descendants()
-                                  where element.Name == ("test-suite")
-                                     && element.Attribute("description") != null
-                                     && !element.Element("results").Elements().All(resultChild => resultChild.Name.LocalName == "test-case")
-                                  select element;
-
-            foreach (var featureElement in featureElements)
-            {
-                ElementAttributes featureAttributes = CaptureElementAttributes(featureElement);
-                this.featureResults.Add(this.resultsKeyGenerator.GetFeatureKey(featureAttributes.Description), new TestResult
-                {
-                    WasExecuted = featureAttributes.WasExecuted,
-                    IsSuccessful = featureAttributes.IsSuccessful
-                });
-
-                var scenarioElements = featureElement.Element("results").Elements("test-case");
-                foreach (var scenarioElement in scenarioElements)
-                {
-                    ElementAttributes scenarioAttributes = CaptureElementAttributes(scenarioElement);
-                    this.scenarioResults.Add(this.resultsKeyGenerator.GetScenarioKey(featureAttributes.Description, scenarioAttributes.Description), new TestResult
-                    {
-                        WasExecuted = scenarioAttributes.WasExecuted,
-                        IsSuccessful = scenarioAttributes.IsSuccessful
-                    });
-                }
-
-                var scenarioOutlineElements = featureElement.Element("results").Elements("test-suite");
-                foreach (var scenarioOutlineElement in scenarioOutlineElements)
-                {
-                    ElementAttributes scenarioOutlineAttributes = CaptureElementAttributes(scenarioOutlineElement);
-
-                    var exampleElements = scenarioOutlineElement.Element("results").Elements("test-case");
-                    var exampleResults = new List<ExampleRowResult>();
-                    foreach (var exampleElement in exampleElements)
-                    {
-                        ElementAttributes exampleAttributes = CaptureElementAttributes(exampleElement);
-                        exampleResults.Add(new ExampleRowResult
-                        {
-                            WasExecuted = exampleAttributes.WasExecuted,
-                            IsSuccessful = exampleAttributes.IsSuccessful,
-                            RowValues = ExtractRowValuesFromName(exampleAttributes.Name)
-                        });
-                    }
-                    this.exampleResults.Add(this.resultsKeyGenerator.GetScenarioOutlineKey(featureAttributes.Description, scenarioOutlineAttributes.Description), exampleResults);
-                }
-            }
+            return this.resultsDocument.Value
+                       .Descendants("test-suite")
+                       .Where(x => x.Attribute("description") != null)
+                       .FirstOrDefault(x => x.Attribute("description").Value == featureName);
         }
 
         public TestResult GetFeatureResult(string name)
         {
-            TestResult testResult;
-            testResult.WasExecuted = false;
-            if (this.featureResults.TryGetValue(name, out testResult))
-            {
-                return testResult;
-            }
-
-            return testResult;
+            var featureElement = GetFeatureElement(name);
+            bool wasExecuted = featureElement.Attribute("executed") != null ? featureElement.Attribute("executed").Value.ToLowerInvariant() == "true" : false;
+            bool wasSuccessful = featureElement.Attribute("success") != null ? featureElement.Attribute("success").Value.ToLowerInvariant() == "true" : false;
+            return new TestResult { WasExecuted = wasExecuted, IsSuccessful = wasSuccessful };
         }
 
         public TestResult GetScenarioResult(Scenario scenario)
         {
-            TestResult testResult;
-            testResult.WasExecuted = false;
+            var featureElement = GetFeatureElement(scenario.Feature.Name);
+            var scenarioElement = featureElement
+                                      .Descendants("test-case")
+                                      .Where(x => x.Attribute("description") != null)
+                                      .FirstOrDefault(x => x.Attribute("description").Value == scenario.Name);
 
-            if (this.scenarioResults.TryGetValue(this.resultsKeyGenerator.GetScenarioKey(scenario), out testResult))
-            {
-                return testResult;
-            }
-
-            return testResult;
+            bool wasExecuted = scenarioElement.Attribute("executed") != null ? scenarioElement.Attribute("executed").Value.ToLowerInvariant() == "true" : false;
+            bool wasSuccessful = scenarioElement.Attribute("success") != null ? scenarioElement.Attribute("success").Value.ToLowerInvariant() == "true" : false;
+            return new TestResult { WasExecuted = wasExecuted, IsSuccessful = wasSuccessful };
         }
 
         public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] row)
         {
-            List<ExampleRowResult> exampleRowResults;
-            if (this.exampleResults.TryGetValue(this.resultsKeyGenerator.GetScenarioOutlineKey(scenarioOutline), out exampleRowResults))
-            {
-                var result = exampleRowResults.Single(x => IsRowMatched(row, x.RowValues));
-                return new TestResult
-                {
-                    IsSuccessful = result.IsSuccessful,
-                    WasExecuted = result.WasExecuted
-                };
-            }
-
-            return new TestResult { WasExecuted = false };
+            var examplesElement = this.resultsDocument.Value
+                                      .Descendants("test-suite")
+                                      .Where(x => x.Attribute("description") != null)
+                                      .FirstOrDefault(x => x.Attribute("description").Value == scenarioOutline.Feature.Name)
+                                          .Descendants("test-suite")
+                                          .Where(x => x.Attribute("description") != null)
+                                          .FirstOrDefault(x => x.Attribute("description").Value == scenarioOutline.Name)
+                                              .Descendants("test-case")
+                                              .Where(x => x.Attribute("description") != null)
+                                              .FirstOrDefault(x => IsRowMatched(ExtractRowValuesFromName(x.Attribute("description").Value), row));
+                                                  
+            bool wasExecuted = examplesElement.Attribute("executed") != null ? examplesElement.Attribute("executed").Value.ToLowerInvariant() == "true" : false;
+            bool wasSuccessful = examplesElement.Attribute("success") != null ? examplesElement.Attribute("success").Value.ToLowerInvariant() == "true" : false;
+            return new TestResult { WasExecuted = wasExecuted, IsSuccessful = wasSuccessful };
         }
     }
 }

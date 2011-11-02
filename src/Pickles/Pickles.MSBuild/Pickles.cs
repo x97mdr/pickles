@@ -61,12 +61,6 @@ namespace Pickles.MSBuild
                 Configuration configuration = kernel.Get<Configuration>();
                 CaptureConfiguration(configuration);
 
-                if (configuration.ShouldLinkResults)
-                {
-                    var results = kernel.Get<Results>();
-                    results.Load(configuration.LinkedTestFrameworkResultsFile);
-                }
-
                 var documentationBuilder = kernel.Get<HtmlDocumentationBuilder>();
                 documentationBuilder.Build(configuration.FeatureFolder, configuration.OutputFolder);
             }
