@@ -30,14 +30,16 @@ namespace Pickles.Formatters
 {
     public class HtmlDocumentFormatter
     {
+        private readonly Configuration configuration;
         private readonly HtmlHeaderFormatter htmlHeaderFormatter;
         private readonly HtmlTableOfContentsFormatter htmlTableOfContentsFormatter;
         private readonly HtmlContentFormatter htmlContentFormatter;
         private readonly HtmlFooterFormatter htmlFooterFormatter;
         private readonly HtmlResourceSet htmlResources;
 
-        public HtmlDocumentFormatter(HtmlHeaderFormatter htmlHeaderFormatter, HtmlTableOfContentsFormatter htmlTableOfContentsFormatter, HtmlContentFormatter htmlContentFormatter, HtmlFooterFormatter htmlFooterFormatter, HtmlResourceSet htmlResources)
+        public HtmlDocumentFormatter(Configuration configuration, HtmlHeaderFormatter htmlHeaderFormatter, HtmlTableOfContentsFormatter htmlTableOfContentsFormatter, HtmlContentFormatter htmlContentFormatter, HtmlFooterFormatter htmlFooterFormatter, HtmlResourceSet htmlResources)
         {
+            this.configuration = configuration;
             this.htmlHeaderFormatter = htmlHeaderFormatter;
             this.htmlTableOfContentsFormatter = htmlTableOfContentsFormatter;
             this.htmlContentFormatter = htmlContentFormatter;
@@ -48,6 +50,8 @@ namespace Pickles.Formatters
         public XDocument Format(FeatureNode featureNode, GeneralTree<FeatureNode> features)
         {
             var xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
+            var featureNodeOutputPath = Path.Combine(this.configuration.OutputFolder.FullName, featureNode.RelativePathFromRoot);
+            var featureNodeOutputUri = new Uri(featureNodeOutputPath);
 
             var container = new XElement(xmlns + "div", new XAttribute("id", "container"));
             container.Add(this.htmlHeaderFormatter.Format());
@@ -63,7 +67,7 @@ namespace Pickles.Formatters
 
             head.Add(new XElement(xmlns + "link",
                          new XAttribute("rel", "stylesheet"),
-                         new XAttribute("href", featureNode.Url.MakeRelativeUri(this.htmlResources.MasterStylesheet)),
+                         new XAttribute("href", featureNodeOutputUri.MakeRelativeUri(this.htmlResources.MasterStylesheet)),
                          new XAttribute("type", "text/css")));
 
             var html = new XElement(xmlns + "html",

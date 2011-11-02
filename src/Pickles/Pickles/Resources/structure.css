@@ -7,9 +7,9 @@
   width: 90%;
   margin: 10px auto;
   color: #333;
-  background-color: #F2F2F2;
   border: 1px solid gray;
   line-height: 130%;
+  background-color: #f2f2f2;
 }
 
 .float-right  {
@@ -23,7 +23,6 @@
 #top
 {
   padding: .5em;
-  background-color: #F2F2F2;
   border-bottom: 1px solid gray;
 }
 
@@ -52,20 +51,23 @@
 
 #toc ul {
   margin: 0;
-  padding: 1em 1em 1em 1em;
-  border-bottom: 1px solid #e8e8e8;
+  padding: 0;
   list-style-type: none;  }
-  #toc ul li {
-    text-indent: 0;
-    border-top: 1px solid #e8e8e8; }
-    #toc > ul > ul {
-      text-indent: 10px; }
-      #toc > ul > ul > ul {
-        text-indent: 20px; }
   #toc ul li a {
     text-decoration: none; }
   #toc ul li a:hover {
     text-decoration: underline; }
+#toc .directory {
+  padding: 5px 10px 6px;
+  background: #F9F9f9;
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #fff;
+  font-weight: bold;
+}
+#toc .file {
+  padding: 3px 10px 4px;
+  border-bottom: 1px solid #E8E8e8;
+}
 
 /*************************************************************************
  * Feature
@@ -156,6 +158,5 @@ li.scenario {
   margin : 0;
   padding : .5em;
   color: #333;
-  background-color : #F2F2F2;
   border-top : 1px solid gray;
 }

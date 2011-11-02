@@ -38,14 +38,19 @@ namespace Pickles.Formatters
             {
                 if (childNode.Data.IsContent)
                 {
-                    ul.Add(new XElement(xmlns + "li",
-                                new XElement(xmlns + "a",
-                                    new XAttribute("href", childNode.Data.GetRelativeUriTo(file)),
-                                    childNode.Data.Name.ExpandWikiWord())));
+                    ul.Add(new XElement(xmlns + "div",
+                               new XAttribute("class", "file"),
+                               new XElement(xmlns + "li",
+                                   new XElement(xmlns + "a",
+                                       new XAttribute("href", childNode.Data.GetRelativeUriTo(file)), childNode.Data.Name.ExpandWikiWord()))));
                 }
                 else
                 {
-                    ul.Add(new XElement(xmlns + "li", new XText(childNode.Data.Name.ExpandWikiWord()), BuildListItems(xmlns, file, childNode)));
+                    ul.Add(new XElement(xmlns + "li", 
+                               new XElement(xmlns + "div",
+                                   new XAttribute("class", "directory"),
+                                   new XText(childNode.Data.Name.ExpandWikiWord())
+                               ), BuildListItems(xmlns, file, childNode)));
                 }
             }
 
