@@ -34,6 +34,7 @@ namespace Pickles.Formatters
         private readonly HtmlStepFormatter htmlStepFormatter;
         private readonly HtmlDescriptionFormatter htmlDescriptionFormatter;
         private readonly HtmlTableFormatter htmlTableFormatter;
+        private readonly Configuration configuration;
         private readonly Results results;
         private readonly HtmlResourceSet htmlResourceSet;
 
@@ -41,31 +42,37 @@ namespace Pickles.Formatters
             HtmlStepFormatter htmlStepFormatter, 
             HtmlDescriptionFormatter htmlDescriptionFormatter, 
             HtmlTableFormatter htmlTableFormatter,
+            Configuration configuration,
             Results results,
             HtmlResourceSet htmlResourceSet)
         {
             this.htmlStepFormatter = htmlStepFormatter;
             this.htmlDescriptionFormatter = htmlDescriptionFormatter;
             this.htmlTableFormatter = htmlTableFormatter;
+            this.configuration = configuration;
             this.results = results;
             this.htmlResourceSet = htmlResourceSet;
             this.xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
         }
 
-        private XElement BuildResultImage(ScenarioOutline scenario)
+        private XElement BuildResultImage(ScenarioOutline scenarioOutline)
         {
-            return null;
-            //TestResult scenarioResult = this.results.GetExampleResult(scenario);
-            //if (!scenarioResult.WasExecuted || !scenarioResult.IsSuccessful) return null;
+            if (configuration.ShouldLinkResults)
+            {
+                TestResult scenarioResult = this.results.GetScenarioOutlineResult(scenarioOutline);
+                if (!scenarioResult.WasExecuted || !scenarioResult.IsSuccessful) return null;
 
-            //return new XElement("div",
-            //           new XAttribute("class", "float-right"),
-            //           new XElement("img",
-            //               new XAttribute("src", scenarioResult.IsSuccessful ? this.htmlResourceSet.SuccessImage : this.htmlResourceSet.FailureImage),
-            //               new XAttribute("title", scenarioResult.IsSuccessful ? "Successful" : "Failed"),
-            //               new XAttribute("alt", scenarioResult.IsSuccessful ? "Successful" : "Failed")
-            //            )
-            //        );
+                return new XElement(this.xmlns + "div",
+                           new XAttribute("class", "float-right"),
+                           new XElement(this.xmlns + "img",
+                               new XAttribute("src", scenarioResult.IsSuccessful ? this.htmlResourceSet.SuccessImage : this.htmlResourceSet.FailureImage),
+                               new XAttribute("title", scenarioResult.IsSuccessful ? "Successful" : "Failed"),
+                               new XAttribute("alt", scenarioResult.IsSuccessful ? "Successful" : "Failed")
+                            )
+                        );
+            }
+
+            return null;
         }
 
         public XElement Format(ScenarioOutline scenarioOutline, int id)

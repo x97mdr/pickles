@@ -61,51 +61,59 @@ namespace Pickles.TestFrameworks
             return true;
         }
 
-        private XElement GetFeatureElement(string featureName)
+        private XElement GetFeatureElement(Feature feature)
         {
             return this.resultsDocument.Value
                        .Descendants("test-suite")
                        .Where(x => x.Attribute("description") != null)
-                       .FirstOrDefault(x => x.Attribute("description").Value == featureName);
+                       .FirstOrDefault(x => x.Attribute("description").Value == feature.Name);
         }
 
-        public TestResult GetFeatureResult(string name)
+        private TestResult GetResultFromElement(XElement element)
         {
-            var featureElement = GetFeatureElement(name);
-            bool wasExecuted = featureElement.Attribute("executed") != null ? featureElement.Attribute("executed").Value.ToLowerInvariant() == "true" : false;
-            bool wasSuccessful = featureElement.Attribute("success") != null ? featureElement.Attribute("success").Value.ToLowerInvariant() == "true" : false;
+            bool wasExecuted = element.Attribute("executed") != null ? element.Attribute("executed").Value.ToLowerInvariant() == "true" : false;
+            bool wasSuccessful = element.Attribute("success") != null ? element.Attribute("success").Value.ToLowerInvariant() == "true" : false;
             return new TestResult { WasExecuted = wasExecuted, IsSuccessful = wasSuccessful };
+        }
+
+        public TestResult GetFeatureResult(Feature feature)
+        {
+            var featureElement = GetFeatureElement(feature);
+            return GetResultFromElement(featureElement);
         }
 
         public TestResult GetScenarioResult(Scenario scenario)
         {
-            var featureElement = GetFeatureElement(scenario.Feature.Name);
+            var featureElement = GetFeatureElement(scenario.Feature);
             var scenarioElement = featureElement
                                       .Descendants("test-case")
                                       .Where(x => x.Attribute("description") != null)
                                       .FirstOrDefault(x => x.Attribute("description").Value == scenario.Name);
 
-            bool wasExecuted = scenarioElement.Attribute("executed") != null ? scenarioElement.Attribute("executed").Value.ToLowerInvariant() == "true" : false;
-            bool wasSuccessful = scenarioElement.Attribute("success") != null ? scenarioElement.Attribute("success").Value.ToLowerInvariant() == "true" : false;
-            return new TestResult { WasExecuted = wasExecuted, IsSuccessful = wasSuccessful };
+            return GetResultFromElement(scenarioElement);
+        }
+
+        public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
+        {
+            var scenarioOutlineElement = GetFeatureElement(scenarioOutline.Feature)
+                                             .Descendants("test-suite")
+                                             .Where(x => x.Attribute("description") != null)
+                                             .FirstOrDefault(x => x.Attribute("description").Value == scenarioOutline.Name);
+
+            return GetResultFromElement(scenarioOutlineElement);
         }
 
         public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] row)
         {
-            var examplesElement = this.resultsDocument.Value
+            var examplesElement = GetFeatureElement(scenarioOutline.Feature)
                                       .Descendants("test-suite")
                                       .Where(x => x.Attribute("description") != null)
-                                      .FirstOrDefault(x => x.Attribute("description").Value == scenarioOutline.Feature.Name)
-                                          .Descendants("test-suite")
+                                      .FirstOrDefault(x => x.Attribute("description").Value == scenarioOutline.Name)
+                                          .Descendants("test-case")
                                           .Where(x => x.Attribute("description") != null)
-                                          .FirstOrDefault(x => x.Attribute("description").Value == scenarioOutline.Name)
-                                              .Descendants("test-case")
-                                              .Where(x => x.Attribute("description") != null)
-                                              .FirstOrDefault(x => IsRowMatched(ExtractRowValuesFromName(x.Attribute("description").Value), row));
-                                                  
-            bool wasExecuted = examplesElement.Attribute("executed") != null ? examplesElement.Attribute("executed").Value.ToLowerInvariant() == "true" : false;
-            bool wasSuccessful = examplesElement.Attribute("success") != null ? examplesElement.Attribute("success").Value.ToLowerInvariant() == "true" : false;
-            return new TestResult { WasExecuted = wasExecuted, IsSuccessful = wasSuccessful };
+                                          .FirstOrDefault(x => IsRowMatched(ExtractRowValuesFromName(x.Attribute("description").Value), row));
+
+            return GetResultFromElement(examplesElement);
         }
     }
 }
