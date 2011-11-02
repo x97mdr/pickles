@@ -46,11 +46,21 @@ namespace Pickles.NAnt
         [StringValidator(AllowEmpty = true)]
         public string ResultsFile { get; set; }
 
+        [TaskAttribute("systemUnderTestName", Required = false)]
+        [StringValidator(AllowEmpty = true)]
+        public string SystemUnderTestName { get; set; }
+
+        [TaskAttribute("systemUnderTestVersion", Required = false)]
+        [StringValidator(AllowEmpty = true)]
+        public string SystemUnderTestVersion { get; set; }
+
         private void CaptureConfiguration(Configuration configuration)
         {
             configuration.FeatureFolder = new DirectoryInfo(FeatureDirectory);
             configuration.OutputFolder = new DirectoryInfo(OutputDirectory);
             if (!string.IsNullOrWhiteSpace(ResultsFile)) configuration.LinkedTestFrameworkResultsFile = new FileInfo(ResultsFile);
+            if (!string.IsNullOrWhiteSpace(SystemUnderTestName)) configuration.SystemUnderTestName = SystemUnderTestName;
+            if (!string.IsNullOrWhiteSpace(SystemUnderTestVersion)) configuration.SystemUnderTestVersion = SystemUnderTestVersion;
         }
 
         protected override void ExecuteTask()

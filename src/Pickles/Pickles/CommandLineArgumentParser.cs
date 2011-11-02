@@ -35,6 +35,8 @@ namespace Pickles
         private bool versionRequested;
         private bool helpRequested;
         private string resultsFile;
+        private string systemUnderTestName;
+        private string systemUnderTestVersion;
 
         public CommandLineArgumentParser()
         {
@@ -43,6 +45,8 @@ namespace Pickles
    	            { "f|feature-directory=", "directory to start scanning recursively for features", v => this.featureDirectory = v },
    	            { "o|output-directory=", "directory where output files will be placed", v => this.outputDirectory = v },
    	            { "lr|link-results-file=", "a file containing the results of testing the features", v => this.resultsFile = v },
+   	            { "sn|system-under-test-name=", "the name of the system under test", v => this.systemUnderTestName = v },
+   	            { "sv|system-under-test-version=", "the version of the system under test", v => this.systemUnderTestVersion = v },
    	            { "v|version",  v => versionRequested = v != null },
    	            { "h|?|help",   v => helpRequested = v != null }
             };
@@ -80,6 +84,8 @@ namespace Pickles
             if (!string.IsNullOrWhiteSpace(this.featureDirectory)) configuration.FeatureFolder = new System.IO.DirectoryInfo(this.featureDirectory);
             if (!string.IsNullOrWhiteSpace(this.outputDirectory)) configuration.OutputFolder = new System.IO.DirectoryInfo(this.outputDirectory);
             if (!string.IsNullOrWhiteSpace(this.resultsFile)) configuration.LinkedTestFrameworkResultsFile = new FileInfo(this.resultsFile);
+            if (!string.IsNullOrWhiteSpace(this.systemUnderTestName)) configuration.SystemUnderTestName = this.systemUnderTestName;
+            if (!string.IsNullOrWhiteSpace(this.systemUnderTestVersion)) configuration.SystemUnderTestVersion = this.systemUnderTestVersion;
 
             return true;
         }

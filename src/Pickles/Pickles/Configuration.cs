@@ -40,7 +40,7 @@ namespace Pickles
             set; 
         }
         
-        public bool ShouldLinkResults 
+        public bool HasTestFrameworkResults 
         {
             get
             {
@@ -52,6 +52,18 @@ namespace Pickles
         { 
             get; 
             set; 
+        }
+
+        public string SystemUnderTestName
+        {
+            get;
+            set;
+        }
+
+        public string SystemUnderTestVersion
+        {
+            get;
+            set;
         }
     }
 }

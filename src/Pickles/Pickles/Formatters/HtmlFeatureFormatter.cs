@@ -35,53 +35,27 @@ namespace Pickles.Formatters
         private readonly HtmlScenarioFormatter htmlScenarioFormatter;
         private readonly HtmlScenarioOutlineFormatter htmlScenarioOutlineFormatter;
         private readonly HtmlDescriptionFormatter htmlDescriptionFormatter;
-        private readonly Configuration configuration;
-        private readonly Results results;
-        private readonly HtmlResourceSet htmlResourceSet;
+        private readonly HtmlImageResultFormatter htmlImageResultFormatter;
         private readonly XNamespace xmlns;
 
         public HtmlFeatureFormatter(
             HtmlScenarioFormatter htmlScenarioFormatter, 
-            HtmlDescriptionFormatter htmlDescriptionFormatter,
-            HtmlScenarioOutlineFormatter htmlScenarioOutlineFormatter,
-            Configuration configuration,
-            Results results,
-            HtmlResourceSet htmlResourceSet)
+            HtmlDescriptionFormatter htmlDescriptionFormatter, 
+            HtmlScenarioOutlineFormatter htmlScenarioOutlineFormatter, 
+            HtmlImageResultFormatter htmlImageResultFormatter)
         {
             this.htmlScenarioFormatter = htmlScenarioFormatter;
             this.htmlScenarioOutlineFormatter = htmlScenarioOutlineFormatter;
             this.htmlDescriptionFormatter = htmlDescriptionFormatter;
-            this.configuration = configuration;
-            this.results = results;
-            this.htmlResourceSet = htmlResourceSet;
+            this.htmlImageResultFormatter = htmlImageResultFormatter;
             this.xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
-        }
-
-        private XElement BuildResultImage(Feature feature)
-        {
-            if (configuration.ShouldLinkResults)
-            {
-                TestResult scenarioResult = this.results.GetFeatureResult(feature);
-                if (!scenarioResult.WasExecuted || !scenarioResult.IsSuccessful) return null;
-
-                return new XElement(this.xmlns + "div",
-                           new XAttribute("class", "float-right"),
-                           new XElement(this.xmlns + "img",
-                               new XAttribute("src", scenarioResult.IsSuccessful ? this.htmlResourceSet.SuccessImage : this.htmlResourceSet.FailureImage),
-                               new XAttribute("title", scenarioResult.IsSuccessful ? "Successful" : "Failed"),
-                               new XAttribute("alt", scenarioResult.IsSuccessful ? "Successful" : "Failed")
-                            )
-                        );
-            }
-
-            return null;
         }
 
         public XElement Format(Feature feature)
         {
             var div = new XElement(this.xmlns + "div",
                         new XAttribute("id", "feature"),
-                        BuildResultImage(feature),
+                        this.htmlImageResultFormatter.Format(feature),
                         new XElement(this.xmlns + "h1", feature.Name),
                         this.htmlDescriptionFormatter.Format(feature.Description)
                     );

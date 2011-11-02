@@ -78,6 +78,7 @@
     <Compile Include="Formatters\HtmlContentFormatter.cs" />
     <Compile Include="Formatters\HtmlDescriptionFormatter.cs" />
     <Compile Include="Formatters\HtmlHeaderFormatter.cs" />
+    <Compile Include="Formatters\HtmlImageResultFormatter.cs" />
     <Compile Include="Formatters\HtmlMarkdownFormatter.cs" />
     <Compile Include="Formatters\HtmlScenarioOutlineFormatter.cs" />
     <Compile Include="HtmlResource.cs" />

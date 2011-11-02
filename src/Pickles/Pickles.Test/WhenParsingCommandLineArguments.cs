@@ -18,6 +18,10 @@ namespace Pickles.Test
       --lr, --link-results-file=VALUE
                              a file containing the results of testing the 
                                features
+      --sn, --system-under-test-name=VALUE
+                             the name of the system under test
+      --sv, --system-under-test-version=VALUE
+                             the version of the system under test
   -v, --version              
   -h, -?, --help";
 
@@ -35,7 +39,7 @@ namespace Pickles.Test
             Assert.AreEqual(true, shouldContinue);
             Assert.AreEqual(@"c:\features", configuration.FeatureFolder.FullName);
             Assert.AreEqual(@"c:\features-output", configuration.OutputFolder.FullName);
-            Assert.AreEqual(false, configuration.ShouldLinkResults);
+            Assert.AreEqual(false, configuration.HasTestFrameworkResults);
             Assert.AreEqual(null, configuration.LinkedTestFrameworkResultsFile);
         }
 
@@ -51,7 +55,7 @@ namespace Pickles.Test
             Assert.AreEqual(true, shouldContinue);
             Assert.AreEqual(@"c:\features", configuration.FeatureFolder.FullName);
             Assert.AreEqual(@"c:\features-output", configuration.OutputFolder.FullName);
-            Assert.AreEqual(false, configuration.ShouldLinkResults);
+            Assert.AreEqual(false, configuration.HasTestFrameworkResults);
             Assert.AreEqual(null, configuration.LinkedTestFrameworkResultsFile);
         }
 
@@ -67,7 +71,23 @@ namespace Pickles.Test
             Assert.AreEqual(true, shouldContinue);
             Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
             Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")), configuration.OutputFolder.FullName);
-            Assert.AreEqual(true, configuration.ShouldLinkResults);
+            Assert.AreEqual(true, configuration.HasTestFrameworkResults);
+            Assert.AreEqual(@"c:\results.xml", configuration.LinkedTestFrameworkResultsFile.FullName);
+        }
+
+        [Test]
+        public void Then_can_parse_results_file_with_long_form_successfully()
+        {
+            var args = new string[] { @"-link-results-file=c:\results.xml" };
+
+            var configuration = new Configuration();
+            var commandLineArgumentParser = new CommandLineArgumentParser();
+            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+
+            Assert.AreEqual(true, shouldContinue);
+            Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
+            Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")), configuration.OutputFolder.FullName);
+            Assert.AreEqual(true, configuration.HasTestFrameworkResults);
             Assert.AreEqual(@"c:\results.xml", configuration.LinkedTestFrameworkResultsFile.FullName);
         }
 
@@ -85,7 +105,7 @@ namespace Pickles.Test
             Assert.AreEqual(false, shouldContinue);
             Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
             Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")), configuration.OutputFolder.FullName);
-            Assert.AreEqual(false, configuration.ShouldLinkResults);
+            Assert.AreEqual(false, configuration.HasTestFrameworkResults);
             Assert.AreEqual(null, configuration.LinkedTestFrameworkResultsFile);
         }
 
@@ -103,7 +123,7 @@ namespace Pickles.Test
             Assert.AreEqual(false, shouldContinue);
             Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
             Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")), configuration.OutputFolder.FullName);
-            Assert.AreEqual(false, configuration.ShouldLinkResults);
+            Assert.AreEqual(false, configuration.HasTestFrameworkResults);
             Assert.AreEqual(null, configuration.LinkedTestFrameworkResultsFile);
         }
 
@@ -121,7 +141,7 @@ namespace Pickles.Test
             Assert.AreEqual(false, shouldContinue);
             Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
             Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")), configuration.OutputFolder.FullName);
-            Assert.AreEqual(false, configuration.ShouldLinkResults);
+            Assert.AreEqual(false, configuration.HasTestFrameworkResults);
             Assert.AreEqual(null, configuration.LinkedTestFrameworkResultsFile);
         }
 
@@ -139,7 +159,7 @@ namespace Pickles.Test
             Assert.AreEqual(false, shouldContinue);
             Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
             Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")), configuration.OutputFolder.FullName);
-            Assert.AreEqual(false, configuration.ShouldLinkResults);
+            Assert.AreEqual(false, configuration.HasTestFrameworkResults);
             Assert.AreEqual(null, configuration.LinkedTestFrameworkResultsFile);
         }
 
@@ -157,7 +177,7 @@ namespace Pickles.Test
             Assert.AreEqual(false, shouldContinue);
             Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
             Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")), configuration.OutputFolder.FullName);
-            Assert.AreEqual(false, configuration.ShouldLinkResults);
+            Assert.AreEqual(false, configuration.HasTestFrameworkResults);
             Assert.AreEqual(null, configuration.LinkedTestFrameworkResultsFile);
         }
     }

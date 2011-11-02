@@ -41,11 +41,17 @@ namespace Pickles.MSBuild
 
         public string ResultsFile { get; set; }
 
+        public string SystemUnderTestName { get; set; }
+
+        public string SystemUnderTestVersion { get; set; }
+
         private void CaptureConfiguration(Configuration configuration)
         {
             configuration.FeatureFolder = new DirectoryInfo(FeatureDirectory);
             configuration.OutputFolder = new DirectoryInfo(OutputDirectory);
             if (!string.IsNullOrWhiteSpace(ResultsFile)) configuration.LinkedTestFrameworkResultsFile = new FileInfo(ResultsFile);
+            if (!string.IsNullOrWhiteSpace(SystemUnderTestName)) configuration.SystemUnderTestName = SystemUnderTestName;
+            if (!string.IsNullOrWhiteSpace(SystemUnderTestVersion)) configuration.SystemUnderTestVersion = SystemUnderTestVersion;
         }
 
         public override bool Execute()
