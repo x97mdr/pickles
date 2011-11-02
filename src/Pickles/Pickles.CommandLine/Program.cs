@@ -49,12 +49,6 @@ namespace Pickles.CommandLine
                     log.InfoFormat("Reading features from {0}", configuration.FeatureFolder.FullName);
                 }
 
-                if (configuration.ShouldLinkResults)
-                {
-                    var results = kernel.Get<Results>();
-                    results.Load(configuration.LinkedTestFrameworkResultsFile);
-                }
-
                 var documentationBuilder = kernel.Get<HtmlDocumentationBuilder>();
                 documentationBuilder.Build(configuration.FeatureFolder, configuration.OutputFolder);
 
