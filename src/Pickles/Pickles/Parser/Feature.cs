@@ -30,7 +30,7 @@ namespace Pickles.Parser
         public string Name { get; set; }
         public string Description { get; set; }
         public List<Scenario> Scenarios { get; private set; }
-        public Scenario Background { get; set; }
+        public Scenario Background { get; private set; }
         public List<ScenarioOutline> ScenarioOutlines { get; private set; }
         public List<string> Tags { get; set; }
 
@@ -44,6 +44,12 @@ namespace Pickles.Parser
         public void AddTag(string tag)
         {
             this.Tags.Add(tag);
+        }
+
+        public void AddBackground(Scenario background)
+        {
+            background.Feature = this;
+            this.Background = background;
         }
 
         public void AddScenario(Scenario scenario)

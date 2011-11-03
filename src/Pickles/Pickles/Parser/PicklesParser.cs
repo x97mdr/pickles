@@ -72,7 +72,7 @@ namespace Pickles.Parser
             if (this.featureElementState.IsBackgroundActive)
             {
                 this.backgroundBuilder.AddStep(this.stepBuilder.GetResult());
-                this.theFeature.Background = this.backgroundBuilder.GetResult();
+                this.theFeature.AddBackground(this.backgroundBuilder.GetResult());
             }
             else if (this.featureElementState.IsScenarioActive)
             {

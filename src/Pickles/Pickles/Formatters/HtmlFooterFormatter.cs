@@ -28,12 +28,41 @@ namespace Pickles.Formatters
 {
     public class HtmlFooterFormatter
     {
+        private readonly Configuration configuration;
+        private readonly XNamespace xmlns;
+
+        public HtmlFooterFormatter(Configuration configuration)
+        {
+            this.configuration = configuration;
+            this.xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
+        }
+
+        private XElement BuildVersionString()
+        {
+            if (!string.IsNullOrWhiteSpace(this.configuration.SystemUnderTestName) && !string.IsNullOrWhiteSpace(this.configuration.SystemUnderTestVersion))
+            {
+                return new XElement(this.xmlns + "p", string.Format("Test results generated for: {0}, version {1}", this.configuration.SystemUnderTestName, this.configuration.SystemUnderTestVersion));
+            }
+            else if (!string.IsNullOrWhiteSpace(this.configuration.SystemUnderTestName))
+            {
+                return new XElement(this.xmlns + "p", string.Format("Test results generated for: {0}", this.configuration.SystemUnderTestName));
+            }
+            else if (!string.IsNullOrWhiteSpace(this.configuration.SystemUnderTestVersion))
+            {
+                return new XElement(this.xmlns + "p", string.Format("Test results generated for: version {1}", this.configuration.SystemUnderTestVersion));
+            }
+
+            return null;
+        }
+
         public XElement Format()
         {
-            var xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
             return new XElement(xmlns + "div",
                 new XAttribute("id", "footer"),
-                new XElement("p", "Produced by Pickles version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString()));
+                BuildVersionString(),
+                new XElement(xmlns + "p", "Pickled on: " + DateTime.Now.ToString("d MMMM yyyy hh:mm:ss")),
+                new XElement(xmlns + "p", "Produced by Pickles, version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString())
+             );
         }
     }
 }
