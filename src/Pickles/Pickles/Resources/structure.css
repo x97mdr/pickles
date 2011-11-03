@@ -10,6 +10,9 @@
   border: 1px solid gray;
   line-height: 130%;
   background-color: #f2f2f2;
+  -moz-box-shadow: 5px 5px 5px #ccc;
+  -webkit-box-shadow: 5px 5px 5px #ccc;
+  box-shadow: 5px 5px 5px #ccc;
 }
 
 /*************************************************************************
