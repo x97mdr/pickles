@@ -12,10 +12,6 @@
   background-color: #f2f2f2;
 }
 
-.float-right  {
-  float:right;
-}
-
 /*************************************************************************
  * Header/Top
  *************************************************************************/
@@ -41,6 +37,7 @@
   float: left;
   width: auto;
   margin-right: auto;
+  border-right: 1px solid gray;
   max-width: 20em;
 }
 
@@ -57,6 +54,7 @@
     text-decoration: none; }
   #toc ul li a:hover {
     text-decoration: underline; }
+    
 #toc .directory {
   padding: 5px 10px 6px;
   background: #F9F9f9;
@@ -70,19 +68,18 @@
 }
 
 /*************************************************************************
- * Feature
+ * Feature and Markdown
  *************************************************************************/
 
-#feature
+#feature, #markdown
 {
   float:left;
   margin-left: auto;
-  border-left: 1px solid gray;
   padding: 1em;
   max-width: 50em;
 }
 
-#feature h1, #feature h2
+#feature h1, #feature h2, #markdown h1, #markdown h2
 { 
   margin: 0 0 .5em 0;
   line-height: 105%;
