@@ -86,34 +86,45 @@ namespace Pickles.TestFrameworks
         public TestResult GetScenarioResult(Scenario scenario)
         {
             var featureElement = GetFeatureElement(scenario.Feature);
-            var scenarioElement = featureElement
+            XElement scenarioElement = null;
+            if (featureElement != null)
+            {
+                scenarioElement = featureElement
                                       .Descendants("test-case")
                                       .Where(x => x.Attribute("description") != null)
                                       .FirstOrDefault(x => x.Attribute("description").Value == scenario.Name);
-
+            }
             return GetResultFromElement(scenarioElement);
         }
 
         public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
         {
-            var scenarioOutlineElement = GetFeatureElement(scenarioOutline.Feature)
+            var featureElement = GetFeatureElement(scenarioOutline.Feature);
+            XElement scenarioOutlineElement = null;
+            if (featureElement != null)
+            {
+                scenarioOutlineElement = GetFeatureElement(scenarioOutline.Feature)
                                              .Descendants("test-suite")
                                              .Where(x => x.Attribute("description") != null)
                                              .FirstOrDefault(x => x.Attribute("description").Value == scenarioOutline.Name);
-
+            }
             return GetResultFromElement(scenarioOutlineElement);
         }
 
         public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] row)
         {
-            var examplesElement = GetFeatureElement(scenarioOutline.Feature)
+            var featureElement = GetFeatureElement(scenarioOutline.Feature);
+            XElement examplesElement = null;
+            if (featureElement != null)
+            {
+                examplesElement = GetFeatureElement(scenarioOutline.Feature)
                                       .Descendants("test-suite")
                                       .Where(x => x.Attribute("description") != null)
                                       .FirstOrDefault(x => x.Attribute("description").Value == scenarioOutline.Name)
                                           .Descendants("test-case")
                                           .Where(x => x.Attribute("description") != null)
                                           .FirstOrDefault(x => IsRowMatched(ExtractRowValuesFromName(x.Attribute("description").Value), row));
-
+            }
             return GetResultFromElement(examplesElement);
         }
     }
