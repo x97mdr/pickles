@@ -76,10 +76,9 @@
 
 #feature, #markdown
 {
-  float:left;
+  overflow:hidden;
   margin-left: auto;
   padding: 1em;
-  max-width: 50em;
 }
 
 #feature h1, #feature h2, #markdown h1, #markdown h2
