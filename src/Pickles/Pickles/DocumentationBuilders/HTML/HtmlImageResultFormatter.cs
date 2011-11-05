@@ -31,11 +31,11 @@ namespace Pickles.Formatters
     public class HtmlImageResultFormatter
     {
         private readonly Configuration configuration;
-        private readonly Results results;
+        private readonly NUnitResults results;
         private readonly HtmlResourceSet htmlResourceSet;
         private readonly XNamespace xmlns;
 
-        public HtmlImageResultFormatter(Configuration configuration, Results results, HtmlResourceSet htmlResourceSet)
+        public HtmlImageResultFormatter(Configuration configuration, NUnitResults results, HtmlResourceSet htmlResourceSet)
         {
             this.configuration = configuration;
             this.results = results;

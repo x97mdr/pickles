@@ -23,12 +23,12 @@ namespace Pickles.TestFrameworks
         internal bool IsSuccessful;
     }
 
-    public class Results
+    public class NUnitResults
     {
         private readonly Configuration configuration;
         private readonly Lazy<XDocument> resultsDocument;
 
-        public Results(Configuration configuration)
+        public NUnitResults(Configuration configuration)
         {
             this.configuration = configuration;
             this.resultsDocument = new Lazy<XDocument>(() => 

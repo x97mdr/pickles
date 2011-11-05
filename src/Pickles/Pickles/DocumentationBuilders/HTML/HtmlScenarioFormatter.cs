@@ -35,7 +35,7 @@ namespace Pickles.Formatters
         private readonly HtmlDescriptionFormatter htmlDescriptionFormatter;
         private readonly HtmlImageResultFormatter htmlImageResultFormatter;
         private readonly Configuration configuration;
-        private readonly Results results;
+        private readonly NUnitResults results;
         private readonly HtmlResourceSet htmlResourceSet;
 
         public HtmlScenarioFormatter(
