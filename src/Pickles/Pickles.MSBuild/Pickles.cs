@@ -63,12 +63,11 @@ namespace Pickles.MSBuild
                 Log.LogMessage("Writing output to {0}", OutputDirectory ?? string.Empty);
 
                 var kernel = new StandardKernel(new PicklesModule());
-
                 Configuration configuration = kernel.Get<Configuration>();
                 CaptureConfiguration(configuration);
 
-                var documentationBuilder = kernel.Get<HtmlDocumentationBuilder>();
-                documentationBuilder.Build(configuration.FeatureFolder, configuration.OutputFolder);
+                var runner = kernel.Get<Runner>();
+                runner.Run(kernel);
             }
             catch (Exception e)
             {

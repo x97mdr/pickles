@@ -76,8 +76,8 @@ namespace Pickles.NAnt
                 Configuration configuration = kernel.Get<Configuration>();
                 CaptureConfiguration(configuration);
 
-                var documentationBuilder = kernel.Get<HtmlDocumentationBuilder>();
-                documentationBuilder.Build(configuration.FeatureFolder, configuration.OutputFolder);
+                var runner = kernel.Get<Runner>();
+                runner.Run(kernel);
             }
             catch (Exception e)
             {

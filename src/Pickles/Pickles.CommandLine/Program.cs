@@ -38,6 +38,7 @@ namespace Pickles.CommandLine
 
             var kernel = new StandardKernel(new PicklesModule());
             var configuration = kernel.Get<Configuration>();
+
             var commandLineArgumentParser = kernel.Get<CommandLineArgumentParser>();
             bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, Console.Out);
 
@@ -49,8 +50,8 @@ namespace Pickles.CommandLine
                     log.InfoFormat("Reading features from {0}", configuration.FeatureFolder.FullName);
                 }
 
-                var documentationBuilder = kernel.Get<HtmlDocumentationBuilder>();
-                documentationBuilder.Build(configuration.FeatureFolder, configuration.OutputFolder);
+                var runner = kernel.Get<Runner>();
+                runner.Run(kernel);
 
                 if (log.IsInfoEnabled)
                 {
