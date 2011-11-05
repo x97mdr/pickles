@@ -20,10 +20,11 @@
 
 using System;
 using System.IO;
+using NGenerics.DataStructures.Trees;
 namespace Pickles
 {
     public interface IDocumentationBuilder
     {
-        void Build(DirectoryInfo inputPath, DirectoryInfo outputPath);
+        void Build(GeneralTree<FeatureNode> features);
     }
 }
