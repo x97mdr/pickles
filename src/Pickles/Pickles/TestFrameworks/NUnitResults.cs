@@ -15,14 +15,6 @@ namespace Pickles.TestFrameworks
         public bool IsSuccessful;
     }
 
-    internal struct ElementAttributes
-    {
-        internal string Name;
-        internal string Description;
-        internal bool WasExecuted;
-        internal bool IsSuccessful;
-    }
-
     public class NUnitResults
     {
         private readonly Configuration configuration;

@@ -25,7 +25,7 @@ using System.Text;
 using System.Xml.Linq;
 using Pickles.Parser;
 
-namespace Pickles.Formatters
+namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlTableFormatter
     {

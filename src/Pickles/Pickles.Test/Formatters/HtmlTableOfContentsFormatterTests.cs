@@ -5,7 +5,7 @@ using System.Text;
 using NGenerics.DataStructures.Trees;
 using Ninject;
 using NUnit.Framework;
-using Pickles.Formatters;
+using Pickles.DocumentationBuilders.HTML;
 
 namespace Pickles.Test.Formatters
 {

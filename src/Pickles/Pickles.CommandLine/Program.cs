@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Ninject;
-using Pickles.Formatters;
+using Pickles.DocumentationBuilders.HTML;
 using Pickles.TestFrameworks;
 
 namespace Pickles.CommandLine

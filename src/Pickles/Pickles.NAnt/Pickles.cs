@@ -26,7 +26,7 @@ using System.Text;
 using NAnt.Core;
 using NAnt.Core.Attributes;
 using Ninject;
-using Pickles.Formatters;
+using Pickles.DocumentationBuilders.HTML;
 using Pickles.TestFrameworks;
 
 namespace Pickles.NAnt

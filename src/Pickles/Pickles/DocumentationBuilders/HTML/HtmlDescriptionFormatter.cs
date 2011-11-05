@@ -25,7 +25,7 @@ using System.Text;
 using MarkdownSharp;
 using System.Xml.Linq;
 
-namespace Pickles.Formatters
+namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlDescriptionFormatter
     {

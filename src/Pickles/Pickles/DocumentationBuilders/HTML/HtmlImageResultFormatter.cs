@@ -26,7 +26,7 @@ using Pickles.TestFrameworks;
 using System.Xml.Linq;
 using Pickles.Parser;
 
-namespace Pickles.Formatters
+namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlImageResultFormatter
     {

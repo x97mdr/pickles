@@ -26,7 +26,7 @@ using System.Text;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using Ninject;
-using Pickles.Formatters;
+using Pickles.DocumentationBuilders.HTML;
 using Pickles.TestFrameworks;
 
 namespace Pickles.MSBuild

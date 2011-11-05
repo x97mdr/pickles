@@ -26,7 +26,7 @@ using System.Xml.Linq;
 using Pickles.Parser;
 using Pickles.TestFrameworks;
 
-namespace Pickles.Formatters
+namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlScenarioOutlineFormatter
     {

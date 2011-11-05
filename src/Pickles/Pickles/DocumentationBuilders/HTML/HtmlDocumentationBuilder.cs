@@ -26,7 +26,7 @@ using System.IO;
 using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
 using System.Xml;
-using Pickles.Formatters;
+using Pickles.DocumentationBuilders.HTML;
 using System.Xml.Linq;
 
 namespace Pickles

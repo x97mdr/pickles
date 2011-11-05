@@ -24,7 +24,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace Pickles.Formatters
+namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlFooterFormatter
     {

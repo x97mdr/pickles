@@ -25,8 +25,9 @@ using System.Text;
 using System.Xml.Linq;
 using System.IO;
 using NGenerics.DataStructures.Trees;
+using Pickles.Extensions;
 
-namespace Pickles.Formatters
+namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlTableOfContentsFormatter
     {

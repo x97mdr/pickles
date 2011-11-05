@@ -26,7 +26,7 @@ using System.Xml.Linq;
 using Pickles.Parser;
 using Pickles.TestFrameworks;
 
-namespace Pickles.Formatters
+namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlScenarioFormatter
     {
@@ -34,9 +34,6 @@ namespace Pickles.Formatters
         private readonly HtmlStepFormatter htmlStepFormatter;
         private readonly HtmlDescriptionFormatter htmlDescriptionFormatter;
         private readonly HtmlImageResultFormatter htmlImageResultFormatter;
-        private readonly Configuration configuration;
-        private readonly NUnitResults results;
-        private readonly HtmlResourceSet htmlResourceSet;
 
         public HtmlScenarioFormatter(
             HtmlStepFormatter htmlStepFormatter, 

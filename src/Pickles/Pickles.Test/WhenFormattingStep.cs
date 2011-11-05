@@ -2,7 +2,7 @@
 using System.Xml.Linq;
 using Ninject;
 using NUnit.Framework;
-using Pickles.Formatters;
+using Pickles.DocumentationBuilders.HTML;
 using Pickles.Parser;
 
 namespace Pickles.Test

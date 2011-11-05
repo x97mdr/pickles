@@ -5,7 +5,7 @@ using System.Text;
 using Ninject;
 using NUnit.Framework;
 using Pickles.Parser;
-using Pickles.Formatters;
+using Pickles.DocumentationBuilders.HTML;
 
 namespace Pickles.Test
 {
