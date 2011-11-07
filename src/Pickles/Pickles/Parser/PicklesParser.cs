@@ -126,7 +126,7 @@ namespace Pickles.Parser
             this.isInExample = false;
             this.featureElementState.SetBackgroundActive();
             this.backgroundBuilder = new ScenarioBuilder();
-            this.backgroundBuilder.SetName("Background");
+            this.backgroundBuilder.SetName(name);
             this.backgroundBuilder.SetDescription(description);
         }
 

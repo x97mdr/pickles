@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="AssertExtensions.cs" />
     <Compile Include="BaseFixture.cs" />
+    <Compile Include="Helpers\Class1.cs" />
     <Compile Include="WhenCrawlingFoldersForFeatures.cs" />
     <Compile Include="Formatters\HtmlTableOfContentsFormatterTests.cs" />
     <Compile Include="ParserFileFactory.cs" />
