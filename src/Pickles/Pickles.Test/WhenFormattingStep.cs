@@ -10,6 +10,8 @@ namespace Pickles.Test
     [TestFixture]
     public class WhenFormattingStep : BaseFixture
     {
+        private const string EXPECTED_GIVEN_HTML = "Given ";
+
         [Test]
         public void Simple_steps_are_formatted_as_list_items()
         {
@@ -27,7 +29,7 @@ namespace Pickles.Test
             var xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
             var expected = new XElement(xmlns + "li",
                                new XAttribute("class", "step"),
-                               new XElement(xmlns + "span", new XAttribute("class", "keyword"), "Given"),
+                               new XElement(xmlns + "span", new XAttribute("class", "keyword"), EXPECTED_GIVEN_HTML),
                                "a simple step"
                            );
 
@@ -57,7 +59,7 @@ namespace Pickles.Test
             var xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
             var expected = new XElement(xmlns + "li",
                                new XAttribute("class", "step"),
-                               new XElement(xmlns + "span", new XAttribute("class", "keyword"), "Given"),
+                               new XElement(xmlns + "span", new XAttribute("class", "keyword"), EXPECTED_GIVEN_HTML),
                                new XText("a simple step"),
                                new XElement(xmlns + "table",
                                    new XElement(xmlns + "thead",
@@ -95,7 +97,7 @@ namespace Pickles.Test
             var xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
             var expected = new XElement(xmlns + "li",
                                new XAttribute("class", "step"),
-                               new XElement(xmlns + "span", new XAttribute("class", "keyword"), "Given"),
+                               new XElement(xmlns + "span", new XAttribute("class", "keyword"), EXPECTED_GIVEN_HTML),
                                new XText("a simple step"),
                                new XElement(xmlns + "div",
                                    new XAttribute("class", "pre"),
