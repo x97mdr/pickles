@@ -2,53 +2,71 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Linq;
 using NGenerics.DataStructures.Trees;
 using Ninject;
 using NUnit.Framework;
 using Pickles.DocumentationBuilders.HTML;
+using Pickles.Test.Helpers;
 
 namespace Pickles.Test.Formatters
 {
     [TestFixture]
-    public class HtmlTableOfContentsFormatterTests : BaseFixture
+    public class table_of_contents_should_be_created_from_a_folder_structure : BaseFixture
     {
-        [Test]
-        [Ignore("This change needs some changes based on the latest changes to the formatter")]
-        public void Can_crawl_directory_tree_for_features_successfully()
+        private const string ROOT_PATH = @"FakeFolderStructures\FeatureCrawlerTests";
+        private XElement _toc;
+
+        [TestFixtureSetUp]
+        public void Setup()
         {
-            var rootPath = @"FakeFolderStructures\FeatureCrawlerTests";
-            var features = Kernel.Get<FeatureCrawler>().Crawl(rootPath);
+            var features = Kernel.Get<FeatureCrawler>().Crawl(ROOT_PATH);
 
             var formatter = new HtmlTableOfContentsFormatter();
-            var toc = formatter.Format(features.ChildNodes[0].Data.Url, features);
+            _toc = formatter.Format(features.ChildNodes[0].Data.Url, features);
 
-            Assert.NotNull(toc);
+        }
 
+        [Test]
+        public void toc_should_be_set_with_correct_attributes()
+        {
+            Assert.NotNull(_toc);
+            Assert.AreEqual("toc", _toc.Attributes("id").First().Value);
+        }
+
+        [Test]
+        public void first_node_should_be_index()
+        {
+            var ul = _toc.Elements().First();
+            
             // Assert that the first feature is appropriately set in the TOC
-            var ul = toc.Elements().First();
             Assert.NotNull(ul);
             Assert.AreEqual(true, ul.HasElements);
 
-            var li1 = ul.Elements().First();
+            var li1 = ul.FindFirstDescendantWithName("li");
             Assert.NotNull(li1);
 
-            var li1a = li1.Elements().First();
-            Assert.AreEqual(true, li1a.HasAttributes);
-            Assert.AreEqual("#", li1a.Attribute("href").Value);
-            Assert.AreEqual("LevelOne", li1a.Value);
+            var anchorInLI1 = li1.Elements().First();
+            Assert.AreEqual(true, anchorInLI1.HasAttributes);
+            Assert.AreEqual("#", anchorInLI1.Attribute("href").Value);
+            Assert.AreEqual("index", anchorInLI1.Value);
+        }
 
-            // Assert that a directory is appropriately set in the TOC
-            var ul2 = ul.Elements().ElementAt(1);
+        [Test]
+        public void Can_crawl_directory_tree_for_features_successfully()
+        {
+            var ul = _toc.Elements().First();
+            var ul2 = ul.FindFirstDescendantWithName("ul");
             Assert.AreEqual(true, ul2.HasElements);
 
             // Assert that a feature file is appropriately set deeper down in the TOC
-            var li2 = ul2.Elements().First();
+            var li2 = ul2.FindFirstDescendantWithName("li");
             Assert.NotNull(li2);
 
-            var li2a = li2.Elements().First();
-            Assert.AreEqual(true, li2a.HasAttributes);
-            Assert.AreEqual("SubLevelOne/LevelOneSublevelOne.xhtml", li2a.Attribute("href").Value);
-            Assert.AreEqual("LevelOneSublevelOne", li2a.Value);
+            var anchorInLI2 = li2.Elements().First();
+            Assert.AreEqual(true, anchorInLI2.HasAttributes);
+            Assert.AreEqual("SubLevelOne/LevelOneSublevelOne.xhtml", anchorInLI2.Attribute("href").Value);
+            Assert.AreEqual("Level One Sublevel One", anchorInLI2.Value);
         }
     }
 }
