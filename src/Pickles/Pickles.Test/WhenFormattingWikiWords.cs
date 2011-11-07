@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Pickles;
 using NUnit.Framework;
+using Pickles;
+using Pickles.Extensions;
 
 namespace Pickles.Test
 {

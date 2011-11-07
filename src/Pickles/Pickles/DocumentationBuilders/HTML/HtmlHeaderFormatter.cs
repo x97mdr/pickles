@@ -22,28 +22,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MarkdownSharp;
 using System.Xml.Linq;
 
-namespace Pickles.Formatters
+namespace Pickles.DocumentationBuilders.HTML
 {
-    public class HtmlDescriptionFormatter
+    public class HtmlHeaderFormatter
     {
-        private readonly Markdown markdown;
-
-        public HtmlDescriptionFormatter(Markdown markdown)
+        public XElement Format()
         {
-            this.markdown = markdown;
-        }
-
-        public XElement Format(string descriptionText)
-        {
-            if (String.IsNullOrWhiteSpace(descriptionText)) return null;
-
-            var markdownResult = "<div class=\"description\" xmlns=\"http://www.w3.org/1999/xhtml\">" + markdown.Transform(descriptionText) + "</div>";
-            var descriptionElements = XElement.Parse(markdownResult);
-
-            return descriptionElements;
+            var xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
+            return new XElement(xmlns + "div",
+                new XAttribute("id", "top"));
         }
     }
 }

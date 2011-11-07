@@ -26,7 +26,7 @@ using System.Text;
 using NAnt.Core;
 using NAnt.Core.Attributes;
 using Ninject;
-using Pickles.Formatters;
+using Pickles.DocumentationBuilders.HTML;
 using Pickles.TestFrameworks;
 
 namespace Pickles.NAnt
@@ -76,8 +76,8 @@ namespace Pickles.NAnt
                 Configuration configuration = kernel.Get<Configuration>();
                 CaptureConfiguration(configuration);
 
-                var documentationBuilder = kernel.Get<HtmlDocumentationBuilder>();
-                documentationBuilder.Build(configuration.FeatureFolder, configuration.OutputFolder);
+                var runner = kernel.Get<Runner>();
+                runner.Run(kernel);
             }
             catch (Exception e)
             {

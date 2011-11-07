@@ -21,7 +21,7 @@
 using System.Globalization;
 using System.IO;
 using System.Xml.Linq;
-using Pickles.Formatters;
+using Pickles.DocumentationBuilders.HTML;
 using Pickles.Parser;
 using gherkin.lexer;
 

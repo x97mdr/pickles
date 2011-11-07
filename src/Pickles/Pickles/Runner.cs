@@ -19,11 +19,25 @@
 #endregion
 
 using System;
-using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Ninject;
+
 namespace Pickles
 {
-    public interface IDocumentationBuilder
+    public class Runner
     {
-        void Build(DirectoryInfo inputPath, DirectoryInfo outputPath);
+        public void Run(IKernel kernel)
+        {
+            var configuration = kernel.Get<Configuration>();
+            if (!configuration.OutputFolder.Exists) configuration.OutputFolder.Create();
+
+            var featureCrawler = kernel.Get<FeatureCrawler>();
+            var features = featureCrawler.Crawl(configuration.FeatureFolder);
+
+            var documentationBuilder = kernel.Get<HtmlDocumentationBuilder>();
+            documentationBuilder.Build(features);
+        }
     }
 }

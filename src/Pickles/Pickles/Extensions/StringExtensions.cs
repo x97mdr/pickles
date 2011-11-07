@@ -22,24 +22,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Xml.Linq;
-using MarkdownSharp;
 
-namespace Pickles.Formatters
+namespace Pickles.Extensions
 {
-    public class HtmlMarkdownFormatter
+    public static class StringExtensions
     {
-        private readonly Markdown markdown;
-
-        public HtmlMarkdownFormatter(Markdown markdown)
+        public static string ExpandWikiWord(this string word)
         {
-            this.markdown = markdown;
-        }
-
-        public XElement Format(string text)
-        {
-            // HACK - we add the div around the markdown content because XElement requires a single root element from which to parse and Markdown.Transform() returns a series of elements
-            return XElement.Parse("<div id=\"markdown\" xmlns=\"http://www.w3.org/1999/xhtml\">" + this.markdown.Transform(text) + "</div>");
+            var sb = new StringBuilder();
+            char previous = Char.MinValue;
+            foreach (var c in word.Where(x => Char.IsLetterOrDigit(x)))
+            {
+                if (previous != Char.MinValue && (Char.IsUpper(c) || (Char.IsDigit(c) && !Char.IsDigit(previous)))) sb.Append(' ');
+                sb.Append(c);
+                previous = c;
+            }
+            return sb.ToString();
         }
     }
 }

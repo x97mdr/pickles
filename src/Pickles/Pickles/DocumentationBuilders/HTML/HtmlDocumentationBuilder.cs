@@ -26,7 +26,7 @@ using System.IO;
 using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
 using System.Xml;
-using Pickles.Formatters;
+using Pickles.DocumentationBuilders.HTML;
 using System.Xml.Linq;
 
 namespace Pickles
@@ -34,30 +34,32 @@ namespace Pickles
     public class HtmlDocumentationBuilder : IDocumentationBuilder
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        private readonly Configuration configuration;
         private readonly FeatureCrawler featureCrawler;
         private readonly HtmlDocumentFormatter htmlDocumentFormatter;
         private readonly HtmlResourceWriter htmlResourceWriter;
 
-        public HtmlDocumentationBuilder(FeatureCrawler featureCrawler, HtmlDocumentFormatter htmlDocumentFormatter, HtmlResourceWriter htmlResourceWriter)
+        public HtmlDocumentationBuilder(Configuration configuration, FeatureCrawler featureCrawler, HtmlDocumentFormatter htmlDocumentFormatter, HtmlResourceWriter htmlResourceWriter)
         {
+            this.configuration = configuration;
             this.featureCrawler = featureCrawler;
             this.htmlDocumentFormatter = htmlDocumentFormatter;
             this.htmlResourceWriter = htmlResourceWriter;
         }
 
-        public void Build(DirectoryInfo inputPath, DirectoryInfo outputPath)
+        public void Build(GeneralTree<FeatureNode> features)
         {
             if (log.IsInfoEnabled)
             {
-                log.InfoFormat("Writing HTML to {0}", outputPath.FullName);
+                log.InfoFormat("Writing HTML to {0}", this.configuration.OutputFolder.FullName);
             }
 
-            this.htmlResourceWriter.WriteTo(outputPath.FullName);
+            this.htmlResourceWriter.WriteTo(this.configuration.OutputFolder.FullName);
 
-            var features = this.featureCrawler.Crawl(inputPath);
             var actionVisitor = new ActionVisitor<FeatureNode>(node =>
                 {
-                    var nodePath = Path.Combine(outputPath.FullName, node.RelativePathFromRoot);
+                    var nodePath = Path.Combine(this.configuration.OutputFolder.FullName, node.RelativePathFromRoot);
 
                     if (!node.IsDirectory)
                     {

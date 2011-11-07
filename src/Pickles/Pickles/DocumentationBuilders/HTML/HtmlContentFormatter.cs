@@ -25,7 +25,7 @@ using System.Text;
 using System.Xml.Linq;
 using System.IO;
 
-namespace Pickles.Formatters
+namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlContentFormatter
     {

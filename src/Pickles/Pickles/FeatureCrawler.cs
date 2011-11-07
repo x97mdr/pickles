@@ -25,6 +25,7 @@ using System.Linq;
 using System.Text;
 using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
+using Pickles.Extensions;
 
 namespace Pickles
 {

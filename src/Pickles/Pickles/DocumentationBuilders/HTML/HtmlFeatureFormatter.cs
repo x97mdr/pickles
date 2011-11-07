@@ -28,7 +28,7 @@ using Pickles.Parser;
 using MarkdownSharp;
 using Pickles.TestFrameworks;
 
-namespace Pickles.Formatters
+namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlFeatureFormatter
     {

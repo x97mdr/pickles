@@ -26,7 +26,7 @@ using System.Xml.Linq;
 using NGenerics.DataStructures.Trees;
 using System.IO;
 
-namespace Pickles.Formatters
+namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlDocumentFormatter
     {
