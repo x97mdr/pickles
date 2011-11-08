@@ -31,6 +31,25 @@ namespace Pickles
     [DebuggerDisplay("Name = {Name}")]
     public class FeatureNode
     {
+        private bool IsMarkdownFile(string extension)
+        {
+            switch (extension.ToLowerInvariant())
+            {
+                case ".markdown":
+                case ".mdown":
+                case ".mkdn":
+                case ".md":
+                case ".mdwn":
+                case ".mdtxt":
+                case ".mdtext":
+                case ".text":
+                case ".txt":
+                    return true;
+            }
+
+            return false;
+        }
+
         public FileSystemInfo Location 
         { 
             get; 
@@ -96,7 +115,7 @@ namespace Pickles
 
                 var file = Location as FileInfo;
                 if (file.Extension == ".feature") return FeatureNodeType.Feature;
-                else if (file.Extension == ".md") return FeatureNodeType.Markdown;
+                else if (IsMarkdownFile(file.Extension)) return FeatureNodeType.Markdown;
                 else return FeatureNodeType.Unknown;
             }
         }

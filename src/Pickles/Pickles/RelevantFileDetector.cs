@@ -30,10 +30,18 @@ namespace Pickles
     {
         public bool IsRelevant(FileInfo file)
         {
-            switch(file.Extension.ToLowerInvariant())
+            switch (file.Extension.ToLowerInvariant())
             {
                 case ".feature":
+                case ".markdown":
+                case ".mdown":
+                case ".mkdn":
                 case ".md":
+                case ".mdwn":
+                case ".mdtxt":
+                case ".mdtext":
+                case ".text":
+                case ".txt":
                     return true;
             }
 
