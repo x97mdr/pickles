@@ -16,12 +16,12 @@ namespace Pickles.Test
             {
                 var resources = Assembly.GetExecutingAssembly().GetManifestResourceNames();
                 var features = resources.Where(name => name.EndsWith(".feature"));
-                var xhtmls = resources.Where(name => name.EndsWith(".xhtml"));
+                var xhtmls = resources.Where(name => name.EndsWith(".html"));
 
                 foreach (var feature in features)
                 {
                     var featureName = feature.Replace(".feature", string.Empty);
-                    var associatedXhtml = xhtmls.SingleOrDefault(name => String.Equals(name.Replace(".xhtml", string.Empty), featureName, StringComparison.InvariantCultureIgnoreCase));
+                    var associatedXhtml = xhtmls.SingleOrDefault(name => String.Equals(name.Replace(".html", string.Empty), featureName, StringComparison.InvariantCultureIgnoreCase));
 
                     if (associatedXhtml != null)
                     {

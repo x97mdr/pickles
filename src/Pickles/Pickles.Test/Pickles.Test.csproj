@@ -173,19 +173,19 @@
     <EmbeddedResource Include="HtmlFormatterTestFiles\MultilineString.feature">
       <LastGenOutput>SimplestFile.feature.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="HtmlFormatterTestFiles\MultilineString.xhtml" />
+    <Content Include="HtmlFormatterTestFiles\MultilineString.html" />
     <EmbeddedResource Include="HtmlFormatterTestFiles\Simple.feature">
       <LastGenOutput>SimplestFile.feature.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="HtmlFormatterTestFiles\Simple.xhtml" />
+    <Content Include="HtmlFormatterTestFiles\Simple.html" />
     <EmbeddedResource Include="HtmlFormatterTestFiles\Table.feature">
       <LastGenOutput>Table.feature.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="HtmlFormatterTestFiles\ScenarioOutline.feature">
       <LastGenOutput>ScenarioOutline.feature.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="HtmlFormatterTestFiles\ScenarioOutline.xhtml" />
-    <EmbeddedResource Include="HtmlFormatterTestFiles\Table.xhtml" />
+    <Content Include="HtmlFormatterTestFiles\ScenarioOutline.html" />
+    <Content Include="HtmlFormatterTestFiles\Table.html" />
     <EmbeddedResource Include="HtmlFormatterTestFiles\Background.feature">
       <LastGenOutput>Background.feature.cs</LastGenOutput>
     </EmbeddedResource>
@@ -213,7 +213,7 @@
       <LastGenOutput>LevelOne.feature.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <EmbeddedResource Include="HtmlFormatterTestFiles\Background.xhtml" />
+    <Content Include="HtmlFormatterTestFiles\Background.html" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

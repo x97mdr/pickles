@@ -65,7 +65,7 @@ namespace Pickles.Test.Formatters
 
             var anchorInLI2 = li2.Elements().First();
             Assert.AreEqual(true, anchorInLI2.HasAttributes);
-            Assert.AreEqual("SubLevelOne/LevelOneSublevelOne.xhtml", anchorInLI2.Attribute("href").Value);
+            Assert.AreEqual("SubLevelOne/LevelOneSublevelOne.html", anchorInLI2.Attribute("href").Value);
             Assert.AreEqual("Level One Sublevel One", anchorInLI2.Value);
         }
     }
