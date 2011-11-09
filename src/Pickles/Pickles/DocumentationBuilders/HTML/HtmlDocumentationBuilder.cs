@@ -63,7 +63,7 @@ namespace Pickles
 
                     if (!node.IsDirectory)
                     {
-                        var htmlFilePath = nodePath.Replace(Path.GetExtension(nodePath), ".xhtml");
+                        var htmlFilePath = nodePath.Replace(Path.GetExtension(nodePath), ".html");
 
                         using (var writer = new StreamWriter(htmlFilePath, false, Encoding.UTF8))
                         {
