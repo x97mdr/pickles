@@ -30,14 +30,20 @@
 	
 	<property name="version" value="${version.major}.${version.minor}.${build.number}.0" />
 	<property name="msbuild.dir" value="C:\Windows\Microsoft.NET\Framework\v4.0.30319" />
+  <property name="ilmerge.dir" value="${environment::get-variable('ProgramFiles')}\Microsoft\ILMerge" />
+	<property name="framework.dir" value="${msbuild.dir}" />
+	<property name="assemblies.dir" value="C:\dev\pickles\src\Pickles\Pickles.CommandLine\bin\Release" />
+  <property name="assemblies.console.dir" value="src\Pickles\Pickles.CommandLine\bin\Release" />
+  <property name="assemblies.msbuild.dir" value="src\Pickles\Pickles.MSBuild\bin\Release" />
+  <property name="assemblies.nant.dir" value="src\Pickles\Pickles.NAnt\bin\Release" />
+	<property name="merged.dir" value="merged" />
 	<property name="deploy.dir" value="deploy" />
 	<property name="report.dir" value="reports" />
 	<property name="report.nunit.dir" value="${report.dir}\nunit" />
-	<property name="assemblies.dir" value="C:\dev\pickles\src\Pickles\Pickles.CommandLine\bin\Release" />
-	<property name="merged.dir" value="merged" />
 
 	<target name="init">
 		<mkdir dir="${deploy.dir}" />
+    <mkdir dir="${merged.dir}" />
 		<mkdir dir="${report.nunit.dir}" />
 	</target>
 	
@@ -58,15 +64,56 @@
 	</target>
 	
 	<target name="test" depends="build">
-		<exec program="nunit-console.exe" basedir=".\tools\nunit-2.5.10\bin\net-2.0">
+		<exec program="nunit-console.exe" basedir="src\Pickles\packages\NUnit.2.5.10.11092\tools">
 			<arg value="/xml:${report.nunit.dir}\results.xml" />
 			<arg value=".\src\Pickles\Pickles.Test\bin\Release\Pickles.Test.dll" />
 		</exec>
 	</target>
+  
+  <target name="merge" depends="build">
+		<exec program="ilmerge.exe" basedir="${ilmerge.dir}">
+			<arg value="/targetplatform=v4,${framework.dir}"/>
+			<arg value="/out=${merged.dir}\Pickles.exe"/>
+			<arg value="/target=exe"/>
+			<arg value="/closed"/>
+			<arg value="/ndebug"/>
+			<arg value="/xmldocs"/>
+			<arg value="/wildcards"/>
+			<arg value="/allowDup"/>
+			<arg value="/log:${merged.dir}\merge.console.log" />
+			<arg value="${assemblies.console.dir}\*.dll"/>
+		</exec>
+    
+    <exec program="ilmerge.exe" basedir="${ilmerge.dir}">
+			<arg value="/targetplatform=v4,${framework.dir}"/>
+			<arg value="/out=${merged.dir}\Pickles.MSBuild.Tasks.dll"/>
+			<arg value="/target=dll"/>
+			<arg value="/closed"/>
+			<arg value="/ndebug"/>
+			<arg value="/xmldocs"/>
+			<arg value="/wildcards"/>
+			<arg value="/allowDup"/>
+			<arg value="/log:${merged.dir}\merge.msbuild.log" />
+			<arg value="${assemblies.msbuild.dir}\*.dll"/>
+		</exec>
+
+		<exec program="ilmerge.exe" basedir="${ilmerge.dir}">
+			<arg value="/targetplatform=v4,${framework.dir}"/>
+			<arg value="/out=${merged.dir}\Pickles.NAnt.Tasks.dll"/>
+			<arg value="/target=dll"/>
+			<arg value="/closed"/>
+			<arg value="/ndebug"/>
+			<arg value="/xmldocs"/>
+			<arg value="/wildcards"/>
+			<arg value="/allowDup"/>
+			<arg value="/log:${merged.dir}\merge.nant.log" />
+			<arg value="${assemblies.nant.dir}\*.dll"/>
+		</exec>
+	</target>
 	
-	<target name="zip" depends="test">
+	<target name="zip" depends="merge">
 		<zip zipfile="${deploy.dir}\pickles-${version}.zip">
-		    <fileset basedir="${assemblies.dir}" prefix="pickles-${version}">
+		    <fileset basedir="${merged.dir}" prefix="pickles-${version}">
 		        <include name="**/*" />
 		    </fileset>
 		</zip>
