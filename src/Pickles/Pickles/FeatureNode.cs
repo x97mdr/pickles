@@ -127,7 +127,7 @@ namespace Pickles
 
         public string GetRelativeUriTo(Uri other)
         {
-            return GetRelativeUriTo(other, ".xhtml");
+            return GetRelativeUriTo(other, ".html");
         }
 
         public override string ToString()
