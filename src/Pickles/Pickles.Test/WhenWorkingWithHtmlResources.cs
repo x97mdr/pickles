@@ -49,7 +49,9 @@ namespace Pickles.Test
             var htmlResources = Kernel.Get<HtmlResourceSet>();
             var scripts = htmlResources.Scripts.ToArray();
 
-            Assert.AreEqual(0, scripts.Length);
+            Assert.AreEqual(2, scripts.Length);
+            Assert.AreEqual(true, scripts.Any(script => script.File == "jquery.dataTables.min.js"));
+            Assert.AreEqual(true, scripts.Any(script => script.File == "jquery.js"));
         }
 
         [Test]

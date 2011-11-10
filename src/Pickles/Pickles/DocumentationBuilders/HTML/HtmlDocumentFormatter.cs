@@ -70,6 +70,17 @@ namespace Pickles.DocumentationBuilders.HTML
                          new XAttribute("href", featureNodeOutputUri.MakeRelativeUri(this.htmlResources.MasterStylesheet)),
                          new XAttribute("type", "text/css")));
 
+            foreach (var script in this.htmlResources.Scripts)
+            {
+                head.Add(new XElement(xmlns + "script",
+                         new XAttribute("src", featureNodeOutputUri.MakeRelativeUri(script.Uri)),
+                         new XAttribute("type", "text/javascript")));
+            }
+
+            head.Add(new XElement(xmlns + "script",
+                         new XAttribute("type", "text/javascript"),
+                         @"$(document).ready(function() { });"));
+
             var html = new XElement(xmlns + "html",
                            new XAttribute(XNamespace.Xml + "lang", "en"),
                            head,

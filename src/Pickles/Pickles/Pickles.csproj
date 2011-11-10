@@ -207,6 +207,10 @@
     <EmbeddedResource Include="Resources\images\failure.png" />
     <EmbeddedResource Include="Resources\images\success.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\scripts\jquery.dataTables.min.js" />
+    <EmbeddedResource Include="Resources\scripts\jquery.js" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

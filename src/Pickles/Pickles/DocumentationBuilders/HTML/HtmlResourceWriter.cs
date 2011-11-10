@@ -52,6 +52,19 @@ namespace Pickles
             }
         }
 
+        private void WriteScript(string folder, string filename)
+        {
+            string path = Path.Combine(folder, filename);
+            using (var reader = new StreamReader(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Resources.scripts." + filename)))
+            using (var writer = new StreamWriter(path))
+            {
+                writer.Write(reader.ReadToEnd());
+                writer.Flush();
+                writer.Close();
+                reader.Close();
+            }
+        }
+
         public void WriteTo(string folder)
         {
             WriteStyleSheet(folder, "master.css");
@@ -63,6 +76,11 @@ namespace Pickles
             if (!Directory.Exists(imagesFolder)) Directory.CreateDirectory(imagesFolder);
             WriteImage(imagesFolder, "success.png");
             WriteImage(imagesFolder, "failure.png");
+
+            var scriptsFolder = Path.Combine(folder, "scripts");
+            if (!Directory.Exists(scriptsFolder)) Directory.CreateDirectory(scriptsFolder);
+            WriteScript(scriptsFolder, "jquery.js");
+            WriteScript(scriptsFolder, "jquery.dataTables.min.js");
         }
     }
 }

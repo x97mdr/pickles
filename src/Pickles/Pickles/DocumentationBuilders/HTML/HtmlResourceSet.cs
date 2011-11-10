@@ -18,8 +18,9 @@ namespace Pickles
 
         private string GetNameFromResourceName(string resourceName)
         {
-            var parts = resourceName.Split('.');
-            return parts[parts.Length - 2] + "." + parts[parts.Length - 1];
+            if (resourceName.StartsWith("Pickles.Resources.images")) return resourceName.Replace("Pickles.Resources.images.", string.Empty);
+            else if (resourceName.StartsWith("Pickles.Resources.scripts")) return resourceName.Replace("Pickles.Resources.scripts.", string.Empty);
+            else return resourceName.Replace("Pickles.Resources.", string.Empty);
         }
 
         public Uri MasterStylesheet
