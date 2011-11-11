@@ -33,51 +33,41 @@ namespace Pickles
     {
         private readonly FeatureParser featureParser;
         private readonly RelevantFileDetector relevantFileDetector;
+        private readonly FeatureNodeFactory featureNodeFactory;
 
-        public FeatureCrawler(FeatureParser featureParser, RelevantFileDetector relevantFileDetector)
+        public FeatureCrawler(FeatureParser featureParser, RelevantFileDetector relevantFileDetector, FeatureNodeFactory featureNodeFactory)
         {
             this.featureParser = featureParser;
             this.relevantFileDetector = relevantFileDetector;
+            this.featureNodeFactory = featureNodeFactory;
         }
 
-        public GeneralTree<FeatureNode> Crawl(string directory)
+        public GeneralTree<IDirectoryTreeNode> Crawl(string directory)
         {
             return Crawl(new DirectoryInfo(directory), null);
         }
 
-        public GeneralTree<FeatureNode> Crawl(DirectoryInfo directory)
+        public GeneralTree<IDirectoryTreeNode> Crawl(DirectoryInfo directory)
         {
             return Crawl(directory, null);
         }
 
-        private GeneralTree<FeatureNode> Crawl(DirectoryInfo directory, FeatureNode rootNode)
+        private GeneralTree<IDirectoryTreeNode> Crawl(DirectoryInfo directory, IDirectoryTreeNode rootNode)
         {
-            var currentNode = new FeatureNode
-            {
-                Location = directory,
-                Url = new Uri(directory.FullName),
-                RelativePathFromRoot = rootNode == null ? @".\" : PathExtensions.MakeRelativePath(rootNode.Location, directory)
-            };
+            var currentNode = this.featureNodeFactory.Create(rootNode != null ? rootNode.OriginalLocation : null, directory);
 
             if (rootNode == null)
             {
                 rootNode = currentNode;
             }
 
-            var tree = new GeneralTree<FeatureNode>(currentNode);
+            var tree = new GeneralTree<IDirectoryTreeNode>(currentNode);
 
             bool isRelevantFileFound = false;
             foreach (var file in directory.GetFiles().Where(file => this.relevantFileDetector.IsRelevant(file)))
             {
                 isRelevantFileFound = true;
-                var node = new FeatureNode
-                {
-                    Location = file,
-                    Url = new Uri(file.FullName),
-                    RelativePathFromRoot = PathExtensions.MakeRelativePath(rootNode.Location, file)
-                };
-
-                if (node.Type == FeatureNodeType.Feature) node.Feature = this.featureParser.Parse(file.FullName);
+                var node = this.featureNodeFactory.Create(rootNode.OriginalLocation, file);
                 tree.Add(node);
             }
 

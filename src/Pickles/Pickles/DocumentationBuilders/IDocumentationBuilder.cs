@@ -25,6 +25,6 @@ namespace Pickles
 {
     public interface IDocumentationBuilder
     {
-        void Build(GeneralTree<FeatureNode> features);
+        void Build(GeneralTree<IDirectoryTreeNode> features);
     }
 }

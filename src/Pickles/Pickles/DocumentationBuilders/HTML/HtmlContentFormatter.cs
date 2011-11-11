@@ -38,20 +38,23 @@ namespace Pickles.DocumentationBuilders.HTML
             this.htmlMarkdownFormatter = htmlMarkdownFormatter;
         }
 
-        public XElement Format(FeatureNode featureNode)
+        public XElement Format(IDirectoryTreeNode contentNode)
         {
             var xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
 
-            if (featureNode.Type == FeatureNodeType.Feature)
+            var featureItemNode = contentNode as FeatureDirectoryTreeNode;
+            if (featureItemNode != null)
             {
-                return this.htmlFeatureFormatter.Format(featureNode.Feature);
-            }
-            else if (featureNode.Type == FeatureNodeType.Markdown)
-            {
-                return this.htmlMarkdownFormatter.Format(File.ReadAllText(featureNode.Location.FullName));
+                return this.htmlFeatureFormatter.Format(featureItemNode.Feature);
             }
 
-            throw new InvalidOperationException("Cannot format a FeatureNode with a Type of " + featureNode.Type + " as content");
+            var markdownItemNode = contentNode as MarkdownTreeNode;
+            if (markdownItemNode != null)
+            {
+                return markdownItemNode.MarkdownContent;
+            }
+
+            throw new InvalidOperationException("Cannot format a FeatureNode with a Type of " + contentNode.GetType() + " as content");
         }
     }
 }

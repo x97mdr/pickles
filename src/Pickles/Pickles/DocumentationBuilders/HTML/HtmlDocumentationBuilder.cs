@@ -48,7 +48,7 @@ namespace Pickles
             this.htmlResourceWriter = htmlResourceWriter;
         }
 
-        public void Build(GeneralTree<FeatureNode> features)
+        public void Build(GeneralTree<IDirectoryTreeNode> features)
         {
             if (log.IsInfoEnabled)
             {
@@ -57,11 +57,11 @@ namespace Pickles
 
             this.htmlResourceWriter.WriteTo(this.configuration.OutputFolder.FullName);
 
-            var actionVisitor = new ActionVisitor<FeatureNode>(node =>
+            var actionVisitor = new ActionVisitor<IDirectoryTreeNode>(node =>
                 {
                     var nodePath = Path.Combine(this.configuration.OutputFolder.FullName, node.RelativePathFromRoot);
 
-                    if (!node.IsDirectory)
+                    if (node.IsContent)
                     {
                         var htmlFilePath = nodePath.Replace(Path.GetExtension(nodePath), ".html");
 
@@ -72,7 +72,7 @@ namespace Pickles
                             writer.Close();
                         }
                     }
-                    else if (!node.IsEmpty)
+                    else
                     {
                         Directory.CreateDirectory(nodePath);
                     }

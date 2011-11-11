@@ -23,7 +23,7 @@ namespace Pickles.Test.Formatters
             var features = Kernel.Get<FeatureCrawler>().Crawl(ROOT_PATH);
 
             var formatter = new HtmlTableOfContentsFormatter();
-            _toc = formatter.Format(features.ChildNodes[0].Data.Url, features);
+            _toc = formatter.Format(features.ChildNodes[0].Data.OriginalLocationUrl, features);
 
         }
 
@@ -49,7 +49,7 @@ namespace Pickles.Test.Formatters
             var anchorInLI1 = li1.Elements().First();
             Assert.AreEqual(true, anchorInLI1.HasAttributes);
             Assert.AreEqual("#", anchorInLI1.Attribute("href").Value);
-            Assert.AreEqual("index", anchorInLI1.Value);
+            Assert.AreEqual("This is an index written in Markdown", anchorInLI1.Value);
         }
 
         [Test]
@@ -66,7 +66,7 @@ namespace Pickles.Test.Formatters
             var anchorInLI2 = li2.Elements().First();
             Assert.AreEqual(true, anchorInLI2.HasAttributes);
             Assert.AreEqual("SubLevelOne/LevelOneSublevelOne.html", anchorInLI2.Attribute("href").Value);
-            Assert.AreEqual("Level One Sublevel One", anchorInLI2.Value);
+            Assert.AreEqual("Addition", anchorInLI2.Value);
         }
     }
 }

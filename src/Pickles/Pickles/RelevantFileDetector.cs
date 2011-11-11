@@ -28,11 +28,15 @@ namespace Pickles
 {
     public class RelevantFileDetector
     {
-        public bool IsRelevant(FileInfo file)
+        public bool IsFeatureFile(FileInfo file)
+        {
+            return file.Extension.Equals(".feature", StringComparison.InvariantCultureIgnoreCase);
+        }
+
+        public bool IsMarkdownFile(FileInfo file)
         {
             switch (file.Extension.ToLowerInvariant())
             {
-                case ".feature":
                 case ".markdown":
                 case ".mdown":
                 case ".mkdn":
@@ -46,6 +50,11 @@ namespace Pickles
             }
 
             return false;
+        }
+
+        public bool IsRelevant(FileInfo file)
+        {
+            return IsFeatureFile(file) || IsMarkdownFile(file);
         }
     }
 }

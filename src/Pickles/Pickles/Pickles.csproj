@@ -147,6 +147,7 @@
     </Compile>
     <Compile Include="CommandLineArgumentParser.cs" />
     <Compile Include="Configuration.cs" />
+    <Compile Include="FolderDirectoryTreeNode.cs" />
     <Compile Include="DocumentationBuilders\HTML\HtmlContentFormatter.cs" />
     <Compile Include="DocumentationBuilders\HTML\HtmlDescriptionFormatter.cs" />
     <Compile Include="DocumentationBuilders\HTML\HtmlDocumentationBuilder.cs" />
@@ -168,7 +169,10 @@
     <Compile Include="DocumentationBuilders\IDocumentationBuilder.cs" />
     <Compile Include="Extensions\PathExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="FeatureNodeType.cs" />
+    <Compile Include="FeatureDirectoryTreeNode.cs" />
+    <Compile Include="FeatureNodeFactory.cs" />
+    <Compile Include="IDirectoryTreeNode.cs" />
+    <Compile Include="MarkdownTreeNode.cs" />
     <Compile Include="Parser\Example.cs" />
     <Compile Include="Parser\FeatureElementState.cs" />
     <Compile Include="Parser\IFeatureElement.cs" />
@@ -179,7 +183,6 @@
     <Compile Include="Parser\Table.cs" />
     <Compile Include="Parser\Feature.cs" />
     <Compile Include="Parser\Keyword.cs" />
-    <Compile Include="FeatureNode.cs" />
     <Compile Include="FeatureCrawler.cs" />
     <Compile Include="FeatureSet.cs" />
     <Compile Include="FeatureParser.cs" />

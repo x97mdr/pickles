@@ -31,7 +31,7 @@ namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlTableOfContentsFormatter
     {
-        private XElement BuildListItems(XNamespace xmlns, Uri file, GeneralTree<FeatureNode> features)
+        private XElement BuildListItems(XNamespace xmlns, Uri file, GeneralTree<IDirectoryTreeNode> features)
         {
             var ul = new XElement(xmlns + "ul", new XAttribute("class", "features"));
 
@@ -43,14 +43,14 @@ namespace Pickles.DocumentationBuilders.HTML
                                new XAttribute("class", "file"),
                                new XElement(xmlns + "li",
                                    new XElement(xmlns + "a",
-                                       new XAttribute("href", childNode.Data.GetRelativeUriTo(file)), childNode.Data.Name.ExpandWikiWord()))));
+                                       new XAttribute("href", childNode.Data.GetRelativeUriTo(file)), childNode.Data.Name))));
                 }
                 else
                 {
                     ul.Add(new XElement(xmlns + "li", 
                                new XElement(xmlns + "div",
                                    new XAttribute("class", "directory"),
-                                   new XText(childNode.Data.Name.ExpandWikiWord())
+                                   new XText(childNode.Data.Name)
                                ), BuildListItems(xmlns, file, childNode)));
                 }
             }
@@ -58,12 +58,12 @@ namespace Pickles.DocumentationBuilders.HTML
             return ul;
         }
 
-        public XElement Format(FileInfo file, GeneralTree<FeatureNode> features)
+        public XElement Format(FileInfo file, GeneralTree<IDirectoryTreeNode> features)
         {
             return Format(new Uri(file.FullName), features);
         }
 
-        public XElement Format(Uri file, GeneralTree<FeatureNode> features)
+        public XElement Format(Uri file, GeneralTree<IDirectoryTreeNode> features)
         {
             var xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
 
