@@ -68,14 +68,19 @@ namespace Pickles.DocumentationBuilders.HTML
                 scenarios.Add(this.htmlScenarioFormatter.Format(feature.Background, id++));
             }
 
-            foreach (var scenario in feature.Scenarios)
+            foreach (var featureElement in feature.FeatureElements)
             {
-                scenarios.Add(this.htmlScenarioFormatter.Format(scenario, id++));
-            }
+                var scenario = featureElement as Scenario;
+                if (scenario != null)
+                {
+                    scenarios.Add(this.htmlScenarioFormatter.Format(scenario, id++));
+                }
 
-            foreach (var scenarioOutline in feature.ScenarioOutlines)
-            {
-                scenarios.Add(this.htmlScenarioOutlineFormatter.Format(scenarioOutline, id++));
+                var scenarioOutline = featureElement as ScenarioOutline;
+                if (scenarioOutline != null)
+                {
+                    scenarios.Add(this.htmlScenarioOutlineFormatter.Format(scenarioOutline, id++));
+                }
             }
 
             div.Add(scenarios);

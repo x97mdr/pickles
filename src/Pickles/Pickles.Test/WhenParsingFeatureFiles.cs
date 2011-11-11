@@ -32,10 +32,10 @@ Feature: Test
             Assert.AreNotEqual(null, feature);
             Assert.AreEqual("Test", feature.Name);
             Assert.AreEqual("  In order to do something\r\n  As a user\r\n  I want to run this scenario", feature.Description);
-            Assert.AreEqual(1, feature.Scenarios.Count);
+            Assert.AreEqual(1, feature.FeatureElements.Count);
             Assert.AreEqual(0, feature.Tags.Count);
 
-            var scenario = feature.Scenarios.First();
+            var scenario = feature.FeatureElements.First();
             Assert.AreEqual("A scenario", scenario.Name);
             Assert.AreEqual(string.Empty, scenario.Description);
             Assert.AreEqual(3, scenario.Steps.Count);
@@ -86,10 +86,10 @@ Feature: Test
             Assert.AreNotEqual(null, feature);
             Assert.AreEqual("Test", feature.Name);
             Assert.AreEqual("  In order to do something\r\n  As a user\r\n  I want to run this scenario", feature.Description);
-            Assert.AreEqual(2, feature.Scenarios.Count);
+            Assert.AreEqual(2, feature.FeatureElements.Count);
             Assert.AreEqual(0, feature.Tags.Count);
 
-            var scenario = feature.Scenarios[0];
+            var scenario = feature.FeatureElements[0];
             Assert.AreEqual("A scenario", scenario.Name);
             Assert.AreEqual(string.Empty, scenario.Description);
             Assert.AreEqual(3, scenario.Steps.Count);
@@ -113,7 +113,7 @@ Feature: Test
             Assert.AreEqual(null, thenStep.DocStringArgument);
             Assert.AreEqual(null, thenStep.TableArgument);
 
-            var scenario2 = feature.Scenarios[1];
+            var scenario2 = feature.FeatureElements[1];
             Assert.AreEqual("Another scenario", scenario2.Name);
             Assert.AreEqual(string.Empty, scenario2.Description);
             Assert.AreEqual(4, scenario2.Steps.Count);
@@ -163,7 +163,7 @@ Feature: Test
             var parser = Kernel.Get<FeatureParser>();
             var feature = parser.Parse(new StringReader(featureText));
 
-            var table = feature.Scenarios[0].Steps[0].TableArgument;
+            var table = feature.FeatureElements[0].Steps[0].TableArgument;
             Assert.AreEqual("Column1", table.HeaderRow[0]);
             Assert.AreEqual("Column2", table.HeaderRow[1]);
             Assert.AreEqual("Value 1", table.DataRows[0][0]);
@@ -190,8 +190,8 @@ Feature: Test
             var feature = parser.Parse(new StringReader(featureText));
 
             Assert.AreEqual("@feature-tag", feature.Tags[0]);
-            Assert.AreEqual("@scenario-tag-1", feature.Scenarios[0].Tags[0]);
-            Assert.AreEqual("@scenario-tag-2", feature.Scenarios[0].Tags[1]);
+            Assert.AreEqual("@scenario-tag-1", feature.FeatureElements[0].Tags[0]);
+            Assert.AreEqual("@scenario-tag-2", feature.FeatureElements[0].Tags[1]);
         }
 
         [Test]
@@ -213,7 +213,7 @@ Feature: Test
             var parser = Kernel.Get<FeatureParser>();
             var feature = parser.Parse(new StringReader(featureText));
 
-            Assert.AreEqual("This is a document string\nit can be many lines long", feature.Scenarios[0].Steps[0].DocStringArgument);
+            Assert.AreEqual("This is a document string\nit can be many lines long", feature.FeatureElements[0].Steps[0].DocStringArgument);
         }
 
         [Test]
@@ -277,7 +277,7 @@ Feature: Test
             var parser = Kernel.Get<FeatureParser>();
             var feature = parser.Parse(new StringReader(featureText));
 
-            var scenarioOutline = feature.ScenarioOutlines[0];
+            var scenarioOutline = feature.FeatureElements[0] as ScenarioOutline;
             Assert.AreNotEqual(null, scenarioOutline);
             Assert.AreEqual("A scenario outline", scenarioOutline.Name);
             Assert.AreEqual(string.Empty, scenarioOutline.Description);

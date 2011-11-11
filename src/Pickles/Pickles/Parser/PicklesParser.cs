@@ -77,12 +77,12 @@ namespace Pickles.Parser
             else if (this.featureElementState.IsScenarioActive)
             {
                 if (this.stepBuilder != null) this.scenarioBuilder.AddStep(this.stepBuilder.GetResult());
-                this.theFeature.AddScenario(this.scenarioBuilder.GetResult());
+                this.theFeature.AddFeatureElement(this.scenarioBuilder.GetResult());
             }
             else if (this.featureElementState.IsScenarioOutlineActive)
             {
                 if (this.stepBuilder != null) this.scenarioOutlineBuilder.AddStep(this.stepBuilder.GetResult());
-                this.theFeature.AddScenarioOutline(this.scenarioOutlineBuilder.GetResult());
+                this.theFeature.AddFeatureElement(this.scenarioOutlineBuilder.GetResult());
             }
 
             this.stepBuilder = null;

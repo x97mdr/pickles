@@ -25,7 +25,7 @@ using System.Text;
 
 namespace Pickles.Parser
 {
-    public class ScenarioOutline
+    public class ScenarioOutline : IFeatureElement
     {
         public string Name { get; set; }
         public string Description { get; set; }

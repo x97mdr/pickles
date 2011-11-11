@@ -29,15 +29,13 @@ namespace Pickles.Parser
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public List<Scenario> Scenarios { get; private set; }
+        public List<IFeatureElement> FeatureElements { get; private set; }
         public Scenario Background { get; private set; }
-        public List<ScenarioOutline> ScenarioOutlines { get; private set; }
         public List<string> Tags { get; set; }
 
         public Feature()
 	    {
-            this.Scenarios = new List<Scenario>();
-            this.ScenarioOutlines = new List<ScenarioOutline>();
+            this.FeatureElements = new List<IFeatureElement>();
             this.Tags = new List<string>();
 	    }
 
@@ -52,16 +50,10 @@ namespace Pickles.Parser
             this.Background = background;
         }
 
-        public void AddScenario(Scenario scenario)
+        public void AddFeatureElement(IFeatureElement featureElement)
         {
-            scenario.Feature = this;
-            this.Scenarios.Add(scenario);
-        }
-
-        public void AddScenarioOutline(ScenarioOutline scenarioOutline)
-        {
-            scenarioOutline.Feature = this;
-            this.ScenarioOutlines.Add(scenarioOutline);
+            featureElement.Feature = this;
+            this.FeatureElements.Add(featureElement);
         }
     }
 }
