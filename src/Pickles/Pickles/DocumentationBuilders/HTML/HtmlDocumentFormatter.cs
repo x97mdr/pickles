@@ -30,6 +30,16 @@ namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlDocumentFormatter
     {
+        private static readonly string dataTablesInitializationStatement = "$(document).ready(function() {\n" +
+                                                                           "  $('.datatable').dataTables({\n" +
+                                                                           "    \"bSort\": false,\n" +
+                                                                           "    \"bInfo\": false,\n" +
+                                                                           "    \"bFilter\": false,\n" +
+                                                                           "    \"sScrollY\": \"100%\",\n" +
+                                                                           "    \"sScrollX\": \"90%\",\n" +
+                                                                           "    \"sScrollXInner\": \"100%\",\n" +
+                                                                           "  })\n" +
+                                                                           "} );\n";
         private readonly Configuration configuration;
         private readonly HtmlHeaderFormatter htmlHeaderFormatter;
         private readonly HtmlTableOfContentsFormatter htmlTableOfContentsFormatter;
@@ -74,12 +84,13 @@ namespace Pickles.DocumentationBuilders.HTML
             {
                 head.Add(new XElement(xmlns + "script",
                          new XAttribute("src", featureNodeOutputUri.MakeRelativeUri(script.Uri)),
-                         new XAttribute("type", "text/javascript")));
+                         new XAttribute("type", "text/javascript"),
+                         new XText(string.Empty)));
             }
 
             head.Add(new XElement(xmlns + "script",
                          new XAttribute("type", "text/javascript"),
-                         @"$(document).ready(function() { });"));
+                         dataTablesInitializationStatement));
 
             var html = new XElement(xmlns + "html",
                            new XAttribute(XNamespace.Xml + "lang", "en"),

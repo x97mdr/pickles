@@ -38,7 +38,10 @@ namespace Pickles.DocumentationBuilders.HTML
 
         public XElement Format(Table table)
         {
-            return new XElement(xmlns + "table",
+            return new XElement(xmlns + "div",
+                       new XAttribute("class", "table_container"),
+                       new XElement(xmlns + "table",
+                            new XAttribute("class", "datatable"),
                             new XElement(xmlns + "thead",
                                 new XElement(xmlns + "tr",
                                     table.HeaderRow.Select(cell => new XElement(xmlns + "th", cell))
@@ -49,7 +52,7 @@ namespace Pickles.DocumentationBuilders.HTML
                                     row.Select(cell => new XElement(xmlns + "td", cell)))
                                 )
                             )
-                        );
+                        ));
         }
     }
 }
