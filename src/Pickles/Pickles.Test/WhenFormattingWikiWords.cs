@@ -14,8 +14,8 @@ namespace Pickles.Test
         [Test]
         public void Then_can_format_text_as_wiki_word_successfully()
         {
-            string actual = "ThisIsAWikiWord".ExpandWikiWord();
-            Assert.AreEqual("This Is A Wiki Word", actual);
+            string actual = "ThisIsTheWikiWord".ExpandWikiWord();
+            Assert.AreEqual("This Is The Wiki Word", actual);
         }
 
         [Test]
@@ -37,6 +37,20 @@ namespace Pickles.Test
         {
             string actual = "ThisIsThe_WikiWord".ExpandWikiWord();
             Assert.AreEqual("This Is The Wiki Word", actual);
+        }
+
+        [Test]
+        public void Then_can_format_text_with_acronym_as_wiki_word_successfully()
+        {
+            string actual = "ThisIsAnACRONYM".ExpandWikiWord();
+            Assert.AreEqual("This Is An ACRONYM", actual);
+        }
+
+        [Test]
+        public void Then_can_format_text_with_acronym_and_number_as_wiki_word_successfully()
+        {
+            string actual = "ThisIsAnACRONYM1".ExpandWikiWord();
+            Assert.AreEqual("This Is An ACRONYM1", actual);
         }
     }
 }

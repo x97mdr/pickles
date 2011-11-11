@@ -31,11 +31,14 @@ namespace Pickles.Extensions
         {
             var sb = new StringBuilder();
             char previous = Char.MinValue;
-            foreach (var c in word.Where(x => Char.IsLetterOrDigit(x)))
+            foreach (var current in word.Where(x => Char.IsLetterOrDigit(x)))
             {
-                if (previous != Char.MinValue && (Char.IsUpper(c) || (Char.IsDigit(c) && !Char.IsDigit(previous)))) sb.Append(' ');
-                sb.Append(c);
-                previous = c;
+                if (previous != Char.MinValue && sb.Length > 1 && ((Char.IsUpper(current) || Char.IsDigit(current)) && Char.IsLower(previous)))
+                {
+                    sb.Append(' ');
+                }
+                sb.Append(current);
+                previous = current;
             }
             return sb.ToString();
         }

@@ -61,17 +61,21 @@ namespace Pickles.Test
                                new XAttribute("class", "step"),
                                new XElement(xmlns + "span", new XAttribute("class", "keyword"), EXPECTED_GIVEN_HTML),
                                new XText("a simple step"),
-                               new XElement(xmlns + "table",
-                                   new XElement(xmlns + "thead",
-                                       new XElement(xmlns + "tr",
-                                           new XElement(xmlns + "th", "Column 1"),
-                                           new XElement(xmlns + "th", "Column 2")
-                                        )
-                                   ),
-                                   new XElement(xmlns + "tbody",
-                                       new XElement(xmlns + "tr",
-                                           new XElement(xmlns + "td", "Value 1"),
-                                           new XElement(xmlns + "td", "Value 2")
+                               new XElement(xmlns + "div",
+                                   new XAttribute("class", "table_container"),
+                                   new XElement(xmlns + "table",
+                                       new XAttribute("class", "datatable"),
+                                       new XElement(xmlns + "thead",
+                                           new XElement(xmlns + "tr",
+                                               new XElement(xmlns + "th", "Column 1"),
+                                               new XElement(xmlns + "th", "Column 2")
+                                            )
+                                       ),
+                                       new XElement(xmlns + "tbody",
+                                           new XElement(xmlns + "tr",
+                                               new XElement(xmlns + "td", "Value 1"),
+                                               new XElement(xmlns + "td", "Value 2")
+                                           )
                                        )
                                    )
                                )
