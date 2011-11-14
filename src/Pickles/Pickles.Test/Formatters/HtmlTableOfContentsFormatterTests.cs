@@ -20,7 +20,7 @@ namespace Pickles.Test.Formatters
         [TestFixtureSetUp]
         public void Setup()
         {
-            var features = Kernel.Get<FeatureCrawler>().Crawl(ROOT_PATH);
+            var features = Kernel.Get<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
 
             var formatter = new HtmlTableOfContentsFormatter();
             _toc = formatter.Format(features.ChildNodes[0].Data.OriginalLocationUrl, features);

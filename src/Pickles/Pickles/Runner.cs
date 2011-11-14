@@ -33,7 +33,7 @@ namespace Pickles
             var configuration = kernel.Get<Configuration>();
             if (!configuration.OutputFolder.Exists) configuration.OutputFolder.Create();
 
-            var featureCrawler = kernel.Get<FeatureCrawler>();
+            var featureCrawler = kernel.Get<DirectoryTreeCrawler>();
             var features = featureCrawler.Crawl(configuration.FeatureFolder);
 
             var documentationBuilder = kernel.Get<HtmlDocumentationBuilder>();

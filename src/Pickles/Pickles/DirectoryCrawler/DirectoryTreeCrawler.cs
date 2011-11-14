@@ -29,13 +29,13 @@ using Pickles.Extensions;
 
 namespace Pickles
 {
-    public class FeatureCrawler
+    public class DirectoryTreeCrawler
     {
         private readonly FeatureParser featureParser;
         private readonly RelevantFileDetector relevantFileDetector;
         private readonly FeatureNodeFactory featureNodeFactory;
 
-        public FeatureCrawler(FeatureParser featureParser, RelevantFileDetector relevantFileDetector, FeatureNodeFactory featureNodeFactory)
+        public DirectoryTreeCrawler(FeatureParser featureParser, RelevantFileDetector relevantFileDetector, FeatureNodeFactory featureNodeFactory)
         {
             this.featureParser = featureParser;
             this.relevantFileDetector = relevantFileDetector;

@@ -36,11 +36,11 @@ namespace Pickles
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private readonly Configuration configuration;
-        private readonly FeatureCrawler featureCrawler;
+        private readonly DirectoryTreeCrawler featureCrawler;
         private readonly HtmlDocumentFormatter htmlDocumentFormatter;
         private readonly HtmlResourceWriter htmlResourceWriter;
 
-        public HtmlDocumentationBuilder(Configuration configuration, FeatureCrawler featureCrawler, HtmlDocumentFormatter htmlDocumentFormatter, HtmlResourceWriter htmlResourceWriter)
+        public HtmlDocumentationBuilder(Configuration configuration, DirectoryTreeCrawler featureCrawler, HtmlDocumentFormatter htmlDocumentFormatter, HtmlResourceWriter htmlResourceWriter)
         {
             this.configuration = configuration;
             this.featureCrawler = featureCrawler;

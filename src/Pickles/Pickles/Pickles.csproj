@@ -147,7 +147,7 @@
     </Compile>
     <Compile Include="CommandLineArgumentParser.cs" />
     <Compile Include="Configuration.cs" />
-    <Compile Include="FolderDirectoryTreeNode.cs" />
+    <Compile Include="DirectoryCrawler\FolderDirectoryTreeNode.cs" />
     <Compile Include="DocumentationBuilders\HTML\HtmlContentFormatter.cs" />
     <Compile Include="DocumentationBuilders\HTML\HtmlDescriptionFormatter.cs" />
     <Compile Include="DocumentationBuilders\HTML\HtmlDocumentationBuilder.cs" />
@@ -169,10 +169,10 @@
     <Compile Include="DocumentationBuilders\IDocumentationBuilder.cs" />
     <Compile Include="Extensions\PathExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="FeatureDirectoryTreeNode.cs" />
-    <Compile Include="FeatureNodeFactory.cs" />
-    <Compile Include="IDirectoryTreeNode.cs" />
-    <Compile Include="MarkdownTreeNode.cs" />
+    <Compile Include="DirectoryCrawler\FeatureDirectoryTreeNode.cs" />
+    <Compile Include="DirectoryCrawler\FeatureNodeFactory.cs" />
+    <Compile Include="DirectoryCrawler\IDirectoryTreeNode.cs" />
+    <Compile Include="DirectoryCrawler\MarkdownTreeNode.cs" />
     <Compile Include="Parser\Example.cs" />
     <Compile Include="Parser\FeatureElementState.cs" />
     <Compile Include="Parser\IFeatureElement.cs" />
@@ -183,7 +183,7 @@
     <Compile Include="Parser\Table.cs" />
     <Compile Include="Parser\Feature.cs" />
     <Compile Include="Parser\Keyword.cs" />
-    <Compile Include="FeatureCrawler.cs" />
+    <Compile Include="DirectoryCrawler\DirectoryTreeCrawler.cs" />
     <Compile Include="FeatureSet.cs" />
     <Compile Include="FeatureParser.cs" />
     <Compile Include="ICrawlerListener.cs" />
@@ -194,7 +194,7 @@
     <Compile Include="Parser\TableRow.cs" />
     <Compile Include="PicklesModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RelevantFileDetector.cs" />
+    <Compile Include="DirectoryCrawler\RelevantFileDetector.cs" />
     <Compile Include="Runner.cs" />
     <Compile Include="TestFrameworks\NUnitResults.cs" />
   </ItemGroup>
