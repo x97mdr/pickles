@@ -113,7 +113,13 @@
   
   <target name="zip" depends="test">
     <zip zipfile="${deploy.dir}\pickles-${version}.zip">
-        <fileset basedir="${merged.dir}" prefix="pickles-${version}">
+        <fileset basedir="${assemblies.console.dir}" prefix="pickles-${version}\exe">
+            <include name="**/*" />
+        </fileset>
+        <fileset basedir="${assemblies.msbuild.dir}" prefix="pickles-${version}\msbuild">
+            <include name="**/*" />
+        </fileset>
+        <fileset basedir="${assemblies.nant.dir}" prefix="pickles-${version}\nant">
             <include name="**/*" />
         </fileset>
     </zip>
