@@ -184,9 +184,7 @@
     <Compile Include="Parser\Feature.cs" />
     <Compile Include="Parser\Keyword.cs" />
     <Compile Include="DirectoryCrawler\DirectoryTreeCrawler.cs" />
-    <Compile Include="FeatureSet.cs" />
     <Compile Include="FeatureParser.cs" />
-    <Compile Include="ICrawlerListener.cs" />
     <Compile Include="Parser\Scenario.cs" />
     <Compile Include="Parser\ScenarioOutline.cs" />
     <Compile Include="Parser\Step.cs" />

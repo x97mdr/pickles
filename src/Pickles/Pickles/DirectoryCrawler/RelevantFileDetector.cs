@@ -24,7 +24,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-namespace Pickles
+namespace Pickles.DirectoryCrawler
 {
     public class RelevantFileDetector
     {

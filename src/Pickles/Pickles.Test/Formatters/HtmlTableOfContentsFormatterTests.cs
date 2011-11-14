@@ -8,6 +8,7 @@ using Ninject;
 using NUnit.Framework;
 using Pickles.DocumentationBuilders.HTML;
 using Pickles.Test.Helpers;
+using Pickles.DirectoryCrawler;
 
 namespace Pickles.Test.Formatters
 {

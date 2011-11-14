@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using System.IO;
+using Pickles.DirectoryCrawler;
 
 namespace Pickles.DocumentationBuilders.HTML
 {

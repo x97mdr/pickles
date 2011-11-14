@@ -7,6 +7,7 @@ using Moq;
 using NGenerics.DataStructures.Trees;
 using Ninject;
 using NUnit.Framework;
+using Pickles.DirectoryCrawler;
 
 namespace Pickles.Test
 {

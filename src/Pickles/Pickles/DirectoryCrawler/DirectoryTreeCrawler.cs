@@ -27,7 +27,7 @@ using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
 using Pickles.Extensions;
 
-namespace Pickles
+namespace Pickles.DirectoryCrawler
 {
     public class DirectoryTreeCrawler
     {

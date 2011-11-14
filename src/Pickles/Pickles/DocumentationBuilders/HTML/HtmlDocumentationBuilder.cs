@@ -28,6 +28,7 @@ using NGenerics.Patterns.Visitor;
 using System.Xml;
 using Pickles.DocumentationBuilders.HTML;
 using System.Xml.Linq;
+using Pickles.DirectoryCrawler;
 
 namespace Pickles
 {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Ninject;
 using NUnit.Framework;
+using Pickles.DirectoryCrawler;
 
 namespace Pickles.Test
 {
