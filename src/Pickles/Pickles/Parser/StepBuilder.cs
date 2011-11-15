@@ -25,25 +25,48 @@ using System.Text;
 
 namespace Pickles.Parser
 {
+    using gherkin;
+
     class StepBuilder
     {
         private Keyword keyword;
         private string name;
         private TableBuilder tableBuilder;
+
+        private readonly I18n nativeLanguageService;
+
         private string docString;
 
-        public StepBuilder(TableBuilder tableBuilder)
+        public StepBuilder(TableBuilder tableBuilder, I18n nativeLanguageService)
         {
             this.tableBuilder = tableBuilder;
+            this.nativeLanguageService = nativeLanguageService;
         }
 
         public void SetKeyword(string keywordText)
         {
-            Keyword keyword;
-            if (Enum.TryParse<Keyword>(keywordText, out keyword))
+            Keyword? keyword = this.TryParseKeyword(keywordText);
+            if (keyword.HasValue)
             {
-                this.keyword = keyword;
+                this.keyword = keyword.Value;
             }
+        }
+
+        public Keyword? TryParseKeyword(string keyword)
+        {
+            if (nativeLanguageService.keywords("and").contains(keyword)) return Keyword.And;
+
+            if (nativeLanguageService.keywords("given").contains(keyword)) return Keyword.Given;
+
+            if (nativeLanguageService.keywords("when").contains(keyword)) return Keyword.When;
+
+            if (nativeLanguageService.keywords("then").contains(keyword)) return Keyword.Then;
+
+            if (nativeLanguageService.keywords("but").contains(keyword)) return Keyword.But;
+
+            if (!keyword.EndsWith(" ")) return this.TryParseKeyword(keyword + " ");
+
+            return null;
         }
 
         public void SetName(string name)

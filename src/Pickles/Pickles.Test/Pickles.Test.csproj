@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="gherkin-2.5.3, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\gherkin\gherkin-2.5.3.dll</HintPath>
+    </Reference>
     <Reference Include="IKVM.AWT.WinForms, Version=0.46.0.1, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.AWT.WinForms.dll</HintPath>
     </Reference>
@@ -124,16 +128,13 @@
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.mocks, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="nunit.mocks">
       <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.mocks.dll</HintPath>
     </Reference>
-    <Reference Include="pnunit.framework, Version=1.0.4109.34242, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="pnunit.framework">
       <HintPath>..\packages\NUnit.2.5.10.11092\lib\pnunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -148,6 +149,7 @@
     <Compile Include="AssertExtensions.cs" />
     <Compile Include="BaseFixture.cs" />
     <Compile Include="Helpers\Class1.cs" />
+    <Compile Include="LanguageServicesTests.cs" />
     <Compile Include="WhenCrawlingFoldersForFeatures.cs" />
     <Compile Include="Formatters\HtmlTableOfContentsFormatterTests.cs" />
     <Compile Include="ParserFileFactory.cs" />
@@ -159,6 +161,7 @@
     <Compile Include="WhenFormattingWikiWords.cs" />
     <Compile Include="WhenParsingCommandLineArguments.cs" />
     <Compile Include="WhenParsingFeatureFiles.cs" />
+    <Compile Include="WhenParsingLocalizedFeatureFiles.cs" />
     <Compile Include="WhenParsingNUnitResultsFile.cs" />
     <Compile Include="WhenWorkingWithHtmlResources.cs" />
   </ItemGroup>

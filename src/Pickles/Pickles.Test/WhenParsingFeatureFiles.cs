@@ -9,6 +9,10 @@ using Pickles.Parser;
 
 namespace Pickles.Test
 {
+    using gherkin;
+
+    using FeatureParser = Pickles.FeatureParser;
+
     [TestFixture]
     public class WhenParsingFeatureFiles : BaseFixture
     {
@@ -186,7 +190,7 @@ Feature: Test
 		When it runs
 		Then I should see that this thing happens";
 
-            var parser = new FeatureParser();
+            var parser = new FeatureParser(new LanguageServices(new Configuration()));
             var feature = parser.Parse(new StringReader(featureText));
 
             Assert.AreEqual("@feature-tag", feature.Tags[0]);

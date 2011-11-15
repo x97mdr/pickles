@@ -28,6 +28,11 @@ namespace Pickles
 {
     public class Configuration
     {
+        public Configuration()
+        {
+            Language = "en";
+        }
+
         public DirectoryInfo FeatureFolder 
         { 
             get; 
@@ -39,6 +44,8 @@ namespace Pickles
             get; 
             set; 
         }
+
+        public string Language { get; set; }
         
         public bool HasTestFrameworkResults 
         {

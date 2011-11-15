@@ -18,17 +18,23 @@
 
 #endregion
 
-using System.Globalization;
-using System.IO;
-using System.Xml.Linq;
-using Pickles.DocumentationBuilders.HTML;
-using Pickles.Parser;
-using gherkin.lexer;
-
 namespace Pickles
 {
+    using System.IO;
+
+    using gherkin.lexer;
+
+    using Pickles.Parser;
+
     public class FeatureParser
     {
+        private readonly LanguageServices languageService;
+
+        public FeatureParser(LanguageServices languageService)
+        {
+            this.languageService = languageService;
+        }
+
         public Feature Parse(string filename)
         {
             Feature feature = null;
@@ -45,7 +51,7 @@ namespace Pickles
         {
             var fileContent = featureFileReader.ReadToEnd();
 
-            var parser = new PicklesParser();
+            var parser = new PicklesParser(this.languageService.GetLanguage());
             var listener = new I18nLexer(parser);
             listener.scan(fileContent);
 

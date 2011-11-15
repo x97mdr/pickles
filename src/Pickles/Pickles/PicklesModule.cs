@@ -18,10 +18,6 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Pickles.DocumentationBuilders.HTML;
 using Pickles.TestFrameworks;
 
@@ -37,6 +33,7 @@ namespace Pickles
 
             Bind<NUnitResults>().ToSelf().InSingletonScope();
 
+            Bind<LanguageServices>().ToSelf().InSingletonScope();
             Bind<HtmlTableOfContentsFormatter>().ToSelf().InSingletonScope();
             Bind<HtmlFooterFormatter>().ToSelf().InSingletonScope();
             Bind<HtmlDocumentFormatter>().ToSelf().InSingletonScope();
