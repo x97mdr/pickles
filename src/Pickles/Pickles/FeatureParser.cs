@@ -52,8 +52,9 @@ namespace Pickles
             var fileContent = featureFileReader.ReadToEnd();
 
             var parser = new PicklesParser(this.languageService.GetLanguage());
-            var listener = new I18nLexer(parser);
-            listener.scan(fileContent);
+            var lexer = this.languageService.GetNativeLexer(parser);
+            
+            lexer.scan(fileContent);
 
             return parser.GetFeature();
         }

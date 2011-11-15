@@ -3,8 +3,6 @@
     using System.IO;
     using System.Linq;
 
-    using gherkin;
-
     using NUnit.Framework;
 
     using Pickles.Parser;
@@ -19,7 +17,6 @@
         {
             string featureText =
                 @"# ignorera denna kommentar
-# language: sv
 Egenskap: Test egenskap
     Som svensk användare
     Vill jag skriva mina krav på svenska
