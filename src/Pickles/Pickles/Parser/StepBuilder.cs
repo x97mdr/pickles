@@ -31,6 +31,9 @@ namespace Pickles.Parser
     {
         private Keyword keyword;
         private string name;
+
+        private string nativeKeyword;
+
         private TableBuilder tableBuilder;
 
         private readonly I18n nativeLanguageService;
@@ -45,6 +48,8 @@ namespace Pickles.Parser
 
         public void SetKeyword(string keywordText)
         {
+            this.nativeKeyword = keywordText;
+
             Keyword? keyword = this.TryParseKeyword(keywordText);
             if (keyword.HasValue)
             {
@@ -89,6 +94,7 @@ namespace Pickles.Parser
             return new Step
             {
                 Keyword = this.keyword,
+                NativeKeyword = this.nativeKeyword,
                 Name = this.name,
                 DocStringArgument = this.docString,
                 TableArgument = this.tableBuilder.GetResult()

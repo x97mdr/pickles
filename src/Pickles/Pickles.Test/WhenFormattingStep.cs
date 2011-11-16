@@ -19,6 +19,7 @@ namespace Pickles.Test
                 {
                     Keyword = Keyword.Given, 
                     Name = "ett enkelt steg", 
+                    NativeKeyword = "Givet ",
                     TableArgument = null, 
                     DocStringArgument = null,
                 };
@@ -45,6 +46,7 @@ namespace Pickles.Test
             {
                 Keyword = Keyword.Given,
                 Name = "a simple step",
+                NativeKeyword = "Given ",
                 TableArgument = null,
                 DocStringArgument = null,
             };

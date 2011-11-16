@@ -46,12 +46,10 @@ namespace Pickles.DocumentationBuilders.HTML
 
         public XElement Format(Step step)
         {
-            var keyword = languageServices.GetKeywordString(step.Keyword);
-
             var li = new XElement(
                           xmlns + "li",
                           new XAttribute("class", "step"),
-                          new XElement(xmlns + "span", new XAttribute("class", "keyword"), keyword),
+                          new XElement(xmlns + "span", new XAttribute("class", "keyword"), step.NativeKeyword),
                           step.Name);
 
             if (step.TableArgument != null)
