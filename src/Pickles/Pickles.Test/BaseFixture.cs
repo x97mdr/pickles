@@ -6,8 +6,27 @@ using Ninject;
 
 namespace Pickles.Test
 {
+    using NUnit.Framework;
+
     public class BaseFixture
     {
-        public IKernel Kernel = new StandardKernel(new PicklesModule());
+        private IKernel kernel;
+
+        protected IKernel Kernel
+        {
+            get { return kernel; }
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            this.kernel = new StandardKernel(new PicklesModule());
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            this.kernel.Dispose();
+        }
     }
 }

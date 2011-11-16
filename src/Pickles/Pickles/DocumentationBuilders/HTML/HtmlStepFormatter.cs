@@ -31,22 +31,26 @@ namespace Pickles.DocumentationBuilders.HTML
     {
         private readonly HtmlTableFormatter htmlTableFormatter;
         private readonly HtmlMultilineStringFormatter htmlMultilineStringFormatter;
+
+        private readonly LanguageServices languageServices;
+
         private readonly XNamespace xmlns;
 
-        public HtmlStepFormatter(HtmlTableFormatter htmlTableFormatter, HtmlMultilineStringFormatter htmlMultilineStringFormatter)
+        public HtmlStepFormatter(HtmlTableFormatter htmlTableFormatter, HtmlMultilineStringFormatter htmlMultilineStringFormatter, LanguageServices languageServices)
         {
             this.htmlTableFormatter = htmlTableFormatter;
             this.htmlMultilineStringFormatter = htmlMultilineStringFormatter;
+            this.languageServices = languageServices;
             xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
         }
 
         public XElement Format(Step step)
         {
-            var li =  new XElement(xmlns + "li",
+            var li = new XElement(
+                          xmlns + "li",
                           new XAttribute("class", "step"),
-                          new XElement(xmlns + "span", new XAttribute("class", "keyword"), step.Keyword + " "),
-                          step.Name
-                      );
+                          new XElement(xmlns + "span", new XAttribute("class", "keyword"), step.NativeKeyword),
+                          step.Name);
 
             if (step.TableArgument != null)
             {
