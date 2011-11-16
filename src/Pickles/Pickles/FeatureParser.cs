@@ -22,8 +22,6 @@ namespace Pickles
 {
     using System.IO;
 
-    using gherkin.lexer;
-
     using Pickles.Parser;
 
     public class FeatureParser
