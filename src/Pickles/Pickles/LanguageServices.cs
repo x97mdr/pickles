@@ -26,30 +26,29 @@ namespace Pickles
     using gherkin;
     using gherkin.lexer;
 
-    using Pickles.Parser;
-
     public class LanguageServices
     {
         private readonly CultureInfo currentCulture; 
 
         public LanguageServices(Configuration configuration)
         {
-            currentCulture = CultureInfo.GetCultureInfo(configuration.Language);
+            if (!string.IsNullOrWhiteSpace(configuration.Language))
+                currentCulture = CultureInfo.GetCultureInfo(configuration.Language);
         }
 
         public I18n GetLanguage()
         {
-            return new I18n(currentCulture.TwoLetterISOLanguageName);
-        }
+            if (currentCulture == null)
+                return new I18n("en");
 
-        public string GetKeywordString(Keyword keyword)
-        {
-            var language = this.GetLanguage();
-            return string.Format("{0}", language.keywords(keyword.ToString().ToLower()).get(1));
+            return new I18n(currentCulture.TwoLetterISOLanguageName);
         }
 
         public Lexer GetNativeLexer(Listener parser)
         {
+            if (currentCulture == null) 
+                return new I18nLexer(parser);
+
             var typeName = string.Format("gherkin.lexer.i18n.{0}, {1}", currentCulture.TwoLetterISOLanguageName.ToUpper(), typeof(I18nLexer).Assembly.FullName);
 
             var lexerType = Type.GetType(typeName);
