@@ -35,7 +35,7 @@ namespace Pickles.Test
                                new XElement(xmlns + "span", new XAttribute("class", "keyword"), "Givet "),
                                "ett enkelt steg");
 
-            Assert.IsTrue(XNode.DeepEquals(expected, actual));
+            Assert.IsTrue(XNode.DeepEquals(expected, actual), string.Format("Expected:\r\n{0}\r\nActual:\r\n{1}\r\n", expected, actual));
         }
 
         [Test]
