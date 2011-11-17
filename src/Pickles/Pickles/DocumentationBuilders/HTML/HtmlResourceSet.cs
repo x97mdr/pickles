@@ -31,6 +31,22 @@ namespace Pickles
             }
         }
 
+        public Uri jQueryScript
+        {
+            get
+            {
+                return new Uri(Path.Combine(configuration.OutputFolder.FullName, "scripts/jquery.js"));
+            }
+        }
+
+        public Uri jQueryDataTablesScript
+        {
+            get
+            {
+                return new Uri(Path.Combine(configuration.OutputFolder.FullName, "scripts/jquery.dataTables.min.js"));
+            }
+        }
+
         public Uri SuccessImage
         {
             get

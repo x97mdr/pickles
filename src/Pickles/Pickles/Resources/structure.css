@@ -94,6 +94,7 @@
 #feature .table_container { margin: 8px 0px 8px 0px; }
 #feature table {
   border-collapse: collapse;
+  margin: 0;
   empty-cells: show; }
   #feature th, td {
     border: 1px solid black;

@@ -31,16 +31,16 @@ namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlDocumentFormatter
     {
-        private static readonly string dataTablesInitializationStatement = "$(document).ready(function() {\n" +
-                                                                           "  $('.datatable').dataTables({\n" +
+        private static readonly string dataTablesInitializationStatement = "\n$(document).ready(function() {\n" +
+                                                                           "  $('.datatable').dataTable({\n" +
                                                                            "    \"bSort\": false,\n" +
                                                                            "    \"bInfo\": false,\n" +
                                                                            "    \"bFilter\": false,\n" +
+                                                                           "    \"bPaginate\": false,\n" +
                                                                            "    \"sScrollY\": \"100%\",\n" +
-                                                                           "    \"sScrollX\": \"90%\",\n" +
-                                                                           "    \"sScrollXInner\": \"100%\",\n" +
-                                                                           "  })\n" +
-                                                                           "} );\n";
+                                                                           "    \"sScrollX\": \"90%\"\n" +
+                                                                           "  });\n" +
+                                                                           "});\n";
         private readonly Configuration configuration;
         private readonly HtmlHeaderFormatter htmlHeaderFormatter;
         private readonly HtmlTableOfContentsFormatter htmlTableOfContentsFormatter;
@@ -81,13 +81,15 @@ namespace Pickles.DocumentationBuilders.HTML
                          new XAttribute("href", featureNodeOutputUri.MakeRelativeUri(this.htmlResources.MasterStylesheet)),
                          new XAttribute("type", "text/css")));
 
-            foreach (var script in this.htmlResources.Scripts)
-            {
-                head.Add(new XElement(xmlns + "script",
-                         new XAttribute("src", featureNodeOutputUri.MakeRelativeUri(script.Uri)),
+            head.Add(new XElement(xmlns + "script",
+                         new XAttribute("src", featureNodeOutputUri.MakeRelativeUri(this.htmlResources.jQueryScript)),
                          new XAttribute("type", "text/javascript"),
                          new XText(string.Empty)));
-            }
+
+            head.Add(new XElement(xmlns + "script",
+                         new XAttribute("src", featureNodeOutputUri.MakeRelativeUri(this.htmlResources.jQueryDataTablesScript)),
+                         new XAttribute("type", "text/javascript"),
+                         new XText(string.Empty)));
 
             head.Add(new XElement(xmlns + "script",
                          new XAttribute("type", "text/javascript"),
