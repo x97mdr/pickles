@@ -13,12 +13,40 @@ namespace Pickles.Test
         private const string EXPECTED_GIVEN_HTML = "Given ";
 
         [Test]
+        public void Steps_get_selected_Language()
+        {
+            var step = new Step
+                {
+                    Keyword = Keyword.Given, 
+                    Name = "ett enkelt steg", 
+                    NativeKeyword = "Givet ",
+                    TableArgument = null, 
+                    DocStringArgument = null,
+                };
+            var configuration = Kernel.Get<Configuration>();
+            configuration.Language = "sv";
+
+            var formatter = Kernel.Get<HtmlStepFormatter>();
+            var actual = formatter.Format(step);
+
+            var xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
+            var expected = new XElement(
+                               xmlns + "li",
+                               new XAttribute("class", "step"),
+                               new XElement(xmlns + "span", new XAttribute("class", "keyword"), "Givet "),
+                               "ett enkelt steg");
+
+            Assert.IsTrue(XNode.DeepEquals(expected, actual), string.Format("Expected:\r\n{0}\r\nActual:\r\n{1}\r\n", expected, actual));
+        }
+
+        [Test]
         public void Simple_steps_are_formatted_as_list_items()
         {
             var step = new Step
             {
                 Keyword = Keyword.Given,
                 Name = "a simple step",
+                NativeKeyword = "Given ",
                 TableArgument = null,
                 DocStringArgument = null,
             };

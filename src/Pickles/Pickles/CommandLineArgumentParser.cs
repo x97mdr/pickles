@@ -37,6 +37,7 @@ namespace Pickles
         private string resultsFile;
         private string systemUnderTestName;
         private string systemUnderTestVersion;
+        private string language;
 
         public CommandLineArgumentParser()
         {
@@ -47,6 +48,7 @@ namespace Pickles
    	            { "lr|link-results-file=", "a file containing the results of testing the features", v => this.resultsFile = v },
    	            { "sn|system-under-test-name=", "the name of the system under test", v => this.systemUnderTestName = v },
    	            { "sv|system-under-test-version=", "the version of the system under test", v => this.systemUnderTestVersion = v },
+                { "l|language=", "the language of the feature files", v => this.language = v },
    	            { "v|version",  v => versionRequested = v != null },
    	            { "h|?|help",   v => helpRequested = v != null }
             };
@@ -86,6 +88,7 @@ namespace Pickles
             if (!string.IsNullOrWhiteSpace(this.resultsFile)) configuration.LinkedTestFrameworkResultsFile = new FileInfo(this.resultsFile);
             if (!string.IsNullOrWhiteSpace(this.systemUnderTestName)) configuration.SystemUnderTestName = this.systemUnderTestName;
             if (!string.IsNullOrWhiteSpace(this.systemUnderTestVersion)) configuration.SystemUnderTestVersion = this.systemUnderTestVersion;
+            if (!string.IsNullOrWhiteSpace(this.language)) configuration.Language = this.language;
 
             return true;
         }

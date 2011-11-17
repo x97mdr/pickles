@@ -39,6 +39,8 @@ namespace Pickles.MSBuild
         [Required]
         public string OutputDirectory { get; set; }
 
+        public string Language { get; set; }
+
         public string ResultsFile { get; set; }
 
         public string SystemUnderTestName { get; set; }
@@ -49,6 +51,7 @@ namespace Pickles.MSBuild
         {
             configuration.FeatureFolder = new DirectoryInfo(FeatureDirectory);
             configuration.OutputFolder = new DirectoryInfo(OutputDirectory);
+            if (!string.IsNullOrWhiteSpace(Language)) configuration.Language = Language;
             if (!string.IsNullOrWhiteSpace(ResultsFile)) configuration.LinkedTestFrameworkResultsFile = new FileInfo(ResultsFile);
             if (!string.IsNullOrWhiteSpace(SystemUnderTestName)) configuration.SystemUnderTestName = SystemUnderTestName;
             if (!string.IsNullOrWhiteSpace(SystemUnderTestVersion)) configuration.SystemUnderTestVersion = SystemUnderTestVersion;

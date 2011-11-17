@@ -26,8 +26,12 @@ using gherkin.lexer;
 
 namespace Pickles.Parser
 {
+    using gherkin;
+
     public class PicklesParser : Listener
     {
+        private readonly I18n nativeLanguageService;
+
         private readonly List<string> featureTags;
         private readonly List<string> scenarioTags;
         private Feature theFeature;
@@ -40,8 +44,9 @@ namespace Pickles.Parser
         private bool isFeatureFound = false;
         private bool isInExample = false;
 
-        public PicklesParser()
+        public PicklesParser(I18n nativeLanguageService)
         {
+            this.nativeLanguageService = nativeLanguageService;
             this.featureTags = new List<string>();
             this.scenarioTags = new List<string>();
         }
@@ -168,7 +173,7 @@ namespace Pickles.Parser
                 AddStepToElement(this.stepBuilder.GetResult());
             }
 
-            this.stepBuilder = new StepBuilder(new TableBuilder());
+            this.stepBuilder = new StepBuilder(new TableBuilder(), nativeLanguageService);
             this.stepBuilder.SetKeyword(keyword);
             this.stepBuilder.SetName(name);
         }

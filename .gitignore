@@ -53,3 +53,7 @@ deploy/
 reports/
 merged/
 Documentation-*/
+
+#nCrunch files
+*.crunchproject.local.xml
+*.crunchsolution.local.xml
