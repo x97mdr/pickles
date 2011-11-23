@@ -50,10 +50,13 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="TechTalk.SpecFlow">
-      <HintPath>..\packages\SpecFlow.1.8.1\lib\net35\TechTalk.SpecFlow.dll</HintPath>
+      <HintPath>..\packages\SpecFlow.1.7.1\lib\net35\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\VersionInfo.cs">
+      <Link>VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Features\Arithmetic1.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -88,7 +91,20 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Pickles.CommandLine\Pickles.CommandLine.csproj">
+      <Project>{A4EBBB5F-A18D-46D2-9ADE-2B90BD48CEC8}</Project>
+      <Name>Pickles.CommandLine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pickles.MSBuild\Pickles.MSBuild.csproj">
+      <Project>{67DD16BD-E76B-475E-878C-7F54D9358730}</Project>
+      <Name>Pickles.MSBuild</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pickles.NAnt\Pickles.NAnt.csproj">
+      <Project>{83D5827A-8806-4B9E-9410-73CD2A284E3C}</Project>
+      <Name>Pickles.NAnt</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
