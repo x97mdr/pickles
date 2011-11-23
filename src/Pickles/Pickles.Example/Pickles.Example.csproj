@@ -42,6 +42,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NUnit.2.5.10.11092\lib\pnunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Should.Fluent">
+      <HintPath>..\packages\ShouldFluent.1.1.12.0\lib\Should.Fluent.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,11 +52,118 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TechTalk.SpecFlow">
-      <HintPath>..\packages\SpecFlow.1.8.1\lib\net35\TechTalk.SpecFlow.dll</HintPath>
+    <Reference Include="TechTalk.SpecFlow, Version=1.7.1.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SpecFlow.1.7.1\lib\net35\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\VersionInfo.cs">
+      <Link>VersionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Features\00BasicGherkin\BasicGherkin1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BasicGherkin.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\00BasicGherkin\BasicGherkinSteps.cs" />
+    <Compile Include="Features\01TestRunner\TestRunnerDemoSteps.cs" />
+    <Compile Include="Features\01TestRunner\TestRunnerIsNotImportant1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestRunnerIsNotImportant.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\02TagsAndHooks\Hooks1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Hooks.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\02TagsAndHooks\HooksDemoSteps.cs" />
+    <Compile Include="Features\02TagsAndHooks\TagDemo1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TagDemo.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\02TagsAndHooks\TagDemoSteps.cs" />
+    <Compile Include="Features\031ScenarioContext\ScenarioContext1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScenarioContext.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\031ScenarioContext\ScenarioContextSteps.cs" />
+    <Compile Include="Features\032FeatureContext\FeatureContextFeatures1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FeatureContextFeatures.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\032FeatureContext\FeatureContextSteps.cs" />
+    <Compile Include="Features\03ScenarioOutline\ScenarioOutline1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScenarioOutline.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\03ScenarioOutline\ScenarioOutlineTests.cs" />
+    <Compile Include="Features\04Background\BackgroundFeature1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BackgroundFeature.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\04Background\BackgroundSteps.cs" />
+    <Compile Include="Features\05TablesAndAssist\TableScenario1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TableScenario.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\05TablesAndAssist\TableSteps.cs" />
+    <Compile Include="Features\06CompareToAssist\CompareTo1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompareTo.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\06CompareToAssist\CompareToSteps.cs" />
+    <Compile Include="Features\07Svenska\Svenska1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Svenska.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\07Svenska\SvenskaSteg.cs" />
+    <Compile Include="Features\08AttributeOverloading\AttributeOverloading1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AttributeOverloading.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\08AttributeOverloading\AttributeOverloadingSteps.cs" />
+    <Compile Include="Features\09CallingStepsFromSteps\CallingStepsFromStepDefinitionSteps.cs" />
+    <Compile Include="Features\09CallingStepsFromSteps\CallingStepsFromSteps1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CallingStepsFromSteps.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\10StepTransformation\Entities\Terminal.cs" />
+    <Compile Include="Features\10StepTransformation\Entities\User.cs" />
+    <Compile Include="Features\10StepTransformation\StepTransformation1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StepTransformation.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\10StepTransformation\StepTransformationSteps.cs" />
+    <Compile Include="Features\10StepTransformation\Transformations\DateConverter.cs" />
+    <Compile Include="Features\10StepTransformation\Transformations\TerminalConverter.cs" />
+    <Compile Include="Features\10StepTransformation\Transformations\UserConverter.cs" />
+    <Compile Include="Features\11ContextInjection\ContextInjection1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContextInjection.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\11ContextInjection\Contexts\NestedContext.cs" />
+    <Compile Include="Features\11ContextInjection\Contexts\SingleContext.cs" />
+    <Compile Include="Features\11ContextInjection\FeatureWithADependentContextSteps.cs" />
+    <Compile Include="Features\11ContextInjection\FeatureWithARecursiveContextSteps.cs" />
+    <Compile Include="Features\11ContextInjection\FeatureWithASingleContextSteps.cs" />
+    <Compile Include="Features\11ContextInjection\FeatureWithMultipleContextsSteps.cs" />
+    <Compile Include="Features\11ContextInjection\FeatureWithNoContextSteps.cs" />
+    <Compile Include="Features\99TestEntities\Person.cs" />
+    <Compile Include="Features\99TestEntities\Style.cs" />
     <Compile Include="Features\Arithmetic1.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -74,6 +184,66 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\00BasicGherkin\BasicGherkin.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BasicGherkin1.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\01TestRunner\TestRunnerIsNotImportant.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TestRunnerIsNotImportant1.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\02TagsAndHooks\Hooks.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Hooks1.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\02TagsAndHooks\TagDemo.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TagDemo1.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\031ScenarioContext\ScenarioContext.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ScenarioContext1.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\032FeatureContext\FeatureContextFeatures.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>FeatureContextFeatures1.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\03ScenarioOutline\ScenarioOutline.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ScenarioOutline1.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\04Background\BackgroundFeature.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BackgroundFeature1.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\05TablesAndAssist\TableScenario.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TableScenario1.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\06CompareToAssist\CompareTo.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CompareTo1.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\07Svenska\Svenska.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Svenska1.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\08AttributeOverloading\AttributeOverloading.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AttributeOverloading1.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\09CallingStepsFromSteps\CallingStepsFromSteps.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CallingStepsFromSteps1.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\10StepTransformation\StepTransformation.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>StepTransformation1.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\11ContextInjection\ContextInjection.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ContextInjection1.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\Arithmetic.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Arithmetic1.feature.cs</LastGenOutput>
@@ -87,6 +257,20 @@
       <LastGenOutput>ClearingScreen.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pickles.CommandLine\Pickles.CommandLine.csproj">
+      <Project>{A4EBBB5F-A18D-46D2-9ADE-2B90BD48CEC8}</Project>
+      <Name>Pickles.CommandLine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pickles.MSBuild\Pickles.MSBuild.csproj">
+      <Project>{67DD16BD-E76B-475E-878C-7F54D9358730}</Project>
+      <Name>Pickles.MSBuild</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pickles.NAnt\Pickles.NAnt.csproj">
+      <Project>{83D5827A-8806-4B9E-9410-73CD2A284E3C}</Project>
+      <Name>Pickles.NAnt</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
