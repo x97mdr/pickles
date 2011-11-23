@@ -1,1 +1,1 @@
-nuget pack Pickles.CommandLine.csproj -Properties Configuration=Release
+nuget pack Pickles.CommandLine.csproj -Properties Configuration=Release 
