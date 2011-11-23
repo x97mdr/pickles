@@ -10,7 +10,7 @@
 //  </auto-generated>
 // ------------------------------------------------------------------------------
 #region Designer generated code
-namespace Pickles.Example.Features.Workflow
+namespace Pickles.Example.Features._04Background
 {
     using TechTalk.SpecFlow;
     
@@ -18,21 +18,21 @@ namespace Pickles.Example.Features.Workflow
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.7.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Clearing Screen")]
-    public partial class ClearingScreenFeature
+    [NUnit.Framework.DescriptionAttribute("Show the use of background")]
+    public partial class ShowTheUseOfBackgroundFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "ClearingScreen.feature"
+#line 1 "BackgroundFeature.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Clearing Screen", "In order to restart a new set of calculations\r\nAs a math idiot\r\nI want to be able" +
-                    " to clear the screen", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Show the use of background", "In order to show how to use the Background keyword of Gherkin\r\nAs a SpecFlow evan" +
+                    "glist\r\nI want to show that background steps are called before any scenario step", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -57,6 +57,7 @@ namespace Pickles.Example.Features.Workflow
         public virtual void ScenarioSetup(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioStart(scenarioInfo);
+            this.FeatureBackground();
         }
         
         public virtual void ScenarioCleanup()
@@ -64,25 +65,42 @@ namespace Pickles.Example.Features.Workflow
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Clear the screen")]
-        [NUnit.Framework.CategoryAttribute("workflow")]
-        [NUnit.Framework.CategoryAttribute("slow")]
-        public virtual void ClearTheScreen()
+        public virtual void FeatureBackground()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Clear the screen", new string[] {
-                        "workflow",
-                        "slow"});
+#line 6
 #line 7
- this.ScenarioSetup(scenarioInfo);
+ testRunner.Given("I have initialized the Sum-variable to 0");
 #line 8
-  testRunner.Given("I have entered 50 into the calculator");
-#line 9
-  testRunner.And("I have entered 70 into the calculator");
+ testRunner.When("I add 1 to the Sum-variable");
+#line hidden
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Add 1 to the sum")]
+        public virtual void Add1ToTheSum()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add 1 to the sum", ((string[])(null)));
 #line 10
-  testRunner.When("I press C");
+this.ScenarioSetup(scenarioInfo);
 #line 11
-  testRunner.Then("the screen should be empty");
+ testRunner.When("I add 1 to the Sum-variable");
+#line 12
+ testRunner.Then("the total sum should be 2");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Add 2 to the sum")]
+        public virtual void Add2ToTheSum()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add 2 to the sum", ((string[])(null)));
+#line 14
+this.ScenarioSetup(scenarioInfo);
+#line 15
+ testRunner.When("I add 2 to the Sum-variable");
+#line 16
+ testRunner.Then("the total sum should be 3");
 #line hidden
             this.ScenarioCleanup();
         }

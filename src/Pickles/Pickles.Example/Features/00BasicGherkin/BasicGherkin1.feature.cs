@@ -10,7 +10,7 @@
 //  </auto-generated>
 // ------------------------------------------------------------------------------
 #region Designer generated code
-namespace Pickles.Example.Features.Workflow
+namespace Pickles.Example.Features._00BasicGherkin
 {
     using TechTalk.SpecFlow;
     
@@ -18,21 +18,21 @@ namespace Pickles.Example.Features.Workflow
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.7.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Clearing Screen")]
-    public partial class ClearingScreenFeature
+    [NUnit.Framework.DescriptionAttribute("Showing basic gherkin syntax")]
+    public partial class ShowingBasicGherkinSyntaxFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "ClearingScreen.feature"
+#line 1 "BasicGherkin.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Clearing Screen", "In order to restart a new set of calculations\r\nAs a math idiot\r\nI want to be able" +
-                    " to clear the screen", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Showing basic gherkin syntax", "In order to see that gherkin is a very simple langauge\r\nAs a SpecFlow evangelist\r" +
+                    "\nI want to show that basic syntax", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -65,24 +65,41 @@ namespace Pickles.Example.Features.Workflow
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Clear the screen")]
-        [NUnit.Framework.CategoryAttribute("workflow")]
-        [NUnit.Framework.CategoryAttribute("slow")]
-        public virtual void ClearTheScreen()
+        [NUnit.Framework.DescriptionAttribute("Simple GWT")]
+        public virtual void SimpleGWT()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Clear the screen", new string[] {
-                        "workflow",
-                        "slow"});
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simple GWT", ((string[])(null)));
+#line 6
+this.ScenarioSetup(scenarioInfo);
 #line 7
- this.ScenarioSetup(scenarioInfo);
+ testRunner.Given("the initial state of the application is Running");
 #line 8
-  testRunner.Given("I have entered 50 into the calculator");
+ testRunner.When("I ask what the application state is");
 #line 9
-  testRunner.And("I have entered 70 into the calculator");
-#line 10
-  testRunner.When("I press C");
+ testRunner.Then("I should see Running as the answer");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Using And and But")]
+        public virtual void UsingAndAndBut()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Using And and But", ((string[])(null)));
 #line 11
-  testRunner.Then("the screen should be empty");
+this.ScenarioSetup(scenarioInfo);
+#line 12
+ testRunner.Given("the initial state of the application is Running");
+#line 13
+  testRunner.And("I have authorization to ask application state");
+#line 14
+ testRunner.When("I ask what the application state is");
+#line 15
+ testRunner.Then("I should see Running as the answer");
+#line 16
+  testRunner.And("I should see the time of the application");
+#line 17
+  testRunner.But("the state of the application should not be Stopped");
 #line hidden
             this.ScenarioCleanup();
         }

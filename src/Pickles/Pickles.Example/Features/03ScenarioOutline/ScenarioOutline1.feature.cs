@@ -10,7 +10,7 @@
 //  </auto-generated>
 // ------------------------------------------------------------------------------
 #region Designer generated code
-namespace Pickles.Example.Features.Workflow
+namespace Pickles.Example.Features._03ScenarioOutline
 {
     using TechTalk.SpecFlow;
     
@@ -18,21 +18,21 @@ namespace Pickles.Example.Features.Workflow
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.7.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Clearing Screen")]
-    public partial class ClearingScreenFeature
+    [NUnit.Framework.DescriptionAttribute("Scenario outline")]
+    public partial class ScenarioOutlineFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "ClearingScreen.feature"
+#line 1 "ScenarioOutline.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Clearing Screen", "In order to restart a new set of calculations\r\nAs a math idiot\r\nI want to be able" +
-                    " to clear the screen", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Scenario outline", "In order to not have to type the same scenario over and over\r\nAs a SpecFlow evang" +
+                    "elist\r\nI want to show how to use ScenarioOutline", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -65,24 +65,25 @@ namespace Pickles.Example.Features.Workflow
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Clear the screen")]
-        [NUnit.Framework.CategoryAttribute("workflow")]
-        [NUnit.Framework.CategoryAttribute("slow")]
-        public virtual void ClearTheScreen()
+        [NUnit.Framework.DescriptionAttribute("Add two positive numbers with many examples")]
+        [NUnit.Framework.TestCaseAttribute("10", "20", "30", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("20", "20", "40", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("20", "30", "50", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("100", "20", "120", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("1000", "20", "1020", new string[0])]
+        public virtual void AddTwoPositiveNumbersWithManyExamples(string number1, string number2, string result, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Clear the screen", new string[] {
-                        "workflow",
-                        "slow"});
-#line 7
- this.ScenarioSetup(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two positive numbers with many examples", exampleTags);
 #line 8
-  testRunner.Given("I have entered 50 into the calculator");
+this.ScenarioSetup(scenarioInfo);
 #line 9
-  testRunner.And("I have entered 70 into the calculator");
+ testRunner.Given(string.Format("I ented {0} into the calculator", number1));
 #line 10
-  testRunner.When("I press C");
+ testRunner.And(string.Format("I enter {0} into the calculator", number2));
 #line 11
-  testRunner.Then("the screen should be empty");
+ testRunner.When("I perform add");
+#line 12
+ testRunner.Then(string.Format("the result should be {0}", result));
 #line hidden
             this.ScenarioCleanup();
         }
