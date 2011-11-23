@@ -57,3 +57,7 @@ Documentation-*/
 #nCrunch files
 *.crunchproject.local.xml
 *.crunchsolution.local.xml
+
+#nuget stuff
+*.nupkg
+*.nuspec
