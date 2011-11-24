@@ -12,6 +12,13 @@ namespace Pickles.Test
     {
         private const string EXPECTED_GIVEN_HTML = "Given ";
 
+
+        private static void AssertDeepEqualNodes(XElement expected, XElement actual)
+        {
+            const string format = "Expected:\r\n{0}\r\nActual:\r\n{1}\r\n";
+            Assert.IsTrue(XNode.DeepEquals(expected, actual), string.Format(format, expected, actual));
+        }
+
         [Test]
         public void Steps_get_selected_Language()
         {
@@ -23,6 +30,7 @@ namespace Pickles.Test
                     TableArgument = null, 
                     DocStringArgument = null,
                 };
+
             var configuration = Kernel.Get<Configuration>();
             configuration.Language = "sv";
 
@@ -36,8 +44,9 @@ namespace Pickles.Test
                                new XElement(xmlns + "span", new XAttribute("class", "keyword"), "Givet "),
                                "ett enkelt steg");
 
-            Assert.IsTrue(XNode.DeepEquals(expected, actual), string.Format("Expected:\r\n{0}\r\nActual:\r\n{1}\r\n", expected, actual));
+            AssertDeepEqualNodes(expected, actual);
         }
+
 
         [Test]
         public void Simple_steps_are_formatted_as_list_items()
@@ -61,7 +70,7 @@ namespace Pickles.Test
                                "a simple step"
                            );
 
-            Assert.IsTrue(XElement.DeepEquals(expected, actual));
+            AssertDeepEqualNodes(expected, actual);
         }
 
         [Test]
@@ -76,11 +85,12 @@ namespace Pickles.Test
             var step = new Step
             {
                 Keyword = Keyword.Given,
+                NativeKeyword = "Given ",
                 Name = "a simple step",
                 TableArgument = table,
                 DocStringArgument = null,
             };
-
+           
             var formatter = Kernel.Get<HtmlStepFormatter>();
             var actual = formatter.Format(step);
 
@@ -109,7 +119,7 @@ namespace Pickles.Test
                                )
                            );
 
-            Assert.IsTrue(XElement.DeepEquals(expected, actual));
+            AssertDeepEqualNodes(expected, actual);
         }
 
         [Test]
@@ -118,6 +128,7 @@ namespace Pickles.Test
             var step = new Step
             {
                 Keyword = Keyword.Given,
+                NativeKeyword = "Given ",
                 Name = "a simple step",
                 TableArgument = null,
                 DocStringArgument = "this is a\nmultiline table\nargument",
@@ -142,7 +153,7 @@ namespace Pickles.Test
                                )
                            );
 
-            Assert.IsTrue(XElement.DeepEquals(expected, actual));
+            AssertDeepEqualNodes(expected, actual);
         }
     }
 }
