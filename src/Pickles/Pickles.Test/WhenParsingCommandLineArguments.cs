@@ -10,7 +10,7 @@ namespace Pickles.Test
     [TestFixture]
     public class WhenParsingCommandLineArguments
     {
-        private static readonly string expectedHelpString = @"-f, --feature-directory=VALUE
+        private static readonly string expectedHelpString = @"  -f, --feature-directory=VALUE
                              directory to start scanning recursively for 
                                features
   -o, --output-directory=VALUE
@@ -22,10 +22,12 @@ namespace Pickles.Test
                              the name of the system under test
       --sv, --system-under-test-version=VALUE
                              the version of the system under test
+  -l, --language=VALUE       the language of the feature files
   -v, --version              
   -h, -?, --help";
 
-        private static readonly string expectedVersionString = @"Pickles version [0-9].[0-9].[0-9].[0-9]";
+        private static readonly string expectedVersionString = 
+                string.Format(@"Pickles version {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
 
         [Test]
         public void Then_can_parse_short_form_arguments_successfully()
@@ -130,14 +132,18 @@ namespace Pickles.Test
         [Test]
         public void Then_can_parse_help_request_with_long_form_successfully()
         {
-            var args = new string[] { @"--help" };
+            var args = new[] { @"--help" };
 
             var configuration = new Configuration();
             var writer = new StringWriter();
             var commandLineArgumentParser = new CommandLineArgumentParser();
             bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
 
-            StringAssert.Contains(expectedHelpString, writer.GetStringBuilder().ToString().Trim());
+
+            var expectedVersionAndHelp = expectedVersionString + Environment.NewLine + expectedHelpString;
+
+            var actualHelpString = writer.GetStringBuilder().ToString().Trim();
+            StringAssert.Contains(expectedVersionAndHelp, actualHelpString);
             Assert.AreEqual(false, shouldContinue);
             Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
             Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")), configuration.OutputFolder.FullName);

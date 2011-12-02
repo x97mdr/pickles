@@ -14,19 +14,15 @@ namespace Pickles.Test
 
         protected IKernel Kernel
         {
-            get { return kernel; }
-        }
-
-        [SetUp]
-        public void SetUp()
-        {
-            this.kernel = new StandardKernel(new PicklesModule());
+            get { return kernel ?? (kernel = new StandardKernel(new PicklesModule())); }
         }
 
         [TearDown]
         public void TearDown()
         {
-            this.kernel.Dispose();
+            if(kernel != null)
+                kernel.Dispose();
+            kernel = null;
         }
     }
 }
