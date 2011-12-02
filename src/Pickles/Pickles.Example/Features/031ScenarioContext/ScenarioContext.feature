@@ -22,7 +22,8 @@ Scenario: Show the type of step we're currently on
 	Then I have a Then step
 
 #This is not so easy to write a scenario for but I've created an AfterScenario-hook
-@showingErrorHandling 
+#To see this in action remove the @ignore tag below
+@ignore @showingErrorHandling 
 Scenario: Display error information in AfterScenario
 	When an error occurs in a step
 
