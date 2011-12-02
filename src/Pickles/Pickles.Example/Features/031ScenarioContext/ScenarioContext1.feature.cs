@@ -130,13 +130,15 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Display error information in AfterScenario")]
         [NUnit.Framework.CategoryAttribute("showingErrorHandling")]
+        [NUnit.Framework.IgnoreAttribute()]
         public virtual void DisplayErrorInformationInAfterScenario()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Display error information in AfterScenario", new string[] {
+                        "ignore",
                         "showingErrorHandling"});
-#line 26
-this.ScenarioSetup(scenarioInfo);
 #line 27
+this.ScenarioSetup(scenarioInfo);
+#line 28
  testRunner.When("an error occurs in a step");
 #line hidden
             this.ScenarioCleanup();
@@ -147,11 +149,11 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void PendingStep()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Pending step", ((string[])(null)));
-#line 29
-this.ScenarioSetup(scenarioInfo);
 #line 30
- testRunner.When("I set the ScenarioContext.Current to pending");
+this.ScenarioSetup(scenarioInfo);
 #line 31
+ testRunner.When("I set the ScenarioContext.Current to pending");
+#line 32
  testRunner.Then("this step will not even be executed");
 #line hidden
             this.ScenarioCleanup();
