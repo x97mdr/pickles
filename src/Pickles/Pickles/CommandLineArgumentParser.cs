@@ -83,12 +83,12 @@ namespace Pickles
                 return false;
             }
 
-            if (!string.IsNullOrWhiteSpace(this.featureDirectory)) configuration.FeatureFolder = new System.IO.DirectoryInfo(this.featureDirectory);
-            if (!string.IsNullOrWhiteSpace(this.outputDirectory)) configuration.OutputFolder = new System.IO.DirectoryInfo(this.outputDirectory);
-            if (!string.IsNullOrWhiteSpace(this.resultsFile)) configuration.LinkedTestFrameworkResultsFile = new FileInfo(this.resultsFile);
-            if (!string.IsNullOrWhiteSpace(this.systemUnderTestName)) configuration.SystemUnderTestName = this.systemUnderTestName;
-            if (!string.IsNullOrWhiteSpace(this.systemUnderTestVersion)) configuration.SystemUnderTestVersion = this.systemUnderTestVersion;
-            if (!string.IsNullOrWhiteSpace(this.language)) configuration.Language = this.language;
+            if (!string.IsNullOrEmpty(this.featureDirectory)) configuration.FeatureFolder = new DirectoryInfo(this.featureDirectory);
+            if (!string.IsNullOrEmpty(this.outputDirectory)) configuration.OutputFolder = new DirectoryInfo(this.outputDirectory);
+            if (!string.IsNullOrEmpty(this.resultsFile)) configuration.LinkedTestFrameworkResultsFile = new FileInfo(this.resultsFile);
+            if (!string.IsNullOrEmpty(this.systemUnderTestName)) configuration.SystemUnderTestName = this.systemUnderTestName;
+            if (!string.IsNullOrEmpty(this.systemUnderTestVersion)) configuration.SystemUnderTestVersion = this.systemUnderTestVersion;
+            if (!string.IsNullOrEmpty(this.language)) configuration.Language = this.language;
 
             return true;
         }

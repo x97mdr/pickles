@@ -32,7 +32,7 @@ namespace Pickles
 
         public LanguageServices(Configuration configuration)
         {
-            if (!string.IsNullOrWhiteSpace(configuration.Language))
+            if (!string.IsNullOrEmpty(configuration.Language))
                 currentCulture = CultureInfo.GetCultureInfo(configuration.Language);
         }
 
