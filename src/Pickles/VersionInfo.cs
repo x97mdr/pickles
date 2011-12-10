@@ -18,7 +18,7 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyCompany("Pickles")]
 [assembly: AssemblyProduct("Pickles")]
-[assembly: AssemblyCopyright("Copyright © Jeffrey Cameron 2010-2011")]
+[assembly: AssemblyCopyright("Copyright © Jeffrey Cameron 2010-2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
