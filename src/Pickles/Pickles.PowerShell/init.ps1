@@ -1,7 +1,6 @@
 param($installPath, $toolsPath, $package)
 
-Import-Module (Join-Path $installPath + "lib\net35" Pickles.PowerShell.dll)
-
+Import-Module (Join-Path $toolsPath Pickles.PowerShell.dll)
 
 Write-Host "#############################"
 Write-Host "Pickles installed."

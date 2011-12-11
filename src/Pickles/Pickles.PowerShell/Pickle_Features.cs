@@ -30,10 +30,10 @@ namespace Pickles.PowerShell
     public class Pickle_Features : PSCmdlet
     {
 
-        [Parameter(HelpMessage = CommandLineArgumentParser.HELP_FEATURE_DIR, Mandatory = true, Position = 0)]
+        [Parameter(HelpMessage = CommandLineArgumentParser.HELP_FEATURE_DIR, Mandatory = true)]
         public string FeatureDirectory { get; set; }
 
-        [Parameter(HelpMessage = CommandLineArgumentParser.HELP_OUTPUT_DIR, Mandatory = true, Position = 1)]
+        [Parameter(HelpMessage = CommandLineArgumentParser.HELP_OUTPUT_DIR, Mandatory = true)]
         public string OutputDirectory { get; set; }
 
         [Parameter(HelpMessage = CommandLineArgumentParser.HELP_LANGUAGE_FEATURE_FILES, Mandatory = false)]
