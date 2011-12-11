@@ -13,7 +13,7 @@ namespace Pickles
 
         public HtmlResourceSet(Configuration configuration)
         {
-            this.configuration = configuration; 
+            this.configuration = configuration;
         }
 
         private string GetNameFromResourceName(string resourceName)
@@ -51,15 +51,18 @@ namespace Pickles
         {
             get
             {
-                return new Uri(Path.Combine(configuration.OutputFolder.FullName, "images", "success.png"));
+                return new Uri(Path.Combine(ImagesFolder, "success.png"));
             }
         }
+
+        public string ImagesFolder { get { return Path.Combine(configuration.OutputFolder.FullName, "images"); } }
+        public string ScriptsFolder { get { return Path.Combine(configuration.OutputFolder.FullName, "scripts"); } }
 
         public Uri FailureImage
         {
             get
             {
-                return new Uri(Path.Combine(configuration.OutputFolder.FullName, "images", "failure.png"));
+                return new Uri(Path.Combine(ImagesFolder, "failure.png"));
             }
         }
 
@@ -101,7 +104,7 @@ namespace Pickles
                     yield return new HtmlResource
                     {
                         File = fileName,
-                        Uri = new Uri(Path.Combine(configuration.OutputFolder.FullName, "images", fileName))
+                        Uri = new Uri(Path.Combine(ImagesFolder, fileName))
                     };
                 }
             }
@@ -119,7 +122,7 @@ namespace Pickles
                     yield return new HtmlResource
                     {
                         File = fileName,
-                        Uri = new Uri(Path.Combine(configuration.OutputFolder.FullName, "scripts", fileName))
+                        Uri = new Uri(Path.Combine(ScriptsFolder, fileName))
                     };
                 }
             }

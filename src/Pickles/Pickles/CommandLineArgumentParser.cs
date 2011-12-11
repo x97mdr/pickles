@@ -29,6 +29,13 @@ namespace Pickles
 {
     public class CommandLineArgumentParser
     {
+        public const string HELP_FEATURE_DIR = "directory to start scanning recursively for features";
+        public const string HELP_OUTPUT_DIR = "directory where output files will be placed";
+        public const string HELP_RESULT_FILE = "a file containing the results of testing the features";
+        public const string HELP_SUT_NAME = "the name of the system under test";
+        public const string HELP_SUT_VERSION = "the version of the system under test";
+        public const string HELP_LANGUAGE_FEATURE_FILES = "the language of the feature files";
+
         private readonly OptionSet options;
         private string featureDirectory;
         private string outputDirectory;
@@ -43,12 +50,12 @@ namespace Pickles
         {
             this.options = new OptionSet
             {
-   	            { "f|feature-directory=", "directory to start scanning recursively for features", v => this.featureDirectory = v },
-   	            { "o|output-directory=", "directory where output files will be placed", v => this.outputDirectory = v },
-   	            { "lr|link-results-file=", "a file containing the results of testing the features", v => this.resultsFile = v },
-   	            { "sn|system-under-test-name=", "the name of the system under test", v => this.systemUnderTestName = v },
-   	            { "sv|system-under-test-version=", "the version of the system under test", v => this.systemUnderTestVersion = v },
-                { "l|language=", "the language of the feature files", v => this.language = v },
+   	            { "f|feature-directory=", HELP_FEATURE_DIR, v => this.featureDirectory = v },
+   	            { "o|output-directory=", HELP_OUTPUT_DIR, v => this.outputDirectory = v },
+   	            { "lr|link-results-file=", HELP_LANGUAGE_FEATURE_FILES, v => this.resultsFile = v },
+   	            { "sn|system-under-test-name=", HELP_RESULT_FILE, v => this.systemUnderTestName = v },
+   	            { "sv|system-under-test-version=", HELP_SUT_NAME, v => this.systemUnderTestVersion = v },
+                { "l|language=", HELP_LANGUAGE_FEATURE_FILES, v => this.language = v },
    	            { "v|version",  v => versionRequested = v != null },
    	            { "h|?|help",   v => helpRequested = v != null }
             };
@@ -83,12 +90,12 @@ namespace Pickles
                 return false;
             }
 
-            if (!string.IsNullOrWhiteSpace(this.featureDirectory)) configuration.FeatureFolder = new System.IO.DirectoryInfo(this.featureDirectory);
-            if (!string.IsNullOrWhiteSpace(this.outputDirectory)) configuration.OutputFolder = new System.IO.DirectoryInfo(this.outputDirectory);
-            if (!string.IsNullOrWhiteSpace(this.resultsFile)) configuration.LinkedTestFrameworkResultsFile = new FileInfo(this.resultsFile);
-            if (!string.IsNullOrWhiteSpace(this.systemUnderTestName)) configuration.SystemUnderTestName = this.systemUnderTestName;
-            if (!string.IsNullOrWhiteSpace(this.systemUnderTestVersion)) configuration.SystemUnderTestVersion = this.systemUnderTestVersion;
-            if (!string.IsNullOrWhiteSpace(this.language)) configuration.Language = this.language;
+            if (!string.IsNullOrEmpty(this.featureDirectory)) configuration.FeatureFolder = new DirectoryInfo(this.featureDirectory);
+            if (!string.IsNullOrEmpty(this.outputDirectory)) configuration.OutputFolder = new DirectoryInfo(this.outputDirectory);
+            if (!string.IsNullOrEmpty(this.resultsFile)) configuration.LinkedTestFrameworkResultsFile = new FileInfo(this.resultsFile);
+            if (!string.IsNullOrEmpty(this.systemUnderTestName)) configuration.SystemUnderTestName = this.systemUnderTestName;
+            if (!string.IsNullOrEmpty(this.systemUnderTestVersion)) configuration.SystemUnderTestVersion = this.systemUnderTestVersion;
+            if (!string.IsNullOrEmpty(this.language)) configuration.Language = this.language;
 
             return true;
         }

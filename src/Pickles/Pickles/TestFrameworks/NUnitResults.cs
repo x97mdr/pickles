@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Xml;
 using System.Xml.Linq;
-using System.IO;
-using System.Text.RegularExpressions;
 using Pickles.Parser;
 
 namespace Pickles.TestFrameworks
@@ -18,21 +16,27 @@ namespace Pickles.TestFrameworks
     public class NUnitResults
     {
         private readonly Configuration configuration;
-        private readonly Lazy<XDocument> resultsDocument;
+        private readonly XDocument resultsDocument;
 
         public NUnitResults(Configuration configuration)
         {
             this.configuration = configuration;
-            this.resultsDocument = new Lazy<XDocument>(() => 
-                {
-                    XDocument document;
-                    using (var stream = this.configuration.LinkedTestFrameworkResultsFile.OpenRead())
-                    {
-                        document = XDocument.Load(stream);
-                        stream.Close();
-                    }
-                    return document;
-                }, true);
+            if (configuration.HasTestFrameworkResults)
+            {
+                resultsDocument = ReadResultsFile();
+            }
+        }
+
+        private XDocument ReadResultsFile()
+        {
+            XDocument document;
+            using (var stream = configuration.LinkedTestFrameworkResultsFile.OpenRead())
+            {
+                var xmlReader = XmlReader.Create(stream);
+                document = XDocument.Load(xmlReader);
+                stream.Close();
+            }
+            return document;
         }
 
         private string[] ExtractRowValuesFromName(string exampleName)
@@ -55,7 +59,7 @@ namespace Pickles.TestFrameworks
 
         private XElement GetFeatureElement(Feature feature)
         {
-            return this.resultsDocument.Value
+            return resultsDocument
                        .Descendants("test-suite")
                        .Where(x => x.Attribute("description") != null)
                        .FirstOrDefault(x => x.Attribute("description").Value == feature.Name);
@@ -64,8 +68,8 @@ namespace Pickles.TestFrameworks
         private TestResult GetResultFromElement(XElement element)
         {
             if (element == null) return new TestResult { WasExecuted = false, IsSuccessful = false };
-            bool wasExecuted = element.Attribute("executed") != null ? element.Attribute("executed").Value.ToLowerInvariant() == "true" : false;
-            bool wasSuccessful = element.Attribute("success") != null ? element.Attribute("success").Value.ToLowerInvariant() == "true" : false;
+            var wasExecuted = element.Attribute("executed") != null ? element.Attribute("executed").Value.ToLowerInvariant() == "true" : false;
+            var wasSuccessful = element.Attribute("success") != null ? element.Attribute("success").Value.ToLowerInvariant() == "true" : false;
             return new TestResult { WasExecuted = wasExecuted, IsSuccessful = wasSuccessful };
         }
 

@@ -39,15 +39,15 @@ namespace Pickles.DocumentationBuilders.HTML
 
         private XElement BuildVersionString()
         {
-            if (!string.IsNullOrWhiteSpace(this.configuration.SystemUnderTestName) && !string.IsNullOrWhiteSpace(this.configuration.SystemUnderTestVersion))
+            if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestName) && !string.IsNullOrEmpty(this.configuration.SystemUnderTestVersion))
             {
                 return new XElement(this.xmlns + "p", string.Format("Test results generated for: {0}, version {1}", this.configuration.SystemUnderTestName, this.configuration.SystemUnderTestVersion));
             }
-            else if (!string.IsNullOrWhiteSpace(this.configuration.SystemUnderTestName))
+            else if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestName))
             {
                 return new XElement(this.xmlns + "p", string.Format("Test results generated for: {0}", this.configuration.SystemUnderTestName));
             }
-            else if (!string.IsNullOrWhiteSpace(this.configuration.SystemUnderTestVersion))
+            else if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestVersion))
             {
                 return new XElement(this.xmlns + "p", string.Format("Test results generated for: version {1}", this.configuration.SystemUnderTestVersion));
             }

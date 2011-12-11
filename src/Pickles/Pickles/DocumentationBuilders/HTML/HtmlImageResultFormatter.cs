@@ -47,15 +47,15 @@ namespace Pickles.DocumentationBuilders.HTML
         {
             var sb = new StringBuilder();
             sb.AppendFormat("{0}", wasSuccessful ? "Successful" : "Failed");
-            if (!string.IsNullOrWhiteSpace(this.configuration.SystemUnderTestName) && !string.IsNullOrWhiteSpace(this.configuration.SystemUnderTestVersion))
+            if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestName) && !string.IsNullOrEmpty(this.configuration.SystemUnderTestVersion))
             {
                 sb.AppendFormat(" with {0} version {1}", this.configuration.SystemUnderTestName, this.configuration.SystemUnderTestVersion);
             }
-            else if (!string.IsNullOrWhiteSpace(this.configuration.SystemUnderTestName))
+            else if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestName))
             {
                 sb.AppendFormat(" with {0}", this.configuration.SystemUnderTestName);
             }
-            else if (!string.IsNullOrWhiteSpace(this.configuration.SystemUnderTestVersion))
+            else if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestVersion))
             {
                 sb.AppendFormat(" with version {0}", this.configuration.SystemUnderTestVersion);
             }

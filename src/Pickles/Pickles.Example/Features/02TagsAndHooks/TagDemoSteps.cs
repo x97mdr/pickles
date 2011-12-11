@@ -55,7 +55,7 @@ namespace Specs.TagsAndHooks
         {
             if (numberOfExpectedTags <= 0)
             {
-                ScenarioContext.Current.ScenarioInfo.Tags.Should().Be.Null();
+                ScenarioContext.Current.ScenarioInfo.Tags.Count().Should().Equal(0);
             }
             else
             {
