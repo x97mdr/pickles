@@ -1,5 +1,7 @@
 cd src\Pickles
-cd Pickles.CommandLine
+cd Pickles
+call NugetPack.cmd %1
+cd ..\Pickles.CommandLine
 call NugetPack.cmd
 cd ..\Pickles.MsBuild
 call NugetPack.cmd
