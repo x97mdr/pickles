@@ -31,11 +31,14 @@
   <property name="version" value="${version.major}.${version.minor}.${build.number}.0" />
   <property name="msbuild.dir" value="C:\Windows\Microsoft.NET\Framework\v4.0.30319" />
   <property name="ilmerge.dir" value="${environment::get-variable('ProgramFiles')}\Microsoft\ILMerge" />
+  <property name="nuget.dir" value="src\Pickles\.nuget" />
   <property name="framework.dir" value="${msbuild.dir}" />
   <property name="assemblies.dir" value="C:\dev\pickles\src\Pickles\Pickles.CommandLine\bin\Release" />
   <property name="assemblies.console.dir" value="src\Pickles\Pickles.CommandLine\bin\Release" />
   <property name="assemblies.msbuild.dir" value="src\Pickles\Pickles.MSBuild\bin\Release" />
   <property name="assemblies.nant.dir" value="src\Pickles\Pickles.NAnt\bin\Release" />
+  <property name="assemblies.powershell.dir" value="src\Pickles\Pickles.Powershell\bin\Release" />
+  <property name="nuspec.powershell.dir" value="src\Pickles\Pickles.PowerShell\Pickles.nuspec" />
   <property name="merged.dir" value="merged" />
   <property name="deploy.dir" value="deploy" />
   <property name="report.dir" value="reports" />
@@ -70,48 +73,70 @@
     </exec>
   </target>
   
-  <target name="merge" depends="test">
+  <target name="merge" depends="build">
+    <delete>
+      <fileset>
+        <include name="${merged.dir}\merge.*.log" />
+      </fileset>
+    </delete>
+    
     <exec program="ilmerge.exe" basedir="${ilmerge.dir}">
-      <arg value="/targetplatform=v4,${framework.dir}"/>
       <arg value="/out=${merged.dir}\Pickles.exe"/>
       <arg value="/target=exe"/>
-      <arg value="/closed"/>
       <arg value="/ndebug"/>
-      <arg value="/xmldocs"/>
       <arg value="/wildcards"/>
       <arg value="/allowDup"/>
-      <arg value="/log:${merged.dir}\merge.console.log" />
+      <arg value="/log:${merged.dir}\merge.exe.log" />
+      <arg value="${assemblies.console.dir}\Pickles.CommandLine.exe"/>
       <arg value="${assemblies.console.dir}\*.dll"/>
     </exec>
     
     <exec program="ilmerge.exe" basedir="${ilmerge.dir}">
-      <arg value="/targetplatform=v4,${framework.dir}"/>
       <arg value="/out=${merged.dir}\Pickles.MSBuild.Tasks.dll"/>
       <arg value="/target=dll"/>
-      <arg value="/closed"/>
       <arg value="/ndebug"/>
-      <arg value="/xmldocs"/>
       <arg value="/wildcards"/>
       <arg value="/allowDup"/>
       <arg value="/log:${merged.dir}\merge.msbuild.log" />
+      <arg value="${assemblies.msbuild.dir}\Pickles.MSBuild.Tasks.dll"/>
       <arg value="${assemblies.msbuild.dir}\*.dll"/>
     </exec>
 
     <exec program="ilmerge.exe" basedir="${ilmerge.dir}">
-      <arg value="/targetplatform=v4,${framework.dir}"/>
       <arg value="/out=${merged.dir}\Pickles.NAnt.Tasks.dll"/>
       <arg value="/target=dll"/>
-      <arg value="/closed"/>
       <arg value="/ndebug"/>
-      <arg value="/xmldocs"/>
       <arg value="/wildcards"/>
       <arg value="/allowDup"/>
       <arg value="/log:${merged.dir}\merge.nant.log" />
+      <arg value="${assemblies.nant.dir}\Pickles.NAnt.Tasks.dll"/>
       <arg value="${assemblies.nant.dir}\*.dll"/>
+    </exec>
+    
+    <exec program="ilmerge.exe" basedir="${ilmerge.dir}">
+      <arg value="/out=${merged.dir}\Pickles.PowerShell.dll"/>
+      <arg value="/target=dll"/>
+      <arg value="/ndebug"/>
+      <arg value="/wildcards"/>
+      <arg value="/allowDup"/>
+      <arg value="/log:${merged.dir}\merge.powershell.log" />
+      <arg value="${assemblies.powershell.dir}\Pickles.Powershell.dll"/>
+      <arg value="${assemblies.powershell.dir}\*.dll"/>
     </exec>
   </target>
   
-  <target name="zip" depends="test">
+  <target name="pack" depends="build">
+    <exec program="nuget.exe" basedir="${nuget.dir}">
+      <arg value="Pack"/>
+      <arg value="-Version"/>
+      <arg value="${version}" />
+      <arg value="-OutputDirectory"/>
+      <arg value="${deploy.dir}"/>
+      <arg value="${nuspec.powershell.dir}"/>
+    </exec>
+  </target>
+  
+  <target name="zip" depends="merge">
     <zip zipfile="${deploy.dir}\pickles-${version}.zip">
         <fileset basedir="${assemblies.console.dir}" prefix="pickles-${version}\exe">
             <include name="**/*" />
@@ -121,8 +146,10 @@
         </fileset>
         <fileset basedir="${assemblies.nant.dir}" prefix="pickles-${version}\nant">
             <include name="**/*" />
+        </fileset>        
+        <fileset basedir="${assemblies.powershell.dir}" prefix="pickles-${version}\powershell">
+            <include name="**/*" />
         </fileset>
     </zip>
   </target>
-
 </project>
