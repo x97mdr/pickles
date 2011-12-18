@@ -18,12 +18,12 @@
 
 #endregion
 
+using System;
+using System.IO;
+using Pickles.Parser;
+
 namespace Pickles
 {
-    using System.IO;
-
-    using Pickles.Parser;
-
     public class FeatureParser
     {
         private readonly LanguageServices languageService;
@@ -38,7 +38,15 @@ namespace Pickles
             Feature feature = null;
             using (var reader = new StreamReader(filename))
             {
-                feature = Parse(reader);
+                try
+                {
+                    feature = Parse(reader);
+                }
+                catch (Exception e)
+                {
+                    throw new FeatureParseException("There was an error parsing the feature file here: " + Path.GetFullPath(filename), e);
+                }
+
                 reader.Close();
             }
 
@@ -51,7 +59,6 @@ namespace Pickles
 
             var parser = new PicklesParser(this.languageService.GetLanguage());
             var lexer = this.languageService.GetNativeLexer(parser);
-            
             lexer.scan(fileContent);
 
             return parser.GetFeature();
