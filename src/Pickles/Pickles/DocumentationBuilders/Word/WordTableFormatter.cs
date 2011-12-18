@@ -29,10 +29,23 @@ namespace Pickles.DocumentationBuilders.Word
 {
     public class WordTableFormatter
     {
+        private static TableProperties GenerateTableProperties()
+        {
+            TableProperties tableProperties1 = new TableProperties();
+            TableStyle tableStyle1 = new TableStyle() { Val = "TableGrid" };
+            TableWidth tableWidth1 = new TableWidth() { Width = "0", Type = TableWidthUnitValues.Auto };
+            TableLook tableLook1 = new TableLook() { Val = "04A0" };
+
+            tableProperties1.Append(tableStyle1);
+            tableProperties1.Append(tableWidth1);
+            tableProperties1.Append(tableLook1);
+            return tableProperties1;
+        }
+        
         public void Format(Body body, Pickles.Parser.Table table)
         {
             WordTable wordTable = new WordTable();
-
+            wordTable.Append(GenerateTableProperties());
             var headerRow = new DocumentFormat.OpenXml.Wordprocessing.TableRow();
             foreach (var cell in table.HeaderRow)
             {

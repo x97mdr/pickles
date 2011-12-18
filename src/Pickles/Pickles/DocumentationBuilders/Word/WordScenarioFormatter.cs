@@ -39,8 +39,8 @@ namespace Pickles.DocumentationBuilders.Word
 
         public void Format(Body body, Scenario scenario)
         {
-            body.GenerateParagraph(scenario.Name, "Heading3");
-            body.GenerateParagraph(scenario.Description, "Normal");
+            body.GenerateParagraph(scenario.Name, "Heading2");
+            if (!string.IsNullOrEmpty(scenario.Description)) body.GenerateParagraph(scenario.Description, "Normal");
 
             foreach (var step in scenario.Steps)
             {

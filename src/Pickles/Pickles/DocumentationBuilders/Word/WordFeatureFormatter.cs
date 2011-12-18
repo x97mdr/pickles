@@ -46,7 +46,9 @@ namespace Pickles.DocumentationBuilders.Word
         {
             var feature = featureDirectoryTreeNode.Feature;
 
-            body.GenerateParagraph(feature.Name, "Heading2");
+            body.InsertPageBreak();
+
+            body.GenerateParagraph(feature.Name, "Heading1");
             body.GenerateParagraph(feature.Description, "Normal");
 
             foreach (var featureElement in feature.FeatureElements)

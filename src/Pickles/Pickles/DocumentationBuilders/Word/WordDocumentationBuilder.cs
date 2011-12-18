@@ -68,12 +68,6 @@ namespace Pickles.DocumentationBuilders.Word
                     {
                         this.wordFeatureFormatter.Format(body, featureDirectoryTreeNode);
                     }
-
-                    var folderDirectoryTreeNode = node as FolderDirectoryTreeNode;
-                    if (folderDirectoryTreeNode != null)
-                    {
-                        body.GenerateParagraph(folderDirectoryTreeNode.Name.ExpandWikiWord(), "Heading1");
-                    }
                 });
 
                 features.AcceptVisitor(actionVisitor);

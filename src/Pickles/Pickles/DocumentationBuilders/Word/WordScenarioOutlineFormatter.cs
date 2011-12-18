@@ -41,15 +41,15 @@ namespace Pickles.DocumentationBuilders.Word
 
         public void Format(Body body, ScenarioOutline scenarioOutline)
         {
-            body.GenerateParagraph(scenarioOutline.Name, "Heading3");
-            body.GenerateParagraph(scenarioOutline.Description, "Normal");
+            body.GenerateParagraph(scenarioOutline.Name, "Heading2");
+            if (!string.IsNullOrEmpty(scenarioOutline.Description)) body.GenerateParagraph(scenarioOutline.Description, "Normal");
 
             foreach (var step in scenarioOutline.Steps)
             {
                 this.wordStepFormatter.Format(body, step);
             }
 
-            body.GenerateParagraph("Examples:", "Heading");
+            body.GenerateParagraph("Examples:", "Heading3");
             this.wordTableFormatter.Format(body, scenarioOutline.Example.TableArgument);
         }
     }

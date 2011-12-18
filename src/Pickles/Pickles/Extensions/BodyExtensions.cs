@@ -28,5 +28,10 @@ namespace Pickles.Extensions
 
             body.Append(paragraph);
         }
+
+        public static void InsertPageBreak(this Body body)
+        {
+            body.Append(new Paragraph(new Run(new Break { Type = BreakValues.Page })));
+        }
     }
 }
