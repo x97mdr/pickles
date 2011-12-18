@@ -37,6 +37,11 @@ namespace Pickles.Extensions
                 {
                     sb.Append(' ');
                 }
+                else if (Char.IsNumber(previous) && Char.IsUpper(current))
+                {
+                    sb.Append(' ');
+                }
+
                 sb.Append(current);
                 previous = current;
             }

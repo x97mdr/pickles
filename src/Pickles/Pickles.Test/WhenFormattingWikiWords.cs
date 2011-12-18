@@ -33,6 +33,13 @@ namespace Pickles.Test
         }
 
         [Test]
+        public void Then_can_format_text_with_number_followed_by_capital_as_wiki_word_successfully()
+        {
+            string actual = "001FeatureOne".ExpandWikiWord();
+            Assert.AreEqual("001 Feature One", actual);
+        }
+
+        [Test]
         public void Then_can_format_text_with_special_characters_as_wiki_word_successfully()
         {
             string actual = "ThisIsThe_WikiWord".ExpandWikiWord();
