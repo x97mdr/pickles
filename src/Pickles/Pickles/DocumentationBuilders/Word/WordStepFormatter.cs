@@ -31,9 +31,17 @@ namespace Pickles.DocumentationBuilders.Word
 {
     public class WordStepFormatter
     {
+        private readonly WordTableFormatter wordTableFormatter;
+
+        public WordStepFormatter(WordTableFormatter wordTableFormatter)
+        {
+            this.wordTableFormatter = wordTableFormatter;
+        }
+
         public void Format(Body body, Step step)
         {
             body.GenerateParagraph(step.NativeKeyword + step.Name, "Normal");
+
             if (!string.IsNullOrEmpty(step.DocStringArgument))
             {
                 var lines = step.DocStringArgument.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
@@ -41,6 +49,11 @@ namespace Pickles.DocumentationBuilders.Word
                 {
                     body.GenerateParagraph(line, "Quote");
                 }
+            }
+
+            if (step.TableArgument != null)
+            {
+                this.wordTableFormatter.Format(body, step.TableArgument);
             }
         }
     }

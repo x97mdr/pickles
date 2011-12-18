@@ -31,10 +31,12 @@ namespace Pickles.DocumentationBuilders.Word
     public class WordScenarioOutlineFormatter
     {
         private readonly WordStepFormatter wordStepFormatter;
+        private readonly WordTableFormatter wordTableFormatter;
 
-        public WordScenarioOutlineFormatter(WordStepFormatter wordStepFormatter)
+        public WordScenarioOutlineFormatter(WordStepFormatter wordStepFormatter, WordTableFormatter wordTableFormatter)
         {
             this.wordStepFormatter = wordStepFormatter;
+            this.wordTableFormatter = wordTableFormatter;
         }
 
         public void Format(Body body, ScenarioOutline scenarioOutline)
@@ -47,7 +49,8 @@ namespace Pickles.DocumentationBuilders.Word
                 this.wordStepFormatter.Format(body, step);
             }
 
-            // TODO - Add the examples table
+            body.GenerateParagraph("Examples:", "Heading");
+            this.wordTableFormatter.Format(body, scenarioOutline.Example.TableArgument);
         }
     }
 }

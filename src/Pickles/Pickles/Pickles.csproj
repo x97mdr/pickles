@@ -178,6 +178,7 @@
     <Compile Include="DocumentationBuilders\Word\WordScenarioOutlineFormatter.cs" />
     <Compile Include="DocumentationBuilders\Word\WordStepFormatter.cs" />
     <Compile Include="DocumentationBuilders\Word\WordStyleApplicator.cs" />
+    <Compile Include="DocumentationBuilders\Word\WordTableFormatter.cs" />
     <Compile Include="DocumentationFormat.cs" />
     <Compile Include="Extensions\BodyExtensions.cs" />
     <Compile Include="Extensions\PathExtensions.cs" />
