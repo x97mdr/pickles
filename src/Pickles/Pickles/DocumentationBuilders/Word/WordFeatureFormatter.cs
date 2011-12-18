@@ -32,11 +32,13 @@ namespace Pickles.DocumentationBuilders.Word
     public class WordFeatureFormatter
     {
         private readonly WordScenarioFormatter wordScenarioFormatter;
+        private readonly WordScenarioOutlineFormatter wordScenarioOutlineFormatter;
         private readonly WordStyleApplicator wordStyleApplicator;
 
-        public WordFeatureFormatter(WordScenarioFormatter wordScenarioFormatter, WordStyleApplicator wordStyleApplicator)
+        public WordFeatureFormatter(WordScenarioFormatter wordScenarioFormatter, WordScenarioOutlineFormatter wordScenarioOutlineFormatter, WordStyleApplicator wordStyleApplicator)
         {
             this.wordScenarioFormatter = wordScenarioFormatter;
+            this.wordScenarioOutlineFormatter = wordScenarioOutlineFormatter;
             this.wordStyleApplicator = wordStyleApplicator;
         }
 
@@ -53,6 +55,12 @@ namespace Pickles.DocumentationBuilders.Word
                 if (scenario != null)
                 {
                     this.wordScenarioFormatter.Format(body, scenario);
+                }
+
+                var scenarioOutline = featureElement as ScenarioOutline;
+                if (scenarioOutline != null)
+                {
+                    this.wordScenarioOutlineFormatter.Format(body, scenarioOutline);
                 }
             }
         }

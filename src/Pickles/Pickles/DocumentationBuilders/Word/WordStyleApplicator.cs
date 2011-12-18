@@ -24,9 +24,14 @@ using System.Linq;
 using System.Text;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+using DocumentFormat.OpenXml;
 
 namespace Pickles.DocumentationBuilders.Word
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>Most of the code in this class was generated using the Open XML Productivity Tool</remarks>
     public class WordStyleApplicator
     {
         // Apply a style to a paragraph.
@@ -159,9 +164,9 @@ namespace Pickles.DocumentationBuilders.Word
         // Generates content of part.
         private void GeneratePartContent(StyleDefinitionsPart part)
         {
-            Styles styles = new Styles();
-            styles.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
-            styles.AddNamespaceDeclaration("w", "http://schemas.openxmlformats.org/wordprocessingml/2006/main");
+            Styles styles1 = new Styles();
+            styles1.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
+            styles1.AddNamespaceDeclaration("w", "http://schemas.openxmlformats.org/wordprocessingml/2006/main");
 
             DocDefaults docDefaults1 = new DocDefaults();
 
@@ -472,12 +477,17 @@ namespace Pickles.DocumentationBuilders.Word
             Style style1 = new Style() { Type = StyleValues.Paragraph, StyleId = "Normal", Default = true };
             StyleName styleName1 = new StyleName() { Val = "Normal" };
             PrimaryStyle primaryStyle1 = new PrimaryStyle();
-            Rsid rsid1 = new Rsid() { Val = "00CC1B7A" };
+            Rsid rsid1 = new Rsid() { Val = "00BA40EF" };
 
-            style1.Append(new StyleParagraphProperties(new SpacingBetweenLines { Before = "0", After = "0" }));
+            StyleParagraphProperties styleParagraphProperties1 = new StyleParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines2 = new SpacingBetweenLines() { After = "0" };
+
+            styleParagraphProperties1.Append(spacingBetweenLines2);
+
             style1.Append(styleName1);
             style1.Append(primaryStyle1);
             style1.Append(rsid1);
+            style1.Append(styleParagraphProperties1);
 
             Style style2 = new Style() { Type = StyleValues.Paragraph, StyleId = "Heading1" };
             StyleName styleName2 = new StyleName() { Val = "heading 1" };
@@ -488,16 +498,16 @@ namespace Pickles.DocumentationBuilders.Word
             PrimaryStyle primaryStyle2 = new PrimaryStyle();
             Rsid rsid2 = new Rsid() { Val = "0016335E" };
 
-            StyleParagraphProperties styleParagraphProperties1 = new StyleParagraphProperties();
+            StyleParagraphProperties styleParagraphProperties2 = new StyleParagraphProperties();
             KeepNext keepNext1 = new KeepNext();
             KeepLines keepLines1 = new KeepLines();
-            SpacingBetweenLines spacingBetweenLines2 = new SpacingBetweenLines() { Before = "480", After = "0" };
+            SpacingBetweenLines spacingBetweenLines3 = new SpacingBetweenLines() { Before = "480" };
             OutlineLevel outlineLevel1 = new OutlineLevel() { Val = 0 };
 
-            styleParagraphProperties1.Append(keepNext1);
-            styleParagraphProperties1.Append(keepLines1);
-            styleParagraphProperties1.Append(spacingBetweenLines2);
-            styleParagraphProperties1.Append(outlineLevel1);
+            styleParagraphProperties2.Append(keepNext1);
+            styleParagraphProperties2.Append(keepLines1);
+            styleParagraphProperties2.Append(spacingBetweenLines3);
+            styleParagraphProperties2.Append(outlineLevel1);
 
             StyleRunProperties styleRunProperties1 = new StyleRunProperties();
             RunFonts runFonts2 = new RunFonts() { AsciiTheme = ThemeFontValues.MajorHighAnsi, HighAnsiTheme = ThemeFontValues.MajorHighAnsi, EastAsiaTheme = ThemeFontValues.MajorEastAsia, ComplexScriptTheme = ThemeFontValues.MajorBidi };
@@ -521,7 +531,7 @@ namespace Pickles.DocumentationBuilders.Word
             style2.Append(uIPriority1);
             style2.Append(primaryStyle2);
             style2.Append(rsid2);
-            style2.Append(styleParagraphProperties1);
+            style2.Append(styleParagraphProperties2);
             style2.Append(styleRunProperties1);
 
             Style style3 = new Style() { Type = StyleValues.Paragraph, StyleId = "Heading2" };
@@ -534,16 +544,16 @@ namespace Pickles.DocumentationBuilders.Word
             PrimaryStyle primaryStyle3 = new PrimaryStyle();
             Rsid rsid3 = new Rsid() { Val = "0016335E" };
 
-            StyleParagraphProperties styleParagraphProperties2 = new StyleParagraphProperties();
+            StyleParagraphProperties styleParagraphProperties3 = new StyleParagraphProperties();
             KeepNext keepNext2 = new KeepNext();
             KeepLines keepLines2 = new KeepLines();
-            SpacingBetweenLines spacingBetweenLines3 = new SpacingBetweenLines() { Before = "200", After = "0" };
+            SpacingBetweenLines spacingBetweenLines4 = new SpacingBetweenLines() { Before = "200" };
             OutlineLevel outlineLevel2 = new OutlineLevel() { Val = 1 };
 
-            styleParagraphProperties2.Append(keepNext2);
-            styleParagraphProperties2.Append(keepLines2);
-            styleParagraphProperties2.Append(spacingBetweenLines3);
-            styleParagraphProperties2.Append(outlineLevel2);
+            styleParagraphProperties3.Append(keepNext2);
+            styleParagraphProperties3.Append(keepLines2);
+            styleParagraphProperties3.Append(spacingBetweenLines4);
+            styleParagraphProperties3.Append(outlineLevel2);
 
             StyleRunProperties styleRunProperties2 = new StyleRunProperties();
             RunFonts runFonts3 = new RunFonts() { AsciiTheme = ThemeFontValues.MajorHighAnsi, HighAnsiTheme = ThemeFontValues.MajorHighAnsi, EastAsiaTheme = ThemeFontValues.MajorEastAsia, ComplexScriptTheme = ThemeFontValues.MajorBidi };
@@ -568,7 +578,7 @@ namespace Pickles.DocumentationBuilders.Word
             style3.Append(unhideWhenUsed1);
             style3.Append(primaryStyle3);
             style3.Append(rsid3);
-            style3.Append(styleParagraphProperties2);
+            style3.Append(styleParagraphProperties3);
             style3.Append(styleRunProperties2);
 
             Style style4 = new Style() { Type = StyleValues.Paragraph, StyleId = "Heading3" };
@@ -581,16 +591,16 @@ namespace Pickles.DocumentationBuilders.Word
             PrimaryStyle primaryStyle4 = new PrimaryStyle();
             Rsid rsid4 = new Rsid() { Val = "0016335E" };
 
-            StyleParagraphProperties styleParagraphProperties3 = new StyleParagraphProperties();
+            StyleParagraphProperties styleParagraphProperties4 = new StyleParagraphProperties();
             KeepNext keepNext3 = new KeepNext();
             KeepLines keepLines3 = new KeepLines();
-            SpacingBetweenLines spacingBetweenLines4 = new SpacingBetweenLines() { Before = "200", After = "0" };
+            SpacingBetweenLines spacingBetweenLines5 = new SpacingBetweenLines() { Before = "200" };
             OutlineLevel outlineLevel3 = new OutlineLevel() { Val = 2 };
 
-            styleParagraphProperties3.Append(keepNext3);
-            styleParagraphProperties3.Append(keepLines3);
-            styleParagraphProperties3.Append(spacingBetweenLines4);
-            styleParagraphProperties3.Append(outlineLevel3);
+            styleParagraphProperties4.Append(keepNext3);
+            styleParagraphProperties4.Append(keepLines3);
+            styleParagraphProperties4.Append(spacingBetweenLines5);
+            styleParagraphProperties4.Append(outlineLevel3);
 
             StyleRunProperties styleRunProperties3 = new StyleRunProperties();
             RunFonts runFonts4 = new RunFonts() { AsciiTheme = ThemeFontValues.MajorHighAnsi, HighAnsiTheme = ThemeFontValues.MajorHighAnsi, EastAsiaTheme = ThemeFontValues.MajorEastAsia, ComplexScriptTheme = ThemeFontValues.MajorBidi };
@@ -611,7 +621,7 @@ namespace Pickles.DocumentationBuilders.Word
             style4.Append(unhideWhenUsed2);
             style4.Append(primaryStyle4);
             style4.Append(rsid4);
-            style4.Append(styleParagraphProperties3);
+            style4.Append(styleParagraphProperties4);
             style4.Append(styleRunProperties3);
 
             Style style5 = new Style() { Type = StyleValues.Character, StyleId = "DefaultParagraphFont", Default = true };
@@ -750,20 +760,1079 @@ namespace Pickles.DocumentationBuilders.Word
             style10.Append(rsid7);
             style10.Append(styleRunProperties6);
 
-            styles.Append(docDefaults1);
-            styles.Append(latentStyles1);
-            styles.Append(style1);
-            styles.Append(style2);
-            styles.Append(style3);
-            styles.Append(style4);
-            styles.Append(style5);
-            styles.Append(style6);
-            styles.Append(style7);
-            styles.Append(style8);
-            styles.Append(style9);
-            styles.Append(style10);
+            Style style11 = new Style() { Type = StyleValues.Table, StyleId = "TableGrid" };
+            StyleName styleName11 = new StyleName() { Val = "Table Grid" };
+            BasedOn basedOn7 = new BasedOn() { Val = "TableNormal" };
+            UIPriority uIPriority10 = new UIPriority() { Val = 59 };
+            Rsid rsid8 = new Rsid() { Val = "00BA40EF" };
 
-            part.Styles = styles;
+            StyleParagraphProperties styleParagraphProperties5 = new StyleParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines6 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+
+            styleParagraphProperties5.Append(spacingBetweenLines6);
+
+            StyleTableProperties styleTableProperties2 = new StyleTableProperties();
+            TableIndentation tableIndentation2 = new TableIndentation() { Width = 0, Type = TableWidthUnitValues.Dxa };
+
+            TableBorders tableBorders1 = new TableBorders();
+            TopBorder topBorder1 = new TopBorder() { Val = BorderValues.Single, Color = "auto", Size = (UInt32Value)4U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder1 = new LeftBorder() { Val = BorderValues.Single, Color = "auto", Size = (UInt32Value)4U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder1 = new BottomBorder() { Val = BorderValues.Single, Color = "auto", Size = (UInt32Value)4U, Space = (UInt32Value)0U };
+            RightBorder rightBorder1 = new RightBorder() { Val = BorderValues.Single, Color = "auto", Size = (UInt32Value)4U, Space = (UInt32Value)0U };
+            InsideHorizontalBorder insideHorizontalBorder1 = new InsideHorizontalBorder() { Val = BorderValues.Single, Color = "auto", Size = (UInt32Value)4U, Space = (UInt32Value)0U };
+            InsideVerticalBorder insideVerticalBorder1 = new InsideVerticalBorder() { Val = BorderValues.Single, Color = "auto", Size = (UInt32Value)4U, Space = (UInt32Value)0U };
+
+            tableBorders1.Append(topBorder1);
+            tableBorders1.Append(leftBorder1);
+            tableBorders1.Append(bottomBorder1);
+            tableBorders1.Append(rightBorder1);
+            tableBorders1.Append(insideHorizontalBorder1);
+            tableBorders1.Append(insideVerticalBorder1);
+
+            TableCellMarginDefault tableCellMarginDefault2 = new TableCellMarginDefault();
+            TopMargin topMargin2 = new TopMargin() { Width = "0", Type = TableWidthUnitValues.Dxa };
+            TableCellLeftMargin tableCellLeftMargin2 = new TableCellLeftMargin() { Width = 108, Type = TableWidthValues.Dxa };
+            BottomMargin bottomMargin2 = new BottomMargin() { Width = "0", Type = TableWidthUnitValues.Dxa };
+            TableCellRightMargin tableCellRightMargin2 = new TableCellRightMargin() { Width = 108, Type = TableWidthValues.Dxa };
+
+            tableCellMarginDefault2.Append(topMargin2);
+            tableCellMarginDefault2.Append(tableCellLeftMargin2);
+            tableCellMarginDefault2.Append(bottomMargin2);
+            tableCellMarginDefault2.Append(tableCellRightMargin2);
+
+            styleTableProperties2.Append(tableIndentation2);
+            styleTableProperties2.Append(tableBorders1);
+            styleTableProperties2.Append(tableCellMarginDefault2);
+
+            style11.Append(styleName11);
+            style11.Append(basedOn7);
+            style11.Append(uIPriority10);
+            style11.Append(rsid8);
+            style11.Append(styleParagraphProperties5);
+            style11.Append(styleTableProperties2);
+
+            Style style12 = new Style() { Type = StyleValues.Table, StyleId = "LightList-Accent1" };
+            StyleName styleName12 = new StyleName() { Val = "Light List Accent 1" };
+            BasedOn basedOn8 = new BasedOn() { Val = "TableNormal" };
+            UIPriority uIPriority11 = new UIPriority() { Val = 61 };
+            Rsid rsid9 = new Rsid() { Val = "00BA40EF" };
+
+            StyleParagraphProperties styleParagraphProperties6 = new StyleParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines7 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+
+            styleParagraphProperties6.Append(spacingBetweenLines7);
+
+            StyleTableProperties styleTableProperties3 = new StyleTableProperties();
+            TableStyleRowBandSize tableStyleRowBandSize1 = new TableStyleRowBandSize() { Val = 1 };
+            TableStyleColumnBandSize tableStyleColumnBandSize1 = new TableStyleColumnBandSize() { Val = 1 };
+            TableIndentation tableIndentation3 = new TableIndentation() { Width = 0, Type = TableWidthUnitValues.Dxa };
+
+            TableBorders tableBorders2 = new TableBorders();
+            TopBorder topBorder2 = new TopBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder2 = new LeftBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder2 = new BottomBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            RightBorder rightBorder2 = new RightBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+
+            tableBorders2.Append(topBorder2);
+            tableBorders2.Append(leftBorder2);
+            tableBorders2.Append(bottomBorder2);
+            tableBorders2.Append(rightBorder2);
+
+            TableCellMarginDefault tableCellMarginDefault3 = new TableCellMarginDefault();
+            TopMargin topMargin3 = new TopMargin() { Width = "0", Type = TableWidthUnitValues.Dxa };
+            TableCellLeftMargin tableCellLeftMargin3 = new TableCellLeftMargin() { Width = 108, Type = TableWidthValues.Dxa };
+            BottomMargin bottomMargin3 = new BottomMargin() { Width = "0", Type = TableWidthUnitValues.Dxa };
+            TableCellRightMargin tableCellRightMargin3 = new TableCellRightMargin() { Width = 108, Type = TableWidthValues.Dxa };
+
+            tableCellMarginDefault3.Append(topMargin3);
+            tableCellMarginDefault3.Append(tableCellLeftMargin3);
+            tableCellMarginDefault3.Append(bottomMargin3);
+            tableCellMarginDefault3.Append(tableCellRightMargin3);
+
+            styleTableProperties3.Append(tableStyleRowBandSize1);
+            styleTableProperties3.Append(tableStyleColumnBandSize1);
+            styleTableProperties3.Append(tableIndentation3);
+            styleTableProperties3.Append(tableBorders2);
+            styleTableProperties3.Append(tableCellMarginDefault3);
+
+            TableStyleProperties tableStyleProperties1 = new TableStyleProperties() { Type = TableStyleOverrideValues.FirstRow };
+
+            StyleParagraphProperties styleParagraphProperties7 = new StyleParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines8 = new SpacingBetweenLines() { Before = "0", After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+
+            styleParagraphProperties7.Append(spacingBetweenLines8);
+
+            RunPropertiesBaseStyle runPropertiesBaseStyle2 = new RunPropertiesBaseStyle();
+            Bold bold7 = new Bold();
+            BoldComplexScript boldComplexScript7 = new BoldComplexScript();
+            Color color7 = new Color() { Val = "FFFFFF", ThemeColor = ThemeColorValues.Background1 };
+
+            runPropertiesBaseStyle2.Append(bold7);
+            runPropertiesBaseStyle2.Append(boldComplexScript7);
+            runPropertiesBaseStyle2.Append(color7);
+            TableStyleConditionalFormattingTableProperties tableStyleConditionalFormattingTableProperties1 = new TableStyleConditionalFormattingTableProperties();
+
+            TableStyleConditionalFormattingTableCellProperties tableStyleConditionalFormattingTableCellProperties1 = new TableStyleConditionalFormattingTableCellProperties();
+            Shading shading1 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "4F81BD", ThemeFill = ThemeColorValues.Accent1 };
+
+            tableStyleConditionalFormattingTableCellProperties1.Append(shading1);
+
+            tableStyleProperties1.Append(styleParagraphProperties7);
+            tableStyleProperties1.Append(runPropertiesBaseStyle2);
+            tableStyleProperties1.Append(tableStyleConditionalFormattingTableProperties1);
+            tableStyleProperties1.Append(tableStyleConditionalFormattingTableCellProperties1);
+
+            TableStyleProperties tableStyleProperties2 = new TableStyleProperties() { Type = TableStyleOverrideValues.LastRow };
+
+            StyleParagraphProperties styleParagraphProperties8 = new StyleParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines9 = new SpacingBetweenLines() { Before = "0", After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+
+            styleParagraphProperties8.Append(spacingBetweenLines9);
+
+            RunPropertiesBaseStyle runPropertiesBaseStyle3 = new RunPropertiesBaseStyle();
+            Bold bold8 = new Bold();
+            BoldComplexScript boldComplexScript8 = new BoldComplexScript();
+
+            runPropertiesBaseStyle3.Append(bold8);
+            runPropertiesBaseStyle3.Append(boldComplexScript8);
+            TableStyleConditionalFormattingTableProperties tableStyleConditionalFormattingTableProperties2 = new TableStyleConditionalFormattingTableProperties();
+
+            TableStyleConditionalFormattingTableCellProperties tableStyleConditionalFormattingTableCellProperties2 = new TableStyleConditionalFormattingTableCellProperties();
+
+            TableCellBorders tableCellBorders1 = new TableCellBorders();
+            TopBorder topBorder3 = new TopBorder() { Val = BorderValues.Double, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)6U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder3 = new LeftBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder3 = new BottomBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            RightBorder rightBorder3 = new RightBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+
+            tableCellBorders1.Append(topBorder3);
+            tableCellBorders1.Append(leftBorder3);
+            tableCellBorders1.Append(bottomBorder3);
+            tableCellBorders1.Append(rightBorder3);
+
+            tableStyleConditionalFormattingTableCellProperties2.Append(tableCellBorders1);
+
+            tableStyleProperties2.Append(styleParagraphProperties8);
+            tableStyleProperties2.Append(runPropertiesBaseStyle3);
+            tableStyleProperties2.Append(tableStyleConditionalFormattingTableProperties2);
+            tableStyleProperties2.Append(tableStyleConditionalFormattingTableCellProperties2);
+
+            TableStyleProperties tableStyleProperties3 = new TableStyleProperties() { Type = TableStyleOverrideValues.FirstColumn };
+
+            RunPropertiesBaseStyle runPropertiesBaseStyle4 = new RunPropertiesBaseStyle();
+            Bold bold9 = new Bold();
+            BoldComplexScript boldComplexScript9 = new BoldComplexScript();
+
+            runPropertiesBaseStyle4.Append(bold9);
+            runPropertiesBaseStyle4.Append(boldComplexScript9);
+
+            tableStyleProperties3.Append(runPropertiesBaseStyle4);
+
+            TableStyleProperties tableStyleProperties4 = new TableStyleProperties() { Type = TableStyleOverrideValues.LastColumn };
+
+            RunPropertiesBaseStyle runPropertiesBaseStyle5 = new RunPropertiesBaseStyle();
+            Bold bold10 = new Bold();
+            BoldComplexScript boldComplexScript10 = new BoldComplexScript();
+
+            runPropertiesBaseStyle5.Append(bold10);
+            runPropertiesBaseStyle5.Append(boldComplexScript10);
+
+            tableStyleProperties4.Append(runPropertiesBaseStyle5);
+
+            TableStyleProperties tableStyleProperties5 = new TableStyleProperties() { Type = TableStyleOverrideValues.Band1Vertical };
+            TableStyleConditionalFormattingTableProperties tableStyleConditionalFormattingTableProperties3 = new TableStyleConditionalFormattingTableProperties();
+
+            TableStyleConditionalFormattingTableCellProperties tableStyleConditionalFormattingTableCellProperties3 = new TableStyleConditionalFormattingTableCellProperties();
+
+            TableCellBorders tableCellBorders2 = new TableCellBorders();
+            TopBorder topBorder4 = new TopBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder4 = new LeftBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder4 = new BottomBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            RightBorder rightBorder4 = new RightBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+
+            tableCellBorders2.Append(topBorder4);
+            tableCellBorders2.Append(leftBorder4);
+            tableCellBorders2.Append(bottomBorder4);
+            tableCellBorders2.Append(rightBorder4);
+
+            tableStyleConditionalFormattingTableCellProperties3.Append(tableCellBorders2);
+
+            tableStyleProperties5.Append(tableStyleConditionalFormattingTableProperties3);
+            tableStyleProperties5.Append(tableStyleConditionalFormattingTableCellProperties3);
+
+            TableStyleProperties tableStyleProperties6 = new TableStyleProperties() { Type = TableStyleOverrideValues.Band1Horizontal };
+            TableStyleConditionalFormattingTableProperties tableStyleConditionalFormattingTableProperties4 = new TableStyleConditionalFormattingTableProperties();
+
+            TableStyleConditionalFormattingTableCellProperties tableStyleConditionalFormattingTableCellProperties4 = new TableStyleConditionalFormattingTableCellProperties();
+
+            TableCellBorders tableCellBorders3 = new TableCellBorders();
+            TopBorder topBorder5 = new TopBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder5 = new LeftBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder5 = new BottomBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            RightBorder rightBorder5 = new RightBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+
+            tableCellBorders3.Append(topBorder5);
+            tableCellBorders3.Append(leftBorder5);
+            tableCellBorders3.Append(bottomBorder5);
+            tableCellBorders3.Append(rightBorder5);
+
+            tableStyleConditionalFormattingTableCellProperties4.Append(tableCellBorders3);
+
+            tableStyleProperties6.Append(tableStyleConditionalFormattingTableProperties4);
+            tableStyleProperties6.Append(tableStyleConditionalFormattingTableCellProperties4);
+
+            style12.Append(styleName12);
+            style12.Append(basedOn8);
+            style12.Append(uIPriority11);
+            style12.Append(rsid9);
+            style12.Append(styleParagraphProperties6);
+            style12.Append(styleTableProperties3);
+            style12.Append(tableStyleProperties1);
+            style12.Append(tableStyleProperties2);
+            style12.Append(tableStyleProperties3);
+            style12.Append(tableStyleProperties4);
+            style12.Append(tableStyleProperties5);
+            style12.Append(tableStyleProperties6);
+
+            Style style13 = new Style() { Type = StyleValues.Table, StyleId = "MediumGrid3-Accent1" };
+            StyleName styleName13 = new StyleName() { Val = "Medium Grid 3 Accent 1" };
+            BasedOn basedOn9 = new BasedOn() { Val = "TableNormal" };
+            UIPriority uIPriority12 = new UIPriority() { Val = 69 };
+            Rsid rsid10 = new Rsid() { Val = "00BA40EF" };
+
+            StyleParagraphProperties styleParagraphProperties9 = new StyleParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines10 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+
+            styleParagraphProperties9.Append(spacingBetweenLines10);
+
+            StyleTableProperties styleTableProperties4 = new StyleTableProperties();
+            TableStyleRowBandSize tableStyleRowBandSize2 = new TableStyleRowBandSize() { Val = 1 };
+            TableStyleColumnBandSize tableStyleColumnBandSize2 = new TableStyleColumnBandSize() { Val = 1 };
+            TableIndentation tableIndentation4 = new TableIndentation() { Width = 0, Type = TableWidthUnitValues.Dxa };
+
+            TableBorders tableBorders3 = new TableBorders();
+            TopBorder topBorder6 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder6 = new LeftBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder6 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            RightBorder rightBorder6 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            InsideHorizontalBorder insideHorizontalBorder2 = new InsideHorizontalBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)6U, Space = (UInt32Value)0U };
+            InsideVerticalBorder insideVerticalBorder2 = new InsideVerticalBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)6U, Space = (UInt32Value)0U };
+
+            tableBorders3.Append(topBorder6);
+            tableBorders3.Append(leftBorder6);
+            tableBorders3.Append(bottomBorder6);
+            tableBorders3.Append(rightBorder6);
+            tableBorders3.Append(insideHorizontalBorder2);
+            tableBorders3.Append(insideVerticalBorder2);
+
+            TableCellMarginDefault tableCellMarginDefault4 = new TableCellMarginDefault();
+            TopMargin topMargin4 = new TopMargin() { Width = "0", Type = TableWidthUnitValues.Dxa };
+            TableCellLeftMargin tableCellLeftMargin4 = new TableCellLeftMargin() { Width = 108, Type = TableWidthValues.Dxa };
+            BottomMargin bottomMargin4 = new BottomMargin() { Width = "0", Type = TableWidthUnitValues.Dxa };
+            TableCellRightMargin tableCellRightMargin4 = new TableCellRightMargin() { Width = 108, Type = TableWidthValues.Dxa };
+
+            tableCellMarginDefault4.Append(topMargin4);
+            tableCellMarginDefault4.Append(tableCellLeftMargin4);
+            tableCellMarginDefault4.Append(bottomMargin4);
+            tableCellMarginDefault4.Append(tableCellRightMargin4);
+
+            styleTableProperties4.Append(tableStyleRowBandSize2);
+            styleTableProperties4.Append(tableStyleColumnBandSize2);
+            styleTableProperties4.Append(tableIndentation4);
+            styleTableProperties4.Append(tableBorders3);
+            styleTableProperties4.Append(tableCellMarginDefault4);
+
+            StyleTableCellProperties styleTableCellProperties1 = new StyleTableCellProperties();
+            Shading shading2 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "D3DFEE", ThemeFill = ThemeColorValues.Accent1, ThemeFillTint = "3F" };
+
+            styleTableCellProperties1.Append(shading2);
+
+            TableStyleProperties tableStyleProperties7 = new TableStyleProperties() { Type = TableStyleOverrideValues.FirstRow };
+
+            RunPropertiesBaseStyle runPropertiesBaseStyle6 = new RunPropertiesBaseStyle();
+            Bold bold11 = new Bold();
+            BoldComplexScript boldComplexScript11 = new BoldComplexScript();
+            Italic italic1 = new Italic() { Val = false };
+            ItalicComplexScript italicComplexScript1 = new ItalicComplexScript() { Val = false };
+            Color color8 = new Color() { Val = "FFFFFF", ThemeColor = ThemeColorValues.Background1 };
+
+            runPropertiesBaseStyle6.Append(bold11);
+            runPropertiesBaseStyle6.Append(boldComplexScript11);
+            runPropertiesBaseStyle6.Append(italic1);
+            runPropertiesBaseStyle6.Append(italicComplexScript1);
+            runPropertiesBaseStyle6.Append(color8);
+            TableStyleConditionalFormattingTableProperties tableStyleConditionalFormattingTableProperties5 = new TableStyleConditionalFormattingTableProperties();
+
+            TableStyleConditionalFormattingTableCellProperties tableStyleConditionalFormattingTableCellProperties5 = new TableStyleConditionalFormattingTableCellProperties();
+
+            TableCellBorders tableCellBorders4 = new TableCellBorders();
+            TopBorder topBorder7 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder7 = new LeftBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder7 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)24U, Space = (UInt32Value)0U };
+            RightBorder rightBorder7 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            InsideHorizontalBorder insideHorizontalBorder3 = new InsideHorizontalBorder() { Val = BorderValues.Nil };
+            InsideVerticalBorder insideVerticalBorder3 = new InsideVerticalBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+
+            tableCellBorders4.Append(topBorder7);
+            tableCellBorders4.Append(leftBorder7);
+            tableCellBorders4.Append(bottomBorder7);
+            tableCellBorders4.Append(rightBorder7);
+            tableCellBorders4.Append(insideHorizontalBorder3);
+            tableCellBorders4.Append(insideVerticalBorder3);
+            Shading shading3 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "4F81BD", ThemeFill = ThemeColorValues.Accent1 };
+
+            tableStyleConditionalFormattingTableCellProperties5.Append(tableCellBorders4);
+            tableStyleConditionalFormattingTableCellProperties5.Append(shading3);
+
+            tableStyleProperties7.Append(runPropertiesBaseStyle6);
+            tableStyleProperties7.Append(tableStyleConditionalFormattingTableProperties5);
+            tableStyleProperties7.Append(tableStyleConditionalFormattingTableCellProperties5);
+
+            TableStyleProperties tableStyleProperties8 = new TableStyleProperties() { Type = TableStyleOverrideValues.LastRow };
+
+            RunPropertiesBaseStyle runPropertiesBaseStyle7 = new RunPropertiesBaseStyle();
+            Bold bold12 = new Bold();
+            BoldComplexScript boldComplexScript12 = new BoldComplexScript();
+            Italic italic2 = new Italic() { Val = false };
+            ItalicComplexScript italicComplexScript2 = new ItalicComplexScript() { Val = false };
+            Color color9 = new Color() { Val = "FFFFFF", ThemeColor = ThemeColorValues.Background1 };
+
+            runPropertiesBaseStyle7.Append(bold12);
+            runPropertiesBaseStyle7.Append(boldComplexScript12);
+            runPropertiesBaseStyle7.Append(italic2);
+            runPropertiesBaseStyle7.Append(italicComplexScript2);
+            runPropertiesBaseStyle7.Append(color9);
+            TableStyleConditionalFormattingTableProperties tableStyleConditionalFormattingTableProperties6 = new TableStyleConditionalFormattingTableProperties();
+
+            TableStyleConditionalFormattingTableCellProperties tableStyleConditionalFormattingTableCellProperties6 = new TableStyleConditionalFormattingTableCellProperties();
+
+            TableCellBorders tableCellBorders5 = new TableCellBorders();
+            TopBorder topBorder8 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)24U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder8 = new LeftBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder8 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            RightBorder rightBorder8 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            InsideHorizontalBorder insideHorizontalBorder4 = new InsideHorizontalBorder() { Val = BorderValues.Nil };
+            InsideVerticalBorder insideVerticalBorder4 = new InsideVerticalBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+
+            tableCellBorders5.Append(topBorder8);
+            tableCellBorders5.Append(leftBorder8);
+            tableCellBorders5.Append(bottomBorder8);
+            tableCellBorders5.Append(rightBorder8);
+            tableCellBorders5.Append(insideHorizontalBorder4);
+            tableCellBorders5.Append(insideVerticalBorder4);
+            Shading shading4 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "4F81BD", ThemeFill = ThemeColorValues.Accent1 };
+
+            tableStyleConditionalFormattingTableCellProperties6.Append(tableCellBorders5);
+            tableStyleConditionalFormattingTableCellProperties6.Append(shading4);
+
+            tableStyleProperties8.Append(runPropertiesBaseStyle7);
+            tableStyleProperties8.Append(tableStyleConditionalFormattingTableProperties6);
+            tableStyleProperties8.Append(tableStyleConditionalFormattingTableCellProperties6);
+
+            TableStyleProperties tableStyleProperties9 = new TableStyleProperties() { Type = TableStyleOverrideValues.FirstColumn };
+
+            RunPropertiesBaseStyle runPropertiesBaseStyle8 = new RunPropertiesBaseStyle();
+            Bold bold13 = new Bold();
+            BoldComplexScript boldComplexScript13 = new BoldComplexScript();
+            Italic italic3 = new Italic() { Val = false };
+            ItalicComplexScript italicComplexScript3 = new ItalicComplexScript() { Val = false };
+            Color color10 = new Color() { Val = "FFFFFF", ThemeColor = ThemeColorValues.Background1 };
+
+            runPropertiesBaseStyle8.Append(bold13);
+            runPropertiesBaseStyle8.Append(boldComplexScript13);
+            runPropertiesBaseStyle8.Append(italic3);
+            runPropertiesBaseStyle8.Append(italicComplexScript3);
+            runPropertiesBaseStyle8.Append(color10);
+            TableStyleConditionalFormattingTableProperties tableStyleConditionalFormattingTableProperties7 = new TableStyleConditionalFormattingTableProperties();
+
+            TableStyleConditionalFormattingTableCellProperties tableStyleConditionalFormattingTableCellProperties7 = new TableStyleConditionalFormattingTableCellProperties();
+
+            TableCellBorders tableCellBorders6 = new TableCellBorders();
+            LeftBorder leftBorder9 = new LeftBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            RightBorder rightBorder9 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)24U, Space = (UInt32Value)0U };
+            InsideHorizontalBorder insideHorizontalBorder5 = new InsideHorizontalBorder() { Val = BorderValues.Nil };
+            InsideVerticalBorder insideVerticalBorder5 = new InsideVerticalBorder() { Val = BorderValues.Nil };
+
+            tableCellBorders6.Append(leftBorder9);
+            tableCellBorders6.Append(rightBorder9);
+            tableCellBorders6.Append(insideHorizontalBorder5);
+            tableCellBorders6.Append(insideVerticalBorder5);
+            Shading shading5 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "4F81BD", ThemeFill = ThemeColorValues.Accent1 };
+
+            tableStyleConditionalFormattingTableCellProperties7.Append(tableCellBorders6);
+            tableStyleConditionalFormattingTableCellProperties7.Append(shading5);
+
+            tableStyleProperties9.Append(runPropertiesBaseStyle8);
+            tableStyleProperties9.Append(tableStyleConditionalFormattingTableProperties7);
+            tableStyleProperties9.Append(tableStyleConditionalFormattingTableCellProperties7);
+
+            TableStyleProperties tableStyleProperties10 = new TableStyleProperties() { Type = TableStyleOverrideValues.LastColumn };
+
+            RunPropertiesBaseStyle runPropertiesBaseStyle9 = new RunPropertiesBaseStyle();
+            Bold bold14 = new Bold();
+            BoldComplexScript boldComplexScript14 = new BoldComplexScript();
+            Italic italic4 = new Italic() { Val = false };
+            ItalicComplexScript italicComplexScript4 = new ItalicComplexScript() { Val = false };
+            Color color11 = new Color() { Val = "FFFFFF", ThemeColor = ThemeColorValues.Background1 };
+
+            runPropertiesBaseStyle9.Append(bold14);
+            runPropertiesBaseStyle9.Append(boldComplexScript14);
+            runPropertiesBaseStyle9.Append(italic4);
+            runPropertiesBaseStyle9.Append(italicComplexScript4);
+            runPropertiesBaseStyle9.Append(color11);
+            TableStyleConditionalFormattingTableProperties tableStyleConditionalFormattingTableProperties8 = new TableStyleConditionalFormattingTableProperties();
+
+            TableStyleConditionalFormattingTableCellProperties tableStyleConditionalFormattingTableCellProperties8 = new TableStyleConditionalFormattingTableCellProperties();
+
+            TableCellBorders tableCellBorders7 = new TableCellBorders();
+            TopBorder topBorder9 = new TopBorder() { Val = BorderValues.Nil };
+            LeftBorder leftBorder10 = new LeftBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)24U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder9 = new BottomBorder() { Val = BorderValues.Nil };
+            RightBorder rightBorder10 = new RightBorder() { Val = BorderValues.Nil };
+            InsideHorizontalBorder insideHorizontalBorder6 = new InsideHorizontalBorder() { Val = BorderValues.Nil };
+            InsideVerticalBorder insideVerticalBorder6 = new InsideVerticalBorder() { Val = BorderValues.Nil };
+
+            tableCellBorders7.Append(topBorder9);
+            tableCellBorders7.Append(leftBorder10);
+            tableCellBorders7.Append(bottomBorder9);
+            tableCellBorders7.Append(rightBorder10);
+            tableCellBorders7.Append(insideHorizontalBorder6);
+            tableCellBorders7.Append(insideVerticalBorder6);
+            Shading shading6 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "4F81BD", ThemeFill = ThemeColorValues.Accent1 };
+
+            tableStyleConditionalFormattingTableCellProperties8.Append(tableCellBorders7);
+            tableStyleConditionalFormattingTableCellProperties8.Append(shading6);
+
+            tableStyleProperties10.Append(runPropertiesBaseStyle9);
+            tableStyleProperties10.Append(tableStyleConditionalFormattingTableProperties8);
+            tableStyleProperties10.Append(tableStyleConditionalFormattingTableCellProperties8);
+
+            TableStyleProperties tableStyleProperties11 = new TableStyleProperties() { Type = TableStyleOverrideValues.Band1Vertical };
+            TableStyleConditionalFormattingTableProperties tableStyleConditionalFormattingTableProperties9 = new TableStyleConditionalFormattingTableProperties();
+
+            TableStyleConditionalFormattingTableCellProperties tableStyleConditionalFormattingTableCellProperties9 = new TableStyleConditionalFormattingTableCellProperties();
+
+            TableCellBorders tableCellBorders8 = new TableCellBorders();
+            TopBorder topBorder10 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder11 = new LeftBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder10 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            RightBorder rightBorder11 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            InsideHorizontalBorder insideHorizontalBorder7 = new InsideHorizontalBorder() { Val = BorderValues.Nil };
+            InsideVerticalBorder insideVerticalBorder7 = new InsideVerticalBorder() { Val = BorderValues.Nil };
+
+            tableCellBorders8.Append(topBorder10);
+            tableCellBorders8.Append(leftBorder11);
+            tableCellBorders8.Append(bottomBorder10);
+            tableCellBorders8.Append(rightBorder11);
+            tableCellBorders8.Append(insideHorizontalBorder7);
+            tableCellBorders8.Append(insideVerticalBorder7);
+            Shading shading7 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "A7BFDE", ThemeFill = ThemeColorValues.Accent1, ThemeFillTint = "7F" };
+
+            tableStyleConditionalFormattingTableCellProperties9.Append(tableCellBorders8);
+            tableStyleConditionalFormattingTableCellProperties9.Append(shading7);
+
+            tableStyleProperties11.Append(tableStyleConditionalFormattingTableProperties9);
+            tableStyleProperties11.Append(tableStyleConditionalFormattingTableCellProperties9);
+
+            TableStyleProperties tableStyleProperties12 = new TableStyleProperties() { Type = TableStyleOverrideValues.Band1Horizontal };
+            TableStyleConditionalFormattingTableProperties tableStyleConditionalFormattingTableProperties10 = new TableStyleConditionalFormattingTableProperties();
+
+            TableStyleConditionalFormattingTableCellProperties tableStyleConditionalFormattingTableCellProperties10 = new TableStyleConditionalFormattingTableCellProperties();
+
+            TableCellBorders tableCellBorders9 = new TableCellBorders();
+            TopBorder topBorder11 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder12 = new LeftBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder11 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            RightBorder rightBorder12 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            InsideHorizontalBorder insideHorizontalBorder8 = new InsideHorizontalBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            InsideVerticalBorder insideVerticalBorder8 = new InsideVerticalBorder() { Val = BorderValues.Single, Color = "FFFFFF", ThemeColor = ThemeColorValues.Background1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+
+            tableCellBorders9.Append(topBorder11);
+            tableCellBorders9.Append(leftBorder12);
+            tableCellBorders9.Append(bottomBorder11);
+            tableCellBorders9.Append(rightBorder12);
+            tableCellBorders9.Append(insideHorizontalBorder8);
+            tableCellBorders9.Append(insideVerticalBorder8);
+            Shading shading8 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "A7BFDE", ThemeFill = ThemeColorValues.Accent1, ThemeFillTint = "7F" };
+
+            tableStyleConditionalFormattingTableCellProperties10.Append(tableCellBorders9);
+            tableStyleConditionalFormattingTableCellProperties10.Append(shading8);
+
+            tableStyleProperties12.Append(tableStyleConditionalFormattingTableProperties10);
+            tableStyleProperties12.Append(tableStyleConditionalFormattingTableCellProperties10);
+
+            style13.Append(styleName13);
+            style13.Append(basedOn9);
+            style13.Append(uIPriority12);
+            style13.Append(rsid10);
+            style13.Append(styleParagraphProperties9);
+            style13.Append(styleTableProperties4);
+            style13.Append(styleTableCellProperties1);
+            style13.Append(tableStyleProperties7);
+            style13.Append(tableStyleProperties8);
+            style13.Append(tableStyleProperties9);
+            style13.Append(tableStyleProperties10);
+            style13.Append(tableStyleProperties11);
+            style13.Append(tableStyleProperties12);
+
+            Style style14 = new Style() { Type = StyleValues.Table, StyleId = "MediumShading1-Accent1" };
+            StyleName styleName14 = new StyleName() { Val = "Medium Shading 1 Accent 1" };
+            BasedOn basedOn10 = new BasedOn() { Val = "TableNormal" };
+            UIPriority uIPriority13 = new UIPriority() { Val = 63 };
+            Rsid rsid11 = new Rsid() { Val = "00BA40EF" };
+
+            StyleParagraphProperties styleParagraphProperties10 = new StyleParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines11 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+
+            styleParagraphProperties10.Append(spacingBetweenLines11);
+
+            StyleTableProperties styleTableProperties5 = new StyleTableProperties();
+            TableStyleRowBandSize tableStyleRowBandSize3 = new TableStyleRowBandSize() { Val = 1 };
+            TableStyleColumnBandSize tableStyleColumnBandSize3 = new TableStyleColumnBandSize() { Val = 1 };
+            TableIndentation tableIndentation5 = new TableIndentation() { Width = 0, Type = TableWidthUnitValues.Dxa };
+
+            TableBorders tableBorders4 = new TableBorders();
+            TopBorder topBorder12 = new TopBorder() { Val = BorderValues.Single, Color = "7BA0CD", ThemeColor = ThemeColorValues.Accent1, ThemeTint = "BF", Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder13 = new LeftBorder() { Val = BorderValues.Single, Color = "7BA0CD", ThemeColor = ThemeColorValues.Accent1, ThemeTint = "BF", Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder12 = new BottomBorder() { Val = BorderValues.Single, Color = "7BA0CD", ThemeColor = ThemeColorValues.Accent1, ThemeTint = "BF", Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            RightBorder rightBorder13 = new RightBorder() { Val = BorderValues.Single, Color = "7BA0CD", ThemeColor = ThemeColorValues.Accent1, ThemeTint = "BF", Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            InsideHorizontalBorder insideHorizontalBorder9 = new InsideHorizontalBorder() { Val = BorderValues.Single, Color = "7BA0CD", ThemeColor = ThemeColorValues.Accent1, ThemeTint = "BF", Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+
+            tableBorders4.Append(topBorder12);
+            tableBorders4.Append(leftBorder13);
+            tableBorders4.Append(bottomBorder12);
+            tableBorders4.Append(rightBorder13);
+            tableBorders4.Append(insideHorizontalBorder9);
+
+            TableCellMarginDefault tableCellMarginDefault5 = new TableCellMarginDefault();
+            TopMargin topMargin5 = new TopMargin() { Width = "0", Type = TableWidthUnitValues.Dxa };
+            TableCellLeftMargin tableCellLeftMargin5 = new TableCellLeftMargin() { Width = 108, Type = TableWidthValues.Dxa };
+            BottomMargin bottomMargin5 = new BottomMargin() { Width = "0", Type = TableWidthUnitValues.Dxa };
+            TableCellRightMargin tableCellRightMargin5 = new TableCellRightMargin() { Width = 108, Type = TableWidthValues.Dxa };
+
+            tableCellMarginDefault5.Append(topMargin5);
+            tableCellMarginDefault5.Append(tableCellLeftMargin5);
+            tableCellMarginDefault5.Append(bottomMargin5);
+            tableCellMarginDefault5.Append(tableCellRightMargin5);
+
+            styleTableProperties5.Append(tableStyleRowBandSize3);
+            styleTableProperties5.Append(tableStyleColumnBandSize3);
+            styleTableProperties5.Append(tableIndentation5);
+            styleTableProperties5.Append(tableBorders4);
+            styleTableProperties5.Append(tableCellMarginDefault5);
+
+            TableStyleProperties tableStyleProperties13 = new TableStyleProperties() { Type = TableStyleOverrideValues.FirstRow };
+
+            StyleParagraphProperties styleParagraphProperties11 = new StyleParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines12 = new SpacingBetweenLines() { Before = "0", After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+
+            styleParagraphProperties11.Append(spacingBetweenLines12);
+
+            RunPropertiesBaseStyle runPropertiesBaseStyle10 = new RunPropertiesBaseStyle();
+            Bold bold15 = new Bold();
+            BoldComplexScript boldComplexScript15 = new BoldComplexScript();
+            Color color12 = new Color() { Val = "FFFFFF", ThemeColor = ThemeColorValues.Background1 };
+
+            runPropertiesBaseStyle10.Append(bold15);
+            runPropertiesBaseStyle10.Append(boldComplexScript15);
+            runPropertiesBaseStyle10.Append(color12);
+            TableStyleConditionalFormattingTableProperties tableStyleConditionalFormattingTableProperties11 = new TableStyleConditionalFormattingTableProperties();
+
+            TableStyleConditionalFormattingTableCellProperties tableStyleConditionalFormattingTableCellProperties11 = new TableStyleConditionalFormattingTableCellProperties();
+
+            TableCellBorders tableCellBorders10 = new TableCellBorders();
+            TopBorder topBorder13 = new TopBorder() { Val = BorderValues.Single, Color = "7BA0CD", ThemeColor = ThemeColorValues.Accent1, ThemeTint = "BF", Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder14 = new LeftBorder() { Val = BorderValues.Single, Color = "7BA0CD", ThemeColor = ThemeColorValues.Accent1, ThemeTint = "BF", Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder13 = new BottomBorder() { Val = BorderValues.Single, Color = "7BA0CD", ThemeColor = ThemeColorValues.Accent1, ThemeTint = "BF", Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            RightBorder rightBorder14 = new RightBorder() { Val = BorderValues.Single, Color = "7BA0CD", ThemeColor = ThemeColorValues.Accent1, ThemeTint = "BF", Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            InsideHorizontalBorder insideHorizontalBorder10 = new InsideHorizontalBorder() { Val = BorderValues.Nil };
+            InsideVerticalBorder insideVerticalBorder9 = new InsideVerticalBorder() { Val = BorderValues.Nil };
+
+            tableCellBorders10.Append(topBorder13);
+            tableCellBorders10.Append(leftBorder14);
+            tableCellBorders10.Append(bottomBorder13);
+            tableCellBorders10.Append(rightBorder14);
+            tableCellBorders10.Append(insideHorizontalBorder10);
+            tableCellBorders10.Append(insideVerticalBorder9);
+            Shading shading9 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "4F81BD", ThemeFill = ThemeColorValues.Accent1 };
+
+            tableStyleConditionalFormattingTableCellProperties11.Append(tableCellBorders10);
+            tableStyleConditionalFormattingTableCellProperties11.Append(shading9);
+
+            tableStyleProperties13.Append(styleParagraphProperties11);
+            tableStyleProperties13.Append(runPropertiesBaseStyle10);
+            tableStyleProperties13.Append(tableStyleConditionalFormattingTableProperties11);
+            tableStyleProperties13.Append(tableStyleConditionalFormattingTableCellProperties11);
+
+            TableStyleProperties tableStyleProperties14 = new TableStyleProperties() { Type = TableStyleOverrideValues.LastRow };
+
+            StyleParagraphProperties styleParagraphProperties12 = new StyleParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines13 = new SpacingBetweenLines() { Before = "0", After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+
+            styleParagraphProperties12.Append(spacingBetweenLines13);
+
+            RunPropertiesBaseStyle runPropertiesBaseStyle11 = new RunPropertiesBaseStyle();
+            Bold bold16 = new Bold();
+            BoldComplexScript boldComplexScript16 = new BoldComplexScript();
+
+            runPropertiesBaseStyle11.Append(bold16);
+            runPropertiesBaseStyle11.Append(boldComplexScript16);
+            TableStyleConditionalFormattingTableProperties tableStyleConditionalFormattingTableProperties12 = new TableStyleConditionalFormattingTableProperties();
+
+            TableStyleConditionalFormattingTableCellProperties tableStyleConditionalFormattingTableCellProperties12 = new TableStyleConditionalFormattingTableCellProperties();
+
+            TableCellBorders tableCellBorders11 = new TableCellBorders();
+            TopBorder topBorder14 = new TopBorder() { Val = BorderValues.Double, Color = "7BA0CD", ThemeColor = ThemeColorValues.Accent1, ThemeTint = "BF", Size = (UInt32Value)6U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder15 = new LeftBorder() { Val = BorderValues.Single, Color = "7BA0CD", ThemeColor = ThemeColorValues.Accent1, ThemeTint = "BF", Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder14 = new BottomBorder() { Val = BorderValues.Single, Color = "7BA0CD", ThemeColor = ThemeColorValues.Accent1, ThemeTint = "BF", Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            RightBorder rightBorder15 = new RightBorder() { Val = BorderValues.Single, Color = "7BA0CD", ThemeColor = ThemeColorValues.Accent1, ThemeTint = "BF", Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            InsideHorizontalBorder insideHorizontalBorder11 = new InsideHorizontalBorder() { Val = BorderValues.Nil };
+            InsideVerticalBorder insideVerticalBorder10 = new InsideVerticalBorder() { Val = BorderValues.Nil };
+
+            tableCellBorders11.Append(topBorder14);
+            tableCellBorders11.Append(leftBorder15);
+            tableCellBorders11.Append(bottomBorder14);
+            tableCellBorders11.Append(rightBorder15);
+            tableCellBorders11.Append(insideHorizontalBorder11);
+            tableCellBorders11.Append(insideVerticalBorder10);
+
+            tableStyleConditionalFormattingTableCellProperties12.Append(tableCellBorders11);
+
+            tableStyleProperties14.Append(styleParagraphProperties12);
+            tableStyleProperties14.Append(runPropertiesBaseStyle11);
+            tableStyleProperties14.Append(tableStyleConditionalFormattingTableProperties12);
+            tableStyleProperties14.Append(tableStyleConditionalFormattingTableCellProperties12);
+
+            TableStyleProperties tableStyleProperties15 = new TableStyleProperties() { Type = TableStyleOverrideValues.FirstColumn };
+
+            RunPropertiesBaseStyle runPropertiesBaseStyle12 = new RunPropertiesBaseStyle();
+            Bold bold17 = new Bold();
+            BoldComplexScript boldComplexScript17 = new BoldComplexScript();
+
+            runPropertiesBaseStyle12.Append(bold17);
+            runPropertiesBaseStyle12.Append(boldComplexScript17);
+
+            tableStyleProperties15.Append(runPropertiesBaseStyle12);
+
+            TableStyleProperties tableStyleProperties16 = new TableStyleProperties() { Type = TableStyleOverrideValues.LastColumn };
+
+            RunPropertiesBaseStyle runPropertiesBaseStyle13 = new RunPropertiesBaseStyle();
+            Bold bold18 = new Bold();
+            BoldComplexScript boldComplexScript18 = new BoldComplexScript();
+
+            runPropertiesBaseStyle13.Append(bold18);
+            runPropertiesBaseStyle13.Append(boldComplexScript18);
+
+            tableStyleProperties16.Append(runPropertiesBaseStyle13);
+
+            TableStyleProperties tableStyleProperties17 = new TableStyleProperties() { Type = TableStyleOverrideValues.Band1Vertical };
+            TableStyleConditionalFormattingTableProperties tableStyleConditionalFormattingTableProperties13 = new TableStyleConditionalFormattingTableProperties();
+
+            TableStyleConditionalFormattingTableCellProperties tableStyleConditionalFormattingTableCellProperties13 = new TableStyleConditionalFormattingTableCellProperties();
+            Shading shading10 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "D3DFEE", ThemeFill = ThemeColorValues.Accent1, ThemeFillTint = "3F" };
+
+            tableStyleConditionalFormattingTableCellProperties13.Append(shading10);
+
+            tableStyleProperties17.Append(tableStyleConditionalFormattingTableProperties13);
+            tableStyleProperties17.Append(tableStyleConditionalFormattingTableCellProperties13);
+
+            TableStyleProperties tableStyleProperties18 = new TableStyleProperties() { Type = TableStyleOverrideValues.Band1Horizontal };
+            TableStyleConditionalFormattingTableProperties tableStyleConditionalFormattingTableProperties14 = new TableStyleConditionalFormattingTableProperties();
+
+            TableStyleConditionalFormattingTableCellProperties tableStyleConditionalFormattingTableCellProperties14 = new TableStyleConditionalFormattingTableCellProperties();
+
+            TableCellBorders tableCellBorders12 = new TableCellBorders();
+            InsideHorizontalBorder insideHorizontalBorder12 = new InsideHorizontalBorder() { Val = BorderValues.Nil };
+            InsideVerticalBorder insideVerticalBorder11 = new InsideVerticalBorder() { Val = BorderValues.Nil };
+
+            tableCellBorders12.Append(insideHorizontalBorder12);
+            tableCellBorders12.Append(insideVerticalBorder11);
+            Shading shading11 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "D3DFEE", ThemeFill = ThemeColorValues.Accent1, ThemeFillTint = "3F" };
+
+            tableStyleConditionalFormattingTableCellProperties14.Append(tableCellBorders12);
+            tableStyleConditionalFormattingTableCellProperties14.Append(shading11);
+
+            tableStyleProperties18.Append(tableStyleConditionalFormattingTableProperties14);
+            tableStyleProperties18.Append(tableStyleConditionalFormattingTableCellProperties14);
+
+            TableStyleProperties tableStyleProperties19 = new TableStyleProperties() { Type = TableStyleOverrideValues.Band2Horizontal };
+            TableStyleConditionalFormattingTableProperties tableStyleConditionalFormattingTableProperties15 = new TableStyleConditionalFormattingTableProperties();
+
+            TableStyleConditionalFormattingTableCellProperties tableStyleConditionalFormattingTableCellProperties15 = new TableStyleConditionalFormattingTableCellProperties();
+
+            TableCellBorders tableCellBorders13 = new TableCellBorders();
+            InsideHorizontalBorder insideHorizontalBorder13 = new InsideHorizontalBorder() { Val = BorderValues.Nil };
+            InsideVerticalBorder insideVerticalBorder12 = new InsideVerticalBorder() { Val = BorderValues.Nil };
+
+            tableCellBorders13.Append(insideHorizontalBorder13);
+            tableCellBorders13.Append(insideVerticalBorder12);
+
+            tableStyleConditionalFormattingTableCellProperties15.Append(tableCellBorders13);
+
+            tableStyleProperties19.Append(tableStyleConditionalFormattingTableProperties15);
+            tableStyleProperties19.Append(tableStyleConditionalFormattingTableCellProperties15);
+
+            style14.Append(styleName14);
+            style14.Append(basedOn10);
+            style14.Append(uIPriority13);
+            style14.Append(rsid11);
+            style14.Append(styleParagraphProperties10);
+            style14.Append(styleTableProperties5);
+            style14.Append(tableStyleProperties13);
+            style14.Append(tableStyleProperties14);
+            style14.Append(tableStyleProperties15);
+            style14.Append(tableStyleProperties16);
+            style14.Append(tableStyleProperties17);
+            style14.Append(tableStyleProperties18);
+            style14.Append(tableStyleProperties19);
+
+            Style style15 = new Style() { Type = StyleValues.Table, StyleId = "LightGrid-Accent1" };
+            StyleName styleName15 = new StyleName() { Val = "Light Grid Accent 1" };
+            BasedOn basedOn11 = new BasedOn() { Val = "TableNormal" };
+            UIPriority uIPriority14 = new UIPriority() { Val = 62 };
+            Rsid rsid12 = new Rsid() { Val = "00BA40EF" };
+
+            StyleParagraphProperties styleParagraphProperties13 = new StyleParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines14 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+
+            styleParagraphProperties13.Append(spacingBetweenLines14);
+
+            StyleTableProperties styleTableProperties6 = new StyleTableProperties();
+            TableStyleRowBandSize tableStyleRowBandSize4 = new TableStyleRowBandSize() { Val = 1 };
+            TableStyleColumnBandSize tableStyleColumnBandSize4 = new TableStyleColumnBandSize() { Val = 1 };
+            TableIndentation tableIndentation6 = new TableIndentation() { Width = 0, Type = TableWidthUnitValues.Dxa };
+
+            TableBorders tableBorders5 = new TableBorders();
+            TopBorder topBorder15 = new TopBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder16 = new LeftBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder15 = new BottomBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            RightBorder rightBorder16 = new RightBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            InsideHorizontalBorder insideHorizontalBorder14 = new InsideHorizontalBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            InsideVerticalBorder insideVerticalBorder13 = new InsideVerticalBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+
+            tableBorders5.Append(topBorder15);
+            tableBorders5.Append(leftBorder16);
+            tableBorders5.Append(bottomBorder15);
+            tableBorders5.Append(rightBorder16);
+            tableBorders5.Append(insideHorizontalBorder14);
+            tableBorders5.Append(insideVerticalBorder13);
+
+            TableCellMarginDefault tableCellMarginDefault6 = new TableCellMarginDefault();
+            TopMargin topMargin6 = new TopMargin() { Width = "0", Type = TableWidthUnitValues.Dxa };
+            TableCellLeftMargin tableCellLeftMargin6 = new TableCellLeftMargin() { Width = 108, Type = TableWidthValues.Dxa };
+            BottomMargin bottomMargin6 = new BottomMargin() { Width = "0", Type = TableWidthUnitValues.Dxa };
+            TableCellRightMargin tableCellRightMargin6 = new TableCellRightMargin() { Width = 108, Type = TableWidthValues.Dxa };
+
+            tableCellMarginDefault6.Append(topMargin6);
+            tableCellMarginDefault6.Append(tableCellLeftMargin6);
+            tableCellMarginDefault6.Append(bottomMargin6);
+            tableCellMarginDefault6.Append(tableCellRightMargin6);
+
+            styleTableProperties6.Append(tableStyleRowBandSize4);
+            styleTableProperties6.Append(tableStyleColumnBandSize4);
+            styleTableProperties6.Append(tableIndentation6);
+            styleTableProperties6.Append(tableBorders5);
+            styleTableProperties6.Append(tableCellMarginDefault6);
+
+            TableStyleProperties tableStyleProperties20 = new TableStyleProperties() { Type = TableStyleOverrideValues.FirstRow };
+
+            StyleParagraphProperties styleParagraphProperties14 = new StyleParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines15 = new SpacingBetweenLines() { Before = "0", After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+
+            styleParagraphProperties14.Append(spacingBetweenLines15);
+
+            RunPropertiesBaseStyle runPropertiesBaseStyle14 = new RunPropertiesBaseStyle();
+            RunFonts runFonts8 = new RunFonts() { AsciiTheme = ThemeFontValues.MajorHighAnsi, HighAnsiTheme = ThemeFontValues.MajorHighAnsi, EastAsiaTheme = ThemeFontValues.MajorEastAsia, ComplexScriptTheme = ThemeFontValues.MajorBidi };
+            Bold bold19 = new Bold();
+            BoldComplexScript boldComplexScript19 = new BoldComplexScript();
+
+            runPropertiesBaseStyle14.Append(runFonts8);
+            runPropertiesBaseStyle14.Append(bold19);
+            runPropertiesBaseStyle14.Append(boldComplexScript19);
+            TableStyleConditionalFormattingTableProperties tableStyleConditionalFormattingTableProperties16 = new TableStyleConditionalFormattingTableProperties();
+
+            TableStyleConditionalFormattingTableCellProperties tableStyleConditionalFormattingTableCellProperties16 = new TableStyleConditionalFormattingTableCellProperties();
+
+            TableCellBorders tableCellBorders14 = new TableCellBorders();
+            TopBorder topBorder16 = new TopBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder17 = new LeftBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder16 = new BottomBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)18U, Space = (UInt32Value)0U };
+            RightBorder rightBorder17 = new RightBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            InsideHorizontalBorder insideHorizontalBorder15 = new InsideHorizontalBorder() { Val = BorderValues.Nil };
+            InsideVerticalBorder insideVerticalBorder14 = new InsideVerticalBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+
+            tableCellBorders14.Append(topBorder16);
+            tableCellBorders14.Append(leftBorder17);
+            tableCellBorders14.Append(bottomBorder16);
+            tableCellBorders14.Append(rightBorder17);
+            tableCellBorders14.Append(insideHorizontalBorder15);
+            tableCellBorders14.Append(insideVerticalBorder14);
+
+            tableStyleConditionalFormattingTableCellProperties16.Append(tableCellBorders14);
+
+            tableStyleProperties20.Append(styleParagraphProperties14);
+            tableStyleProperties20.Append(runPropertiesBaseStyle14);
+            tableStyleProperties20.Append(tableStyleConditionalFormattingTableProperties16);
+            tableStyleProperties20.Append(tableStyleConditionalFormattingTableCellProperties16);
+
+            TableStyleProperties tableStyleProperties21 = new TableStyleProperties() { Type = TableStyleOverrideValues.LastRow };
+
+            StyleParagraphProperties styleParagraphProperties15 = new StyleParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines16 = new SpacingBetweenLines() { Before = "0", After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+
+            styleParagraphProperties15.Append(spacingBetweenLines16);
+
+            RunPropertiesBaseStyle runPropertiesBaseStyle15 = new RunPropertiesBaseStyle();
+            RunFonts runFonts9 = new RunFonts() { AsciiTheme = ThemeFontValues.MajorHighAnsi, HighAnsiTheme = ThemeFontValues.MajorHighAnsi, EastAsiaTheme = ThemeFontValues.MajorEastAsia, ComplexScriptTheme = ThemeFontValues.MajorBidi };
+            Bold bold20 = new Bold();
+            BoldComplexScript boldComplexScript20 = new BoldComplexScript();
+
+            runPropertiesBaseStyle15.Append(runFonts9);
+            runPropertiesBaseStyle15.Append(bold20);
+            runPropertiesBaseStyle15.Append(boldComplexScript20);
+            TableStyleConditionalFormattingTableProperties tableStyleConditionalFormattingTableProperties17 = new TableStyleConditionalFormattingTableProperties();
+
+            TableStyleConditionalFormattingTableCellProperties tableStyleConditionalFormattingTableCellProperties17 = new TableStyleConditionalFormattingTableCellProperties();
+
+            TableCellBorders tableCellBorders15 = new TableCellBorders();
+            TopBorder topBorder17 = new TopBorder() { Val = BorderValues.Double, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)6U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder18 = new LeftBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder17 = new BottomBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            RightBorder rightBorder18 = new RightBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            InsideHorizontalBorder insideHorizontalBorder16 = new InsideHorizontalBorder() { Val = BorderValues.Nil };
+            InsideVerticalBorder insideVerticalBorder15 = new InsideVerticalBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+
+            tableCellBorders15.Append(topBorder17);
+            tableCellBorders15.Append(leftBorder18);
+            tableCellBorders15.Append(bottomBorder17);
+            tableCellBorders15.Append(rightBorder18);
+            tableCellBorders15.Append(insideHorizontalBorder16);
+            tableCellBorders15.Append(insideVerticalBorder15);
+
+            tableStyleConditionalFormattingTableCellProperties17.Append(tableCellBorders15);
+
+            tableStyleProperties21.Append(styleParagraphProperties15);
+            tableStyleProperties21.Append(runPropertiesBaseStyle15);
+            tableStyleProperties21.Append(tableStyleConditionalFormattingTableProperties17);
+            tableStyleProperties21.Append(tableStyleConditionalFormattingTableCellProperties17);
+
+            TableStyleProperties tableStyleProperties22 = new TableStyleProperties() { Type = TableStyleOverrideValues.FirstColumn };
+
+            RunPropertiesBaseStyle runPropertiesBaseStyle16 = new RunPropertiesBaseStyle();
+            RunFonts runFonts10 = new RunFonts() { AsciiTheme = ThemeFontValues.MajorHighAnsi, HighAnsiTheme = ThemeFontValues.MajorHighAnsi, EastAsiaTheme = ThemeFontValues.MajorEastAsia, ComplexScriptTheme = ThemeFontValues.MajorBidi };
+            Bold bold21 = new Bold();
+            BoldComplexScript boldComplexScript21 = new BoldComplexScript();
+
+            runPropertiesBaseStyle16.Append(runFonts10);
+            runPropertiesBaseStyle16.Append(bold21);
+            runPropertiesBaseStyle16.Append(boldComplexScript21);
+
+            tableStyleProperties22.Append(runPropertiesBaseStyle16);
+
+            TableStyleProperties tableStyleProperties23 = new TableStyleProperties() { Type = TableStyleOverrideValues.LastColumn };
+
+            RunPropertiesBaseStyle runPropertiesBaseStyle17 = new RunPropertiesBaseStyle();
+            RunFonts runFonts11 = new RunFonts() { AsciiTheme = ThemeFontValues.MajorHighAnsi, HighAnsiTheme = ThemeFontValues.MajorHighAnsi, EastAsiaTheme = ThemeFontValues.MajorEastAsia, ComplexScriptTheme = ThemeFontValues.MajorBidi };
+            Bold bold22 = new Bold();
+            BoldComplexScript boldComplexScript22 = new BoldComplexScript();
+
+            runPropertiesBaseStyle17.Append(runFonts11);
+            runPropertiesBaseStyle17.Append(bold22);
+            runPropertiesBaseStyle17.Append(boldComplexScript22);
+            TableStyleConditionalFormattingTableProperties tableStyleConditionalFormattingTableProperties18 = new TableStyleConditionalFormattingTableProperties();
+
+            TableStyleConditionalFormattingTableCellProperties tableStyleConditionalFormattingTableCellProperties18 = new TableStyleConditionalFormattingTableCellProperties();
+
+            TableCellBorders tableCellBorders16 = new TableCellBorders();
+            TopBorder topBorder18 = new TopBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder19 = new LeftBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder18 = new BottomBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            RightBorder rightBorder19 = new RightBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+
+            tableCellBorders16.Append(topBorder18);
+            tableCellBorders16.Append(leftBorder19);
+            tableCellBorders16.Append(bottomBorder18);
+            tableCellBorders16.Append(rightBorder19);
+
+            tableStyleConditionalFormattingTableCellProperties18.Append(tableCellBorders16);
+
+            tableStyleProperties23.Append(runPropertiesBaseStyle17);
+            tableStyleProperties23.Append(tableStyleConditionalFormattingTableProperties18);
+            tableStyleProperties23.Append(tableStyleConditionalFormattingTableCellProperties18);
+
+            TableStyleProperties tableStyleProperties24 = new TableStyleProperties() { Type = TableStyleOverrideValues.Band1Vertical };
+            TableStyleConditionalFormattingTableProperties tableStyleConditionalFormattingTableProperties19 = new TableStyleConditionalFormattingTableProperties();
+
+            TableStyleConditionalFormattingTableCellProperties tableStyleConditionalFormattingTableCellProperties19 = new TableStyleConditionalFormattingTableCellProperties();
+
+            TableCellBorders tableCellBorders17 = new TableCellBorders();
+            TopBorder topBorder19 = new TopBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder20 = new LeftBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder19 = new BottomBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            RightBorder rightBorder20 = new RightBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+
+            tableCellBorders17.Append(topBorder19);
+            tableCellBorders17.Append(leftBorder20);
+            tableCellBorders17.Append(bottomBorder19);
+            tableCellBorders17.Append(rightBorder20);
+            Shading shading12 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "D3DFEE", ThemeFill = ThemeColorValues.Accent1, ThemeFillTint = "3F" };
+
+            tableStyleConditionalFormattingTableCellProperties19.Append(tableCellBorders17);
+            tableStyleConditionalFormattingTableCellProperties19.Append(shading12);
+
+            tableStyleProperties24.Append(tableStyleConditionalFormattingTableProperties19);
+            tableStyleProperties24.Append(tableStyleConditionalFormattingTableCellProperties19);
+
+            TableStyleProperties tableStyleProperties25 = new TableStyleProperties() { Type = TableStyleOverrideValues.Band1Horizontal };
+            TableStyleConditionalFormattingTableProperties tableStyleConditionalFormattingTableProperties20 = new TableStyleConditionalFormattingTableProperties();
+
+            TableStyleConditionalFormattingTableCellProperties tableStyleConditionalFormattingTableCellProperties20 = new TableStyleConditionalFormattingTableCellProperties();
+
+            TableCellBorders tableCellBorders18 = new TableCellBorders();
+            TopBorder topBorder20 = new TopBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder21 = new LeftBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder20 = new BottomBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            RightBorder rightBorder21 = new RightBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            InsideVerticalBorder insideVerticalBorder16 = new InsideVerticalBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+
+            tableCellBorders18.Append(topBorder20);
+            tableCellBorders18.Append(leftBorder21);
+            tableCellBorders18.Append(bottomBorder20);
+            tableCellBorders18.Append(rightBorder21);
+            tableCellBorders18.Append(insideVerticalBorder16);
+            Shading shading13 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "D3DFEE", ThemeFill = ThemeColorValues.Accent1, ThemeFillTint = "3F" };
+
+            tableStyleConditionalFormattingTableCellProperties20.Append(tableCellBorders18);
+            tableStyleConditionalFormattingTableCellProperties20.Append(shading13);
+
+            tableStyleProperties25.Append(tableStyleConditionalFormattingTableProperties20);
+            tableStyleProperties25.Append(tableStyleConditionalFormattingTableCellProperties20);
+
+            TableStyleProperties tableStyleProperties26 = new TableStyleProperties() { Type = TableStyleOverrideValues.Band2Horizontal };
+            TableStyleConditionalFormattingTableProperties tableStyleConditionalFormattingTableProperties21 = new TableStyleConditionalFormattingTableProperties();
+
+            TableStyleConditionalFormattingTableCellProperties tableStyleConditionalFormattingTableCellProperties21 = new TableStyleConditionalFormattingTableCellProperties();
+
+            TableCellBorders tableCellBorders19 = new TableCellBorders();
+            TopBorder topBorder21 = new TopBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder22 = new LeftBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder21 = new BottomBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            RightBorder rightBorder22 = new RightBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+            InsideVerticalBorder insideVerticalBorder17 = new InsideVerticalBorder() { Val = BorderValues.Single, Color = "4F81BD", ThemeColor = ThemeColorValues.Accent1, Size = (UInt32Value)8U, Space = (UInt32Value)0U };
+
+            tableCellBorders19.Append(topBorder21);
+            tableCellBorders19.Append(leftBorder22);
+            tableCellBorders19.Append(bottomBorder21);
+            tableCellBorders19.Append(rightBorder22);
+            tableCellBorders19.Append(insideVerticalBorder17);
+
+            tableStyleConditionalFormattingTableCellProperties21.Append(tableCellBorders19);
+
+            tableStyleProperties26.Append(tableStyleConditionalFormattingTableProperties21);
+            tableStyleProperties26.Append(tableStyleConditionalFormattingTableCellProperties21);
+
+            style15.Append(styleName15);
+            style15.Append(basedOn11);
+            style15.Append(uIPriority14);
+            style15.Append(rsid12);
+            style15.Append(styleParagraphProperties13);
+            style15.Append(styleTableProperties6);
+            style15.Append(tableStyleProperties20);
+            style15.Append(tableStyleProperties21);
+            style15.Append(tableStyleProperties22);
+            style15.Append(tableStyleProperties23);
+            style15.Append(tableStyleProperties24);
+            style15.Append(tableStyleProperties25);
+            style15.Append(tableStyleProperties26);
+
+            Style style16 = new Style() { Type = StyleValues.Paragraph, StyleId = "Quote" };
+            StyleName styleName16 = new StyleName() { Val = "Quote" };
+            BasedOn basedOn12 = new BasedOn() { Val = "Normal" };
+            NextParagraphStyle nextParagraphStyle4 = new NextParagraphStyle() { Val = "Normal" };
+            LinkedStyle linkedStyle7 = new LinkedStyle() { Val = "QuoteChar" };
+            UIPriority uIPriority15 = new UIPriority() { Val = 29 };
+            PrimaryStyle primaryStyle6 = new PrimaryStyle();
+            Rsid rsid13 = new Rsid() { Val = "00851582" };
+
+            StyleParagraphProperties styleParagraphProperties16 = new StyleParagraphProperties();
+
+            ParagraphBorders paragraphBorders1 = new ParagraphBorders();
+            TopBorder topBorder22 = new TopBorder() { Val = BorderValues.Single, Color = "auto", Size = (UInt32Value)4U, Space = (UInt32Value)1U };
+            LeftBorder leftBorder23 = new LeftBorder() { Val = BorderValues.Single, Color = "auto", Size = (UInt32Value)4U, Space = (UInt32Value)4U };
+            BottomBorder bottomBorder22 = new BottomBorder() { Val = BorderValues.Single, Color = "auto", Size = (UInt32Value)4U, Space = (UInt32Value)1U };
+            RightBorder rightBorder23 = new RightBorder() { Val = BorderValues.Single, Color = "auto", Size = (UInt32Value)4U, Space = (UInt32Value)4U };
+
+            paragraphBorders1.Append(topBorder22);
+            paragraphBorders1.Append(leftBorder23);
+            paragraphBorders1.Append(bottomBorder22);
+            paragraphBorders1.Append(rightBorder23);
+
+            styleParagraphProperties16.Append(paragraphBorders1);
+
+            StyleRunProperties styleRunProperties7 = new StyleRunProperties();
+            Italic italic5 = new Italic();
+            ItalicComplexScript italicComplexScript5 = new ItalicComplexScript();
+            Color color13 = new Color() { Val = "000000", ThemeColor = ThemeColorValues.Text1 };
+
+            styleRunProperties7.Append(italic5);
+            styleRunProperties7.Append(italicComplexScript5);
+            styleRunProperties7.Append(color13);
+
+            style16.Append(styleName16);
+            style16.Append(basedOn12);
+            style16.Append(nextParagraphStyle4);
+            style16.Append(linkedStyle7);
+            style16.Append(uIPriority15);
+            style16.Append(primaryStyle6);
+            style16.Append(rsid13);
+            style16.Append(styleParagraphProperties16);
+            style16.Append(styleRunProperties7);
+
+            Style style17 = new Style() { Type = StyleValues.Character, StyleId = "QuoteChar", CustomStyle = true };
+            StyleName styleName17 = new StyleName() { Val = "Quote Char" };
+            BasedOn basedOn13 = new BasedOn() { Val = "DefaultParagraphFont" };
+            LinkedStyle linkedStyle8 = new LinkedStyle() { Val = "Quote" };
+            UIPriority uIPriority16 = new UIPriority() { Val = 29 };
+            Rsid rsid14 = new Rsid() { Val = "00851582" };
+
+            StyleRunProperties styleRunProperties8 = new StyleRunProperties();
+            Italic italic6 = new Italic();
+            ItalicComplexScript italicComplexScript6 = new ItalicComplexScript();
+            Color color14 = new Color() { Val = "000000", ThemeColor = ThemeColorValues.Text1 };
+
+            styleRunProperties8.Append(italic6);
+            styleRunProperties8.Append(italicComplexScript6);
+            styleRunProperties8.Append(color14);
+
+            style17.Append(styleName17);
+            style17.Append(basedOn13);
+            style17.Append(linkedStyle8);
+            style17.Append(uIPriority16);
+            style17.Append(rsid14);
+            style17.Append(styleRunProperties8);
+
+            styles1.Append(docDefaults1);
+            styles1.Append(latentStyles1);
+            styles1.Append(style1);
+            styles1.Append(style2);
+            styles1.Append(style3);
+            styles1.Append(style4);
+            styles1.Append(style5);
+            styles1.Append(style6);
+            styles1.Append(style7);
+            styles1.Append(style8);
+            styles1.Append(style9);
+            styles1.Append(style10);
+            styles1.Append(style11);
+            styles1.Append(style12);
+            styles1.Append(style13);
+            styles1.Append(style14);
+            styles1.Append(style15);
+            styles1.Append(style16);
+            styles1.Append(style17);
+
+            part.Styles = styles1;
+
         }
     }
 }

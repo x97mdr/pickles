@@ -25,23 +25,29 @@ using System.Text;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Pickles.Extensions;
 using Pickles.Parser;
-using System.IO;
 
 namespace Pickles.DocumentationBuilders.Word
 {
-    public class WordStepFormatter
+    public class WordScenarioOutlineFormatter
     {
-        public void Format(Body body, Step step)
+        private readonly WordStepFormatter wordStepFormatter;
+
+        public WordScenarioOutlineFormatter(WordStepFormatter wordStepFormatter)
         {
-            body.GenerateParagraph(step.NativeKeyword + step.Name, "Normal");
-            if (!string.IsNullOrEmpty(step.DocStringArgument))
+            this.wordStepFormatter = wordStepFormatter;
+        }
+
+        public void Format(Body body, ScenarioOutline scenarioOutline)
+        {
+            body.GenerateParagraph(scenarioOutline.Name, "Heading3");
+            body.GenerateParagraph(scenarioOutline.Description, "Normal");
+
+            foreach (var step in scenarioOutline.Steps)
             {
-                var lines = step.DocStringArgument.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-                foreach (var line in lines)
-                {
-                    body.GenerateParagraph(line, "Quote");
-                }
+                this.wordStepFormatter.Format(body, step);
             }
+
+            // TODO - Add the examples table
         }
     }
 }

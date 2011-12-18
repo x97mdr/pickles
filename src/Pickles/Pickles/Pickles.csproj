@@ -175,6 +175,7 @@
     <Compile Include="DocumentationBuilders\Word\WordDocumentationBuilder.cs" />
     <Compile Include="DocumentationBuilders\Word\WordFeatureFormatter.cs" />
     <Compile Include="DocumentationBuilders\Word\WordScenarioFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Word\WordScenarioOutlineFormatter.cs" />
     <Compile Include="DocumentationBuilders\Word\WordStepFormatter.cs" />
     <Compile Include="DocumentationBuilders\Word\WordStyleApplicator.cs" />
     <Compile Include="DocumentationFormat.cs" />
