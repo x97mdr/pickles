@@ -18,7 +18,9 @@
 
 #endregion
 
+using Ninject;
 using Pickles.DocumentationBuilders.HTML;
+using Pickles.DocumentationBuilders.Word;
 using Pickles.TestFrameworks;
 
 namespace Pickles
@@ -29,7 +31,8 @@ namespace Pickles
         {
             Bind<Configuration>().ToSelf().InSingletonScope();
 
-            Bind<IDocumentationBuilder>().To<HtmlDocumentationBuilder>().InSingletonScope();
+            Bind<IDocumentationBuilder>().To<HtmlDocumentationBuilder>().When(request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.Html).InSingletonScope();
+            Bind<IDocumentationBuilder>().To<WordDocumentationBuilder>().When(request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.Word).InSingletonScope();
 
             Bind<NUnitResults>().ToSelf().InSingletonScope();
 

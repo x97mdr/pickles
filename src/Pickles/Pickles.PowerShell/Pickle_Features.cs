@@ -48,6 +48,9 @@ namespace Pickles.PowerShell
         [Parameter(HelpMessage = CommandLineArgumentParser.HELP_SUT_VERSION, Mandatory = false)]
         public string SystemUnderTestVersion { get; set; }
 
+        [Parameter(HelpMessage = CommandLineArgumentParser.HELP_DOCUMENTATION_FORMAT, Mandatory = false)]
+        public string DocumentationFormat { get; set; }
+
         protected override void ProcessRecord()
         {
             var kernel = new StandardKernel(new PicklesModule());
@@ -75,6 +78,7 @@ namespace Pickles.PowerShell
             }
             configuration.SystemUnderTestName = SystemUnderTestName;
             configuration.SystemUnderTestVersion = SystemUnderTestVersion;
+            if (!string.IsNullOrEmpty(DocumentationFormat)) configuration.DocumentationFormat = (DocumentationFormat)Enum.Parse(typeof(DocumentationFormat), DocumentationFormat, true);
         }
     }
 }

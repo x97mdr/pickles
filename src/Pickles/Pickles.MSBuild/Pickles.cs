@@ -47,6 +47,8 @@ namespace Pickles.MSBuild
 
         public string SystemUnderTestVersion { get; set; }
 
+        public string DocumentationFormat { get; set; }
+
         private void CaptureConfiguration(Configuration configuration)
         {
             configuration.FeatureFolder = new DirectoryInfo(FeatureDirectory);
@@ -55,6 +57,7 @@ namespace Pickles.MSBuild
             if (!string.IsNullOrEmpty(ResultsFile)) configuration.LinkedTestFrameworkResultsFile = new FileInfo(ResultsFile);
             if (!string.IsNullOrEmpty(SystemUnderTestName)) configuration.SystemUnderTestName = SystemUnderTestName;
             if (!string.IsNullOrEmpty(SystemUnderTestVersion)) configuration.SystemUnderTestVersion = SystemUnderTestVersion;
+            if (!string.IsNullOrEmpty(DocumentationFormat)) configuration.DocumentationFormat = (DocumentationFormat)Enum.Parse(typeof(DocumentationFormat), DocumentationFormat, true);
         }
 
         public override bool Execute()

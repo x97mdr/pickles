@@ -22,23 +22,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Ninject;
-using Pickles.DirectoryCrawler;
+using DocumentFormat.OpenXml.Wordprocessing;
+using Pickles.Extensions;
+using Pickles.Parser;
 
-namespace Pickles
+namespace Pickles.DocumentationBuilders.Word
 {
-    public class Runner
+    public class WordStepFormatter
     {
-        public void Run(IKernel kernel)
+        public void Format(Body body, Step step)
         {
-            var configuration = kernel.Get<Configuration>();
-            if (!configuration.OutputFolder.Exists) configuration.OutputFolder.Create();
-
-            var featureCrawler = kernel.Get<DirectoryTreeCrawler>();
-            var features = featureCrawler.Crawl(configuration.FeatureFolder);
-
-            var documentationBuilder = kernel.Get<IDocumentationBuilder>();
-            documentationBuilder.Build(features);
+            body.GenerateParagraph(step.NativeKeyword + step.Name, "Normal");
         }
     }
 }

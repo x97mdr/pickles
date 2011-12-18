@@ -36,6 +36,12 @@ namespace Pickles
             set; 
         }
 
+        public DocumentationFormat DocumentationFormat
+        {
+            get;
+            set;
+        }
+
         public string Language { get; set; }
         
         public bool HasTestFrameworkResults 

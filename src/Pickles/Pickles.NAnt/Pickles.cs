@@ -58,6 +58,10 @@ namespace Pickles.NAnt
         [StringValidator(AllowEmpty = true)]
         public string SystemUnderTestVersion { get; set; }
 
+        [TaskAttribute("documentationFormat", Required = false)]
+        [StringValidator(AllowEmpty = true)]
+        public string DocumentationFormat { get; set; }
+
         private void CaptureConfiguration(Configuration configuration)
         {
             configuration.FeatureFolder = new DirectoryInfo(FeatureDirectory);
@@ -66,6 +70,7 @@ namespace Pickles.NAnt
             if (!string.IsNullOrEmpty(ResultsFile)) configuration.LinkedTestFrameworkResultsFile = new FileInfo(ResultsFile);
             if (!string.IsNullOrEmpty(SystemUnderTestName)) configuration.SystemUnderTestName = SystemUnderTestName;
             if (!string.IsNullOrEmpty(SystemUnderTestVersion)) configuration.SystemUnderTestVersion = SystemUnderTestVersion;
+            if (!string.IsNullOrEmpty(DocumentationFormat)) configuration.DocumentationFormat = (DocumentationFormat)Enum.Parse(typeof(DocumentationFormat), DocumentationFormat, true);
         }
 
         protected override void ExecuteTask()
