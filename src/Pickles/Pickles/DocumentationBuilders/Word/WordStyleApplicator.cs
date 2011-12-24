@@ -161,6 +161,14 @@ namespace Pickles.DocumentationBuilders.Word
             return part;
         }
 
+        public StylesWithEffectsPart AddStylesWithEffectsPartToPackage(WordprocessingDocument doc)
+        {
+            var part = doc.MainDocumentPart.AddNewPart<StylesWithEffectsPart>();
+            Styles root = new Styles();
+            root.Save(part);
+            return part;
+        }
+
         // Generates content of part.
         private void GeneratePartContent(StyleDefinitionsPart part)
         {

@@ -28,6 +28,8 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using NGenerics.Patterns.Visitor;
 using Pickles.DirectoryCrawler;
 using Pickles.Extensions;
+using System.Xml.Linq;
+using OpenXmlPowerTools;
 
 namespace Pickles.DocumentationBuilders.Word
 {
@@ -36,12 +38,14 @@ namespace Pickles.DocumentationBuilders.Word
         private readonly Configuration configuration;
         private readonly WordFeatureFormatter wordFeatureFormatter;
         private readonly WordStyleApplicator wordStyleApplicator;
+        private readonly WordFontApplicator wordFontApplicator;
 
-        public WordDocumentationBuilder(Configuration configuration, WordFeatureFormatter wordFeatureFormatter, WordStyleApplicator wordStyleApplicator)
+        public WordDocumentationBuilder(Configuration configuration, WordFeatureFormatter wordFeatureFormatter, WordStyleApplicator wordStyleApplicator, WordFontApplicator wordFontApplicator)
         {
             this.configuration = configuration;
             this.wordFeatureFormatter = wordFeatureFormatter;
             this.wordStyleApplicator = wordStyleApplicator;
+            this.wordFontApplicator = wordFontApplicator;
         }
 
         #region IDocumentationBuilder Members
@@ -56,7 +60,12 @@ namespace Pickles.DocumentationBuilders.Word
             {
                 var mainDocumentPart = wordProcessingDocument.AddMainDocumentPart();
                 this.wordStyleApplicator.AddStylesPartToPackage(wordProcessingDocument);
+                this.wordStyleApplicator.AddStylesWithEffectsPartToPackage(wordProcessingDocument);
+                this.wordFontApplicator.AddFontTablePartToPackage(wordProcessingDocument);
+                var documentSettingsPart = mainDocumentPart.AddNewPart<DocumentSettingsPart>();
+                documentSettingsPart.Settings = new Settings();
                 
+
                 var document = new Document();
                 var body = new Body();
                 document.Append(body);
@@ -74,6 +83,18 @@ namespace Pickles.DocumentationBuilders.Word
 
                 mainDocumentPart.Document = document;
                 mainDocumentPart.Document.Save();
+            }
+
+            // HACK - Add the table of contents
+            using (var wordProcessingDocument = WordprocessingDocument.Open(documentFileName, true))
+            {
+                XElement firstPara = wordProcessingDocument
+                                    .MainDocumentPart
+                                    .GetXDocument()
+                                    .Descendants(W.p)
+                                    .FirstOrDefault();
+
+                TocAdder.AddToc(wordProcessingDocument, firstPara, @"TOC \o '1-3' \h \z \u", null, null);
             }
         }
 
