@@ -1819,6 +1819,257 @@ namespace Pickles.DocumentationBuilders.Word
             style17.Append(rsid14);
             style17.Append(styleRunProperties8);
 
+            Style style18 = new Style() { Type = StyleValues.Paragraph, StyleId = "TOCHeading" };
+            StyleName styleName18 = new StyleName() { Val = "TOC Heading" };
+            BasedOn basedOn14 = new BasedOn() { Val = "Heading1" };
+            NextParagraphStyle nextParagraphStyle5 = new NextParagraphStyle() { Val = "Normal" };
+            UIPriority uIPriority17 = new UIPriority() { Val = 39 };
+            SemiHidden semiHidden4 = new SemiHidden();
+            UnhideWhenUsed unhideWhenUsed6 = new UnhideWhenUsed();
+            PrimaryStyle primaryStyle7 = new PrimaryStyle();
+            Rsid rsid15 = new Rsid() { Val = "00A636FD" };
+
+            StyleParagraphProperties styleParagraphProperties17 = new StyleParagraphProperties();
+            OutlineLevel outlineLevel4 = new OutlineLevel() { Val = 9 };
+
+            styleParagraphProperties17.Append(outlineLevel4);
+
+            style18.Append(styleName18);
+            style18.Append(basedOn14);
+            style18.Append(nextParagraphStyle5);
+            style18.Append(uIPriority17);
+            style18.Append(semiHidden4);
+            style18.Append(unhideWhenUsed6);
+            style18.Append(primaryStyle7);
+            style18.Append(rsid15);
+            style18.Append(styleParagraphProperties17);
+
+            Style style19 = new Style() { Type = StyleValues.Paragraph, StyleId = "TOC1" };
+            StyleName styleName19 = new StyleName() { Val = "toc 1" };
+            BasedOn basedOn15 = new BasedOn() { Val = "Normal" };
+            NextParagraphStyle nextParagraphStyle6 = new NextParagraphStyle() { Val = "Normal" };
+            AutoRedefine autoRedefine1 = new AutoRedefine();
+            UIPriority uIPriority18 = new UIPriority() { Val = 39 };
+            UnhideWhenUsed unhideWhenUsed7 = new UnhideWhenUsed();
+            Rsid rsid16 = new Rsid() { Val = "00A636FD" };
+
+            StyleParagraphProperties styleParagraphProperties18 = new StyleParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines17 = new SpacingBetweenLines() { After = "100" };
+
+            styleParagraphProperties18.Append(spacingBetweenLines17);
+
+            style19.Append(styleName19);
+            style19.Append(basedOn15);
+            style19.Append(nextParagraphStyle6);
+            style19.Append(autoRedefine1);
+            style19.Append(uIPriority18);
+            style19.Append(unhideWhenUsed7);
+            style19.Append(rsid16);
+            style19.Append(styleParagraphProperties18);
+
+            Style style20 = new Style() { Type = StyleValues.Paragraph, StyleId = "TOC2" };
+            StyleName styleName20 = new StyleName() { Val = "toc 2" };
+            BasedOn basedOn16 = new BasedOn() { Val = "Normal" };
+            NextParagraphStyle nextParagraphStyle7 = new NextParagraphStyle() { Val = "Normal" };
+            AutoRedefine autoRedefine2 = new AutoRedefine();
+            UIPriority uIPriority19 = new UIPriority() { Val = 39 };
+            UnhideWhenUsed unhideWhenUsed8 = new UnhideWhenUsed();
+            Rsid rsid17 = new Rsid() { Val = "00A636FD" };
+
+            StyleParagraphProperties styleParagraphProperties19 = new StyleParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines18 = new SpacingBetweenLines() { After = "100" };
+            Indentation indentation1 = new Indentation() { Left = "220" };
+
+            styleParagraphProperties19.Append(spacingBetweenLines18);
+            styleParagraphProperties19.Append(indentation1);
+
+            style20.Append(styleName20);
+            style20.Append(basedOn16);
+            style20.Append(nextParagraphStyle7);
+            style20.Append(autoRedefine2);
+            style20.Append(uIPriority19);
+            style20.Append(unhideWhenUsed8);
+            style20.Append(rsid17);
+            style20.Append(styleParagraphProperties19);
+
+            Style style21 = new Style() { Type = StyleValues.Paragraph, StyleId = "TOC3" };
+            StyleName styleName21 = new StyleName() { Val = "toc 3" };
+            BasedOn basedOn17 = new BasedOn() { Val = "Normal" };
+            NextParagraphStyle nextParagraphStyle8 = new NextParagraphStyle() { Val = "Normal" };
+            AutoRedefine autoRedefine3 = new AutoRedefine();
+            UIPriority uIPriority20 = new UIPriority() { Val = 39 };
+            UnhideWhenUsed unhideWhenUsed9 = new UnhideWhenUsed();
+            Rsid rsid18 = new Rsid() { Val = "00A636FD" };
+
+            StyleParagraphProperties styleParagraphProperties20 = new StyleParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines19 = new SpacingBetweenLines() { After = "100" };
+            Indentation indentation2 = new Indentation() { Left = "440" };
+
+            styleParagraphProperties20.Append(spacingBetweenLines19);
+            styleParagraphProperties20.Append(indentation2);
+
+            style21.Append(styleName21);
+            style21.Append(basedOn17);
+            style21.Append(nextParagraphStyle8);
+            style21.Append(autoRedefine3);
+            style21.Append(uIPriority20);
+            style21.Append(unhideWhenUsed9);
+            style21.Append(rsid18);
+            style21.Append(styleParagraphProperties20);
+
+            Style style22 = new Style() { Type = StyleValues.Character, StyleId = "Hyperlink" };
+            StyleName styleName22 = new StyleName() { Val = "Hyperlink" };
+            BasedOn basedOn18 = new BasedOn() { Val = "DefaultParagraphFont" };
+            UIPriority uIPriority21 = new UIPriority() { Val = 99 };
+            UnhideWhenUsed unhideWhenUsed10 = new UnhideWhenUsed();
+            Rsid rsid19 = new Rsid() { Val = "00A636FD" };
+
+            StyleRunProperties styleRunProperties9 = new StyleRunProperties();
+            Color color15 = new Color() { Val = "0000FF", ThemeColor = ThemeColorValues.Hyperlink };
+            Underline underline1 = new Underline() { Val = UnderlineValues.Single };
+
+            styleRunProperties9.Append(color15);
+            styleRunProperties9.Append(underline1);
+
+            style22.Append(styleName22);
+            style22.Append(basedOn18);
+            style22.Append(uIPriority21);
+            style22.Append(unhideWhenUsed10);
+            style22.Append(rsid19);
+            style22.Append(styleRunProperties9);
+
+            Style style23 = new Style() { Type = StyleValues.Paragraph, StyleId = "BalloonText" };
+            StyleName styleName23 = new StyleName() { Val = "Balloon Text" };
+            BasedOn basedOn19 = new BasedOn() { Val = "Normal" };
+            LinkedStyle linkedStyle9 = new LinkedStyle() { Val = "BalloonTextChar" };
+            UIPriority uIPriority22 = new UIPriority() { Val = 99 };
+            SemiHidden semiHidden5 = new SemiHidden();
+            UnhideWhenUsed unhideWhenUsed11 = new UnhideWhenUsed();
+            Rsid rsid20 = new Rsid() { Val = "00A636FD" };
+
+            StyleParagraphProperties styleParagraphProperties21 = new StyleParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines20 = new SpacingBetweenLines() { Line = "240", LineRule = LineSpacingRuleValues.Auto };
+
+            styleParagraphProperties21.Append(spacingBetweenLines20);
+
+            StyleRunProperties styleRunProperties10 = new StyleRunProperties();
+            RunFonts runFonts12 = new RunFonts() { Ascii = "Tahoma", HighAnsi = "Tahoma", ComplexScript = "Tahoma" };
+            FontSize fontSize6 = new FontSize() { Val = "16" };
+            FontSizeComplexScript fontSizeComplexScript6 = new FontSizeComplexScript() { Val = "16" };
+
+            styleRunProperties10.Append(runFonts12);
+            styleRunProperties10.Append(fontSize6);
+            styleRunProperties10.Append(fontSizeComplexScript6);
+
+            style23.Append(styleName23);
+            style23.Append(basedOn19);
+            style23.Append(linkedStyle9);
+            style23.Append(uIPriority22);
+            style23.Append(semiHidden5);
+            style23.Append(unhideWhenUsed11);
+            style23.Append(rsid20);
+            style23.Append(styleParagraphProperties21);
+            style23.Append(styleRunProperties10);
+
+            Style style24 = new Style() { Type = StyleValues.Character, StyleId = "BalloonTextChar", CustomStyle = true };
+            StyleName styleName24 = new StyleName() { Val = "Balloon Text Char" };
+            BasedOn basedOn20 = new BasedOn() { Val = "DefaultParagraphFont" };
+            LinkedStyle linkedStyle10 = new LinkedStyle() { Val = "BalloonText" };
+            UIPriority uIPriority23 = new UIPriority() { Val = 99 };
+            SemiHidden semiHidden6 = new SemiHidden();
+            Rsid rsid21 = new Rsid() { Val = "00A636FD" };
+
+            StyleRunProperties styleRunProperties11 = new StyleRunProperties();
+            RunFonts runFonts13 = new RunFonts() { Ascii = "Tahoma", HighAnsi = "Tahoma", ComplexScript = "Tahoma" };
+            FontSize fontSize7 = new FontSize() { Val = "16" };
+            FontSizeComplexScript fontSizeComplexScript7 = new FontSizeComplexScript() { Val = "16" };
+
+            styleRunProperties11.Append(runFonts13);
+            styleRunProperties11.Append(fontSize7);
+            styleRunProperties11.Append(fontSizeComplexScript7);
+
+            style24.Append(styleName24);
+            style24.Append(basedOn20);
+            style24.Append(linkedStyle10);
+            style24.Append(uIPriority23);
+            style24.Append(semiHidden6);
+            style24.Append(rsid21);
+            style24.Append(styleRunProperties11);
+
+            Style style25 = new Style() { Type = StyleValues.Paragraph, StyleId = "Passed", CustomStyle = true };
+            StyleName styleName25 = new StyleName() { Val = "Passed" };
+            BasedOn basedOn21 = new BasedOn() { Val = "Normal" };
+            LinkedStyle linkedStyle11 = new LinkedStyle() { Val = "PassedChar" };
+            PrimaryStyle primaryStyle8 = new PrimaryStyle();
+            Rsid rsid22 = new Rsid() { Val = "005217FA" };
+
+            StyleParagraphProperties styleParagraphProperties22 = new StyleParagraphProperties();
+            Shading shading14 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "00B050" };
+            Justification justification1 = new Justification() { Val = JustificationValues.Center };
+
+            styleParagraphProperties22.Append(shading14);
+            styleParagraphProperties22.Append(justification1);
+
+            style25.Append(styleName25);
+            style25.Append(basedOn21);
+            style25.Append(linkedStyle11);
+            style25.Append(primaryStyle8);
+            style25.Append(rsid22);
+            style25.Append(styleParagraphProperties22);
+
+            Style style26 = new Style() { Type = StyleValues.Paragraph, StyleId = "Failed", CustomStyle = true };
+            StyleName styleName26 = new StyleName() { Val = "Failed" };
+            BasedOn basedOn22 = new BasedOn() { Val = "Passed" };
+            LinkedStyle linkedStyle12 = new LinkedStyle() { Val = "FailedChar" };
+            PrimaryStyle primaryStyle9 = new PrimaryStyle();
+            Rsid rsid23 = new Rsid() { Val = "005217FA" };
+
+            StyleParagraphProperties styleParagraphProperties23 = new StyleParagraphProperties();
+            Shading shading15 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "FF0000" };
+
+            styleParagraphProperties23.Append(shading15);
+
+            style26.Append(styleName26);
+            style26.Append(basedOn22);
+            style26.Append(linkedStyle12);
+            style26.Append(primaryStyle9);
+            style26.Append(rsid23);
+            style26.Append(styleParagraphProperties23);
+
+            Style style27 = new Style() { Type = StyleValues.Character, StyleId = "PassedChar", CustomStyle = true };
+            StyleName styleName27 = new StyleName() { Val = "Passed Char" };
+            BasedOn basedOn23 = new BasedOn() { Val = "DefaultParagraphFont" };
+            LinkedStyle linkedStyle13 = new LinkedStyle() { Val = "Passed" };
+            Rsid rsid24 = new Rsid() { Val = "005217FA" };
+
+            StyleRunProperties styleRunProperties12 = new StyleRunProperties();
+            Shading shading16 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "00B050" };
+
+            styleRunProperties12.Append(shading16);
+
+            style27.Append(styleName27);
+            style27.Append(basedOn23);
+            style27.Append(linkedStyle13);
+            style27.Append(rsid24);
+            style27.Append(styleRunProperties12);
+
+            Style style28 = new Style() { Type = StyleValues.Character, StyleId = "FailedChar", CustomStyle = true };
+            StyleName styleName28 = new StyleName() { Val = "Failed Char" };
+            BasedOn basedOn24 = new BasedOn() { Val = "PassedChar" };
+            LinkedStyle linkedStyle14 = new LinkedStyle() { Val = "Failed" };
+            Rsid rsid25 = new Rsid() { Val = "005217FA" };
+
+            StyleRunProperties styleRunProperties13 = new StyleRunProperties();
+            Shading shading17 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "FF0000" };
+
+            styleRunProperties13.Append(shading17);
+
+            style28.Append(styleName28);
+            style28.Append(basedOn24);
+            style28.Append(linkedStyle14);
+            style28.Append(rsid25);
+            style28.Append(styleRunProperties13);
+
             styles1.Append(docDefaults1);
             styles1.Append(latentStyles1);
             styles1.Append(style1);
@@ -1838,9 +2089,19 @@ namespace Pickles.DocumentationBuilders.Word
             styles1.Append(style15);
             styles1.Append(style16);
             styles1.Append(style17);
+            styles1.Append(style18);
+            styles1.Append(style19);
+            styles1.Append(style20);
+            styles1.Append(style21);
+            styles1.Append(style22);
+            styles1.Append(style23);
+            styles1.Append(style24);
+            styles1.Append(style25);
+            styles1.Append(style26);
+            styles1.Append(style27);
+            styles1.Append(style28);
 
             part.Styles = styles1;
-
         }
     }
 }

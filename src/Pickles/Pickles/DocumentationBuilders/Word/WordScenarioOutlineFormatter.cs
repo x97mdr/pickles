@@ -25,6 +25,7 @@ using System.Text;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Pickles.Extensions;
 using Pickles.Parser;
+using Pickles.TestFrameworks;
 
 namespace Pickles.DocumentationBuilders.Word
 {
@@ -32,15 +33,31 @@ namespace Pickles.DocumentationBuilders.Word
     {
         private readonly WordStepFormatter wordStepFormatter;
         private readonly WordTableFormatter wordTableFormatter;
+        private readonly Configuration configuration;
+        private readonly NUnitResults nunitResults;
 
-        public WordScenarioOutlineFormatter(WordStepFormatter wordStepFormatter, WordTableFormatter wordTableFormatter)
+        public WordScenarioOutlineFormatter(WordStepFormatter wordStepFormatter, WordTableFormatter wordTableFormatter, Configuration configuration, NUnitResults nunitResults)
         {
             this.wordStepFormatter = wordStepFormatter;
             this.wordTableFormatter = wordTableFormatter;
+            this.configuration = configuration;
         }
 
         public void Format(Body body, ScenarioOutline scenarioOutline)
         {
+            if (this.configuration.HasTestFrameworkResults)
+            {
+                var testResult = nunitResults.GetScenarioOutlineResult(scenarioOutline);
+                if (testResult.WasExecuted && testResult.WasSuccessful)
+                {
+                    body.GenerateParagraph("Passed", "Passed");
+                }
+                else if (testResult.WasExecuted && !testResult.WasSuccessful)
+                {
+                    body.GenerateParagraph("Failed", "Failed");
+                }
+            }
+
             body.GenerateParagraph(scenarioOutline.Name, "Heading2");
             if (!string.IsNullOrEmpty(scenarioOutline.Description)) body.GenerateParagraph(scenarioOutline.Description, "Normal");
 

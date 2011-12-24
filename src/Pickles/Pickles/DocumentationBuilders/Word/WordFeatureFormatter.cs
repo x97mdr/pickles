@@ -26,6 +26,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using Pickles.DirectoryCrawler;
 using Pickles.Extensions;
 using Pickles.Parser;
+using Pickles.TestFrameworks;
 
 namespace Pickles.DocumentationBuilders.Word
 {
@@ -34,12 +35,16 @@ namespace Pickles.DocumentationBuilders.Word
         private readonly WordScenarioFormatter wordScenarioFormatter;
         private readonly WordScenarioOutlineFormatter wordScenarioOutlineFormatter;
         private readonly WordStyleApplicator wordStyleApplicator;
+        private readonly Configuration configuration;
+        private readonly NUnitResults nunitResults;
 
-        public WordFeatureFormatter(WordScenarioFormatter wordScenarioFormatter, WordScenarioOutlineFormatter wordScenarioOutlineFormatter, WordStyleApplicator wordStyleApplicator)
+        public WordFeatureFormatter(WordScenarioFormatter wordScenarioFormatter, WordScenarioOutlineFormatter wordScenarioOutlineFormatter, WordStyleApplicator wordStyleApplicator, Configuration configuration, NUnitResults nunitResults)
         {
             this.wordScenarioFormatter = wordScenarioFormatter;
             this.wordScenarioOutlineFormatter = wordScenarioOutlineFormatter;
             this.wordStyleApplicator = wordStyleApplicator;
+            this.configuration = configuration;
+            this.nunitResults = nunitResults;
         }
 
         public void Format(Body body, FeatureDirectoryTreeNode featureDirectoryTreeNode)
@@ -47,6 +52,19 @@ namespace Pickles.DocumentationBuilders.Word
             var feature = featureDirectoryTreeNode.Feature;
 
             body.InsertPageBreak();
+
+            if (this.configuration.HasTestFrameworkResults)
+            {
+                var testResult = this.nunitResults.GetFeatureResult(feature);
+                if (testResult.WasExecuted && testResult.WasSuccessful)
+                {
+                    body.GenerateParagraph("Passed", "Passed");
+                }
+                else if (testResult.WasExecuted && !testResult.WasSuccessful)
+                {
+                    body.GenerateParagraph("Failed", "Failed");
+                }
+            }
 
             body.GenerateParagraph(feature.Name, "Heading1");
             body.GenerateParagraph(feature.Description, "Normal");
