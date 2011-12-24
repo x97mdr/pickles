@@ -67,9 +67,9 @@ namespace Pickles.DocumentationBuilders.HTML
             return new XElement(this.xmlns + "div",
                        new XAttribute("class", "float-right"),
                        new XElement(this.xmlns + "img",
-                           new XAttribute("src", result.IsSuccessful ? this.htmlResourceSet.SuccessImage : this.htmlResourceSet.FailureImage),
-                           new XAttribute("title", BuildTitle(result.IsSuccessful)),
-                           new XAttribute("alt", BuildTitle(result.IsSuccessful))
+                           new XAttribute("src", result.WasSuccessful ? this.htmlResourceSet.SuccessImage : this.htmlResourceSet.FailureImage),
+                           new XAttribute("title", BuildTitle(result.WasSuccessful)),
+                           new XAttribute("alt", BuildTitle(result.WasSuccessful))
                         )
                     );
         }
@@ -79,7 +79,7 @@ namespace Pickles.DocumentationBuilders.HTML
             if (configuration.HasTestFrameworkResults)
             {
                 TestResult scenarioResult = this.results.GetFeatureResult(feature);
-                if (!scenarioResult.WasExecuted || !scenarioResult.IsSuccessful) return null;
+                if (!scenarioResult.WasExecuted || !scenarioResult.WasSuccessful) return null;
                 return BuildImageElement(scenarioResult);
             }
 
@@ -91,7 +91,7 @@ namespace Pickles.DocumentationBuilders.HTML
             if (configuration.HasTestFrameworkResults)
             {
                 TestResult scenarioResult = this.results.GetScenarioResult(scenario);
-                if (!scenarioResult.WasExecuted || !scenarioResult.IsSuccessful) return null;
+                if (!scenarioResult.WasExecuted || !scenarioResult.WasSuccessful) return null;
                 return BuildImageElement(scenarioResult);
             }
 
@@ -103,7 +103,7 @@ namespace Pickles.DocumentationBuilders.HTML
             if (configuration.HasTestFrameworkResults)
             {
                 TestResult scenarioResult = this.results.GetScenarioOutlineResult(scenarioOutline);
-                if (!scenarioResult.WasExecuted || !scenarioResult.IsSuccessful) return null;
+                if (!scenarioResult.WasExecuted || !scenarioResult.WasSuccessful) return null;
                 return BuildImageElement(scenarioResult);
             }
 

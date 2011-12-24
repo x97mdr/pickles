@@ -22,23 +22,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Ninject;
-using Pickles.DirectoryCrawler;
 
 namespace Pickles
 {
-    public class Runner
+    public enum DocumentationFormat
     {
-        public void Run(IKernel kernel)
-        {
-            var configuration = kernel.Get<Configuration>();
-            if (!configuration.OutputFolder.Exists) configuration.OutputFolder.Create();
-
-            var featureCrawler = kernel.Get<DirectoryTreeCrawler>();
-            var features = featureCrawler.Crawl(configuration.FeatureFolder);
-
-            var documentationBuilder = kernel.Get<IDocumentationBuilder>();
-            documentationBuilder.Build(features);
-        }
+        Html,
+        Word
     }
 }

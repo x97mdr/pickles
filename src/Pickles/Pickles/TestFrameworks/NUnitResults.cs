@@ -10,7 +10,7 @@ namespace Pickles.TestFrameworks
     public struct TestResult
     {
         public bool WasExecuted;
-        public bool IsSuccessful;
+        public bool WasSuccessful;
     }
 
     public class NUnitResults
@@ -67,10 +67,10 @@ namespace Pickles.TestFrameworks
 
         private TestResult GetResultFromElement(XElement element)
         {
-            if (element == null) return new TestResult { WasExecuted = false, IsSuccessful = false };
+            if (element == null) return new TestResult { WasExecuted = false, WasSuccessful = false };
             var wasExecuted = element.Attribute("executed") != null ? element.Attribute("executed").Value.ToLowerInvariant() == "true" : false;
             var wasSuccessful = element.Attribute("success") != null ? element.Attribute("success").Value.ToLowerInvariant() == "true" : false;
-            return new TestResult { WasExecuted = wasExecuted, IsSuccessful = wasSuccessful };
+            return new TestResult { WasExecuted = wasExecuted, WasSuccessful = wasSuccessful };
         }
 
         public TestResult GetFeatureResult(Feature feature)

@@ -22,23 +22,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Ninject;
-using Pickles.DirectoryCrawler;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
 
-namespace Pickles
+namespace Pickles.DocumentationBuilders.Word
 {
-    public class Runner
+    public class WordFontApplicator
     {
-        public void Run(IKernel kernel)
+        public FontTablePart AddFontTablePartToPackage(WordprocessingDocument doc)
         {
-            var configuration = kernel.Get<Configuration>();
-            if (!configuration.OutputFolder.Exists) configuration.OutputFolder.Create();
-
-            var featureCrawler = kernel.Get<DirectoryTreeCrawler>();
-            var features = featureCrawler.Crawl(configuration.FeatureFolder);
-
-            var documentationBuilder = kernel.Get<IDocumentationBuilder>();
-            documentationBuilder.Build(features);
+            var part = doc.MainDocumentPart.AddNewPart<FontTablePart>();
+            Fonts root = new Fonts();
+            root.Save(part);
+            return part;
         }
     }
 }

@@ -35,6 +35,7 @@ namespace Pickles
         public const string HELP_SUT_NAME = "the name of the system under test";
         public const string HELP_SUT_VERSION = "the version of the system under test";
         public const string HELP_LANGUAGE_FEATURE_FILES = "the language of the feature files";
+        public const string HELP_DOCUMENTATION_FORMAT = "the format of the output documentation";
 
         private readonly OptionSet options;
         private string featureDirectory;
@@ -45,6 +46,7 @@ namespace Pickles
         private string systemUnderTestName;
         private string systemUnderTestVersion;
         private string language;
+        private string documentationFormat;
 
         public CommandLineArgumentParser()
         {
@@ -56,6 +58,7 @@ namespace Pickles
    	            { "sn|system-under-test-name=", HELP_RESULT_FILE, v => this.systemUnderTestName = v },
    	            { "sv|system-under-test-version=", HELP_SUT_NAME, v => this.systemUnderTestVersion = v },
                 { "l|language=", HELP_LANGUAGE_FEATURE_FILES, v => this.language = v },
+                { "df|documentation-format=", HELP_DOCUMENTATION_FORMAT, v => this.documentationFormat = v },
    	            { "v|version",  v => versionRequested = v != null },
    	            { "h|?|help",   v => helpRequested = v != null }
             };
@@ -96,6 +99,7 @@ namespace Pickles
             if (!string.IsNullOrEmpty(this.systemUnderTestName)) configuration.SystemUnderTestName = this.systemUnderTestName;
             if (!string.IsNullOrEmpty(this.systemUnderTestVersion)) configuration.SystemUnderTestVersion = this.systemUnderTestVersion;
             if (!string.IsNullOrEmpty(this.language)) configuration.Language = this.language;
+            if (!string.IsNullOrEmpty(this.documentationFormat)) configuration.DocumentationFormat = (DocumentationFormat)Enum.Parse(typeof(DocumentationFormat), this.documentationFormat, true);
 
             return true;
         }

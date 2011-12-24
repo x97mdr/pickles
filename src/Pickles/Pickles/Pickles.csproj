@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DocumentFormat.OpenXml.1.0\lib\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="gherkin">
       <HintPath>..\packages\gherkin.2.6.8\lib\gherkin.dll</HintPath>
     </Reference>
@@ -140,6 +144,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\VersionInfo.cs">
@@ -167,6 +172,20 @@
     <Compile Include="DocumentationBuilders\HTML\HtmlTableFormatter.cs" />
     <Compile Include="DocumentationBuilders\HTML\HtmlTableOfContentsFormatter.cs" />
     <Compile Include="DocumentationBuilders\IDocumentationBuilder.cs" />
+    <Compile Include="DocumentationBuilders\Word\TableOfContentsAdder\PtOpenXmlUtil.cs" />
+    <Compile Include="DocumentationBuilders\Word\TableOfContentsAdder\PtUtil.cs" />
+    <Compile Include="DocumentationBuilders\Word\TableOfContentsAdder\TocAdder.cs" />
+    <Compile Include="DocumentationBuilders\Word\WordDocumentationBuilder.cs" />
+    <Compile Include="DocumentationBuilders\Word\WordFeatureFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Word\WordFontApplicator.cs" />
+    <Compile Include="DocumentationBuilders\Word\WordHeaderFooterFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Word\WordScenarioFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Word\WordScenarioOutlineFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Word\WordStepFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Word\WordStyleApplicator.cs" />
+    <Compile Include="DocumentationBuilders\Word\WordTableFormatter.cs" />
+    <Compile Include="DocumentationFormat.cs" />
+    <Compile Include="Extensions\BodyExtensions.cs" />
     <Compile Include="Extensions\PathExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="DirectoryCrawler\FeatureDirectoryTreeNode.cs" />
@@ -215,6 +234,7 @@
     <EmbeddedResource Include="Resources\scripts\jquery.dataTables.min.js" />
     <EmbeddedResource Include="Resources\scripts\jquery.js" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
