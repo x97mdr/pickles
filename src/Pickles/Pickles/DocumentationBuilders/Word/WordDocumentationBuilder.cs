@@ -94,7 +94,7 @@ namespace Pickles.DocumentationBuilders.Word
                                     .Descendants(W.p)
                                     .FirstOrDefault();
 
-                TocAdder.AddToc(wordProcessingDocument, firstPara, @"TOC \o '1-3' \h \z \u", null, null);
+                TocAdder.AddToc(wordProcessingDocument, firstPara, @"TOC \o '1-2' \h \z \u", null, 4);
             }
         }
 

@@ -77,7 +77,7 @@ namespace OpenXmlPowerTools
                     </w:rPr>
                   </w:style>");
 
-            for (int i = 1; i <= 6; ++i)
+            for (int i = 1; i <= 1; ++i)
             {
                 AddElementIfMissing(
                     partXDoc,
@@ -94,6 +94,30 @@ namespace OpenXmlPowerTools
                             <w:unhideWhenUsed/>
                             <w:pPr>
                               <w:spacing w:after='100'/>
+                            </w:pPr>
+                          </w:style>", i));
+            }
+            for (int i = 2; i <= 6; ++i)
+            {
+                AddElementIfMissing(
+                    partXDoc,
+                    partXDoc.Root.Elements(W.style)
+                        .Where(e => (string)e.Attribute(W.type) == "paragraph" && (string)e.Attribute(W.styleId) == ("TOC" + i.ToString()))
+                        .FirstOrDefault(),
+                    String.Format(
+                        @"<w:style w:type='paragraph' w:styleId='TOC{0}' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
+                            <w:name w:val='toc {0}'/>
+                            <w:basedOn w:val='Normal'/>
+                            <w:next w:val='Normal'/>
+                            <w:autoRedefine/>
+                            <w:uiPriority w:val='39'/>
+                            <w:unhideWhenUsed/>
+                            <w:pPr>
+                              <w:tabs>
+                                <w:tab w:val='right' w:leader='dot' w:pos='9350'/>
+                              </w:tabs>
+                              <w:spacing w:after='100'/>
+                              <w:ind w:left='720'/>
                             </w:pPr>
                           </w:style>", i));
             }
