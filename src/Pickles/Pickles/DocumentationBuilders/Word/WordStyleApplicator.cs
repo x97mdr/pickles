@@ -2101,7 +2101,116 @@ namespace Pickles.DocumentationBuilders.Word
             styles1.Append(style27);
             styles1.Append(style28);
 
+            styles1.Append(GenerateHeaderStyle());
+            styles1.Append(GenerateHeaderCharStyle());
+            styles1.Append(GenerateFooterStyle());
+            styles1.Append(GenerateFooterCharStyle());
+
             part.Styles = styles1;
+        }
+
+        public Style GenerateHeaderStyle()
+        {
+            Style style1 = new Style() { Type = StyleValues.Paragraph, StyleId = "Header" };
+            StyleName styleName1 = new StyleName() { Val = "header" };
+            BasedOn basedOn1 = new BasedOn() { Val = "Normal" };
+            LinkedStyle linkedStyle1 = new LinkedStyle() { Val = "HeaderChar" };
+            UIPriority uIPriority1 = new UIPriority() { Val = 99 };
+            UnhideWhenUsed unhideWhenUsed1 = new UnhideWhenUsed();
+            Rsid rsid1 = new Rsid() { Val = "005641D2" };
+
+            StyleParagraphProperties styleParagraphProperties1 = new StyleParagraphProperties();
+
+            Tabs tabs1 = new Tabs();
+            TabStop tabStop1 = new TabStop() { Val = TabStopValues.Center, Position = 4680 };
+            TabStop tabStop2 = new TabStop() { Val = TabStopValues.Right, Position = 9360 };
+
+            tabs1.Append(tabStop1);
+            tabs1.Append(tabStop2);
+            SpacingBetweenLines spacingBetweenLines1 = new SpacingBetweenLines() { Line = "240", LineRule = LineSpacingRuleValues.Auto };
+
+            styleParagraphProperties1.Append(tabs1);
+            styleParagraphProperties1.Append(spacingBetweenLines1);
+
+            style1.Append(styleName1);
+            style1.Append(basedOn1);
+            style1.Append(linkedStyle1);
+            style1.Append(uIPriority1);
+            style1.Append(unhideWhenUsed1);
+            style1.Append(rsid1);
+            style1.Append(styleParagraphProperties1);
+            return style1;
+        }
+
+        public Style GenerateHeaderCharStyle()
+        {
+            Style style1 = new Style() { Type = StyleValues.Character, StyleId = "HeaderChar", CustomStyle = true };
+            StyleName styleName1 = new StyleName() { Val = "Header Char" };
+            BasedOn basedOn1 = new BasedOn() { Val = "DefaultParagraphFont" };
+            LinkedStyle linkedStyle1 = new LinkedStyle() { Val = "Header" };
+            UIPriority uIPriority1 = new UIPriority() { Val = 99 };
+            Rsid rsid1 = new Rsid() { Val = "005641D2" };
+
+            style1.Append(styleName1);
+            style1.Append(basedOn1);
+            style1.Append(linkedStyle1);
+            style1.Append(uIPriority1);
+            style1.Append(rsid1);
+            return style1;
+        }
+
+        public Style GenerateFooterStyle()
+        {
+            Style style1 = new Style() { Type = StyleValues.Paragraph, StyleId = "Footer" };
+            StyleName styleName1 = new StyleName() { Val = "footer" };
+            BasedOn basedOn1 = new BasedOn() { Val = "Normal" };
+            LinkedStyle linkedStyle1 = new LinkedStyle() { Val = "FooterChar" };
+            UIPriority uIPriority1 = new UIPriority() { Val = 99 };
+            SemiHidden semiHidden1 = new SemiHidden();
+            UnhideWhenUsed unhideWhenUsed1 = new UnhideWhenUsed();
+            Rsid rsid1 = new Rsid() { Val = "005641D2" };
+
+            StyleParagraphProperties styleParagraphProperties1 = new StyleParagraphProperties();
+
+            Tabs tabs1 = new Tabs();
+            TabStop tabStop1 = new TabStop() { Val = TabStopValues.Center, Position = 4680 };
+            TabStop tabStop2 = new TabStop() { Val = TabStopValues.Right, Position = 9360 };
+
+            tabs1.Append(tabStop1);
+            tabs1.Append(tabStop2);
+            SpacingBetweenLines spacingBetweenLines1 = new SpacingBetweenLines() { Line = "240", LineRule = LineSpacingRuleValues.Auto };
+
+            styleParagraphProperties1.Append(tabs1);
+            styleParagraphProperties1.Append(spacingBetweenLines1);
+
+            style1.Append(styleName1);
+            style1.Append(basedOn1);
+            style1.Append(linkedStyle1);
+            style1.Append(uIPriority1);
+            style1.Append(semiHidden1);
+            style1.Append(unhideWhenUsed1);
+            style1.Append(rsid1);
+            style1.Append(styleParagraphProperties1);
+            return style1;
+        }
+
+        public Style GenerateFooterCharStyle()
+        {
+            Style style1 = new Style() { Type = StyleValues.Character, StyleId = "FooterChar", CustomStyle = true };
+            StyleName styleName1 = new StyleName() { Val = "Footer Char" };
+            BasedOn basedOn1 = new BasedOn() { Val = "DefaultParagraphFont" };
+            LinkedStyle linkedStyle1 = new LinkedStyle() { Val = "Footer" };
+            UIPriority uIPriority1 = new UIPriority() { Val = 99 };
+            SemiHidden semiHidden1 = new SemiHidden();
+            Rsid rsid1 = new Rsid() { Val = "005641D2" };
+
+            style1.Append(styleName1);
+            style1.Append(basedOn1);
+            style1.Append(linkedStyle1);
+            style1.Append(uIPriority1);
+            style1.Append(semiHidden1);
+            style1.Append(rsid1);
+            return style1;
         }
     }
 }

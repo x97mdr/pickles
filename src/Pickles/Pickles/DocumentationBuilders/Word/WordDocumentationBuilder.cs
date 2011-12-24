@@ -39,13 +39,15 @@ namespace Pickles.DocumentationBuilders.Word
         private readonly WordFeatureFormatter wordFeatureFormatter;
         private readonly WordStyleApplicator wordStyleApplicator;
         private readonly WordFontApplicator wordFontApplicator;
+        private readonly WordHeaderFooterFormatter wordHeaderFooterFormatter;
 
-        public WordDocumentationBuilder(Configuration configuration, WordFeatureFormatter wordFeatureFormatter, WordStyleApplicator wordStyleApplicator, WordFontApplicator wordFontApplicator)
+        public WordDocumentationBuilder(Configuration configuration, WordFeatureFormatter wordFeatureFormatter, WordStyleApplicator wordStyleApplicator, WordFontApplicator wordFontApplicator, WordHeaderFooterFormatter wordHeaderFooterFormatter)
         {
             this.configuration = configuration;
             this.wordFeatureFormatter = wordFeatureFormatter;
             this.wordStyleApplicator = wordStyleApplicator;
             this.wordFontApplicator = wordFontApplicator;
+            this.wordHeaderFooterFormatter = wordHeaderFooterFormatter;
         }
 
         #region IDocumentationBuilder Members
@@ -64,8 +66,8 @@ namespace Pickles.DocumentationBuilders.Word
                 this.wordFontApplicator.AddFontTablePartToPackage(wordProcessingDocument);
                 var documentSettingsPart = mainDocumentPart.AddNewPart<DocumentSettingsPart>();
                 documentSettingsPart.Settings = new Settings();
+                this.wordHeaderFooterFormatter.ApplyHeaderAndFooter(wordProcessingDocument);
                 
-
                 var document = new Document();
                 var body = new Body();
                 document.Append(body);
