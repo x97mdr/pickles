@@ -47,5 +47,10 @@ namespace Pickles.Extensions
             }
             return sb.ToString();
         }
+
+        public static string ToDitaName(this string word)
+        {
+            return word.Replace(" ", "_").ToLowerInvariant();
+        }
     }
 }

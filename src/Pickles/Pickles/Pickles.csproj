@@ -153,6 +153,13 @@
     <Compile Include="CommandLineArgumentParser.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="DirectoryCrawler\FolderDirectoryTreeNode.cs" />
+    <Compile Include="DocumentationBuilders\DITA\DitaDocumentationBuilder.cs" />
+    <Compile Include="DocumentationBuilders\DITA\DitaFeatureFormatter.cs" />
+    <Compile Include="DocumentationBuilders\DITA\DitaMapBuilder.cs" />
+    <Compile Include="DocumentationBuilders\DITA\DitaScenarioFormatter.cs" />
+    <Compile Include="DocumentationBuilders\DITA\DitaScenarioOutlineFormatter.cs" />
+    <Compile Include="DocumentationBuilders\DITA\DitaStepFormatter.cs" />
+    <Compile Include="DocumentationBuilders\DITA\DitaTableFormatter.cs" />
     <Compile Include="DocumentationBuilders\HTML\HtmlContentFormatter.cs" />
     <Compile Include="DocumentationBuilders\HTML\HtmlDescriptionFormatter.cs" />
     <Compile Include="DocumentationBuilders\HTML\HtmlDocumentationBuilder.cs" />

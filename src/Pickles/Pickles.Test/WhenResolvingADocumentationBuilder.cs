@@ -25,6 +25,7 @@ using System.Text;
 using Ninject;
 using NUnit.Framework;
 using Pickles.DocumentationBuilders.Word;
+using Pickles.DocumentationBuilders.DITA;
 
 namespace Pickles.Test
 {
@@ -56,7 +57,7 @@ namespace Pickles.Test
             Assert.AreSame(item1, item2);
         }
 
-        public void Then_can_resolve_IDocumentationBuilder_as_HtmlDocumentationBuilder_if_the_user_selects_Word_output()
+        public void Then_can_resolve_IDocumentationBuilder_as_WordDocumentationBuilder_if_the_user_selects_Word_output()
         {
             var configuration = Kernel.Get<Configuration>();
             configuration.DocumentationFormat = DocumentationFormat.Word;
@@ -67,7 +68,7 @@ namespace Pickles.Test
             Assert.IsInstanceOf<WordDocumentationBuilder>(item);
         }
 
-        public void Then_can_resolve_IDocumentationBuilder_as_HtmlDocumentationBuilder_as_singleton_if_the_user_selects_Word_output()
+        public void Then_can_resolve_IDocumentationBuilder_as_WordDocumentationBuilder_as_singleton_if_the_user_selects_Word_output()
         {
             var configuration = Kernel.Get<Configuration>();
             configuration.DocumentationFormat = DocumentationFormat.Word;
@@ -79,6 +80,32 @@ namespace Pickles.Test
             Assert.IsInstanceOf<WordDocumentationBuilder>(item1);
             Assert.NotNull(item2);
             Assert.IsInstanceOf<WordDocumentationBuilder>(item2);
+            Assert.AreSame(item1, item2);
+        }
+
+        public void Then_can_resolve_IDocumentationBuilder_as_DitaDocumentationBuilder_if_the_user_selects_DITA_output()
+        {
+            var configuration = Kernel.Get<Configuration>();
+            configuration.DocumentationFormat = DocumentationFormat.Dita;
+
+            var item = Kernel.Get<IDocumentationBuilder>();
+
+            Assert.NotNull(item);
+            Assert.IsInstanceOf<DitaDocumentationBuilder>(item);
+        }
+
+        public void Then_can_resolve_IDocumentationBuilder_as_DitaDocumentationBuilder_as_singleton_if_the_user_selects_DITA_output()
+        {
+            var configuration = Kernel.Get<Configuration>();
+            configuration.DocumentationFormat = DocumentationFormat.Dita;
+
+            var item1 = Kernel.Get<IDocumentationBuilder>();
+            var item2 = Kernel.Get<IDocumentationBuilder>();
+
+            Assert.NotNull(item1);
+            Assert.IsInstanceOf<DitaDocumentationBuilder>(item1);
+            Assert.NotNull(item2);
+            Assert.IsInstanceOf<DitaDocumentationBuilder>(item2);
             Assert.AreSame(item1, item2);
         }
     }

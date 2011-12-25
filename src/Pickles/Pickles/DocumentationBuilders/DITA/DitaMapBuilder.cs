@@ -23,12 +23,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Pickles
+namespace Pickles.DocumentationBuilders.DITA
 {
-    public enum DocumentationFormat
+    class DitaMapBuilder
     {
-        Html,
-        Word,
-        Dita
     }
 }
