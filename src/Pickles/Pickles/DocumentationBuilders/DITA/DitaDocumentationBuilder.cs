@@ -30,27 +30,30 @@ namespace Pickles.DocumentationBuilders.DITA
     public class DitaDocumentationBuilder : IDocumentationBuilder
     {
         private readonly DitaFeatureFormatter ditaFeatureFormatter;
+        private readonly DitaMapBuilder ditaMapBuilder;
 
-        public DitaDocumentationBuilder(DitaFeatureFormatter ditaFeatureFormatter)
+        public DitaDocumentationBuilder(DitaFeatureFormatter ditaFeatureFormatter, DitaMapBuilder ditaMapBuilder)
         {
             this.ditaFeatureFormatter = ditaFeatureFormatter;
+            this.ditaMapBuilder = ditaMapBuilder;
         }
 
         #region IDocumentationBuilder Members
 
         public void Build(NGenerics.DataStructures.Trees.GeneralTree<DirectoryCrawler.IDirectoryTreeNode> features)
         {
+            this.ditaMapBuilder.Build(features);
+
             var actionVisitor = new ActionVisitor<IDirectoryTreeNode>(node =>
             {
                 var featureDirectoryTreeNode = node as FeatureDirectoryTreeNode;
                 if (featureDirectoryTreeNode != null)
                 {
-                    this.ditaFeatureFormatter.Format(featureDirectoryTreeNode.Feature);
+                    this.ditaFeatureFormatter.Format(featureDirectoryTreeNode);
                 }
             });
 
             features.AcceptVisitor(actionVisitor);
-
         }
 
         #endregion

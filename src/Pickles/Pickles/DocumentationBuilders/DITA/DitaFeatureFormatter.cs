@@ -26,6 +26,7 @@ using System.Xml.Linq;
 using Pickles.Extensions;
 using Pickles.Parser;
 using System.IO;
+using Pickles.DirectoryCrawler;
 
 namespace Pickles.DocumentationBuilders.DITA
 {
@@ -34,16 +35,20 @@ namespace Pickles.DocumentationBuilders.DITA
         private readonly Configuration configuration;
         private readonly DitaScenarioFormatter ditaScenarioFormatter;
         private readonly DitaScenarioOutlineFormatter ditaScenarioOutlineFormatter;
+        private readonly DitaMapPathGenerator ditaMapPathGenerator;
 
-        public DitaFeatureFormatter(Configuration configuration, DitaScenarioFormatter ditaScenarioFormatter, DitaScenarioOutlineFormatter ditaScenarioOutlineFormatter)
+        public DitaFeatureFormatter(Configuration configuration, DitaScenarioFormatter ditaScenarioFormatter, DitaScenarioOutlineFormatter ditaScenarioOutlineFormatter, DitaMapPathGenerator ditaMapPathGenerator)
         {
             this.configuration = configuration;
             this.ditaScenarioFormatter = ditaScenarioFormatter;
             this.ditaScenarioOutlineFormatter = ditaScenarioOutlineFormatter;
+            this.ditaMapPathGenerator = ditaMapPathGenerator;
         }
 
-        public void Format(Feature feature)
+        public void Format(FeatureDirectoryTreeNode featureNode)
         {
+            var feature = featureNode.Feature;
+
             var topic = new XElement("topic", new XAttribute("id", feature.Name.ToDitaName()));
             topic.Add(new XElement("title", feature.Name));
             topic.Add(new XElement("shortdesc", feature.Description));
@@ -66,7 +71,10 @@ namespace Pickles.DocumentationBuilders.DITA
                 }
             }
 
-            var filename = Path.Combine(this.configuration.OutputFolder.FullName, feature.Name.ToDitaName() + ".dita");
+            // HACK - This relative path stuff needs to be refactored
+            var relativePath = new FileInfo(Path.Combine(this.configuration.OutputFolder.FullName, featureNode.RelativePathFromRoot)).Directory.FullName.ToLowerInvariant();
+            if (!Directory.Exists(relativePath)) Directory.CreateDirectory(relativePath);
+            var filename = Path.Combine(relativePath, feature.Name.ToDitaName() + ".dita");
             var document = new XDocument(topic);
             document.Save(filename);
         }

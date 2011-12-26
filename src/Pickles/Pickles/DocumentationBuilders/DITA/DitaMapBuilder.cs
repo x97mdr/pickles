@@ -22,10 +22,57 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Linq;
+using NGenerics.Patterns.Visitor;
+using Pickles.DirectoryCrawler;
+using NGenerics.DataStructures.Trees;
+using System.IO;
 
 namespace Pickles.DocumentationBuilders.DITA
 {
-    class DitaMapBuilder
+    public class DitaMapBuilder
     {
+        private readonly Configuration configuration;
+        private readonly DitaMapPathGenerator ditaMapPathGenerator;
+
+        public DitaMapBuilder(Configuration configuration, DitaMapPathGenerator ditaMapPathGenerator)
+        {
+            this.configuration = configuration;
+            this.ditaMapPathGenerator = ditaMapPathGenerator;
+        }
+
+        private XElement BuildListItems(GeneralTree<IDirectoryTreeNode> features)
+        {
+            XElement container;
+            if (features.Data.IsContent)
+            {
+                container = new XElement("topicref", new XAttribute("href", this.ditaMapPathGenerator.GeneratePathToFeature(features.Data)));
+            }
+            else
+            {
+                container = new XElement("topichead", new XAttribute("navtitle", features.Data.Name));
+            }
+
+            foreach (var childNode in features.ChildNodes)
+            {
+                if (childNode.Data.IsContent)
+                {
+                    container.Add(new XElement("topicref", new XAttribute("href", this.ditaMapPathGenerator.GeneratePathToFeature(childNode.Data))));
+                }
+                else
+                {
+                    container.Add(BuildListItems(childNode));
+                }
+            }
+
+            return container;
+        }
+
+        public void Build(GeneralTree<DirectoryCrawler.IDirectoryTreeNode> features)
+        {
+            XElement map = new XElement("map", BuildListItems(features));
+            XDocument document = new XDocument(map);
+            document.Save(Path.Combine(this.configuration.OutputFolder.FullName, "features.ditamap"));
+        }
     }
 }
