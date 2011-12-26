@@ -24,16 +24,21 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using Pickles.Parser;
+using Pickles.TestFrameworks;
 
 namespace Pickles.DocumentationBuilders.DITA
 {
     public class DitaScenarioOutlineFormatter
     {
+        private readonly Configuration configuration;
+        private readonly NUnitResults nunitResults;
         private readonly DitaStepFormatter ditaStepFormatter;
         private readonly DitaTableFormatter ditaTableFormatter;
 
-        public DitaScenarioOutlineFormatter(DitaStepFormatter ditaStepFormatter, DitaTableFormatter ditaTableFormatter)
+        public DitaScenarioOutlineFormatter(Configuration configuration, NUnitResults nunitResults, DitaStepFormatter ditaStepFormatter, DitaTableFormatter ditaTableFormatter)
         {
+            this.configuration = configuration;
+            this.nunitResults = nunitResults;
             this.ditaStepFormatter = ditaStepFormatter;
             this.ditaTableFormatter = ditaTableFormatter;
         }
@@ -46,6 +51,19 @@ namespace Pickles.DocumentationBuilders.DITA
             if (!string.IsNullOrEmpty(scenario.Description))
             {
                 section.Add(new XElement("p", scenario.Description));
+            }
+
+            if (this.configuration.HasTestFrameworkResults)
+            {
+                var testResult = this.nunitResults.GetScenarioOutlineResult(scenario);
+                if (testResult.WasExecuted && testResult.WasSuccessful)
+                {
+                    section.Add(new XElement("note", "This scenario passed"));
+                }
+                else if (testResult.WasExecuted && !testResult.WasSuccessful)
+                {
+                    section.Add(new XElement("note", "This scenario failed"));
+                }
             }
 
             foreach (var step in scenario.Steps)

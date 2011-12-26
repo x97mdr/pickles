@@ -38,7 +38,7 @@ namespace Pickles.DocumentationBuilders.DITA
 
         public void Format(XElement section, Step step)
         {
-            section.Add(new XElement("p", step.NativeKeyword + step.Name));
+            section.Add(new XElement("p", new XElement("keyword", step.NativeKeyword), step.Name));
 
             if (!string.IsNullOrEmpty(step.DocStringArgument))
             {

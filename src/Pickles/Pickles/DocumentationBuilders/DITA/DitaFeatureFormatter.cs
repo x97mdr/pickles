@@ -27,6 +27,7 @@ using Pickles.Extensions;
 using Pickles.Parser;
 using System.IO;
 using Pickles.DirectoryCrawler;
+using Pickles.TestFrameworks;
 
 namespace Pickles.DocumentationBuilders.DITA
 {
@@ -36,13 +37,15 @@ namespace Pickles.DocumentationBuilders.DITA
         private readonly DitaScenarioFormatter ditaScenarioFormatter;
         private readonly DitaScenarioOutlineFormatter ditaScenarioOutlineFormatter;
         private readonly DitaMapPathGenerator ditaMapPathGenerator;
+        private readonly NUnitResults nunitResults;
 
-        public DitaFeatureFormatter(Configuration configuration, DitaScenarioFormatter ditaScenarioFormatter, DitaScenarioOutlineFormatter ditaScenarioOutlineFormatter, DitaMapPathGenerator ditaMapPathGenerator)
+        public DitaFeatureFormatter(Configuration configuration, DitaScenarioFormatter ditaScenarioFormatter, DitaScenarioOutlineFormatter ditaScenarioOutlineFormatter, DitaMapPathGenerator ditaMapPathGenerator, NUnitResults nunitResults)
         {
             this.configuration = configuration;
             this.ditaScenarioFormatter = ditaScenarioFormatter;
             this.ditaScenarioOutlineFormatter = ditaScenarioOutlineFormatter;
             this.ditaMapPathGenerator = ditaMapPathGenerator;
+            this.nunitResults = nunitResults;
         }
 
         public void Format(FeatureDirectoryTreeNode featureNode)
@@ -55,6 +58,19 @@ namespace Pickles.DocumentationBuilders.DITA
 
             var body = new XElement("body");
             topic.Add(body);
+
+            if (this.configuration.HasTestFrameworkResults)
+            {
+                var testResult = this.nunitResults.GetFeatureResult(feature);
+                if (testResult.WasExecuted && testResult.WasSuccessful)
+                {
+                    body.Add(new XElement("note", "This feature passed"));
+                }
+                else if (testResult.WasExecuted && !testResult.WasSuccessful)
+                {
+                    body.Add(new XElement("note", "This feature failed"));
+                }
+            }
 
             foreach (var featureElement in feature.FeatureElements)
             {
