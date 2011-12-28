@@ -70,8 +70,8 @@ namespace Pickles.DocumentationBuilders.DITA
 
         public void Build(GeneralTree<DirectoryCrawler.IDirectoryTreeNode> features)
         {
-            XElement map = new XElement("map", BuildListItems(features));
-            XDocument document = new XDocument(map);
+            XElement map = new XElement("map", new XAttribute("title", "Features"), new XAttribute("id", "features"), BuildListItems(features));
+            XDocument document = new XDocument(new XDocumentType("map", "-//OASIS//DTD DITA Map//EN", "map.dtd", string.Empty), map);
             document.Save(Path.Combine(this.configuration.OutputFolder.FullName, "features.ditamap"));
         }
     }

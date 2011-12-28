@@ -91,7 +91,7 @@ namespace Pickles.DocumentationBuilders.DITA
             var relativePath = new FileInfo(Path.Combine(this.configuration.OutputFolder.FullName, featureNode.RelativePathFromRoot)).Directory.FullName.ToLowerInvariant();
             if (!Directory.Exists(relativePath)) Directory.CreateDirectory(relativePath);
             var filename = Path.Combine(relativePath, feature.Name.ToDitaName() + ".dita");
-            var document = new XDocument(topic);
+            var document = new XDocument(new XDocumentType("topic", "-//OASIS//DTD DITA Topic//EN", "topic.dtd", string.Empty), topic);
             document.Save(filename);
         }
     }
