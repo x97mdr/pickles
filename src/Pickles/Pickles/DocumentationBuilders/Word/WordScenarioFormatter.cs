@@ -32,10 +32,10 @@ namespace Pickles.DocumentationBuilders.Word
     public class WordScenarioFormatter
     {
         private readonly WordStepFormatter wordStepFormatter;
-        private readonly NUnitResults nunitResults;
+        private readonly ITestResults nunitResults;
         private readonly Configuration configuration;
 
-        public WordScenarioFormatter(WordStepFormatter wordStepFormatter, Configuration configuration, NUnitResults nunitResults)
+        public WordScenarioFormatter(WordStepFormatter wordStepFormatter, Configuration configuration, ITestResults nunitResults)
         {
             this.wordStepFormatter = wordStepFormatter;
             this.configuration = configuration;

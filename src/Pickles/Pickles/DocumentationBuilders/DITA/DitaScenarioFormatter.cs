@@ -31,10 +31,10 @@ namespace Pickles.DocumentationBuilders.DITA
     public class DitaScenarioFormatter
     {
         private readonly Configuration configuration;
-        private readonly NUnitResults nunitResults;
+        private readonly ITestResults nunitResults;
         private readonly DitaStepFormatter ditaStepFormatter;
 
-        public DitaScenarioFormatter(Configuration configuration, NUnitResults nunitResults, DitaStepFormatter ditaStepFormatter)
+        public DitaScenarioFormatter(Configuration configuration, ITestResults nunitResults, DitaStepFormatter ditaStepFormatter)
         {
             this.configuration = configuration;
             this.nunitResults = nunitResults;

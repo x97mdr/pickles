@@ -7,13 +7,7 @@ using Pickles.Parser;
 
 namespace Pickles.TestFrameworks
 {
-    public struct TestResult
-    {
-        public bool WasExecuted;
-        public bool WasSuccessful;
-    }
-
-    public class NUnitResults
+    public class NUnitResults : ITestResults
     {
         private readonly Configuration configuration;
         private readonly XDocument resultsDocument;

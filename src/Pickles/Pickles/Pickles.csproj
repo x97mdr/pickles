@@ -223,7 +223,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DirectoryCrawler\RelevantFileDetector.cs" />
     <Compile Include="Runner.cs" />
+    <Compile Include="TestFrameworks\ITestResults.cs" />
     <Compile Include="TestFrameworks\NUnitResults.cs" />
+    <Compile Include="TestFrameworks\TestResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

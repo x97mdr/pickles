@@ -31,11 +31,11 @@ namespace Pickles.DocumentationBuilders.DITA
     public class DitaScenarioOutlineFormatter
     {
         private readonly Configuration configuration;
-        private readonly NUnitResults nunitResults;
+        private readonly ITestResults nunitResults;
         private readonly DitaStepFormatter ditaStepFormatter;
         private readonly DitaTableFormatter ditaTableFormatter;
 
-        public DitaScenarioOutlineFormatter(Configuration configuration, NUnitResults nunitResults, DitaStepFormatter ditaStepFormatter, DitaTableFormatter ditaTableFormatter)
+        public DitaScenarioOutlineFormatter(Configuration configuration, ITestResults nunitResults, DitaStepFormatter ditaStepFormatter, DitaTableFormatter ditaTableFormatter)
         {
             this.configuration = configuration;
             this.nunitResults = nunitResults;

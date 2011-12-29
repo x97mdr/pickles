@@ -37,9 +37,9 @@ namespace Pickles.DocumentationBuilders.DITA
         private readonly DitaScenarioFormatter ditaScenarioFormatter;
         private readonly DitaScenarioOutlineFormatter ditaScenarioOutlineFormatter;
         private readonly DitaMapPathGenerator ditaMapPathGenerator;
-        private readonly NUnitResults nunitResults;
+        private readonly ITestResults nunitResults;
 
-        public DitaFeatureFormatter(Configuration configuration, DitaScenarioFormatter ditaScenarioFormatter, DitaScenarioOutlineFormatter ditaScenarioOutlineFormatter, DitaMapPathGenerator ditaMapPathGenerator, NUnitResults nunitResults)
+        public DitaFeatureFormatter(Configuration configuration, DitaScenarioFormatter ditaScenarioFormatter, DitaScenarioOutlineFormatter ditaScenarioOutlineFormatter, DitaMapPathGenerator ditaMapPathGenerator, ITestResults nunitResults)
         {
             this.configuration = configuration;
             this.ditaScenarioFormatter = ditaScenarioFormatter;

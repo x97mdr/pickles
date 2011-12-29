@@ -36,9 +36,9 @@ namespace Pickles.DocumentationBuilders.Word
         private readonly WordScenarioOutlineFormatter wordScenarioOutlineFormatter;
         private readonly WordStyleApplicator wordStyleApplicator;
         private readonly Configuration configuration;
-        private readonly NUnitResults nunitResults;
+        private readonly ITestResults nunitResults;
 
-        public WordFeatureFormatter(WordScenarioFormatter wordScenarioFormatter, WordScenarioOutlineFormatter wordScenarioOutlineFormatter, WordStyleApplicator wordStyleApplicator, Configuration configuration, NUnitResults nunitResults)
+        public WordFeatureFormatter(WordScenarioFormatter wordScenarioFormatter, WordScenarioOutlineFormatter wordScenarioOutlineFormatter, WordStyleApplicator wordStyleApplicator, Configuration configuration, ITestResults nunitResults)
         {
             this.wordScenarioFormatter = wordScenarioFormatter;
             this.wordScenarioOutlineFormatter = wordScenarioOutlineFormatter;
