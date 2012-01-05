@@ -16,13 +16,15 @@ namespace Pickles.Test
   -o, --output-directory=VALUE
                              directory where output files will be placed
       --lr, --link-results-file=VALUE
+                             the language of the feature files
+      --sn, --system-under-test-name=VALUE
                              a file containing the results of testing the 
                                features
-      --sn, --system-under-test-name=VALUE
-                             the name of the system under test
       --sv, --system-under-test-version=VALUE
-                             the version of the system under test
+                             the name of the system under test
   -l, --language=VALUE       the language of the feature files
+      --df, --documentation-format=VALUE
+                             the format of the output documentation
   -v, --version              
   -h, -?, --help";
 
