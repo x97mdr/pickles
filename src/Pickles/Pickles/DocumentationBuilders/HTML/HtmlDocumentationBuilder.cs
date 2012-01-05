@@ -18,16 +18,11 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.IO;
 using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
-using System.Xml;
 using Pickles.DocumentationBuilders.HTML;
-using System.Xml.Linq;
 using Pickles.DirectoryCrawler;
 
 namespace Pickles
@@ -50,7 +45,7 @@ namespace Pickles
         }
 
         public void Build(GeneralTree<IDirectoryTreeNode> features)
-        {
+        {   
             if (log.IsInfoEnabled)
             {
                 log.InfoFormat("Writing HTML to {0}", this.configuration.OutputFolder.FullName);
