@@ -44,7 +44,11 @@ namespace Pickles
                 }
                 catch (Exception e)
                 {
-                    throw new FeatureParseException("There was an error parsing the feature file here: " + Path.GetFullPath(filename), e);
+                    var message = string.Format("There was an error parsing the feature file here: {0}{1}Errormessage was:'{2}'",
+                        Path.GetFullPath(filename),
+                        Environment.NewLine,
+                        e.Message);
+                    throw new FeatureParseException(message, e);
                 }
 
                 reader.Close();

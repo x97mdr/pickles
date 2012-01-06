@@ -29,12 +29,10 @@ namespace Pickles.DocumentationBuilders.JSON
          private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private readonly Configuration configuration;
-        private readonly DirectoryTreeCrawler featureCrawler;
 
-        public JSONDocumentationBuilder(Configuration configuration, DirectoryTreeCrawler featureCrawler)
+        public JSONDocumentationBuilder(Configuration configuration)
         {
             this.configuration = configuration;
-            this.featureCrawler = featureCrawler;
         }
 
         public void Build(GeneralTree<IDirectoryTreeNode> features)
