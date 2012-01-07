@@ -19,20 +19,33 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using NGenerics.DataStructures.Trees;
+using NGenerics.Patterns.Visitor;
 using Pickles.DirectoryCrawler;
 
 namespace Pickles.DocumentationBuilders.JSON
 {
     public class JSONDocumentationBuilder : IDocumentationBuilder
     {
-         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        public const string JS_FILE_NAME = @"pickledFeatures.js";
+
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private readonly Configuration configuration;
+
+        private readonly List<FeatureWithMetaInfo> featuresToFormat;
+        private const string JS_FILE_TEMPLATE = @"var pickledFeatures = {0};";
+
 
         public JSONDocumentationBuilder(Configuration configuration)
         {
             this.configuration = configuration;
+            featuresToFormat = new List<FeatureWithMetaInfo>();
         }
 
         public void Build(GeneralTree<IDirectoryTreeNode> features)
@@ -42,7 +55,46 @@ namespace Pickles.DocumentationBuilders.JSON
                 log.InfoFormat("Writing JSON to {0}", this.configuration.OutputFolder.FullName);
             }
 
-            
+            var actionVisitor = new ActionVisitor<IDirectoryTreeNode>(node =>
+            {
+                var featureTreeNode = node as FeatureDirectoryTreeNode;
+                if (featureTreeNode != null)
+                {
+                    featuresToFormat.Add(new FeatureWithMetaInfo(featureTreeNode));
+                }
+            });
+
+            features.AcceptVisitor(actionVisitor);
+
+            CreateFile(OutputFilePath, GenerateJSON(featuresToFormat));
+        }
+
+        private string OutputFilePath
+        {
+            get { return Path.Combine(configuration.OutputFolder.ToString(), JS_FILE_NAME); }
+        }
+
+        private static string GenerateJSON(List<FeatureWithMetaInfo> features)
+        {
+            var settings = new JsonSerializerSettings
+                               {
+                                   ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                                   NullValueHandling = NullValueHandling.Ignore,
+                                   Converters = new List<JsonConverter> { new StringEnumConverter() }
+                               };
+
+            var jsonForFeatures = JsonConvert.SerializeObject(features, Formatting.Indented, settings);
+
+            return string.Format(JS_FILE_TEMPLATE, jsonForFeatures);
+        }
+
+        private static void CreateFile(string outputFolderName, string jsonToWrite)
+        {
+            using (var writer = new StreamWriter(outputFolderName, false, Encoding.UTF8))
+            {
+                writer.Write(jsonToWrite);
+                writer.Close();
+            }
         }
     }
 }
