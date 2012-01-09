@@ -32,20 +32,17 @@ namespace Pickles.DocumentationBuilders.JSON
 {
     public class JSONDocumentationBuilder : IDocumentationBuilder
     {
-        public const string JS_FILE_NAME = @"pickledFeatures.js";
 
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private readonly Configuration configuration;
 
-        private readonly List<FeatureWithMetaInfo> featuresToFormat;
-        private const string JS_FILE_TEMPLATE = @"var pickledFeatures = {0};";
-
+        public const string JS_FILE_NAME = @"pickledFeatures.json";
+        
 
         public JSONDocumentationBuilder(Configuration configuration)
         {
             this.configuration = configuration;
-            featuresToFormat = new List<FeatureWithMetaInfo>();
         }
 
         public void Build(GeneralTree<IDirectoryTreeNode> features)
@@ -54,6 +51,8 @@ namespace Pickles.DocumentationBuilders.JSON
             {
                 log.InfoFormat("Writing JSON to {0}", this.configuration.OutputFolder.FullName);
             }
+
+            var featuresToFormat = new List<FeatureWithMetaInfo>();
 
             var actionVisitor = new ActionVisitor<IDirectoryTreeNode>(node =>
             {
@@ -71,7 +70,7 @@ namespace Pickles.DocumentationBuilders.JSON
 
         private string OutputFilePath
         {
-            get { return Path.Combine(configuration.OutputFolder.ToString(), JS_FILE_NAME); }
+            get { return Path.Combine(configuration.OutputFolder.FullName, JS_FILE_NAME); }
         }
 
         private static string GenerateJSON(List<FeatureWithMetaInfo> features)
@@ -83,9 +82,7 @@ namespace Pickles.DocumentationBuilders.JSON
                                    Converters = new List<JsonConverter> { new StringEnumConverter() }
                                };
 
-            var jsonForFeatures = JsonConvert.SerializeObject(features, Formatting.Indented, settings);
-
-            return string.Format(JS_FILE_TEMPLATE, jsonForFeatures);
+            return JsonConvert.SerializeObject(features, Formatting.Indented, settings);
         }
 
         private static void CreateFile(string outputFolderName, string jsonToWrite)
