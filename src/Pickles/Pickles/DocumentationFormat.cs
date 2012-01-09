@@ -29,6 +29,7 @@ namespace Pickles
     {
         Html,
         Word,
-        Dita
+        Dita,
+        JSON
     }
 }

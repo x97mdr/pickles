@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Ninject;
+﻿using Ninject;
 using NUnit.Framework;
 using Pickles.DocumentationBuilders.DITA;
 using Pickles.DirectoryCrawler;
@@ -14,12 +10,14 @@ namespace Pickles.Test
     [TestFixture]
     public class WhenGeneratingPathsFromFeaturesToDitaFiles : BaseFixture
     {
+        private Feature _testFeature = new Feature();
+
         [Test]
         public void ThenCanGeneratePathToTopLevelFeatureFileSuccessfully()
         {
             var configuration = Kernel.Get<Configuration>();
-            configuration.FeatureFolder = new System.IO.DirectoryInfo(@"c:\features");
-            var featureNode = new FeatureDirectoryTreeNode(new FileInfo(@"c:\features\the_feature.feature"), @"features\the_feature.feature", new Feature());
+            configuration.FeatureFolder = new DirectoryInfo(@"c:\features");
+            var featureNode = new FeatureDirectoryTreeNode(new FileInfo(@"c:\features\the_feature.feature"), @"features\the_feature.feature", _testFeature);
 
             var ditaMapPathGenerator = Kernel.Get<DitaMapPathGenerator>();
 
@@ -31,8 +29,8 @@ namespace Pickles.Test
         public void ThenCanGeneratePathToDeepLevelFeatureFileSuccessfully()
         {
             var configuration = Kernel.Get<Configuration>();
-            configuration.FeatureFolder = new System.IO.DirectoryInfo(@"c:\features");
-            var featureNode = new FeatureDirectoryTreeNode(new FileInfo(@"c:\features\path\to\the_feature.feature"), @"features\path\to\the_feature.feature", new Feature());
+            configuration.FeatureFolder = new DirectoryInfo(@"c:\features");
+            var featureNode = new FeatureDirectoryTreeNode(new FileInfo(@"c:\features\path\to\the_feature.feature"), @"features\path\to\the_feature.feature", _testFeature);
 
             var ditaMapPathGenerator = Kernel.Get<DitaMapPathGenerator>();
 
