@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using Ninject;
 using NUnit.Framework;
-using Pickles.TestFrameworks;
 using Pickles.Parser;
+using Pickles.TestFrameworks;
 using Should;
 
 namespace Pickles.Test
 {
     [TestFixture]
-    public class WhenParsingNUnitResultsFile : BaseFixture
+    public class WhenParsingxUnitResultsFile : BaseFixture
     {
         private const string RESULTS_FILE_NAME = "results-example-xunit.xml";
 
@@ -29,7 +29,7 @@ namespace Pickles.Test
             var configuration = Kernel.Get<Configuration>();
             configuration.LinkedTestFrameworkResultsFile = new FileInfo(RESULTS_FILE_NAME);
 
-            var results = Kernel.Get<NUnitResults>();
+            var results = Kernel.Get<XUnitResults>();
 
             var feature = new Feature { Name = "Addition" };
             var result = results.GetFeatureResult(feature);
@@ -51,7 +51,7 @@ namespace Pickles.Test
             var configuration = Kernel.Get<Configuration>();
             configuration.LinkedTestFrameworkResultsFile = new FileInfo(RESULTS_FILE_NAME);
 
-            var results = Kernel.Get<NUnitResults>();
+            var results = Kernel.Get<XUnitResults>();
 
             var feature = new Feature { Name = "Addition" };
 
@@ -81,7 +81,7 @@ namespace Pickles.Test
             var configuration = Kernel.Get<Configuration>();
             configuration.LinkedTestFrameworkResultsFile = new FileInfo(RESULTS_FILE_NAME);
 
-            var results = Kernel.Get<NUnitResults>();
+            var results = Kernel.Get<XUnitResults>();
 
             var feature = new Feature { Name = "Addition" };
 

@@ -226,6 +226,8 @@
     <Compile Include="TestFrameworks\ITestResults.cs" />
     <Compile Include="TestFrameworks\NUnitResults.cs" />
     <Compile Include="TestFrameworks\TestResult.cs" />
+    <Compile Include="TestFrameworks\xUnitExampleSignatureBuilder.cs" />
+    <Compile Include="TestFrameworks\XUnitResults.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

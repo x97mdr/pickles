@@ -17,7 +17,7 @@ namespace Pickles.TestFrameworks
             this.configuration = configuration;
             if (configuration.HasTestFrameworkResults)
             {
-                resultsDocument = ReadResultsFile();
+                this.resultsDocument = ReadResultsFile();
             }
         }
 
