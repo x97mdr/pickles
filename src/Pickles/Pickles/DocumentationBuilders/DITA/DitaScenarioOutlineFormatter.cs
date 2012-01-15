@@ -53,7 +53,7 @@ namespace Pickles.DocumentationBuilders.DITA
                 section.Add(new XElement("p", scenario.Description));
             }
 
-            if (this.configuration.HasTestFrameworkResults)
+            if (this.configuration.HasTestResults)
             {
                 var testResult = this.nunitResults.GetScenarioOutlineResult(scenario);
                 if (testResult.WasExecuted && testResult.WasSuccessful)

@@ -44,7 +44,7 @@ namespace Pickles.DocumentationBuilders.Word
 
         public void Format(Body body, Scenario scenario)
         {
-            if (this.configuration.HasTestFrameworkResults)
+            if (this.configuration.HasTestResults)
             {
                 var testResult = this.nunitResults.GetScenarioResult(scenario);
                 if (testResult.WasExecuted && testResult.WasSuccessful)

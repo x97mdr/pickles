@@ -22,26 +22,33 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
-using Pickles.Parser;
 
 namespace Pickles.TestFrameworks
 {
-    public class xUnitExampleSignatureBuilder
+    public class NullTestResults : ITestResults
     {
-        public Regex Build(ScenarioOutline scenarioOutline, string[] row)
+        #region ITestResults Members
+
+        public TestResult GetExampleResult(Parser.ScenarioOutline scenarioOutline, string[] row)
         {
-            var stringBuilder = new StringBuilder();
-            stringBuilder.Append(scenarioOutline.Name.ToLowerInvariant().Replace(" ", string.Empty) + "\\(");
-
-            foreach (string value in row)
-            {
-                stringBuilder.AppendFormat("(.*): \"{0}\", ", value);
-            }
-
-            stringBuilder.Remove(stringBuilder.Length - 2, 2);
-
-            return new Regex(stringBuilder.ToString());
+            return new TestResult();
         }
+
+        public TestResult GetFeatureResult(Parser.Feature feature)
+        {
+            return new TestResult();
+        }
+
+        public TestResult GetScenarioOutlineResult(Parser.ScenarioOutline scenarioOutline)
+        {
+            return new TestResult();
+        }
+
+        public TestResult GetScenarioResult(Parser.Scenario scenario)
+        {
+            return new TestResult();
+        }
+
+        #endregion
     }
 }

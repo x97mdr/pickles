@@ -19,7 +19,7 @@ namespace Pickles.Test
         {
             var configuration = Kernel.Get<Configuration>();
             configuration.FeatureFolder = new System.IO.DirectoryInfo(@"c:\features");
-            var featureNode = new FeatureDirectoryTreeNode(new FileInfo(@"c:\features\the_feature.feature"), @"features\the_feature.feature", new Feature());
+            var featureNode = new FeatureDirectoryTreeNode(new FileInfo(@"c:\features\the_feature.feature"), @"features\the_feature.feature", new Feature { Name = "The Feature" });
 
             var ditaMapPathGenerator = Kernel.Get<DitaMapPathGenerator>();
 
@@ -32,7 +32,7 @@ namespace Pickles.Test
         {
             var configuration = Kernel.Get<Configuration>();
             configuration.FeatureFolder = new System.IO.DirectoryInfo(@"c:\features");
-            var featureNode = new FeatureDirectoryTreeNode(new FileInfo(@"c:\features\path\to\the_feature.feature"), @"features\path\to\the_feature.feature", new Feature());
+            var featureNode = new FeatureDirectoryTreeNode(new FileInfo(@"c:\features\path\to\the_feature.feature"), @"features\path\to\the_feature.feature", new Feature { Name = "The Feature" });
 
             var ditaMapPathGenerator = Kernel.Get<DitaMapPathGenerator>();
 

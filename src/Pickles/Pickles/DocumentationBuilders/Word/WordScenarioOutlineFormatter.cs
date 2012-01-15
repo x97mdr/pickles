@@ -45,7 +45,7 @@ namespace Pickles.DocumentationBuilders.Word
 
         public void Format(Body body, ScenarioOutline scenarioOutline)
         {
-            if (this.configuration.HasTestFrameworkResults)
+            if (this.configuration.HasTestResults)
             {
                 var testResult = nunitResults.GetScenarioOutlineResult(scenarioOutline);
                 if (testResult.WasExecuted && testResult.WasSuccessful)

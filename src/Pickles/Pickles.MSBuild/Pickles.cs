@@ -54,7 +54,7 @@ namespace Pickles.MSBuild
             configuration.FeatureFolder = new DirectoryInfo(FeatureDirectory);
             configuration.OutputFolder = new DirectoryInfo(OutputDirectory);
             if (!string.IsNullOrEmpty(Language)) configuration.Language = Language;
-            if (!string.IsNullOrEmpty(ResultsFile)) configuration.LinkedTestFrameworkResultsFile = new FileInfo(ResultsFile);
+            if (!string.IsNullOrEmpty(ResultsFile)) configuration.TestResultsFile = new FileInfo(ResultsFile);
             if (!string.IsNullOrEmpty(SystemUnderTestName)) configuration.SystemUnderTestName = SystemUnderTestName;
             if (!string.IsNullOrEmpty(SystemUnderTestVersion)) configuration.SystemUnderTestVersion = SystemUnderTestVersion;
             if (!string.IsNullOrEmpty(DocumentationFormat)) configuration.DocumentationFormat = (DocumentationFormat)Enum.Parse(typeof(DocumentationFormat), DocumentationFormat, true);

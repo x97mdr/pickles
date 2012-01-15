@@ -53,7 +53,7 @@ namespace Pickles.DocumentationBuilders.Word
 
             body.InsertPageBreak();
 
-            if (this.configuration.HasTestFrameworkResults)
+            if (this.configuration.HasTestResults)
             {
                 var testResult = this.nunitResults.GetFeatureResult(feature);
                 if (testResult.WasExecuted && testResult.WasSuccessful)

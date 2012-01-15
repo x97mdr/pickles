@@ -46,7 +46,7 @@ namespace Pickles.DocumentationBuilders.DITA
             var section = new XElement("section",
                               new XElement("title", scenario.Name));
 
-            if (this.configuration.HasTestFrameworkResults)
+            if (this.configuration.HasTestResults)
             {
                 var testResult = this.nunitResults.GetScenarioResult(scenario);
                 if (testResult.WasExecuted && testResult.WasSuccessful)

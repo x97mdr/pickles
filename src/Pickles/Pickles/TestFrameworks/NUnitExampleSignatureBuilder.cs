@@ -27,7 +27,7 @@ using Pickles.Parser;
 
 namespace Pickles.TestFrameworks
 {
-    public class xUnitExampleSignatureBuilder
+    public class NUnitExampleSignatureBuilder
     {
         public Regex Build(ScenarioOutline scenarioOutline, string[] row)
         {
@@ -36,10 +36,10 @@ namespace Pickles.TestFrameworks
 
             foreach (string value in row)
             {
-                stringBuilder.AppendFormat("(.*): \"{0}\", ", value);
+                stringBuilder.AppendFormat("\"{0}\",", value);
             }
 
-            stringBuilder.Remove(stringBuilder.Length - 2, 2);
+            stringBuilder.Remove(stringBuilder.Length - 1, 1);
 
             return new Regex(stringBuilder.ToString());
         }

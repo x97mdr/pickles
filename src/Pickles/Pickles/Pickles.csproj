@@ -224,10 +224,13 @@
     <Compile Include="DirectoryCrawler\RelevantFileDetector.cs" />
     <Compile Include="Runner.cs" />
     <Compile Include="TestFrameworks\ITestResults.cs" />
+    <Compile Include="TestFrameworks\NullTestResults.cs" />
+    <Compile Include="TestFrameworks\NUnitExampleSignatureBuilder.cs" />
     <Compile Include="TestFrameworks\NUnitResults.cs" />
     <Compile Include="TestFrameworks\TestResult.cs" />
     <Compile Include="TestFrameworks\xUnitExampleSignatureBuilder.cs" />
     <Compile Include="TestFrameworks\XUnitResults.cs" />
+    <Compile Include="TestResultsFormat.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

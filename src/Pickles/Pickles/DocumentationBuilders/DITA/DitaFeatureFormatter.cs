@@ -59,7 +59,7 @@ namespace Pickles.DocumentationBuilders.DITA
             var body = new XElement("body");
             topic.Add(body);
 
-            if (this.configuration.HasTestFrameworkResults)
+            if (this.configuration.HasTestResults)
             {
                 var testResult = this.nunitResults.GetFeatureResult(feature);
                 if (testResult.WasExecuted && testResult.WasSuccessful)

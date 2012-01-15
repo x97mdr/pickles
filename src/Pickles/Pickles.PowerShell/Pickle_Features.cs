@@ -74,7 +74,7 @@ namespace Pickles.PowerShell
             configuration.OutputFolder = new DirectoryInfo(OutputDirectory);
             if (!string.IsNullOrEmpty(TestResultsFile))
             {
-                configuration.LinkedTestFrameworkResultsFile = new FileInfo(TestResultsFile);
+                configuration.TestResultsFile = new FileInfo(TestResultsFile);
             }
             configuration.SystemUnderTestName = SystemUnderTestName;
             configuration.SystemUnderTestVersion = SystemUnderTestVersion;

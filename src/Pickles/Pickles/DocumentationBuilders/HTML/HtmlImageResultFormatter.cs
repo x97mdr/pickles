@@ -76,7 +76,7 @@ namespace Pickles.DocumentationBuilders.HTML
 
         public XElement Format(Feature feature)
         {
-            if (configuration.HasTestFrameworkResults)
+            if (configuration.HasTestResults)
             {
                 TestResult scenarioResult = this.results.GetFeatureResult(feature);
                 if (!scenarioResult.WasExecuted || !scenarioResult.WasSuccessful) return null;
@@ -88,7 +88,7 @@ namespace Pickles.DocumentationBuilders.HTML
 
         public XElement Format(Scenario scenario)
         {
-            if (configuration.HasTestFrameworkResults)
+            if (configuration.HasTestResults)
             {
                 TestResult scenarioResult = this.results.GetScenarioResult(scenario);
                 if (!scenarioResult.WasExecuted || !scenarioResult.WasSuccessful) return null;
@@ -100,7 +100,7 @@ namespace Pickles.DocumentationBuilders.HTML
 
         public XElement Format(ScenarioOutline scenarioOutline)
         {
-            if (configuration.HasTestFrameworkResults)
+            if (configuration.HasTestResults)
             {
                 TestResult scenarioResult = this.results.GetScenarioOutlineResult(scenarioOutline);
                 if (!scenarioResult.WasExecuted || !scenarioResult.WasSuccessful) return null;

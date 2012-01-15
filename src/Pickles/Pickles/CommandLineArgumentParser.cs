@@ -36,13 +36,16 @@ namespace Pickles
         public const string HELP_SUT_VERSION = "the version of the system under test";
         public const string HELP_LANGUAGE_FEATURE_FILES = "the language of the feature files";
         public const string HELP_DOCUMENTATION_FORMAT = "the format of the output documentation";
+        public const string HELP_TEST_RESULTS_FORMAT = "the format of the linked test results (nunit|xunit)";
+        public const string HELP_TEST_RESULTS_FILE = "the path to the linked test results file";
 
         private readonly OptionSet options;
         private string featureDirectory;
         private string outputDirectory;
         private bool versionRequested;
         private bool helpRequested;
-        private string resultsFile;
+        private string testResultsFile;
+        private string testResultsFormat;
         private string systemUnderTestName;
         private string systemUnderTestVersion;
         private string language;
@@ -54,7 +57,8 @@ namespace Pickles
             {
    	            { "f|feature-directory=", HELP_FEATURE_DIR, v => this.featureDirectory = v },
    	            { "o|output-directory=", HELP_OUTPUT_DIR, v => this.outputDirectory = v },
-   	            { "lr|link-results-file=", HELP_LANGUAGE_FEATURE_FILES, v => this.resultsFile = v },
+   	            { "trfmt|test-results-format=", HELP_TEST_RESULTS_FORMAT, v => this.testResultsFormat = v },
+   	            { "lr|link-results-file=", HELP_TEST_RESULTS_FILE, v => this.testResultsFile = v },
    	            { "sn|system-under-test-name=", HELP_RESULT_FILE, v => this.systemUnderTestName = v },
    	            { "sv|system-under-test-version=", HELP_SUT_NAME, v => this.systemUnderTestVersion = v },
                 { "l|language=", HELP_LANGUAGE_FEATURE_FILES, v => this.language = v },
@@ -95,7 +99,8 @@ namespace Pickles
 
             if (!string.IsNullOrEmpty(this.featureDirectory)) configuration.FeatureFolder = new DirectoryInfo(this.featureDirectory);
             if (!string.IsNullOrEmpty(this.outputDirectory)) configuration.OutputFolder = new DirectoryInfo(this.outputDirectory);
-            if (!string.IsNullOrEmpty(this.resultsFile)) configuration.LinkedTestFrameworkResultsFile = new FileInfo(this.resultsFile);
+            if (!string.IsNullOrEmpty(this.testResultsFormat)) configuration.TestResultsFormat = (TestResultsFormat)Enum.Parse(typeof(TestResultsFormat), this.testResultsFormat, true);
+            if (!string.IsNullOrEmpty(this.testResultsFile)) configuration.TestResultsFile = new FileInfo(this.testResultsFile);
             if (!string.IsNullOrEmpty(this.systemUnderTestName)) configuration.SystemUnderTestName = this.systemUnderTestName;
             if (!string.IsNullOrEmpty(this.systemUnderTestVersion)) configuration.SystemUnderTestVersion = this.systemUnderTestVersion;
             if (!string.IsNullOrEmpty(this.language)) configuration.Language = this.language;

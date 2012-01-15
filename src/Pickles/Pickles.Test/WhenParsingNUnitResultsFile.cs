@@ -14,7 +14,7 @@ namespace Pickles.Test
     [TestFixture]
     public class WhenParsingNUnitResultsFile : BaseFixture
     {
-        private const string RESULTS_FILE_NAME = "results-example-xunit.xml";
+        private const string RESULTS_FILE_NAME = "results-example-nunit.xml";
 
         [Test]
         public void ThenCanReadFeatureResultSuccessfully()
@@ -27,7 +27,7 @@ namespace Pickles.Test
             }
 
             var configuration = Kernel.Get<Configuration>();
-            configuration.LinkedTestFrameworkResultsFile = new FileInfo(RESULTS_FILE_NAME);
+            configuration.TestResultsFile = new FileInfo(RESULTS_FILE_NAME);
 
             var results = Kernel.Get<NUnitResults>();
 
@@ -49,7 +49,7 @@ namespace Pickles.Test
             }
 
             var configuration = Kernel.Get<Configuration>();
-            configuration.LinkedTestFrameworkResultsFile = new FileInfo(RESULTS_FILE_NAME);
+            configuration.TestResultsFile = new FileInfo(RESULTS_FILE_NAME);
 
             var results = Kernel.Get<NUnitResults>();
 
@@ -79,7 +79,7 @@ namespace Pickles.Test
             }
 
             var configuration = Kernel.Get<Configuration>();
-            configuration.LinkedTestFrameworkResultsFile = new FileInfo(RESULTS_FILE_NAME);
+            configuration.TestResultsFile = new FileInfo(RESULTS_FILE_NAME);
 
             var results = Kernel.Get<NUnitResults>();
 

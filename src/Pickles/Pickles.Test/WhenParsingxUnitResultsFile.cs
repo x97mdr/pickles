@@ -27,7 +27,7 @@ namespace Pickles.Test
             }
 
             var configuration = Kernel.Get<Configuration>();
-            configuration.LinkedTestFrameworkResultsFile = new FileInfo(RESULTS_FILE_NAME);
+            configuration.TestResultsFile = new FileInfo(RESULTS_FILE_NAME);
 
             var results = Kernel.Get<XUnitResults>();
 
@@ -49,7 +49,7 @@ namespace Pickles.Test
             }
 
             var configuration = Kernel.Get<Configuration>();
-            configuration.LinkedTestFrameworkResultsFile = new FileInfo(RESULTS_FILE_NAME);
+            configuration.TestResultsFile = new FileInfo(RESULTS_FILE_NAME);
 
             var results = Kernel.Get<XUnitResults>();
 
@@ -79,7 +79,7 @@ namespace Pickles.Test
             }
 
             var configuration = Kernel.Get<Configuration>();
-            configuration.LinkedTestFrameworkResultsFile = new FileInfo(RESULTS_FILE_NAME);
+            configuration.TestResultsFile = new FileInfo(RESULTS_FILE_NAME);
 
             var results = Kernel.Get<XUnitResults>();
 

@@ -1,4 +1,24 @@
-﻿using System;
+﻿#region License
+
+/*
+    Copyright [2011] [Jeffrey Cameron]
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+*/
+
+#endregion
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
@@ -10,12 +30,14 @@ namespace Pickles.TestFrameworks
     public class NUnitResults : ITestResults
     {
         private readonly Configuration configuration;
+        private readonly NUnitExampleSignatureBuilder exampleSignatureBuilder;
         private readonly XDocument resultsDocument;
 
-        public NUnitResults(Configuration configuration)
+        public NUnitResults(Configuration configuration, NUnitExampleSignatureBuilder exampleSignatureBuilder)
         {
             this.configuration = configuration;
-            if (configuration.HasTestFrameworkResults)
+            this.exampleSignatureBuilder = exampleSignatureBuilder;
+            if (configuration.HasTestResults)
             {
                 this.resultsDocument = ReadResultsFile();
             }
@@ -24,31 +46,13 @@ namespace Pickles.TestFrameworks
         private XDocument ReadResultsFile()
         {
             XDocument document;
-            using (var stream = configuration.LinkedTestFrameworkResultsFile.OpenRead())
+            using (var stream = configuration.TestResultsFile.OpenRead())
             {
                 var xmlReader = XmlReader.Create(stream);
                 document = XDocument.Load(xmlReader);
                 stream.Close();
             }
             return document;
-        }
-
-        private string[] ExtractRowValuesFromName(string exampleName)
-        {
-            var parts = exampleName.Split(new char[] { '(', ')', ',' }, StringSplitOptions.RemoveEmptyEntries);
-            var values = new List<string>();
-            values.AddRange(parts.Skip(1).Where(x => x != "System.String[]").Select(x => x.Replace("\"", "")));
-            return values.ToArray();
-        }
-
-        private bool IsRowMatched(string[] a, string[] b)
-        {
-            if (a.Length != b.Length) return false;
-            for (int index = 0; index < a.Length; index++)
-            {
-                if (a[index] != b[index]) return false;
-            }
-            return true;
         }
 
         private XElement GetFeatureElement(Feature feature)
@@ -107,13 +111,14 @@ namespace Pickles.TestFrameworks
             XElement examplesElement = null;
             if (featureElement != null)
             {
-                examplesElement = GetFeatureElement(scenarioOutline.Feature)
+                var exampleSignature = this.exampleSignatureBuilder.Build(scenarioOutline, row);
+                examplesElement = featureElement
                                       .Descendants("test-suite")
                                       .Where(x => x.Attribute("description") != null)
                                       .FirstOrDefault(x => x.Attribute("description").Value == scenarioOutline.Name)
                                           .Descendants("test-case")
-                                          .Where(x => x.Attribute("description") != null)
-                                          .FirstOrDefault(x => IsRowMatched(ExtractRowValuesFromName(x.Attribute("description").Value), row));
+                                          .Where(x => x.Attribute("name") != null)
+                                          .FirstOrDefault(x => exampleSignature.IsMatch(x.Attribute("name").Value.ToLowerInvariant()));
             }
             return GetResultFromElement(examplesElement);
         }

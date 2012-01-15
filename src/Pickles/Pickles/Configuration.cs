@@ -43,16 +43,22 @@ namespace Pickles
         }
 
         public string Language { get; set; }
+
+        public TestResultsFormat TestResultsFormat
+        {
+            get;
+            set;
+        }
         
-        public bool HasTestFrameworkResults 
+        public bool HasTestResults 
         {
             get
             {
-                return LinkedTestFrameworkResultsFile != null;
+                return TestResultsFile != null;
             }
         }
 
-        public FileInfo LinkedTestFrameworkResultsFile 
+        public FileInfo TestResultsFile 
         { 
             get; 
             set; 

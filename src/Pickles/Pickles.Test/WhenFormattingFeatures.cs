@@ -13,8 +13,11 @@ namespace Pickles.Test
     public class WhenFormattingFeatures : BaseFixture
     {
         [Test]
-        public void When_can_format_description_as_markdown()
+        public void ThenCanFormatDescriptionAsMarkdown()
         {
+            var configuration = Kernel.Get<Configuration>();
+            configuration.TestResultsFile = null;
+
             var feature = new Feature
             {
                 Name = "A feature",

@@ -36,7 +36,9 @@ namespace Pickles
             Bind<IDocumentationBuilder>().To<WordDocumentationBuilder>().When(request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.Word).InSingletonScope();
             Bind<IDocumentationBuilder>().To<DitaDocumentationBuilder>().When(request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.Dita).InSingletonScope();
 
-            Bind<NUnitResults>().ToSelf().InSingletonScope();
+            Bind<ITestResults>().To<NullTestResults>().When(request => !Kernel.Get<Configuration>().HasTestResults).InSingletonScope();
+            Bind<ITestResults>().To<NUnitResults>().When(request => Kernel.Get<Configuration>().HasTestResults && Kernel.Get<Configuration>().TestResultsFormat == TestResultsFormat.NUnit).InSingletonScope();
+            Bind<ITestResults>().To<XUnitResults>().When(request => Kernel.Get<Configuration>().HasTestResults && Kernel.Get<Configuration>().TestResultsFormat == TestResultsFormat.xUnit).InSingletonScope();
 
             Bind<LanguageServices>().ToSelf().InSingletonScope();
             Bind<HtmlTableOfContentsFormatter>().ToSelf().InSingletonScope();

@@ -163,6 +163,7 @@
     <Compile Include="ParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WhenDeterminingRelevantFilesToConsider.cs" />
+    <Compile Include="WhenDeterminingTheSignatureOfAnNUnitExampleRow.cs" />
     <Compile Include="WhenDeterminingTheSignatureOfAnXUnitExampleRow.cs" />
     <Compile Include="WhenFormattingFeatures.cs" />
     <Compile Include="WhenFormattingStep.cs" />
@@ -174,6 +175,7 @@
     <Compile Include="WhenParsingNUnitResultsFile.cs" />
     <Compile Include="WhenParsingxUnitResultsFile.cs" />
     <Compile Include="WhenResolvingADocumentationBuilder.cs" />
+    <Compile Include="WhenResolvingTestResults.cs" />
     <Compile Include="WhenWorkingWithHtmlResources.cs" />
   </ItemGroup>
   <ItemGroup>
