@@ -39,7 +39,10 @@ namespace Pickles.PowerShell
         [Parameter(HelpMessage = CommandLineArgumentParser.HELP_LANGUAGE_FEATURE_FILES, Mandatory = false)]
         public string Language { get; set; }
 
-        [Parameter(HelpMessage = CommandLineArgumentParser.HELP_RESULT_FILE, Mandatory = false)]
+        [Parameter(HelpMessage = CommandLineArgumentParser.HELP_TEST_RESULTS_FORMAT, Mandatory = false)]
+        public string TestResultsFormat { get; set; }
+
+        [Parameter(HelpMessage = CommandLineArgumentParser.HELP_TEST_RESULTS_FILE, Mandatory = false)]
         public string TestResultsFile { get; set; }
 
         [Parameter(HelpMessage = CommandLineArgumentParser.HELP_SUT_NAME, Mandatory = false)]
@@ -72,6 +75,10 @@ namespace Pickles.PowerShell
         {
             configuration.FeatureFolder = new DirectoryInfo(FeatureDirectory);
             configuration.OutputFolder = new DirectoryInfo(OutputDirectory);
+            if (!string.IsNullOrEmpty(TestResultsFormat))
+            {
+                configuration.TestResultsFormat = (TestResultsFormat)Enum.Parse(typeof(TestResultsFormat), TestResultsFormat, true);
+            }
             if (!string.IsNullOrEmpty(TestResultsFile))
             {
                 configuration.TestResultsFile = new FileInfo(TestResultsFile);

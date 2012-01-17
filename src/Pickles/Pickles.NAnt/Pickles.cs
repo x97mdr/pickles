@@ -46,7 +46,11 @@ namespace Pickles.NAnt
         [StringValidator(AllowEmpty = true)]
         public string Language { get; set; }
 
-        [TaskAttribute("results", Required = false)]
+        [TaskAttribute("resultsFormat", Required = false)]
+        [StringValidator(AllowEmpty = true)]
+        public string ResultsFormat { get; set; }
+
+        [TaskAttribute("resultsFile", Required = false)]
         [StringValidator(AllowEmpty = true)]
         public string ResultsFile { get; set; }
 
@@ -67,6 +71,7 @@ namespace Pickles.NAnt
             configuration.FeatureFolder = new DirectoryInfo(FeatureDirectory);
             configuration.OutputFolder = new DirectoryInfo(OutputDirectory);
             if (!string.IsNullOrEmpty(Language)) configuration.Language = Language;
+            if (!string.IsNullOrEmpty(ResultsFormat)) configuration.TestResultsFormat = (TestResultsFormat)Enum.Parse(typeof(TestResultsFormat), this.ResultsFormat, true);
             if (!string.IsNullOrEmpty(ResultsFile)) configuration.TestResultsFile = new FileInfo(ResultsFile);
             if (!string.IsNullOrEmpty(SystemUnderTestName)) configuration.SystemUnderTestName = SystemUnderTestName;
             if (!string.IsNullOrEmpty(SystemUnderTestVersion)) configuration.SystemUnderTestVersion = SystemUnderTestVersion;

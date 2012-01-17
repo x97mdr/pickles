@@ -67,6 +67,58 @@ namespace Pickles.Test
         }
 
         [Test]
+        public void Then_can_parse_results_format_nunit_with_short_form_successfully()
+        {
+            var args = new string[] { @"-trfmt=nunit" };
+
+            var configuration = new Configuration();
+            var commandLineArgumentParser = new CommandLineArgumentParser();
+            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+
+            Assert.AreEqual(true, shouldContinue);
+            Assert.AreEqual(TestResultsFormat.NUnit, configuration.TestResultsFormat);
+        }
+
+        [Test]
+        public void Then_can_parse_results_format_xunit_with_short_form_successfully()
+        {
+            var args = new string[] { @"-trfmt=xunit" };
+
+            var configuration = new Configuration();
+            var commandLineArgumentParser = new CommandLineArgumentParser();
+            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+
+            Assert.AreEqual(true, shouldContinue);
+            Assert.AreEqual(TestResultsFormat.xUnit, configuration.TestResultsFormat);
+        }
+
+        [Test]
+        public void Then_can_parse_results_format_nunit_with_long_form_successfully()
+        {
+            var args = new string[] { @"-test-results-format=nunit" };
+
+            var configuration = new Configuration();
+            var commandLineArgumentParser = new CommandLineArgumentParser();
+            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+
+            Assert.AreEqual(true, shouldContinue);
+            Assert.AreEqual(TestResultsFormat.NUnit, configuration.TestResultsFormat);
+        }
+
+        [Test]
+        public void Then_can_parse_results_format_xunit_with_long_form_successfully()
+        {
+            var args = new string[] { @"-test-results-format=xunit" };
+
+            var configuration = new Configuration();
+            var commandLineArgumentParser = new CommandLineArgumentParser();
+            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+
+            Assert.AreEqual(true, shouldContinue);
+            Assert.AreEqual(TestResultsFormat.xUnit, configuration.TestResultsFormat);
+        }
+
+        [Test]
         public void Then_can_parse_results_file_with_short_form_successfully()
         {
             var args = new string[] { @"-lr=c:\results.xml" };
