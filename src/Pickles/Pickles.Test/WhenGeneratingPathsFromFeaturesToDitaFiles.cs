@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Ninject;
+﻿using Ninject;
 using NUnit.Framework;
 using Pickles.DocumentationBuilders.DITA;
 using Pickles.DirectoryCrawler;
@@ -14,6 +10,8 @@ namespace Pickles.Test
     [TestFixture]
     public class WhenGeneratingPathsFromFeaturesToDitaFiles : BaseFixture
     {
+        private Feature _testFeature = new Feature();
+
         [Test]
         public void ThenCanGeneratePathToTopLevelFeatureFileSuccessfully()
         {

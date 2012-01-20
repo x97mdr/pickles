@@ -10,6 +10,7 @@ using Pickles.DocumentationBuilders.HTML;
 using Pickles.Test.Helpers;
 using Pickles.DirectoryCrawler;
 
+
 namespace Pickles.Test.Formatters
 {
     [TestFixture]

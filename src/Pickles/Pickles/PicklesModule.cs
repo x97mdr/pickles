@@ -21,6 +21,7 @@
 using Ninject;
 using Pickles.DocumentationBuilders.DITA;
 using Pickles.DocumentationBuilders.HTML;
+using Pickles.DocumentationBuilders.JSON;
 using Pickles.DocumentationBuilders.Word;
 using Pickles.TestFrameworks;
 
@@ -35,6 +36,7 @@ namespace Pickles
             Bind<IDocumentationBuilder>().To<HtmlDocumentationBuilder>().When(request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.Html).InSingletonScope();
             Bind<IDocumentationBuilder>().To<WordDocumentationBuilder>().When(request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.Word).InSingletonScope();
             Bind<IDocumentationBuilder>().To<DitaDocumentationBuilder>().When(request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.Dita).InSingletonScope();
+            Bind<IDocumentationBuilder>().To<JSONDocumentationBuilder>().When(request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.JSON).InSingletonScope();
 
             Bind<ITestResults>().To<NullTestResults>().When(request => !Kernel.Get<Configuration>().HasTestResults).InSingletonScope();
             Bind<ITestResults>().To<NUnitResults>().When(request => Kernel.Get<Configuration>().HasTestResults && Kernel.Get<Configuration>().TestResultsFormat == TestResultsFormat.NUnit).InSingletonScope();
