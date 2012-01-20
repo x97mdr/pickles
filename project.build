@@ -136,7 +136,7 @@
     </exec>
   </target>
   
-  <target name="zip" depends="merge">
+  <target name="zip" depends="test">
     <zip zipfile="${deploy.dir}\pickles-${version}.zip">
         <fileset basedir="${assemblies.console.dir}" prefix="pickles-${version}\exe">
             <include name="**/*" />
