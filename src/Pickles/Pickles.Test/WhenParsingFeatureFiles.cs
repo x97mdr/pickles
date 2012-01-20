@@ -6,6 +6,7 @@ using System.Text;
 using Ninject;
 using NUnit.Framework;
 using Pickles.Parser;
+using Pickles.Extensions;
 
 namespace Pickles.Test
 {
@@ -205,18 +206,21 @@ Feature: Test
         [Test]
         public void Then_can_parse_scenario_with_docstring_successfully()
         {
-            string featureText = "Feature: Test" + Environment.NewLine +
-                                 "    In order to do something" + Environment.NewLine +
-                                 "    As a user" + Environment.NewLine +
-                                 "    I want to run this scenario" + Environment.NewLine + Environment.NewLine +
-                                 "    Scenario: A scenario" + Environment.NewLine +
-                                 "        Given some feature" + Environment.NewLine +
-                                 "        \"\"\"" + Environment.NewLine +
-                                 "        This is a document string" + Environment.NewLine +
-                                 "        it can be many lines long" + Environment.NewLine +
-                                 "        \"\"\"" + Environment.NewLine +
-                                 "        When it runs Environment.NewLine +" + 
-                                 "        Then I should see that this thing happens" + Environment.NewLine;
+            string docstring = "        \"\"\"\r\n" +
+                               "        This is a document string\r\n" +
+                               "        it can be many lines long\r\n" +
+                               "        \"\"\"\r\n";
+
+            string featureText = string.Format(@"Feature: Test
+    In order to do something
+    As a user
+    I want to run this scenario
+
+    Scenario: A scenario
+        Given some feature
+        {0}
+        When it runs
+        Then I should see that this thing happens", docstring);
 
             var parser = Kernel.Get<FeatureParser>();
             var feature = parser.Parse(new StringReader(featureText));

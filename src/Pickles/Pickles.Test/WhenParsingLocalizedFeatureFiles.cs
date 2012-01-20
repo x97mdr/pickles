@@ -37,7 +37,9 @@ Egenskap: Test egenskap
 
             Assert.AreNotEqual(null, feature);
             Assert.AreEqual("Test egenskap", feature.Name);
-            Assert.AreEqual("  Som svensk användare\r\n  Vill jag skriva mina krav på svenska\r\n  Så att beställaren kan förstå dem", feature.Description);
+            Assert.AreEqual(@"  Som svensk användare
+  Vill jag skriva mina krav på svenska
+  Så att beställaren kan förstå dem", feature.Description);
             Assert.AreEqual(1, feature.FeatureElements.Count);
             Assert.AreEqual(0, feature.Tags.Count);
 
