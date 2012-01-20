@@ -35,7 +35,9 @@ Feature: Test
 
             Assert.AreNotEqual(null, feature);
             Assert.AreEqual("Test", feature.Name);
-            Assert.AreEqual("  In order to do something\r\n  As a user\r\n  I want to run this scenario", feature.Description);
+            Assert.AreEqual(@"  In order to do something
+  As a user
+  I want to run this scenario", feature.Description);
             Assert.AreEqual(1, feature.FeatureElements.Count);
             Assert.AreEqual(0, feature.Tags.Count);
 
@@ -89,7 +91,9 @@ Feature: Test
 
             Assert.AreNotEqual(null, feature);
             Assert.AreEqual("Test", feature.Name);
-            Assert.AreEqual("  In order to do something\r\n  As a user\r\n  I want to run this scenario", feature.Description);
+            Assert.AreEqual(@"  In order to do something
+  As a user
+  I want to run this scenario", feature.Description);
             Assert.AreEqual(2, feature.FeatureElements.Count);
             Assert.AreEqual(0, feature.Tags.Count);
 
@@ -201,23 +205,24 @@ Feature: Test
         [Test]
         public void Then_can_parse_scenario_with_docstring_successfully()
         {
-            string featureText = "Feature: Test\n" +
-                                 "    In order to do something\n" + 
-                                 "    As a user\n" + 
-                                 "    I want to run this scenario\n\n" + 
-                                 "    Scenario: A scenario\n" +
-                                 "        Given some feature\n" +
-                                 "        \"\"\"\n" +
-                                 "        This is a document string\n" +
-                                 "        it can be many lines long\n" +
-                                 "        \"\"\"\n" +
-                                 "        When it runs\n" + 
-                                 "        Then I should see that this thing happens\n";
+            string featureText = "Feature: Test" + Environment.NewLine +
+                                 "    In order to do something" + Environment.NewLine +
+                                 "    As a user" + Environment.NewLine +
+                                 "    I want to run this scenario" + Environment.NewLine + Environment.NewLine +
+                                 "    Scenario: A scenario" + Environment.NewLine +
+                                 "        Given some feature" + Environment.NewLine +
+                                 "        \"\"\"" + Environment.NewLine +
+                                 "        This is a document string" + Environment.NewLine +
+                                 "        it can be many lines long" + Environment.NewLine +
+                                 "        \"\"\"" + Environment.NewLine +
+                                 "        When it runs Environment.NewLine +" + 
+                                 "        Then I should see that this thing happens" + Environment.NewLine;
 
             var parser = Kernel.Get<FeatureParser>();
             var feature = parser.Parse(new StringReader(featureText));
 
-            Assert.AreEqual("This is a document string\nit can be many lines long", feature.FeatureElements[0].Steps[0].DocStringArgument);
+            Assert.AreEqual(@"This is a document string
+it can be many lines long", feature.FeatureElements[0].Steps[0].DocStringArgument);
         }
 
         [Test]
