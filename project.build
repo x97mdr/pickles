@@ -4,7 +4,7 @@
     
   <!-- set the major and minor version number here -->
   <property name="version.major" value="0" />
-  <property name="version.minor" value="4" />
+  <property name="version.minor" value="5" />
   
   <!-- set build number from continuous integration tool -->
   <if test="${environment::variable-exists('BUILD_NUMBER')}">
