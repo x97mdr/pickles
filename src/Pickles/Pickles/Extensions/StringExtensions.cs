@@ -52,5 +52,15 @@ namespace Pickles.Extensions
         {
             return word.Replace(" ", "_").ToLowerInvariant();
         }
+
+        /// <summary>
+        /// Takes a string and lowercases it, removing newline characters and replacing tabs with spaces
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static string ComparisonNormalize(this string text)
+        {
+            return text.Trim().ToLowerInvariant().Replace("\r", string.Empty).Replace("\n", Environment.NewLine).Replace("\t", "    ");
+        }
     }
 }

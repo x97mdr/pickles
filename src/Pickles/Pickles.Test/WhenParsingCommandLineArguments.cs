@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using System.IO;
+using Pickles.Extensions;
 
 namespace Pickles.Test
 {
@@ -160,7 +161,7 @@ namespace Pickles.Test
             var commandLineArgumentParser = new CommandLineArgumentParser();
             bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
 
-            StringAssert.Contains(expectedHelpString, writer.GetStringBuilder().ToString().Trim());
+            StringAssert.Contains(expectedHelpString.ComparisonNormalize(), writer.GetStringBuilder().ToString().ComparisonNormalize());
             Assert.AreEqual(false, shouldContinue);
             Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
             Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")), configuration.OutputFolder.FullName);
@@ -178,7 +179,7 @@ namespace Pickles.Test
             var commandLineArgumentParser = new CommandLineArgumentParser();
             bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
 
-            StringAssert.Contains(expectedHelpString, writer.GetStringBuilder().ToString().Trim());
+            StringAssert.Contains(expectedHelpString.ComparisonNormalize(), writer.GetStringBuilder().ToString().ComparisonNormalize());
             Assert.AreEqual(false, shouldContinue);
             Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
             Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")), configuration.OutputFolder.FullName);
@@ -199,8 +200,7 @@ namespace Pickles.Test
 
             var expectedVersionAndHelp = expectedVersionString + Environment.NewLine + expectedHelpString;
 
-            var actualHelpString = writer.GetStringBuilder().ToString().Trim();
-            StringAssert.Contains(expectedVersionAndHelp, actualHelpString);
+            StringAssert.Contains(expectedHelpString.ComparisonNormalize(), writer.GetStringBuilder().ToString().ComparisonNormalize());
             Assert.AreEqual(false, shouldContinue);
             Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
             Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")), configuration.OutputFolder.FullName);
@@ -218,7 +218,7 @@ namespace Pickles.Test
             var commandLineArgumentParser = new CommandLineArgumentParser();
             bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
 
-            StringAssert.IsMatch(expectedVersionString, writer.GetStringBuilder().ToString().Trim());
+            StringAssert.IsMatch(expectedVersionString.ComparisonNormalize(), writer.GetStringBuilder().ToString().ComparisonNormalize());
             Assert.AreEqual(false, shouldContinue);
             Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
             Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")), configuration.OutputFolder.FullName);
@@ -236,7 +236,7 @@ namespace Pickles.Test
             var commandLineArgumentParser = new CommandLineArgumentParser();
             bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
 
-            StringAssert.IsMatch(expectedVersionString, writer.GetStringBuilder().ToString().Trim());
+            StringAssert.IsMatch(expectedVersionString.ComparisonNormalize(), writer.GetStringBuilder().ToString().ComparisonNormalize());
             Assert.AreEqual(false, shouldContinue);
             Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
             Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")), configuration.OutputFolder.FullName);
