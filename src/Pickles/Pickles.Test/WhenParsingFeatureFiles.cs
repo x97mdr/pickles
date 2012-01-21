@@ -17,6 +17,8 @@ namespace Pickles.Test
     [TestFixture]
     public class WhenParsingFeatureFiles : BaseFixture
     {
+        private const string DOC_STRING_DELIMITER = "\"\"\"";
+
         [Test]
         public void Then_can_parse_most_basic_feature_successfully()
         {
@@ -206,10 +208,10 @@ Feature: Test
         [Test]
         public void Then_can_parse_scenario_with_docstring_successfully()
         {
-            string docstring = "        \"\"\"\r\n" +
-                               "        This is a document string\r\n" +
-                               "        it can be many lines long\r\n" +
-                               "        \"\"\"\r\n";
+            string docstring = string.Format(@"{0}
+This is a document string
+it can be many lines long
+{0}", DOC_STRING_DELIMITER);
 
             string featureText = string.Format(@"Feature: Test
     In order to do something
