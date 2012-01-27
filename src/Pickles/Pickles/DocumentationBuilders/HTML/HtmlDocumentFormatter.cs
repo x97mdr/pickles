@@ -81,6 +81,12 @@ namespace Pickles.DocumentationBuilders.HTML
                          new XAttribute("href", featureNodeOutputUri.MakeRelativeUri(this.htmlResources.MasterStylesheet)),
                          new XAttribute("type", "text/css")));
 
+            head.Add(new XElement(xmlns + "link",
+                         new XAttribute("rel", "stylesheet"),
+                         new XAttribute("href", featureNodeOutputUri.MakeRelativeUri(this.htmlResources.PrintStylesheet)),
+                         new XAttribute("type", "text/css"),
+                         new XAttribute("media", "print")));
+
             head.Add(new XElement(xmlns + "script",
                          new XAttribute("src", featureNodeOutputUri.MakeRelativeUri(this.htmlResources.jQueryScript)),
                          new XAttribute("type", "text/javascript"),

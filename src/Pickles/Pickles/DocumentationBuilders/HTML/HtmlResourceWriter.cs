@@ -71,6 +71,7 @@ namespace Pickles
             WriteStyleSheet(folder, "reset.css");
             WriteStyleSheet(folder, "global.css");
             WriteStyleSheet(folder, "structure.css");
+            WriteStyleSheet(folder, "print.css");
 
             var imagesFolder = Path.Combine(folder, "images");
             if (!Directory.Exists(imagesFolder)) Directory.CreateDirectory(imagesFolder);

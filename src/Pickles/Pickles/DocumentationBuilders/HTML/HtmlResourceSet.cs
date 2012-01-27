@@ -31,6 +31,14 @@ namespace Pickles
             }
         }
 
+        public Uri PrintStylesheet
+        {
+            get
+            {
+                return new Uri(Path.Combine(configuration.OutputFolder.FullName, "print.css"));
+            }
+        }
+
         public Uri jQueryScript
         {
             get
