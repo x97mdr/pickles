@@ -229,6 +229,7 @@
     <Compile Include="DirectoryCrawler\RelevantFileDetector.cs" />
     <Compile Include="Runner.cs" />
     <Compile Include="TestFrameworks\ITestResults.cs" />
+    <Compile Include="TestFrameworks\MsTestResults.cs" />
     <Compile Include="TestFrameworks\NullTestResults.cs" />
     <Compile Include="TestFrameworks\NUnitExampleSignatureBuilder.cs" />
     <Compile Include="TestFrameworks\NUnitResults.cs" />
