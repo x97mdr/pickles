@@ -40,11 +40,11 @@ namespace Pickles.DocumentationBuilders.HTML
             {
                 if (childNode.Data.IsContent)
                 {
-                    ul.Add(new XElement(xmlns + "div",
-                               new XAttribute("class", "file"),
-                               new XElement(xmlns + "li",
-                                   new XElement(xmlns + "a",
-                                       new XAttribute("href", childNode.Data.GetRelativeUriTo(file)), childNode.Data.Name))));
+                    ul.Add(
+                        new XElement(
+                            xmlns + "li",
+                            new XAttribute("class", "file"),
+                            new XElement(xmlns + "a", new XAttribute("href", childNode.Data.GetRelativeUriTo(file)), childNode.Data.Name)));
                 }
                 else
                 {
