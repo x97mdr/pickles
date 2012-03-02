@@ -70,5 +70,16 @@ namespace Pickles.Test.Formatters
             Assert.AreEqual("SubLevelOne/LevelOneSublevelOne.html", anchorInLI2.Attribute("href").Value);
             Assert.AreEqual("Addition", anchorInLI2.Value);
         }
+
+        [Test]
+        public void Ul_Element_Must_Contain_Li_Children_Only()
+        {
+            var childrenOfUl = _toc.Elements().First().Elements();
+
+            int numberOfChildren = childrenOfUl.Count();
+            int numberOfLiChildren = childrenOfUl.Count(e => e.Name.LocalName == "li");
+
+            Assert.AreEqual(numberOfChildren, numberOfLiChildren);
+        }
     }
 }
