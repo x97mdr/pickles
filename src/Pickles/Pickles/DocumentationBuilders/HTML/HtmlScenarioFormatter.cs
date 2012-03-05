@@ -49,7 +49,6 @@ namespace Pickles.DocumentationBuilders.HTML
         public XElement Format(Scenario scenario, int id)
         {
             return new XElement(xmlns + "li",
-                       new XAttribute("id", id),
                        new XAttribute("class", "scenario"),
                        this.htmlImageResultFormatter.Format(scenario),
                        new XElement(xmlns + "div",
