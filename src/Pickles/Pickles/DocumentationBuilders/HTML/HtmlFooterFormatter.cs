@@ -34,7 +34,7 @@ namespace Pickles.DocumentationBuilders.HTML
         public HtmlFooterFormatter(Configuration configuration)
         {
             this.configuration = configuration;
-            this.xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
+            this.xmlns = HtmlNamespace.Xhtml;
         }
 
         private XElement BuildVersionString()

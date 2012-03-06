@@ -60,7 +60,7 @@ namespace Pickles.DocumentationBuilders.HTML
 
         public XDocument Format(IDirectoryTreeNode featureNode, GeneralTree<IDirectoryTreeNode> features)
         {
-            var xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
+            var xmlns = HtmlNamespace.Xhtml;
             var featureNodeOutputPath = Path.Combine(this.configuration.OutputFolder.FullName, featureNode.RelativePathFromRoot);
             var featureNodeOutputUri = new Uri(featureNodeOutputPath);
 

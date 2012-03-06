@@ -32,7 +32,7 @@ namespace Pickles.DocumentationBuilders.HTML
 
         public HtmlMultilineStringFormatter()
         {
-            xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
+            xmlns = HtmlNamespace.Xhtml;
         }
 
         public XElement Format(string multilineText)

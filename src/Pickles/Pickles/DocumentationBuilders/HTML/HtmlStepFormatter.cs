@@ -41,7 +41,7 @@ namespace Pickles.DocumentationBuilders.HTML
             this.htmlTableFormatter = htmlTableFormatter;
             this.htmlMultilineStringFormatter = htmlMultilineStringFormatter;
             this.languageServices = languageServices;
-            xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
+            xmlns = HtmlNamespace.Xhtml;
         }
 
         public XElement Format(Step step)
