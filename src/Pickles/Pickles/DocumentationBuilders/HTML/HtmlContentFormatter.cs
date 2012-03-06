@@ -41,7 +41,7 @@ namespace Pickles.DocumentationBuilders.HTML
 
         public XElement Format(IDirectoryTreeNode contentNode)
         {
-            var xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
+            var xmlns = HtmlNamespace.Xhtml;
 
             var featureItemNode = contentNode as FeatureDirectoryTreeNode;
             if (featureItemNode != null)

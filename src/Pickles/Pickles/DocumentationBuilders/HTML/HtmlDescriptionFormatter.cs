@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text;
 using MarkdownSharp;
 using System.Xml.Linq;
+using Pickles.Extensions;
 
 namespace Pickles.DocumentationBuilders.HTML
 {
@@ -31,17 +32,23 @@ namespace Pickles.DocumentationBuilders.HTML
     {
         private readonly Markdown markdown;
 
+        private readonly XNamespace xmlns;
+
         public HtmlDescriptionFormatter(Markdown markdown)
         {
             this.markdown = markdown;
+            this.xmlns = HtmlNamespace.Xhtml;
         }
 
         public XElement Format(string descriptionText)
         {
             if (String.IsNullOrEmpty(descriptionText)) return null;
 
-            var markdownResult = "<div class=\"description\" xmlns=\"http://www.w3.org/1999/xhtml\">" + markdown.Transform(descriptionText) + "</div>";
+            var markdownResult = "<div>" + markdown.Transform(descriptionText) + "</div>";
             var descriptionElements = XElement.Parse(markdownResult);
+            descriptionElements.SetAttributeValue("class", "description");
+
+            descriptionElements.MoveToNamespace(this.xmlns);
 
             return descriptionElements;
         }

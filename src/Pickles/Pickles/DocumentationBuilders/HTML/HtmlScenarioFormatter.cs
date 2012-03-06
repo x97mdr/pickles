@@ -43,7 +43,7 @@ namespace Pickles.DocumentationBuilders.HTML
             this.htmlStepFormatter = htmlStepFormatter;
             this.htmlDescriptionFormatter = htmlDescriptionFormatter;
             this.htmlImageResultFormatter = htmlImageResultFormatter;
-            this.xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
+            this.xmlns = HtmlNamespace.Xhtml;
         }
 
         public XElement Format(Scenario scenario, int id)

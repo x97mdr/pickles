@@ -48,7 +48,7 @@ namespace Pickles.DocumentationBuilders.HTML
             this.htmlScenarioOutlineFormatter = htmlScenarioOutlineFormatter;
             this.htmlDescriptionFormatter = htmlDescriptionFormatter;
             this.htmlImageResultFormatter = htmlImageResultFormatter;
-            this.xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
+            this.xmlns = HtmlNamespace.Xhtml;
         }
 
         public XElement Format(Feature feature)

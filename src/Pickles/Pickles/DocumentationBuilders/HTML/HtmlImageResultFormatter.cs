@@ -40,7 +40,7 @@ namespace Pickles.DocumentationBuilders.HTML
             this.configuration = configuration;
             this.results = results;
             this.htmlResourceSet = htmlResourceSet;
-            this.xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
+            this.xmlns = HtmlNamespace.Xhtml;
         }
 
         private string BuildTitle(bool wasSuccessful)
