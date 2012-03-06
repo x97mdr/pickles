@@ -37,7 +37,7 @@ namespace Pickles.DocumentationBuilders.HTML
         public HtmlMarkdownFormatter(Markdown markdown)
         {
             this.markdown = markdown;
-            this.xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
+            this.xmlns = HtmlNamespace.Xhtml;
         }
 
         public XElement Format(string text)

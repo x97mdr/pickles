@@ -66,7 +66,7 @@ namespace Pickles.DocumentationBuilders.HTML
 
         public XElement Format(Uri file, GeneralTree<IDirectoryTreeNode> features)
         {
-            var xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
+            var xmlns = HtmlNamespace.Xhtml;
 
             return new XElement(xmlns + "div",
                        new XAttribute("id", "toc"),

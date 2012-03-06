@@ -33,7 +33,7 @@ namespace Pickles.DocumentationBuilders.HTML
 
         public HtmlTableFormatter()
         {
-            xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
+            xmlns = HtmlNamespace.Xhtml;
         }
 
         public XElement Format(Table table)
