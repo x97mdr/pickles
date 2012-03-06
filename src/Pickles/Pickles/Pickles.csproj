@@ -199,6 +199,7 @@
     <Compile Include="DocumentationBuilders\Word\WordTableFormatter.cs" />
     <Compile Include="DocumentationFormat.cs" />
     <Compile Include="Extensions\BodyExtensions.cs" />
+    <Compile Include="Extensions\NamespaceExtensions.cs" />
     <Compile Include="Extensions\PathExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="DirectoryCrawler\FeatureDirectoryTreeNode.cs" />
