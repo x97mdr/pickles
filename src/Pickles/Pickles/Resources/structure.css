@@ -70,6 +70,26 @@
   border-bottom: 1px solid #E8E8e8;
 }
 
+#toc.collapsed ul{
+  display: none;
+}
+
+#toc.collapsed{
+  border-right-width: 0;
+}
+          
+p.tocCollapser{
+  color: gray;
+  cursor: pointer;
+  float: right;
+  padding-right: 1em;
+}
+
+p.tocCollapser:hover{
+  color: black;
+  cursor: pointer;
+}
+
 /*************************************************************************
  * Feature and Markdown
  *************************************************************************/

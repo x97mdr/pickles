@@ -55,6 +55,15 @@ namespace Pickles
             }
         }
 
+
+        public Uri AdditionalScripts
+        {
+            get
+            {
+                return new Uri(Path.Combine(configuration.OutputFolder.FullName, "scripts/scripts.js"));
+            }
+        }
+
         public Uri SuccessImage
         {
             get

@@ -59,6 +59,16 @@ namespace Pickles.DocumentationBuilders.HTML
             return ul;
         }
 
+        private XElement BuildCollapser(XNamespace xmlns)
+        {
+            // <p class="tocCollapser" title="Collapse Table of Content">«</p>
+
+            return new XElement(xmlns + "p",
+                new XAttribute("class", "tocCollapser"),
+                new XAttribute("title", "Collapse Table of Content"),
+                new XText("«"));
+        }
+
         public XElement Format(FileInfo file, GeneralTree<IDirectoryTreeNode> features)
         {
             return Format(new Uri(file.FullName), features);
@@ -70,6 +80,7 @@ namespace Pickles.DocumentationBuilders.HTML
 
             return new XElement(xmlns + "div",
                        new XAttribute("id", "toc"),
+                       BuildCollapser(xmlns),
                        BuildListItems(xmlns, file, features)
                    );
         }
