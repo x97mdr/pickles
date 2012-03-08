@@ -31,16 +31,13 @@ namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlDocumentFormatter
     {
-        private static readonly string dataTablesInitializationStatement = "\n$(document).ready(function() {\n" +
-                                                                           "  $('.datatable').dataTable({\n" +
-                                                                           "    \"bSort\": false,\n" +
-                                                                           "    \"bInfo\": false,\n" +
-                                                                           "    \"bFilter\": false,\n" +
-                                                                           "    \"bPaginate\": false,\n" +
-                                                                           "    \"sScrollY\": \"100%\",\n" +
-                                                                           "    \"sScrollX\": \"90%\"\n" +
-                                                                           "  });\n" +
-                                                                           "});\n";
+        private const string documentReady = 
+            "\n" +
+            "$(document).ready(function() {" + "\n" +
+            "  initializeDataTable();" + "\n" +
+            "  initializeToc();" + "\n" +
+            "});" + "\n";
+
         private readonly Configuration configuration;
         private readonly HtmlHeaderFormatter htmlHeaderFormatter;
         private readonly HtmlTableOfContentsFormatter htmlTableOfContentsFormatter;
@@ -98,8 +95,13 @@ namespace Pickles.DocumentationBuilders.HTML
                          new XText(string.Empty)));
 
             head.Add(new XElement(xmlns + "script",
+                         new XAttribute("src", featureNodeOutputUri.MakeRelativeUri(this.htmlResources.AdditionalScripts)),
                          new XAttribute("type", "text/javascript"),
-                         dataTablesInitializationStatement));
+                         new XText(string.Empty)));
+
+            head.Add(new XElement(xmlns + "script",
+                         new XAttribute("type", "text/javascript"),
+                         documentReady));
 
             var html = new XElement(xmlns + "html",
                            new XAttribute(XNamespace.Xml + "lang", "en"),
