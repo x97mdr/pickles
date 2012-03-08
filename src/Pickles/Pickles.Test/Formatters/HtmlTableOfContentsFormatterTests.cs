@@ -37,9 +37,9 @@ namespace Pickles.Test.Formatters
         }
 
         [Test]
-        public void first_node_should_be_index()
+        public void first_ul_node_should_be_index()
         {
-            var ul = _toc.Elements().First();
+            var ul = _toc.FindFirstDescendantWithName("ul");
             
             // Assert that the first feature is appropriately set in the TOC
             Assert.NotNull(ul);
@@ -57,7 +57,7 @@ namespace Pickles.Test.Formatters
         [Test]
         public void Can_crawl_directory_tree_for_features_successfully()
         {
-            var ul = _toc.Elements().First();
+            var ul = _toc.FindFirstDescendantWithName("ul");
             var ul2 = ul.FindFirstDescendantWithName("ul");
             Assert.AreEqual(true, ul2.HasElements);
 

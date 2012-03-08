@@ -82,6 +82,7 @@ namespace Pickles
             if (!Directory.Exists(scriptsFolder)) Directory.CreateDirectory(scriptsFolder);
             WriteScript(scriptsFolder, "jquery.js");
             WriteScript(scriptsFolder, "jquery.dataTables.min.js");
+            WriteScript(scriptsFolder, "scripts.js");
         }
     }
 }
