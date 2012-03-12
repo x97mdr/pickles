@@ -47,7 +47,7 @@ namespace Pickles.DocumentationBuilders.HTML
                                 xmlns + "li",
                                 new XAttribute("class", "file"),
                                 new XElement(
-                                    xmlns + "p",
+                                    xmlns + "span",
                                     new XAttribute("class", "current"),
                                     childNode.Data.Name)));
                     }

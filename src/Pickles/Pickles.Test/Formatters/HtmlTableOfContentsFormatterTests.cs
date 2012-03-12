@@ -85,7 +85,7 @@ namespace Pickles.Test.Formatters
         [Test]
         public void TableOfContent_Must_Contain_One_Paragraph_With_Current_Class()
         {
-            _toc.Descendants().Where(e => e.Name.LocalName == "p").Single(e => e.Attributes().Any(a => a.Name.LocalName == "class" && a.Value == "current"));
+            _toc.Descendants().Where(e => e.Name.LocalName == "span").Single(e => e.Attributes().Any(a => a.Name.LocalName == "class" && a.Value == "current"));
         }
     }
 }
