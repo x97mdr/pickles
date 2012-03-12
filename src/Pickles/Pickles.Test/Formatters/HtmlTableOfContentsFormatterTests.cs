@@ -50,7 +50,7 @@ namespace Pickles.Test.Formatters
 
             var anchorInLI1 = li1.Elements().First();
             Assert.AreEqual(true, anchorInLI1.HasAttributes);
-            Assert.AreEqual("#", anchorInLI1.Attribute("href").Value);
+            Assert.AreEqual("current", anchorInLI1.Attribute("class").Value);
             Assert.AreEqual("This is an index written in Markdown", anchorInLI1.Value);
         }
 
@@ -80,6 +80,12 @@ namespace Pickles.Test.Formatters
             int numberOfLiChildren = childrenOfUl.Count(e => e.Name.LocalName == "li");
 
             Assert.AreEqual(numberOfChildren, numberOfLiChildren);
+        }
+
+        [Test]
+        public void TableOfContent_Must_Contain_One_Paragraph_With_Current_Class()
+        {
+            _toc.Descendants().Where(e => e.Name.LocalName == "p").Single(e => e.Attributes().Any(a => a.Name.LocalName == "class" && a.Value == "current"));
         }
     }
 }
