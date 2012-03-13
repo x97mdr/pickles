@@ -39,8 +39,9 @@
       <Private>True</Private>
       <HintPath>..\packages\DocumentFormat.OpenXml.1.0\lib\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
-    <Reference Include="gherkin">
-      <HintPath>..\packages\gherkin.2.6.8\lib\gherkin.dll</HintPath>
+    <Reference Include="gherkin, Version=2.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\gherkin.2.9.0\lib\gherkin.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.AWT.WinForms">
       <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.AWT.WinForms.dll</HintPath>

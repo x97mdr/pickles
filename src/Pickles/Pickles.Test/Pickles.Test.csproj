@@ -35,8 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="gherkin, Version=2.6.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\gherkin.2.6.8\lib\gherkin.dll</HintPath>
+    <Reference Include="gherkin, Version=2.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\gherkin.2.9.0\lib\gherkin.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.AWT.WinForms, Version=0.46.0.1, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.AWT.WinForms.dll</HintPath>
