@@ -28,6 +28,7 @@ namespace Pickles
     public enum TestResultsFormat
     {
         NUnit,
-        xUnit
+        xUnit,
+        MsTest
     }
 }

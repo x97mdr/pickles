@@ -41,6 +41,7 @@ namespace Pickles
             Bind<ITestResults>().To<NullTestResults>().When(request => !Kernel.Get<Configuration>().HasTestResults).InSingletonScope();
             Bind<ITestResults>().To<NUnitResults>().When(request => Kernel.Get<Configuration>().HasTestResults && Kernel.Get<Configuration>().TestResultsFormat == TestResultsFormat.NUnit).InSingletonScope();
             Bind<ITestResults>().To<XUnitResults>().When(request => Kernel.Get<Configuration>().HasTestResults && Kernel.Get<Configuration>().TestResultsFormat == TestResultsFormat.xUnit).InSingletonScope();
+            Bind<ITestResults>().To<MsTestResults>().When(request => Kernel.Get<Configuration>().HasTestResults && Kernel.Get<Configuration>().TestResultsFormat == TestResultsFormat.MsTest).InSingletonScope();
 
             Bind<LanguageServices>().ToSelf().InSingletonScope();
             Bind<HtmlTableOfContentsFormatter>().ToSelf().InSingletonScope();

@@ -94,6 +94,19 @@ namespace Pickles.Test
         }
 
         [Test]
+        public void Then_can_parse_results_format_mstest_with_short_form_successfully()
+        {
+            var args = new string[] { @"-trfmt=mstest" };
+
+            var configuration = new Configuration();
+            var commandLineArgumentParser = new CommandLineArgumentParser();
+            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+
+            Assert.AreEqual(true, shouldContinue);
+            Assert.AreEqual(TestResultsFormat.MsTest, configuration.TestResultsFormat);
+        }
+
+        [Test]
         public void Then_can_parse_results_format_nunit_with_long_form_successfully()
         {
             var args = new string[] { @"-test-results-format=nunit" };
@@ -117,6 +130,19 @@ namespace Pickles.Test
 
             Assert.AreEqual(true, shouldContinue);
             Assert.AreEqual(TestResultsFormat.xUnit, configuration.TestResultsFormat);
+        }
+
+        [Test]
+        public void Then_can_parse_results_format_mstest_with_long_form_successfully()
+        {
+            var args = new string[] { @"-test-results-format=mstest" };
+
+            var configuration = new Configuration();
+            var commandLineArgumentParser = new CommandLineArgumentParser();
+            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+
+            Assert.AreEqual(true, shouldContinue);
+            Assert.AreEqual(TestResultsFormat.MsTest, configuration.TestResultsFormat);
         }
 
         [Test]
