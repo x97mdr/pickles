@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 using Ninject;
 using NUnit.Framework;
 using Pickles.Parser;
@@ -15,10 +11,14 @@ namespace Pickles.Test
     public class WhenParsingMSTestResultsFile : BaseFixture
     {
         private const string RESULTS_FILE_NAME = "results-example-mstest.trx";
+        private Feature _feature;
+        private MsTestResults _results;
 
-        [Test]
-        public void ThenCanReadFeatureResultSuccessfully()
+        [SetUp]
+        public void Setup()
         {
+            _feature = new Feature { Name = "Addition" };
+
             // Write out the embedded test results file
             using (var input = new StreamReader(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Test." + RESULTS_FILE_NAME)))
             using (var output = new StreamWriter(RESULTS_FILE_NAME))
@@ -29,10 +29,13 @@ namespace Pickles.Test
             var configuration = Kernel.Get<Configuration>();
             configuration.TestResultsFile = new FileInfo(RESULTS_FILE_NAME);
 
-            var results = Kernel.Get<MsTestResults>();
+            _results = Kernel.Get<MsTestResults>();
+        }
 
-            var feature = new Feature { Name = "Addition" };
-            var result = results.GetFeatureResult(feature);
+        [Test]
+        public void ThenCanReadFeatureResultSuccessfully()
+        {
+            var result = _results.GetFeatureResult(_feature);
 
             result.WasExecuted.ShouldBeTrue();
             result.WasSuccessful.ShouldBeFalse();
@@ -41,28 +44,14 @@ namespace Pickles.Test
         [Test]
         public void ThenCanReadScenarioResultSuccessfully()
         {
-            // Write out the embedded test results file
-            using (var input = new StreamReader(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Test." + RESULTS_FILE_NAME)))
-            using (var output = new StreamWriter(RESULTS_FILE_NAME))
-            {
-                output.Write(input.ReadToEnd());
-            }
-
-            var configuration = Kernel.Get<Configuration>();
-            configuration.TestResultsFile = new FileInfo(RESULTS_FILE_NAME);
-
-            var results = Kernel.Get<MsTestResults>();
-
-            var feature = new Feature { Name = "Addition" };
-
-            var scenario1 = new Scenario { Name = "Add two numbers", Feature = feature };
-            var result1 = results.GetScenarioResult(scenario1);
+            var scenario1 = new Scenario { Name = "Add two numbers", Feature = _feature };
+            var result1 = _results.GetScenarioResult(scenario1);
 
             result1.WasExecuted.ShouldBeTrue();
             result1.WasSuccessful.ShouldBeTrue();
 
-            var scenario2 = new Scenario { Name = "Fail to add two numbers", Feature = feature };
-            var result2 = results.GetScenarioResult(scenario2);
+            var scenario2 = new Scenario { Name = "Fail to add two numbers", Feature = _feature };
+            var result2 = _results.GetScenarioResult(scenario2);
 
             result2.WasExecuted.ShouldBeTrue();
             result2.WasSuccessful.ShouldBeFalse();
@@ -71,25 +60,23 @@ namespace Pickles.Test
         [Test]
         public void ThenCanReadScenarioOutlineResultSuccessfully()
         {
-            // Write out the embedded test results file
-            using (var input = new StreamReader(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Test." + RESULTS_FILE_NAME)))
-            using (var output = new StreamWriter(RESULTS_FILE_NAME))
-            {
-                output.Write(input.ReadToEnd());
-            }
-
-            var configuration = Kernel.Get<Configuration>();
-            configuration.TestResultsFile = new FileInfo(RESULTS_FILE_NAME);
-
-            var results = Kernel.Get<MsTestResults>();
-
-            var feature = new Feature { Name = "Addition" };
-
-            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers", Feature = feature };
-            var result = results.GetScenarioOutlineResult(scenarioOutline);
+            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers", Feature = _feature };
+            var result = _results.GetScenarioOutlineResult(scenarioOutline);
 
             result.WasExecuted.ShouldBeTrue();
             result.WasSuccessful.ShouldBeTrue();
+        }
+
+        [Test]
+        public void ThenCanReadBackgroundResultSuccessfully()
+        {
+            var background = new Scenario { Name = "Background", Feature = _feature };
+            _feature.AddBackground(background);
+
+            var result = _results.GetScenarioResult(background);
+
+            result.WasExecuted.ShouldBeFalse();
+            result.WasSuccessful.ShouldBeFalse();
         }
     }
 }
