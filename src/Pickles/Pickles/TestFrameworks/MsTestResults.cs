@@ -19,11 +19,9 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Xml.Linq;
 using System.Xml;
+using System.Xml.Linq;
 using Pickles.Parser;
 
 namespace Pickles.TestFrameworks
@@ -57,7 +55,7 @@ namespace Pickles.TestFrameworks
 
         private Guid GetScenarioExecutionId(Scenario scenario)
         {
-            var idString = 
+            var idString =
                 (from unitTest in this.resultsDocument.Root.Descendants(ns + "UnitTest")
                  let properties = unitTest.Element(ns + "Properties")
                  let property = properties.Element(ns + "Property")
@@ -79,7 +77,7 @@ namespace Pickles.TestFrameworks
                  let executionId = new Guid(unitTestResult.Attribute("executionId").Value)
                  where scenarioExecutionId == executionId
                  let outcome = unitTestResult.Attribute("outcome").Value
-                 select outcome).FirstOrDefault();
+                 select outcome).FirstOrDefault() ?? string.Empty;
 
             switch (resultText.ToLowerInvariant())
             {
