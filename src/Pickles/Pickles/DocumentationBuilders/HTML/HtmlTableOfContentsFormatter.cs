@@ -32,7 +32,7 @@ namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlTableOfContentsFormatter
     {
-        private XElement BuildListItems(XNamespace xmlns, Uri file, GeneralTree<IDirectoryTreeNode> features)
+      private XElement BuildListItems(XNamespace xmlns, Uri file, GeneralTree<IDirectoryTreeNode> features)
         {
             var ul = new XElement(xmlns + "ul", new XAttribute("class", "features"));
 
@@ -40,43 +40,48 @@ namespace Pickles.DocumentationBuilders.HTML
             {
                 if (childNode.Data.IsContent)
                 {
-                    if (childNode.Data.OriginalLocationUrl == file)
-                    {
-                        ul.Add(
-                            new XElement(
-                                xmlns + "li",
-                                new XAttribute("class", "file"),
-                                new XElement(
-                                    xmlns + "span",
-                                    new XAttribute("class", "current"),
-                                    childNode.Data.Name)));
-                    }
-                    else
-                    {
-                        ul.Add(
-                            new XElement(
-                                xmlns + "li",
-                                new XAttribute("class", "file"),
-                                new XElement(
-                                    xmlns + "a",
-                                    new XAttribute("href", childNode.Data.GetRelativeUriTo(file)),
-                                    childNode.Data.Name)));
-                    }
+                  ul.Add(AddNodeForFile(xmlns, file, childNode));
                 }
                 else
                 {
-                    ul.Add(new XElement(xmlns + "li", 
-                               new XElement(xmlns + "div",
-                                   new XAttribute("class", "directory"),
-                                   new XElement(xmlns + "a", new XAttribute("href", childNode.Data.GetRelativeUriTo(file) + "/index.html"), new XText(childNode.Data.Name))),
-                                   BuildListItems(xmlns, file, childNode)));
+                  ul.Add(AddNodeForDirectory(xmlns, file, childNode));
                 }
             }
 
             return ul;
         }
 
-        private XElement BuildCollapser(XNamespace xmlns)
+      private XElement AddNodeForDirectory(XNamespace xmlns, Uri file, GeneralTree<IDirectoryTreeNode> childNode)
+      {
+        var xElement = new XElement(
+          xmlns + "li",
+          new XElement(xmlns + "div",
+            new XAttribute("class", "directory"),
+            new XElement(xmlns + "a",
+              new XAttribute("href", childNode.Data.GetRelativeUriTo(file) + "/index.html"),
+              new XText(childNode.Data.Name))),
+          BuildListItems(xmlns, file, childNode));
+
+        return xElement;
+      }
+
+      private static XElement AddNodeForFile(XNamespace xmlns, Uri file, GeneralTree<IDirectoryTreeNode> childNode)
+      {
+        var xElement = new XElement(xmlns + "li", new XAttribute("class", "file"));
+
+        if (childNode.Data.OriginalLocationUrl == file)
+        {
+          xElement.Add(new XElement(xmlns + "span", new XAttribute("class", "current"), childNode.Data.Name));
+        }
+        else
+        {
+          xElement.Add(new XElement(xmlns + "a", new XAttribute("href", childNode.Data.GetRelativeUriTo(file)), childNode.Data.Name));
+        }
+
+        return xElement;
+      }
+
+      private XElement BuildCollapser(XNamespace xmlns)
         {
             // <p class="tocCollapser" title="Collapse Table of Content">«</p>
 
@@ -86,20 +91,15 @@ namespace Pickles.DocumentationBuilders.HTML
                 new XText("«"));
         }
 
-        public XElement Format(FileInfo file, GeneralTree<IDirectoryTreeNode> features)
-        {
-            return Format(new Uri(file.FullName), features);
-        }
+      public XElement Format(Uri file, GeneralTree<IDirectoryTreeNode> features)
+      {
+        var xmlns = HtmlNamespace.Xhtml;
 
-        public XElement Format(Uri file, GeneralTree<IDirectoryTreeNode> features)
-        {
-            var xmlns = HtmlNamespace.Xhtml;
-
-            return new XElement(xmlns + "div",
-                       new XAttribute("id", "toc"),
-                       BuildCollapser(xmlns),
-                       BuildListItems(xmlns, file, features)
-                   );
-        }
+        return new XElement(xmlns + "div",
+                            new XAttribute("id", "toc"),
+                            BuildCollapser(xmlns),
+                            BuildListItems(xmlns, file, features)
+          );
+      }
     }
 }
