@@ -87,5 +87,16 @@ namespace Pickles.Test.Formatters
         {
             _toc.Descendants().Where(e => e.Name.LocalName == "span").Single(e => e.Attributes().Any(a => a.Name.LocalName == "class" && a.Value == "current"));
         }
+
+      [Test]
+      public void TableOfContent_Must_Link_Folder_Nodes_To_That_Folders_Index_File()
+      {
+        XElement directory = _toc.Descendants().First(d => d.Name.LocalName == "div" && d.Attributes().Any(a => a.Name.LocalName == "class" && a.Value == "directory"));
+        XElement link = directory.Descendants().First();
+
+        Assert.AreEqual("a", link.Name.LocalName);
+        var href = link.Attributes().Single(a => a.Name.LocalName == "href");
+        Assert.AreEqual("SubLevelOne/index.html", href.Value);
+      }
     }
 }

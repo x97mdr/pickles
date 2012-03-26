@@ -68,8 +68,8 @@ namespace Pickles.DocumentationBuilders.HTML
                     ul.Add(new XElement(xmlns + "li", 
                                new XElement(xmlns + "div",
                                    new XAttribute("class", "directory"),
-                                   new XText(childNode.Data.Name)
-                               ), BuildListItems(xmlns, file, childNode)));
+                                   new XElement(xmlns + "a", new XAttribute("href", childNode.Data.GetRelativeUriTo(file) + "/index.html"), new XText(childNode.Data.Name))),
+                                   BuildListItems(xmlns, file, childNode)));
                 }
             }
 

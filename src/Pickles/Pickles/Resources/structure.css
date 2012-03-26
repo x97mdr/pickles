@@ -78,6 +78,10 @@
   border-top: 1px solid #fff;
   font-weight: bold;
 }
+
+#toc .directory a{
+    color: black;
+}
 #toc .file {
   padding: 3px 10px 4px 20px;
   border-bottom: 1px solid #E8E8e8;
