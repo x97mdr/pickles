@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using System.IO;
+using NGenerics.DataStructures.Trees;
 using Pickles.DirectoryCrawler;
 
 namespace Pickles.DocumentationBuilders.HTML
@@ -32,14 +33,16 @@ namespace Pickles.DocumentationBuilders.HTML
     {
         private readonly HtmlFeatureFormatter htmlFeatureFormatter;
         private readonly HtmlMarkdownFormatter htmlMarkdownFormatter;
+      private readonly HtmlIndexFormatter htmlIndexFormatter;
 
-        public HtmlContentFormatter(HtmlFeatureFormatter htmlFeatureFormatter, HtmlMarkdownFormatter htmlMarkdownFormatter)
+        public HtmlContentFormatter(HtmlFeatureFormatter htmlFeatureFormatter, HtmlMarkdownFormatter htmlMarkdownFormatter, HtmlIndexFormatter htmlIndexFormatter)
         {
             this.htmlFeatureFormatter = htmlFeatureFormatter;
             this.htmlMarkdownFormatter = htmlMarkdownFormatter;
+          this.htmlIndexFormatter = htmlIndexFormatter;
         }
 
-        public XElement Format(IDirectoryTreeNode contentNode)
+        public XElement Format(IDirectoryTreeNode contentNode, IEnumerable<FeatureDirectoryTreeNode> features)
         {
             var xmlns = HtmlNamespace.Xhtml;
 
@@ -48,6 +51,12 @@ namespace Pickles.DocumentationBuilders.HTML
             {
                 return this.htmlFeatureFormatter.Format(featureItemNode.Feature);
             }
+
+          var indexItemNode = contentNode as FolderDirectoryTreeNode;
+          if (indexItemNode != null)
+          {
+            return this.htmlIndexFormatter.Format(indexItemNode, features);
+          }
 
             var markdownItemNode = contentNode as MarkdownTreeNode;
             if (markdownItemNode != null)

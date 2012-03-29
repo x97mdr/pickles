@@ -19,9 +19,7 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 using NGenerics.DataStructures.Trees;
 using System.IO;
@@ -64,7 +62,7 @@ namespace Pickles.DocumentationBuilders.HTML
             var container = new XElement(xmlns + "div", new XAttribute("id", "container"));
             container.Add(this.htmlHeaderFormatter.Format());
             container.Add(this.htmlTableOfContentsFormatter.Format(featureNode.OriginalLocationUrl, features));
-            container.Add(this.htmlContentFormatter.Format(featureNode));
+            container.Add(this.htmlContentFormatter.Format(featureNode, features.OfType<FeatureDirectoryTreeNode>()));
             container.Add(this.htmlFooterFormatter.Format());
 
             var body = new XElement(xmlns + "body");

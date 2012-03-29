@@ -173,6 +173,7 @@
     <Compile Include="DocumentationBuilders\HTML\HtmlFooterFormatter.cs" />
     <Compile Include="DocumentationBuilders\HTML\HtmlHeaderFormatter.cs" />
     <Compile Include="DocumentationBuilders\HTML\HtmlImageResultFormatter.cs" />
+    <Compile Include="DocumentationBuilders\HTML\HtmlIndexFormatter.cs" />
     <Compile Include="DocumentationBuilders\HTML\HtmlMarkdownFormatter.cs" />
     <Compile Include="DocumentationBuilders\HTML\HtmlMultilineStringFormatter.cs" />
     <Compile Include="DocumentationBuilders\HTML\HtmlNamespace.cs" />
