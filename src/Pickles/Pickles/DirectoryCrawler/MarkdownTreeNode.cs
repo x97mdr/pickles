@@ -39,7 +39,7 @@ namespace Pickles.DirectoryCrawler
         public MarkdownTreeNode(FileSystemInfo location, string relativePathFromRoot, XElement markdownContent)
         {
             this.OriginalLocation = location;
-            this.OriginalLocationUrl = new Uri(location.FullName);
+            this.OriginalLocationUrl = location.ToUri();
             this.RelativePathFromRoot = relativePathFromRoot;
             this.MarkdownContent = markdownContent;
         }

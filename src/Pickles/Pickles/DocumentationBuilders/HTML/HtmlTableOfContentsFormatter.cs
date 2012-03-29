@@ -58,7 +58,7 @@ namespace Pickles.DocumentationBuilders.HTML
           new XElement(xmlns + "div",
             new XAttribute("class", "directory"),
             new XElement(xmlns + "a",
-              new XAttribute("href", childNode.Data.GetRelativeUriTo(file) + "/index.html"),
+              new XAttribute("href", childNode.Data.GetRelativeUriTo(file) + "index.html"),
               new XText(childNode.Data.Name))),
           BuildListItems(xmlns, file, childNode));
 

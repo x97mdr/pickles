@@ -46,7 +46,7 @@ namespace Pickles.DocumentationBuilders.DITA
                 var nodeDitaName = nodeFilename.ToDitaName() + ".dita";
                 var newUri = new Uri(Path.Combine(fileInfo.Directory.FullName.ToLowerInvariant(), nodeDitaName));
                 
-                return new Uri(this.configuration.FeatureFolder.FullName + @"\").MakeRelativeUri(newUri);
+                return this.configuration.FeatureFolder.ToUri().MakeRelativeUri(newUri);
             }
 
             throw new InvalidOperationException("Cannot Generate Path to a file that is not a feature");

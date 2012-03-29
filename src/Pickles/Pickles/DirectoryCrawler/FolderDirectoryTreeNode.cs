@@ -32,7 +32,7 @@ namespace Pickles.DirectoryCrawler
         public FolderDirectoryTreeNode(FileSystemInfo location, string relativePathFromRoot)
         {
             this.OriginalLocation = location;
-            this.OriginalLocationUrl = new Uri(location.FullName);
+            this.OriginalLocationUrl = location.ToUri();
             this.RelativePathFromRoot = relativePathFromRoot;
         }
 
