@@ -14,8 +14,15 @@ namespace Pickles.Extensions
          fullName = fullName + @"\";
        }
 
-       return new Uri(fullName);
+       return fullName.ToFolderUri();
      }
+
+    public static Uri ToFileUriCombined(this DirectoryInfo instance, string file)
+    {
+      string path = Path.Combine(instance.FullName, file);
+
+      return path.ToFileUri();
+    }
 
      public static Uri ToUri(this FileSystemInfo instance)
      {
@@ -31,7 +38,21 @@ namespace Pickles.Extensions
 
     public static Uri ToUri(this FileInfo instance)
      {
-       return new Uri(instance.FullName);
+       return ToFileUri(instance.FullName);
      }
+
+    public static Uri ToFileUri(this string instance)
+    {
+      return new Uri(instance);
+    }
+
+    public static Uri ToFolderUri(this string instance)
+    {
+      if (!instance.EndsWith(@"\"))
+      {
+      return new Uri(instance+ @"\");
+      }
+      return new Uri(instance);
+    }
   }
 }

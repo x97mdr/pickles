@@ -44,7 +44,7 @@ namespace Pickles.DocumentationBuilders.DITA
             {
                 var nodeFilename = directoryTreeNode.OriginalLocation.Name.Replace(directoryTreeNode.OriginalLocation.Extension, string.Empty);
                 var nodeDitaName = nodeFilename.ToDitaName() + ".dita";
-                var newUri = new Uri(Path.Combine(fileInfo.Directory.FullName.ToLowerInvariant(), nodeDitaName));
+                var newUri = fileInfo.Directory.ToFileUriCombined(nodeDitaName);
                 
                 return this.configuration.FeatureFolder.ToUri().MakeRelativeUri(newUri);
             }
