@@ -160,6 +160,8 @@
     </Compile>
     <Compile Include="AssertExtensions.cs" />
     <Compile Include="BaseFixture.cs" />
+    <Compile Include="DirectoryCrawlers\FolderDirectoryTreeNodeTests.cs" />
+    <Compile Include="Extensions\UriExtensionsTests.cs" />
     <Compile Include="Formatters\HtmlScenarioFormatterTests.cs" />
     <Compile Include="Formatters\HtmlScenarioOutlineFormatterTests.cs" />
     <Compile Include="NamespaceExtensionsTests.cs" />
