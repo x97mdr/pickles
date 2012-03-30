@@ -59,18 +59,18 @@ namespace Pickles
       var div = new XElement(this.xmlns + "div",
                   new XAttribute("id", "feature"),
                   new XElement(this.xmlns + "h1", node.Name),
-                  FormatList(featuresThatAreDirectChildrenOfFolder));
+                  FormatList(node, featuresThatAreDirectChildrenOfFolder));
 
       return div;
     }
 
-    private XElement FormatList(IEnumerable<FeatureDirectoryTreeNode> items)
+    private XElement FormatList(IDirectoryTreeNode node, IEnumerable<FeatureDirectoryTreeNode> items)
     {
       // <ul class="list">...</ul>
 
       var list = new XElement(this.xmlns + "ul", new XAttribute("class", "list"));
 
-      foreach (var li in items.Select(item => FormatListItem(item.Name, item.Feature.Name, item.Feature.Description)))
+      foreach (var li in items.Select(item => FormatListItem(item.GetRelativeUriTo(node.OriginalLocationUrl), item.Feature.Name, item.Feature.Description)))
       {
         list.Add(li);
       }
