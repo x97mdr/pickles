@@ -25,6 +25,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Pickles.DirectoryCrawler;
 using Pickles.DocumentationBuilders.HTML;
+using Pickles.Extensions;
 
 namespace Pickles
 {
@@ -32,7 +33,7 @@ namespace Pickles
   {
     private readonly XNamespace xmlns = HtmlNamespace.Xhtml;
 
-    public XElement Format(IDirectoryTreeNode node, IEnumerable<FeatureDirectoryTreeNode> features)
+    public XElement Format(IDirectoryTreeNode node, IEnumerable<IDirectoryTreeNode> features)
     {
       /*
        <div id="feature">
@@ -54,12 +55,23 @@ namespace Pickles
       string[] files = directoryInfo.GetFiles().Select(f => f.FullName).ToArray();
 
       var featuresThatAreDirectChildrenOfFolder =
-        features.Where(f => f.OriginalLocation is FileInfo).Where(f => files.Contains(f.OriginalLocation.FullName));
+        features.Where(f => f.OriginalLocation is FileInfo).Where(f => files.Contains(f.OriginalLocation.FullName)).ToArray();
 
       var div = new XElement(this.xmlns + "div",
                   new XAttribute("id", "feature"),
-                  new XElement(this.xmlns + "h1", node.Name),
-                  FormatList(node, featuresThatAreDirectChildrenOfFolder));
+                  new XElement(this.xmlns + "h1", node.Name));
+
+      var markdownTreeNode = featuresThatAreDirectChildrenOfFolder.Where(n => n.IsIndexMarkDownNode()).OfType<MarkdownTreeNode>().FirstOrDefault();
+        if (markdownTreeNode != null)
+        {
+          div.Add(
+            new XElement(
+              this.xmlns + "div",
+              new XAttribute("class", "folderDescription"),
+              markdownTreeNode.MarkdownContent));
+        }
+
+      div.Add(FormatList(node, featuresThatAreDirectChildrenOfFolder.OfType<FeatureDirectoryTreeNode>()));
 
       return div;
     }

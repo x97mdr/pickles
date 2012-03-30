@@ -42,7 +42,7 @@ namespace Pickles.DocumentationBuilders.HTML
           this.htmlIndexFormatter = htmlIndexFormatter;
         }
 
-        public XElement Format(IDirectoryTreeNode contentNode, IEnumerable<FeatureDirectoryTreeNode> features)
+        public XElement Format(IDirectoryTreeNode contentNode, IEnumerable<IDirectoryTreeNode> features)
         {
             var xmlns = HtmlNamespace.Xhtml;
 
@@ -61,10 +61,10 @@ namespace Pickles.DocumentationBuilders.HTML
             var markdownItemNode = contentNode as MarkdownTreeNode;
             if (markdownItemNode != null)
             {
-                return markdownItemNode.MarkdownContent;
+              return markdownItemNode.MarkdownContent;
             }
 
-            throw new InvalidOperationException("Cannot format a FeatureNode with a Type of " + contentNode.GetType() + " as content");
+          throw new InvalidOperationException("Cannot format a FeatureNode with a Type of " + contentNode.GetType() + " as content");
         }
     }
 }

@@ -24,6 +24,7 @@ using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
 using Pickles.DocumentationBuilders.HTML;
 using Pickles.DirectoryCrawler;
+using Pickles.Extensions;
 
 namespace Pickles
 {
@@ -55,6 +56,11 @@ namespace Pickles
 
             var actionVisitor = new ActionVisitor<IDirectoryTreeNode>(node =>
                 {
+                  if (node.IsIndexMarkDownNode())
+                  {
+                    return;
+                  }
+
                     var nodePath = Path.Combine(this.configuration.OutputFolder.FullName, node.RelativePathFromRoot);
                   string htmlFilePath;
 
