@@ -158,6 +158,14 @@ p.tocCollapser:hover{
     color: black;
 }
 
+#feature div.folderDescription {
+    margin-bottom: 2em;
+}
+
+#feature div.folderDescription li{
+    list-style-type: disc;
+}
+
 /*************************************************************************
  * Feature - formatting tables (example or step tables)
  *************************************************************************/
