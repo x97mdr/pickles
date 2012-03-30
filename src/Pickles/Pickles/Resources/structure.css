@@ -125,6 +125,40 @@ p.tocCollapser:hover{
 }
 
 /*************************************************************************
+ * Feature index
+ *************************************************************************/
+
+#feature li{
+    margin-bottom: 1em;
+}
+
+#feature span.title
+{
+    font-size: large;
+    font-weight: bold;
+    color: #000000;
+    display: block;
+}
+
+#feature a {
+    text-decoration: none;
+}
+
+#feature a:hover span.title{
+    text-decoration: underline;
+}
+
+#feature span.separator
+{
+    display: none;
+}
+
+#feature span.description{
+    display: block;
+    color: black;
+}
+
+/*************************************************************************
  * Feature - formatting tables (example or step tables)
  *************************************************************************/
     
