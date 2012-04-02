@@ -77,7 +77,7 @@ namespace Pickles
 
                     using (var writer = new StreamWriter(htmlFilePath, false, Encoding.UTF8))
                     {
-                      var document = this.htmlDocumentFormatter.Format(node, features);
+                      var document = this.htmlDocumentFormatter.Format(node, features, this.configuration.OutputFolder);
                       document.Save(writer);
                       writer.Close();
                     }

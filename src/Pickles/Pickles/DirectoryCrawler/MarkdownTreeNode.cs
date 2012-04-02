@@ -48,7 +48,7 @@ namespace Pickles.DirectoryCrawler
 
         public string GetRelativeUriTo(Uri other, string newExtension)
         {
-            return this.OriginalLocation.FullName != other.LocalPath ? other.MakeRelativeUri(this.OriginalLocationUrl).ToString().Replace(this.OriginalLocation.Extension, newExtension) : "#";
+          return other.GetUriForTargetRelativeToMe(this.OriginalLocation, newExtension);
         }
 
         public string GetRelativeUriTo(Uri other)

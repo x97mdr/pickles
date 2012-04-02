@@ -54,5 +54,11 @@ namespace Pickles.Extensions
       }
       return new Uri(instance);
     }
+
+    public static string GetUriForTargetRelativeToMe(this Uri me, FileSystemInfo target, string newExtension)
+    {
+      return target.FullName != me.LocalPath ? me.MakeRelativeUri(target.ToUri()).ToString().Replace(target.Extension, newExtension) : "#";
+
+    }
   }
 }

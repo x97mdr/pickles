@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
@@ -25,7 +26,7 @@ namespace Pickles.Test.Formatters
             var features = Kernel.Get<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
 
             var formatter = new HtmlTableOfContentsFormatter();
-            _toc = formatter.Format(features.ChildNodes[0].Data.OriginalLocationUrl, features);
+            _toc = formatter.Format(features.ChildNodes[0].Data.OriginalLocationUrl, features, new DirectoryInfo(@"c:\temp\"));
 
         }
 
@@ -97,6 +98,16 @@ namespace Pickles.Test.Formatters
         Assert.AreEqual("a", link.Name.LocalName);
         var href = link.Attributes().Single(a => a.Name.LocalName == "href");
         Assert.AreEqual("SubLevelOne/index.html", href.Value);
+      }
+
+      [Test]
+      public void TableOfContent_Must_Contain_Link_To_Home()
+      {
+        XElement home =
+          _toc.Descendants().SingleOrDefault(
+            d => d.Attributes().Any(a => a.Name.LocalName == "id" && a.Value == "root"));
+
+        Assert.IsNotNull(home);
       }
     }
 }
