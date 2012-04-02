@@ -8,7 +8,7 @@ namespace Pickles.Extensions
     public static bool IsIndexMarkDownNode(this IDirectoryTreeNode node)
     {
       var markdownItemNode = node as MarkdownTreeNode;
-      if (markdownItemNode != null && markdownItemNode.Name.StartsWith("index", StringComparison.InvariantCultureIgnoreCase))
+      if (markdownItemNode != null && markdownItemNode.OriginalLocation.Name.StartsWith("index", StringComparison.InvariantCultureIgnoreCase))
       {
         return true;
       }

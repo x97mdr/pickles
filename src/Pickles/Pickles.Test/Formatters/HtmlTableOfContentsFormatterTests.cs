@@ -46,7 +46,8 @@ namespace Pickles.Test.Formatters
             Assert.NotNull(ul);
             Assert.AreEqual(true, ul.HasElements);
 
-            var li1 = ul.FindFirstDescendantWithName("li");
+          var li1 =
+            ul.Descendants().Where(d => d.Name.LocalName == "li").FirstOrDefault(d => !d.Attributes().Any(a => a.Name.LocalName == "id" && a.Value == "root"));
             Assert.NotNull(li1);
 
             var anchorInLI1 = li1.Elements().First();

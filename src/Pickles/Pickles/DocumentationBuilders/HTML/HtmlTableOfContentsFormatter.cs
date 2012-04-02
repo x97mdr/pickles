@@ -37,6 +37,11 @@ namespace Pickles.DocumentationBuilders.HTML
             {
                 if (childNode.Data.IsContent)
                 {
+                  if (childNode.Data.IsIndexMarkDownNode())
+                  {
+                    continue;
+                  }
+
                   ul.Add(AddNodeForFile(xmlns, file, childNode));
                 }
                 else
