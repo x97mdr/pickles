@@ -67,14 +67,40 @@ namespace Pickles.DocumentationBuilders.HTML
         return xElement;
       }
 
-      private static XElement AddNodeForHome(XNamespace xmlns, Uri file, DirectoryInfo outputFolder)
+      private static XElement AddNodeForHome(XNamespace xmlns, Uri file, DirectoryInfo rootFolder)
       {
-        var rootfile = new FileInfo(Path.Combine(outputFolder.FullName, "index.html"));
+        var rootfile = new FileInfo(Path.Combine(rootFolder.FullName, "index.html"));
 
         var xElement = new XElement(xmlns + "li", new XAttribute("class", "file"), new XAttribute("id", "root"));
-        xElement.Add(new XElement(xmlns + "a", new XAttribute("href", file.GetUriForTargetRelativeToMe(rootfile, ".html")), "Home"));
+
+        string nodeText = "Home";
+
+        bool fileIsActuallyTheRoot = DetermineWhetherFileIsTheRootFile(file, rootfile);
+        if (fileIsActuallyTheRoot)
+        {
+          xElement.Add(new XElement(xmlns + "span", new XAttribute("class", "current"), nodeText));
+        }
+        else
+        {
+          xElement.Add(new XElement(xmlns + "a", new XAttribute("href", file.GetUriForTargetRelativeToMe(rootfile, ".html")), nodeText));
+        }
 
         return xElement;
+      }
+
+      private static bool DetermineWhetherFileIsTheRootFile(Uri file, FileInfo rootfile)
+      {
+        var fileInfo = new FileInfo(file.LocalPath);
+
+        if (rootfile.DirectoryName != fileInfo.DirectoryName) return false; // they're not even in the same directory
+
+        if (rootfile.FullName == file.LocalPath) return true; // it's really the same file
+
+        if (fileInfo.Name == "") return true; // the file is actually the directory, so we consider that the root file
+
+        if (fileInfo.Name.StartsWith("index", StringComparison.InvariantCultureIgnoreCase)) return true; // the file is an index file, so we consider that the root
+
+        return false;
       }
 
       private static XElement AddNodeForFile(XNamespace xmlns, Uri file, GeneralTree<IDirectoryTreeNode> childNode)

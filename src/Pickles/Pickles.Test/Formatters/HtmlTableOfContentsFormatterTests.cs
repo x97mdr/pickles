@@ -26,7 +26,7 @@ namespace Pickles.Test.Formatters
             var features = Kernel.Get<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
 
             var formatter = new HtmlTableOfContentsFormatter();
-            _toc = formatter.Format(features.ChildNodes[0].Data.OriginalLocationUrl, features, new DirectoryInfo(@"c:\temp\"));
+            _toc = formatter.Format(features.ChildNodes[0].Data.OriginalLocationUrl, features, new DirectoryInfo(ROOT_PATH));
 
         }
 
@@ -47,13 +47,13 @@ namespace Pickles.Test.Formatters
             Assert.AreEqual(true, ul.HasElements);
 
           var li1 =
-            ul.Descendants().Where(d => d.Name.LocalName == "li").FirstOrDefault(d => !d.Attributes().Any(a => a.Name.LocalName == "id" && a.Value == "root"));
+            ul.Descendants().Where(d => d.Name.LocalName == "li").FirstOrDefault();
             Assert.NotNull(li1);
 
             var anchorInLI1 = li1.Elements().First();
             Assert.AreEqual(true, anchorInLI1.HasAttributes);
             Assert.AreEqual("current", anchorInLI1.Attribute("class").Value);
-            Assert.AreEqual("This is an index written in Markdown", anchorInLI1.Value);
+            Assert.AreEqual("Home", anchorInLI1.Value);
         }
 
         [Test]
@@ -87,7 +87,9 @@ namespace Pickles.Test.Formatters
         [Test]
         public void TableOfContent_Must_Contain_One_Paragraph_With_Current_Class()
         {
-            _toc.Descendants().Where(e => e.Name.LocalName == "span").Single(e => e.Attributes().Any(a => a.Name.LocalName == "class" && a.Value == "current"));
+          XElement span = _toc.Descendants().Where(e => e.Name.LocalName == "span").SingleOrDefault(e => e.Attributes().Any(a => a.Name.LocalName == "class" && a.Value == "current"));
+
+          Assert.IsNotNull(span);
         }
 
       [Test]

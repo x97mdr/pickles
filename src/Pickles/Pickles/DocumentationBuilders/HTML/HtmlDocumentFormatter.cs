@@ -53,7 +53,7 @@ namespace Pickles.DocumentationBuilders.HTML
             this.htmlResources = htmlResources;
         }
 
-        public XDocument Format(IDirectoryTreeNode featureNode, GeneralTree<IDirectoryTreeNode> features, DirectoryInfo outputFolder)
+        public XDocument Format(IDirectoryTreeNode featureNode, GeneralTree<IDirectoryTreeNode> features, DirectoryInfo rootFolder)
         {
             var xmlns = HtmlNamespace.Xhtml;
             var featureNodeOutputPath = Path.Combine(this.configuration.OutputFolder.FullName, featureNode.RelativePathFromRoot);
@@ -61,7 +61,7 @@ namespace Pickles.DocumentationBuilders.HTML
 
             var container = new XElement(xmlns + "div", new XAttribute("id", "container"));
             container.Add(this.htmlHeaderFormatter.Format());
-            container.Add(this.htmlTableOfContentsFormatter.Format(featureNode.OriginalLocationUrl, features, outputFolder));
+            container.Add(this.htmlTableOfContentsFormatter.Format(featureNode.OriginalLocationUrl, features, rootFolder));
             container.Add(this.htmlContentFormatter.Format(featureNode, features));
             container.Add(this.htmlFooterFormatter.Format());
 
