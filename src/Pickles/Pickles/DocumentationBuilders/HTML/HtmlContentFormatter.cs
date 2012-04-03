@@ -37,6 +37,9 @@ namespace Pickles.DocumentationBuilders.HTML
 
         public HtmlContentFormatter(HtmlFeatureFormatter htmlFeatureFormatter, HtmlMarkdownFormatter htmlMarkdownFormatter, HtmlIndexFormatter htmlIndexFormatter)
         {
+            if (htmlFeatureFormatter == null) throw new ArgumentNullException("htmlFeatureFormatter");
+            if (htmlIndexFormatter == null) throw new ArgumentNullException("htmlIndexFormatter");
+            
             this.htmlFeatureFormatter = htmlFeatureFormatter;
             this.htmlMarkdownFormatter = htmlMarkdownFormatter;
           this.htmlIndexFormatter = htmlIndexFormatter;
