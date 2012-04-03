@@ -14,7 +14,7 @@ namespace Pickles.Test.Formatters
             ArgumentNullException exception =
                 Assert.Throws<ArgumentNullException>(
                     () =>
-                    new HtmlContentFormatter(null, null, null));
+                    new HtmlContentFormatter(null, null));
 
             Assert.AreEqual("htmlFeatureFormatter", exception.ParamName);
         }
@@ -27,7 +27,6 @@ namespace Pickles.Test.Formatters
                     () =>
                     new HtmlContentFormatter(
                         Kernel.Get<HtmlFeatureFormatter>(),
-                        null,
                         null));
 
             Assert.AreEqual("htmlIndexFormatter", exception.ParamName);
