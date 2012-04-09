@@ -39,7 +39,7 @@ namespace Pickles.DirectoryCrawler
         public MarkdownTreeNode(FileSystemInfo location, string relativePathFromRoot, XElement markdownContent)
         {
             this.OriginalLocation = location;
-            this.OriginalLocationUrl = new Uri(location.FullName);
+            this.OriginalLocationUrl = location.ToUri();
             this.RelativePathFromRoot = relativePathFromRoot;
             this.MarkdownContent = markdownContent;
         }
@@ -48,7 +48,7 @@ namespace Pickles.DirectoryCrawler
 
         public string GetRelativeUriTo(Uri other, string newExtension)
         {
-            return this.OriginalLocation.FullName != other.LocalPath ? other.MakeRelativeUri(this.OriginalLocationUrl).ToString().Replace(this.OriginalLocation.Extension, newExtension) : "#";
+          return other.GetUriForTargetRelativeToMe(this.OriginalLocation, newExtension);
         }
 
         public string GetRelativeUriTo(Uri other)

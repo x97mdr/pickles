@@ -24,6 +24,7 @@ using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
 using Pickles.DocumentationBuilders.HTML;
 using Pickles.DirectoryCrawler;
+using Pickles.Extensions;
 
 namespace Pickles
 {
@@ -55,22 +56,30 @@ namespace Pickles
 
             var actionVisitor = new ActionVisitor<IDirectoryTreeNode>(node =>
                 {
+                  if (node.IsIndexMarkDownNode())
+                  {
+                    return;
+                  }
+
                     var nodePath = Path.Combine(this.configuration.OutputFolder.FullName, node.RelativePathFromRoot);
+                  string htmlFilePath;
 
                     if (node.IsContent)
                     {
-                        var htmlFilePath = nodePath.Replace(Path.GetExtension(nodePath), ".html");
-
-                        using (var writer = new StreamWriter(htmlFilePath, false, Encoding.UTF8))
-                        {
-                            var document = this.htmlDocumentFormatter.Format(node, features);
-                            document.Save(writer);
-                            writer.Close();
-                        }
+                        htmlFilePath = nodePath.Replace(Path.GetExtension(nodePath), ".html");
                     }
                     else
                     {
                         Directory.CreateDirectory(nodePath);
+
+                        htmlFilePath = Path.Combine(nodePath, "index.html");
+                    }
+
+                    using (var writer = new StreamWriter(htmlFilePath, false, Encoding.UTF8))
+                    {
+                      var document = this.htmlDocumentFormatter.Format(node, features, this.configuration.FeatureFolder);
+                      document.Save(writer);
+                      writer.Close();
                     }
                 });
 

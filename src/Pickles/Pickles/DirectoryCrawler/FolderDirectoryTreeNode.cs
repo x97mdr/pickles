@@ -32,7 +32,7 @@ namespace Pickles.DirectoryCrawler
         public FolderDirectoryTreeNode(FileSystemInfo location, string relativePathFromRoot)
         {
             this.OriginalLocation = location;
-            this.OriginalLocationUrl = new Uri(location.FullName);
+            this.OriginalLocationUrl = location.ToUri();
             this.RelativePathFromRoot = relativePathFromRoot;
         }
 
@@ -40,10 +40,26 @@ namespace Pickles.DirectoryCrawler
 
         public string GetRelativeUriTo(Uri other, string newExtension)
         {
-            return this.OriginalLocation.FullName != other.LocalPath ? other.MakeRelativeUri(this.OriginalLocationUrl).ToString().Replace(this.OriginalLocation.Extension, newExtension) : "#";
+          bool areSameLocation = this.OriginalLocation.FullName == other.LocalPath;
+
+          if (areSameLocation)
+          {
+            return "#";
+          }
+
+          string result = other.MakeRelativeUri(this.OriginalLocationUrl).ToString();
+
+          string oldExtension = this.OriginalLocation.Extension;
+
+          if (!string.IsNullOrEmpty(oldExtension))
+          {
+            result = result.Replace(oldExtension, newExtension);
+          }
+
+          return result;
         }
 
-        public string GetRelativeUriTo(Uri other)
+      public string GetRelativeUriTo(Uri other)
         {
             return GetRelativeUriTo(other, ".html");
         }

@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Pickles.Extensions;
 using Pickles.Parser;
 using System.IO;
 
@@ -38,7 +39,7 @@ namespace Pickles.DirectoryCrawler
         public FeatureDirectoryTreeNode(FileSystemInfo location, string relativePathFromRoot, Feature feature)
         {
             this.OriginalLocation = location;
-            this.OriginalLocationUrl = new Uri(location.FullName);
+            this.OriginalLocationUrl = location.ToUri();
             this.RelativePathFromRoot = relativePathFromRoot;
             this.Feature = feature;
         }
@@ -47,7 +48,7 @@ namespace Pickles.DirectoryCrawler
 
         public string GetRelativeUriTo(Uri other, string newExtension)
         {
-            return this.OriginalLocation.FullName != other.LocalPath ? other.MakeRelativeUri(this.OriginalLocationUrl).ToString().Replace(this.OriginalLocation.Extension, newExtension) : "#";
+          return other.GetUriForTargetRelativeToMe(this.OriginalLocation, newExtension);
         }
 
         public string GetRelativeUriTo(Uri other)

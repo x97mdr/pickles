@@ -20,10 +20,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Linq;
-using System.IO;
 using Pickles.DirectoryCrawler;
 
 namespace Pickles.DocumentationBuilders.HTML
@@ -31,22 +28,30 @@ namespace Pickles.DocumentationBuilders.HTML
     public class HtmlContentFormatter
     {
         private readonly HtmlFeatureFormatter htmlFeatureFormatter;
-        private readonly HtmlMarkdownFormatter htmlMarkdownFormatter;
 
-        public HtmlContentFormatter(HtmlFeatureFormatter htmlFeatureFormatter, HtmlMarkdownFormatter htmlMarkdownFormatter)
+        private readonly HtmlIndexFormatter htmlIndexFormatter;
+
+        public HtmlContentFormatter(HtmlFeatureFormatter htmlFeatureFormatter, HtmlIndexFormatter htmlIndexFormatter)
         {
+            if (htmlFeatureFormatter == null) throw new ArgumentNullException("htmlFeatureFormatter");
+            if (htmlIndexFormatter == null) throw new ArgumentNullException("htmlIndexFormatter");
+
             this.htmlFeatureFormatter = htmlFeatureFormatter;
-            this.htmlMarkdownFormatter = htmlMarkdownFormatter;
+            this.htmlIndexFormatter = htmlIndexFormatter;
         }
 
-        public XElement Format(IDirectoryTreeNode contentNode)
+        public XElement Format(IDirectoryTreeNode contentNode, IEnumerable<IDirectoryTreeNode> features)
         {
-            var xmlns = HtmlNamespace.Xhtml;
-
             var featureItemNode = contentNode as FeatureDirectoryTreeNode;
             if (featureItemNode != null)
             {
                 return this.htmlFeatureFormatter.Format(featureItemNode.Feature);
+            }
+
+            var indexItemNode = contentNode as FolderDirectoryTreeNode;
+            if (indexItemNode != null)
+            {
+                return this.htmlIndexFormatter.Format(indexItemNode, features);
             }
 
             var markdownItemNode = contentNode as MarkdownTreeNode;
