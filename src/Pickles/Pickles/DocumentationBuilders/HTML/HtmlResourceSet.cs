@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 using System.IO;
+using Pickles.Extensions;
 
 namespace Pickles
 {
@@ -27,7 +28,7 @@ namespace Pickles
         {
             get
             {
-                return new Uri(Path.Combine(configuration.OutputFolder.FullName, "master.css"));
+              return configuration.OutputFolder.ToFileUriCombined("master.css");
             }
         }
 
@@ -35,7 +36,7 @@ namespace Pickles
         {
             get
             {
-                return new Uri(Path.Combine(configuration.OutputFolder.FullName, "print.css"));
+              return configuration.OutputFolder.ToFileUriCombined("print.css");
             }
         }
 
@@ -43,7 +44,7 @@ namespace Pickles
         {
             get
             {
-                return new Uri(Path.Combine(configuration.OutputFolder.FullName, "scripts/jquery.js"));
+              return configuration.OutputFolder.ToFileUriCombined("scripts/jquery.js");
             }
         }
 
@@ -51,7 +52,7 @@ namespace Pickles
         {
             get
             {
-                return new Uri(Path.Combine(configuration.OutputFolder.FullName, "scripts/jquery.dataTables.min.js"));
+              return configuration.OutputFolder.ToFileUriCombined("scripts/jquery.dataTables.min.js");
             }
         }
 
@@ -60,7 +61,7 @@ namespace Pickles
         {
             get
             {
-                return new Uri(Path.Combine(configuration.OutputFolder.FullName, "scripts/scripts.js"));
+              return configuration.OutputFolder.ToFileUriCombined("scripts/scripts.js");
             }
         }
 
@@ -103,7 +104,7 @@ namespace Pickles
                     yield return new HtmlResource
                     {
                         File = fileName,
-                        Uri = new Uri(Path.Combine(configuration.OutputFolder.FullName, fileName))
+                        Uri = configuration.OutputFolder.ToFileUriCombined(fileName)
                     };
                 }
             }

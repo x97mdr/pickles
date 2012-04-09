@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
@@ -25,7 +26,7 @@ namespace Pickles.Test.Formatters
             var features = Kernel.Get<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
 
             var formatter = new HtmlTableOfContentsFormatter();
-            _toc = formatter.Format(features.ChildNodes[0].Data.OriginalLocationUrl, features);
+            _toc = formatter.Format(features.ChildNodes[0].Data.OriginalLocationUrl, features, new DirectoryInfo(ROOT_PATH));
 
         }
 
@@ -45,13 +46,14 @@ namespace Pickles.Test.Formatters
             Assert.NotNull(ul);
             Assert.AreEqual(true, ul.HasElements);
 
-            var li1 = ul.FindFirstDescendantWithName("li");
+          var li1 =
+            ul.Descendants().Where(d => d.Name.LocalName == "li").FirstOrDefault();
             Assert.NotNull(li1);
 
             var anchorInLI1 = li1.Elements().First();
             Assert.AreEqual(true, anchorInLI1.HasAttributes);
             Assert.AreEqual("current", anchorInLI1.Attribute("class").Value);
-            Assert.AreEqual("This is an index written in Markdown", anchorInLI1.Value);
+            Assert.AreEqual("Home", anchorInLI1.Value);
         }
 
         [Test]
@@ -85,7 +87,30 @@ namespace Pickles.Test.Formatters
         [Test]
         public void TableOfContent_Must_Contain_One_Paragraph_With_Current_Class()
         {
-            _toc.Descendants().Where(e => e.Name.LocalName == "span").Single(e => e.Attributes().Any(a => a.Name.LocalName == "class" && a.Value == "current"));
+          XElement span = _toc.Descendants().Where(e => e.Name.LocalName == "span").SingleOrDefault(e => e.Attributes().Any(a => a.Name.LocalName == "class" && a.Value == "current"));
+
+          Assert.IsNotNull(span);
         }
+
+      [Test]
+      public void TableOfContent_Must_Link_Folder_Nodes_To_That_Folders_Index_File()
+      {
+        XElement directory = _toc.Descendants().First(d => d.Name.LocalName == "div" && d.Attributes().Any(a => a.Name.LocalName == "class" && a.Value == "directory"));
+        XElement link = directory.Descendants().First();
+
+        Assert.AreEqual("a", link.Name.LocalName);
+        var href = link.Attributes().Single(a => a.Name.LocalName == "href");
+        Assert.AreEqual("SubLevelOne/index.html", href.Value);
+      }
+
+      [Test]
+      public void TableOfContent_Must_Contain_Link_To_Home()
+      {
+        XElement home =
+          _toc.Descendants().SingleOrDefault(
+            d => d.Attributes().Any(a => a.Name.LocalName == "id" && a.Value == "root"));
+
+        Assert.IsNotNull(home);
+      }
     }
 }

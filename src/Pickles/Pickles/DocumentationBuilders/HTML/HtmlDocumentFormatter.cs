@@ -19,9 +19,7 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 using NGenerics.DataStructures.Trees;
 using System.IO;
@@ -55,7 +53,7 @@ namespace Pickles.DocumentationBuilders.HTML
             this.htmlResources = htmlResources;
         }
 
-        public XDocument Format(IDirectoryTreeNode featureNode, GeneralTree<IDirectoryTreeNode> features)
+        public XDocument Format(IDirectoryTreeNode featureNode, GeneralTree<IDirectoryTreeNode> features, DirectoryInfo rootFolder)
         {
             var xmlns = HtmlNamespace.Xhtml;
             var featureNodeOutputPath = Path.Combine(this.configuration.OutputFolder.FullName, featureNode.RelativePathFromRoot);
@@ -63,8 +61,8 @@ namespace Pickles.DocumentationBuilders.HTML
 
             var container = new XElement(xmlns + "div", new XAttribute("id", "container"));
             container.Add(this.htmlHeaderFormatter.Format());
-            container.Add(this.htmlTableOfContentsFormatter.Format(featureNode.OriginalLocationUrl, features));
-            container.Add(this.htmlContentFormatter.Format(featureNode));
+            container.Add(this.htmlTableOfContentsFormatter.Format(featureNode.OriginalLocationUrl, features, rootFolder));
+            container.Add(this.htmlContentFormatter.Format(featureNode, features));
             container.Add(this.htmlFooterFormatter.Format());
 
             var body = new XElement(xmlns + "body");
