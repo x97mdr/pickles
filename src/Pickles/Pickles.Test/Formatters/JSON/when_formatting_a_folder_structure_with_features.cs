@@ -6,6 +6,7 @@ using Pickles.DocumentationBuilders.JSON;
 using Should.Fluent;
 using Pickles.Test.Helpers;
 using System;
+using Pickles.TestFrameworks;
 
 
 namespace Pickles.Test.Formatters.JSON
@@ -31,7 +32,8 @@ namespace Pickles.Test.Formatters.JSON
                                         DocumentationFormat = DocumentationFormat.JSON
                                     };
 
-            var jsonDocumentationBuilder = new JSONDocumentationBuilder(configuration);
+            
+            var jsonDocumentationBuilder = new JSONDocumentationBuilder(configuration, null);
             jsonDocumentationBuilder.Build(features);
         }
 
