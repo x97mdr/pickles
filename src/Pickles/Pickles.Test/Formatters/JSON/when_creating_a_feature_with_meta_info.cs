@@ -31,6 +31,8 @@ namespace Pickles.Test.Formatters.JSON
 
         }
 
+
+
         [Test]
         public void it_should_contain_the_feature()
         {

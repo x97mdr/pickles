@@ -165,6 +165,7 @@
     <Compile Include="Formatters\HtmlContentFormatterTests.cs" />
     <Compile Include="Formatters\HtmlScenarioFormatterTests.cs" />
     <Compile Include="Formatters\HtmlScenarioOutlineFormatterTests.cs" />
+    <Compile Include="Formatters\JSON\when_creating_a_feature_with_meta_info_and_test_result_in_mstest_format.cs" />
     <Compile Include="NamespaceExtensionsTests.cs" />
     <Compile Include="WhenParsingMsTestResultsFile.cs" />
     <Compile Include="Formatters\JSON\when_creating_a_feature_with_meta_info.cs" />
@@ -250,7 +251,9 @@
     </None>
     <Content Include="HtmlFormatterTestFiles\Background.html" />
     <None Include="packages.config" />
-    <EmbeddedResource Include="results-example-mstest.trx" />
+    <EmbeddedResource Include="results-example-mstest.trx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="FakeFolderStructures\FeatureCrawlerTests\SubLevelOne\ignorethisfile.ignore">

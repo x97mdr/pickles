@@ -37,6 +37,17 @@ namespace Pickles.Test.Formatters.JSON
             jsonDocumentationBuilder.Build(features);
         }
 
+        [TestFixtureTearDown]
+        public void TearDown()
+        {
+          //Cleanup output folder
+          if (Directory.Exists(OUTPUT_DIRECTORY))
+          {
+            Directory.Delete(OUTPUT_DIRECTORY, true);
+          }
+        }
+
+
         [Test]
         public void a_single_file_should_have_been_created()
         {
