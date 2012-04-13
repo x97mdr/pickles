@@ -213,6 +213,10 @@
     <Compile Include="Extensions\TreeNodeExtensions.cs" />
     <Compile Include="Extensions\UriExtensions.cs" />
     <Compile Include="FeatureParseException.cs" />
+    <Compile Include="FeatureTree\FeatureFile.cs" />
+    <Compile Include="FeatureTree\FileBase.cs" />
+    <Compile Include="FeatureTree\Folder.cs" />
+    <Compile Include="FeatureTree\ITreeItem.cs" />
     <Compile Include="LanguageServices.cs" />
     <Compile Include="Parser\Example.cs" />
     <Compile Include="Parser\FeatureElementState.cs" />
@@ -244,8 +248,10 @@
     <Compile Include="TestFrameworks\xUnitExampleSignatureBuilder.cs" />
     <Compile Include="TestFrameworks\XUnitResults.cs" />
     <Compile Include="TestResultsFormat.cs" />
+    <Compile Include="FeatureTree\TextFile.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="FeatureTree\ClassDiagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

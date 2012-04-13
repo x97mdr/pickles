@@ -163,6 +163,11 @@
     <Compile Include="DirectoryCrawlers\FolderDirectoryTreeNodeTests.cs" />
     <Compile Include="Extensions\StringExtensionsTests.cs" />
     <Compile Include="Extensions\UriExtensionsTests.cs" />
+    <Compile Include="FeatureTree\FileBaseTests.cs" />
+    <Compile Include="FeatureTree\TextFileTests.cs" />
+    <Compile Include="FeatureTree\FeatureFileTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Formatters\HtmlContentFormatterTests.cs" />
     <Compile Include="Formatters\HtmlScenarioFormatterTests.cs" />
     <Compile Include="Formatters\HtmlScenarioOutlineFormatterTests.cs" />
