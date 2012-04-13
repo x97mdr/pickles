@@ -185,6 +185,7 @@
     <Compile Include="DocumentationBuilders\HTML\HtmlStepFormatter.cs" />
     <Compile Include="DocumentationBuilders\HTML\HtmlTableFormatter.cs" />
     <Compile Include="DocumentationBuilders\HTML\HtmlTableOfContentsFormatter.cs" />
+    <Compile Include="DocumentationBuilders\HTML\IHtmlFeatureFormatter.cs" />
     <Compile Include="DocumentationBuilders\IDocumentationBuilder.cs" />
     <Compile Include="DocumentationBuilders\JSON\FeatureWithMetaInfo.cs" />
     <Compile Include="DocumentationBuilders\JSON\JSONDocumentationBuilder.cs" />

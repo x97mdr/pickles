@@ -27,11 +27,11 @@ namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlContentFormatter
     {
-        private readonly HtmlFeatureFormatter htmlFeatureFormatter;
+        private readonly IHtmlFeatureFormatter htmlFeatureFormatter;
 
         private readonly HtmlIndexFormatter htmlIndexFormatter;
 
-        public HtmlContentFormatter(HtmlFeatureFormatter htmlFeatureFormatter, HtmlIndexFormatter htmlIndexFormatter)
+        public HtmlContentFormatter(IHtmlFeatureFormatter htmlFeatureFormatter, HtmlIndexFormatter htmlIndexFormatter)
         {
             if (htmlFeatureFormatter == null) throw new ArgumentNullException("htmlFeatureFormatter");
             if (htmlIndexFormatter == null) throw new ArgumentNullException("htmlIndexFormatter");
