@@ -3,7 +3,7 @@ using Pickles.Extensions;
 
 namespace Pickles.FeatureTree
 {
-    public abstract class FileBase
+    public abstract class FileBase : ITreeItem
     {
         private readonly string mName;
 
@@ -32,6 +32,16 @@ namespace Pickles.FeatureTree
         public Folder Folder
         {
             get { return mFolder; }
+        }
+
+        public ITreeItem FindCommonAncestor(ITreeItem other)
+        {
+          throw new NotImplementedException();
+        }
+
+        public string GetRelativePathFromHereToThere(ITreeItem there)
+        {
+          throw new NotImplementedException();
         }
     }
 }

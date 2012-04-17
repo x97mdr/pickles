@@ -19,16 +19,24 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
 
 namespace Pickles.FeatureTree
 {
-    public class Folder
+    public class Folder : ITreeItem
     {
-        public List<Folder> SubFolders { get; set; }
-        public List<FeatureFile> FeatureFiles { get; set; }
-        public List<TextFile> TextFiles { get; set; }
+      public string Name
+      {
+        get { throw new NotImplementedException(); }
+      }
 
-        public List<ITreeItem> Items { get; set; }
+      public ITreeItem FindCommonAncestor(ITreeItem other)
+      {
+        throw new NotImplementedException();
+      }
+
+      public string GetRelativePathFromHereToThere(ITreeItem there)
+      {
+        throw new NotImplementedException();
+      }
     }
 }

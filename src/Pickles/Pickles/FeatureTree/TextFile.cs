@@ -22,7 +22,7 @@ using System;
 
 namespace Pickles.FeatureTree
 {
-    public class TextFile : FileBase, ITreeItem
+    public class TextFile : FileBase
     {
         private readonly string mContent;
 
@@ -32,16 +32,6 @@ namespace Pickles.FeatureTree
             if (content == null) throw new ArgumentNullException("content");
 
             this.mContent = content;
-        }
-
-        public ITreeItem FindCommonAncestor()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetRelativePathFromHereToThere(ITreeItem there)
-        {
-            throw new NotImplementedException();
         }
 
         public string Content

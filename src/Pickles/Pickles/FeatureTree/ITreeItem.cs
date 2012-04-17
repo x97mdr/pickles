@@ -26,7 +26,7 @@ namespace Pickles.FeatureTree
     {
         string Name { get; }
 
-        ITreeItem FindCommonAncestor();
+        ITreeItem FindCommonAncestor(ITreeItem other);
 
         string GetRelativePathFromHereToThere(ITreeItem there);
     }

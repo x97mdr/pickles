@@ -3,7 +3,7 @@ using Pickles.Parser;
 
 namespace Pickles.FeatureTree
 {
-    public class FeatureFile : FileBase, ITreeItem
+    public class FeatureFile : FileBase
     {
         private readonly Feature mContent;
 
@@ -18,16 +18,6 @@ namespace Pickles.FeatureTree
         public Feature Content
         {
             get { return mContent; }
-        }
-
-        public ITreeItem FindCommonAncestor()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetRelativePathFromHereToThere(ITreeItem there)
-        {
-            throw new NotImplementedException();
         }
     }
 }
