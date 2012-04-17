@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="0c66d4cc-f24c-47e0-b931-be31287e529c" name="niklas@OPTIMUSPRIME 2012-04-17 08:15:28" runUser="SE\niklas" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="c1dccade-b2b5-438e-ba3a-613b1697ce5a">
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+    <Deployment runDeploymentRoot="niklas_OPTIMUSPRIME 2012-04-17 08_15_28" />
+  </TestSettings>
+  <Times creation="2012-04-17T08:15:28.7421753+02:00" queuing="2012-04-17T08:15:29.1681753+02:00" start="2012-04-17T08:15:29.3481753+02:00" finish="2012-04-17T08:15:29.9581753+02:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="6" executed="6" passed="4" error="0" failed="2" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="TransferMoneyWithCoverageFromOneAccountToAnother" storage="d:\dev\pickles.specflow.lab\pickles.specflow.lab.specs\bin\debug\pickles.specflow.lab.specs.dll" id="c28e7727-e6dd-7566-92c9-911402ee1fd5">
+      <Description>Transfer money with coverage from one account to another</Description>
+      <Execution timeOut="1800000" id="f5367c0f-9bb3-4234-9909-0d5b0250aa51" />
+      <Properties>
+        <Property>
+          <Key>FeatureTitle</Key>
+          <Value>Transfer funds between accounts</Value>
+        </Property>
+      </Properties>
+      <TestMethod codeBase="D:/dev/Pickles.SpecFlow.Lab/Pickles.SpecFlow.Lab.Specs/bin/Debug/Pickles.SpecFlow.Lab.Specs.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Pickles.SpecFlow.Lab.Specs.BankAccountSpecs.TransferFundsBetweenAccountsFeature, Pickles.SpecFlow.Lab.Specs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TransferMoneyWithCoverageFromOneAccountToAnother" />
+    </UnitTest>
+    <UnitTest name="TransferMoneyWithCoverageFromOneAccountToAnother" storage="d:\dev\pickles.specflow.lab\pickles.specflow.lab.specs\bin\debug\pickles.specflow.lab.specs.dll" id="846de6ab-0292-3e02-e8dd-d9732a746f7d">
+      <Description>Transfer money with coverage from one account to another</Description>
+      <Execution timeOut="1800000" id="b4197ca7-3a9a-4c42-8dee-301545c4d5c6" />
+      <Properties>
+        <Property>
+          <Key>FeatureTitle</Key>
+          <Value>Transfer funds between accounts onc scenario and FAILING</Value>
+        </Property>
+      </Properties>
+      <TestMethod codeBase="D:/dev/Pickles.SpecFlow.Lab/Pickles.SpecFlow.Lab.Specs/bin/Debug/Pickles.SpecFlow.Lab.Specs.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Pickles.SpecFlow.Lab.Specs.BankAccountSpecs.TransferFundsBetweenAccountsOncScenarioAndFAILINGFeature, Pickles.SpecFlow.Lab.Specs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TransferMoneyWithCoverageFromOneAccountToAnother" />
+    </UnitTest>
+    <UnitTest name="Transfer70WithCoverageFromOneAccountToAnother" storage="d:\dev\pickles.specflow.lab\pickles.specflow.lab.specs\bin\debug\pickles.specflow.lab.specs.dll" id="a3e5e667-3394-b27d-4560-fc5973bbc5f2">
+      <Description>Transfer 70 with coverage from one account to another</Description>
+      <Execution timeOut="1800000" id="b048594a-3fc2-4145-89c1-31f9ffe1e203" />
+      <Properties>
+        <Property>
+          <Key>FeatureTitle</Key>
+          <Value>Two more scenarios transfering funds between accounts</Value>
+        </Property>
+      </Properties>
+      <TestMethod codeBase="D:/dev/Pickles.SpecFlow.Lab/Pickles.SpecFlow.Lab.Specs/bin/Debug/Pickles.SpecFlow.Lab.Specs.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Pickles.SpecFlow.Lab.Specs.BankAccountSpecs.TwoMoreScenariosTransferingFundsBetweenAccountsFeature, Pickles.SpecFlow.Lab.Specs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Transfer70WithCoverageFromOneAccountToAnother" />
+    </UnitTest>
+    <UnitTest name="Transfer70WithCoverageFromOneAccountToAnother" storage="d:\dev\pickles.specflow.lab\pickles.specflow.lab.specs\bin\debug\pickles.specflow.lab.specs.dll" id="280b0d4e-c719-5329-7b95-bb0f7dbb9289">
+      <Description>Transfer 70 with coverage from one account to another</Description>
+      <Execution timeOut="1800000" id="410498b0-9134-4160-bd9a-f7429c97e557" />
+      <Properties>
+        <Property>
+          <Key>FeatureTitle</Key>
+          <Value>Two more scenarios transfering funds between accounts - one failng and one succeding</Value>
+        </Property>
+      </Properties>
+      <TestMethod codeBase="D:/dev/Pickles.SpecFlow.Lab/Pickles.SpecFlow.Lab.Specs/bin/Debug/Pickles.SpecFlow.Lab.Specs.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Pickles.SpecFlow.Lab.Specs.BankAccountSpecs.TwoMoreScenariosTransferingFundsBetweenAccounts_OneFailngAndOneSuccedingFeature, Pickles.SpecFlow.Lab.Specs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Transfer70WithCoverageFromOneAccountToAnother" />
+    </UnitTest>
+    <UnitTest name="Transfer100WithCoverageFromOneAccountToAnother" storage="d:\dev\pickles.specflow.lab\pickles.specflow.lab.specs\bin\debug\pickles.specflow.lab.specs.dll" id="595d226f-6351-90aa-6dfb-49b44766ec6a">
+      <Description>Transfer 100 with coverage from one account to another</Description>
+      <Execution timeOut="1800000" id="010f52a7-ec2d-42d6-bac5-0f44fc8847b8" />
+      <Properties>
+        <Property>
+          <Key>FeatureTitle</Key>
+          <Value>Two more scenarios transfering funds between accounts</Value>
+        </Property>
+      </Properties>
+      <TestMethod codeBase="D:/dev/Pickles.SpecFlow.Lab/Pickles.SpecFlow.Lab.Specs/bin/Debug/Pickles.SpecFlow.Lab.Specs.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Pickles.SpecFlow.Lab.Specs.BankAccountSpecs.TwoMoreScenariosTransferingFundsBetweenAccountsFeature, Pickles.SpecFlow.Lab.Specs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Transfer100WithCoverageFromOneAccountToAnother" />
+    </UnitTest>
+    <UnitTest name="Transfer100WithCoverageFromOneAccountToAnother" storage="d:\dev\pickles.specflow.lab\pickles.specflow.lab.specs\bin\debug\pickles.specflow.lab.specs.dll" id="3ebee4b0-c1e6-6204-ac6e-df8241f66492">
+      <Description>Transfer 100 with coverage from one account to another</Description>
+      <Execution timeOut="1800000" id="e0ccd150-ec0f-4c43-a29e-829b8c4fec1d" />
+      <Properties>
+        <Property>
+          <Key>FeatureTitle</Key>
+          <Value>Two more scenarios transfering funds between accounts - one failng and one succeding</Value>
+        </Property>
+      </Properties>
+      <TestMethod codeBase="D:/dev/Pickles.SpecFlow.Lab/Pickles.SpecFlow.Lab.Specs/bin/Debug/Pickles.SpecFlow.Lab.Specs.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Pickles.SpecFlow.Lab.Specs.BankAccountSpecs.TwoMoreScenariosTransferingFundsBetweenAccounts_OneFailngAndOneSuccedingFeature, Pickles.SpecFlow.Lab.Specs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Transfer100WithCoverageFromOneAccountToAnother" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="c28e7727-e6dd-7566-92c9-911402ee1fd5" executionId="f5367c0f-9bb3-4234-9909-0d5b0250aa51" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="846de6ab-0292-3e02-e8dd-d9732a746f7d" executionId="b4197ca7-3a9a-4c42-8dee-301545c4d5c6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3ebee4b0-c1e6-6204-ac6e-df8241f66492" executionId="e0ccd150-ec0f-4c43-a29e-829b8c4fec1d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="280b0d4e-c719-5329-7b95-bb0f7dbb9289" executionId="410498b0-9134-4160-bd9a-f7429c97e557" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="595d226f-6351-90aa-6dfb-49b44766ec6a" executionId="010f52a7-ec2d-42d6-bac5-0f44fc8847b8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a3e5e667-3394-b27d-4560-fc5973bbc5f2" executionId="b048594a-3fc2-4145-89c1-31f9ffe1e203" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="f5367c0f-9bb3-4234-9909-0d5b0250aa51" testId="c28e7727-e6dd-7566-92c9-911402ee1fd5" testName="TransferMoneyWithCoverageFromOneAccountToAnother" computerName="OPTIMUSPRIME" duration="00:00:00.0998921" startTime="2012-04-17T08:15:29.4311753+02:00" endTime="2012-04-17T08:15:29.8301753+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f5367c0f-9bb3-4234-9909-0d5b0250aa51">
+      <Output>
+        <StdOut>Given The account one contains 70
+-&gt; done: BankAccountSteps.GivenTheAccountOneContains(70) (0,0s)
+And account two contains 50
+-&gt; done: BankAccountSteps.GivenAccountTwoContains(50) (0,0s)
+When I transfer 50 from account one to account two
+-&gt; done: BankAccountSteps.WhenITransferAmountFromAccountOneToAccountTwo(50) (0,0s)
+Then account one should contain 20
+-&gt; done: BankAccountSteps.ThenAccountOneShouldContain(20) (0,0s)
+And account two should contain 100
+-&gt; done: BankAccountSteps.ThenAccountTwoShouldContain(100) (0,0s)</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="b4197ca7-3a9a-4c42-8dee-301545c4d5c6" testId="846de6ab-0292-3e02-e8dd-d9732a746f7d" testName="TransferMoneyWithCoverageFromOneAccountToAnother" computerName="OPTIMUSPRIME" duration="00:00:00.0495135" startTime="2012-04-17T08:15:29.8321753+02:00" endTime="2012-04-17T08:15:29.8841753+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b4197ca7-3a9a-4c42-8dee-301545c4d5c6">
+      <Output>
+        <StdOut>Given The account one contains 70
+-&gt; done: BankAccountSteps.GivenTheAccountOneContains(70) (0,0s)
+And account two contains 50
+-&gt; done: BankAccountSteps.GivenAccountTwoContains(50) (0,0s)
+When I transfer 50 from account one to account two
+-&gt; done: BankAccountSteps.WhenITransferAmountFromAccountOneToAccountTwo(50) (0,0s)
+Then account one should contain 20
+-&gt; done: BankAccountSteps.ThenAccountOneShouldContain(20) (0,0s)
+And account two should contain 150
+-&gt; error: Assert.AreEqual failed. Expected:&lt;150&gt;. Actual:&lt;100&gt;.</StdOut>
+        <ErrorInfo>
+          <Message>Assert.AreEqual failed. Expected:&lt;150&gt;. Actual:&lt;100&gt;. </Message>
+          <StackTrace>   at Pickles.SpecFlow.Lab.Specs.BankAccountSpecs.BankAccountSteps.ThenAccountTwoShouldContain(Int32 amount) in D:\dev\Pickles.SpecFlow.Lab\Pickles.SpecFlow.Lab.Specs\BankAccountSpecs\BankAccountSteps.cs:line 50
+   at lambda_method(Closure , IContextManager , Int32 )
+   at TechTalk.SpecFlow.Bindings.MethodBinding.InvokeAction(IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Bindings.StepDefinitionBinding.Invoke(IContextManager contextManager, ITestTracer testTracer, Object[] arguments, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepArgs stepArgs)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+   at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors()
+   at Pickles.SpecFlow.Lab.Specs.BankAccountSpecs.TransferFundsBetweenAccountsOncScenarioAndFAILINGFeature.ScenarioCleanup() in D:\dev\Pickles.SpecFlow.Lab\Pickles.SpecFlow.Lab.Specs\BankAccountSpecs\OneScenarioTransferingMoneyBetweenAccountsFailing.feature.cs:line 0
+   at Pickles.SpecFlow.Lab.Specs.BankAccountSpecs.TransferFundsBetweenAccountsOncScenarioAndFAILINGFeature.TransferMoneyWithCoverageFromOneAccountToAnother() in d:\dev\Pickles.SpecFlow.Lab\Pickles.SpecFlow.Lab.Specs\BankAccountSpecs\OneScenarioTransferingMoneyBetweenAccountsFailing.feature:line 11
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="e0ccd150-ec0f-4c43-a29e-829b8c4fec1d" testId="3ebee4b0-c1e6-6204-ac6e-df8241f66492" testName="Transfer100WithCoverageFromOneAccountToAnother" computerName="OPTIMUSPRIME" duration="00:00:00.0052152" startTime="2012-04-17T08:15:29.8851753+02:00" endTime="2012-04-17T08:15:29.8911753+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e0ccd150-ec0f-4c43-a29e-829b8c4fec1d">
+      <Output>
+        <StdOut>Given The account one contains 100
+-&gt; done: BankAccountSteps.GivenTheAccountOneContains(100) (0,0s)
+And account two contains 50
+-&gt; done: BankAccountSteps.GivenAccountTwoContains(50) (0,0s)
+When I transfer 50 from account one to account two
+-&gt; done: BankAccountSteps.WhenITransferAmountFromAccountOneToAccountTwo(50) (0,0s)
+Then account one should contain 500
+-&gt; error: Assert.AreEqual failed. Expected:&lt;500&gt;. Actual:&lt;50&gt;. 
+And account two should contain 1000
+-&gt; skipped because of previous errors</StdOut>
+        <ErrorInfo>
+          <Message>Assert.AreEqual failed. Expected:&lt;500&gt;. Actual:&lt;50&gt;. </Message>
+          <StackTrace>   at Pickles.SpecFlow.Lab.Specs.BankAccountSpecs.BankAccountSteps.ThenAccountOneShouldContain(Int32 amount) in D:\dev\Pickles.SpecFlow.Lab\Pickles.SpecFlow.Lab.Specs\BankAccountSpecs\BankAccountSteps.cs:line 43
+   at lambda_method(Closure , IContextManager , Int32 )
+   at TechTalk.SpecFlow.Bindings.MethodBinding.InvokeAction(IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Bindings.StepDefinitionBinding.Invoke(IContextManager contextManager, ITestTracer testTracer, Object[] arguments, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepArgs stepArgs)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+   at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors()
+   at Pickles.SpecFlow.Lab.Specs.BankAccountSpecs.TwoMoreScenariosTransferingFundsBetweenAccounts_OneFailngAndOneSuccedingFeature.ScenarioCleanup() in D:\dev\Pickles.SpecFlow.Lab\Pickles.SpecFlow.Lab.Specs\BankAccountSpecs\TwoScenariosTransferingFundsOneFailingOneSuccess.feature.cs:line 0
+   at Pickles.SpecFlow.Lab.Specs.BankAccountSpecs.TwoMoreScenariosTransferingFundsBetweenAccounts_OneFailngAndOneSuccedingFeature.Transfer100WithCoverageFromOneAccountToAnother() in d:\dev\Pickles.SpecFlow.Lab\Pickles.SpecFlow.Lab.Specs\BankAccountSpecs\TwoScenariosTransferingFundsOneFailingOneSuccess.feature:line 20
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="410498b0-9134-4160-bd9a-f7429c97e557" testId="280b0d4e-c719-5329-7b95-bb0f7dbb9289" testName="Transfer70WithCoverageFromOneAccountToAnother" computerName="OPTIMUSPRIME" duration="00:00:00.0025538" startTime="2012-04-17T08:15:29.8921753+02:00" endTime="2012-04-17T08:15:29.8951753+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="410498b0-9134-4160-bd9a-f7429c97e557">
+      <Output>
+        <StdOut>Given The account one contains 70
+-&gt; done: BankAccountSteps.GivenTheAccountOneContains(70) (0,0s)
+And account two contains 50
+-&gt; done: BankAccountSteps.GivenAccountTwoContains(50) (0,0s)
+When I transfer 50 from account one to account two
+-&gt; done: BankAccountSteps.WhenITransferAmountFromAccountOneToAccountTwo(50) (0,0s)
+Then account one should contain 20
+-&gt; done: BankAccountSteps.ThenAccountOneShouldContain(20) (0,0s)
+And account two should contain 100
+-&gt; done: BankAccountSteps.ThenAccountTwoShouldContain(100) (0,0s)</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="010f52a7-ec2d-42d6-bac5-0f44fc8847b8" testId="595d226f-6351-90aa-6dfb-49b44766ec6a" testName="Transfer100WithCoverageFromOneAccountToAnother" computerName="OPTIMUSPRIME" duration="00:00:00.0032106" startTime="2012-04-17T08:15:29.8961753+02:00" endTime="2012-04-17T08:15:29.9001753+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="010f52a7-ec2d-42d6-bac5-0f44fc8847b8">
+      <Output>
+        <StdOut>Given The account one contains 100
+-&gt; done: BankAccountSteps.GivenTheAccountOneContains(100) (0,0s)
+And account two contains 50
+-&gt; done: BankAccountSteps.GivenAccountTwoContains(50) (0,0s)
+When I transfer 50 from account one to account two
+-&gt; done: BankAccountSteps.WhenITransferAmountFromAccountOneToAccountTwo(50) (0,0s)
+Then account one should contain 50
+-&gt; done: BankAccountSteps.ThenAccountOneShouldContain(50) (0,0s)
+And account two should contain 100
+-&gt; done: BankAccountSteps.ThenAccountTwoShouldContain(100) (0,0s)</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="b048594a-3fc2-4145-89c1-31f9ffe1e203" testId="a3e5e667-3394-b27d-4560-fc5973bbc5f2" testName="Transfer70WithCoverageFromOneAccountToAnother" computerName="OPTIMUSPRIME" duration="00:00:00.0026934" startTime="2012-04-17T08:15:29.9021753+02:00" endTime="2012-04-17T08:15:29.9051753+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b048594a-3fc2-4145-89c1-31f9ffe1e203">
+      <Output>
+        <StdOut>Given The account one contains 70
+-&gt; done: BankAccountSteps.GivenTheAccountOneContains(70) (0,0s)
+And account two contains 50
+-&gt; done: BankAccountSteps.GivenAccountTwoContains(50) (0,0s)
+When I transfer 50 from account one to account two
+-&gt; done: BankAccountSteps.WhenITransferAmountFromAccountOneToAccountTwo(50) (0,0s)
+Then account one should contain 20
+-&gt; done: BankAccountSteps.ThenAccountOneShouldContain(20) (0,0s)
+And account two should contain 100
+-&gt; done: BankAccountSteps.ThenAccountTwoShouldContain(100) (0,0s)</StdOut>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>
