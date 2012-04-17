@@ -19,14 +19,24 @@
 #endregion
 
 using System;
+using Pickles.Extensions;
 
 namespace Pickles.FeatureTree
 {
     public class Folder : ITreeItem
     {
+      private readonly string folderName;
+
+      public Folder(string folderName)
+      {
+        if (folderName.IsNullOrWhiteSpace()) throw new ArgumentNullException("folderName");
+
+        this.folderName = folderName;
+      }
+
       public string Name
       {
-        get { throw new NotImplementedException(); }
+        get { return this.folderName; }
       }
 
       public ITreeItem FindCommonAncestor(ITreeItem other)

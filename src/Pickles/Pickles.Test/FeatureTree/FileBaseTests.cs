@@ -7,7 +7,7 @@ namespace Pickles.Test.FeatureTree
     [TestFixture]
     public class FileBaseTests
     {
-        private static readonly Folder parentFolder = new Folder();
+        private static readonly Folder parentFolder = Helpers.CreateSimpleFolder();
 
         [Test]
         public void Constructor_NullFileName_ThrowsArgumentNullException()
