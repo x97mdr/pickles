@@ -27,6 +27,7 @@ using Newtonsoft.Json.Converters;
 using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
 using Pickles.DirectoryCrawler;
+using Pickles.TestFrameworks;
 
 namespace Pickles.DocumentationBuilders.JSON
 {
@@ -36,13 +37,15 @@ namespace Pickles.DocumentationBuilders.JSON
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private readonly Configuration configuration;
+        private ITestResults testResults;
 
         public const string JS_FILE_NAME = @"pickledFeatures.json";
         
 
-        public JSONDocumentationBuilder(Configuration configuration)
+        public JSONDocumentationBuilder(Configuration configuration, ITestResults testResults)
         {
             this.configuration = configuration;
+            this.testResults = testResults;
         }
 
         public void Build(GeneralTree<IDirectoryTreeNode> features)
@@ -59,7 +62,14 @@ namespace Pickles.DocumentationBuilders.JSON
                 var featureTreeNode = node as FeatureDirectoryTreeNode;
                 if (featureTreeNode != null)
                 {
+                  if (configuration.HasTestResults)
+                  {
+                    featuresToFormat.Add(new FeatureWithMetaInfo(featureTreeNode, testResults.GetFeatureResult(featureTreeNode.Feature)));
+                  }
+                  else
+                  {
                     featuresToFormat.Add(new FeatureWithMetaInfo(featureTreeNode));
+                  }
                 }
             });
 
