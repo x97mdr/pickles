@@ -6,6 +6,7 @@ using Pickles.DocumentationBuilders.JSON;
 using Should.Fluent;
 using Pickles.Test.Helpers;
 using System;
+using Pickles.TestFrameworks;
 
 
 namespace Pickles.Test.Formatters.JSON
@@ -31,9 +32,21 @@ namespace Pickles.Test.Formatters.JSON
                                         DocumentationFormat = DocumentationFormat.JSON
                                     };
 
-            var jsonDocumentationBuilder = new JSONDocumentationBuilder(configuration);
+            
+            var jsonDocumentationBuilder = new JSONDocumentationBuilder(configuration, null);
             jsonDocumentationBuilder.Build(features);
         }
+
+        [TestFixtureTearDown]
+        public void TearDown()
+        {
+          //Cleanup output folder
+          if (Directory.Exists(OUTPUT_DIRECTORY))
+          {
+            Directory.Delete(OUTPUT_DIRECTORY, true);
+          }
+        }
+
 
         [Test]
         public void a_single_file_should_have_been_created()
