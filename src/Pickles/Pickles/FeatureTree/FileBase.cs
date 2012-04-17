@@ -36,7 +36,9 @@ namespace Pickles.FeatureTree
 
         public ITreeItem FindCommonAncestor(ITreeItem other)
         {
-          throw new NotImplementedException();
+          if (other == null) throw new ArgumentNullException("other");
+
+          return this.Folder;
         }
 
         public string GetRelativePathFromHereToThere(ITreeItem there)

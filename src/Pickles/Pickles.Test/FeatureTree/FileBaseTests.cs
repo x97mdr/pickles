@@ -73,7 +73,25 @@ namespace Pickles.Test.FeatureTree
             Assert.AreEqual(parentFolder, featureFile.Folder);
         }
 
-        private class TestableFileBase : FileBase
+      [Test]
+      public void FindCommonAncestor_NullArgument_ThrowsArgumentNullException()
+      {
+        var file = new TestableFileBase("filename.ext", parentFolder);
+
+        Assert.Throws<ArgumentNullException>(() => file.FindCommonAncestor(null));
+      }
+
+      [Test]
+      public void FindCommonAncestor_ItsOwnParent_ReturnsParent()
+      {
+        var file = new TestableFileBase("filename.ext", parentFolder);
+
+        ITreeItem commonAncestor = file.FindCommonAncestor(parentFolder);
+
+        Assert.AreEqual(parentFolder, commonAncestor);
+      }
+
+      private class TestableFileBase : FileBase
         {
             public TestableFileBase(string fileName, Folder folder)
                 : base(fileName, folder)
