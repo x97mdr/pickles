@@ -173,6 +173,7 @@
     <Compile Include="Formatters\HtmlContentFormatterTests.cs" />
     <Compile Include="Formatters\HtmlScenarioFormatterTests.cs" />
     <Compile Include="Formatters\HtmlScenarioOutlineFormatterTests.cs" />
+    <Compile Include="Formatters\JSON\when_creating_a_feature_with_meta_info_and_test_result_in_mstest_format.cs" />
     <Compile Include="NamespaceExtensionsTests.cs" />
     <Compile Include="WhenParsingMsTestResultsFile.cs" />
     <Compile Include="Formatters\JSON\when_creating_a_feature_with_meta_info.cs" />
@@ -257,8 +258,29 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Content Include="HtmlFormatterTestFiles\Background.html" />
+    <None Include="Formatters\JSON\Features\OneScenarioTransferingMoneyBetweenAccountsFailing.feature">
+      <LastGenOutput>OneScenarioTransferingMoneyBetweenAccountsFailing.feature.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Formatters\JSON\Features\TransferBetweenAccounts_WithSuccess.feature">
+      <LastGenOutput>TransferBetweenAccounts_WithSuccess.feature.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Formatters\JSON\Features\TwoScenariosTransferingFundsOneFailingOneSuccess.feature">
+      <LastGenOutput>TwoScenariosTransferingFundsOneFailingOneSuccess.feature.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Formatters\JSON\Features\TwoScenariosTransferingMoneyBetweenAccoutsWithSuccess.feature">
+      <LastGenOutput>TwoScenariosTransferingMoneyBetweenAccoutsWithSuccess.feature.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
-    <EmbeddedResource Include="results-example-mstest.trx" />
+    <EmbeddedResource Include="results-example-mstest.trx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Formatters\JSON\results-example-failing-and-pasing-mstest.trx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="FakeFolderStructures\FeatureCrawlerTests\SubLevelOne\ignorethisfile.ignore">
