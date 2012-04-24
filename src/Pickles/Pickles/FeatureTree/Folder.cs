@@ -27,11 +27,19 @@ namespace Pickles.FeatureTree
     {
       private readonly string folderName;
 
+      private readonly Folder parentFolder;
+
       public Folder(string folderName)
+        : this(folderName, null)
+      {
+      }
+
+      public Folder(string folderName, Folder parentFolder)
       {
         if (folderName.IsNullOrWhiteSpace()) throw new ArgumentNullException("folderName");
 
         this.folderName = folderName;
+        this.parentFolder = parentFolder;
       }
 
       public string Name
@@ -39,9 +47,23 @@ namespace Pickles.FeatureTree
         get { return this.folderName; }
       }
 
+      public Folder ParentFolder
+      {
+        get { return this.parentFolder; }
+      }
+
       public ITreeItem FindCommonAncestor(ITreeItem other)
       {
-        throw new NotImplementedException();
+        if (other == null) throw new ArgumentNullException("other");
+
+        if (this.ParentFolder == other)
+        {
+          return this.ParentFolder;
+        }
+        else
+        {
+          return this.ParentFolder.FindCommonAncestor(other);
+        }
       }
 
       public string GetRelativePathFromHereToThere(ITreeItem there)
