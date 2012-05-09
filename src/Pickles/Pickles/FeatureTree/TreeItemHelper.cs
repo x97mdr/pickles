@@ -18,18 +18,25 @@
 
 #endregion
 
-using System;
+using System.Collections.Generic;
 
 namespace Pickles.FeatureTree
 {
-    public interface ITreeItem
+  internal static class TreeItemHelper
+  {
+    internal static List<ITreeItem> CreateHierarchy(ITreeItem treeItem)
     {
-        string Name { get; }
+      List<ITreeItem> hierarchy = new List<ITreeItem>();
 
-      ITreeItem Parent { get; }
+      ITreeItem temp = treeItem;
 
-      ITreeItem FindCommonAncestor(ITreeItem other);
+      while (temp != null)
+      {
+        hierarchy.Add(temp);
+        temp = temp.Parent;
+      }
 
-        string GetRelativePathFromHereToThere(ITreeItem there);
+      return hierarchy;
     }
+  }
 }

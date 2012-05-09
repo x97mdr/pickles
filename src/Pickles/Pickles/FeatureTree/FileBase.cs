@@ -29,7 +29,12 @@ namespace Pickles.FeatureTree
             get { return this.mName; }
         }
 
-        public Folder Folder
+      public ITreeItem Parent
+      {
+        get { return this.Folder; }
+      }
+
+      public Folder Folder
         {
             get { return mFolder; }
         }

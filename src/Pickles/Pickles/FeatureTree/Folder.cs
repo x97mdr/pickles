@@ -19,6 +19,8 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Pickles.Extensions;
 
 namespace Pickles.FeatureTree
@@ -47,6 +49,11 @@ namespace Pickles.FeatureTree
         get { return this.folderName; }
       }
 
+      public ITreeItem Parent
+      {
+        get { return this.ParentFolder; }
+      }
+
       public Folder ParentFolder
       {
         get { return this.parentFolder; }
@@ -56,13 +63,19 @@ namespace Pickles.FeatureTree
       {
         if (other == null) throw new ArgumentNullException("other");
 
-        if (this.ParentFolder == other)
+        if (this.Parent == other)
         {
-          return this.ParentFolder;
+          return this.Parent;
         }
         else
         {
-          return this.ParentFolder.FindCommonAncestor(other);
+          var myHierarchy = TreeItemHelper.CreateHierarchy(this);
+
+          var othersHierarchy = TreeItemHelper.CreateHierarchy(other);
+
+          IEnumerable<ITreeItem> intersection = myHierarchy.Intersect(othersHierarchy);
+
+          return intersection.FirstOrDefault();
         }
       }
 

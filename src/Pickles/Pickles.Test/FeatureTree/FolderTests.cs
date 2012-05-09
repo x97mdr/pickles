@@ -88,5 +88,16 @@ namespace Pickles.Test.FeatureTree
 
       Assert.AreEqual(parentFolder, commonAncestor);
     }
+
+    [Test]
+    public void FindCommonAncestor_AFolderAndItsChild_ReturnsTheFolder()
+    {
+      var folder = new Folder("Folder");
+      var itsChild = new Folder("Its child", folder);
+
+      ITreeItem commonAncestor = folder.FindCommonAncestor(itsChild);
+
+      Assert.AreEqual(folder, commonAncestor);
+    }
   }
 }
