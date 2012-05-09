@@ -173,7 +173,8 @@ p.tocCollapser:hover{
 #feature .table_container { margin: 8px 0px 8px 0px; }
 #feature table {
   border-collapse: collapse;
-  margin: 0;
+  margin: 0 1em 0 1em;
+  width: 90%;
   empty-cells: show; }
   #feature th, td {
     border: 1px solid black;

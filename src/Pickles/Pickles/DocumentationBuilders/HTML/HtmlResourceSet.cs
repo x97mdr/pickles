@@ -48,15 +48,6 @@ namespace Pickles
             }
         }
 
-        public Uri jQueryDataTablesScript
-        {
-            get
-            {
-              return configuration.OutputFolder.ToFileUriCombined("scripts/jquery.dataTables.min.js");
-            }
-        }
-
-
         public Uri AdditionalScripts
         {
             get

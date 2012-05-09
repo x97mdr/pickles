@@ -265,7 +265,6 @@
     <EmbeddedResource Include="Resources\images\success.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\scripts\jquery.dataTables.min.js" />
     <EmbeddedResource Include="Resources\scripts\jquery.js" />
   </ItemGroup>
   <ItemGroup>
