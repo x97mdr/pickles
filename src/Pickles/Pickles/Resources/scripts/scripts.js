@@ -1,15 +1,4 @@
-﻿function initializeDataTable() {
-    $('.datatable').dataTable({
-        "bSort": false,
-        "bInfo": false,
-        "bFilter": false,
-        "bPaginate": false,
-        "sScrollY": "100%",
-        "sScrollX": "90%"
-    });
-}
-
-function initializeToc() {
+﻿function initializeToc() {
     $(".tocCollapser").one("click", function() {
         collapseToc();
     });

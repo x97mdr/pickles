@@ -32,7 +32,6 @@ namespace Pickles.DocumentationBuilders.HTML
         private const string documentReady = 
             "\n" +
             "$(document).ready(function() {" + "\n" +
-            "  initializeDataTable();" + "\n" +
             "  initializeToc();" + "\n" +
             "});" + "\n";
 
@@ -84,11 +83,6 @@ namespace Pickles.DocumentationBuilders.HTML
 
             head.Add(new XElement(xmlns + "script",
                          new XAttribute("src", featureNodeOutputUri.MakeRelativeUri(this.htmlResources.jQueryScript)),
-                         new XAttribute("type", "text/javascript"),
-                         new XText(string.Empty)));
-
-            head.Add(new XElement(xmlns + "script",
-                         new XAttribute("src", featureNodeOutputUri.MakeRelativeUri(this.htmlResources.jQueryDataTablesScript)),
                          new XAttribute("type", "text/javascript"),
                          new XText(string.Empty)));
 

@@ -30,7 +30,7 @@ using Pickles.TestFrameworks;
 
 namespace Pickles.DocumentationBuilders.HTML
 {
-    public class HtmlFeatureFormatter
+    public class HtmlFeatureFormatter : IHtmlFeatureFormatter
     {
         private readonly HtmlScenarioFormatter htmlScenarioFormatter;
         private readonly HtmlScenarioOutlineFormatter htmlScenarioOutlineFormatter;

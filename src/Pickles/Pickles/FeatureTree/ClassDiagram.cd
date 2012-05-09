@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Pickles.FeatureTree.FeatureFile">
+    <Position X="5.75" Y="3" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="Folder" Type="Pickles.FeatureTree.Folder">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.263" Y="1.62" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAABAAAEAAAEAAAABAA=</HashCode>
+      <FileName>FeatureTree\FeatureFile.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Folder" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Pickles.FeatureTree.Folder">
+    <Position X="1.75" Y="1.5" Width="1.5" />
+    <AssociationLine Name="SubFolders" Type="Pickles.FeatureTree.Folder">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.109" Y="0.331" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAEACAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FeatureTree\Folder.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="FeatureFiles" />
+      <Property Name="TextFiles" />
+      <Property Name="SubFolders" />
+      <Property Name="Items" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Pickles.FeatureTree.TextFile">
+    <Position X="1.25" Y="4.75" Width="1.5" />
+    <AssociationLine Name="Folder" Type="Pickles.FeatureTree.Folder">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.1" Y="0.82" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAABAAAEAAAEAAAABAA=</HashCode>
+      <FileName>FeatureTree\TextFile.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Folder" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Pickles.FeatureTree.FileBase">
+    <Position X="3.5" Y="4.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>FeatureTree\FileBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Pickles.FeatureTree.ITreeItem">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>FeatureTree\ITreeItem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -47,7 +47,7 @@ namespace Pickles
             Bind<HtmlTableOfContentsFormatter>().ToSelf().InSingletonScope();
             Bind<HtmlFooterFormatter>().ToSelf().InSingletonScope();
             Bind<HtmlDocumentFormatter>().ToSelf().InSingletonScope();
-            Bind<HtmlFeatureFormatter>().ToSelf().InSingletonScope();
+            Bind<IHtmlFeatureFormatter>().To<HtmlFeatureFormatter>().InSingletonScope();
             Bind<HtmlScenarioFormatter>().ToSelf().InSingletonScope();
             Bind<HtmlStepFormatter>().ToSelf().InSingletonScope();
             Bind<HtmlTableFormatter>().ToSelf().InSingletonScope();

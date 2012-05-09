@@ -60,3 +60,4 @@ Documentation-*/
 
 #nuget stuff
 *.nupkg
+src/Pickles/Pickles.1.2.dotCover

@@ -62,5 +62,12 @@ namespace Pickles.Extensions
         {
             return text.Trim().ToLowerInvariant().Replace("\r", string.Empty).Replace("\n", Environment.NewLine).Replace("\t", "    ");
         }
+
+        public static bool IsNullOrWhiteSpace(this string text)
+        {
+            if (string.IsNullOrEmpty(text) || text.Trim().Length == 0) return true;
+
+            return false;
+        }
     }
 }
