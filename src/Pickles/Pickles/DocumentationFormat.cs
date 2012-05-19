@@ -30,6 +30,7 @@ namespace Pickles
         Html,
         Word,
         Dita,
-        JSON
+        JSON,
+        Excel
     }
 }

@@ -35,6 +35,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.64.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.64.0\lib\net35-client\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DocumentFormat.OpenXml.1.0\lib\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="gherkin, Version=2.9.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\gherkin.2.9.0\lib\gherkin.dll</HintPath>
@@ -163,6 +170,14 @@
     <Compile Include="DirectoryCrawlers\FolderDirectoryTreeNodeTests.cs" />
     <Compile Include="Extensions\StringExtensionsTests.cs" />
     <Compile Include="Extensions\PathExtensionsTests.cs" />
+    <Compile Include="DocumentationBuilders\Excel\WhenAddingADocumentStringToAWorksheet.cs" />
+    <Compile Include="DocumentationBuilders\Excel\WhenAddingAFeatureToAWorksheet.cs" />
+    <Compile Include="DocumentationBuilders\Excel\WhenAddingAScenarioOutlineToAWorksheet.cs" />
+    <Compile Include="DocumentationBuilders\Excel\WhenAddingAScenarioToAWorksheet.cs" />
+    <Compile Include="DocumentationBuilders\Excel\WhenAddingAStepToAWorksheet.cs" />
+    <Compile Include="DocumentationBuilders\Excel\WhenAddingATableOfContentsToAWorksheet.cs" />
+    <Compile Include="DocumentationBuilders\Excel\WhenAddingATableToAWorksheet.cs" />
+    <Compile Include="DocumentationBuilders\Excel\WhenCreatingSheetNamesFromFeatures.cs" />
     <Compile Include="Extensions\UriExtensionsTests.cs" />
     <Compile Include="FeatureTree\FileBaseTests.cs" />
     <Compile Include="FeatureTree\FolderTests.cs" />

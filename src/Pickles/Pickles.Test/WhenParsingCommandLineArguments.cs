@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using Pickles.Extensions;
+using Should;
 
 namespace Pickles.Test
 {
@@ -175,6 +176,32 @@ namespace Pickles.Test
             Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")), configuration.OutputFolder.FullName);
             Assert.AreEqual(true, configuration.HasTestResults);
             Assert.AreEqual(@"c:\results.xml", configuration.TestResultsFile.FullName);
+        }
+
+        [Test]
+        public void Then_can_parse_excel_documentation_format_with_short_form_successfully()
+        {
+            var args = new string[] { @"-df=excel" };
+
+            var configuration = new Configuration();
+            var commandLineArgumentParser = new CommandLineArgumentParser();
+            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+
+            shouldContinue.ShouldBeTrue();
+            configuration.DocumentationFormat.ShouldEqual(DocumentationFormat.Excel);
+        }
+
+        [Test]
+        public void Then_can_parse_excel_documentation_format_with_long_form_successfully()
+        {
+            var args = new string[] { @"-documentation-format=excel" };
+
+            var configuration = new Configuration();
+            var commandLineArgumentParser = new CommandLineArgumentParser();
+            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+
+            shouldContinue.ShouldBeTrue();
+            configuration.DocumentationFormat.ShouldEqual(DocumentationFormat.Excel);
         }
 
         [Test]

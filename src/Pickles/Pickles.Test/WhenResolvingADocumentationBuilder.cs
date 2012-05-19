@@ -26,11 +26,13 @@ using Ninject;
 using NUnit.Framework;
 using Pickles.DocumentationBuilders.Word;
 using Pickles.DocumentationBuilders.DITA;
+using Pickles.DocumentationBuilders.Excel;
 
 namespace Pickles.Test
 {
     public class WhenResolvingADocumentationBuilder : BaseFixture
     {
+        [Test]
         public void Then_can_resolve_IDocumentationBuilder_as_HtmlDocumentationBuilder_if_the_user_selects_HTML_output()
         {
             var configuration = Kernel.Get<Configuration>();
@@ -42,6 +44,7 @@ namespace Pickles.Test
             Assert.IsInstanceOf<HtmlDocumentationBuilder>(item);
         }
 
+        [Test]
         public void Then_can_resolve_IDocumentationBuilder_as_HtmlDocumentationBuilder_as_singleton_if_the_user_selects_HTML_output()
         {
             var configuration = Kernel.Get<Configuration>();
@@ -57,6 +60,7 @@ namespace Pickles.Test
             Assert.AreSame(item1, item2);
         }
 
+        [Test]
         public void Then_can_resolve_IDocumentationBuilder_as_WordDocumentationBuilder_if_the_user_selects_Word_output()
         {
             var configuration = Kernel.Get<Configuration>();
@@ -68,6 +72,7 @@ namespace Pickles.Test
             Assert.IsInstanceOf<WordDocumentationBuilder>(item);
         }
 
+        [Test]
         public void Then_can_resolve_IDocumentationBuilder_as_WordDocumentationBuilder_as_singleton_if_the_user_selects_Word_output()
         {
             var configuration = Kernel.Get<Configuration>();
@@ -83,6 +88,7 @@ namespace Pickles.Test
             Assert.AreSame(item1, item2);
         }
 
+        [Test]
         public void Then_can_resolve_IDocumentationBuilder_as_DitaDocumentationBuilder_if_the_user_selects_DITA_output()
         {
             var configuration = Kernel.Get<Configuration>();
@@ -94,6 +100,7 @@ namespace Pickles.Test
             Assert.IsInstanceOf<DitaDocumentationBuilder>(item);
         }
 
+        [Test]
         public void Then_can_resolve_IDocumentationBuilder_as_DitaDocumentationBuilder_as_singleton_if_the_user_selects_DITA_output()
         {
             var configuration = Kernel.Get<Configuration>();
@@ -106,6 +113,34 @@ namespace Pickles.Test
             Assert.IsInstanceOf<DitaDocumentationBuilder>(item1);
             Assert.NotNull(item2);
             Assert.IsInstanceOf<DitaDocumentationBuilder>(item2);
+            Assert.AreSame(item1, item2);
+        }
+
+        [Test]
+        public void Then_can_resolve_IDocumentationBuilder_as_ExcelDocumentationBuilder_if_the_user_selects_Excel_output()
+        {
+            var configuration = Kernel.Get<Configuration>();
+            configuration.DocumentationFormat = DocumentationFormat.Excel;
+
+            var item = Kernel.Get<IDocumentationBuilder>();
+
+            Assert.NotNull(item);
+            Assert.IsInstanceOf<ExcelDocumentationBuilder>(item);
+        }
+
+        [Test]
+        public void Then_can_resolve_IDocumentationBuilder_as_ExcelDocumentationBuilder_as_singleton_if_the_user_selects_Excel_output()
+        {
+            var configuration = Kernel.Get<Configuration>();
+            configuration.DocumentationFormat = DocumentationFormat.Excel;
+
+            var item1 = Kernel.Get<IDocumentationBuilder>();
+            var item2 = Kernel.Get<IDocumentationBuilder>();
+
+            Assert.NotNull(item1);
+            Assert.IsInstanceOf<ExcelDocumentationBuilder>(item1);
+            Assert.NotNull(item2);
+            Assert.IsInstanceOf<ExcelDocumentationBuilder>(item2);
             Assert.AreSame(item1, item2);
         }
     }

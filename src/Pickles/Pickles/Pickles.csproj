@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClosedXML">
+      <HintPath>..\packages\ClosedXML.0.64.0\lib\net35-client\ClosedXML.dll</HintPath>
+    </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\DocumentFormat.OpenXml.1.0\lib\DocumentFormat.OpenXml.dll</HintPath>
@@ -165,6 +168,15 @@
     <Compile Include="DocumentationBuilders\DITA\DitaScenarioOutlineFormatter.cs" />
     <Compile Include="DocumentationBuilders\DITA\DitaStepFormatter.cs" />
     <Compile Include="DocumentationBuilders\DITA\DitaTableFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Excel\ExcelDocumentationBuilder.cs" />
+    <Compile Include="DocumentationBuilders\Excel\ExcelDocumentStringFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Excel\ExcelFeatureFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Excel\ExcelScenarioFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Excel\ExcelScenarioOutlineFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Excel\ExcelSheetNameGenerator.cs" />
+    <Compile Include="DocumentationBuilders\Excel\ExcelStepFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Excel\ExcelTableFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Excel\ExcelTableOfContentsFormatter.cs" />
     <Compile Include="DocumentationBuilders\HTML\HtmlContentFormatter.cs" />
     <Compile Include="DocumentationBuilders\HTML\HtmlDescriptionFormatter.cs" />
     <Compile Include="DocumentationBuilders\HTML\HtmlDocumentationBuilder.cs" />

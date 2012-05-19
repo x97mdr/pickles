@@ -23,20 +23,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Pickles.Parser
+namespace Pickles.DocumentationBuilders.Excel
 {
-    public class Scenario : IFeatureElement
+    public class ExcelDocumentStringFormatter
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public List<Step> Steps { get; set; }
-        public List<string> Tags { get; set; }
-        public Feature Feature { get; set; }
-
-        public Scenario()
+        public void Format(ClosedXML.Excel.IXLWorksheet worksheet, string documentString, ref int row)
         {
-            Steps = new List<Step>();
-            Tags = new List<string>();
+            var documentStringLines = documentString.Split(new string[] { "\n", "\r" }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var line in documentStringLines)
+            {
+                worksheet.Cell(row++, 4).Value = line;
+            }
         }
     }
 }

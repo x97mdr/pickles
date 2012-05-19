@@ -33,5 +33,11 @@ namespace Pickles.Parser
         public List<string> Tags { get; set; }
         public Example Example { get; set; }
         public Feature Feature { get; set; }
+
+        public ScenarioOutline()
+        {
+            Steps = new List<Step>();
+            Tags = new List<string>();
+        }
     }
 }
