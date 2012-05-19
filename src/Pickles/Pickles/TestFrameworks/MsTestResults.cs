@@ -121,7 +121,7 @@ namespace Pickles.TestFrameworks
                 let property = unitTest.Element(ns + "Properties").Element(ns + "Property")
                 let key = property.Element(ns + "Key")
                 let value = property.Element(ns + "Value")
-                where key.Value == "FeatureTitle" && value.Value == "Addition"
+                where key.Value == "FeatureTitle" && value.Value == scenarioOutline.Feature.Name
                 let description = unitTest.Element(ns + "Description")
                 where description.Value == scenarioOutline.Name
                 select new Guid(unitTest.Element(ns + "Execution").Attribute("id").Value);

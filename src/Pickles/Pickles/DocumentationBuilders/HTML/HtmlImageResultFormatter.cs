@@ -79,8 +79,8 @@ namespace Pickles.DocumentationBuilders.HTML
             if (configuration.HasTestResults)
             {
                 TestResult scenarioResult = this.results.GetFeatureResult(feature);
-                if (!scenarioResult.WasExecuted || !scenarioResult.WasSuccessful) return null;
-                return BuildImageElement(scenarioResult);
+
+                return scenarioResult.WasExecuted ? BuildImageElement(scenarioResult) : null;
             }
 
             return null;
@@ -91,8 +91,8 @@ namespace Pickles.DocumentationBuilders.HTML
             if (configuration.HasTestResults)
             {
                 TestResult scenarioResult = this.results.GetScenarioResult(scenario);
-                if (!scenarioResult.WasExecuted || !scenarioResult.WasSuccessful) return null;
-                return BuildImageElement(scenarioResult);
+                
+                return scenarioResult.WasExecuted ? BuildImageElement(scenarioResult) : null;
             }
 
             return null;
@@ -103,8 +103,8 @@ namespace Pickles.DocumentationBuilders.HTML
             if (configuration.HasTestResults)
             {
                 TestResult scenarioResult = this.results.GetScenarioOutlineResult(scenarioOutline);
-                if (!scenarioResult.WasExecuted || !scenarioResult.WasSuccessful) return null;
-                return BuildImageElement(scenarioResult);
+
+                return scenarioResult.WasExecuted ? BuildImageElement(scenarioResult) : null;
             }
 
             return null;
