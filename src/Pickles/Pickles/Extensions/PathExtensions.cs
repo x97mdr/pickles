@@ -33,10 +33,8 @@ namespace Pickles.Extensions
             if (string.IsNullOrEmpty(from)) throw new ArgumentNullException("from");
             if (string.IsNullOrEmpty(to)) throw new ArgumentNullException("to");
 
-            // Uri class treats paths that end in \ as directories, and without \ as files. 
-            // So if its a file then we need to append the \ to make the Uri class recognize it as a directory
-            string fromString = Directory.Exists(from) ? from + @"\" : from;
-            string toString = Directory.Exists(to) ? to + @"\" : to;
+            string fromString = AddTrailingSlashToDirectoriesForUriMethods(from);
+            string toString = AddTrailingSlashToDirectoriesForUriMethods(to);
 
             Uri fromUri = new Uri(fromString);
             Uri toUri = new Uri(toString);
@@ -45,6 +43,20 @@ namespace Pickles.Extensions
             string relativePath = Uri.UnescapeDataString(relativeUri.ToString());
 
             return relativePath.Replace('/', Path.DirectorySeparatorChar);
+        }
+
+        private static string AddTrailingSlashToDirectoriesForUriMethods(string path)
+        {
+            // Uri class treats paths that end in \ as directories, and without \ as files. 
+            // So if its a file then we need to append the \ to make the Uri class recognize it as a directory
+            path = RemoveEndSlashSoWeDoNotHaveTwoIfThisIsADirectory(path);
+
+            return Directory.Exists(path) ? path + @"\" : path;
+        }
+
+        private static string RemoveEndSlashSoWeDoNotHaveTwoIfThisIsADirectory(string path)
+        {
+            return path.TrimEnd('\\');
         }
 
         public static string MakeRelativePath(FileSystemInfo from, FileSystemInfo to)
