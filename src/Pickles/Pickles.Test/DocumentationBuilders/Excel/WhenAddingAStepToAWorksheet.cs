@@ -26,7 +26,8 @@ namespace Pickles.Test.DocumentationBuilders
                 int row = 5;
                 excelStepFormatter.Format(worksheet, step, ref row);
 
-                worksheet.Cell("C5").Value.ShouldEqual(step.NativeKeyword + " " + step.Name);
+                worksheet.Cell("C5").Value.ShouldEqual(step.NativeKeyword);
+                worksheet.Cell("D5").Value.ShouldEqual(step.Name);
             }
         }
     }
