@@ -162,6 +162,7 @@
     <Compile Include="BaseFixture.cs" />
     <Compile Include="DirectoryCrawlers\FolderDirectoryTreeNodeTests.cs" />
     <Compile Include="Extensions\StringExtensionsTests.cs" />
+    <Compile Include="Extensions\PathExtensionsTests.cs" />
     <Compile Include="Extensions\UriExtensionsTests.cs" />
     <Compile Include="FeatureTree\FileBaseTests.cs" />
     <Compile Include="FeatureTree\FolderTests.cs" />
