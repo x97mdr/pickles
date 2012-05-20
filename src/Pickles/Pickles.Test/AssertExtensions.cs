@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
+﻿using System.Linq;
 using System.Xml.Linq;
+using NUnit.Framework;
 
 namespace Pickles.Test
 {
@@ -11,7 +8,8 @@ namespace Pickles.Test
     {
         public static void AssertHasAttribute(this XElement element, string name, string value)
         {
-            var classAttribute = element.Attributes().FirstOrDefault(attribute => attribute.Name.LocalName == name);
+            XAttribute classAttribute =
+                element.Attributes().FirstOrDefault(attribute => attribute.Name.LocalName == name);
             Assert.IsNotNull(classAttribute);
             Assert.AreEqual(value, classAttribute.Value);
         }

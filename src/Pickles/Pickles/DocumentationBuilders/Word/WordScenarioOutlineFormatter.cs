@@ -18,10 +18,6 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Pickles.Extensions;
 using Pickles.Parser;
@@ -31,12 +27,13 @@ namespace Pickles.DocumentationBuilders.Word
 {
     public class WordScenarioOutlineFormatter
     {
-        private readonly WordStepFormatter wordStepFormatter;
-        private readonly WordTableFormatter wordTableFormatter;
         private readonly Configuration configuration;
         private readonly ITestResults nunitResults;
+        private readonly WordStepFormatter wordStepFormatter;
+        private readonly WordTableFormatter wordTableFormatter;
 
-        public WordScenarioOutlineFormatter(WordStepFormatter wordStepFormatter, WordTableFormatter wordTableFormatter, Configuration configuration, ITestResults nunitResults)
+        public WordScenarioOutlineFormatter(WordStepFormatter wordStepFormatter, WordTableFormatter wordTableFormatter,
+                                            Configuration configuration, ITestResults nunitResults)
         {
             this.wordStepFormatter = wordStepFormatter;
             this.wordTableFormatter = wordTableFormatter;
@@ -45,9 +42,9 @@ namespace Pickles.DocumentationBuilders.Word
 
         public void Format(Body body, ScenarioOutline scenarioOutline)
         {
-            if (this.configuration.HasTestResults)
+            if (configuration.HasTestResults)
             {
-                var testResult = nunitResults.GetScenarioOutlineResult(scenarioOutline);
+                TestResult testResult = nunitResults.GetScenarioOutlineResult(scenarioOutline);
                 if (testResult.WasExecuted && testResult.WasSuccessful)
                 {
                     body.GenerateParagraph("Passed", "Passed");
@@ -59,15 +56,16 @@ namespace Pickles.DocumentationBuilders.Word
             }
 
             body.GenerateParagraph(scenarioOutline.Name, "Heading2");
-            if (!string.IsNullOrEmpty(scenarioOutline.Description)) body.GenerateParagraph(scenarioOutline.Description, "Normal");
+            if (!string.IsNullOrEmpty(scenarioOutline.Description))
+                body.GenerateParagraph(scenarioOutline.Description, "Normal");
 
-            foreach (var step in scenarioOutline.Steps)
+            foreach (Step step in scenarioOutline.Steps)
             {
-                this.wordStepFormatter.Format(body, step);
+                wordStepFormatter.Format(body, step);
             }
 
             body.GenerateParagraph("Examples:", "Heading3");
-            this.wordTableFormatter.Format(body, scenarioOutline.Example.TableArgument);
+            wordTableFormatter.Format(body, scenarioOutline.Example.TableArgument);
         }
     }
 }

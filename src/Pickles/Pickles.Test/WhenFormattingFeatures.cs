@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Ninject;
+﻿using System.Linq;
+using System.Xml.Linq;
 using NUnit.Framework;
-using Pickles.Parser;
+using Ninject;
 using Pickles.DocumentationBuilders.HTML;
+using Pickles.Parser;
 
 namespace Pickles.Test
 {
@@ -19,9 +17,10 @@ namespace Pickles.Test
             configuration.TestResultsFile = null;
 
             var feature = new Feature
-            {
-                Name = "A feature",
-                Description = @"In order to see the description as nice HTML
+                              {
+                                  Name = "A feature",
+                                  Description =
+                                      @"In order to see the description as nice HTML
 As a Pickles user
 I want to see the descriptions written in markdown rendered as HTML
 
@@ -45,11 +44,11 @@ I also enjoy ordering things
 
 1. This is the first reason
 2. This is the second reason"
-            };
+                              };
 
             var htmlFeatureFormatter = Kernel.Get<HtmlFeatureFormatter>();
-            var featureElement = htmlFeatureFormatter.Format(feature);
-            var description = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
+            XElement featureElement = htmlFeatureFormatter.Format(feature);
+            XElement description = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
 
             Assert.NotNull(description);
             description.AssertIsNamed("div");

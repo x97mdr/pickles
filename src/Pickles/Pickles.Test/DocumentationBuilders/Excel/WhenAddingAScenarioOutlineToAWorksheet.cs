@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using ClosedXML.Excel;
-using Ninject;
 using NUnit.Framework;
+using Ninject;
 using Pickles.DocumentationBuilders.Excel;
 using Pickles.Parser;
 using Should;
@@ -20,13 +17,20 @@ namespace Pickles.Test.DocumentationBuilders.Excel
             var excelScenarioFormatter = Kernel.Get<ExcelScenarioOutlineFormatter>();
             var exampleTable = new Table();
             exampleTable.HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4");
-            exampleTable.DataRows = new List<TableRow>(new TableRow[] { new TableRow("1", "2", "3", "4"), new TableRow("5", "6", "7", "8") });
-            var example = new Example() { Name = "Examples", Description = string.Empty, TableArgument = exampleTable };
-            var scenarioOutline = new ScenarioOutline() { Name = "Test Feature", Description = "In order to test this feature,\nAs a developer\nI want to test this feature", Example = example };
+            exampleTable.DataRows =
+                new List<TableRow>(new[] {new TableRow("1", "2", "3", "4"), new TableRow("5", "6", "7", "8")});
+            var example = new Example {Name = "Examples", Description = string.Empty, TableArgument = exampleTable};
+            var scenarioOutline = new ScenarioOutline
+                                      {
+                                          Name = "Test Feature",
+                                          Description =
+                                              "In order to test this feature,\nAs a developer\nI want to test this feature",
+                                          Example = example
+                                      };
 
             using (var workbook = new XLWorkbook())
             {
-                var worksheet = workbook.AddWorksheet("SHEET1");
+                IXLWorksheet worksheet = workbook.AddWorksheet("SHEET1");
                 int row = 3;
                 excelScenarioFormatter.Format(worksheet, scenarioOutline, ref row);
 
@@ -55,17 +59,24 @@ namespace Pickles.Test.DocumentationBuilders.Excel
             var excelScenarioFormatter = Kernel.Get<ExcelScenarioOutlineFormatter>();
             var exampleTable = new Table();
             exampleTable.HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4");
-            exampleTable.DataRows = new List<TableRow>(new TableRow[] { new TableRow("1", "2", "3", "4"), new TableRow("5", "6", "7", "8") });
-            var example = new Example() { Name = "Examples", Description = string.Empty, TableArgument = exampleTable };
-            var scenarioOutline = new ScenarioOutline() { Name = "Test Feature", Description = "In order to test this feature,\nAs a developer\nI want to test this feature", Example = example };
-            var given = new Step() { NativeKeyword = "Given", Name = "a precondition" };
-            var when = new Step() { NativeKeyword = "When", Name = "an event occurs" };
-            var then = new Step() { NativeKeyword = "Then", Name = "a postcondition" };
-            scenarioOutline.Steps = new List<Step>(new Step[] { given, when, then });
+            exampleTable.DataRows =
+                new List<TableRow>(new[] {new TableRow("1", "2", "3", "4"), new TableRow("5", "6", "7", "8")});
+            var example = new Example {Name = "Examples", Description = string.Empty, TableArgument = exampleTable};
+            var scenarioOutline = new ScenarioOutline
+                                      {
+                                          Name = "Test Feature",
+                                          Description =
+                                              "In order to test this feature,\nAs a developer\nI want to test this feature",
+                                          Example = example
+                                      };
+            var given = new Step {NativeKeyword = "Given", Name = "a precondition"};
+            var when = new Step {NativeKeyword = "When", Name = "an event occurs"};
+            var then = new Step {NativeKeyword = "Then", Name = "a postcondition"};
+            scenarioOutline.Steps = new List<Step>(new[] {given, when, then});
 
             using (var workbook = new XLWorkbook())
             {
-                var worksheet = workbook.AddWorksheet("SHEET1");
+                IXLWorksheet worksheet = workbook.AddWorksheet("SHEET1");
                 int row = 3;
                 excelScenarioFormatter.Format(worksheet, scenarioOutline, ref row);
 

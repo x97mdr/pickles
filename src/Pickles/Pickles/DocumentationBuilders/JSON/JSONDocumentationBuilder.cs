@@ -18,29 +18,28 @@
 
 #endregion
 
-using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Text;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Pickles.DirectoryCrawler;
 using Pickles.TestFrameworks;
+using log4net;
 
 namespace Pickles.DocumentationBuilders.JSON
 {
     public class JSONDocumentationBuilder : IDocumentationBuilder
     {
-
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        public const string JS_FILE_NAME = @"pickledFeatures.json";
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         private readonly Configuration configuration;
-        private ITestResults testResults;
+        private readonly ITestResults testResults;
 
-        public const string JS_FILE_NAME = @"pickledFeatures.json";
-        
 
         public JSONDocumentationBuilder(Configuration configuration, ITestResults testResults)
         {
@@ -48,40 +47,53 @@ namespace Pickles.DocumentationBuilders.JSON
             this.testResults = testResults;
         }
 
+        private string OutputFilePath
+        {
+            get { return Path.Combine(configuration.OutputFolder.FullName, JS_FILE_NAME); }
+        }
+
+        #region IDocumentationBuilder Members
+
         public void Build(GeneralTree<IDirectoryTreeNode> features)
         {
             if (log.IsInfoEnabled)
             {
-                log.InfoFormat("Writing JSON to {0}", this.configuration.OutputFolder.FullName);
+                log.InfoFormat("Writing JSON to {0}", configuration.OutputFolder.FullName);
             }
 
             var featuresToFormat = new List<FeatureWithMetaInfo>();
 
             var actionVisitor = new ActionVisitor<IDirectoryTreeNode>(node =>
-            {
-                var featureTreeNode = node as FeatureDirectoryTreeNode;
-                if (featureTreeNode != null)
-                {
-                  if (configuration.HasTestResults)
-                  {
-                    featuresToFormat.Add(new FeatureWithMetaInfo(featureTreeNode, testResults.GetFeatureResult(featureTreeNode.Feature)));
-                  }
-                  else
-                  {
-                    featuresToFormat.Add(new FeatureWithMetaInfo(featureTreeNode));
-                  }
-                }
-            });
+                                                                          {
+                                                                              var featureTreeNode =
+                                                                                  node as FeatureDirectoryTreeNode;
+                                                                              if (featureTreeNode != null)
+                                                                              {
+                                                                                  if (configuration.HasTestResults)
+                                                                                  {
+                                                                                      featuresToFormat.Add(
+                                                                                          new FeatureWithMetaInfo(
+                                                                                              featureTreeNode,
+                                                                                              testResults.
+                                                                                                  GetFeatureResult(
+                                                                                                      featureTreeNode.
+                                                                                                          Feature)));
+                                                                                  }
+                                                                                  else
+                                                                                  {
+                                                                                      featuresToFormat.Add(
+                                                                                          new FeatureWithMetaInfo(
+                                                                                              featureTreeNode));
+                                                                                  }
+                                                                              }
+                                                                          });
 
             features.AcceptVisitor(actionVisitor);
 
             CreateFile(OutputFilePath, GenerateJSON(featuresToFormat));
         }
 
-        private string OutputFilePath
-        {
-            get { return Path.Combine(configuration.OutputFolder.FullName, JS_FILE_NAME); }
-        }
+        #endregion
 
         private static string GenerateJSON(List<FeatureWithMetaInfo> features)
         {
@@ -89,7 +101,7 @@ namespace Pickles.DocumentationBuilders.JSON
                                {
                                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                                    NullValueHandling = NullValueHandling.Ignore,
-                                   Converters = new List<JsonConverter> { new StringEnumConverter() }
+                                   Converters = new List<JsonConverter> {new StringEnumConverter()}
                                };
 
             return JsonConvert.SerializeObject(features, Formatting.Indented, settings);

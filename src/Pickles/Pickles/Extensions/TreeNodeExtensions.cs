@@ -3,17 +3,18 @@ using Pickles.DirectoryCrawler;
 
 namespace Pickles.Extensions
 {
-  public static class TreeNodeExtensions
-  {
-    public static bool IsIndexMarkDownNode(this IDirectoryTreeNode node)
+    public static class TreeNodeExtensions
     {
-      var markdownItemNode = node as MarkdownTreeNode;
-      if (markdownItemNode != null && markdownItemNode.OriginalLocation.Name.StartsWith("index", StringComparison.InvariantCultureIgnoreCase))
-      {
-        return true;
-      }
+        public static bool IsIndexMarkDownNode(this IDirectoryTreeNode node)
+        {
+            var markdownItemNode = node as MarkdownTreeNode;
+            if (markdownItemNode != null &&
+                markdownItemNode.OriginalLocation.Name.StartsWith("index", StringComparison.InvariantCultureIgnoreCase))
+            {
+                return true;
+            }
 
-      return false;
+            return false;
+        }
     }
-  }
 }

@@ -1,12 +1,10 @@
-﻿using System;
-using System.IO;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Pickles.Extensions;
 
 namespace Pickles.Test.Extensions
 {
     [TestFixture]
-    class PathExtensionsTests
+    internal class PathExtensionsTests
     {
         [Test]
         public void Get_A_Relative_Path_When_Location_Is_Deeper_Than_Root()
@@ -16,7 +14,7 @@ namespace Pickles.Test.Extensions
             string location = @"c:\test\blah.feature";
 
             string expected = @"test\blah.feature";
-            
+
             // Act
             string actual = PathExtensions.MakeRelativePath(root, location);
 
@@ -35,6 +33,5 @@ namespace Pickles.Test.Extensions
 
             Assert.AreEqual(actual, expected, string.Format("Expected {0} got {1}", expected, actual));
         }
-
     }
 }

@@ -19,11 +19,8 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MarkdownSharp;
 using System.Xml.Linq;
+using MarkdownSharp;
 using Pickles.Extensions;
 
 namespace Pickles.DocumentationBuilders.HTML
@@ -37,18 +34,18 @@ namespace Pickles.DocumentationBuilders.HTML
         public HtmlDescriptionFormatter(Markdown markdown)
         {
             this.markdown = markdown;
-            this.xmlns = HtmlNamespace.Xhtml;
+            xmlns = HtmlNamespace.Xhtml;
         }
 
         public XElement Format(string descriptionText)
         {
             if (String.IsNullOrEmpty(descriptionText)) return null;
 
-            var markdownResult = "<div>" + markdown.Transform(descriptionText) + "</div>";
-            var descriptionElements = XElement.Parse(markdownResult);
+            string markdownResult = "<div>" + markdown.Transform(descriptionText) + "</div>";
+            XElement descriptionElements = XElement.Parse(markdownResult);
             descriptionElements.SetAttributeValue("class", "description");
 
-            descriptionElements.MoveToNamespace(this.xmlns);
+            descriptionElements.MoveToNamespace(xmlns);
 
             return descriptionElements;
         }

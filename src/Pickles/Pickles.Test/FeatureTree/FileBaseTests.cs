@@ -9,10 +9,18 @@ namespace Pickles.Test.FeatureTree
     {
         private static readonly Folder parentFolder = Helpers.CreateSimpleFolder();
 
-        [Test]
-        public void Constructor_NullFileName_ThrowsArgumentNullException()
+        private class TestableFileBase : FileBase
         {
-            ArgumentNullException exception = Assert.Throws<ArgumentNullException>(() => new TestableFileBase(null, parentFolder));
+            public TestableFileBase(string fileName, Folder folder)
+                : base(fileName, folder)
+            {
+            }
+        }
+
+        [Test]
+        public void Constructor_EmptyFileNameAndExtension_ThrowsArgumentException()
+        {
+            var exception = Assert.Throws<ArgumentException>(() => new TestableFileBase("    .ext", parentFolder));
 
             Assert.AreEqual("fileName", exception.ParamName);
         }
@@ -20,7 +28,39 @@ namespace Pickles.Test.FeatureTree
         [Test]
         public void Constructor_EmptyFileName_ThrowsArgumentNullException()
         {
-            ArgumentNullException exception = Assert.Throws<ArgumentNullException>(() => new TestableFileBase(" ", parentFolder));
+            var exception = Assert.Throws<ArgumentNullException>(() => new TestableFileBase(" ", parentFolder));
+
+            Assert.AreEqual("fileName", exception.ParamName);
+        }
+
+        [Test]
+        public void Constructor_EmptyFolder_ThrowsArgumentException()
+        {
+            var exception = Assert.Throws<ArgumentNullException>(() => new TestableFileBase("feature", null));
+
+            Assert.AreEqual("folder", exception.ParamName);
+        }
+
+        [Test]
+        public void Constructor_ExtensionOnly_ThrowsArgumentException()
+        {
+            var exception = Assert.Throws<ArgumentException>(() => new TestableFileBase(".ext", parentFolder));
+
+            Assert.AreEqual("fileName", exception.ParamName);
+        }
+
+        [Test]
+        public void Constructor_FileNameWithExtension_RemovesExtension()
+        {
+            var featureFile = new TestableFileBase("Feature.ext", parentFolder);
+
+            Assert.AreEqual("Feature", featureFile.Name);
+        }
+
+        [Test]
+        public void Constructor_NullFileName_ThrowsArgumentNullException()
+        {
+            var exception = Assert.Throws<ArgumentNullException>(() => new TestableFileBase(null, parentFolder));
 
             Assert.AreEqual("fileName", exception.ParamName);
         }
@@ -34,38 +74,6 @@ namespace Pickles.Test.FeatureTree
         }
 
         [Test]
-        public void Constructor_FileNameWithExtension_RemovesExtension()
-        {
-            var featureFile = new TestableFileBase("Feature.ext", parentFolder);
-
-            Assert.AreEqual("Feature", featureFile.Name);
-        }
-
-        [Test]
-        public void Constructor_ExtensionOnly_ThrowsArgumentException()
-        {
-            var exception = Assert.Throws<ArgumentException>(() => new TestableFileBase(".ext", parentFolder));
-
-            Assert.AreEqual("fileName", exception.ParamName);
-        }
-
-        [Test]
-        public void Constructor_EmptyFileNameAndExtension_ThrowsArgumentException()
-        {
-            var exception = Assert.Throws<ArgumentException>(() => new TestableFileBase("    .ext", parentFolder));
-
-            Assert.AreEqual("fileName", exception.ParamName);
-        }
-
-        [Test]
-        public void Constructor_EmptyFolder_ThrowsArgumentException()
-        {
-            ArgumentNullException exception = Assert.Throws<ArgumentNullException>(() => new TestableFileBase("feature", null));
-
-            Assert.AreEqual("folder", exception.ParamName);
-        }
-
-        [Test]
         public void Constructor_WithFeature_SetsFolderProperty()
         {
             var featureFile = new TestableFileBase("filename.ext", parentFolder);
@@ -73,30 +81,22 @@ namespace Pickles.Test.FeatureTree
             Assert.AreEqual(parentFolder, featureFile.Folder);
         }
 
-      [Test]
-      public void FindCommonAncestor_NullArgument_ThrowsArgumentNullException()
-      {
-        var file = new TestableFileBase("filename.ext", parentFolder);
-
-        Assert.Throws<ArgumentNullException>(() => file.FindCommonAncestor(null));
-      }
-
-      [Test]
-      public void FindCommonAncestor_ItsOwnParent_ReturnsParent()
-      {
-        var file = new TestableFileBase("filename.ext", parentFolder);
-
-        ITreeItem commonAncestor = file.FindCommonAncestor(parentFolder);
-
-        Assert.AreEqual(parentFolder, commonAncestor);
-      }
-
-      private class TestableFileBase : FileBase
+        [Test]
+        public void FindCommonAncestor_ItsOwnParent_ReturnsParent()
         {
-            public TestableFileBase(string fileName, Folder folder)
-                : base(fileName, folder)
-            {
-            }
+            var file = new TestableFileBase("filename.ext", parentFolder);
+
+            ITreeItem commonAncestor = file.FindCommonAncestor(parentFolder);
+
+            Assert.AreEqual(parentFolder, commonAncestor);
+        }
+
+        [Test]
+        public void FindCommonAncestor_NullArgument_ThrowsArgumentNullException()
+        {
+            var file = new TestableFileBase("filename.ext", parentFolder);
+
+            Assert.Throws<ArgumentNullException>(() => file.FindCommonAncestor(null));
         }
     }
 }

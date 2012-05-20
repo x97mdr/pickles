@@ -18,27 +18,20 @@
 
 #endregion
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using gherkin;
 
 namespace Pickles.Parser
 {
-    using gherkin;
-
-    class StepBuilder
+    internal class StepBuilder
     {
+        private readonly I18n nativeLanguageService;
+        private readonly TableBuilder tableBuilder;
+        private string docString;
         private Keyword keyword;
         private string name;
 
         private string nativeKeyword;
-
-        private TableBuilder tableBuilder;
-
-        private readonly I18n nativeLanguageService;
-
-        private string docString;
 
         public StepBuilder(TableBuilder tableBuilder, I18n nativeLanguageService)
         {
@@ -48,9 +41,9 @@ namespace Pickles.Parser
 
         public void SetKeyword(string keywordText)
         {
-            this.nativeKeyword = keywordText;
+            nativeKeyword = keywordText;
 
-            Keyword? keyword = this.TryParseKeyword(keywordText);
+            Keyword? keyword = TryParseKeyword(keywordText);
             if (keyword.HasValue)
             {
                 this.keyword = keyword.Value;
@@ -69,7 +62,7 @@ namespace Pickles.Parser
 
             if (nativeLanguageService.keywords("but").contains(keyword)) return Keyword.But;
 
-            if (!keyword.EndsWith(" ")) return this.TryParseKeyword(keyword + " ");
+            if (!keyword.EndsWith(" ")) return TryParseKeyword(keyword + " ");
 
             return null;
         }
@@ -81,7 +74,7 @@ namespace Pickles.Parser
 
         public void AddTableRow(IEnumerable<string> cells)
         {
-            this.tableBuilder.AddRow(cells);
+            tableBuilder.AddRow(cells);
         }
 
         public void SetDocString(string docString)
@@ -92,13 +85,13 @@ namespace Pickles.Parser
         public Step GetResult()
         {
             return new Step
-            {
-                Keyword = this.keyword,
-                NativeKeyword = this.nativeKeyword,
-                Name = this.name,
-                DocStringArgument = this.docString,
-                TableArgument = this.tableBuilder.GetResult()
-            };
+                       {
+                           Keyword = keyword,
+                           NativeKeyword = nativeKeyword,
+                           Name = name,
+                           DocStringArgument = docString,
+                           TableArgument = tableBuilder.GetResult()
+                       };
         }
     }
 }

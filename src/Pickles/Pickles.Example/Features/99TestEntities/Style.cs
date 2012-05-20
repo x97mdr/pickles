@@ -2,6 +2,11 @@
 {
     public enum Style
     {
-        Butch, Male, Soft, Cool, VeryCool, Sweet
+        Butch,
+        Male,
+        Soft,
+        Cool,
+        VeryCool,
+        Sweet
     }
 }

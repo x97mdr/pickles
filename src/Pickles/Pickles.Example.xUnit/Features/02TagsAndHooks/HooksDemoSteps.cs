@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Should;
+﻿using Should;
 using TechTalk.SpecFlow;
 
 namespace Specs.TagsAndHooks
@@ -9,16 +8,16 @@ namespace Specs.TagsAndHooks
     {
         private static bool _beforeTestRunHookExecuted;
         private static bool _beforeFeatureHookExecuted;
-        private bool _beforeScenarioHookExecuted;
-        private bool _beforeScenarioBlockHookExecuted;
-        private bool _beforeStepHookExecuted;
         private static bool _afterFeatureHookExecuted;
         private static bool _afterScenarioHookExecuted;
         private static bool _afterScenarioBlockHookExecuted;
         private static bool _afterStepHookExecuted;
 
         private static string report;
-        private static int reportIndentation = 0;
+        private static int reportIndentation;
+        private bool _beforeScenarioBlockHookExecuted;
+        private bool _beforeScenarioHookExecuted;
+        private bool _beforeStepHookExecuted;
 
         private static void Report(string text)
         {

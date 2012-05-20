@@ -18,10 +18,6 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 
 namespace Pickles.DocumentationBuilders.HTML
@@ -30,9 +26,9 @@ namespace Pickles.DocumentationBuilders.HTML
     {
         public XElement Format()
         {
-            var xmlns = HtmlNamespace.Xhtml;
+            XNamespace xmlns = HtmlNamespace.Xhtml;
             return new XElement(xmlns + "div",
-                new XAttribute("id", "top"));
+                                new XAttribute("id", "top"));
         }
     }
 }

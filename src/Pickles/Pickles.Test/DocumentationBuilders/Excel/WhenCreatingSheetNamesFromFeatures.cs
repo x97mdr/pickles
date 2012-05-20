@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ClosedXML.Excel;
-using Ninject;
+﻿using ClosedXML.Excel;
 using NUnit.Framework;
+using Ninject;
 using Pickles.DocumentationBuilders.Excel;
 using Pickles.Parser;
 using Should;
@@ -18,7 +14,7 @@ namespace Pickles.Test.DocumentationBuilders
         public void ThenCanCreateSimpleNameSuccessfully()
         {
             var excelSheetNameGenerator = Kernel.Get<ExcelSheetNameGenerator>();
-            var feature = new Feature() { Name = "A short feature name" };
+            var feature = new Feature {Name = "A short feature name"};
 
             string name;
             using (var wb = new XLWorkbook())
@@ -30,26 +26,11 @@ namespace Pickles.Test.DocumentationBuilders
         }
 
         [Test]
-        public void ThenCanShortenLongNameSuccessfully()
-        {
-            var excelSheetNameGenerator = Kernel.Get<ExcelSheetNameGenerator>();
-            var feature = new Feature() { Name = "This is a really really long feature name that needs to be shortened" };
-
-            string name;
-            using (var wb = new XLWorkbook())
-            {
-                name = excelSheetNameGenerator.GenerateSheetName(wb, feature);
-            }
-
-            name.ShouldEqual("THISISAREALLYREALLYLONGFEATUREN");
-        }
-
-        [Test]
         public void ThenCanShortenLongDuplicatedNameSuccessfully()
         {
             var excelSheetNameGenerator = Kernel.Get<ExcelSheetNameGenerator>();
-            var feature1 = new Feature() { Name = "This is a really really long feature name that needs to be shortened A" };
-            var feature2 = new Feature() { Name = "This is a really really long feature name that needs to be shortened B" };
+            var feature1 = new Feature {Name = "This is a really really long feature name that needs to be shortened A"};
+            var feature2 = new Feature {Name = "This is a really really long feature name that needs to be shortened B"};
 
             string name1;
             string name2;
@@ -67,9 +48,9 @@ namespace Pickles.Test.DocumentationBuilders
         public void ThenCanShortenLongMultipleDuplicatedNameSuccessfully()
         {
             var excelSheetNameGenerator = Kernel.Get<ExcelSheetNameGenerator>();
-            var feature1 = new Feature() { Name = "This is a really really long feature name that needs to be shortened A" };
-            var feature2 = new Feature() { Name = "This is a really really long feature name that needs to be shortened B" };
-            var feature3 = new Feature() { Name = "This is a really really long feature name that needs to be shortened C" };
+            var feature1 = new Feature {Name = "This is a really really long feature name that needs to be shortened A"};
+            var feature2 = new Feature {Name = "This is a really really long feature name that needs to be shortened B"};
+            var feature3 = new Feature {Name = "This is a really really long feature name that needs to be shortened C"};
 
             string name1;
             string name2;
@@ -84,6 +65,21 @@ namespace Pickles.Test.DocumentationBuilders
             }
 
             name3.ShouldEqual("THISISAREALLYREALLYLONGFEATU(2)");
+        }
+
+        [Test]
+        public void ThenCanShortenLongNameSuccessfully()
+        {
+            var excelSheetNameGenerator = Kernel.Get<ExcelSheetNameGenerator>();
+            var feature = new Feature {Name = "This is a really really long feature name that needs to be shortened"};
+
+            string name;
+            using (var wb = new XLWorkbook())
+            {
+                name = excelSheetNameGenerator.GenerateSheetName(wb, feature);
+            }
+
+            name.ShouldEqual("THISISAREALLYREALLYLONGFEATUREN");
         }
     }
 }

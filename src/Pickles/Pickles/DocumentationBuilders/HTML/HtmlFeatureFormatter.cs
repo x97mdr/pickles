@@ -18,68 +18,63 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Linq;
-using NGenerics.DataStructures.Trees;
 using Pickles.Parser;
-using MarkdownSharp;
-using Pickles.TestFrameworks;
 
 namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlFeatureFormatter : IHtmlFeatureFormatter
     {
-        private readonly HtmlScenarioFormatter htmlScenarioFormatter;
-        private readonly HtmlScenarioOutlineFormatter htmlScenarioOutlineFormatter;
         private readonly HtmlDescriptionFormatter htmlDescriptionFormatter;
         private readonly HtmlImageResultFormatter htmlImageResultFormatter;
+        private readonly HtmlScenarioFormatter htmlScenarioFormatter;
+        private readonly HtmlScenarioOutlineFormatter htmlScenarioOutlineFormatter;
         private readonly XNamespace xmlns;
 
         public HtmlFeatureFormatter(
-            HtmlScenarioFormatter htmlScenarioFormatter, 
-            HtmlDescriptionFormatter htmlDescriptionFormatter, 
-            HtmlScenarioOutlineFormatter htmlScenarioOutlineFormatter, 
+            HtmlScenarioFormatter htmlScenarioFormatter,
+            HtmlDescriptionFormatter htmlDescriptionFormatter,
+            HtmlScenarioOutlineFormatter htmlScenarioOutlineFormatter,
             HtmlImageResultFormatter htmlImageResultFormatter)
         {
             this.htmlScenarioFormatter = htmlScenarioFormatter;
             this.htmlScenarioOutlineFormatter = htmlScenarioOutlineFormatter;
             this.htmlDescriptionFormatter = htmlDescriptionFormatter;
             this.htmlImageResultFormatter = htmlImageResultFormatter;
-            this.xmlns = HtmlNamespace.Xhtml;
+            xmlns = HtmlNamespace.Xhtml;
         }
+
+        #region IHtmlFeatureFormatter Members
 
         public XElement Format(Feature feature)
         {
-            var div = new XElement(this.xmlns + "div",
-                        new XAttribute("id", "feature"),
-                        this.htmlImageResultFormatter.Format(feature),
-                        new XElement(this.xmlns + "h1", feature.Name),
-                        this.htmlDescriptionFormatter.Format(feature.Description)
-                    );
+            var div = new XElement(xmlns + "div",
+                                   new XAttribute("id", "feature"),
+                                   htmlImageResultFormatter.Format(feature),
+                                   new XElement(xmlns + "h1", feature.Name),
+                                   htmlDescriptionFormatter.Format(feature.Description)
+                );
 
-            var scenarios = new XElement(this.xmlns + "ul", new XAttribute("id", "scenarios"));
+            var scenarios = new XElement(xmlns + "ul", new XAttribute("id", "scenarios"));
             int id = 0;
 
             if (feature.Background != null)
             {
-                scenarios.Add(this.htmlScenarioFormatter.Format(feature.Background, id++));
+                scenarios.Add(htmlScenarioFormatter.Format(feature.Background, id++));
             }
 
-            foreach (var featureElement in feature.FeatureElements)
+            foreach (IFeatureElement featureElement in feature.FeatureElements)
             {
                 var scenario = featureElement as Scenario;
                 if (scenario != null)
                 {
-                    scenarios.Add(this.htmlScenarioFormatter.Format(scenario, id++));
+                    scenarios.Add(htmlScenarioFormatter.Format(scenario, id++));
                 }
 
                 var scenarioOutline = featureElement as ScenarioOutline;
                 if (scenarioOutline != null)
                 {
-                    scenarios.Add(this.htmlScenarioOutlineFormatter.Format(scenarioOutline, id++));
+                    scenarios.Add(htmlScenarioOutlineFormatter.Format(scenarioOutline, id++));
                 }
             }
 
@@ -87,5 +82,7 @@ namespace Pickles.DocumentationBuilders.HTML
 
             return div;
         }
+
+        #endregion
     }
 }

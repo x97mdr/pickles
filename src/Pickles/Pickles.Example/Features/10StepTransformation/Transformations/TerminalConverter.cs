@@ -9,7 +9,7 @@ namespace Specs.StepTransformation.Transformations
         [StepArgumentTransformation("terminal (.*)")]
         public Terminal Transform(string terminalId)
         {
-            return new Terminal { Id = terminalId };
+            return new Terminal {Id = terminalId};
         }
     }
 }

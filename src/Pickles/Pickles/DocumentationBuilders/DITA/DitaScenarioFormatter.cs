@@ -18,10 +18,6 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 using Pickles.Parser;
 using Pickles.TestFrameworks;
@@ -31,10 +27,11 @@ namespace Pickles.DocumentationBuilders.DITA
     public class DitaScenarioFormatter
     {
         private readonly Configuration configuration;
-        private readonly ITestResults nunitResults;
         private readonly DitaStepFormatter ditaStepFormatter;
+        private readonly ITestResults nunitResults;
 
-        public DitaScenarioFormatter(Configuration configuration, ITestResults nunitResults, DitaStepFormatter ditaStepFormatter)
+        public DitaScenarioFormatter(Configuration configuration, ITestResults nunitResults,
+                                     DitaStepFormatter ditaStepFormatter)
         {
             this.configuration = configuration;
             this.nunitResults = nunitResults;
@@ -44,11 +41,11 @@ namespace Pickles.DocumentationBuilders.DITA
         public void Format(XElement parentElement, Scenario scenario)
         {
             var section = new XElement("section",
-                              new XElement("title", scenario.Name));
+                                       new XElement("title", scenario.Name));
 
-            if (this.configuration.HasTestResults)
+            if (configuration.HasTestResults)
             {
-                var testResult = this.nunitResults.GetScenarioResult(scenario);
+                TestResult testResult = nunitResults.GetScenarioResult(scenario);
                 if (testResult.WasExecuted && testResult.WasSuccessful)
                 {
                     section.Add(new XElement("note", "This scenario passed"));
@@ -64,9 +61,9 @@ namespace Pickles.DocumentationBuilders.DITA
                 section.Add(new XElement("p", scenario.Description));
             }
 
-            foreach (var step in scenario.Steps)
+            foreach (Step step in scenario.Steps)
             {
-                this.ditaStepFormatter.Format(section, step);
+                ditaStepFormatter.Format(section, step);
             }
 
             parentElement.Add(section);

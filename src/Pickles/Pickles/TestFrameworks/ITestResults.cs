@@ -18,14 +18,14 @@
 
 #endregion
 
-using System;
+using Pickles.Parser;
 
 namespace Pickles.TestFrameworks
 {
     public interface ITestResults
     {
-        TestResult GetFeatureResult(Pickles.Parser.Feature feature);
-        TestResult GetScenarioOutlineResult(Pickles.Parser.ScenarioOutline scenarioOutline);
-        TestResult GetScenarioResult(Pickles.Parser.Scenario scenario);
+        TestResult GetFeatureResult(Feature feature);
+        TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline);
+        TestResult GetScenarioResult(Scenario scenario);
     }
 }

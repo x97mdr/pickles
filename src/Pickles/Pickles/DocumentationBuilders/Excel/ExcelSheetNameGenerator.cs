@@ -18,16 +18,15 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using ClosedXML.Excel;
+using Pickles.Parser;
 
 namespace Pickles.DocumentationBuilders.Excel
 {
     public class ExcelSheetNameGenerator
     {
-        public string GenerateSheetName(ClosedXML.Excel.XLWorkbook workbook, Parser.Feature feature)
+        public string GenerateSheetName(XLWorkbook workbook, Feature feature)
         {
             string name = feature.Name.Replace(" ", string.Empty).Replace("\t", string.Empty).ToUpperInvariant();
             if (name.Length > 31) name = name.Substring(0, 31);

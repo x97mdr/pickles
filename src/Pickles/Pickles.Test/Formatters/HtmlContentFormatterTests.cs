@@ -15,7 +15,7 @@ namespace Pickles.Test.Formatters
         [Test]
         public void Constructor_NullHtmlFeatureFormatter_ThrowsArgumentNullException()
         {
-            ArgumentNullException exception =
+            var exception =
                 Assert.Throws<ArgumentNullException>(
                     () =>
                     new HtmlContentFormatter(null, null));
@@ -26,7 +26,7 @@ namespace Pickles.Test.Formatters
         [Test]
         public void Constructor_NullHtmlIndexFormatter_ThrowsArgumentNullException()
         {
-            ArgumentNullException exception =
+            var exception =
                 Assert.Throws<ArgumentNullException>(
                     () =>
                     new HtmlContentFormatter(
@@ -44,8 +44,8 @@ namespace Pickles.Test.Formatters
 
             var featureNode = new FeatureDirectoryTreeNode(
                 new FileInfo(@"c:\temp\test.feature"),
-                    ".",
-                    new Feature());
+                ".",
+                new Feature());
 
             formatter.Format(featureNode, new IDirectoryTreeNode[0]);
 

@@ -15,8 +15,8 @@ namespace Specs.TestEntities
             var pIn = obj as Person;
 
             return (Name == pIn.Name) &&
-                (Style == pIn.Style) &&
-                (BirthDate == pIn.BirthDate);
+                   (Style == pIn.Style) &&
+                   (BirthDate == pIn.BirthDate);
         }
 
         public override int GetHashCode()

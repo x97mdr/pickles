@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using Pickles;
+﻿using NUnit.Framework;
 using Pickles.Extensions;
 
 namespace Pickles.Test
@@ -19,10 +14,17 @@ namespace Pickles.Test
         }
 
         [Test]
-        public void Then_can_format_text_with_numbers_as_wiki_word_successfully()
+        public void Then_can_format_text_with_acronym_and_number_as_wiki_word_successfully()
         {
-            string actual = "ThisIsThe4thWikiWord".ExpandWikiWord();
-            Assert.AreEqual("This Is The 4th Wiki Word", actual);
+            string actual = "ThisIsAnACRONYM1".ExpandWikiWord();
+            Assert.AreEqual("This Is An ACRONYM1", actual);
+        }
+
+        [Test]
+        public void Then_can_format_text_with_acronym_as_wiki_word_successfully()
+        {
+            string actual = "ThisIsAnACRONYM".ExpandWikiWord();
+            Assert.AreEqual("This Is An ACRONYM", actual);
         }
 
         [Test]
@@ -40,24 +42,17 @@ namespace Pickles.Test
         }
 
         [Test]
+        public void Then_can_format_text_with_numbers_as_wiki_word_successfully()
+        {
+            string actual = "ThisIsThe4thWikiWord".ExpandWikiWord();
+            Assert.AreEqual("This Is The 4th Wiki Word", actual);
+        }
+
+        [Test]
         public void Then_can_format_text_with_special_characters_as_wiki_word_successfully()
         {
             string actual = "ThisIsThe_WikiWord".ExpandWikiWord();
             Assert.AreEqual("This Is The Wiki Word", actual);
-        }
-
-        [Test]
-        public void Then_can_format_text_with_acronym_as_wiki_word_successfully()
-        {
-            string actual = "ThisIsAnACRONYM".ExpandWikiWord();
-            Assert.AreEqual("This Is An ACRONYM", actual);
-        }
-
-        [Test]
-        public void Then_can_format_text_with_acronym_and_number_as_wiki_word_successfully()
-        {
-            string actual = "ThisIsAnACRONYM1".ExpandWikiWord();
-            Assert.AreEqual("This Is An ACRONYM1", actual);
         }
     }
 }

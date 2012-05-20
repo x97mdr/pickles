@@ -18,13 +18,10 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
+using System.Reflection;
 
 namespace Pickles
 {
@@ -33,7 +30,10 @@ namespace Pickles
         private void WriteStyleSheet(string folder, string filename)
         {
             string path = Path.Combine(folder, filename);
-            using (var reader = new StreamReader(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Resources." + filename)))
+            using (
+                var reader =
+                    new StreamReader(
+                        Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Resources." + filename)))
             using (var writer = new StreamWriter(path))
             {
                 writer.Write(reader.ReadToEnd());
@@ -46,7 +46,11 @@ namespace Pickles
         private void WriteImage(string folder, string filename)
         {
             string path = Path.Combine(folder, filename);
-            using (var image = Image.FromStream(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Resources.images." + filename)))
+            using (
+                Image image =
+                    Image.FromStream(
+                        Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Resources.images." + filename))
+                )
             {
                 image.Save(path, ImageFormat.Png);
             }
@@ -55,7 +59,11 @@ namespace Pickles
         private void WriteScript(string folder, string filename)
         {
             string path = Path.Combine(folder, filename);
-            using (var reader = new StreamReader(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Resources.scripts." + filename)))
+            using (
+                var reader =
+                    new StreamReader(
+                        Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Resources.scripts." +
+                                                                                  filename)))
             using (var writer = new StreamWriter(path))
             {
                 writer.Write(reader.ReadToEnd());
@@ -73,12 +81,12 @@ namespace Pickles
             WriteStyleSheet(folder, "structure.css");
             WriteStyleSheet(folder, "print.css");
 
-            var imagesFolder = Path.Combine(folder, "images");
+            string imagesFolder = Path.Combine(folder, "images");
             if (!Directory.Exists(imagesFolder)) Directory.CreateDirectory(imagesFolder);
             WriteImage(imagesFolder, "success.png");
             WriteImage(imagesFolder, "failure.png");
 
-            var scriptsFolder = Path.Combine(folder, "scripts");
+            string scriptsFolder = Path.Combine(folder, "scripts");
             if (!Directory.Exists(scriptsFolder)) Directory.CreateDirectory(scriptsFolder);
             WriteScript(scriptsFolder, "jquery.js");
             WriteScript(scriptsFolder, "scripts.js");

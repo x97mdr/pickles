@@ -18,18 +18,16 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
+using System.Xml.Linq;
+using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
-using Pickles.DirectoryCrawler;
-using Pickles.Extensions;
-using System.Xml.Linq;
 using OpenXmlPowerTools;
+using Pickles.DirectoryCrawler;
 
 namespace Pickles.DocumentationBuilders.Word
 {
@@ -37,11 +35,13 @@ namespace Pickles.DocumentationBuilders.Word
     {
         private readonly Configuration configuration;
         private readonly WordFeatureFormatter wordFeatureFormatter;
-        private readonly WordStyleApplicator wordStyleApplicator;
         private readonly WordFontApplicator wordFontApplicator;
         private readonly WordHeaderFooterFormatter wordHeaderFooterFormatter;
+        private readonly WordStyleApplicator wordStyleApplicator;
 
-        public WordDocumentationBuilder(Configuration configuration, WordFeatureFormatter wordFeatureFormatter, WordStyleApplicator wordStyleApplicator, WordFontApplicator wordFontApplicator, WordHeaderFooterFormatter wordHeaderFooterFormatter)
+        public WordDocumentationBuilder(Configuration configuration, WordFeatureFormatter wordFeatureFormatter,
+                                        WordStyleApplicator wordStyleApplicator, WordFontApplicator wordFontApplicator,
+                                        WordHeaderFooterFormatter wordHeaderFooterFormatter)
         {
             this.configuration = configuration;
             this.wordFeatureFormatter = wordFeatureFormatter;
@@ -52,34 +52,41 @@ namespace Pickles.DocumentationBuilders.Word
 
         #region IDocumentationBuilder Members
 
-        public void Build(NGenerics.DataStructures.Trees.GeneralTree<DirectoryCrawler.IDirectoryTreeNode> features)
+        public void Build(GeneralTree<IDirectoryTreeNode> features)
         {
-            string filename = string.IsNullOrEmpty(this.configuration.SystemUnderTestName) ? "features.docx" : this.configuration.SystemUnderTestName + ".docx";
-            var documentFileName = Path.Combine(this.configuration.OutputFolder.FullName, filename);
+            string filename = string.IsNullOrEmpty(configuration.SystemUnderTestName)
+                                  ? "features.docx"
+                                  : configuration.SystemUnderTestName + ".docx";
+            string documentFileName = Path.Combine(configuration.OutputFolder.FullName, filename);
             if (File.Exists(documentFileName)) File.Delete(documentFileName);
 
-            using (var wordProcessingDocument = WordprocessingDocument.Create(documentFileName, DocumentFormat.OpenXml.WordprocessingDocumentType.Document))
+            using (
+                WordprocessingDocument wordProcessingDocument = WordprocessingDocument.Create(documentFileName,
+                                                                                              WordprocessingDocumentType
+                                                                                                  .Document))
             {
-                var mainDocumentPart = wordProcessingDocument.AddMainDocumentPart();
-                this.wordStyleApplicator.AddStylesPartToPackage(wordProcessingDocument);
-                this.wordStyleApplicator.AddStylesWithEffectsPartToPackage(wordProcessingDocument);
-                this.wordFontApplicator.AddFontTablePartToPackage(wordProcessingDocument);
+                MainDocumentPart mainDocumentPart = wordProcessingDocument.AddMainDocumentPart();
+                wordStyleApplicator.AddStylesPartToPackage(wordProcessingDocument);
+                wordStyleApplicator.AddStylesWithEffectsPartToPackage(wordProcessingDocument);
+                wordFontApplicator.AddFontTablePartToPackage(wordProcessingDocument);
                 var documentSettingsPart = mainDocumentPart.AddNewPart<DocumentSettingsPart>();
                 documentSettingsPart.Settings = new Settings();
-                this.wordHeaderFooterFormatter.ApplyHeaderAndFooter(wordProcessingDocument);
-                
+                wordHeaderFooterFormatter.ApplyHeaderAndFooter(wordProcessingDocument);
+
                 var document = new Document();
                 var body = new Body();
                 document.Append(body);
 
                 var actionVisitor = new ActionVisitor<IDirectoryTreeNode>(node =>
-                {
-                    var featureDirectoryTreeNode = node as FeatureDirectoryTreeNode;
-                    if (featureDirectoryTreeNode != null)
-                    {
-                        this.wordFeatureFormatter.Format(body, featureDirectoryTreeNode);
-                    }
-                });
+                                                                              {
+                                                                                  var featureDirectoryTreeNode =
+                                                                                      node as FeatureDirectoryTreeNode;
+                                                                                  if (featureDirectoryTreeNode != null)
+                                                                                  {
+                                                                                      wordFeatureFormatter.Format(body,
+                                                                                                                  featureDirectoryTreeNode);
+                                                                                  }
+                                                                              });
 
                 features.AcceptVisitor(actionVisitor);
 
@@ -88,13 +95,13 @@ namespace Pickles.DocumentationBuilders.Word
             }
 
             // HACK - Add the table of contents
-            using (var wordProcessingDocument = WordprocessingDocument.Open(documentFileName, true))
+            using (WordprocessingDocument wordProcessingDocument = WordprocessingDocument.Open(documentFileName, true))
             {
                 XElement firstPara = wordProcessingDocument
-                                    .MainDocumentPart
-                                    .GetXDocument()
-                                    .Descendants(W.p)
-                                    .FirstOrDefault();
+                    .MainDocumentPart
+                    .GetXDocument()
+                    .Descendants(W.p)
+                    .FirstOrDefault();
 
                 TocAdder.AddToc(wordProcessingDocument, firstPara, @"TOC \o '1-2' \h \z \u", null, 4);
             }

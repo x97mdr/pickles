@@ -18,31 +18,30 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
+using System.Reflection;
+using ClosedXML.Excel;
+using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
 using Pickles.DirectoryCrawler;
-using ClosedXML.Excel;
+using log4net;
 
 namespace Pickles.DocumentationBuilders.Excel
 {
     public class ExcelDocumentationBuilder : IDocumentationBuilder
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         private readonly Configuration configuration;
-        private readonly DirectoryTreeCrawler featureCrawler;
         private readonly ExcelFeatureFormatter excelFeatureFormatter;
         private readonly ExcelSheetNameGenerator excelSheetNameGenerator;
         private readonly ExcelTableOfContentsFormatter excelTableOfContentsFormatter;
+        private readonly DirectoryTreeCrawler featureCrawler;
 
-        public ExcelDocumentationBuilder(Configuration configuration, DirectoryTreeCrawler featureCrawler, ExcelFeatureFormatter excelFeatureFormatter, ExcelSheetNameGenerator excelSheetNameGenerator, ExcelTableOfContentsFormatter excelTableOfContentsFormatter)
+        public ExcelDocumentationBuilder(Configuration configuration, DirectoryTreeCrawler featureCrawler,
+                                         ExcelFeatureFormatter excelFeatureFormatter,
+                                         ExcelSheetNameGenerator excelSheetNameGenerator,
+                                         ExcelTableOfContentsFormatter excelTableOfContentsFormatter)
         {
             this.configuration = configuration;
             this.featureCrawler = featureCrawler;
@@ -53,30 +52,39 @@ namespace Pickles.DocumentationBuilders.Excel
 
         #region IDocumentationBuilder Members
 
-        public void Build(NGenerics.DataStructures.Trees.GeneralTree<DirectoryCrawler.IDirectoryTreeNode> features)
+        public void Build(GeneralTree<IDirectoryTreeNode> features)
         {
             if (log.IsInfoEnabled)
             {
-                log.InfoFormat("Writing Excel workbook to {0}", this.configuration.OutputFolder.FullName);
+                log.InfoFormat("Writing Excel workbook to {0}", configuration.OutputFolder.FullName);
             }
 
-            var spreadsheetPath = System.IO.Path.Combine(this.configuration.OutputFolder.FullName, "features.xlsx");
+            string spreadsheetPath = Path.Combine(configuration.OutputFolder.FullName, "features.xlsx");
             using (var workbook = new XLWorkbook())
             {
                 var actionVisitor = new ActionVisitor<IDirectoryTreeNode>(node =>
-                {
-
-                    var featureDirectoryTreeNode = node as FeatureDirectoryTreeNode;
-                    if (featureDirectoryTreeNode != null)
-                    {
-                        var worksheet = workbook.AddWorksheet(this.excelSheetNameGenerator.GenerateSheetName(workbook, featureDirectoryTreeNode.Feature));
-                        this.excelFeatureFormatter.Format(worksheet, featureDirectoryTreeNode.Feature);
-                    }
-                });
+                                                                              {
+                                                                                  var featureDirectoryTreeNode =
+                                                                                      node as FeatureDirectoryTreeNode;
+                                                                                  if (featureDirectoryTreeNode != null)
+                                                                                  {
+                                                                                      IXLWorksheet worksheet =
+                                                                                          workbook.AddWorksheet(
+                                                                                              excelSheetNameGenerator.
+                                                                                                  GenerateSheetName(
+                                                                                                      workbook,
+                                                                                                      featureDirectoryTreeNode
+                                                                                                          .Feature));
+                                                                                      excelFeatureFormatter.Format(
+                                                                                          worksheet,
+                                                                                          featureDirectoryTreeNode.
+                                                                                              Feature);
+                                                                                  }
+                                                                              });
 
                 features.AcceptVisitor(actionVisitor);
 
-                this.excelTableOfContentsFormatter.Format(workbook, features);
+                excelTableOfContentsFormatter.Format(workbook, features);
 
                 workbook.SaveAs(spreadsheetPath);
             }

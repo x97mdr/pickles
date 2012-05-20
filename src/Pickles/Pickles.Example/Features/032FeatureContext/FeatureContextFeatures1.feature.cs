@@ -9,13 +9,15 @@
 //      the code is regenerated.
 //  </auto-generated>
 // ------------------------------------------------------------------------------
+
 #region Designer generated code
+
+using TechTalk.SpecFlow;
+
 #pragma warning disable
+
 namespace Pickles.Example.Features._032FeatureContext
 {
-    using TechTalk.SpecFlow;
-    
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.8.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
@@ -24,100 +26,122 @@ namespace Pickles.Example.Features._032FeatureContext
     [NUnit.Framework.CategoryAttribute("andThisToo")]
     public partial class FeatureContextFeaturesFeature
     {
-        
         private static TechTalk.SpecFlow.ITestRunner testRunner;
-        
+
 #line 1 "FeatureContextFeatures.feature"
 #line hidden
-        
+
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "FeatureContext features", "In order to show how to use FeatureContext\r\nAs a SpecFlow evangelist\r\nI want to w" +
-                    "rite some simple scenarios with data in FeatureContext", ProgrammingLanguage.CSharp, new string[] {
-                        "showUpInScenarioInfo",
-                        "andThisToo"});
+            var featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"),
+                                                                "FeatureContext features",
+                                                                "In order to show how to use FeatureContext\r\nAs a SpecFlow evangelist\r\nI want to w" +
+                                                                "rite some simple scenarios with data in FeatureContext",
+                                                                ProgrammingLanguage.CSharp, new string[]
+                                                                                                {
+                                                                                                    "showUpInScenarioInfo"
+                                                                                                    ,
+                                                                                                    "andThisToo"
+                                                                                                });
             testRunner.OnFeatureStart(featureInfo);
         }
-        
+
         [NUnit.Framework.TestFixtureTearDownAttribute()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
-        
+
         [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
-        
+
         [NUnit.Framework.TearDownAttribute()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
         }
-        
+
         public virtual void ScenarioSetup(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioStart(scenarioInfo);
         }
-        
+
         public virtual void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
-        
+
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Store and retrive Person Marcus from FeatureContext Current")]
         public virtual void StoreAndRetrivePersonMarcusFromFeatureContextCurrent()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Store and retrive Person Marcus from FeatureContext Current", ((string[])(null)));
+            var scenarioInfo =
+                new TechTalk.SpecFlow.ScenarioInfo("Store and retrive Person Marcus from FeatureContext Current",
+                                                   ((string[]) (null)));
 #line 7
-this.ScenarioSetup(scenarioInfo);
+            this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.When("I store a person called Marcus in the current FeatureContext");
+            testRunner.When("I store a person called Marcus in the current FeatureContext");
 #line 9
- testRunner.Then("a person called Marcus can easily be retrieved from the current FeatureContext");
+            testRunner.Then("a person called Marcus can easily be retrieved from the current FeatureContext");
 #line hidden
             this.ScenarioCleanup();
         }
-        
+
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Showing information of the feature")]
         public virtual void ShowingInformationOfTheFeature()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Showing information of the feature", ((string[])(null)));
+            var scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Showing information of the feature",
+                                                                  ((string[]) (null)));
 #line 11
-this.ScenarioSetup(scenarioInfo);
+            this.ScenarioSetup(scenarioInfo);
 #line 12
- testRunner.When("I execute any scenario in the feature");
+            testRunner.When("I execute any scenario in the feature");
 #line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Field",
-                        "Value"});
-            table1.AddRow(new string[] {
-                        "Tags",
-                        "showUpInScenarioInfo, andThisToo"});
-            table1.AddRow(new string[] {
-                        "Title",
-                        "FeatureContext features"});
-            table1.AddRow(new string[] {
-                        "TargetLanguage",
-                        "CSharp"});
-            table1.AddRow(new string[] {
-                        "Language",
-                        "en-US"});
-            table1.AddRow(new string[] {
-                        "Description",
-                        "In order to"});
+            var table1 = new TechTalk.SpecFlow.Table(new string[]
+                                                         {
+                                                             "Field",
+                                                             "Value"
+                                                         });
+            table1.AddRow(new string[]
+                              {
+                                  "Tags",
+                                  "showUpInScenarioInfo, andThisToo"
+                              });
+            table1.AddRow(new string[]
+                              {
+                                  "Title",
+                                  "FeatureContext features"
+                              });
+            table1.AddRow(new string[]
+                              {
+                                  "TargetLanguage",
+                                  "CSharp"
+                              });
+            table1.AddRow(new string[]
+                              {
+                                  "Language",
+                                  "en-US"
+                              });
+            table1.AddRow(new string[]
+                              {
+                                  "Description",
+                                  "In order to"
+                              });
 #line 13
- testRunner.Then("the FeatureInfo contains the following information", ((string)(null)), table1);
+            testRunner.Then("the FeatureInfo contains the following information", ((string) (null)), table1);
 #line hidden
             this.ScenarioCleanup();
         }
     }
 }
+
 #pragma warning restore
+
 #endregion

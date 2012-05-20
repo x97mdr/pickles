@@ -1,5 +1,4 @@
-﻿using System;
-using Pickles.DirectoryCrawler;
+﻿using Pickles.DirectoryCrawler;
 using Pickles.Parser;
 using Pickles.TestFrameworks;
 
@@ -7,10 +6,6 @@ namespace Pickles.DocumentationBuilders.JSON
 {
     public class FeatureWithMetaInfo
     {
-        public string RelativeFolder { get; set; }
-        public Feature Feature { get; set; }
-        public TestResult Result { get; set; } 
-
         public FeatureWithMetaInfo(FeatureDirectoryTreeNode featureNodeTreeNode)
         {
             Feature = featureNodeTreeNode.Feature;
@@ -18,9 +13,13 @@ namespace Pickles.DocumentationBuilders.JSON
         }
 
         public FeatureWithMetaInfo(FeatureDirectoryTreeNode featureNodeTreeNode, TestResult result)
-          : this(featureNodeTreeNode)
+            : this(featureNodeTreeNode)
         {
-          Result = result;
+            Result = result;
         }
+
+        public string RelativeFolder { get; set; }
+        public Feature Feature { get; set; }
+        public TestResult Result { get; set; }
     }
 }

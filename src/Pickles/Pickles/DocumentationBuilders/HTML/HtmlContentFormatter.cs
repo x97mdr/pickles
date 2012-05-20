@@ -45,13 +45,13 @@ namespace Pickles.DocumentationBuilders.HTML
             var featureItemNode = contentNode as FeatureDirectoryTreeNode;
             if (featureItemNode != null)
             {
-                return this.htmlFeatureFormatter.Format(featureItemNode.Feature);
+                return htmlFeatureFormatter.Format(featureItemNode.Feature);
             }
 
             var indexItemNode = contentNode as FolderDirectoryTreeNode;
             if (indexItemNode != null)
             {
-                return this.htmlIndexFormatter.Format(indexItemNode, features);
+                return htmlIndexFormatter.Format(indexItemNode, features);
             }
 
             var markdownItemNode = contentNode as MarkdownTreeNode;
@@ -60,7 +60,8 @@ namespace Pickles.DocumentationBuilders.HTML
                 return markdownItemNode.MarkdownContent;
             }
 
-            throw new InvalidOperationException("Cannot format a FeatureNode with a Type of " + contentNode.GetType() + " as content");
+            throw new InvalidOperationException("Cannot format a FeatureNode with a Type of " + contentNode.GetType() +
+                                                " as content");
         }
     }
 }

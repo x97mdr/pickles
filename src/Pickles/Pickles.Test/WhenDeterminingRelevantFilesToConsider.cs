@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Ninject;
+﻿using System.IO;
 using NUnit.Framework;
+using Ninject;
 using Pickles.DirectoryCrawler;
 
 namespace Pickles.Test
@@ -15,19 +12,19 @@ namespace Pickles.Test
         public void Then_can_detect_feature_files_successfully()
         {
             var relevantFileDetector = Kernel.Get<RelevantFileDetector>();
-            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new System.IO.FileInfo("test.feature")));
-            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new System.IO.FileInfo("test.markdown")));
-            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new System.IO.FileInfo("test.mdown")));
-            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new System.IO.FileInfo("test.mkdn")));
-            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new System.IO.FileInfo("test.md")));
-            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new System.IO.FileInfo("test.mdwn")));
-            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new System.IO.FileInfo("test.mdtext")));
-            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new System.IO.FileInfo("test.mdtxt")));
-            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new System.IO.FileInfo("test.text")));
-            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new System.IO.FileInfo("test.txt")));
-            Assert.AreEqual(false, relevantFileDetector.IsRelevant(new System.IO.FileInfo("test.pdf")));
-            Assert.AreEqual(false, relevantFileDetector.IsRelevant(new System.IO.FileInfo("test.doc")));
-            Assert.AreEqual(false, relevantFileDetector.IsRelevant(new System.IO.FileInfo("test.docx")));
+            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new FileInfo("test.feature")));
+            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new FileInfo("test.markdown")));
+            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new FileInfo("test.mdown")));
+            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new FileInfo("test.mkdn")));
+            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new FileInfo("test.md")));
+            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new FileInfo("test.mdwn")));
+            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new FileInfo("test.mdtext")));
+            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new FileInfo("test.mdtxt")));
+            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new FileInfo("test.text")));
+            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new FileInfo("test.txt")));
+            Assert.AreEqual(false, relevantFileDetector.IsRelevant(new FileInfo("test.pdf")));
+            Assert.AreEqual(false, relevantFileDetector.IsRelevant(new FileInfo("test.doc")));
+            Assert.AreEqual(false, relevantFileDetector.IsRelevant(new FileInfo("test.docx")));
         }
     }
 }

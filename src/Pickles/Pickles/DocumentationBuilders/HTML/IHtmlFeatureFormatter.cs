@@ -18,7 +18,6 @@
 
 #endregion
 
-using System;
 using System.Xml.Linq;
 using Pickles.Parser;
 

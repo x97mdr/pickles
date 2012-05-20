@@ -9,128 +9,138 @@
 //      the code is regenerated.
 //  </auto-generated>
 // ------------------------------------------------------------------------------
+
 #region Designer generated code
+
+using TechTalk.SpecFlow;
+
 #pragma warning disable
+
 namespace Pickles.Example.xUnit.Features._00BasicGherkin
 {
-    using TechTalk.SpecFlow;
-    
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.8.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class ShowingBasicGherkinSyntaxFeature : Xunit.IUseFixture<ShowingBasicGherkinSyntaxFeature.FixtureData>, System.IDisposable
+    public partial class ShowingBasicGherkinSyntaxFeature :
+        Xunit.IUseFixture<ShowingBasicGherkinSyntaxFeature.FixtureData>, System.IDisposable
     {
-        
         private static TechTalk.SpecFlow.ITestRunner testRunner;
-        
+
 #line 1 "BasicGherkin.feature"
 #line hidden
-        
+
         public ShowingBasicGherkinSyntaxFeature()
         {
             this.TestInitialize();
         }
-        
+
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Showing basic gherkin syntax", "In order to see that gherkin is a very simple langauge\r\nAs a SpecFlow evangelist\r" +
-                    "\nI want to show that basic syntax", ProgrammingLanguage.CSharp, ((string[])(null)));
+            var featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"),
+                                                                "Showing basic gherkin syntax",
+                                                                "In order to see that gherkin is a very simple langauge\r\nAs a SpecFlow evangelist\r" +
+                                                                "\nI want to show that basic syntax",
+                                                                ProgrammingLanguage.CSharp, ((string[]) (null)));
             testRunner.OnFeatureStart(featureInfo);
         }
-        
+
         public static void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
-        
+
         public virtual void TestInitialize()
         {
         }
-        
+
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
         }
-        
+
         public virtual void ScenarioSetup(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioStart(scenarioInfo);
         }
-        
+
         public virtual void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
-        
+
         public virtual void SetFixture(ShowingBasicGherkinSyntaxFeature.FixtureData fixtureData)
         {
         }
-        
+
         void System.IDisposable.Dispose()
         {
             this.ScenarioTearDown();
         }
-        
+
         [Xunit.FactAttribute()]
         [Xunit.TraitAttribute("FeatureTitle", "Showing basic gherkin syntax")]
         [Xunit.TraitAttribute("Description", "Simple GWT")]
         public virtual void SimpleGWT()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simple GWT", ((string[])(null)));
+            var scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simple GWT", ((string[]) (null)));
 #line 6
-this.ScenarioSetup(scenarioInfo);
+            this.ScenarioSetup(scenarioInfo);
 #line 7
- testRunner.Given("the initial state of the application is Running");
+            testRunner.Given("the initial state of the application is Running");
 #line 8
- testRunner.When("I ask what the application state is");
+            testRunner.When("I ask what the application state is");
 #line 9
- testRunner.Then("I should see Running as the answer");
+            testRunner.Then("I should see Running as the answer");
 #line hidden
             this.ScenarioCleanup();
         }
-        
+
         [Xunit.FactAttribute()]
         [Xunit.TraitAttribute("FeatureTitle", "Showing basic gherkin syntax")]
         [Xunit.TraitAttribute("Description", "Using And and But")]
         public virtual void UsingAndAndBut()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Using And and But", ((string[])(null)));
+            var scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Using And and But", ((string[]) (null)));
 #line 11
-this.ScenarioSetup(scenarioInfo);
+            this.ScenarioSetup(scenarioInfo);
 #line 12
- testRunner.Given("the initial state of the application is Running");
+            testRunner.Given("the initial state of the application is Running");
 #line 13
-  testRunner.And("I have authorization to ask application state");
+            testRunner.And("I have authorization to ask application state");
 #line 14
- testRunner.When("I ask what the application state is");
+            testRunner.When("I ask what the application state is");
 #line 15
- testRunner.Then("I should see Running as the answer");
+            testRunner.Then("I should see Running as the answer");
 #line 16
-  testRunner.And("I should see the time of the application");
+            testRunner.And("I should see the time of the application");
 #line 17
-  testRunner.But("the state of the application should not be Stopped");
+            testRunner.But("the state of the application should not be Stopped");
 #line hidden
             this.ScenarioCleanup();
         }
-        
+
         [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.8.1.0")]
         [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
         public class FixtureData : System.IDisposable
         {
-            
             public FixtureData()
             {
-                ShowingBasicGherkinSyntaxFeature.FeatureSetup();
+                FeatureSetup();
             }
-            
+
+            #region IDisposable Members
+
             void System.IDisposable.Dispose()
             {
-                ShowingBasicGherkinSyntaxFeature.FeatureTearDown();
+                FeatureTearDown();
             }
+
+            #endregion
         }
     }
 }
+
 #pragma warning restore
+
 #endregion

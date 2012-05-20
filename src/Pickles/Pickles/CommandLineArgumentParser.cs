@@ -20,10 +20,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NDesk.Options;
 using System.IO;
+using System.Reflection;
+using NDesk.Options;
 
 namespace Pickles
 {
@@ -40,43 +39,43 @@ namespace Pickles
         public const string HELP_TEST_RESULTS_FILE = "the path to the linked test results file";
 
         private readonly OptionSet options;
+        private string documentationFormat;
         private string featureDirectory;
-        private string outputDirectory;
-        private bool versionRequested;
         private bool helpRequested;
-        private string testResultsFile;
-        private string testResultsFormat;
+        private string language;
+        private string outputDirectory;
         private string systemUnderTestName;
         private string systemUnderTestVersion;
-        private string language;
-        private string documentationFormat;
+        private string testResultsFile;
+        private string testResultsFormat;
+        private bool versionRequested;
 
         public CommandLineArgumentParser()
         {
-            this.options = new OptionSet
-            {
-   	            { "f|feature-directory=", HELP_FEATURE_DIR, v => this.featureDirectory = v },
-   	            { "o|output-directory=", HELP_OUTPUT_DIR, v => this.outputDirectory = v },
-   	            { "trfmt|test-results-format=", HELP_TEST_RESULTS_FORMAT, v => this.testResultsFormat = v },
-   	            { "lr|link-results-file=", HELP_TEST_RESULTS_FILE, v => this.testResultsFile = v },
-   	            { "sn|system-under-test-name=", HELP_RESULT_FILE, v => this.systemUnderTestName = v },
-   	            { "sv|system-under-test-version=", HELP_SUT_NAME, v => this.systemUnderTestVersion = v },
-                { "l|language=", HELP_LANGUAGE_FEATURE_FILES, v => this.language = v },
-                { "df|documentation-format=", HELP_DOCUMENTATION_FORMAT, v => this.documentationFormat = v },
-   	            { "v|version",  v => versionRequested = v != null },
-   	            { "h|?|help",   v => helpRequested = v != null }
-            };
+            options = new OptionSet
+                          {
+                              {"f|feature-directory=", HELP_FEATURE_DIR, v => featureDirectory = v},
+                              {"o|output-directory=", HELP_OUTPUT_DIR, v => outputDirectory = v},
+                              {"trfmt|test-results-format=", HELP_TEST_RESULTS_FORMAT, v => testResultsFormat = v},
+                              {"lr|link-results-file=", HELP_TEST_RESULTS_FILE, v => testResultsFile = v},
+                              {"sn|system-under-test-name=", HELP_RESULT_FILE, v => systemUnderTestName = v},
+                              {"sv|system-under-test-version=", HELP_SUT_NAME, v => systemUnderTestVersion = v},
+                              {"l|language=", HELP_LANGUAGE_FEATURE_FILES, v => language = v},
+                              {"df|documentation-format=", HELP_DOCUMENTATION_FORMAT, v => documentationFormat = v},
+                              {"v|version", v => versionRequested = v != null},
+                              {"h|?|help", v => helpRequested = v != null}
+                          };
         }
 
         private void DisplayVersion(TextWriter stdout)
         {
-            stdout.WriteLine("Pickles version {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
+            stdout.WriteLine("Pickles version {0}", Assembly.GetExecutingAssembly().GetName().Version);
         }
 
         private void DisplayHelp(TextWriter stdout)
         {
             DisplayVersion(stdout);
-            this.options.WriteOptionDescriptions(stdout);
+            options.WriteOptionDescriptions(stdout);
         }
 
         public bool Parse(string[] args, Configuration configuration, TextWriter stdout)
@@ -84,7 +83,7 @@ namespace Pickles
             configuration.FeatureFolder = new DirectoryInfo(Directory.GetCurrentDirectory());
             configuration.OutputFolder = new DirectoryInfo(Environment.GetEnvironmentVariable("TEMP"));
 
-            var extra = this.options.Parse(args);
+            List<string> extra = options.Parse(args);
 
             if (versionRequested)
             {
@@ -97,14 +96,20 @@ namespace Pickles
                 return false;
             }
 
-            if (!string.IsNullOrEmpty(this.featureDirectory)) configuration.FeatureFolder = new DirectoryInfo(this.featureDirectory);
-            if (!string.IsNullOrEmpty(this.outputDirectory)) configuration.OutputFolder = new DirectoryInfo(this.outputDirectory);
-            if (!string.IsNullOrEmpty(this.testResultsFormat)) configuration.TestResultsFormat = (TestResultsFormat)Enum.Parse(typeof(TestResultsFormat), this.testResultsFormat, true);
-            if (!string.IsNullOrEmpty(this.testResultsFile)) configuration.TestResultsFile = new FileInfo(this.testResultsFile);
-            if (!string.IsNullOrEmpty(this.systemUnderTestName)) configuration.SystemUnderTestName = this.systemUnderTestName;
-            if (!string.IsNullOrEmpty(this.systemUnderTestVersion)) configuration.SystemUnderTestVersion = this.systemUnderTestVersion;
-            if (!string.IsNullOrEmpty(this.language)) configuration.Language = this.language;
-            if (!string.IsNullOrEmpty(this.documentationFormat)) configuration.DocumentationFormat = (DocumentationFormat)Enum.Parse(typeof(DocumentationFormat), this.documentationFormat, true);
+            if (!string.IsNullOrEmpty(featureDirectory))
+                configuration.FeatureFolder = new DirectoryInfo(featureDirectory);
+            if (!string.IsNullOrEmpty(outputDirectory)) configuration.OutputFolder = new DirectoryInfo(outputDirectory);
+            if (!string.IsNullOrEmpty(testResultsFormat))
+                configuration.TestResultsFormat =
+                    (TestResultsFormat) Enum.Parse(typeof (TestResultsFormat), testResultsFormat, true);
+            if (!string.IsNullOrEmpty(testResultsFile)) configuration.TestResultsFile = new FileInfo(testResultsFile);
+            if (!string.IsNullOrEmpty(systemUnderTestName)) configuration.SystemUnderTestName = systemUnderTestName;
+            if (!string.IsNullOrEmpty(systemUnderTestVersion))
+                configuration.SystemUnderTestVersion = systemUnderTestVersion;
+            if (!string.IsNullOrEmpty(language)) configuration.Language = language;
+            if (!string.IsNullOrEmpty(documentationFormat))
+                configuration.DocumentationFormat =
+                    (DocumentationFormat) Enum.Parse(typeof (DocumentationFormat), documentationFormat, true);
 
             return true;
         }

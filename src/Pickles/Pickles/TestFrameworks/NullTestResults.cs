@@ -18,10 +18,7 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Pickles.Parser;
 
 namespace Pickles.TestFrameworks
 {
@@ -29,26 +26,26 @@ namespace Pickles.TestFrameworks
     {
         #region ITestResults Members
 
-        public TestResult GetExampleResult(Parser.ScenarioOutline scenarioOutline, string[] row)
+        public TestResult GetFeatureResult(Feature feature)
         {
             return new TestResult();
         }
 
-        public TestResult GetFeatureResult(Parser.Feature feature)
+        public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
         {
             return new TestResult();
         }
 
-        public TestResult GetScenarioOutlineResult(Parser.ScenarioOutline scenarioOutline)
-        {
-            return new TestResult();
-        }
-
-        public TestResult GetScenarioResult(Parser.Scenario scenario)
+        public TestResult GetScenarioResult(Scenario scenario)
         {
             return new TestResult();
         }
 
         #endregion
+
+        public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] row)
+        {
+            return new TestResult();
+        }
     }
 }

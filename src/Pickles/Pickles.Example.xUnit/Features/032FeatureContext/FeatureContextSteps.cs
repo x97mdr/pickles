@@ -11,8 +11,8 @@ namespace Specs._032FeatureContext
         [When(@"I store a person called (.*) in the current FeatureContext")]
         public void StorePersonInFeatureContext(string personName)
         {
-            var p = new Person { Name = personName };
-            FeatureContext.Current.Set<Person>(p);
+            var p = new Person {Name = personName};
+            FeatureContext.Current.Set(p);
             FeatureContext.Current.Set(p, "PersonKey");
         }
 
@@ -26,6 +26,34 @@ namespace Specs._032FeatureContext
             pByKey.Should().Not.Be.Null();
         }
 
+        [When(@"I execute any scenario in the feature")]
+        public void ExecuteAnyScenario()
+        {
+        }
+
+        [Then(@"the FeatureInfo contains the following information")]
+        public void FeatureInfoContainsInterestingInformation(Table table)
+        {
+            // Create our small DTO for the info from the step
+            var fromStep = table.CreateInstance<FeatureInformation>();
+            fromStep.Tags = table.Rows[0]["Value"].Split(',');
+
+            // Short-hand to the feature information
+            FeatureInfo fi = FeatureContext.Current.FeatureInfo;
+
+            // Assertions
+            fi.Title.Should().Equal(fromStep.Title);
+            fi.GenerationTargetLanguage.Should().Equal(fromStep.TargetLanguage);
+            fi.Description.Should().StartWith(fromStep.Description);
+            fi.Language.IetfLanguageTag.Should().Equal(fromStep.Language);
+            for (int i = 0; i < fi.Tags.Length - 1; i++)
+            {
+                fi.Tags[i].Should().Equal(fromStep.Tags[i]);
+            }
+        }
+
+        #region Nested type: FeatureInformation
+
         private class FeatureInformation
         {
             public string Title { get; set; }
@@ -35,29 +63,6 @@ namespace Specs._032FeatureContext
             public string[] Tags { get; set; }
         }
 
-        [When(@"I execute any scenario in the feature")]
-        public void ExecuteAnyScenario() { }
-
-        [Then(@"the FeatureInfo contains the following information")]
-        public void FeatureInfoContainsInterestingInformation(Table table)
-        {
-            // Create our small DTO for the info from the step
-            var fromStep =  table.CreateInstance<FeatureInformation>();
-            fromStep.Tags = table.Rows[0]["Value"].Split(',');
-
-            // Short-hand to the feature information
-            var fi = FeatureContext.Current.FeatureInfo;
-            
-            // Assertions
-            fi.Title.Should().Equal(fromStep.Title);
-            fi.GenerationTargetLanguage.Should().Equal(fromStep.TargetLanguage);
-            fi.Description.Should().StartWith(fromStep.Description);
-            fi.Language.IetfLanguageTag.Should().Equal(fromStep.Language);
-            for (var i = 0; i < fi.Tags.Length - 1; i++)
-            {
-                fi.Tags[i].Should().Equal(fromStep.Tags[i]);
-            }
-
-        }
+        #endregion
     }
 }

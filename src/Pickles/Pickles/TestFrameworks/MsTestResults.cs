@@ -19,6 +19,8 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
@@ -37,16 +39,72 @@ namespace Pickles.TestFrameworks
             this.configuration = configuration;
             if (configuration.HasTestResults)
             {
-                this.resultsDocument = ReadResultsFile();
+                resultsDocument = ReadResultsFile();
             }
         }
+
+        #region ITestResults Members
+
+        public TestResult GetFeatureResult(Feature feature)
+        {
+            IEnumerable<Guid> featureExecutionIds =
+                from unitTest in resultsDocument.Root.Descendants(ns + "UnitTest")
+                let property = unitTest.Element(ns + "Properties").Element(ns + "Property")
+                let key = property.Element(ns + "Key")
+                let value = property.Element(ns + "Value")
+                where key.Value == "FeatureTitle" && value.Value == feature.Name
+                select new Guid(unitTest.Element(ns + "Execution").Attribute("id").Value);
+
+            bool wasExecuted = true;
+            bool wasSuccessful = true;
+            foreach (Guid featureExecutionId in featureExecutionIds)
+            {
+                TestResult result = GetExecutionResult(featureExecutionId);
+                if (!result.WasExecuted) wasExecuted = false;
+                if (!result.WasSuccessful) wasSuccessful = false;
+            }
+
+            return new TestResult {WasExecuted = wasExecuted, WasSuccessful = wasSuccessful};
+        }
+
+        public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
+        {
+            IEnumerable<Guid> scenarioOutlineExecutionIds =
+                from unitTest in resultsDocument.Root.Descendants(ns + "UnitTest")
+                let property = unitTest.Element(ns + "Properties").Element(ns + "Property")
+                let key = property.Element(ns + "Key")
+                let value = property.Element(ns + "Value")
+                where key.Value == "FeatureTitle" && value.Value == scenarioOutline.Feature.Name
+                let description = unitTest.Element(ns + "Description")
+                where description.Value == scenarioOutline.Name
+                select new Guid(unitTest.Element(ns + "Execution").Attribute("id").Value);
+
+            bool wasExecuted = true;
+            bool wasSuccessful = true;
+            foreach (Guid scenarioOutlineExecutionId in scenarioOutlineExecutionIds)
+            {
+                TestResult result = GetExecutionResult(scenarioOutlineExecutionId);
+                if (!result.WasExecuted) wasExecuted = false;
+                if (!result.WasSuccessful) wasSuccessful = false;
+            }
+
+            return new TestResult {WasExecuted = wasExecuted, WasSuccessful = wasSuccessful};
+        }
+
+        public TestResult GetScenarioResult(Scenario scenario)
+        {
+            Guid scenarioExecutionId = GetScenarioExecutionId(scenario);
+            return GetExecutionResult(scenarioExecutionId);
+        }
+
+        #endregion
 
         private XDocument ReadResultsFile()
         {
             XDocument document;
-            using (var stream = configuration.TestResultsFile.OpenRead())
+            using (FileStream stream = configuration.TestResultsFile.OpenRead())
             {
-                var xmlReader = XmlReader.Create(stream);
+                XmlReader xmlReader = XmlReader.Create(stream);
                 document = XDocument.Load(xmlReader);
                 stream.Close();
             }
@@ -55,8 +113,8 @@ namespace Pickles.TestFrameworks
 
         private Guid GetScenarioExecutionId(Scenario scenario)
         {
-            var idString =
-                (from unitTest in this.resultsDocument.Root.Descendants(ns + "UnitTest")
+            string idString =
+                (from unitTest in resultsDocument.Root.Descendants(ns + "UnitTest")
                  let properties = unitTest.Element(ns + "Properties")
                  let property = properties.Element(ns + "Property")
                  let key = property.Element(ns + "Key")
@@ -72,8 +130,8 @@ namespace Pickles.TestFrameworks
 
         private TestResult GetExecutionResult(Guid scenarioExecutionId)
         {
-            var resultText =
-                (from unitTestResult in this.resultsDocument.Root.Descendants(ns + "UnitTestResult")
+            string resultText =
+                (from unitTestResult in resultsDocument.Root.Descendants(ns + "UnitTestResult")
                  let executionId = new Guid(unitTestResult.Attribute("executionId").Value)
                  where scenarioExecutionId == executionId
                  let outcome = unitTestResult.Attribute("outcome").Value
@@ -82,68 +140,12 @@ namespace Pickles.TestFrameworks
             switch (resultText.ToLowerInvariant())
             {
                 case "passed":
-                    return new TestResult { WasExecuted = true, WasSuccessful = true };
+                    return new TestResult {WasExecuted = true, WasSuccessful = true};
                 case "failed":
-                    return new TestResult { WasExecuted = true, WasSuccessful = false };
+                    return new TestResult {WasExecuted = true, WasSuccessful = false};
                 default:
-                    return new TestResult { WasExecuted = false, WasSuccessful = false };
+                    return new TestResult {WasExecuted = false, WasSuccessful = false};
             }
         }
-
-        #region ITestResults Members
-
-        public TestResult GetFeatureResult(Parser.Feature feature)
-        {
-            var featureExecutionIds =
-                from unitTest in this.resultsDocument.Root.Descendants(ns + "UnitTest")
-                let property = unitTest.Element(ns + "Properties").Element(ns + "Property")
-                let key = property.Element(ns + "Key")
-                let value = property.Element(ns + "Value")
-                where key.Value == "FeatureTitle" && value.Value == feature.Name
-                select new Guid(unitTest.Element(ns + "Execution").Attribute("id").Value);
-
-            bool wasExecuted = true;
-            bool wasSuccessful = true;
-            foreach (var featureExecutionId in featureExecutionIds)
-            {
-                var result = GetExecutionResult(featureExecutionId);
-                if (!result.WasExecuted) wasExecuted = false;
-                if (!result.WasSuccessful) wasSuccessful = false;
-            }
-
-            return new TestResult { WasExecuted = wasExecuted, WasSuccessful = wasSuccessful };
-        }
-
-        public TestResult GetScenarioOutlineResult(Parser.ScenarioOutline scenarioOutline)
-        {
-            var scenarioOutlineExecutionIds =
-                from unitTest in this.resultsDocument.Root.Descendants(ns + "UnitTest")
-                let property = unitTest.Element(ns + "Properties").Element(ns + "Property")
-                let key = property.Element(ns + "Key")
-                let value = property.Element(ns + "Value")
-                where key.Value == "FeatureTitle" && value.Value == scenarioOutline.Feature.Name
-                let description = unitTest.Element(ns + "Description")
-                where description.Value == scenarioOutline.Name
-                select new Guid(unitTest.Element(ns + "Execution").Attribute("id").Value);
-
-            bool wasExecuted = true;
-            bool wasSuccessful = true;
-            foreach (var scenarioOutlineExecutionId in scenarioOutlineExecutionIds)
-            {
-                var result = GetExecutionResult(scenarioOutlineExecutionId);
-                if (!result.WasExecuted) wasExecuted = false;
-                if (!result.WasSuccessful) wasSuccessful = false;
-            }
-
-            return new TestResult { WasExecuted = wasExecuted, WasSuccessful = wasSuccessful };
-        }
-
-        public TestResult GetScenarioResult(Parser.Scenario scenario)
-        {
-            Guid scenarioExecutionId = GetScenarioExecutionId(scenario);
-            return GetExecutionResult(scenarioExecutionId);
-        }
-
-        #endregion
     }
 }

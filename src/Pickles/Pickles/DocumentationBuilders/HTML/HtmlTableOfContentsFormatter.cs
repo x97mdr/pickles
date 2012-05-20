@@ -19,11 +19,11 @@
 #endregion
 
 using System;
-using System.Xml.Linq;
 using System.IO;
+using System.Xml.Linq;
 using NGenerics.DataStructures.Trees;
-using Pickles.Extensions;
 using Pickles.DirectoryCrawler;
+using Pickles.Extensions;
 
 namespace Pickles.DocumentationBuilders.HTML
 {
@@ -119,7 +119,8 @@ namespace Pickles.DocumentationBuilders.HTML
             }
             else
             {
-                xElement.Add(new XElement(xmlns + "a", new XAttribute("href", childNode.Data.GetRelativeUriTo(file)), nodeText));
+                xElement.Add(new XElement(xmlns + "a", new XAttribute("href", childNode.Data.GetRelativeUriTo(file)),
+                                          nodeText));
             }
 
             return xElement;
@@ -135,7 +136,7 @@ namespace Pickles.DocumentationBuilders.HTML
 
         public XElement Format(Uri file, GeneralTree<IDirectoryTreeNode> features, DirectoryInfo outputFolder)
         {
-            var xmlns = HtmlNamespace.Xhtml;
+            XNamespace xmlns = HtmlNamespace.Xhtml;
 
             XElement ul = BuildListItems(xmlns, file, features);
             ul.AddFirst(AddNodeForHome(xmlns, file, outputFolder));

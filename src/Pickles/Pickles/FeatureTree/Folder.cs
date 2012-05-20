@@ -27,61 +27,65 @@ namespace Pickles.FeatureTree
 {
     public class Folder : ITreeItem
     {
-      private readonly string folderName;
+        private readonly string folderName;
 
-      private readonly Folder parentFolder;
+        private readonly Folder parentFolder;
 
-      public Folder(string folderName)
-        : this(folderName, null)
-      {
-      }
-
-      public Folder(string folderName, Folder parentFolder)
-      {
-        if (folderName.IsNullOrWhiteSpace()) throw new ArgumentNullException("folderName");
-
-        this.folderName = folderName;
-        this.parentFolder = parentFolder;
-      }
-
-      public string Name
-      {
-        get { return this.folderName; }
-      }
-
-      public ITreeItem Parent
-      {
-        get { return this.ParentFolder; }
-      }
-
-      public Folder ParentFolder
-      {
-        get { return this.parentFolder; }
-      }
-
-      public ITreeItem FindCommonAncestor(ITreeItem other)
-      {
-        if (other == null) throw new ArgumentNullException("other");
-
-        if (this.Parent == other)
+        public Folder(string folderName)
+            : this(folderName, null)
         {
-          return this.Parent;
         }
-        else
+
+        public Folder(string folderName, Folder parentFolder)
         {
-          var myHierarchy = TreeItemHelper.CreateHierarchy(this);
+            if (folderName.IsNullOrWhiteSpace()) throw new ArgumentNullException("folderName");
 
-          var othersHierarchy = TreeItemHelper.CreateHierarchy(other);
-
-          IEnumerable<ITreeItem> intersection = myHierarchy.Intersect(othersHierarchy);
-
-          return intersection.FirstOrDefault();
+            this.folderName = folderName;
+            this.parentFolder = parentFolder;
         }
-      }
 
-      public string GetRelativePathFromHereToThere(ITreeItem there)
-      {
-        throw new NotImplementedException();
-      }
+        public Folder ParentFolder
+        {
+            get { return parentFolder; }
+        }
+
+        #region ITreeItem Members
+
+        public string Name
+        {
+            get { return folderName; }
+        }
+
+        public ITreeItem Parent
+        {
+            get { return ParentFolder; }
+        }
+
+        public ITreeItem FindCommonAncestor(ITreeItem other)
+        {
+            if (other == null) throw new ArgumentNullException("other");
+
+            if (Parent == other)
+            {
+                return Parent;
+            }
+            else
+            {
+                List<ITreeItem> myHierarchy = TreeItemHelper.CreateHierarchy(this);
+
+                List<ITreeItem> othersHierarchy = TreeItemHelper.CreateHierarchy(other);
+
+                IEnumerable<ITreeItem> intersection = myHierarchy.Intersect(othersHierarchy);
+
+                return intersection.FirstOrDefault();
+            }
+        }
+
+        public string GetRelativePathFromHereToThere(ITreeItem there)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

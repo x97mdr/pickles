@@ -39,14 +39,15 @@ namespace Pickles.DocumentationBuilders.Excel
             worksheet.Cell(row++, column).Value = directoryName;
         }
 
-        public void BuildTableOfContents(XLWorkbook workbook, IXLWorksheet worksheet, ref int row, int column, GeneralTree<IDirectoryTreeNode> features)
+        public void BuildTableOfContents(XLWorkbook workbook, IXLWorksheet worksheet, ref int row, int column,
+                                         GeneralTree<IDirectoryTreeNode> features)
         {
             foreach (var childNode in features.ChildNodes)
             {
                 var featureChildNode = childNode.Data as FeatureDirectoryTreeNode;
                 if (featureChildNode != null)
                 {
-                    var featureWorksheet =
+                    IXLWorksheet featureWorksheet =
                         workbook.Worksheets.SingleOrDefault(
                             sheet => sheet.Cell("A1").Value.ToString() == featureChildNode.Feature.Name);
                     WriteFileCell(worksheet, ref row, column, featureWorksheet);
@@ -61,7 +62,7 @@ namespace Pickles.DocumentationBuilders.Excel
 
         public void Format(XLWorkbook workbook, GeneralTree<IDirectoryTreeNode> features)
         {
-            var tocWorksheet = workbook.AddWorksheet("TOC", 0);
+            IXLWorksheet tocWorksheet = workbook.AddWorksheet("TOC", 0);
 
             int startRow = 1;
             BuildTableOfContents(workbook, tocWorksheet, ref startRow, 1, features);

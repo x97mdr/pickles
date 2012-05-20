@@ -21,7 +21,7 @@ namespace Specs.ContextInjection
         [Then("the context was created by the feature with a single context scenario")]
         public void ThenTheContextWasCreatedByTheFeatureWithASingleContextScenario()
         {
-            Assert.That(_context.WasCreatedBy, Is.EqualTo("Feature With A Single Context")); 
+            Assert.That(_context.WasCreatedBy, Is.EqualTo("Feature With A Single Context"));
         }
     }
 }

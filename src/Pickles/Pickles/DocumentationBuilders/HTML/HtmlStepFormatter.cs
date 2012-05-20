@@ -18,10 +18,6 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 using Pickles.Parser;
 
@@ -29,14 +25,16 @@ namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlStepFormatter
     {
-        private readonly HtmlTableFormatter htmlTableFormatter;
         private readonly HtmlMultilineStringFormatter htmlMultilineStringFormatter;
+        private readonly HtmlTableFormatter htmlTableFormatter;
 
         private readonly LanguageServices languageServices;
 
         private readonly XNamespace xmlns;
 
-        public HtmlStepFormatter(HtmlTableFormatter htmlTableFormatter, HtmlMultilineStringFormatter htmlMultilineStringFormatter, LanguageServices languageServices)
+        public HtmlStepFormatter(HtmlTableFormatter htmlTableFormatter,
+                                 HtmlMultilineStringFormatter htmlMultilineStringFormatter,
+                                 LanguageServices languageServices)
         {
             this.htmlTableFormatter = htmlTableFormatter;
             this.htmlMultilineStringFormatter = htmlMultilineStringFormatter;
@@ -47,19 +45,19 @@ namespace Pickles.DocumentationBuilders.HTML
         public XElement Format(Step step)
         {
             var li = new XElement(
-                          xmlns + "li",
-                          new XAttribute("class", "step"),
-                          new XElement(xmlns + "span", new XAttribute("class", "keyword"), step.NativeKeyword),
-                          step.Name);
+                xmlns + "li",
+                new XAttribute("class", "step"),
+                new XElement(xmlns + "span", new XAttribute("class", "keyword"), step.NativeKeyword),
+                step.Name);
 
             if (step.TableArgument != null)
             {
-                li.Add(this.htmlTableFormatter.Format(step.TableArgument));
+                li.Add(htmlTableFormatter.Format(step.TableArgument));
             }
 
             if (!string.IsNullOrEmpty(step.DocStringArgument))
             {
-                li.Add(this.htmlMultilineStringFormatter.Format(step.DocStringArgument));
+                li.Add(htmlMultilineStringFormatter.Format(step.DocStringArgument));
             }
 
             return li;

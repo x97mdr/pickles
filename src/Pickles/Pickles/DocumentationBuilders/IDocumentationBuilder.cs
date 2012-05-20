@@ -18,10 +18,9 @@
 
 #endregion
 
-using System;
-using System.IO;
 using NGenerics.DataStructures.Trees;
 using Pickles.DirectoryCrawler;
+
 namespace Pickles
 {
     public interface IDocumentationBuilder

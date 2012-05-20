@@ -19,14 +19,10 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Pickles.Extensions;
 using Pickles.Parser;
-using System.IO;
-using DocumentFormat.OpenXml;
 
 namespace Pickles.DocumentationBuilders.Word
 {
@@ -42,17 +38,18 @@ namespace Pickles.DocumentationBuilders.Word
         public void Format(Body body, Step step)
         {
             // HACK - We need to generate a custom paragraph here because 2 Run objects are needed to allow for the bolded keyword
-            Paragraph paragraph = new Paragraph(new ParagraphProperties(new ParagraphStyleId { Val = "Normal" }));
+            var paragraph = new Paragraph(new ParagraphProperties(new ParagraphStyleId {Val = "Normal"}));
             paragraph.Append(new Run(new RunProperties(new Bold()), new Text(step.NativeKeyword)));
-            Text nameText = new Text(){ Space = SpaceProcessingModeValues.Preserve };
+            var nameText = new Text {Space = SpaceProcessingModeValues.Preserve};
             nameText.Text = " " + step.Name;
             paragraph.Append(new Run(nameText));
             body.Append(paragraph);
 
             if (!string.IsNullOrEmpty(step.DocStringArgument))
             {
-                var lines = step.DocStringArgument.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-                foreach (var line in lines)
+                string[] lines = step.DocStringArgument.Split(new[] {Environment.NewLine},
+                                                              StringSplitOptions.RemoveEmptyEntries);
+                foreach (string line in lines)
                 {
                     body.GenerateParagraph(line, "Quote");
                 }
@@ -60,7 +57,7 @@ namespace Pickles.DocumentationBuilders.Word
 
             if (step.TableArgument != null)
             {
-                this.wordTableFormatter.Format(body, step.TableArgument);
+                wordTableFormatter.Format(body, step.TableArgument);
             }
         }
     }

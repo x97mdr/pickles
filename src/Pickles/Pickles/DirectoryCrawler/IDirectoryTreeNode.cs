@@ -19,16 +19,18 @@
 #endregion
 
 using System;
+using System.IO;
+
 namespace Pickles.DirectoryCrawler
 {
     public interface IDirectoryTreeNode
     {
-        string GetRelativeUriTo(Uri other);
-        string GetRelativeUriTo(Uri other, string newExtension);
         bool IsContent { get; }
         string Name { get; }
-        System.IO.FileSystemInfo OriginalLocation { get; }
+        FileSystemInfo OriginalLocation { get; }
         Uri OriginalLocationUrl { get; }
         string RelativePathFromRoot { get; }
+        string GetRelativeUriTo(Uri other);
+        string GetRelativeUriTo(Uri other, string newExtension);
     }
 }

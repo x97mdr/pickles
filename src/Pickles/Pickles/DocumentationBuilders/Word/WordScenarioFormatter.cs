@@ -18,10 +18,6 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Pickles.Extensions;
 using Pickles.Parser;
@@ -31,11 +27,12 @@ namespace Pickles.DocumentationBuilders.Word
 {
     public class WordScenarioFormatter
     {
-        private readonly WordStepFormatter wordStepFormatter;
-        private readonly ITestResults nunitResults;
         private readonly Configuration configuration;
+        private readonly ITestResults nunitResults;
+        private readonly WordStepFormatter wordStepFormatter;
 
-        public WordScenarioFormatter(WordStepFormatter wordStepFormatter, Configuration configuration, ITestResults nunitResults)
+        public WordScenarioFormatter(WordStepFormatter wordStepFormatter, Configuration configuration,
+                                     ITestResults nunitResults)
         {
             this.wordStepFormatter = wordStepFormatter;
             this.configuration = configuration;
@@ -44,9 +41,9 @@ namespace Pickles.DocumentationBuilders.Word
 
         public void Format(Body body, Scenario scenario)
         {
-            if (this.configuration.HasTestResults)
+            if (configuration.HasTestResults)
             {
-                var testResult = this.nunitResults.GetScenarioResult(scenario);
+                TestResult testResult = nunitResults.GetScenarioResult(scenario);
                 if (testResult.WasExecuted && testResult.WasSuccessful)
                 {
                     body.GenerateParagraph("Passed", "Passed");
@@ -60,9 +57,9 @@ namespace Pickles.DocumentationBuilders.Word
             body.GenerateParagraph(scenario.Name, "Heading2");
             if (!string.IsNullOrEmpty(scenario.Description)) body.GenerateParagraph(scenario.Description, "Normal");
 
-            foreach (var step in scenario.Steps)
+            foreach (Step step in scenario.Steps)
             {
-                this.wordStepFormatter.Format(body, step);
+                wordStepFormatter.Format(body, step);
             }
         }
     }

@@ -18,49 +18,46 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 using Pickles.Parser;
-using Pickles.TestFrameworks;
 
 namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlScenarioFormatter
     {
-        private readonly XNamespace xmlns;
-        private readonly HtmlStepFormatter htmlStepFormatter;
         private readonly HtmlDescriptionFormatter htmlDescriptionFormatter;
         private readonly HtmlImageResultFormatter htmlImageResultFormatter;
+        private readonly HtmlStepFormatter htmlStepFormatter;
+        private readonly XNamespace xmlns;
 
         public HtmlScenarioFormatter(
-            HtmlStepFormatter htmlStepFormatter, 
+            HtmlStepFormatter htmlStepFormatter,
             HtmlDescriptionFormatter htmlDescriptionFormatter,
             HtmlImageResultFormatter htmlImageResultFormatter)
         {
             this.htmlStepFormatter = htmlStepFormatter;
             this.htmlDescriptionFormatter = htmlDescriptionFormatter;
             this.htmlImageResultFormatter = htmlImageResultFormatter;
-            this.xmlns = HtmlNamespace.Xhtml;
+            xmlns = HtmlNamespace.Xhtml;
         }
 
         public XElement Format(Scenario scenario, int id)
         {
             return new XElement(xmlns + "li",
-                       new XAttribute("class", "scenario"),
-                       this.htmlImageResultFormatter.Format(scenario),
-                       new XElement(xmlns + "div",
-                           new XAttribute("class", "scenario-heading"),
-                           new XElement(xmlns + "h2", scenario.Name),
-                           this.htmlDescriptionFormatter.Format(scenario.Description)
-                       ),
-                       new XElement(xmlns + "div",
-                           new XAttribute("class", "steps"),
-                           new XElement(xmlns + "ul", scenario.Steps.Select(step => this.htmlStepFormatter.Format(step)))
-                       )
-                   );
+                                new XAttribute("class", "scenario"),
+                                htmlImageResultFormatter.Format(scenario),
+                                new XElement(xmlns + "div",
+                                             new XAttribute("class", "scenario-heading"),
+                                             new XElement(xmlns + "h2", scenario.Name),
+                                             htmlDescriptionFormatter.Format(scenario.Description)
+                                    ),
+                                new XElement(xmlns + "div",
+                                             new XAttribute("class", "steps"),
+                                             new XElement(xmlns + "ul",
+                                                          scenario.Steps.Select(step => htmlStepFormatter.Format(step)))
+                                    )
+                );
         }
     }
 }

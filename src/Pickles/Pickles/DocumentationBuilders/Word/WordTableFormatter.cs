@@ -18,11 +18,8 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using DocumentFormat.OpenXml.Wordprocessing;
+using Table = Pickles.Parser.Table;
 using WordTable = DocumentFormat.OpenXml.Wordprocessing.Table;
 
 namespace Pickles.DocumentationBuilders.Word
@@ -31,37 +28,37 @@ namespace Pickles.DocumentationBuilders.Word
     {
         private static TableProperties GenerateTableProperties()
         {
-            TableProperties tableProperties1 = new TableProperties();
-            TableStyle tableStyle1 = new TableStyle() { Val = "TableGrid" };
-            TableWidth tableWidth1 = new TableWidth() { Width = "0", Type = TableWidthUnitValues.Auto };
-            TableLook tableLook1 = new TableLook() { Val = "04A0" };
+            var tableProperties1 = new TableProperties();
+            var tableStyle1 = new TableStyle {Val = "TableGrid"};
+            var tableWidth1 = new TableWidth {Width = "0", Type = TableWidthUnitValues.Auto};
+            var tableLook1 = new TableLook {Val = "04A0"};
 
             tableProperties1.Append(tableStyle1);
             tableProperties1.Append(tableWidth1);
             tableProperties1.Append(tableLook1);
             return tableProperties1;
         }
-        
-        public void Format(Body body, Pickles.Parser.Table table)
+
+        public void Format(Body body, Table table)
         {
-            WordTable wordTable = new WordTable();
+            var wordTable = new WordTable();
             wordTable.Append(GenerateTableProperties());
-            var headerRow = new DocumentFormat.OpenXml.Wordprocessing.TableRow();
-            foreach (var cell in table.HeaderRow)
+            var headerRow = new TableRow();
+            foreach (string cell in table.HeaderRow)
             {
-                var wordCell = new DocumentFormat.OpenXml.Wordprocessing.TableCell();
+                var wordCell = new TableCell();
                 wordCell.Append(new Paragraph(new Run(new Text(cell))));
                 headerRow.Append(wordCell);
             }
             wordTable.Append(headerRow);
 
-            foreach (var row in table.DataRows)
+            foreach (Parser.TableRow row in table.DataRows)
             {
-                var wordRow = new DocumentFormat.OpenXml.Wordprocessing.TableRow();
+                var wordRow = new TableRow();
 
-                foreach (var cell in row)
+                foreach (string cell in row)
                 {
-                    var wordCell = new DocumentFormat.OpenXml.Wordprocessing.TableCell();
+                    var wordCell = new TableCell();
                     wordCell.Append(new Paragraph(new Run(new Text(cell))));
                     wordRow.Append(wordCell);
                 }

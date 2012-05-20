@@ -19,36 +19,29 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.IO;
 using Pickles.Extensions;
 using Pickles.Parser;
-using System.IO;
 
 namespace Pickles.DirectoryCrawler
 {
     public class FeatureDirectoryTreeNode : IDirectoryTreeNode
     {
-        public Feature Feature
-        {
-            get;
-            private set;
-        }
-
         public FeatureDirectoryTreeNode(FileSystemInfo location, string relativePathFromRoot, Feature feature)
         {
-            this.OriginalLocation = location;
-            this.OriginalLocationUrl = location.ToUri();
-            this.RelativePathFromRoot = relativePathFromRoot;
-            this.Feature = feature;
+            OriginalLocation = location;
+            OriginalLocationUrl = location.ToUri();
+            RelativePathFromRoot = relativePathFromRoot;
+            Feature = feature;
         }
 
-        #region IItemNode Members
+        public Feature Feature { get; private set; }
+
+        #region IDirectoryTreeNode Members
 
         public string GetRelativeUriTo(Uri other, string newExtension)
         {
-          return other.GetUriForTargetRelativeToMe(this.OriginalLocation, newExtension);
+            return other.GetUriForTargetRelativeToMe(OriginalLocation, newExtension);
         }
 
         public string GetRelativeUriTo(Uri other)
@@ -66,23 +59,11 @@ namespace Pickles.DirectoryCrawler
             get { return Feature.Name; }
         }
 
-        public System.IO.FileSystemInfo OriginalLocation
-        {
-            get;
-            private set;
-        }
+        public FileSystemInfo OriginalLocation { get; private set; }
 
-        public Uri OriginalLocationUrl
-        {
-            get;
-            private set;
-        }
+        public Uri OriginalLocationUrl { get; private set; }
 
-        public string RelativePathFromRoot
-        {
-            get;
-            private set;
-        }
+        public string RelativePathFromRoot { get; private set; }
 
         #endregion
     }

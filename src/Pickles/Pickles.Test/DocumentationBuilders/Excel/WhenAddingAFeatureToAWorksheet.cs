@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ClosedXML.Excel;
-using Ninject;
+﻿using ClosedXML.Excel;
 using NUnit.Framework;
+using Ninject;
 using Pickles.DocumentationBuilders.Excel;
 using Pickles.Parser;
 using Should;
@@ -18,11 +14,16 @@ namespace Pickles.Test.DocumentationBuilders
         public void Then_feature_is_added_successfully()
         {
             var excelFeatureFormatter = Kernel.Get<ExcelFeatureFormatter>();
-            var feature = new Feature() { Name = "Test Feature", Description = "In order to test this feature,\nAs a developer\nI want to test this feature" }; 
+            var feature = new Feature
+                              {
+                                  Name = "Test Feature",
+                                  Description =
+                                      "In order to test this feature,\nAs a developer\nI want to test this feature"
+                              };
 
             using (var workbook = new XLWorkbook())
             {
-                var worksheet = workbook.AddWorksheet("SHEET1");
+                IXLWorksheet worksheet = workbook.AddWorksheet("SHEET1");
                 excelFeatureFormatter.Format(worksheet, feature);
 
                 worksheet.Cell("A1").Value.ShouldEqual(feature.Name);

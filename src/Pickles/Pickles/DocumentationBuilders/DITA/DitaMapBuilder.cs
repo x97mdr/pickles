@@ -18,15 +18,10 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
-using NGenerics.Patterns.Visitor;
-using Pickles.DirectoryCrawler;
-using NGenerics.DataStructures.Trees;
 using System.IO;
+using System.Xml.Linq;
+using NGenerics.DataStructures.Trees;
+using Pickles.DirectoryCrawler;
 
 namespace Pickles.DocumentationBuilders.DITA
 {
@@ -46,7 +41,9 @@ namespace Pickles.DocumentationBuilders.DITA
             XElement container;
             if (features.Data.IsContent)
             {
-                container = new XElement("topicref", new XAttribute("href", this.ditaMapPathGenerator.GeneratePathToFeature(features.Data)));
+                container = new XElement("topicref",
+                                         new XAttribute("href",
+                                                        ditaMapPathGenerator.GeneratePathToFeature(features.Data)));
             }
             else
             {
@@ -57,7 +54,9 @@ namespace Pickles.DocumentationBuilders.DITA
             {
                 if (childNode.Data.IsContent)
                 {
-                    container.Add(new XElement("topicref", new XAttribute("href", this.ditaMapPathGenerator.GeneratePathToFeature(childNode.Data))));
+                    container.Add(new XElement("topicref",
+                                               new XAttribute("href",
+                                                              ditaMapPathGenerator.GeneratePathToFeature(childNode.Data))));
                 }
                 else
                 {
@@ -68,11 +67,13 @@ namespace Pickles.DocumentationBuilders.DITA
             return container;
         }
 
-        public void Build(GeneralTree<DirectoryCrawler.IDirectoryTreeNode> features)
+        public void Build(GeneralTree<IDirectoryTreeNode> features)
         {
-            XElement map = new XElement("map", new XAttribute("title", "Features"), new XAttribute("id", "features"), BuildListItems(features));
-            XDocument document = new XDocument(new XDocumentType("map", "-//OASIS//DTD DITA Map//EN", "map.dtd", string.Empty), map);
-            document.Save(Path.Combine(this.configuration.OutputFolder.FullName, "features.ditamap"));
+            var map = new XElement("map", new XAttribute("title", "Features"), new XAttribute("id", "features"),
+                                   BuildListItems(features));
+            var document = new XDocument(
+                new XDocumentType("map", "-//OASIS//DTD DITA Map//EN", "map.dtd", string.Empty), map);
+            document.Save(Path.Combine(configuration.OutputFolder.FullName, "features.ditamap"));
         }
     }
 }

@@ -1,13 +1,11 @@
 ﻿using System.IO;
-using Ninject;
+using NGenerics.DataStructures.Trees;
 using NUnit.Framework;
+using Ninject;
 using Pickles.DirectoryCrawler;
 using Pickles.DocumentationBuilders.JSON;
-using Should.Fluent;
 using Pickles.Test.Helpers;
-using System;
-using Pickles.TestFrameworks;
-
+using Should.Fluent;
 
 namespace Pickles.Test.Formatters.JSON
 {
@@ -16,23 +14,23 @@ namespace Pickles.Test.Formatters.JSON
     {
         private const string ROOT_PATH = @"FakeFolderStructures";
         private const string OUTPUT_DIRECTORY = @"JSONFeatureOutput";
-        private string filePath = Path.Combine(OUTPUT_DIRECTORY, JSONDocumentationBuilder.JS_FILE_NAME);
+        private readonly string filePath = Path.Combine(OUTPUT_DIRECTORY, JSONDocumentationBuilder.JS_FILE_NAME);
 
         [TestFixtureSetUp]
         public void Setup()
         {
-            var features = Kernel.Get<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
+            GeneralTree<IDirectoryTreeNode> features = Kernel.Get<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
 
             var outputDirectory = new DirectoryInfo(OUTPUT_DIRECTORY);
             if (!outputDirectory.Exists) outputDirectory.Create();
 
             var configuration = new Configuration
                                     {
-                                        OutputFolder = new DirectoryInfo(OUTPUT_DIRECTORY), 
+                                        OutputFolder = new DirectoryInfo(OUTPUT_DIRECTORY),
                                         DocumentationFormat = DocumentationFormat.JSON
                                     };
 
-            
+
             var jsonDocumentationBuilder = new JSONDocumentationBuilder(configuration, null);
             jsonDocumentationBuilder.Build(features);
         }
@@ -40,11 +38,11 @@ namespace Pickles.Test.Formatters.JSON
         [TestFixtureTearDown]
         public void TearDown()
         {
-          //Cleanup output folder
-          if (Directory.Exists(OUTPUT_DIRECTORY))
-          {
-            Directory.Delete(OUTPUT_DIRECTORY, true);
-          }
+            //Cleanup output folder
+            if (Directory.Exists(OUTPUT_DIRECTORY))
+            {
+                Directory.Delete(OUTPUT_DIRECTORY, true);
+            }
         }
 
 
@@ -57,7 +55,7 @@ namespace Pickles.Test.Formatters.JSON
         [Test]
         public void should_contain_the_features()
         {
-            var content = File.ReadAllText(filePath);
+            string content = File.ReadAllText(filePath);
             content.AssertJSONKeyValue("Name", "Addition");
         }
     }

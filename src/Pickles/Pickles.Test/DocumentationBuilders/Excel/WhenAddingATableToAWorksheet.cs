@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using ClosedXML.Excel;
-using Ninject;
 using NUnit.Framework;
+using Ninject;
 using Pickles.DocumentationBuilders.Excel;
 using Pickles.Parser;
 using Should;
@@ -20,11 +17,12 @@ namespace Pickles.Test.DocumentationBuilders
             var excelTableFormatter = Kernel.Get<ExcelTableFormatter>();
             var table = new Table();
             table.HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4");
-            table.DataRows = new List<TableRow>(new[] { new TableRow("1", "2", "3", "4"), new TableRow("5", "6", "7", "8") });
+            table.DataRows =
+                new List<TableRow>(new[] {new TableRow("1", "2", "3", "4"), new TableRow("5", "6", "7", "8")});
 
             using (var workbook = new XLWorkbook())
             {
-                var worksheet = workbook.AddWorksheet("SHEET1");
+                IXLWorksheet worksheet = workbook.AddWorksheet("SHEET1");
                 int row = 6;
                 excelTableFormatter.Format(worksheet, table, ref row);
 

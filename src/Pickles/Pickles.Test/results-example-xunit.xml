@@ -1,6 +1,12 @@
-﻿<assembly name="c:\dev\pickles-results-harness\Pickles.TestHarness\Pickles.TestHarness.xUnit\bin\Debug\Pickles.TestHarness.xUnit.dll" run-date="2012-01-14" run-time="10:21:10" configFile="c:\dev\pickles-results-harness\Pickles.TestHarness\Pickles.TestHarness.xUnit\bin\Debug\Pickles.TestHarness.xUnit.dll.config" time="0.185" total="4" passed="3" failed="1" skipped="0" environment="32-bit .NET 4.0.30319.239" test-framework="xUnit.net 1.9.0.1566">
+﻿<assembly
+name="c:\dev\pickles-results-harness\Pickles.TestHarness\Pickles.TestHarness.xUnit\bin\Debug\Pickles.TestHarness.xUnit.dll"
+run-date="2012-01-14" run-time="10:21:10"
+configFile="c:\dev\pickles-results-harness\Pickles.TestHarness\Pickles.TestHarness.xUnit\bin\Debug\Pickles.TestHarness.xUnit.dll.config"
+time="0.185" total="4" passed="3" failed="1" skipped="0" environment="32-bit .NET 4.0.30319.239"
+test-framework="xUnit.net 1.9.0.1566">
   <class time="0.185" name="Pickles.TestHarness.xUnit.AdditionFeature" total="4" passed="3" failed="1" skipped="0">
-    <test name="Pickles.TestHarness.xUnit.AdditionFeature.AddTwoNumbers" type="Pickles.TestHarness.xUnit.AdditionFeature" method="AddTwoNumbers" result="Pass" time="0.153">
+    <test name="Pickles.TestHarness.xUnit.AdditionFeature.AddTwoNumbers"
+          type="Pickles.TestHarness.xUnit.AdditionFeature" method="AddTwoNumbers" result="Pass" time="0.153">
       <traits>
         <trait name="Description" value="Add two numbers" />
         <trait name="FeatureTitle" value="Addition" />
@@ -16,7 +22,9 @@
         -&gt; done: Steps.ThenTheResultShouldBePass(120) (0.0s)
       </output>
     </test>
-    <test name="Pickles.TestHarness.xUnit.AdditionFeature.AddingSeveralNumbers(firstNumber: &quot;40&quot;, secondNumber: &quot;50&quot;, result: &quot;90&quot;, exampleTags: System.String[])" type="Pickles.TestHarness.xUnit.AdditionFeature" method="AddingSeveralNumbers" result="Pass" time="0.006">
+    <test
+name="Pickles.TestHarness.xUnit.AdditionFeature.AddingSeveralNumbers(firstNumber: &quot;40&quot;, secondNumber: &quot;50&quot;, result: &quot;90&quot;, exampleTags: System.String[])"
+type="Pickles.TestHarness.xUnit.AdditionFeature" method="AddingSeveralNumbers" result="Pass" time="0.006">
       <traits>
         <trait name="Description" value="Adding several numbers" />
         <trait name="FeatureTitle" value="Addition" />
@@ -32,7 +40,9 @@
         -&gt; done: Steps.ThenTheResultShouldBePass(90) (0.0s)
       </output>
     </test>
-    <test name="Pickles.TestHarness.xUnit.AdditionFeature.AddingSeveralNumbers(firstNumber: &quot;60&quot;, secondNumber: &quot;70&quot;, result: &quot;130&quot;, exampleTags: System.String[])" type="Pickles.TestHarness.xUnit.AdditionFeature" method="AddingSeveralNumbers" result="Pass" time="0.003">
+    <test
+name="Pickles.TestHarness.xUnit.AdditionFeature.AddingSeveralNumbers(firstNumber: &quot;60&quot;, secondNumber: &quot;70&quot;, result: &quot;130&quot;, exampleTags: System.String[])"
+type="Pickles.TestHarness.xUnit.AdditionFeature" method="AddingSeveralNumbers" result="Pass" time="0.003">
       <traits>
         <trait name="Description" value="Adding several numbers" />
         <trait name="FeatureTitle" value="Addition" />
@@ -48,7 +58,8 @@
         -&gt; done: Steps.ThenTheResultShouldBePass(130) (0.0s)
       </output>
     </test>
-    <test name="Pickles.TestHarness.xUnit.AdditionFeature.FailToAddTwoNumbers" type="Pickles.TestHarness.xUnit.AdditionFeature" method="FailToAddTwoNumbers" result="Fail" time="0.023">
+    <test name="Pickles.TestHarness.xUnit.AdditionFeature.FailToAddTwoNumbers"
+          type="Pickles.TestHarness.xUnit.AdditionFeature" method="FailToAddTwoNumbers" result="Fail" time="0.023">
       <traits>
         <trait name="Description" value="Fail to add two numbers" />
         <trait name="FeatureTitle" value="Addition" />
@@ -64,7 +75,9 @@
         -&gt; error: This is a fake failure message
       </output>
       <failure exception-type="System.InvalidOperationException">
-        <message>System.InvalidOperationException : This is a fake failure message</message>
+        <message>
+          System.InvalidOperationException : This is a fake failure message
+        </message>
         <stack-trace>
           at Pickles.TestHarness.xUnit.Steps.ThenTheResultShouldBePass(Int32 result) in C:\dev\pickles-results-harness\Pickles.TestHarness\Pickles.TestHarness.xUnit\Steps.cs:line 26
           at lambda_method(Closure , IContextManager , Int32 )

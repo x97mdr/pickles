@@ -15,7 +15,7 @@ namespace Specs.Svenska
         {
             get
             {
-                if (!ScenarioContext.Current.ContainsKey(TALLISTA_NYCKEL) )
+                if (!ScenarioContext.Current.ContainsKey(TALLISTA_NYCKEL))
                 {
                     ScenarioContext.Current.Set(new List<int>(), TALLISTA_NYCKEL);
                 }
@@ -40,7 +40,7 @@ namespace Specs.Svenska
         [Then(@"ska resultatet vara (\d+)")]
         public void SaSkaResultatetVara(int förväntatResultat)
         {
-            var summa = int.Parse(ScenarioContext.Current[SUMMA_NYCKEL].ToString());
+            int summa = int.Parse(ScenarioContext.Current[SUMMA_NYCKEL].ToString());
             summa.Should().Equal(förväntatResultat);
         }
     }

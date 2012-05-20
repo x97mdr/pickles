@@ -19,6 +19,7 @@
 #endregion
 
 using ClosedXML.Excel;
+using Pickles.Parser;
 
 namespace Pickles.DocumentationBuilders.Excel
 {
@@ -31,15 +32,15 @@ namespace Pickles.DocumentationBuilders.Excel
             this.excelStepFormatter = excelStepFormatter;
         }
 
-        public void Format(IXLWorksheet worksheet, Pickles.Parser.Scenario scenario, ref int row)
+        public void Format(IXLWorksheet worksheet, Scenario scenario, ref int row)
         {
             worksheet.Cell(row, "B").Style.Font.SetBold();
             worksheet.Cell(row++, "B").Value = scenario.Name;
             worksheet.Cell(row++, "C").Value = scenario.Description;
 
-            foreach (var step in scenario.Steps)
+            foreach (Step step in scenario.Steps)
             {
-                this.excelStepFormatter.Format(worksheet, step, ref row);
+                excelStepFormatter.Format(worksheet, step, ref row);
             }
         }
     }

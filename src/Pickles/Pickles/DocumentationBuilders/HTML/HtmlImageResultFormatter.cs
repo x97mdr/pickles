@@ -18,67 +18,70 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using Pickles.TestFrameworks;
 using System.Xml.Linq;
 using Pickles.Parser;
+using Pickles.TestFrameworks;
 
 namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlImageResultFormatter
     {
         private readonly Configuration configuration;
-        private readonly ITestResults results;
         private readonly HtmlResourceSet htmlResourceSet;
+        private readonly ITestResults results;
         private readonly XNamespace xmlns;
 
-        public HtmlImageResultFormatter(Configuration configuration, ITestResults results, HtmlResourceSet htmlResourceSet)
+        public HtmlImageResultFormatter(Configuration configuration, ITestResults results,
+                                        HtmlResourceSet htmlResourceSet)
         {
             this.configuration = configuration;
             this.results = results;
             this.htmlResourceSet = htmlResourceSet;
-            this.xmlns = HtmlNamespace.Xhtml;
+            xmlns = HtmlNamespace.Xhtml;
         }
 
         private string BuildTitle(bool wasSuccessful)
         {
             var sb = new StringBuilder();
             sb.AppendFormat("{0}", wasSuccessful ? "Successful" : "Failed");
-            if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestName) && !string.IsNullOrEmpty(this.configuration.SystemUnderTestVersion))
+            if (!string.IsNullOrEmpty(configuration.SystemUnderTestName) &&
+                !string.IsNullOrEmpty(configuration.SystemUnderTestVersion))
             {
-                sb.AppendFormat(" with {0} version {1}", this.configuration.SystemUnderTestName, this.configuration.SystemUnderTestVersion);
+                sb.AppendFormat(" with {0} version {1}", configuration.SystemUnderTestName,
+                                configuration.SystemUnderTestVersion);
             }
-            else if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestName))
+            else if (!string.IsNullOrEmpty(configuration.SystemUnderTestName))
             {
-                sb.AppendFormat(" with {0}", this.configuration.SystemUnderTestName);
+                sb.AppendFormat(" with {0}", configuration.SystemUnderTestName);
             }
-            else if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestVersion))
+            else if (!string.IsNullOrEmpty(configuration.SystemUnderTestVersion))
             {
-                sb.AppendFormat(" with version {0}", this.configuration.SystemUnderTestVersion);
+                sb.AppendFormat(" with version {0}", configuration.SystemUnderTestVersion);
             }
             return sb.ToString();
         }
 
         private XElement BuildImageElement(TestResult result)
         {
-            return new XElement(this.xmlns + "div",
-                       new XAttribute("class", "float-right"),
-                       new XElement(this.xmlns + "img",
-                           new XAttribute("src", result.WasSuccessful ? this.htmlResourceSet.SuccessImage : this.htmlResourceSet.FailureImage),
-                           new XAttribute("title", BuildTitle(result.WasSuccessful)),
-                           new XAttribute("alt", BuildTitle(result.WasSuccessful))
-                        )
-                    );
+            return new XElement(xmlns + "div",
+                                new XAttribute("class", "float-right"),
+                                new XElement(xmlns + "img",
+                                             new XAttribute("src",
+                                                            result.WasSuccessful
+                                                                ? htmlResourceSet.SuccessImage
+                                                                : htmlResourceSet.FailureImage),
+                                             new XAttribute("title", BuildTitle(result.WasSuccessful)),
+                                             new XAttribute("alt", BuildTitle(result.WasSuccessful))
+                                    )
+                );
         }
 
         public XElement Format(Feature feature)
         {
             if (configuration.HasTestResults)
             {
-                TestResult scenarioResult = this.results.GetFeatureResult(feature);
+                TestResult scenarioResult = results.GetFeatureResult(feature);
 
                 return scenarioResult.WasExecuted ? BuildImageElement(scenarioResult) : null;
             }
@@ -90,8 +93,8 @@ namespace Pickles.DocumentationBuilders.HTML
         {
             if (configuration.HasTestResults)
             {
-                TestResult scenarioResult = this.results.GetScenarioResult(scenario);
-                
+                TestResult scenarioResult = results.GetScenarioResult(scenario);
+
                 return scenarioResult.WasExecuted ? BuildImageElement(scenarioResult) : null;
             }
 
@@ -102,7 +105,7 @@ namespace Pickles.DocumentationBuilders.HTML
         {
             if (configuration.HasTestResults)
             {
-                TestResult scenarioResult = this.results.GetScenarioOutlineResult(scenarioOutline);
+                TestResult scenarioResult = results.GetScenarioOutlineResult(scenarioOutline);
 
                 return scenarioResult.WasExecuted ? BuildImageElement(scenarioResult) : null;
             }

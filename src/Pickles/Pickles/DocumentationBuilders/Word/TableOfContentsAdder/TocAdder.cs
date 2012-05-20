@@ -10,12 +10,9 @@ http://www.microsoft.com/resources/sharedsource/licensingbasics/publiclicense.ms
 ***************************************************************************/
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 using DocumentFormat.OpenXml.Packaging;
-using OpenXmlPowerTools;
 
 namespace OpenXmlPowerTools
 {
@@ -38,12 +35,12 @@ namespace OpenXmlPowerTools
             XDocument fontTableXDoc = fontTablePart.GetXDocument();
 
             AddElementIfMissing(fontTableXDoc,
-                fontTableXDoc
-                    .Root
-                    .Elements(W.font)
-                    .Where(e => (string)e.Attribute(W.name) == "Tahoma")
-                    .FirstOrDefault(),
-                @"<w:font w:name='Tahoma' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
+                                fontTableXDoc
+                                    .Root
+                                    .Elements(W.font)
+                                    .Where(e => (string) e.Attribute(W.name) == "Tahoma")
+                                    .FirstOrDefault(),
+                                @"<w:font w:name='Tahoma' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
                      <w:panose1 w:val='020B0604030504040204'/>
                      <w:charset w:val='00'/>
                      <w:family w:val='swiss'/>
@@ -59,7 +56,9 @@ namespace OpenXmlPowerTools
             AddElementIfMissing(
                 partXDoc,
                 partXDoc.Root.Elements(W.style)
-                    .Where(e => (string)e.Attribute(W.type) == "paragraph" && (string)e.Attribute(W.styleId) == "TOCHeading")
+                    .Where(
+                        e =>
+                        (string) e.Attribute(W.type) == "paragraph" && (string) e.Attribute(W.styleId) == "TOCHeading")
                     .FirstOrDefault(),
                 @"<w:style w:type='paragraph' w:styleId='TOCHeading' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
                     <w:name w:val='TOC Heading'/>
@@ -82,7 +81,10 @@ namespace OpenXmlPowerTools
                 AddElementIfMissing(
                     partXDoc,
                     partXDoc.Root.Elements(W.style)
-                        .Where(e => (string)e.Attribute(W.type) == "paragraph" && (string)e.Attribute(W.styleId) == ("TOC" + i.ToString()))
+                        .Where(
+                            e =>
+                            (string) e.Attribute(W.type) == "paragraph" &&
+                            (string) e.Attribute(W.styleId) == ("TOC" + i.ToString()))
                         .FirstOrDefault(),
                     String.Format(
                         @"<w:style w:type='paragraph' w:styleId='TOC{0}' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
@@ -95,14 +97,18 @@ namespace OpenXmlPowerTools
                             <w:pPr>
                               <w:spacing w:after='100'/>
                             </w:pPr>
-                          </w:style>", i));
+                          </w:style>",
+                        i));
             }
             for (int i = 2; i <= 6; ++i)
             {
                 AddElementIfMissing(
                     partXDoc,
                     partXDoc.Root.Elements(W.style)
-                        .Where(e => (string)e.Attribute(W.type) == "paragraph" && (string)e.Attribute(W.styleId) == ("TOC" + i.ToString()))
+                        .Where(
+                            e =>
+                            (string) e.Attribute(W.type) == "paragraph" &&
+                            (string) e.Attribute(W.styleId) == ("TOC" + i.ToString()))
                         .FirstOrDefault(),
                     String.Format(
                         @"<w:style w:type='paragraph' w:styleId='TOC{0}' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
@@ -119,13 +125,16 @@ namespace OpenXmlPowerTools
                               <w:spacing w:after='100'/>
                               <w:ind w:left='720'/>
                             </w:pPr>
-                          </w:style>", i));
+                          </w:style>",
+                        i));
             }
 
             AddElementIfMissing(
                 partXDoc,
                 partXDoc.Root.Elements(W.style)
-                    .Where(e => (string)e.Attribute(W.type) == "character" && (string)e.Attribute(W.styleId) == "Hyperlink")
+                    .Where(
+                        e =>
+                        (string) e.Attribute(W.type) == "character" && (string) e.Attribute(W.styleId) == "Hyperlink")
                     .FirstOrDefault(),
                 @"<w:style w:type='character' w:styleId='Hyperlink' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
                      <w:name w:val='Hyperlink'/>
@@ -141,7 +150,9 @@ namespace OpenXmlPowerTools
             AddElementIfMissing(
                 partXDoc,
                 partXDoc.Root.Elements(W.style)
-                    .Where(e => (string)e.Attribute(W.type) == "paragraph" && (string)e.Attribute(W.styleId) == "BalloonText")
+                    .Where(
+                        e =>
+                        (string) e.Attribute(W.type) == "paragraph" && (string) e.Attribute(W.styleId) == "BalloonText")
                     .FirstOrDefault(),
                 @"<w:style w:type='paragraph' w:styleId='BalloonText' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
                     <w:name w:val='Balloon Text'/>
@@ -163,8 +174,9 @@ namespace OpenXmlPowerTools
             AddElementIfMissing(
                 partXDoc,
                 partXDoc.Root.Elements(W.style)
-                    .Where(e => (string)e.Attribute(W.type) == "character" &&
-                        (bool?)e.Attribute(W.customStyle) == true && (string)e.Attribute(W.styleId) == "BalloonTextChar")
+                    .Where(e => (string) e.Attribute(W.type) == "character" &&
+                                (bool?) e.Attribute(W.customStyle) == true &&
+                                (string) e.Attribute(W.styleId) == "BalloonTextChar")
                     .FirstOrDefault(),
                 @"<w:style w:type='character' w:customStyle='1' w:styleId='BalloonTextChar' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
                     <w:name w:val='Balloon Text Char'/>
@@ -205,7 +217,10 @@ namespace OpenXmlPowerTools
             AddElementIfMissing(
                 partXDoc,
                 partXDoc.Root.Elements(W.style)
-                    .Where(e => (string)e.Attribute(W.type) == "paragraph" && (string)e.Attribute(W.styleId) == "TableofFigures")
+                    .Where(
+                        e =>
+                        (string) e.Attribute(W.type) == "paragraph" &&
+                        (string) e.Attribute(W.styleId) == "TableofFigures")
                     .FirstOrDefault(),
                 @"<w:style w:type='paragraph' w:styleId='TableofFigures' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
                     <w:name w:val='table of figures'/>
@@ -221,7 +236,9 @@ namespace OpenXmlPowerTools
             AddElementIfMissing(
                 partXDoc,
                 partXDoc.Root.Elements(W.style)
-                    .Where(e => (string)e.Attribute(W.type) == "character" && (string)e.Attribute(W.styleId) == "Hyperlink")
+                    .Where(
+                        e =>
+                        (string) e.Attribute(W.type) == "character" && (string) e.Attribute(W.styleId) == "Hyperlink")
                     .FirstOrDefault(),
                 @"<w:style w:type='character' w:styleId='Hyperlink' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
                      <w:name w:val='Hyperlink'/>
@@ -234,7 +251,7 @@ namespace OpenXmlPowerTools
                      </w:rPr>
                    </w:style>");
         }
-        
+
         private static void UpdateStylesPartForTof(WordprocessingDocument doc)
         {
             StylesPart stylesPart = doc.MainDocumentPart.StyleDefinitionsPart;
@@ -255,7 +272,8 @@ namespace OpenXmlPowerTools
             stylesWithEffectsPart.PutXDocument();
         }
 
-        public static void AddToc(WordprocessingDocument doc, XElement addBefore, string switches, string title, int? rightTabPos)
+        public static void AddToc(WordprocessingDocument doc, XElement addBefore, string switches, string title,
+                                  int? rightTabPos)
         {
             UpdateFontTablePart(doc);
             UpdateStylesPartForToc(doc);
@@ -271,7 +289,7 @@ namespace OpenXmlPowerTools
             // {2} switches
 
             String xmlString =
-@"<w:sdt xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
+                @"<w:sdt xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
   <w:sdtPr>
     <w:docPartObj>
       <w:docPartGallery w:val='Table of Contents'/>
@@ -341,7 +359,7 @@ namespace OpenXmlPowerTools
             else
             {
                 updateFields = new XElement(W.updateFields,
-                    new XAttribute(W.val, "true"));
+                                            new XAttribute(W.val, "true"));
                 settingsXDoc.Root.Add(updateFields);
             }
             doc.MainDocumentPart.DocumentSettingsPart.PutXDocument();
@@ -360,7 +378,7 @@ namespace OpenXmlPowerTools
             // {1} switches
 
             string xmlString =
-@"<w:p xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
+                @"<w:p xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
   <w:pPr>
     <w:pStyle w:val='TableofFigures'/>
     <w:tabs>
@@ -395,7 +413,7 @@ namespace OpenXmlPowerTools
             else
             {
                 updateFields = new XElement(W.updateFields,
-                    new XAttribute(W.val, "true"));
+                                            new XAttribute(W.val, "true"));
                 settingsXDoc.Root.Add(updateFields);
             }
             doc.MainDocumentPart.DocumentSettingsPart.PutXDocument();

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using NUnit.Framework;
 using Ninject;
 
 namespace Pickles.Test
 {
-    using NUnit.Framework;
-
     public class BaseFixture
     {
         private IKernel kernel;
@@ -20,7 +15,7 @@ namespace Pickles.Test
         [TearDown]
         public void TearDown()
         {
-            if(kernel != null)
+            if (kernel != null)
                 kernel.Dispose();
             kernel = null;
         }

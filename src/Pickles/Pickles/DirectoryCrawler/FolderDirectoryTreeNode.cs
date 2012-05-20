@@ -19,9 +19,6 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
 using Pickles.Extensions;
 
@@ -31,35 +28,35 @@ namespace Pickles.DirectoryCrawler
     {
         public FolderDirectoryTreeNode(FileSystemInfo location, string relativePathFromRoot)
         {
-            this.OriginalLocation = location;
-            this.OriginalLocationUrl = location.ToUri();
-            this.RelativePathFromRoot = relativePathFromRoot;
+            OriginalLocation = location;
+            OriginalLocationUrl = location.ToUri();
+            RelativePathFromRoot = relativePathFromRoot;
         }
 
-        #region IItemNode Members
+        #region IDirectoryTreeNode Members
 
         public string GetRelativeUriTo(Uri other, string newExtension)
         {
-          bool areSameLocation = this.OriginalLocation.FullName == other.LocalPath;
+            bool areSameLocation = OriginalLocation.FullName == other.LocalPath;
 
-          if (areSameLocation)
-          {
-            return "#";
-          }
+            if (areSameLocation)
+            {
+                return "#";
+            }
 
-          string result = other.MakeRelativeUri(this.OriginalLocationUrl).ToString();
+            string result = other.MakeRelativeUri(OriginalLocationUrl).ToString();
 
-          string oldExtension = this.OriginalLocation.Extension;
+            string oldExtension = OriginalLocation.Extension;
 
-          if (!string.IsNullOrEmpty(oldExtension))
-          {
-            result = result.Replace(oldExtension, newExtension);
-          }
+            if (!string.IsNullOrEmpty(oldExtension))
+            {
+                result = result.Replace(oldExtension, newExtension);
+            }
 
-          return result;
+            return result;
         }
 
-      public string GetRelativeUriTo(Uri other)
+        public string GetRelativeUriTo(Uri other)
         {
             return GetRelativeUriTo(other, ".html");
         }
@@ -74,23 +71,11 @@ namespace Pickles.DirectoryCrawler
             get { return OriginalLocation.Name.ExpandWikiWord(); }
         }
 
-        public FileSystemInfo OriginalLocation
-        {
-            get;
-            private set;
-        }
+        public FileSystemInfo OriginalLocation { get; private set; }
 
-        public Uri OriginalLocationUrl
-        {
-            get;
-            private set;
-        }
+        public Uri OriginalLocationUrl { get; private set; }
 
-        public string RelativePathFromRoot
-        {
-            get;
-            private set;
-        }
+        public string RelativePathFromRoot { get; private set; }
 
         #endregion
     }

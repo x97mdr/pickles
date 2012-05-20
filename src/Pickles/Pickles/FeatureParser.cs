@@ -21,6 +21,7 @@
 using System;
 using System.IO;
 using Pickles.Parser;
+using gherkin.lexer;
 
 namespace Pickles
 {
@@ -44,10 +45,11 @@ namespace Pickles
                 }
                 catch (Exception e)
                 {
-                    var message = string.Format("There was an error parsing the feature file here: {0}{1}Errormessage was:'{2}'",
-                        Path.GetFullPath(filename),
-                        Environment.NewLine,
-                        e.Message);
+                    string message =
+                        string.Format("There was an error parsing the feature file here: {0}{1}Errormessage was:'{2}'",
+                                      Path.GetFullPath(filename),
+                                      Environment.NewLine,
+                                      e.Message);
                     throw new FeatureParseException(message, e);
                 }
 
@@ -59,10 +61,10 @@ namespace Pickles
 
         public Feature Parse(TextReader featureFileReader)
         {
-            var fileContent = featureFileReader.ReadToEnd();
+            string fileContent = featureFileReader.ReadToEnd();
 
-            var parser = new PicklesParser(this.languageService.GetLanguage());
-            var lexer = this.languageService.GetNativeLexer(parser);
+            var parser = new PicklesParser(languageService.GetLanguage());
+            Lexer lexer = languageService.GetNativeLexer(parser);
             lexer.scan(fileContent);
 
             return parser.GetFeature();

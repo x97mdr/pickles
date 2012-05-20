@@ -9,7 +9,7 @@ namespace Specs.StepTransformation.Transformations
         [StepArgumentTransformation]
         public User Transform(string name)
         {
-            return new User { Name = name };
+            return new User {Name = name};
         }
     }
 }

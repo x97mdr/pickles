@@ -18,10 +18,7 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 using Pickles.Parser;
 
@@ -39,20 +36,25 @@ namespace Pickles.DocumentationBuilders.HTML
         public XElement Format(Table table)
         {
             return new XElement(xmlns + "div",
-                       new XAttribute("class", "table_container"),
-                       new XElement(xmlns + "table",
-                            new XAttribute("class", "datatable"),
-                            new XElement(xmlns + "thead",
-                                new XElement(xmlns + "tr",
-                                    table.HeaderRow.Select(cell => new XElement(xmlns + "th", cell))
-                                )
-                            ),
-                            new XElement(xmlns + "tbody",
-                                table.DataRows.Select(row => new XElement(xmlns + "tr",
-                                    row.Select(cell => new XElement(xmlns + "td", cell)))
-                                )
-                            )
-                        ));
+                                new XAttribute("class", "table_container"),
+                                new XElement(xmlns + "table",
+                                             new XAttribute("class", "datatable"),
+                                             new XElement(xmlns + "thead",
+                                                          new XElement(xmlns + "tr",
+                                                                       table.HeaderRow.Select(
+                                                                           cell => new XElement(xmlns + "th", cell))
+                                                              )
+                                                 ),
+                                             new XElement(xmlns + "tbody",
+                                                          table.DataRows.Select(row => new XElement(xmlns + "tr",
+                                                                                                    row.Select(
+                                                                                                        cell =>
+                                                                                                        new XElement(
+                                                                                                            xmlns + "td",
+                                                                                                            cell)))
+                                                              )
+                                                 )
+                                    ));
         }
     }
 }

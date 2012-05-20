@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using TechTalk.SpecFlow;
 using NUnit.Framework;
+using TechTalk.SpecFlow;
 
 namespace Pickles.Example
 {
     [Binding]
     public class Steps
     {
+        private int? result;
         private int? value1;
         private int? value2;
-        private int? result;
 
         [Given("I have entered (.*) into the calculator")]
         public void GivenIHaveEnteredSomethingIntoTheCalculator(int number)
@@ -39,10 +36,10 @@ namespace Pickles.Example
                     result = value1.Value - value2.Value;
                     break;
                 case "multiply":
-                    result = value1.Value * value2.Value;
+                    result = value1.Value*value2.Value;
                     break;
                 case "divide":
-                    result = value1.Value / value2.Value;
+                    result = value1.Value/value2.Value;
                     break;
                 case "sin":
                     result = Convert.ToInt32(Math.Sin(Convert.ToDouble(value1.Value)));
@@ -68,7 +65,7 @@ namespace Pickles.Example
         [Then(@"the screen should be empty")]
         public void ThenTheScreenShouldBeEmpty()
         {
-            Assert.AreEqual(false, this.result.HasValue);
+            Assert.AreEqual(false, result.HasValue);
         }
     }
 }

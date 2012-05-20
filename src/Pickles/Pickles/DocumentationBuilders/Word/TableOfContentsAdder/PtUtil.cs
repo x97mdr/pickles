@@ -10,13 +10,13 @@ http://www.microsoft.com/resources/sharedsource/licensingbasics/publiclicense.ms
 ***************************************************************************/
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
-using DocumentFormat.OpenXml.Packaging;
 
 namespace OpenXmlPowerTools
 {
@@ -24,7 +24,7 @@ namespace OpenXmlPowerTools
     {
         public static string StringConcatenate(this IEnumerable<string> source)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             foreach (string s in source)
                 sb.Append(s);
             return sb.ToString();
@@ -45,8 +45,8 @@ namespace OpenXmlPowerTools
             IEnumerable<TSecond> second,
             Func<TFirst, TSecond, TResult> func)
         {
-            var ie1 = first.GetEnumerator();
-            var ie2 = second.GetEnumerator();
+            IEnumerator<TFirst> ie1 = first.GetEnumerator();
+            IEnumerator<TSecond> ie2 = second.GetEnumerator();
             while (ie1.MoveNext() && ie2.MoveNext())
                 yield return func(ie1.Current, ie2.Current);
         }
@@ -57,7 +57,7 @@ namespace OpenXmlPowerTools
         {
             TKey last = default(TKey);
             bool haveLast = false;
-            List<TSource> list = new List<TSource>();
+            var list = new List<TSource>();
 
             foreach (TSource s in source)
             {
@@ -93,7 +93,7 @@ namespace OpenXmlPowerTools
             XElement prev = null;
             foreach (XElement e in element.Elements())
             {
-                e.AddAnnotation(new ReverseDocumentOrderInfo { PreviousSibling = prev });
+                e.AddAnnotation(new ReverseDocumentOrderInfo {PreviousSibling = prev});
                 prev = e;
             }
         }
@@ -118,27 +118,27 @@ namespace OpenXmlPowerTools
 
         public static string ToStringNewLineOnAttributes(this XElement element)
         {
-            XmlWriterSettings settings = new XmlWriterSettings();
+            var settings = new XmlWriterSettings();
             settings.Indent = true;
             settings.OmitXmlDeclaration = true;
             settings.NewLineOnAttributes = true;
-            StringBuilder stringBuilder = new StringBuilder();
-            using (StringWriter stringWriter = new StringWriter(stringBuilder))
+            var stringBuilder = new StringBuilder();
+            using (var stringWriter = new StringWriter(stringBuilder))
             using (XmlWriter xmlWriter = XmlWriter.Create(stringWriter, settings))
                 element.WriteTo(xmlWriter);
             return stringBuilder.ToString();
         }
 
         public static IEnumerable<XElement> DescendantsTrimmed(this XElement element,
-            XName trimName)
+                                                               XName trimName)
         {
             return DescendantsTrimmed(element, e => e.Name == trimName);
         }
 
         public static IEnumerable<XElement> DescendantsTrimmed(this XElement element,
-            Func<XElement, bool> predicate)
+                                                               Func<XElement, bool> predicate)
         {
-            Stack<IEnumerator<XElement>> iteratorStack = new Stack<IEnumerator<XElement>>();
+            var iteratorStack = new Stack<IEnumerator<XElement>>();
             iteratorStack.Push(element.Elements().GetEnumerator());
             while (iteratorStack.Count > 0)
             {
@@ -186,35 +186,47 @@ namespace OpenXmlPowerTools
 
     public class GroupOfAdjacent<TSource, TKey> : IEnumerable<TSource>, IGrouping<TKey, TSource>
     {
-        public TKey Key { get; set; }
-        private List<TSource> GroupList { get; set; }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return ((System.Collections.Generic.IEnumerable<TSource>)this).GetEnumerator();
-        }
-
-        System.Collections.Generic.IEnumerator<TSource>
-            System.Collections.Generic.IEnumerable<TSource>.GetEnumerator()
-        {
-            foreach (var s in GroupList)
-                yield return s;
-        }
-
         public GroupOfAdjacent(List<TSource> source, TKey key)
         {
             GroupList = source;
             Key = key;
         }
+
+        private List<TSource> GroupList { get; set; }
+
+        #region IEnumerable<TSource> Members
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<TSource>) this).GetEnumerator();
+        }
+
+        IEnumerator<TSource>
+            IEnumerable<TSource>.GetEnumerator()
+        {
+            foreach (TSource s in GroupList)
+                yield return s;
+        }
+
+        #endregion
+
+        #region IGrouping<TKey,TSource> Members
+
+        public TKey Key { get; set; }
+
+        #endregion
     }
 
 
     public class XEntity : XText
     {
+        public XEntity(string value) : base(value)
+        {
+        }
+
         public override void WriteTo(XmlWriter writer)
         {
-            writer.WriteEntityRef(this.Value);
+            writer.WriteEntityRef(Value);
         }
-        public XEntity(string value) : base(value) { }
     }
 }

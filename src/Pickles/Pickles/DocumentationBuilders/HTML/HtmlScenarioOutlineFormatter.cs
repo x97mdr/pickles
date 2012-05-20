@@ -18,27 +18,23 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 using Pickles.Parser;
-using Pickles.TestFrameworks;
 
 namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlScenarioOutlineFormatter
     {
-        private readonly XNamespace xmlns;
-        private readonly HtmlStepFormatter htmlStepFormatter;
         private readonly HtmlDescriptionFormatter htmlDescriptionFormatter;
-        private readonly HtmlTableFormatter htmlTableFormatter;
         private readonly HtmlImageResultFormatter htmlImageResultFormatter;
+        private readonly HtmlStepFormatter htmlStepFormatter;
+        private readonly HtmlTableFormatter htmlTableFormatter;
+        private readonly XNamespace xmlns;
 
         public HtmlScenarioOutlineFormatter(
-            HtmlStepFormatter htmlStepFormatter, 
-            HtmlDescriptionFormatter htmlDescriptionFormatter, 
+            HtmlStepFormatter htmlStepFormatter,
+            HtmlDescriptionFormatter htmlDescriptionFormatter,
             HtmlTableFormatter htmlTableFormatter,
             HtmlImageResultFormatter htmlImageResultFormatter)
         {
@@ -46,30 +42,32 @@ namespace Pickles.DocumentationBuilders.HTML
             this.htmlDescriptionFormatter = htmlDescriptionFormatter;
             this.htmlTableFormatter = htmlTableFormatter;
             this.htmlImageResultFormatter = htmlImageResultFormatter;
-            this.xmlns = HtmlNamespace.Xhtml;
+            xmlns = HtmlNamespace.Xhtml;
         }
 
         public XElement Format(ScenarioOutline scenarioOutline, int id)
         {
             return new XElement(xmlns + "li",
-                       new XAttribute("class", "scenario"),
-                       this.htmlImageResultFormatter.Format(scenarioOutline),
-                       new XElement(xmlns + "div",
-                           new XAttribute("class", "scenario-heading"),
-                           new XElement(xmlns + "h2", scenarioOutline.Name),
-                           this.htmlDescriptionFormatter.Format(scenarioOutline.Description)
-                       ),
-                       new XElement(xmlns + "div",
-                           new XAttribute("class", "steps"),
-                           new XElement(xmlns + "ul", scenarioOutline.Steps.Select(step => this.htmlStepFormatter.Format(step)))
-                       ),
-                       new XElement(xmlns + "div",
-                           new XAttribute("class", "examples"),
-                           new XElement(xmlns + "h3",  "Examples"),
-                           this.htmlDescriptionFormatter.Format(scenarioOutline.Example.Description),
-                           this.htmlTableFormatter.Format(scenarioOutline.Example.TableArgument)
-                       )
-                   );
+                                new XAttribute("class", "scenario"),
+                                htmlImageResultFormatter.Format(scenarioOutline),
+                                new XElement(xmlns + "div",
+                                             new XAttribute("class", "scenario-heading"),
+                                             new XElement(xmlns + "h2", scenarioOutline.Name),
+                                             htmlDescriptionFormatter.Format(scenarioOutline.Description)
+                                    ),
+                                new XElement(xmlns + "div",
+                                             new XAttribute("class", "steps"),
+                                             new XElement(xmlns + "ul",
+                                                          scenarioOutline.Steps.Select(
+                                                              step => htmlStepFormatter.Format(step)))
+                                    ),
+                                new XElement(xmlns + "div",
+                                             new XAttribute("class", "examples"),
+                                             new XElement(xmlns + "h3", "Examples"),
+                                             htmlDescriptionFormatter.Format(scenarioOutline.Example.Description),
+                                             htmlTableFormatter.Format(scenarioOutline.Example.TableArgument)
+                                    )
+                );
         }
     }
 }

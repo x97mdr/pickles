@@ -40,7 +40,7 @@ namespace Specs.ScenarioOutline
         [Then(@"the result should be (\d+)")]
         public void ThenTheResultShouldBe(int expectedResult)
         {
-            var summa = int.Parse(ScenarioContext.Current[SUM_KEY].ToString());
+            int summa = int.Parse(ScenarioContext.Current[SUM_KEY].ToString());
             summa.Should().Equal(expectedResult);
         }
     }

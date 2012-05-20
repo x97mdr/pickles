@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 using Pickles.Parser;
 
 namespace Pickles.DocumentationBuilders.DITA
@@ -14,16 +10,16 @@ namespace Pickles.DocumentationBuilders.DITA
             var simpletable = new XElement("simpletable");
 
             var headerRow = new XElement("sthead");
-            foreach (var cell in table.HeaderRow)
+            foreach (string cell in table.HeaderRow)
             {
                 headerRow.Add(new XElement("stentry", cell));
             }
             simpletable.Add(headerRow);
 
-            foreach (var row in table.DataRows)
+            foreach (TableRow row in table.DataRows)
             {
                 var strow = new XElement("strow");
-                foreach (var cell in row)
+                foreach (string cell in row)
                 {
                     strow.Add(new XElement("stentry", cell));
                 }

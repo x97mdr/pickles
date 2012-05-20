@@ -18,15 +18,11 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Ninject;
 using NUnit.Framework;
-using Pickles.DocumentationBuilders.Word;
+using Ninject;
 using Pickles.DocumentationBuilders.DITA;
 using Pickles.DocumentationBuilders.Excel;
+using Pickles.DocumentationBuilders.Word;
 
 namespace Pickles.Test
 {
@@ -45,7 +41,9 @@ namespace Pickles.Test
         }
 
         [Test]
-        public void Then_can_resolve_IDocumentationBuilder_as_HtmlDocumentationBuilder_as_singleton_if_the_user_selects_HTML_output()
+        public void
+            Then_can_resolve_IDocumentationBuilder_as_HtmlDocumentationBuilder_as_singleton_if_the_user_selects_HTML_output
+            ()
         {
             var configuration = Kernel.Get<Configuration>();
             configuration.DocumentationFormat = DocumentationFormat.Html;
@@ -73,7 +71,9 @@ namespace Pickles.Test
         }
 
         [Test]
-        public void Then_can_resolve_IDocumentationBuilder_as_WordDocumentationBuilder_as_singleton_if_the_user_selects_Word_output()
+        public void
+            Then_can_resolve_IDocumentationBuilder_as_WordDocumentationBuilder_as_singleton_if_the_user_selects_Word_output
+            ()
         {
             var configuration = Kernel.Get<Configuration>();
             configuration.DocumentationFormat = DocumentationFormat.Word;
@@ -101,7 +101,9 @@ namespace Pickles.Test
         }
 
         [Test]
-        public void Then_can_resolve_IDocumentationBuilder_as_DitaDocumentationBuilder_as_singleton_if_the_user_selects_DITA_output()
+        public void
+            Then_can_resolve_IDocumentationBuilder_as_DitaDocumentationBuilder_as_singleton_if_the_user_selects_DITA_output
+            ()
         {
             var configuration = Kernel.Get<Configuration>();
             configuration.DocumentationFormat = DocumentationFormat.Dita;
@@ -117,7 +119,8 @@ namespace Pickles.Test
         }
 
         [Test]
-        public void Then_can_resolve_IDocumentationBuilder_as_ExcelDocumentationBuilder_if_the_user_selects_Excel_output()
+        public void Then_can_resolve_IDocumentationBuilder_as_ExcelDocumentationBuilder_if_the_user_selects_Excel_output
+            ()
         {
             var configuration = Kernel.Get<Configuration>();
             configuration.DocumentationFormat = DocumentationFormat.Excel;
@@ -129,7 +132,9 @@ namespace Pickles.Test
         }
 
         [Test]
-        public void Then_can_resolve_IDocumentationBuilder_as_ExcelDocumentationBuilder_as_singleton_if_the_user_selects_Excel_output()
+        public void
+            Then_can_resolve_IDocumentationBuilder_as_ExcelDocumentationBuilder_as_singleton_if_the_user_selects_Excel_output
+            ()
         {
             var configuration = Kernel.Get<Configuration>();
             configuration.DocumentationFormat = DocumentationFormat.Excel;

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ClosedXML.Excel;
-using Ninject;
+﻿using ClosedXML.Excel;
 using NUnit.Framework;
+using Ninject;
 using Pickles.DocumentationBuilders.Excel;
-using Pickles.Parser;
 using Should;
 
 namespace Pickles.Test.DocumentationBuilders.Excel
@@ -18,13 +13,13 @@ namespace Pickles.Test.DocumentationBuilders.Excel
         public void ThenDocumentStringAddedSuccessfully()
         {
             var excelDocumentStringFormatter = Kernel.Get<ExcelDocumentStringFormatter>();
-            var documentString = @"This is an example
+            string documentString = @"This is an example
 document string for use
 in testing";
 
             using (var workbook = new XLWorkbook())
             {
-                var worksheet = workbook.AddWorksheet("SHEET1");
+                IXLWorksheet worksheet = workbook.AddWorksheet("SHEET1");
                 int row = 7;
                 excelDocumentStringFormatter.Format(worksheet, documentString, ref row);
 

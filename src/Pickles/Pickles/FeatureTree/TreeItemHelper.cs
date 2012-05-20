@@ -22,21 +22,21 @@ using System.Collections.Generic;
 
 namespace Pickles.FeatureTree
 {
-  internal static class TreeItemHelper
-  {
-    internal static List<ITreeItem> CreateHierarchy(ITreeItem treeItem)
+    internal static class TreeItemHelper
     {
-      List<ITreeItem> hierarchy = new List<ITreeItem>();
+        internal static List<ITreeItem> CreateHierarchy(ITreeItem treeItem)
+        {
+            var hierarchy = new List<ITreeItem>();
 
-      ITreeItem temp = treeItem;
+            ITreeItem temp = treeItem;
 
-      while (temp != null)
-      {
-        hierarchy.Add(temp);
-        temp = temp.Parent;
-      }
+            while (temp != null)
+            {
+                hierarchy.Add(temp);
+                temp = temp.Parent;
+            }
 
-      return hierarchy;
+            return hierarchy;
+        }
     }
-  }
 }

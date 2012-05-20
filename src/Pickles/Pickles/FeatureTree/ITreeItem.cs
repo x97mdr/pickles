@@ -18,17 +18,15 @@
 
 #endregion
 
-using System;
-
 namespace Pickles.FeatureTree
 {
     public interface ITreeItem
     {
         string Name { get; }
 
-      ITreeItem Parent { get; }
+        ITreeItem Parent { get; }
 
-      ITreeItem FindCommonAncestor(ITreeItem other);
+        ITreeItem FindCommonAncestor(ITreeItem other);
 
         string GetRelativePathFromHereToThere(ITreeItem there);
     }

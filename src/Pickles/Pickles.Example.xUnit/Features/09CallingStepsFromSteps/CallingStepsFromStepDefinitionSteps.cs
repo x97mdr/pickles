@@ -33,7 +33,7 @@ namespace Specs.CallingStepsFromSteps
         [Then(@"the welcome page should be displayed")]
         public void ThenTheWelcomePageShouldBeDisplayed()
         {
-            int i = ((int)ScenarioContext.Current["stepcount"]);
+            var i = ((int) ScenarioContext.Current["stepcount"]);
             i.ShouldEqual(3);
         }
 
@@ -55,13 +55,13 @@ namespace Specs.CallingStepsFromSteps
         [Then(@"I should get rewarded")]
         public void ThenIShouldbeRewarded()
         {
-            int i = ((int)ScenarioContext.Current["stepcount"]);
+            var i = ((int) ScenarioContext.Current["stepcount"]);
             i.ShouldEqual(5);
         }
 
         private void incStepCount()
         {
-            int i = ((int)ScenarioContext.Current["stepcount"]);
+            var i = ((int) ScenarioContext.Current["stepcount"]);
             ScenarioContext.Current["stepcount"] = ++i;
         }
     }

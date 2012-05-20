@@ -19,15 +19,11 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
+using System.Reflection;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using Ninject;
-using Pickles.DocumentationBuilders.HTML;
-using Pickles.TestFrameworks;
 
 namespace Pickles.MSBuild
 {
@@ -56,23 +52,28 @@ namespace Pickles.MSBuild
             configuration.FeatureFolder = new DirectoryInfo(FeatureDirectory);
             configuration.OutputFolder = new DirectoryInfo(OutputDirectory);
             if (!string.IsNullOrEmpty(Language)) configuration.Language = Language;
-            if (!string.IsNullOrEmpty(ResultsFormat)) configuration.TestResultsFormat = (TestResultsFormat)Enum.Parse(typeof(TestResultsFormat), this.ResultsFormat, true);
+            if (!string.IsNullOrEmpty(ResultsFormat))
+                configuration.TestResultsFormat =
+                    (TestResultsFormat) Enum.Parse(typeof (TestResultsFormat), ResultsFormat, true);
             if (!string.IsNullOrEmpty(ResultsFile)) configuration.TestResultsFile = new FileInfo(ResultsFile);
             if (!string.IsNullOrEmpty(SystemUnderTestName)) configuration.SystemUnderTestName = SystemUnderTestName;
-            if (!string.IsNullOrEmpty(SystemUnderTestVersion)) configuration.SystemUnderTestVersion = SystemUnderTestVersion;
-            if (!string.IsNullOrEmpty(DocumentationFormat)) configuration.DocumentationFormat = (DocumentationFormat)Enum.Parse(typeof(DocumentationFormat), this.DocumentationFormat, true);
+            if (!string.IsNullOrEmpty(SystemUnderTestVersion))
+                configuration.SystemUnderTestVersion = SystemUnderTestVersion;
+            if (!string.IsNullOrEmpty(DocumentationFormat))
+                configuration.DocumentationFormat =
+                    (DocumentationFormat) Enum.Parse(typeof (DocumentationFormat), DocumentationFormat, true);
         }
 
         public override bool Execute()
         {
             try
             {
-                Log.LogMessage("Pickles v.{0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
+                Log.LogMessage("Pickles v.{0}", Assembly.GetExecutingAssembly().GetName().Version.ToString());
                 Log.LogMessage("Reading features from {0}", FeatureDirectory ?? string.Empty);
                 Log.LogMessage("Writing output to {0}", OutputDirectory ?? string.Empty);
 
                 var kernel = new StandardKernel(new PicklesModule());
-                Configuration configuration = kernel.Get<Configuration>();
+                var configuration = kernel.Get<Configuration>();
                 CaptureConfiguration(configuration);
 
                 var runner = kernel.Get<Runner>();
@@ -83,7 +84,8 @@ namespace Pickles.MSBuild
                 Log.LogWarningFromException(e, false);
             }
 
-            return true; // HACK - since this is merely producing documentation we do not want it to cause a build to fail if something goes wrong
+            return true;
+                // HACK - since this is merely producing documentation we do not want it to cause a build to fail if something goes wrong
         }
     }
 }

@@ -18,26 +18,31 @@
 
 #endregion
 
-using System.Text;
 using System.IO;
+using System.Reflection;
+using System.Text;
+using System.Xml.Linq;
 using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
-using Pickles.DocumentationBuilders.HTML;
 using Pickles.DirectoryCrawler;
+using Pickles.DocumentationBuilders.HTML;
 using Pickles.Extensions;
+using log4net;
 
 namespace Pickles
 {
     public class HtmlDocumentationBuilder : IDocumentationBuilder
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         private readonly Configuration configuration;
         private readonly DirectoryTreeCrawler featureCrawler;
         private readonly HtmlDocumentFormatter htmlDocumentFormatter;
         private readonly HtmlResourceWriter htmlResourceWriter;
 
-        public HtmlDocumentationBuilder(Configuration configuration, DirectoryTreeCrawler featureCrawler, HtmlDocumentFormatter htmlDocumentFormatter, HtmlResourceWriter htmlResourceWriter)
+        public HtmlDocumentationBuilder(Configuration configuration, DirectoryTreeCrawler featureCrawler,
+                                        HtmlDocumentFormatter htmlDocumentFormatter,
+                                        HtmlResourceWriter htmlResourceWriter)
         {
             this.configuration = configuration;
             this.featureCrawler = featureCrawler;
@@ -45,45 +50,64 @@ namespace Pickles
             this.htmlResourceWriter = htmlResourceWriter;
         }
 
+        #region IDocumentationBuilder Members
+
         public void Build(GeneralTree<IDirectoryTreeNode> features)
-        {   
+        {
             if (log.IsInfoEnabled)
             {
-                log.InfoFormat("Writing HTML to {0}", this.configuration.OutputFolder.FullName);
+                log.InfoFormat("Writing HTML to {0}", configuration.OutputFolder.FullName);
             }
 
-            this.htmlResourceWriter.WriteTo(this.configuration.OutputFolder.FullName);
+            htmlResourceWriter.WriteTo(configuration.OutputFolder.FullName);
 
             var actionVisitor = new ActionVisitor<IDirectoryTreeNode>(node =>
-                {
-                  if (node.IsIndexMarkDownNode())
-                  {
-                    return;
-                  }
+                                                                          {
+                                                                              if (node.IsIndexMarkDownNode())
+                                                                              {
+                                                                                  return;
+                                                                              }
 
-                    var nodePath = Path.Combine(this.configuration.OutputFolder.FullName, node.RelativePathFromRoot);
-                  string htmlFilePath;
+                                                                              string nodePath =
+                                                                                  Path.Combine(
+                                                                                      configuration.OutputFolder.
+                                                                                          FullName,
+                                                                                      node.RelativePathFromRoot);
+                                                                              string htmlFilePath;
 
-                    if (node.IsContent)
-                    {
-                        htmlFilePath = nodePath.Replace(Path.GetExtension(nodePath), ".html");
-                    }
-                    else
-                    {
-                        Directory.CreateDirectory(nodePath);
+                                                                              if (node.IsContent)
+                                                                              {
+                                                                                  htmlFilePath =
+                                                                                      nodePath.Replace(
+                                                                                          Path.GetExtension(nodePath),
+                                                                                          ".html");
+                                                                              }
+                                                                              else
+                                                                              {
+                                                                                  Directory.CreateDirectory(nodePath);
 
-                        htmlFilePath = Path.Combine(nodePath, "index.html");
-                    }
+                                                                                  htmlFilePath = Path.Combine(nodePath,
+                                                                                                              "index.html");
+                                                                              }
 
-                    using (var writer = new StreamWriter(htmlFilePath, false, Encoding.UTF8))
-                    {
-                      var document = this.htmlDocumentFormatter.Format(node, features, this.configuration.FeatureFolder);
-                      document.Save(writer);
-                      writer.Close();
-                    }
-                });
+                                                                              using (
+                                                                                  var writer =
+                                                                                      new StreamWriter(htmlFilePath,
+                                                                                                       false,
+                                                                                                       Encoding.UTF8))
+                                                                              {
+                                                                                  XDocument document =
+                                                                                      htmlDocumentFormatter.Format(
+                                                                                          node, features,
+                                                                                          configuration.FeatureFolder);
+                                                                                  document.Save(writer);
+                                                                                  writer.Close();
+                                                                              }
+                                                                          });
 
             features.AcceptVisitor(actionVisitor);
         }
+
+        #endregion
     }
 }

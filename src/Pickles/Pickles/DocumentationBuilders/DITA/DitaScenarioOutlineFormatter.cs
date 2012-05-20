@@ -18,10 +18,6 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 using Pickles.Parser;
 using Pickles.TestFrameworks;
@@ -31,11 +27,12 @@ namespace Pickles.DocumentationBuilders.DITA
     public class DitaScenarioOutlineFormatter
     {
         private readonly Configuration configuration;
-        private readonly ITestResults nunitResults;
         private readonly DitaStepFormatter ditaStepFormatter;
         private readonly DitaTableFormatter ditaTableFormatter;
+        private readonly ITestResults nunitResults;
 
-        public DitaScenarioOutlineFormatter(Configuration configuration, ITestResults nunitResults, DitaStepFormatter ditaStepFormatter, DitaTableFormatter ditaTableFormatter)
+        public DitaScenarioOutlineFormatter(Configuration configuration, ITestResults nunitResults,
+                                            DitaStepFormatter ditaStepFormatter, DitaTableFormatter ditaTableFormatter)
         {
             this.configuration = configuration;
             this.nunitResults = nunitResults;
@@ -46,16 +43,16 @@ namespace Pickles.DocumentationBuilders.DITA
         public void Format(XElement parentElement, ScenarioOutline scenario)
         {
             var section = new XElement("section",
-                      new XElement("title", scenario.Name));
+                                       new XElement("title", scenario.Name));
 
             if (!string.IsNullOrEmpty(scenario.Description))
             {
                 section.Add(new XElement("p", scenario.Description));
             }
 
-            if (this.configuration.HasTestResults)
+            if (configuration.HasTestResults)
             {
-                var testResult = this.nunitResults.GetScenarioOutlineResult(scenario);
+                TestResult testResult = nunitResults.GetScenarioOutlineResult(scenario);
                 if (testResult.WasExecuted && testResult.WasSuccessful)
                 {
                     section.Add(new XElement("note", "This scenario passed"));
@@ -66,9 +63,9 @@ namespace Pickles.DocumentationBuilders.DITA
                 }
             }
 
-            foreach (var step in scenario.Steps)
+            foreach (Step step in scenario.Steps)
             {
-                this.ditaStepFormatter.Format(section, step);
+                ditaStepFormatter.Format(section, step);
             }
 
             parentElement.Add(section);

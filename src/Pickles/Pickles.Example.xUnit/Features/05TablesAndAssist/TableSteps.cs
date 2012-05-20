@@ -16,13 +16,13 @@ namespace Specs.TablesAndAssist
         [Given("I have the following persons")]
         public void IHaveTheFollowingPersons(Table personsTable)
         {
-            var persons = personsTable.Rows
-                    .Select(row =>
-                            new Person
+            List<Person> persons = personsTable.Rows
+                .Select(row =>
+                        new Person
                             {
                                 Name = row["Name"],
                                 BirthDate = DateTime.Parse(row["Birth date"]),
-                                Style = (Style)Enum.Parse(typeof(Style), row["Style"])
+                                Style = (Style) Enum.Parse(typeof (Style), row["Style"])
                             }).ToList();
 
             ScenarioContext.Current.Set(persons);
@@ -33,7 +33,7 @@ namespace Specs.TablesAndAssist
         {
             var list = ScenarioContext.Current.Get<List<Person>>();
 
-            var result = list.Where(x => x.Name == nameToSearchFor).ToList();
+            List<Person> result = list.Where(x => x.Name == nameToSearchFor).ToList();
 
             ScenarioContext.Current.Set(result, SEARCH_RESULT_KEY);
         }
@@ -48,33 +48,30 @@ namespace Specs.TablesAndAssist
         }
 
 
-
-
         [Given("I have the following persons using assist")]
         public void IHaveTheFollowingPersonsAssist(Table personsTable)
         {
-            var persons = personsTable.CreateSet<Person>().ToList();
+            List<Person> persons = personsTable.CreateSet<Person>().ToList();
             ScenarioContext.Current.Set(persons);
         }
 
         [Then("the following person should be returned using assist")]
         public void ThenTheResultShouldBeReturnedAssist(Table resultTable)
         {
-            var person = resultTable.CreateSet<Person>().ToList()[0];
+            Person person = resultTable.CreateSet<Person>().ToList()[0];
 
             var searchResult = ScenarioContext.Current.Get<List<Person>>(SEARCH_RESULT_KEY);
 
             searchResult.Should().Contain.Item(person);
         }
 
-        
+
         [When(@"I fill out the form like this")]
         public void FillOutTheForm(Table formData)
         {
             var person = formData.CreateInstance<Person>();
-            var personList = new List<Person> { person };
+            var personList = new List<Person> {person};
             ScenarioContext.Current.Set(personList, SEARCH_RESULT_KEY);
         }
-
     }
 }

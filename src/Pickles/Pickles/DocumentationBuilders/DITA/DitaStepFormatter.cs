@@ -18,10 +18,6 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 using Pickles.Parser;
 
@@ -47,7 +43,7 @@ namespace Pickles.DocumentationBuilders.DITA
 
             if (step.TableArgument != null)
             {
-                this.ditaTableFormatter.Format(section, step.TableArgument);
+                ditaTableFormatter.Format(section, step.TableArgument);
             }
         }
     }

@@ -18,10 +18,6 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Pickles.DirectoryCrawler;
 using Pickles.Extensions;
@@ -32,13 +28,16 @@ namespace Pickles.DocumentationBuilders.Word
 {
     public class WordFeatureFormatter
     {
+        private readonly Configuration configuration;
+        private readonly ITestResults nunitResults;
         private readonly WordScenarioFormatter wordScenarioFormatter;
         private readonly WordScenarioOutlineFormatter wordScenarioOutlineFormatter;
         private readonly WordStyleApplicator wordStyleApplicator;
-        private readonly Configuration configuration;
-        private readonly ITestResults nunitResults;
 
-        public WordFeatureFormatter(WordScenarioFormatter wordScenarioFormatter, WordScenarioOutlineFormatter wordScenarioOutlineFormatter, WordStyleApplicator wordStyleApplicator, Configuration configuration, ITestResults nunitResults)
+        public WordFeatureFormatter(WordScenarioFormatter wordScenarioFormatter,
+                                    WordScenarioOutlineFormatter wordScenarioOutlineFormatter,
+                                    WordStyleApplicator wordStyleApplicator, Configuration configuration,
+                                    ITestResults nunitResults)
         {
             this.wordScenarioFormatter = wordScenarioFormatter;
             this.wordScenarioOutlineFormatter = wordScenarioOutlineFormatter;
@@ -49,13 +48,13 @@ namespace Pickles.DocumentationBuilders.Word
 
         public void Format(Body body, FeatureDirectoryTreeNode featureDirectoryTreeNode)
         {
-            var feature = featureDirectoryTreeNode.Feature;
+            Feature feature = featureDirectoryTreeNode.Feature;
 
             body.InsertPageBreak();
 
-            if (this.configuration.HasTestResults)
+            if (configuration.HasTestResults)
             {
-                var testResult = this.nunitResults.GetFeatureResult(feature);
+                TestResult testResult = nunitResults.GetFeatureResult(feature);
                 if (testResult.WasExecuted && testResult.WasSuccessful)
                 {
                     body.GenerateParagraph("Passed", "Passed");
@@ -69,18 +68,18 @@ namespace Pickles.DocumentationBuilders.Word
             body.GenerateParagraph(feature.Name, "Heading1");
             body.GenerateParagraph(feature.Description, "Normal");
 
-            foreach (var featureElement in feature.FeatureElements)
+            foreach (IFeatureElement featureElement in feature.FeatureElements)
             {
                 var scenario = featureElement as Scenario;
                 if (scenario != null)
                 {
-                    this.wordScenarioFormatter.Format(body, scenario);
+                    wordScenarioFormatter.Format(body, scenario);
                 }
 
                 var scenarioOutline = featureElement as ScenarioOutline;
                 if (scenarioOutline != null)
                 {
-                    this.wordScenarioOutlineFormatter.Format(body, scenarioOutline);
+                    wordScenarioOutlineFormatter.Format(body, scenarioOutline);
                 }
             }
         }

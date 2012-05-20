@@ -18,10 +18,7 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using NGenerics.DataStructures.Trees;
 using Ninject;
 using Pickles.DirectoryCrawler;
 
@@ -35,7 +32,7 @@ namespace Pickles
             if (!configuration.OutputFolder.Exists) configuration.OutputFolder.Create();
 
             var featureCrawler = kernel.Get<DirectoryTreeCrawler>();
-            var features = featureCrawler.Crawl(configuration.FeatureFolder);
+            GeneralTree<IDirectoryTreeNode> features = featureCrawler.Crawl(configuration.FeatureFolder);
 
             var documentationBuilder = kernel.Get<IDocumentationBuilder>();
             documentationBuilder.Build(features);

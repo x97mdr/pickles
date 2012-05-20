@@ -9,125 +9,137 @@
 //      the code is regenerated.
 //  </auto-generated>
 // ------------------------------------------------------------------------------
+
 #region Designer generated code
+
+using TechTalk.SpecFlow;
+
 #pragma warning disable
+
 namespace Pickles.Example.Features
 {
-    using TechTalk.SpecFlow;
-    
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.8.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Trigonometry")]
     public partial class TrigonometryFeature
     {
-        
         private static TechTalk.SpecFlow.ITestRunner testRunner;
-        
+
 #line 1 "Trigonometry.feature"
 #line hidden
-        
+
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Trigonometry", "In order to avoid perform more advanced calculations\r\nAs a math idiot\r\nI want to " +
-                    "be able to use trigonometric functions", ProgrammingLanguage.CSharp, ((string[])(null)));
+            var featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"),
+                                                                "Trigonometry",
+                                                                "In order to avoid perform more advanced calculations\r\nAs a math idiot\r\nI want to " +
+                                                                "be able to use trigonometric functions",
+                                                                ProgrammingLanguage.CSharp, ((string[]) (null)));
             testRunner.OnFeatureStart(featureInfo);
         }
-        
+
         [NUnit.Framework.TestFixtureTearDownAttribute()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
-        
+
         [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
-        
+
         [NUnit.Framework.TearDownAttribute()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
         }
-        
+
         public virtual void ScenarioSetup(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioStart(scenarioInfo);
         }
-        
+
         public virtual void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
-        
+
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Sine")]
         [NUnit.Framework.CategoryAttribute("trigonometric")]
         [NUnit.Framework.CategoryAttribute("fast")]
         public virtual void Sine()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sine", new string[] {
-                        "trigonometric",
-                        "fast"});
+            var scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sine", new string[]
+                                                                              {
+                                                                                  "trigonometric",
+                                                                                  "fast"
+                                                                              });
 #line 7
- this.ScenarioSetup(scenarioInfo);
+            this.ScenarioSetup(scenarioInfo);
 #line 8
-  testRunner.Given("I have entered 90 into the calculator");
+            testRunner.Given("I have entered 90 into the calculator");
 #line 9
-  testRunner.When("I press sin");
+            testRunner.When("I press sin");
 #line 10
-  testRunner.Then("the result should be 1 on the screen");
+            testRunner.Then("the result should be 1 on the screen");
 #line hidden
             this.ScenarioCleanup();
         }
-        
+
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Cosine")]
         [NUnit.Framework.CategoryAttribute("trigonometric")]
         [NUnit.Framework.CategoryAttribute("fast")]
         public virtual void Cosine()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cosine", new string[] {
-                        "trigonometric",
-                        "fast"});
+            var scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cosine", new string[]
+                                                                                {
+                                                                                    "trigonometric",
+                                                                                    "fast"
+                                                                                });
 #line 13
- this.ScenarioSetup(scenarioInfo);
+            this.ScenarioSetup(scenarioInfo);
 #line 14
-  testRunner.Given("I have entered 0 into the calculator");
+            testRunner.Given("I have entered 0 into the calculator");
 #line 15
-  testRunner.When("I press cos");
+            testRunner.When("I press cos");
 #line 16
-  testRunner.Then("the result should be 1 on the screen");
+            testRunner.Then("the result should be 1 on the screen");
 #line hidden
             this.ScenarioCleanup();
         }
-        
+
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Tangent")]
         [NUnit.Framework.CategoryAttribute("trigonometric")]
         [NUnit.Framework.CategoryAttribute("fast")]
         public virtual void Tangent()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Tangent", new string[] {
-                        "trigonometric",
-                        "fast"});
+            var scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Tangent", new string[]
+                                                                                 {
+                                                                                     "trigonometric",
+                                                                                     "fast"
+                                                                                 });
 #line 19
- this.ScenarioSetup(scenarioInfo);
+            this.ScenarioSetup(scenarioInfo);
 #line 20
-  testRunner.Given("I have entered 45 into the calculator");
+            testRunner.Given("I have entered 45 into the calculator");
 #line 21
-  testRunner.When("I press tan");
+            testRunner.When("I press tan");
 #line 22
-  testRunner.Then("the result should be 1 on the screen");
+            testRunner.Then("the result should be 1 on the screen");
 #line hidden
             this.ScenarioCleanup();
         }
     }
 }
+
 #pragma warning restore
+
 #endregion

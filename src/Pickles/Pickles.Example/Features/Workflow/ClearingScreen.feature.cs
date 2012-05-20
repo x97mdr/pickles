@@ -9,85 +9,93 @@
 //      the code is regenerated.
 //  </auto-generated>
 // ------------------------------------------------------------------------------
+
 #region Designer generated code
+
+using TechTalk.SpecFlow;
+
 #pragma warning disable
+
 namespace Pickles.Example.Features.Workflow
 {
-    using TechTalk.SpecFlow;
-    
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.8.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Clearing Screen")]
     public partial class ClearingScreenFeature
     {
-        
         private static TechTalk.SpecFlow.ITestRunner testRunner;
-        
+
 #line 1 "ClearingScreen.feature"
 #line hidden
-        
+
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Clearing Screen", "In order to restart a new set of calculations\r\nAs a math idiot\r\nI want to be able" +
-                    " to clear the screen", ProgrammingLanguage.CSharp, ((string[])(null)));
+            var featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"),
+                                                                "Clearing Screen",
+                                                                "In order to restart a new set of calculations\r\nAs a math idiot\r\nI want to be able" +
+                                                                " to clear the screen", ProgrammingLanguage.CSharp,
+                                                                ((string[]) (null)));
             testRunner.OnFeatureStart(featureInfo);
         }
-        
+
         [NUnit.Framework.TestFixtureTearDownAttribute()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
-        
+
         [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
-        
+
         [NUnit.Framework.TearDownAttribute()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
         }
-        
+
         public virtual void ScenarioSetup(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioStart(scenarioInfo);
         }
-        
+
         public virtual void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
-        
+
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Clear the screen")]
         [NUnit.Framework.CategoryAttribute("workflow")]
         [NUnit.Framework.CategoryAttribute("slow")]
         public virtual void ClearTheScreen()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Clear the screen", new string[] {
-                        "workflow",
-                        "slow"});
+            var scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Clear the screen", new string[]
+                                                                                          {
+                                                                                              "workflow",
+                                                                                              "slow"
+                                                                                          });
 #line 7
- this.ScenarioSetup(scenarioInfo);
+            this.ScenarioSetup(scenarioInfo);
 #line 8
-  testRunner.Given("I have entered 50 into the calculator");
+            testRunner.Given("I have entered 50 into the calculator");
 #line 9
-  testRunner.And("I have entered 70 into the calculator");
+            testRunner.And("I have entered 70 into the calculator");
 #line 10
-  testRunner.When("I press C");
+            testRunner.When("I press C");
 #line 11
-  testRunner.Then("the screen should be empty");
+            testRunner.Then("the screen should be empty");
 #line hidden
             this.ScenarioCleanup();
         }
     }
 }
+
 #pragma warning restore
+
 #endregion

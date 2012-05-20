@@ -18,14 +18,9 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
-using Pickles.Parser;
 using ClosedXML.Excel;
+using Pickles.Parser;
 
 namespace Pickles.DocumentationBuilders.Excel
 {
@@ -35,7 +30,8 @@ namespace Pickles.DocumentationBuilders.Excel
         private readonly ExcelScenarioOutlineFormatter excelScenarioOutlineFormatter;
         private uint nextId = 1;
 
-        public ExcelFeatureFormatter(ExcelScenarioFormatter excelScenarioFormatter, ExcelScenarioOutlineFormatter excelScenarioOutlineFormatter)
+        public ExcelFeatureFormatter(ExcelScenarioFormatter excelScenarioFormatter,
+                                     ExcelScenarioOutlineFormatter excelScenarioOutlineFormatter)
         {
             this.excelScenarioFormatter = excelScenarioFormatter;
             this.excelScenarioOutlineFormatter = excelScenarioOutlineFormatter;
@@ -54,18 +50,18 @@ namespace Pickles.DocumentationBuilders.Excel
             worksheet.Cell("B2").Style.Alignment.WrapText = false;
 
             int row = 4;
-            foreach (var featureElement in feature.FeatureElements)
+            foreach (IFeatureElement featureElement in feature.FeatureElements)
             {
-                var scenario = featureElement as Pickles.Parser.Scenario;
+                var scenario = featureElement as Scenario;
                 if (scenario != null)
                 {
-                    this.excelScenarioFormatter.Format(worksheet, scenario, ref row);
+                    excelScenarioFormatter.Format(worksheet, scenario, ref row);
                 }
 
                 var scenarioOutline = featureElement as ScenarioOutline;
                 if (scenarioOutline != null)
                 {
-                    this.excelScenarioOutlineFormatter.Format(worksheet, scenarioOutline, ref row);
+                    excelScenarioOutlineFormatter.Format(worksheet, scenarioOutline, ref row);
                 }
 
                 row++;

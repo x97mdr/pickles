@@ -19,9 +19,6 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
 
 namespace Pickles.Extensions
@@ -36,8 +33,8 @@ namespace Pickles.Extensions
             string fromString = AddTrailingSlashToDirectoriesForUriMethods(from);
             string toString = AddTrailingSlashToDirectoriesForUriMethods(to);
 
-            Uri fromUri = new Uri(fromString);
-            Uri toUri = new Uri(toString);
+            var fromUri = new Uri(fromString);
+            var toUri = new Uri(toString);
 
             Uri relativeUri = fromUri.MakeRelativeUri(toUri);
             string relativePath = Uri.UnescapeDataString(relativeUri.ToString());

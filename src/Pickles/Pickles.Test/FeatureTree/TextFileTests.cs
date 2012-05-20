@@ -12,7 +12,7 @@ namespace Pickles.Test.FeatureTree
         [Test]
         public void Constructor_EmptyFeature_ThrowsArgumentException()
         {
-            ArgumentNullException exception = Assert.Throws<ArgumentNullException>(() => new TextFile("Text", parentFolder, null));
+            var exception = Assert.Throws<ArgumentNullException>(() => new TextFile("Text", parentFolder, null));
 
             Assert.AreEqual("content", exception.ParamName);
         }
@@ -20,7 +20,7 @@ namespace Pickles.Test.FeatureTree
         [Test]
         public void Constructor_WithFeature_SetsContentProperty()
         {
-            var text = "# Text #";
+            string text = "# Text #";
 
             var TextFile = new TextFile("filename.ext", parentFolder, text);
 

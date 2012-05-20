@@ -13,7 +13,7 @@ namespace Pickles.Test.FeatureTree
         [Test]
         public void Constructor_EmptyFeature_ThrowsArgumentException()
         {
-            ArgumentNullException exception = Assert.Throws<ArgumentNullException>(() => new FeatureFile("feature", parentFolder, null));
+            var exception = Assert.Throws<ArgumentNullException>(() => new FeatureFile("feature", parentFolder, null));
 
             Assert.AreEqual("feature", exception.ParamName);
         }

@@ -7,7 +7,9 @@ namespace Specs.TestRunner
     public class TestRunnerDemoSteps
     {
         [Given(@"I have step defintions in place")]
-        public void IHaveStepsDefintionsInPlace() {}
+        public void IHaveStepsDefintionsInPlace()
+        {
+        }
 
         [When(@"I call a step")]
         public void CallAStep()
@@ -18,9 +20,8 @@ namespace Specs.TestRunner
         [Then(@"the step should have been called")]
         public void StepShouldHaveBeenCalled()
         {
-            var whencalled = bool.Parse(ScenarioContext.Current["WhenCalled"].ToString());
+            bool whencalled = bool.Parse(ScenarioContext.Current["WhenCalled"].ToString());
             whencalled.Should().Be.True();
         }
-
     }
 }

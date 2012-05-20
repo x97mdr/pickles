@@ -18,11 +18,8 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using ClosedXML.Excel;
+using Pickles.Parser;
 
 namespace Pickles.DocumentationBuilders.Excel
 {
@@ -30,11 +27,11 @@ namespace Pickles.DocumentationBuilders.Excel
     {
         private const int TableStartColumn = 4;
 
-        public void Format(ClosedXML.Excel.IXLWorksheet worksheet, Parser.Table table, ref int row)
+        public void Format(IXLWorksheet worksheet, Table table, ref int row)
         {
             int startRow = row;
             int headerColumn = TableStartColumn;
-            foreach (var cell in table.HeaderRow)
+            foreach (string cell in table.HeaderRow)
             {
                 worksheet.Cell(row, headerColumn).Style.Font.SetBold();
                 worksheet.Cell(row, headerColumn).Style.Font.SetItalic();
@@ -43,10 +40,10 @@ namespace Pickles.DocumentationBuilders.Excel
             }
             row++;
 
-            foreach (var dataRow in table.DataRows)
+            foreach (TableRow dataRow in table.DataRows)
             {
                 int dataColumn = TableStartColumn;
-                foreach (var cell in dataRow)
+                foreach (string cell in dataRow)
                 {
                     worksheet.Cell(row, dataColumn++).Value = cell;
                 }
@@ -56,10 +53,14 @@ namespace Pickles.DocumentationBuilders.Excel
             int lastRow = row - 1;
             int lastColumn = headerColumn - 1;
 
-            worksheet.Range(startRow, TableStartColumn, lastRow, lastColumn).Style.Border.TopBorder = ClosedXML.Excel.XLBorderStyleValues.Thin;
-            worksheet.Range(startRow, TableStartColumn, lastRow, lastColumn).Style.Border.LeftBorder = ClosedXML.Excel.XLBorderStyleValues.Thin;
-            worksheet.Range(startRow, TableStartColumn, lastRow, lastColumn).Style.Border.BottomBorder = ClosedXML.Excel.XLBorderStyleValues.Thin;
-            worksheet.Range(startRow, TableStartColumn, lastRow, lastColumn).Style.Border.RightBorder = ClosedXML.Excel.XLBorderStyleValues.Thin;
+            worksheet.Range(startRow, TableStartColumn, lastRow, lastColumn).Style.Border.TopBorder =
+                XLBorderStyleValues.Thin;
+            worksheet.Range(startRow, TableStartColumn, lastRow, lastColumn).Style.Border.LeftBorder =
+                XLBorderStyleValues.Thin;
+            worksheet.Range(startRow, TableStartColumn, lastRow, lastColumn).Style.Border.BottomBorder =
+                XLBorderStyleValues.Thin;
+            worksheet.Range(startRow, TableStartColumn, lastRow, lastColumn).Style.Border.RightBorder =
+                XLBorderStyleValues.Thin;
         }
     }
 }

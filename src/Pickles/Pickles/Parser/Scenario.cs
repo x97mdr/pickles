@@ -18,25 +18,26 @@
 
 #endregion
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Pickles.Parser
 {
     public class Scenario : IFeatureElement
     {
+        public Scenario()
+        {
+            Steps = new List<Step>();
+            Tags = new List<string>();
+        }
+
+        #region IFeatureElement Members
+
         public string Name { get; set; }
         public string Description { get; set; }
         public List<Step> Steps { get; set; }
         public List<string> Tags { get; set; }
         public Feature Feature { get; set; }
 
-        public Scenario()
-        {
-            Steps = new List<Step>();
-            Tags = new List<string>();
-        }
+        #endregion
     }
 }

@@ -18,14 +18,13 @@
 
 #endregion
 
-using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Xml.Linq;
-using System.Xml;
-using Pickles.Parser;
 using System.Text.RegularExpressions;
+using System.Xml;
+using System.Xml.Linq;
+using Pickles.Parser;
 
 namespace Pickles.TestFrameworks
 {
@@ -41,16 +40,54 @@ namespace Pickles.TestFrameworks
             this.exampleSignatureBuilder = exampleSignatureBuilder;
             if (configuration.HasTestResults)
             {
-                this.resultsDocument = ReadResultsFile();
+                resultsDocument = ReadResultsFile();
             }
         }
+
+        #region ITestResults Members
+
+        public TestResult GetFeatureResult(Feature feature)
+        {
+            XElement featureElement = GetFeatureElement(feature);
+            int passedCount = int.Parse(featureElement.Attribute("passed").Value);
+            int failedCount = int.Parse(featureElement.Attribute("failed").Value);
+            int skippedCount = int.Parse(featureElement.Attribute("skipped").Value);
+
+            return GetAggregateResult(passedCount, failedCount, skippedCount);
+        }
+
+        public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
+        {
+            IEnumerable<XElement> exampleElements = GetScenarioOutlineElements(scenarioOutline);
+            int passedCount = 0;
+            int failedCount = 0;
+            int skippedCount = 0;
+
+            foreach (XElement exampleElement in exampleElements)
+            {
+                TestResult result = GetResultFromElement(exampleElement);
+                if (result.WasExecuted == false) skippedCount++;
+                if (result.WasExecuted && result.WasSuccessful) passedCount++;
+                if (result.WasExecuted && !result.WasSuccessful) failedCount++;
+            }
+
+            return GetAggregateResult(passedCount, failedCount, skippedCount);
+        }
+
+        public TestResult GetScenarioResult(Scenario scenario)
+        {
+            XElement scenarioElement = GetScenarioElement(scenario);
+            return GetResultFromElement(scenarioElement);
+        }
+
+        #endregion
 
         private XDocument ReadResultsFile()
         {
             XDocument document;
-            using (var stream = configuration.TestResultsFile.OpenRead())
+            using (FileStream stream = configuration.TestResultsFile.OpenRead())
             {
-                var xmlReader = XmlReader.Create(stream);
+                XmlReader xmlReader = XmlReader.Create(stream);
                 document = XDocument.Load(xmlReader);
                 stream.Close();
             }
@@ -59,21 +96,21 @@ namespace Pickles.TestFrameworks
 
         private XElement GetFeatureElement(Feature feature)
         {
-            var featureQuery =
-                  from clazz in this.resultsDocument.Root.Descendants("class")
-                  from test in clazz.Descendants("test")
-                  from trait in clazz.Descendants("traits").Descendants("trait")
-                  where trait.Attribute("name").Value == "FeatureTitle" && trait.Attribute("value").Value == feature.Name
-                  select clazz;
+            IEnumerable<XElement> featureQuery =
+                from clazz in resultsDocument.Root.Descendants("class")
+                from test in clazz.Descendants("test")
+                from trait in clazz.Descendants("traits").Descendants("trait")
+                where trait.Attribute("name").Value == "FeatureTitle" && trait.Attribute("value").Value == feature.Name
+                select clazz;
 
             return featureQuery.FirstOrDefault();
         }
 
         private XElement GetScenarioElement(Scenario scenario)
         {
-            var featureElement = GetFeatureElement(scenario.Feature);
+            XElement featureElement = GetFeatureElement(scenario.Feature);
 
-            var scenarioQuery =
+            IEnumerable<XElement> scenarioQuery =
                 from test in featureElement.Descendants("test")
                 from trait in test.Descendants("traits").Descendants("trait")
                 where trait.Attribute("name").Value == "Description" && trait.Attribute("value").Value == scenario.Name
@@ -84,9 +121,9 @@ namespace Pickles.TestFrameworks
 
         private IEnumerable<XElement> GetScenarioOutlineElements(ScenarioOutline scenario)
         {
-            var featureElement = GetFeatureElement(scenario.Feature);
+            XElement featureElement = GetFeatureElement(scenario.Feature);
 
-            var scenarioQuery =
+            IEnumerable<XElement> scenarioQuery =
                 from test in featureElement.Descendants("test")
                 from trait in test.Descendants("traits").Descendants("trait")
                 where trait.Attribute("name").Value == "Description" && trait.Attribute("value").Value == scenario.Name
@@ -97,8 +134,8 @@ namespace Pickles.TestFrameworks
 
         private TestResult GetResultFromElement(XElement element)
         {
-            TestResult result = new TestResult();
-            var resultAttribute = element.Attribute("result");
+            var result = new TestResult();
+            XAttribute resultAttribute = element.Attribute("result");
             switch (resultAttribute.Value.ToLowerInvariant())
             {
                 case "skip":
@@ -143,16 +180,14 @@ namespace Pickles.TestFrameworks
             return result;
         }
 
-        #region ITestResults Members
-
-        public TestResult GetExampleResult(Parser.ScenarioOutline scenarioOutline, string[] row)
+        public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] row)
         {
-            var exampleElements = GetScenarioOutlineElements(scenarioOutline);
+            IEnumerable<XElement> exampleElements = GetScenarioOutlineElements(scenarioOutline);
 
-            TestResult result = new TestResult();
-            foreach (var exampleElement in exampleElements)
+            var result = new TestResult();
+            foreach (XElement exampleElement in exampleElements)
             {
-                var signature = this.exampleSignatureBuilder.Build(scenarioOutline, row);
+                Regex signature = exampleSignatureBuilder.Build(scenarioOutline, row);
                 if (signature.IsMatch(exampleElement.Attribute("name").Value.ToLowerInvariant()))
                 {
                     return GetResultFromElement(exampleElement);
@@ -160,41 +195,5 @@ namespace Pickles.TestFrameworks
             }
             return result;
         }
-
-        public TestResult GetFeatureResult(Parser.Feature feature)
-        {
-            var featureElement = GetFeatureElement(feature);
-            int passedCount = int.Parse(featureElement.Attribute("passed").Value);
-            int failedCount = int.Parse(featureElement.Attribute("failed").Value);
-            int skippedCount = int.Parse(featureElement.Attribute("skipped").Value);
-
-            return GetAggregateResult(passedCount, failedCount, skippedCount);
-        }
-
-        public TestResult GetScenarioOutlineResult(Parser.ScenarioOutline scenarioOutline)
-        {
-            var exampleElements = GetScenarioOutlineElements(scenarioOutline);
-            int passedCount = 0;
-            int failedCount = 0;
-            int skippedCount = 0;
-
-            foreach (var exampleElement in exampleElements)
-            {
-                var result = GetResultFromElement(exampleElement);
-                if (result.WasExecuted == false) skippedCount++;
-                if (result.WasExecuted && result.WasSuccessful) passedCount++;
-                if (result.WasExecuted && !result.WasSuccessful) failedCount++;
-            }
-
-            return GetAggregateResult(passedCount, failedCount, skippedCount);
-        }
-
-        public TestResult GetScenarioResult(Parser.Scenario scenario)
-        {
-            var scenarioElement = GetScenarioElement(scenario);
-            return GetResultFromElement(scenarioElement);
-        }
-
-        #endregion
     }
 }

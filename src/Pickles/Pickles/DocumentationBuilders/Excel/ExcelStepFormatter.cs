@@ -18,26 +18,24 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using ClosedXML.Excel;
+using Pickles.Parser;
 
 namespace Pickles.DocumentationBuilders.Excel
 {
     public class ExcelStepFormatter
     {
-        private readonly ExcelTableFormatter excelTableFormatter;
         private readonly ExcelDocumentStringFormatter excelDocumentStringFormatter;
+        private readonly ExcelTableFormatter excelTableFormatter;
 
-        public ExcelStepFormatter(ExcelTableFormatter excelTableFormatter, ExcelDocumentStringFormatter excelDocumentStringFormatter)
+        public ExcelStepFormatter(ExcelTableFormatter excelTableFormatter,
+                                  ExcelDocumentStringFormatter excelDocumentStringFormatter)
         {
             this.excelTableFormatter = excelTableFormatter;
             this.excelDocumentStringFormatter = excelDocumentStringFormatter;
         }
 
-        public void Format(ClosedXML.Excel.IXLWorksheet worksheet, Parser.Step step, ref int row)
+        public void Format(IXLWorksheet worksheet, Step step, ref int row)
         {
             worksheet.Cell(row, "C").Style.Font.SetBold();
             worksheet.Cell(row, "C").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right);
@@ -46,12 +44,12 @@ namespace Pickles.DocumentationBuilders.Excel
 
             if (step.TableArgument != null)
             {
-                this.excelTableFormatter.Format(worksheet, step.TableArgument, ref row);
+                excelTableFormatter.Format(worksheet, step.TableArgument, ref row);
             }
 
             if (!string.IsNullOrEmpty(step.DocStringArgument))
             {
-                this.excelDocumentStringFormatter.Format(worksheet, step.DocStringArgument, ref row);
+                excelDocumentStringFormatter.Format(worksheet, step.DocStringArgument, ref row);
             }
         }
     }

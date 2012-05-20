@@ -18,10 +18,6 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 
 namespace Pickles.DocumentationBuilders.HTML
@@ -38,14 +34,14 @@ namespace Pickles.DocumentationBuilders.HTML
         public XElement Format(string multilineText)
         {
             return new XElement(xmlns + "div",
-                       new XAttribute("class", "pre"),
-                       new XElement(xmlns + "pre",
-                           new XElement(xmlns + "code",
-                               new XAttribute("class", "no-highlight"),
-                               new XText(multilineText)
-                            )
-                        )
-                    );
+                                new XAttribute("class", "pre"),
+                                new XElement(xmlns + "pre",
+                                             new XElement(xmlns + "code",
+                                                          new XAttribute("class", "no-highlight"),
+                                                          new XText(multilineText)
+                                                 )
+                                    )
+                );
         }
     }
 }

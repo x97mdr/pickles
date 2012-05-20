@@ -19,17 +19,22 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Pickles
 {
     [Serializable]
     public class FeatureParseException : Exception
     {
-        public FeatureParseException() { }
-        public FeatureParseException(string msg) { }
-        public FeatureParseException(string msg, Exception e) { }
+        public FeatureParseException()
+        {
+        }
+
+        public FeatureParseException(string msg)
+        {
+        }
+
+        public FeatureParseException(string msg, Exception e)
+        {
+        }
     }
 }

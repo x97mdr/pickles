@@ -19,15 +19,11 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
+using System.Reflection;
 using NAnt.Core;
 using NAnt.Core.Attributes;
 using Ninject;
-using Pickles.DocumentationBuilders.HTML;
-using Pickles.TestFrameworks;
 
 namespace Pickles.NAnt
 {
@@ -35,7 +31,7 @@ namespace Pickles.NAnt
     public class Pickles : Task
     {
         [TaskAttribute("features", Required = true)]
-        [StringValidator(AllowEmpty=false)]
+        [StringValidator(AllowEmpty = false)]
         public string FeatureDirectory { get; set; }
 
         [TaskAttribute("output", Required = true)]
@@ -71,24 +67,29 @@ namespace Pickles.NAnt
             configuration.FeatureFolder = new DirectoryInfo(FeatureDirectory);
             configuration.OutputFolder = new DirectoryInfo(OutputDirectory);
             if (!string.IsNullOrEmpty(Language)) configuration.Language = Language;
-            if (!string.IsNullOrEmpty(ResultsFormat)) configuration.TestResultsFormat = (TestResultsFormat)Enum.Parse(typeof(TestResultsFormat), this.ResultsFormat, true);
+            if (!string.IsNullOrEmpty(ResultsFormat))
+                configuration.TestResultsFormat =
+                    (TestResultsFormat) Enum.Parse(typeof (TestResultsFormat), ResultsFormat, true);
             if (!string.IsNullOrEmpty(ResultsFile)) configuration.TestResultsFile = new FileInfo(ResultsFile);
             if (!string.IsNullOrEmpty(SystemUnderTestName)) configuration.SystemUnderTestName = SystemUnderTestName;
-            if (!string.IsNullOrEmpty(SystemUnderTestVersion)) configuration.SystemUnderTestVersion = SystemUnderTestVersion;
-            if (!string.IsNullOrEmpty(DocumentationFormat)) configuration.DocumentationFormat = (DocumentationFormat)Enum.Parse(typeof(DocumentationFormat), DocumentationFormat, true);
+            if (!string.IsNullOrEmpty(SystemUnderTestVersion))
+                configuration.SystemUnderTestVersion = SystemUnderTestVersion;
+            if (!string.IsNullOrEmpty(DocumentationFormat))
+                configuration.DocumentationFormat =
+                    (DocumentationFormat) Enum.Parse(typeof (DocumentationFormat), DocumentationFormat, true);
         }
 
         protected override void ExecuteTask()
         {
             try
             {
-                Project.Log(Level.Info, "Pickles v.{0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
+                Project.Log(Level.Info, "Pickles v.{0}", Assembly.GetExecutingAssembly().GetName().Version.ToString());
                 Project.Log(Level.Info, "Reading features from {0}", FeatureDirectory ?? string.Empty);
                 Project.Log(Level.Info, "Writing output to {0}", OutputDirectory ?? string.Empty);
 
                 var kernel = new StandardKernel(new PicklesModule());
 
-                Configuration configuration = kernel.Get<Configuration>();
+                var configuration = kernel.Get<Configuration>();
                 CaptureConfiguration(configuration);
 
                 var runner = kernel.Get<Runner>();

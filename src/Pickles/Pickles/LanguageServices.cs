@@ -18,17 +18,16 @@
 
 #endregion
 
+using System;
+using System.Globalization;
+using gherkin;
+using gherkin.lexer;
+
 namespace Pickles
 {
-    using System;
-    using System.Globalization;
-
-    using gherkin;
-    using gherkin.lexer;
-
     public class LanguageServices
     {
-        private readonly CultureInfo currentCulture; 
+        private readonly CultureInfo currentCulture;
 
         public LanguageServices(Configuration configuration)
         {
@@ -46,16 +45,20 @@ namespace Pickles
 
         public Lexer GetNativeLexer(Listener parser)
         {
-            if (currentCulture == null) 
+            if (currentCulture == null)
                 return new I18nLexer(parser);
 
-            var typeName = string.Format("gherkin.lexer.i18n.{0}, {1}", currentCulture.TwoLetterISOLanguageName.ToUpper(), typeof(I18nLexer).Assembly.FullName);
+            string typeName = string.Format("gherkin.lexer.i18n.{0}, {1}",
+                                            currentCulture.TwoLetterISOLanguageName.ToUpper(),
+                                            typeof (I18nLexer).Assembly.FullName);
 
-            var lexerType = Type.GetType(typeName);
+            Type lexerType = Type.GetType(typeName);
 
             if (lexerType == null)
-                throw new ApplicationException(string.Format("The specified language '{1}' with language code '{0}' is not supported!", currentCulture.TwoLetterISOLanguageName.ToUpper(), currentCulture.NativeName));
-            
+                throw new ApplicationException(
+                    string.Format("The specified language '{1}' with language code '{0}' is not supported!",
+                                  currentCulture.TwoLetterISOLanguageName.ToUpper(), currentCulture.NativeName));
+
             return Activator.CreateInstance(lexerType, parser) as Lexer;
         }
     }

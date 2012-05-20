@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Reflection;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using Pickles.Extensions;
 
 namespace Pickles
@@ -17,86 +16,65 @@ namespace Pickles
             this.configuration = configuration;
         }
 
-        private string GetNameFromResourceName(string resourceName)
-        {
-            if (resourceName.StartsWith("Pickles.Resources.images")) return resourceName.Replace("Pickles.Resources.images.", string.Empty);
-            else if (resourceName.StartsWith("Pickles.Resources.scripts")) return resourceName.Replace("Pickles.Resources.scripts.", string.Empty);
-            else return resourceName.Replace("Pickles.Resources.", string.Empty);
-        }
-
         public Uri MasterStylesheet
         {
-            get
-            {
-              return configuration.OutputFolder.ToFileUriCombined("master.css");
-            }
+            get { return configuration.OutputFolder.ToFileUriCombined("master.css"); }
         }
 
         public Uri PrintStylesheet
         {
-            get
-            {
-              return configuration.OutputFolder.ToFileUriCombined("print.css");
-            }
+            get { return configuration.OutputFolder.ToFileUriCombined("print.css"); }
         }
 
         public Uri jQueryScript
         {
-            get
-            {
-              return configuration.OutputFolder.ToFileUriCombined("scripts/jquery.js");
-            }
+            get { return configuration.OutputFolder.ToFileUriCombined("scripts/jquery.js"); }
         }
 
         public Uri AdditionalScripts
         {
-            get
-            {
-              return configuration.OutputFolder.ToFileUriCombined("scripts/scripts.js");
-            }
+            get { return configuration.OutputFolder.ToFileUriCombined("scripts/scripts.js"); }
         }
 
         public Uri SuccessImage
         {
-            get
-            {
-                return new Uri(Path.Combine(ImagesFolder, "success.png"));
-            }
+            get { return new Uri(Path.Combine(ImagesFolder, "success.png")); }
         }
 
-        public string ImagesFolder { get { return Path.Combine(configuration.OutputFolder.FullName, "images"); } }
-        public string ScriptsFolder { get { return Path.Combine(configuration.OutputFolder.FullName, "scripts"); } }
+        public string ImagesFolder
+        {
+            get { return Path.Combine(configuration.OutputFolder.FullName, "images"); }
+        }
+
+        public string ScriptsFolder
+        {
+            get { return Path.Combine(configuration.OutputFolder.FullName, "scripts"); }
+        }
 
         public Uri FailureImage
         {
-            get
-            {
-                return new Uri(Path.Combine(ImagesFolder, "failure.png"));
-            }
+            get { return new Uri(Path.Combine(ImagesFolder, "failure.png")); }
         }
 
         public IEnumerable<HtmlResource> All
         {
-            get
-            {
-                return Stylesheets.Concat(Images);
-            }
+            get { return Stylesheets.Concat(Images); }
         }
 
         public IEnumerable<HtmlResource> Stylesheets
         {
             get
             {
-                var resources = Assembly.GetExecutingAssembly().GetManifestResourceNames();
+                string[] resources = Assembly.GetExecutingAssembly().GetManifestResourceNames();
 
-                foreach (var resource in resources.Where(resource => resource.EndsWith(".css")))
+                foreach (string resource in resources.Where(resource => resource.EndsWith(".css")))
                 {
-                    var fileName = GetNameFromResourceName(resource);
+                    string fileName = GetNameFromResourceName(resource);
                     yield return new HtmlResource
-                    {
-                        File = fileName,
-                        Uri = configuration.OutputFolder.ToFileUriCombined(fileName)
-                    };
+                                     {
+                                         File = fileName,
+                                         Uri = configuration.OutputFolder.ToFileUriCombined(fileName)
+                                     };
                 }
             }
         }
@@ -105,16 +83,16 @@ namespace Pickles
         {
             get
             {
-                var resources = Assembly.GetExecutingAssembly().GetManifestResourceNames();
+                string[] resources = Assembly.GetExecutingAssembly().GetManifestResourceNames();
 
-                foreach (var resource in resources.Where(resource => resource.EndsWith(".png")))
+                foreach (string resource in resources.Where(resource => resource.EndsWith(".png")))
                 {
-                    var fileName = GetNameFromResourceName(resource);
+                    string fileName = GetNameFromResourceName(resource);
                     yield return new HtmlResource
-                    {
-                        File = fileName,
-                        Uri = new Uri(Path.Combine(ImagesFolder, fileName))
-                    };
+                                     {
+                                         File = fileName,
+                                         Uri = new Uri(Path.Combine(ImagesFolder, fileName))
+                                     };
                 }
             }
         }
@@ -123,18 +101,27 @@ namespace Pickles
         {
             get
             {
-                var resources = Assembly.GetExecutingAssembly().GetManifestResourceNames();
+                string[] resources = Assembly.GetExecutingAssembly().GetManifestResourceNames();
 
-                foreach (var resource in resources.Where(resource => resource.EndsWith(".js")))
+                foreach (string resource in resources.Where(resource => resource.EndsWith(".js")))
                 {
-                    var fileName = GetNameFromResourceName(resource);
+                    string fileName = GetNameFromResourceName(resource);
                     yield return new HtmlResource
-                    {
-                        File = fileName,
-                        Uri = new Uri(Path.Combine(ScriptsFolder, fileName))
-                    };
+                                     {
+                                         File = fileName,
+                                         Uri = new Uri(Path.Combine(ScriptsFolder, fileName))
+                                     };
                 }
             }
+        }
+
+        private string GetNameFromResourceName(string resourceName)
+        {
+            if (resourceName.StartsWith("Pickles.Resources.images"))
+                return resourceName.Replace("Pickles.Resources.images.", string.Empty);
+            else if (resourceName.StartsWith("Pickles.Resources.scripts"))
+                return resourceName.Replace("Pickles.Resources.scripts.", string.Empty);
+            else return resourceName.Replace("Pickles.Resources.", string.Empty);
         }
     }
 }

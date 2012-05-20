@@ -29,13 +29,13 @@ using Pickles.Extensions;
 
 namespace Pickles
 {
-  public class HtmlIndexFormatter
-  {
-    private readonly XNamespace xmlns = HtmlNamespace.Xhtml;
-
-    public XElement Format(IDirectoryTreeNode node, IEnumerable<IDirectoryTreeNode> features)
+    public class HtmlIndexFormatter
     {
-      /*
+        private readonly XNamespace xmlns = HtmlNamespace.Xhtml;
+
+        public XElement Format(IDirectoryTreeNode node, IEnumerable<IDirectoryTreeNode> features)
+        {
+            /*
        <div id="feature">
          <h1>Folder Name</h1>
           <ul class="list">
@@ -45,71 +45,79 @@ namespace Pickles
           </ul>
        <div>
        */
-      var directoryInfo = node.OriginalLocation as DirectoryInfo;
+            var directoryInfo = node.OriginalLocation as DirectoryInfo;
 
-      if (directoryInfo == null)
-      {
-        throw new ArgumentOutOfRangeException("node", "Argument node must contain a DirectoryInfo.");
-      }
+            if (directoryInfo == null)
+            {
+                throw new ArgumentOutOfRangeException("node", "Argument node must contain a DirectoryInfo.");
+            }
 
-      string[] files = directoryInfo.GetFiles().Select(f => f.FullName).ToArray();
+            string[] files = directoryInfo.GetFiles().Select(f => f.FullName).ToArray();
 
-      var featuresThatAreDirectChildrenOfFolder =
-        features.Where(f => f.OriginalLocation is FileInfo).Where(f => files.Contains(f.OriginalLocation.FullName)).ToArray();
+            IDirectoryTreeNode[] featuresThatAreDirectChildrenOfFolder =
+                features.Where(f => f.OriginalLocation is FileInfo).Where(
+                    f => files.Contains(f.OriginalLocation.FullName)).ToArray();
 
-      var div = new XElement(this.xmlns + "div",
-                  new XAttribute("id", "feature"),
-                  new XElement(this.xmlns + "h1", node.Name));
+            var div = new XElement(xmlns + "div",
+                                   new XAttribute("id", "feature"),
+                                   new XElement(xmlns + "h1", node.Name));
 
-      var markdownTreeNode = featuresThatAreDirectChildrenOfFolder.Where(n => n.IsIndexMarkDownNode()).OfType<MarkdownTreeNode>().FirstOrDefault();
-        if (markdownTreeNode != null)
-        {
-          div.Add(
-            new XElement(
-              this.xmlns + "div",
-              new XAttribute("class", "folderDescription"),
-              markdownTreeNode.MarkdownContent));
+            MarkdownTreeNode markdownTreeNode =
+                featuresThatAreDirectChildrenOfFolder.Where(n => n.IsIndexMarkDownNode()).OfType<MarkdownTreeNode>().
+                    FirstOrDefault();
+            if (markdownTreeNode != null)
+            {
+                div.Add(
+                    new XElement(
+                        xmlns + "div",
+                        new XAttribute("class", "folderDescription"),
+                        markdownTreeNode.MarkdownContent));
+            }
+
+            div.Add(FormatList(node, featuresThatAreDirectChildrenOfFolder.OfType<FeatureDirectoryTreeNode>()));
+
+            return div;
         }
 
-      div.Add(FormatList(node, featuresThatAreDirectChildrenOfFolder.OfType<FeatureDirectoryTreeNode>()));
+        private XElement FormatList(IDirectoryTreeNode node, IEnumerable<FeatureDirectoryTreeNode> items)
+        {
+            // <ul class="list">...</ul>
 
-      return div;
+            var list = new XElement(xmlns + "ul", new XAttribute("class", "list"));
+
+            foreach (
+                XElement li in
+                    items.Select(
+                        item =>
+                        FormatListItem(item.GetRelativeUriTo(node.OriginalLocationUrl), item.Feature.Name,
+                                       item.Feature.Description)))
+            {
+                list.Add(li);
+            }
+
+            return list;
+        }
+
+        private XElement FormatListItem(string link, string title, string description)
+        {
+            // <li><a href="[link]"><span class="title">[title]</span><span class="separator"> - </span><span class="description">[description]</span></a></li>
+            return new XElement(
+                xmlns + "li",
+                new XElement(
+                    xmlns + "a",
+                    new XAttribute("href", link),
+                    new XElement(
+                        xmlns + "span",
+                        new XAttribute("class", "title"),
+                        title),
+                    new XElement(
+                        xmlns + "span",
+                        new XAttribute("class", "separator"),
+                        " - "),
+                    new XElement(
+                        xmlns + "span",
+                        new XAttribute("class", "description"),
+                        description)));
+        }
     }
-
-    private XElement FormatList(IDirectoryTreeNode node, IEnumerable<FeatureDirectoryTreeNode> items)
-    {
-      // <ul class="list">...</ul>
-
-      var list = new XElement(this.xmlns + "ul", new XAttribute("class", "list"));
-
-      foreach (var li in items.Select(item => FormatListItem(item.GetRelativeUriTo(node.OriginalLocationUrl), item.Feature.Name, item.Feature.Description)))
-      {
-        list.Add(li);
-      }
-
-      return list;
-    }
-
-    private XElement FormatListItem(string link, string title, string description)
-    {
-      // <li><a href="[link]"><span class="title">[title]</span><span class="separator"> - </span><span class="description">[description]</span></a></li>
-      return new XElement(
-        this.xmlns + "li",
-        new XElement(
-          this.xmlns + "a",
-          new XAttribute("href", link),
-          new XElement(
-            this.xmlns + "span",
-            new XAttribute("class", "title"),
-            title),
-          new XElement(
-            this.xmlns + "span",
-            new XAttribute("class", "separator"),
-            " - "),
-          new XElement(
-            this.xmlns + "span",
-            new XAttribute("class", "description"),
-            description)));
-    }
-  }
 }

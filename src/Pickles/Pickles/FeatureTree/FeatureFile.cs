@@ -12,7 +12,7 @@ namespace Pickles.FeatureTree
         {
             if (feature == null) throw new ArgumentNullException("feature");
 
-            this.mContent = feature;
+            mContent = feature;
         }
 
         public Feature Content

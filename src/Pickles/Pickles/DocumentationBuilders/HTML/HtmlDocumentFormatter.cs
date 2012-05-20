@@ -19,30 +19,32 @@
 #endregion
 
 using System;
-using System.Linq;
+using System.IO;
 using System.Xml.Linq;
 using NGenerics.DataStructures.Trees;
-using System.IO;
 using Pickles.DirectoryCrawler;
 
 namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlDocumentFormatter
     {
-        private const string documentReady = 
+        private const string documentReady =
             "\n" +
             "$(document).ready(function() {" + "\n" +
             "  initializeToc();" + "\n" +
             "});" + "\n";
 
         private readonly Configuration configuration;
-        private readonly HtmlHeaderFormatter htmlHeaderFormatter;
-        private readonly HtmlTableOfContentsFormatter htmlTableOfContentsFormatter;
         private readonly HtmlContentFormatter htmlContentFormatter;
         private readonly HtmlFooterFormatter htmlFooterFormatter;
+        private readonly HtmlHeaderFormatter htmlHeaderFormatter;
         private readonly HtmlResourceSet htmlResources;
+        private readonly HtmlTableOfContentsFormatter htmlTableOfContentsFormatter;
 
-        public HtmlDocumentFormatter(Configuration configuration, HtmlHeaderFormatter htmlHeaderFormatter, HtmlTableOfContentsFormatter htmlTableOfContentsFormatter, HtmlContentFormatter htmlContentFormatter, HtmlFooterFormatter htmlFooterFormatter, HtmlResourceSet htmlResources)
+        public HtmlDocumentFormatter(Configuration configuration, HtmlHeaderFormatter htmlHeaderFormatter,
+                                     HtmlTableOfContentsFormatter htmlTableOfContentsFormatter,
+                                     HtmlContentFormatter htmlContentFormatter, HtmlFooterFormatter htmlFooterFormatter,
+                                     HtmlResourceSet htmlResources)
         {
             this.configuration = configuration;
             this.htmlHeaderFormatter = htmlHeaderFormatter;
@@ -52,17 +54,19 @@ namespace Pickles.DocumentationBuilders.HTML
             this.htmlResources = htmlResources;
         }
 
-        public XDocument Format(IDirectoryTreeNode featureNode, GeneralTree<IDirectoryTreeNode> features, DirectoryInfo rootFolder)
+        public XDocument Format(IDirectoryTreeNode featureNode, GeneralTree<IDirectoryTreeNode> features,
+                                DirectoryInfo rootFolder)
         {
-            var xmlns = HtmlNamespace.Xhtml;
-            var featureNodeOutputPath = Path.Combine(this.configuration.OutputFolder.FullName, featureNode.RelativePathFromRoot);
+            XNamespace xmlns = HtmlNamespace.Xhtml;
+            string featureNodeOutputPath = Path.Combine(configuration.OutputFolder.FullName,
+                                                        featureNode.RelativePathFromRoot);
             var featureNodeOutputUri = new Uri(featureNodeOutputPath);
 
             var container = new XElement(xmlns + "div", new XAttribute("id", "container"));
-            container.Add(this.htmlHeaderFormatter.Format());
-            container.Add(this.htmlTableOfContentsFormatter.Format(featureNode.OriginalLocationUrl, features, rootFolder));
-            container.Add(this.htmlContentFormatter.Format(featureNode, features));
-            container.Add(this.htmlFooterFormatter.Format());
+            container.Add(htmlHeaderFormatter.Format());
+            container.Add(htmlTableOfContentsFormatter.Format(featureNode.OriginalLocationUrl, features, rootFolder));
+            container.Add(htmlContentFormatter.Format(featureNode, features));
+            container.Add(htmlFooterFormatter.Format());
 
             var body = new XElement(xmlns + "body");
             body.Add(container);
@@ -71,39 +75,43 @@ namespace Pickles.DocumentationBuilders.HTML
             head.Add(new XElement(xmlns + "title", string.Format("{0}", featureNode.Name)));
 
             head.Add(new XElement(xmlns + "link",
-                         new XAttribute("rel", "stylesheet"),
-                         new XAttribute("href", featureNodeOutputUri.MakeRelativeUri(this.htmlResources.MasterStylesheet)),
-                         new XAttribute("type", "text/css")));
+                                  new XAttribute("rel", "stylesheet"),
+                                  new XAttribute("href",
+                                                 featureNodeOutputUri.MakeRelativeUri(htmlResources.MasterStylesheet)),
+                                  new XAttribute("type", "text/css")));
 
             head.Add(new XElement(xmlns + "link",
-                         new XAttribute("rel", "stylesheet"),
-                         new XAttribute("href", featureNodeOutputUri.MakeRelativeUri(this.htmlResources.PrintStylesheet)),
-                         new XAttribute("type", "text/css"),
-                         new XAttribute("media", "print")));
+                                  new XAttribute("rel", "stylesheet"),
+                                  new XAttribute("href",
+                                                 featureNodeOutputUri.MakeRelativeUri(htmlResources.PrintStylesheet)),
+                                  new XAttribute("type", "text/css"),
+                                  new XAttribute("media", "print")));
 
             head.Add(new XElement(xmlns + "script",
-                         new XAttribute("src", featureNodeOutputUri.MakeRelativeUri(this.htmlResources.jQueryScript)),
-                         new XAttribute("type", "text/javascript"),
-                         new XText(string.Empty)));
+                                  new XAttribute("src", featureNodeOutputUri.MakeRelativeUri(htmlResources.jQueryScript)),
+                                  new XAttribute("type", "text/javascript"),
+                                  new XText(string.Empty)));
 
             head.Add(new XElement(xmlns + "script",
-                         new XAttribute("src", featureNodeOutputUri.MakeRelativeUri(this.htmlResources.AdditionalScripts)),
-                         new XAttribute("type", "text/javascript"),
-                         new XText(string.Empty)));
+                                  new XAttribute("src",
+                                                 featureNodeOutputUri.MakeRelativeUri(htmlResources.AdditionalScripts)),
+                                  new XAttribute("type", "text/javascript"),
+                                  new XText(string.Empty)));
 
             head.Add(new XElement(xmlns + "script",
-                         new XAttribute("type", "text/javascript"),
-                         documentReady));
+                                  new XAttribute("type", "text/javascript"),
+                                  documentReady));
 
             var html = new XElement(xmlns + "html",
-                           new XAttribute(XNamespace.Xml + "lang", "en"),
-                           head,
-                           body);
+                                    new XAttribute(XNamespace.Xml + "lang", "en"),
+                                    head,
+                                    body);
 
             var document = new XDocument(
-                                new XDeclaration("1.0", "UTF-8", null),
-                                new XDocumentType("html", "-//W3C//DTD XHTML 1.0 Strict//EN", "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd", string.Empty),
-                                html);
+                new XDeclaration("1.0", "UTF-8", null),
+                new XDocumentType("html", "-//W3C//DTD XHTML 1.0 Strict//EN",
+                                  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd", string.Empty),
+                html);
 
             return document;
         }

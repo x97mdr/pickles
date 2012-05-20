@@ -19,22 +19,22 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
-using Pickles.Extensions;
+using System.Xml.Linq;
 using Pickles.DocumentationBuilders.HTML;
+using Pickles.Extensions;
+using Pickles.Parser;
 
 namespace Pickles.DirectoryCrawler
 {
     public class FeatureNodeFactory
     {
         private readonly FeatureParser featureParser;
-        private readonly RelevantFileDetector relevantFileDetector;
         private readonly HtmlMarkdownFormatter htmlMarkdownFormatter;
+        private readonly RelevantFileDetector relevantFileDetector;
 
-        public FeatureNodeFactory(RelevantFileDetector relevantFileDetector, FeatureParser featureParser, HtmlMarkdownFormatter htmlMarkdownFormatter)
+        public FeatureNodeFactory(RelevantFileDetector relevantFileDetector, FeatureParser featureParser,
+                                  HtmlMarkdownFormatter htmlMarkdownFormatter)
         {
             this.relevantFileDetector = relevantFileDetector;
             this.featureParser = featureParser;
@@ -43,7 +43,7 @@ namespace Pickles.DirectoryCrawler
 
         public IDirectoryTreeNode Create(FileSystemInfo root, FileSystemInfo location)
         {
-            var relativePathFromRoot = root == null ? @".\" : PathExtensions.MakeRelativePath(root, location);
+            string relativePathFromRoot = root == null ? @".\" : PathExtensions.MakeRelativePath(root, location);
 
             var directory = location as DirectoryInfo;
             if (directory != null)
@@ -52,14 +52,14 @@ namespace Pickles.DirectoryCrawler
             }
 
             var file = location as FileInfo;
-            if (this.relevantFileDetector.IsFeatureFile(file))
+            if (relevantFileDetector.IsFeatureFile(file))
             {
-                var feature = this.featureParser.Parse(file.FullName);
+                Feature feature = featureParser.Parse(file.FullName);
                 return new FeatureDirectoryTreeNode(file, relativePathFromRoot, feature);
             }
-            else if (this.relevantFileDetector.IsMarkdownFile(file))
+            else if (relevantFileDetector.IsMarkdownFile(file))
             {
-                var markdownContent = this.htmlMarkdownFormatter.Format(File.ReadAllText(file.FullName));
+                XElement markdownContent = htmlMarkdownFormatter.Format(File.ReadAllText(file.FullName));
                 return new MarkdownTreeNode(file, relativePathFromRoot, markdownContent);
             }
 

@@ -31,7 +31,7 @@ namespace Pickles.FeatureTree
         {
             if (content == null) throw new ArgumentNullException("content");
 
-            this.mContent = content;
+            mContent = content;
         }
 
         public string Content

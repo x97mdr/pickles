@@ -9,132 +9,142 @@
 //      the code is regenerated.
 //  </auto-generated>
 // ------------------------------------------------------------------------------
+
 #region Designer generated code
+
+using TechTalk.SpecFlow;
+
 #pragma warning disable
+
 namespace Pickles.Example.xUnit.Features._04Background
 {
-    using TechTalk.SpecFlow;
-    
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.8.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class ShowTheUseOfBackgroundFeature : Xunit.IUseFixture<ShowTheUseOfBackgroundFeature.FixtureData>, System.IDisposable
+    public partial class ShowTheUseOfBackgroundFeature : Xunit.IUseFixture<ShowTheUseOfBackgroundFeature.FixtureData>,
+                                                         System.IDisposable
     {
-        
         private static TechTalk.SpecFlow.ITestRunner testRunner;
-        
+
 #line 1 "BackgroundFeature.feature"
 #line hidden
-        
+
         public ShowTheUseOfBackgroundFeature()
         {
             this.TestInitialize();
         }
-        
+
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Show the use of background", "In order to show how to use the Background keyword of Gherkin\r\nAs a SpecFlow evan" +
-                    "glist\r\nI want to show that background steps are called before any scenario step", ProgrammingLanguage.CSharp, ((string[])(null)));
+            var featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"),
+                                                                "Show the use of background",
+                                                                "In order to show how to use the Background keyword of Gherkin\r\nAs a SpecFlow evan" +
+                                                                "glist\r\nI want to show that background steps are called before any scenario step",
+                                                                ProgrammingLanguage.CSharp, ((string[]) (null)));
             testRunner.OnFeatureStart(featureInfo);
         }
-        
+
         public static void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
-        
+
         public virtual void TestInitialize()
         {
         }
-        
+
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
         }
-        
+
         public virtual void ScenarioSetup(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioStart(scenarioInfo);
         }
-        
+
         public virtual void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
-        
+
         public virtual void FeatureBackground()
         {
 #line 6
 #line 7
- testRunner.Given("I have initialized the Sum-variable to 0");
+            testRunner.Given("I have initialized the Sum-variable to 0");
 #line 8
- testRunner.When("I add 1 to the Sum-variable");
+            testRunner.When("I add 1 to the Sum-variable");
 #line hidden
         }
-        
+
         public virtual void SetFixture(ShowTheUseOfBackgroundFeature.FixtureData fixtureData)
         {
         }
-        
+
         void System.IDisposable.Dispose()
         {
             this.ScenarioTearDown();
         }
-        
+
         [Xunit.FactAttribute()]
         [Xunit.TraitAttribute("FeatureTitle", "Show the use of background")]
         [Xunit.TraitAttribute("Description", "Add 1 to the sum")]
         public virtual void Add1ToTheSum()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add 1 to the sum", ((string[])(null)));
+            var scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add 1 to the sum", ((string[]) (null)));
 #line 10
-this.ScenarioSetup(scenarioInfo);
+            this.ScenarioSetup(scenarioInfo);
 #line 6
-this.FeatureBackground();
+            this.FeatureBackground();
 #line 11
- testRunner.When("I add 1 to the Sum-variable");
+            testRunner.When("I add 1 to the Sum-variable");
 #line 12
- testRunner.Then("the total sum should be 2");
+            testRunner.Then("the total sum should be 2");
 #line hidden
             this.ScenarioCleanup();
         }
-        
+
         [Xunit.FactAttribute()]
         [Xunit.TraitAttribute("FeatureTitle", "Show the use of background")]
         [Xunit.TraitAttribute("Description", "Add 2 to the sum")]
         public virtual void Add2ToTheSum()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add 2 to the sum", ((string[])(null)));
+            var scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add 2 to the sum", ((string[]) (null)));
 #line 14
-this.ScenarioSetup(scenarioInfo);
+            this.ScenarioSetup(scenarioInfo);
 #line 6
-this.FeatureBackground();
+            this.FeatureBackground();
 #line 15
- testRunner.When("I add 2 to the Sum-variable");
+            testRunner.When("I add 2 to the Sum-variable");
 #line 16
- testRunner.Then("the total sum should be 3");
+            testRunner.Then("the total sum should be 3");
 #line hidden
             this.ScenarioCleanup();
         }
-        
+
         [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.8.1.0")]
         [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
         public class FixtureData : System.IDisposable
         {
-            
             public FixtureData()
             {
-                ShowTheUseOfBackgroundFeature.FeatureSetup();
+                FeatureSetup();
             }
-            
+
+            #region IDisposable Members
+
             void System.IDisposable.Dispose()
             {
-                ShowTheUseOfBackgroundFeature.FeatureTearDown();
+                FeatureTearDown();
             }
+
+            #endregion
         }
     }
 }
+
 #pragma warning restore
+
 #endregion

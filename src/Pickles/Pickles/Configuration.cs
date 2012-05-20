@@ -24,56 +24,25 @@ namespace Pickles
 {
     public class Configuration
     {
-        public DirectoryInfo FeatureFolder 
-        { 
-            get; 
-            set; 
-        }
+        public DirectoryInfo FeatureFolder { get; set; }
 
-        public DirectoryInfo OutputFolder 
-        { 
-            get; 
-            set; 
-        }
+        public DirectoryInfo OutputFolder { get; set; }
 
-        public DocumentationFormat DocumentationFormat
-        {
-            get;
-            set;
-        }
+        public DocumentationFormat DocumentationFormat { get; set; }
 
         public string Language { get; set; }
 
-        public TestResultsFormat TestResultsFormat
+        public TestResultsFormat TestResultsFormat { get; set; }
+
+        public bool HasTestResults
         {
-            get;
-            set;
-        }
-        
-        public bool HasTestResults 
-        {
-            get
-            {
-                return TestResultsFile != null;
-            }
+            get { return TestResultsFile != null; }
         }
 
-        public FileInfo TestResultsFile 
-        { 
-            get; 
-            set; 
-        }
+        public FileInfo TestResultsFile { get; set; }
 
-        public string SystemUnderTestName
-        {
-            get;
-            set;
-        }
+        public string SystemUnderTestName { get; set; }
 
-        public string SystemUnderTestVersion
-        {
-            get;
-            set;
-        }
+        public string SystemUnderTestVersion { get; set; }
     }
 }

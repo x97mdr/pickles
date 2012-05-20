@@ -29,7 +29,6 @@ namespace Pickles.PowerShell
     [Cmdlet("Pickle", "Features")]
     public class Pickle_Features : PSCmdlet
     {
-
         [Parameter(HelpMessage = CommandLineArgumentParser.HELP_FEATURE_DIR, Mandatory = true)]
         public string FeatureDirectory { get; set; }
 
@@ -61,8 +60,10 @@ namespace Pickles.PowerShell
 
             ParseParameters(configuration);
 
-            WriteObject(string.Format("Pickles v.{0}{1}", Assembly.GetExecutingAssembly().GetName().Version, Environment.NewLine));
-            WriteObject(string.Format(" - generating feature documentations for features in {0}", configuration.FeatureFolder));
+            WriteObject(string.Format("Pickles v.{0}{1}", Assembly.GetExecutingAssembly().GetName().Version,
+                                      Environment.NewLine));
+            WriteObject(string.Format(" - generating feature documentations for features in {0}",
+                                      configuration.FeatureFolder));
             WriteObject(string.Format(" - output to {0}", configuration.OutputFolder));
 
             var runner = kernel.Get<Runner>();
@@ -77,7 +78,8 @@ namespace Pickles.PowerShell
             configuration.OutputFolder = new DirectoryInfo(OutputDirectory);
             if (!string.IsNullOrEmpty(TestResultsFormat))
             {
-                configuration.TestResultsFormat = (TestResultsFormat)Enum.Parse(typeof(TestResultsFormat), TestResultsFormat, true);
+                configuration.TestResultsFormat =
+                    (TestResultsFormat) Enum.Parse(typeof (TestResultsFormat), TestResultsFormat, true);
             }
             if (!string.IsNullOrEmpty(TestResultsFile))
             {
@@ -85,7 +87,9 @@ namespace Pickles.PowerShell
             }
             configuration.SystemUnderTestName = SystemUnderTestName;
             configuration.SystemUnderTestVersion = SystemUnderTestVersion;
-            if (!string.IsNullOrEmpty(DocumentationFormat)) configuration.DocumentationFormat = (DocumentationFormat)Enum.Parse(typeof(DocumentationFormat), DocumentationFormat, true);
+            if (!string.IsNullOrEmpty(DocumentationFormat))
+                configuration.DocumentationFormat =
+                    (DocumentationFormat) Enum.Parse(typeof (DocumentationFormat), DocumentationFormat, true);
         }
     }
 }

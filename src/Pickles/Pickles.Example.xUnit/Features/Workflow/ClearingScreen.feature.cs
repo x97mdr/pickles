@@ -9,108 +9,120 @@
 //      the code is regenerated.
 //  </auto-generated>
 // ------------------------------------------------------------------------------
+
 #region Designer generated code
+
+using TechTalk.SpecFlow;
+
 #pragma warning disable
+
 namespace Pickles.Example.xUnit.Features.Workflow
 {
-    using TechTalk.SpecFlow;
-    
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.8.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class ClearingScreenFeature : Xunit.IUseFixture<ClearingScreenFeature.FixtureData>, System.IDisposable
+    public partial class ClearingScreenFeature : Xunit.IUseFixture<ClearingScreenFeature.FixtureData>,
+                                                 System.IDisposable
     {
-        
         private static TechTalk.SpecFlow.ITestRunner testRunner;
-        
+
 #line 1 "ClearingScreen.feature"
 #line hidden
-        
+
         public ClearingScreenFeature()
         {
             this.TestInitialize();
         }
-        
+
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Clearing Screen", "In order to restart a new set of calculations\r\nAs a math idiot\r\nI want to be able" +
-                    " to clear the screen", ProgrammingLanguage.CSharp, ((string[])(null)));
+            var featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"),
+                                                                "Clearing Screen",
+                                                                "In order to restart a new set of calculations\r\nAs a math idiot\r\nI want to be able" +
+                                                                " to clear the screen", ProgrammingLanguage.CSharp,
+                                                                ((string[]) (null)));
             testRunner.OnFeatureStart(featureInfo);
         }
-        
+
         public static void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
-        
+
         public virtual void TestInitialize()
         {
         }
-        
+
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
         }
-        
+
         public virtual void ScenarioSetup(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioStart(scenarioInfo);
         }
-        
+
         public virtual void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
-        
+
         public virtual void SetFixture(ClearingScreenFeature.FixtureData fixtureData)
         {
         }
-        
+
         void System.IDisposable.Dispose()
         {
             this.ScenarioTearDown();
         }
-        
+
         [Xunit.FactAttribute()]
         [Xunit.TraitAttribute("FeatureTitle", "Clearing Screen")]
         [Xunit.TraitAttribute("Description", "Clear the screen")]
         public virtual void ClearTheScreen()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Clear the screen", new string[] {
-                        "workflow",
-                        "slow"});
+            var scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Clear the screen", new string[]
+                                                                                          {
+                                                                                              "workflow",
+                                                                                              "slow"
+                                                                                          });
 #line 7
- this.ScenarioSetup(scenarioInfo);
+            this.ScenarioSetup(scenarioInfo);
 #line 8
-  testRunner.Given("I have entered 50 into the calculator");
+            testRunner.Given("I have entered 50 into the calculator");
 #line 9
-  testRunner.And("I have entered 70 into the calculator");
+            testRunner.And("I have entered 70 into the calculator");
 #line 10
-  testRunner.When("I press C");
+            testRunner.When("I press C");
 #line 11
-  testRunner.Then("the screen should be empty");
+            testRunner.Then("the screen should be empty");
 #line hidden
             this.ScenarioCleanup();
         }
-        
+
         [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.8.1.0")]
         [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
         public class FixtureData : System.IDisposable
         {
-            
             public FixtureData()
             {
-                ClearingScreenFeature.FeatureSetup();
+                FeatureSetup();
             }
-            
+
+            #region IDisposable Members
+
             void System.IDisposable.Dispose()
             {
-                ClearingScreenFeature.FeatureTearDown();
+                FeatureTearDown();
             }
+
+            #endregion
         }
     }
 }
+
 #pragma warning restore
+
 #endregion

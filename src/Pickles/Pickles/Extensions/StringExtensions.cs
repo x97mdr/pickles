@@ -19,7 +19,6 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -31,9 +30,10 @@ namespace Pickles.Extensions
         {
             var sb = new StringBuilder();
             char previous = Char.MinValue;
-            foreach (var current in word.Where(x => Char.IsLetterOrDigit(x)))
+            foreach (char current in word.Where(x => Char.IsLetterOrDigit(x)))
             {
-                if (previous != Char.MinValue && sb.Length > 1 && ((Char.IsUpper(current) || Char.IsDigit(current)) && Char.IsLower(previous)))
+                if (previous != Char.MinValue && sb.Length > 1 &&
+                    ((Char.IsUpper(current) || Char.IsDigit(current)) && Char.IsLower(previous)))
                 {
                     sb.Append(' ');
                 }
@@ -60,7 +60,9 @@ namespace Pickles.Extensions
         /// <returns></returns>
         public static string ComparisonNormalize(this string text)
         {
-            return text.Trim().ToLowerInvariant().Replace("\r", string.Empty).Replace("\n", Environment.NewLine).Replace("\t", "    ");
+            return
+                text.Trim().ToLowerInvariant().Replace("\r", string.Empty).Replace("\n", Environment.NewLine).Replace(
+                    "\t", "    ");
         }
 
         public static bool IsNullOrWhiteSpace(this string text)

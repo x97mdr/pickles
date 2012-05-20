@@ -13,7 +13,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using DocumentFormat.OpenXml.Packaging;
@@ -22,17 +21,6 @@ namespace OpenXmlPowerTools
 {
     public class WmlDocument
     {
-        public string FileName { get; set; }
-        public byte[] DocumentByteArray { get; set; }
-
-        public WordprocessingDocument GetWordprocessingDocument()
-        {
-            MemoryStream mem = new MemoryStream();
-            mem.Write(DocumentByteArray, 0, DocumentByteArray.Length);
-            WordprocessingDocument doc = WordprocessingDocument.Open(mem, true);
-            return doc;
-        }
-
         public WmlDocument(WmlDocument original)
         {
             DocumentByteArray = new byte[original.DocumentByteArray.Length];
@@ -42,7 +30,7 @@ namespace OpenXmlPowerTools
 
         public WmlDocument(string fileName)
         {
-            this.FileName = FileName;
+            FileName = FileName;
             DocumentByteArray = File.ReadAllBytes(fileName);
         }
 
@@ -50,7 +38,18 @@ namespace OpenXmlPowerTools
         {
             DocumentByteArray = new byte[byteArray.Length];
             Array.Copy(byteArray, DocumentByteArray, byteArray.Length);
-            this.FileName = null;
+            FileName = null;
+        }
+
+        public string FileName { get; set; }
+        public byte[] DocumentByteArray { get; set; }
+
+        public WordprocessingDocument GetWordprocessingDocument()
+        {
+            var mem = new MemoryStream();
+            mem.Write(DocumentByteArray, 0, DocumentByteArray.Length);
+            WordprocessingDocument doc = WordprocessingDocument.Open(mem, true);
+            return doc;
         }
 
         public void SaveAs(string fileName)
@@ -60,9 +59,10 @@ namespace OpenXmlPowerTools
 
         public void Save()
         {
-            if (this.FileName == null)
-                throw new OpenXmlPowerToolsException("Attempting to Save a document that has no file name.  Use SaveAs instead.");
-            File.WriteAllBytes(this.FileName, DocumentByteArray);
+            if (FileName == null)
+                throw new OpenXmlPowerToolsException(
+                    "Attempting to Save a document that has no file name.  Use SaveAs instead.");
+            File.WriteAllBytes(FileName, DocumentByteArray);
         }
     }
 
@@ -70,6 +70,7 @@ namespace OpenXmlPowerTools
     {
         public static XNamespace a =
             "http://schemas.openxmlformats.org/drawingml/2006/main";
+
         public static XName accent1 = a + "accent1";
         public static XName accent2 = a + "accent2";
         public static XName accent3 = a + "accent3";
@@ -271,6 +272,7 @@ namespace OpenXmlPowerTools
     {
         public static XNamespace activex =
             "http://schemas.microsoft.com/office/2006/activeX";
+
         public static XName classid = activex + "classid";
         public static XName font = activex + "font";
         public static XName license = activex + "license";
@@ -285,6 +287,7 @@ namespace OpenXmlPowerTools
     {
         public static XNamespace biblio =
             "http://schemas.microsoft.com/office/word/2004/10/bibliography";
+
         public static XName AlbumTitle = biblio + "AlbumTitle";
         public static XName Artist = biblio + "Artist";
         public static XName Author = biblio + "Author";
@@ -337,6 +340,7 @@ namespace OpenXmlPowerTools
     {
         public static XNamespace c =
             "http://schemas.openxmlformats.org/drawingml/2006/chart";
+
         public static XName area3DChart = c + "area3DChart";
         public static XName areaChart = c + "areaChart";
         public static XName auto = c + "auto";
@@ -528,6 +532,7 @@ namespace OpenXmlPowerTools
     {
         public static XNamespace dgm =
             "http://schemas.openxmlformats.org/drawingml/2006/diagram";
+
         public static XName adj = dgm + "adj";
         public static XName adjLst = dgm + "adjLst";
         public static XName alg = dgm + "alg";
@@ -593,6 +598,7 @@ namespace OpenXmlPowerTools
     {
         public static XNamespace digsig =
             "http://schemas.microsoft.com/office/2006/digsig";
+
         public static XName ApplicationVersion = digsig + "ApplicationVersion";
         public static XName ColorDepth = digsig + "ColorDepth";
         public static XName HorizontalResolution = digsig + "HorizontalResolution";
@@ -616,6 +622,7 @@ namespace OpenXmlPowerTools
     {
         public static XNamespace ds =
             "http://schemas.openxmlformats.org/officeDocument/2006/customXml";
+
         public static XName datastoreItem = ds + "datastoreItem";
         public static XName itemID = ds + "itemID";
         public static XName schemaRef = ds + "schemaRef";
@@ -627,6 +634,7 @@ namespace OpenXmlPowerTools
     {
         public static XNamespace ink =
             "http://schemas.microsoft.com/ink/2010/main";
+
         public static XName context = ink + "context";
         public static XName sourceLink = ink + "sourceLink";
     }
@@ -635,6 +643,7 @@ namespace OpenXmlPowerTools
     {
         public static XNamespace m =
             "http://schemas.openxmlformats.org/officeDocument/2006/math";
+
         public static XName acc = m + "acc";
         public static XName accPr = m + "accPr";
         public static XName aln = m + "aln";
@@ -767,6 +776,7 @@ namespace OpenXmlPowerTools
     {
         public static XNamespace mc =
             "http://schemas.openxmlformats.org/markup-compatibility/2006";
+
         public static XName AlternateContent = mc + "AlternateContent";
         public static XName Choice = mc + "Choice";
         public static XName Fallback = mc + "Fallback";
@@ -1251,6 +1261,7 @@ namespace OpenXmlPowerTools
     {
         public static XNamespace o =
             "urn:schemas-microsoft-com:office:office";
+
         public static XName allowincell = o + "allowincell";
         public static XName allowoverlap = o + "allowoverlap";
         public static XName althref = o + "althref";
@@ -1341,6 +1352,7 @@ namespace OpenXmlPowerTools
     {
         public static XNamespace pic =
             "http://schemas.openxmlformats.org/drawingml/2006/picture";
+
         public static XName blipFill = pic + "blipFill";
         public static XName cNvPicPr = pic + "cNvPicPr";
         public static XName cNvPr = pic + "cNvPr";
@@ -1353,6 +1365,7 @@ namespace OpenXmlPowerTools
     {
         public static XNamespace r =
             "http://schemas.openxmlformats.org/officeDocument/2006/relationships";
+
         public static XName blip = r + "blip";
         public static XName cs = r + "cs";
         public static XName dm = r + "dm";
@@ -1369,6 +1382,7 @@ namespace OpenXmlPowerTools
     {
         public static XNamespace vml =
             "urn:schemas-microsoft-com:vml";
+
         public static XName arc = vml + "arc";
         public static XName background = vml + "background";
         public static XName curve = vml + "curve";
@@ -1399,6 +1413,7 @@ namespace OpenXmlPowerTools
     {
         public static XNamespace w =
             "http://schemas.openxmlformats.org/wordprocessingml/2006/main";
+
         public static XName abstractNum = w + "abstractNum";
         public static XName abstractNumId = w + "abstractNumId";
         public static XName accent1 = w + "accent1";
@@ -2183,44 +2198,45 @@ namespace OpenXmlPowerTools
         public static XName zOrder = w + "zOrder";
 
         public static XName[] BlockLevelContentContainers =
-        {
-            W.body,
-            W.tc,
-            W.txbxContent,
-            W.hdr,
-            W.ftr,
-            W.endnote,
-            W.footnote
-        };
+            {
+                body,
+                tc,
+                txbxContent,
+                hdr,
+                ftr,
+                endnote,
+                footnote
+            };
 
         public static XName[] SubRunLevelContent =
-        {
-            W.br,
-            W.cr,
-            W.dayLong,
-            W.dayShort,
-            W.drawing,
-            W.drawing,
-            W.monthLong,
-            W.monthShort,
-            W.noBreakHyphen,
-            W.ptab,
-            W.pgNum,
-            W.pict,
-            W.softHyphen,
-            W.sym,
-            W.t,
-            W.tab,
-            W.yearLong,
-            W.yearShort,
-            MC.AlternateContent,
-        };
+            {
+                br,
+                cr,
+                dayLong,
+                dayShort,
+                drawing,
+                drawing,
+                monthLong,
+                monthShort,
+                noBreakHyphen,
+                ptab,
+                pgNum,
+                pict,
+                softHyphen,
+                sym,
+                t,
+                tab,
+                yearLong,
+                yearShort,
+                MC.AlternateContent,
+            };
     }
 
     public static class W10
     {
         public static XNamespace w10 =
             "urn:schemas-microsoft-com:office:word";
+
         public static XName anchorlock = w10 + "anchorlock";
         public static XName borderbottom = w10 + "borderbottom";
         public static XName borderleft = w10 + "borderleft";
@@ -2233,6 +2249,7 @@ namespace OpenXmlPowerTools
     {
         public static XNamespace w14 =
             "http://schemas.microsoft.com/office/word/2010/wordml";
+
         public static XName algn = w14 + "algn";
         public static XName alpha = w14 + "alpha";
         public static XName ang = w14 + "ang";
@@ -2341,6 +2358,7 @@ namespace OpenXmlPowerTools
     {
         public static XNamespace wne =
             "http://schemas.microsoft.com/office/word/2006/wordml";
+
         public static XName acd = wne + "acd";
         public static XName acdEntry = wne + "acdEntry";
         public static XName acdManifest = wne + "acdManifest";
@@ -2374,6 +2392,7 @@ namespace OpenXmlPowerTools
     {
         public static XNamespace wp =
             "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing";
+
         public static XName align = wp + "align";
         public static XName anchor = wp + "anchor";
         public static XName cNvGraphicFramePr = wp + "cNvGraphicFramePr";
@@ -2399,6 +2418,7 @@ namespace OpenXmlPowerTools
     {
         public static XNamespace wp14 =
             "http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing";
+
         public static XName editId = wp14 + "editId";
         public static XName pctHeight = wp14 + "pctHeight";
         public static XName pctPosVOffset = wp14 + "pctPosVOffset";
@@ -2411,6 +2431,7 @@ namespace OpenXmlPowerTools
     {
         public static XNamespace wps =
             "http://schemas.microsoft.com/office/word/2010/wordprocessingShape";
+
         public static XName altTxbx = wps + "altTxbx";
         public static XName bodyPr = wps + "bodyPr";
         public static XName cNvSpPr = wps + "cNvSpPr";
@@ -2448,10 +2469,11 @@ namespace OpenXmlPowerTools
 
     public static class PtOpenXmlExtensions
     {
+        private static readonly EventHandler<XObjectChangeEventArgs> ElementChanged = ElementChangedHandler;
+
         public static XDocument GetXDocument(this OpenXmlPart part)
         {
-
-            XDocument partXDocument = part.Annotation<XDocument>();
+            var partXDocument = part.Annotation<XDocument>();
             if (partXDocument != null)
                 return partXDocument;
             using (Stream partStream = part.GetStream())
@@ -2490,11 +2512,11 @@ namespace OpenXmlPowerTools
                 element.Name == W.txbxContent)
                 return element
                     .DescendantsTrimmed(e =>
-                        e.Name == W.tbl ||
-                        e.Name == W.p)
+                                        e.Name == W.tbl ||
+                                        e.Name == W.p)
                     .Where(e =>
-                        e.Name == W.p ||
-                        e.Name == W.tbl);
+                           e.Name == W.p ||
+                           e.Name == W.tbl);
             if (element.Name == W.tbl)
                 return element
                     .DescendantsTrimmed(W.tr)
@@ -2506,11 +2528,11 @@ namespace OpenXmlPowerTools
             if (element.Name == W.p)
                 return element
                     .DescendantsTrimmed(e => e.Name == W.r ||
-                        e.Name == W.pict ||
-                        e.Name == W.drawing)
+                                             e.Name == W.pict ||
+                                             e.Name == W.drawing)
                     .Where(e => e.Name == W.r ||
-                        e.Name == W.pict ||
-                        e.Name == W.drawing);
+                                e.Name == W.pict ||
+                                e.Name == W.drawing);
             if (element.Name == W.r)
                 return element
                     .DescendantsTrimmed(e => W.SubRunLevelContent.Contains(e.Name))
@@ -2518,12 +2540,12 @@ namespace OpenXmlPowerTools
             if (element.Name == MC.AlternateContent)
                 return element
                     .DescendantsTrimmed(e =>
-                        e.Name == W.pict ||
-                        e.Name == W.drawing ||
-                        e.Name == MC.Fallback)
+                                        e.Name == W.pict ||
+                                        e.Name == W.drawing ||
+                                        e.Name == MC.Fallback)
                     .Where(e =>
-                        e.Name == W.pict ||
-                        e.Name == W.drawing);
+                           e.Name == W.pict ||
+                           e.Name == W.drawing);
             if (element.Name == W.pict || element.Name == W.drawing)
                 return element
                     .DescendantsTrimmed(W.txbxContent)
@@ -2554,20 +2576,18 @@ namespace OpenXmlPowerTools
         }
 
         // Used to track changes to parts
-        private class ChangedSemaphore { }
-        private static EventHandler<XObjectChangeEventArgs> ElementChanged = new EventHandler<XObjectChangeEventArgs>(ElementChangedHandler);
 
         /// <summary>
         /// Gets the XDocument for a part	
         /// </summary>
         public static XDocument GetXDocumentWithTracking(this OpenXmlPart part)
         {
-            XDocument xdoc = part.Annotation<XDocument>();
+            var xdoc = part.Annotation<XDocument>();
             if (xdoc != null)
                 return xdoc;
             try
             {
-                using (StreamReader sr = new StreamReader(part.GetStream()))
+                using (var sr = new StreamReader(part.GetStream()))
                 using (XmlReader xr = XmlReader.Create(sr))
                 {
                     xdoc = XDocument.Load(xr);
@@ -2577,7 +2597,7 @@ namespace OpenXmlPowerTools
             }
             catch (XmlException)
             {
-                XDeclaration xdec = new XDeclaration("1.0", "UTF-8", "yes");
+                var xdec = new XDeclaration("1.0", "UTF-8", "yes");
                 xdoc = new XDocument(xdec);
                 xdoc.AddAnnotation(new ChangedSemaphore());
             }
@@ -2587,7 +2607,7 @@ namespace OpenXmlPowerTools
 
         private static void ElementChangedHandler(object sender, XObjectChangeEventArgs e)
         {
-            XDocument xDocument = ((XObject)sender).Document;
+            XDocument xDocument = ((XObject) sender).Document;
             if (xDocument != null)
             {
                 xDocument.Changing -= ElementChanged;
@@ -2601,7 +2621,7 @@ namespace OpenXmlPowerTools
         /// </summary>
         public static void FlushTrackedXDocuments(this OpenXmlPackage doc)
         {
-            HashSet<OpenXmlPart> visited = new HashSet<OpenXmlPart>();
+            var visited = new HashSet<OpenXmlPart>();
             foreach (IdPartPair item in doc.Parts)
                 FlushPart(item.OpenXmlPart, visited);
         }
@@ -2609,7 +2629,7 @@ namespace OpenXmlPowerTools
         private static void FlushPart(OpenXmlPart part, HashSet<OpenXmlPart> visited)
         {
             visited.Add(part);
-            XDocument xdoc = part.Annotation<XDocument>();
+            var xdoc = part.Annotation<XDocument>();
             if (xdoc != null && xdoc.Annotation<ChangedSemaphore>() != null)
             {
                 using (XmlWriter xw = XmlWriter.Create(part.GetStream(FileMode.Create, FileAccess.Write)))
@@ -2624,33 +2644,31 @@ namespace OpenXmlPowerTools
                 if (!visited.Contains(item.OpenXmlPart))
                     FlushPart(item.OpenXmlPart, visited);
         }
+
+        #region Nested type: ChangedSemaphore
+
+        private class ChangedSemaphore
+        {
+        }
+
+        #endregion
     }
 
     public class FieldInfo
     {
+        public string[] Arguments;
         public string FieldType;
         public string[] Switches;
-        public string[] Arguments;
     }
 
     public static class FieldParser
     {
-        private enum State
-        {
-            InToken,
-            InWhiteSpace,
-            InQuotedToken,
-            OnOpeningQuote,
-            OnClosingQuote,
-            OnBackslash,
-        }
-
         private static string[] GetTokens(string field)
         {
             State state = State.InWhiteSpace;
             int tokenStart = 0;
             char quoteStart = char.MinValue;
-            List<string> tokens = new List<string>();
+            var tokens = new List<string>();
             for (int c = 0; c < field.Length; c++)
             {
                 if (Char.IsWhiteSpace(field[c]))
@@ -2743,12 +2761,12 @@ namespace OpenXmlPowerTools
 
         public static FieldInfo ParseField(string field)
         {
-            FieldInfo emptyField = new FieldInfo
-            {
-                FieldType = "",
-                Arguments = new string[] { },
-                Switches = new string[] { },
-            };
+            var emptyField = new FieldInfo
+                                 {
+                                     FieldType = "",
+                                     Arguments = new string[] {},
+                                     Switches = new string[] {},
+                                 };
 
             if (field.Length == 0)
                 return emptyField;
@@ -2758,23 +2776,41 @@ namespace OpenXmlPowerTools
             string[] tokens = GetTokens(field);
             if (tokens.Length == 0)
                 return emptyField;
-            FieldInfo fieldInfo = new FieldInfo()
-            {
-                FieldType = tokens[0],
-                Switches = tokens.Where(t => t[0] == '\\').ToArray(),
-                Arguments = tokens.Skip(1).Where(t => t[0] != '\\').ToArray(),
-            };
+            var fieldInfo = new FieldInfo
+                                {
+                                    FieldType = tokens[0],
+                                    Switches = tokens.Where(t => t[0] == '\\').ToArray(),
+                                    Arguments = tokens.Skip(1).Where(t => t[0] != '\\').ToArray(),
+                                };
             return fieldInfo;
         }
+
+        #region Nested type: State
+
+        private enum State
+        {
+            InToken,
+            InWhiteSpace,
+            InQuotedToken,
+            OnOpeningQuote,
+            OnClosingQuote,
+            OnBackslash,
+        }
+
+        #endregion
     }
 
     public class InvalidOpenXmlDocumentException : Exception
     {
-        public InvalidOpenXmlDocumentException(string message) : base(message) { }
+        public InvalidOpenXmlDocumentException(string message) : base(message)
+        {
+        }
     }
 
     public class OpenXmlPowerToolsException : Exception
     {
-        public OpenXmlPowerToolsException(string message) : base(message) { }
+        public OpenXmlPowerToolsException(string message) : base(message)
+        {
+        }
     }
 }

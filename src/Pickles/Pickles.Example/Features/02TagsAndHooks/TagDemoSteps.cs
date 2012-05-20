@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Should.Fluent;
 using TechTalk.SpecFlow;
@@ -67,8 +68,8 @@ namespace Specs.TagsAndHooks
         [Then("before scenario hook with '(.*)' is run")]
         public void AssertCorrectHooksHasBeenRun(string expectedTags)
         {
-            var tags = from t in expectedTags.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                       select t.Trim();
+            IEnumerable<string> tags = from t in expectedTags.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries)
+                                       select t.Trim();
 
             // I wouldn't dream about writing code like this if
             // I didn't wanted to demonstrate a principle
@@ -92,7 +93,6 @@ namespace Specs.TagsAndHooks
                 // and also the hook with all the tags 
                 _noTags.Should().Be.True();
                 _testTags.Should().Be.True();
-
             }
 
             // Finally the hooks for each tag is set in their respective hook
@@ -111,6 +111,5 @@ namespace Specs.TagsAndHooks
                 _testTag3.Should().Be.True();
             }
         }
-
     }
 }

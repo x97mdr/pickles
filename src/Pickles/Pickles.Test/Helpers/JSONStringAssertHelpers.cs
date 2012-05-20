@@ -17,9 +17,9 @@ namespace Pickles.Test.Helpers
             json.Should().Contain(string.Format(ARRAY_TEMPLATE, key, value));
         }
 
-      public static void AssertJsonContainsKey(this string json, string key)
-      {
-        json.Should().Contain(key);
-      }
+        public static void AssertJsonContainsKey(this string json, string key)
+        {
+            json.Should().Contain(key);
+        }
     }
 }

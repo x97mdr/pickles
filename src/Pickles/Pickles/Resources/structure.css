@@ -2,248 +2,221 @@
  * Entire body
  *************************************************************************/
 
-#container
-{
-  width: 90%;
-  margin: 10px auto;
-  color: #333;
-  border: 1px solid gray;
-  line-height: 130%;
-  background-color: #f2f2f2;
-  -moz-box-shadow: 5px 5px 5px #ccc;
-  -webkit-box-shadow: 5px 5px 5px #ccc;
-  box-shadow: 5px 5px 5px #ccc;
+#container {
+    -moz-box-shadow: 5px 5px 5px #ccc;
+    -webkit-box-shadow: 5px 5px 5px #ccc;
+    background-color: #f2f2f2;
+    border: 1px solid gray;
+    box-shadow: 5px 5px 5px #ccc;
+    color: #333;
+    line-height: 130%;
+    margin: 10px auto;
+    width: 90%;
 }
 
 /*************************************************************************
  * Header/Top
  *************************************************************************/
 
-#top
-{
-  padding: .5em;
-  border-bottom: 1px solid gray;
+#top {
+    border-bottom: 1px solid gray;
+    padding: .5em;
 }
 
-#top h1
-{
-  padding: 0;
-  margin: 0;
+#top h1 {
+    margin: 0;
+    padding: 0;
 }
 
 /*************************************************************************
  * Table of Contents
  *************************************************************************/
 
-#toc
-{
-  float: left;
-  width: auto;
-  margin-right: auto;
-  border-right: 1px solid gray;
-  max-width: 20em;
+#toc {
+    border-right: 1px solid gray;
+    float: left;
+    margin-right: auto;
+    max-width: 20em;
+    width: auto;
 }
 
-#toc p 
-{ 
-  margin: 0 0 1em 0; 
-}
+#toc p { margin: 0 0 1em 0; }
 
 
 #toc ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
-  #toc ul li a {
+#toc ul li a {
+    color: gray;
     text-decoration: none;
-      color: gray;
-  }
+}
 
-  #toc .current
-  {
-      font-style: oblique;
-  }
-  
-  #toc ul li a:hover {
+#toc .current { font-style: oblique; }
+
+#toc ul li a:hover {
+    color: #000000;
     text-decoration: underline;
-  color: #000000;
-  }
-    
+}
+
 #toc .directory {
-  padding: 5px 10px 6px;
-  background: #F9F9f9;
-  border-bottom: 1px solid #ddd;
-  border-top: 1px solid #fff;
-  font-weight: bold;
+    background: #F9F9f9;
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #fff;
+    font-weight: bold;
+    padding: 5px 10px 6px;
 }
 
-#toc .directory a{
-    color: black;
-}
+#toc .directory a { color: black; }
+
 #toc .file {
-  padding: 3px 10px 4px 20px;
-  border-bottom: 1px solid #E8E8e8;
+    border-bottom: 1px solid #E8E8e8;
+    padding: 3px 10px 4px 20px;
 }
 
-#toc.collapsed ul{
-  display: none;
+#toc.collapsed ul { display: none; }
+
+#toc.collapsed { border-right-width: 0; }
+
+p.tocCollapser {
+    color: gray;
+    cursor: pointer;
+    float: right;
+    padding-right: 1em;
 }
 
-#toc.collapsed{
-  border-right-width: 0;
-}
-          
-p.tocCollapser{
-  color: gray;
-  cursor: pointer;
-  float: right;
-  padding-right: 1em;
-}
-
-p.tocCollapser:hover{
-  color: black;
-  cursor: pointer;
+p.tocCollapser:hover {
+    color: black;
+    cursor: pointer;
 }
 
 /*************************************************************************
  * Feature and Markdown
  *************************************************************************/
 
-#feature, #markdown
-{
-  overflow:hidden;
-  margin-left: auto;
-  padding: 1em;
+#feature, #markdown {
+    margin-left: auto;
+    overflow: hidden;
+    padding: 1em;
 }
 
-#feature h1, #feature h2, #markdown h1, #markdown h2
-{ 
-  margin: 0 0 .5em 0;
-  line-height: 105%;
+#feature h1, #feature h2, #markdown h1, #markdown h2 {
+    line-height: 105%;
+    margin: 0 0 .5em 0;
 }
 
 /*************************************************************************
  * Feature index
  *************************************************************************/
 
-#feature li{
-    margin-bottom: 1em;
-}
+#feature li { margin-bottom: 1em; }
 
-#feature span.title
-{
-    font-size: large;
-    font-weight: bold;
+#feature span.title {
     color: #000000;
     display: block;
+    font-size: large;
+    font-weight: bold;
 }
 
-#feature a {
-    text-decoration: none;
-}
+#feature a { text-decoration: none; }
 
-#feature a:hover span.title{
-    text-decoration: underline;
-}
+#feature a:hover span.title { text-decoration: underline; }
 
-#feature span.separator
-{
-    display: none;
-}
+#feature span.separator { display: none; }
 
-#feature span.description{
-    display: block;
+#feature span.description {
     color: black;
+    display: block;
 }
 
-#feature div.folderDescription {
-    margin-bottom: 2em;
-}
+#feature div.folderDescription { margin-bottom: 2em; }
 
-#feature div.folderDescription li{
-    list-style-type: disc;
-}
+#feature div.folderDescription li { list-style-type: disc; }
 
 /*************************************************************************
  * Feature - formatting tables (example or step tables)
  *************************************************************************/
-    
+
 #feature .table_container { margin: 8px 0px 8px 0px; }
+
 #feature table {
-  border-collapse: collapse;
-  margin: 0 1em 0 1em;
-  width: 90%;
-  empty-cells: show; }
-  #feature th, td {
+    border-collapse: collapse;
+    empty-cells: show;
+    margin: 0 1em 0 1em;
+    width: 90%;
+}
+
+#feature th, td {
     border: 1px solid black;
-    padding: 3px; }
-  #feature td {
+    padding: 3px;
+}
+
+#feature td {
     background-color: white;
-    vertical-align: top; }
-  #feature th { 
-    background-color: #C3D9FF; }
+    vertical-align: top;
+}
+
+#feature th { background-color: #C3D9FF; }
 
 /*************************************************************************
  * Feature - formatting scenarios and steps
  *************************************************************************/
 
 ul#scenarios {
-  margin: 0;
-  padding: 0;
-  list-style-type: none; } 
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
 li.scenario {
-  padding: 2px 12px 6px 12px;
-  border: 1px solid #C3D9FF;
-  margin: 6px 0px 28px 0px;
-  background-color: #F5F9FD; }
+    background-color: #F5F9FD;
+    border: 1px solid #C3D9FF;
+    margin: 6px 0px 28px 0px;
+    padding: 2px 12px 6px 12px;
+}
 
 /*************************************************************************
  * Feature - Formatting the docStrings
  *************************************************************************/
 
-.step pre 
-{
-  background-color: #E0F8E0;
-  font-size: 0.85em;
-  border-color: #fff;
-  margin: 0.5em 0 0.5em 1.2em;
-  overflow: auto; 
+.step pre {
+    background-color: #E0F8E0;
+    border-color: #fff;
+    font-size: 0.85em;
+    margin: 0.5em 0 0.5em 1.2em;
+    overflow: auto;
 }
 
-.step pre code 
-{
-  font:0.95em 'monaco', 'lucida console', monospace;
-  display:block;
-  padding:.5em;
-  background:#000;
-  color:#f8f8f8 
+.step pre code {
+    background: #000;
+    color: #f8f8f8;
+    display: block;
+    font: 0.95em 'monaco', 'lucida console', monospace;
+    padding: .5em;
 }
 
 /*************************************************************************
  * Feature - Formatting the step keywords
  *************************************************************************/
 
-.keyword {
-  font-weight: bold; }
+.keyword { font-weight: bold; }
 
 /*************************************************************************
  * Footer
  *************************************************************************/
 
-#footer
-{
-  clear : both;
-  margin : 0;
-  padding : .5em;
-  color: #333;
-  border-top : 1px solid gray;
+#footer {
+    border-top: 1px solid gray;
+    clear: both;
+    color: #333;
+    margin: 0;
+    padding: .5em;
 }
 
-#footer p 
-{
-  line-height: 100%;
-  margin: 0 0 3px 0;
-  padding: 0 0 3px 0;
+#footer p {
+    line-height: 100%;
+    margin: 0 0 3px 0;
+    padding: 0 0 3px 0;
 }

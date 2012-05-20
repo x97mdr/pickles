@@ -19,12 +19,9 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.IO;
 using Pickles.DirectoryCrawler;
 using Pickles.Extensions;
-using System.IO;
 
 namespace Pickles.DocumentationBuilders.DITA
 {
@@ -42,11 +39,13 @@ namespace Pickles.DocumentationBuilders.DITA
             var fileInfo = directoryTreeNode.OriginalLocation as FileInfo;
             if (fileInfo != null)
             {
-                var nodeFilename = directoryTreeNode.OriginalLocation.Name.Replace(directoryTreeNode.OriginalLocation.Extension, string.Empty);
-                var nodeDitaName = nodeFilename.ToDitaName() + ".dita";
-                var newUri = fileInfo.Directory.ToFileUriCombined(nodeDitaName);
-                
-                return this.configuration.FeatureFolder.ToUri().MakeRelativeUri(newUri);
+                string nodeFilename =
+                    directoryTreeNode.OriginalLocation.Name.Replace(directoryTreeNode.OriginalLocation.Extension,
+                                                                    string.Empty);
+                string nodeDitaName = nodeFilename.ToDitaName() + ".dita";
+                Uri newUri = fileInfo.Directory.ToFileUriCombined(nodeDitaName);
+
+                return configuration.FeatureFolder.ToUri().MakeRelativeUri(newUri);
             }
 
             throw new InvalidOperationException("Cannot Generate Path to a file that is not a feature");
