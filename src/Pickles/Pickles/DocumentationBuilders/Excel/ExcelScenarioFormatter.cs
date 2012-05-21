@@ -20,23 +20,40 @@
 
 using ClosedXML.Excel;
 using Pickles.Parser;
+using Pickles.TestFrameworks;
 
 namespace Pickles.DocumentationBuilders.Excel
 {
     public class ExcelScenarioFormatter
     {
         private readonly ExcelStepFormatter excelStepFormatter;
+        private readonly Configuration configuration;
+        private readonly ITestResults testResults;
 
-        public ExcelScenarioFormatter(ExcelStepFormatter excelStepFormatter)
+        public ExcelScenarioFormatter(ExcelStepFormatter excelStepFormatter, 
+                                      Configuration configuration, 
+                                      ITestResults testResults)
         {
             this.excelStepFormatter = excelStepFormatter;
+            this.configuration = configuration;
+            this.testResults = testResults;
         }
 
         public void Format(IXLWorksheet worksheet, Scenario scenario, ref int row)
         {
+            int originalRow = row;
             worksheet.Cell(row, "B").Style.Font.SetBold();
             worksheet.Cell(row++, "B").Value = scenario.Name;
             worksheet.Cell(row++, "C").Value = scenario.Description;
+
+            var results = testResults.GetScenarioResult(scenario);
+            if (configuration.HasTestResults && results.WasExecuted)
+            {
+                worksheet.Cell(originalRow, "B").Style.Fill.SetBackgroundColor(results.WasSuccessful
+                                                                                   ? XLColor.AppleGreen
+                                                                                   : XLColor.CandyAppleRed);
+            }
+
 
             foreach (Step step in scenario.Steps)
             {

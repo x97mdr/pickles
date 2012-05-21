@@ -20,6 +20,7 @@
 
 using ClosedXML.Excel;
 using Pickles.Parser;
+using Pickles.TestFrameworks;
 
 namespace Pickles.DocumentationBuilders.Excel
 {
@@ -27,18 +28,33 @@ namespace Pickles.DocumentationBuilders.Excel
     {
         private readonly ExcelStepFormatter excelStepFormatter;
         private readonly ExcelTableFormatter excelTableFormatter;
+        private readonly Configuration configuration;
+        private readonly ITestResults testResults;
 
         public ExcelScenarioOutlineFormatter(ExcelStepFormatter excelStepFormatter,
-                                             ExcelTableFormatter excelTableFormatter)
+                                             ExcelTableFormatter excelTableFormatter,
+                                             Configuration configuration, 
+                                             ITestResults testResults)
         {
             this.excelStepFormatter = excelStepFormatter;
             this.excelTableFormatter = excelTableFormatter;
+            this.configuration = configuration;
+            this.testResults = testResults;
         }
 
         public void Format(IXLWorksheet worksheet, ScenarioOutline scenarioOutline, ref int row)
         {
+            int originalRow = row;
             worksheet.Cell(row++, "B").Value = scenarioOutline.Name;
             worksheet.Cell(row++, "C").Value = scenarioOutline.Description;
+
+            var results = testResults.GetScenarioOutlineResult(scenarioOutline);
+            if (configuration.HasTestResults && results.WasExecuted)
+            {
+                worksheet.Cell(originalRow, "B").Style.Fill.SetBackgroundColor(results.WasSuccessful
+                                                                                   ? XLColor.AppleGreen
+                                                                                   : XLColor.CandyAppleRed);
+            }
 
             foreach (Step step in scenarioOutline.Steps)
             {

@@ -18,9 +18,9 @@
 
 #endregion
 
-using System.Linq;
 using ClosedXML.Excel;
 using Pickles.Parser;
+using Pickles.TestFrameworks;
 
 namespace Pickles.DocumentationBuilders.Excel
 {
@@ -28,18 +28,19 @@ namespace Pickles.DocumentationBuilders.Excel
     {
         private readonly ExcelScenarioFormatter excelScenarioFormatter;
         private readonly ExcelScenarioOutlineFormatter excelScenarioOutlineFormatter;
+        private readonly Configuration configuration;
+        private readonly ITestResults testResults;
         private uint nextId = 1;
 
         public ExcelFeatureFormatter(ExcelScenarioFormatter excelScenarioFormatter,
-                                     ExcelScenarioOutlineFormatter excelScenarioOutlineFormatter)
+                                     ExcelScenarioOutlineFormatter excelScenarioOutlineFormatter,
+                                     Configuration configuration,
+                                     ITestResults testResults)
         {
             this.excelScenarioFormatter = excelScenarioFormatter;
             this.excelScenarioOutlineFormatter = excelScenarioOutlineFormatter;
-        }
-
-        private string ConvertFeatureNameToSheetName(string featureName)
-        {
-            return new string(featureName.Take(31).ToArray());
+            this.configuration = configuration;
+            this.testResults = testResults;
         }
 
         public void Format(IXLWorksheet worksheet, Feature feature)
@@ -48,6 +49,15 @@ namespace Pickles.DocumentationBuilders.Excel
             worksheet.Cell("A1").Value = feature.Name;
             worksheet.Cell("B2").Value = feature.Description;
             worksheet.Cell("B2").Style.Alignment.WrapText = false;
+
+            var results = testResults.GetFeatureResult(feature);
+
+            if (configuration.HasTestResults && results.WasExecuted)
+            {
+                worksheet.Cell("A1").Style.Fill.SetBackgroundColor(results.WasSuccessful
+                                                                       ? XLColor.AppleGreen
+                                                                       : XLColor.CandyAppleRed);
+            }
 
             int row = 4;
             foreach (IFeatureElement featureElement in feature.FeatureElements)
