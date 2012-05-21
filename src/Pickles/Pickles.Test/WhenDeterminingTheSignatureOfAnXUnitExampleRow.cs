@@ -19,9 +19,7 @@ namespace Pickles.Test
             var signatureBuilder = Kernel.Get<xUnitExampleSignatureBuilder>();
             Regex signature = signatureBuilder.Build(scenarioOutline, exampleRow);
 
-            signature.IsMatch(
-                "Pickles.TestHarness.xUnit.AdditionFeature.AddingSeveralNumbers(firstNumber: \"40\", secondNumber: \"50\", result: \"90\", exampleTags: System.String[])"
-                    .ToLowerInvariant()).ShouldBeTrue();
+            signature.IsMatch("Pickles.TestHarness.xUnit.AdditionFeature.AddingSeveralNumbers(firstNumber: \"40\", secondNumber: \"50\", result: \"90\", exampleTags: System.String[])".ToLowerInvariant()).ShouldBeTrue();
         }
     }
 }

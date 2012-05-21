@@ -3,6 +3,7 @@ using System.Reflection;
 using NUnit.Framework;
 using Ninject;
 using Pickles.TestFrameworks;
+using Should;
 
 namespace Pickles.Test
 {
@@ -15,11 +16,11 @@ namespace Pickles.Test
             var item1 = Kernel.Get<ITestResults>();
             var item2 = Kernel.Get<ITestResults>();
 
-            Assert.AreSame(item1, item2);
-            Assert.NotNull(item1);
-            Assert.IsInstanceOf<NullTestResults>(item1);
-            Assert.NotNull(item2);
-            Assert.IsInstanceOf<NullTestResults>(item2);
+            item1.ShouldNotBeNull();
+            item1.ShouldBeType<NullTestResults>();
+            item2.ShouldNotBeNull();
+            item2.ShouldBeType<NullTestResults>();
+            item1.ShouldBeSameAs(item2);
         }
 
         [Test]
@@ -42,11 +43,11 @@ namespace Pickles.Test
             var item1 = Kernel.Get<ITestResults>();
             var item2 = Kernel.Get<ITestResults>();
 
-            Assert.AreSame(item1, item2);
-            Assert.NotNull(item1);
-            Assert.IsInstanceOf<MsTestResults>(item1);
-            Assert.NotNull(item2);
-            Assert.IsInstanceOf<MsTestResults>(item2);
+            item1.ShouldNotBeNull();
+            item1.ShouldBeType<MsTestResults>();
+            item2.ShouldNotBeNull();
+            item2.ShouldBeType<MsTestResults>();
+            item1.ShouldBeSameAs(item2);
         }
 
         [Test]
@@ -69,11 +70,11 @@ namespace Pickles.Test
             var item1 = Kernel.Get<ITestResults>();
             var item2 = Kernel.Get<ITestResults>();
 
-            Assert.AreSame(item1, item2);
-            Assert.NotNull(item1);
-            Assert.IsInstanceOf<NUnitResults>(item1);
-            Assert.NotNull(item2);
-            Assert.IsInstanceOf<NUnitResults>(item2);
+            item1.ShouldNotBeNull();
+            item1.ShouldBeType<NUnitResults>();
+            item2.ShouldNotBeNull();
+            item2.ShouldBeType<NUnitResults>();
+            item1.ShouldBeSameAs(item2);
         }
 
         [Test]
@@ -96,11 +97,11 @@ namespace Pickles.Test
             var item1 = Kernel.Get<ITestResults>();
             var item2 = Kernel.Get<ITestResults>();
 
-            Assert.AreSame(item1, item2);
-            Assert.NotNull(item1);
-            Assert.IsInstanceOf<XUnitResults>(item1);
-            Assert.NotNull(item2);
-            Assert.IsInstanceOf<XUnitResults>(item2);
+            item1.ShouldNotBeNull();
+            item1.ShouldBeType<XUnitResults>();
+            item2.ShouldNotBeNull();
+            item2.ShouldBeType<XUnitResults>();
+            item1.ShouldBeSameAs(item2);
         }
 
         [Test]
@@ -117,10 +118,7 @@ namespace Pickles.Test
         public void ThenCanResolveWhenTestResultsAreMSTest()
         {
             const string resultsFilename = "results-example-mstest.trx";
-            using (
-                var input =
-                    new StreamReader(
-                        Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Test." + resultsFilename)))
+            using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Test." + resultsFilename)))
             using (var output = new StreamWriter(resultsFilename))
             {
                 output.Write(input.ReadToEnd());
@@ -140,10 +138,7 @@ namespace Pickles.Test
         public void ThenCanResolveWhenTestResultsAreNUnit()
         {
             const string resultsFilename = "results-example-nunit.xml";
-            using (
-                var input =
-                    new StreamReader(
-                        Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Test." + resultsFilename)))
+            using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Test." + resultsFilename)))
             using (var output = new StreamWriter(resultsFilename))
             {
                 output.Write(input.ReadToEnd());
@@ -163,10 +158,7 @@ namespace Pickles.Test
         public void ThenCanResolveWhenTestResultsArexUnit()
         {
             const string resultsFilename = "results-example-xunit.xml";
-            using (
-                var input =
-                    new StreamReader(
-                        Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Test." + resultsFilename)))
+            using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Test." + resultsFilename)))
             using (var output = new StreamWriter(resultsFilename))
             {
                 output.Write(input.ReadToEnd());

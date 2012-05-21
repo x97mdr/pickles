@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Ninject;
 using Pickles.DirectoryCrawler;
+using Should;
 
 namespace Pickles.Test
 {
@@ -17,54 +18,52 @@ namespace Pickles.Test
             Assert.NotNull(features);
 
             IDirectoryTreeNode indexMd = features.ChildNodes[0].Data;
-            Assert.NotNull(indexMd);
-            Assert.AreEqual("This is an index written in Markdown", indexMd.Name);
-            Assert.AreEqual(@"index.md", indexMd.RelativePathFromRoot);
-            Assert.IsInstanceOf<MarkdownTreeNode>(indexMd);
+            indexMd.ShouldNotBeNull();
+            indexMd.Name.ShouldEqual("This is an index written in Markdown");
+            indexMd.RelativePathFromRoot.ShouldEqual("index.md");
+            indexMd.ShouldBeType<MarkdownTreeNode>();
 
             IDirectoryTreeNode levelOneFeature = features.ChildNodes[1].Data;
-            Assert.NotNull(levelOneFeature);
-            Assert.AreEqual("Addition", levelOneFeature.Name);
-            Assert.AreEqual(@"LevelOne.feature", levelOneFeature.RelativePathFromRoot);
-            Assert.IsInstanceOf<FeatureDirectoryTreeNode>(levelOneFeature);
+            levelOneFeature.ShouldNotBeNull();
+            levelOneFeature.Name.ShouldEqual("Addition");
+            levelOneFeature.RelativePathFromRoot.ShouldEqual("LevelOne.feature");
+            levelOneFeature.ShouldBeType<FeatureDirectoryTreeNode>();
 
             IDirectoryTreeNode subLevelOneDirectory = features.ChildNodes[2].Data;
-            Assert.NotNull(subLevelOneDirectory);
-            Assert.AreEqual("Sub Level One", subLevelOneDirectory.Name);
-            Assert.AreEqual(@"SubLevelOne\", subLevelOneDirectory.RelativePathFromRoot);
-            Assert.IsInstanceOf<FolderDirectoryTreeNode>(subLevelOneDirectory);
+            subLevelOneDirectory.ShouldNotBeNull();
+            subLevelOneDirectory.Name.ShouldEqual("Sub Level One");
+            subLevelOneDirectory.RelativePathFromRoot.ShouldEqual(@"SubLevelOne\");
+            subLevelOneDirectory.ShouldBeType<FolderDirectoryTreeNode>();
 
             GeneralTree<IDirectoryTreeNode> subLevelOneNode = features.ChildNodes[2];
-            Assert.AreEqual(3, subLevelOneNode.ChildNodes.Count);
+            subLevelOneNode.ChildNodes.Count.ShouldEqual(3);
 
             IDirectoryTreeNode levelOneSublevelOneFeature = subLevelOneNode.ChildNodes[0].Data;
-            Assert.NotNull(levelOneSublevelOneFeature);
-            Assert.AreEqual("Addition", levelOneSublevelOneFeature.Name);
-            Assert.AreEqual(@"SubLevelOne\LevelOneSublevelOne.feature", levelOneSublevelOneFeature.RelativePathFromRoot);
-            Assert.IsInstanceOf<FeatureDirectoryTreeNode>(levelOneSublevelOneFeature);
+            levelOneSublevelOneFeature.ShouldNotBeNull();
+            levelOneSublevelOneFeature.Name.ShouldEqual("Addition");
+            levelOneSublevelOneFeature.RelativePathFromRoot.ShouldEqual(@"SubLevelOne\LevelOneSublevelOne.feature");
+            levelOneSublevelOneFeature.ShouldBeType<FeatureDirectoryTreeNode>();
 
             IDirectoryTreeNode levelOneSublevelTwoFeature = subLevelOneNode.ChildNodes[1].Data;
-            Assert.NotNull(levelOneSublevelTwoFeature);
-            Assert.AreEqual("Addition", levelOneSublevelTwoFeature.Name);
-            Assert.AreEqual(@"SubLevelOne\LevelOneSublevelTwo.feature", levelOneSublevelTwoFeature.RelativePathFromRoot);
-            Assert.IsInstanceOf<FeatureDirectoryTreeNode>(levelOneSublevelTwoFeature);
+            levelOneSublevelTwoFeature.ShouldNotBeNull();
+            levelOneSublevelTwoFeature.Name.ShouldEqual("Addition");
+            levelOneSublevelTwoFeature.RelativePathFromRoot.ShouldEqual(@"SubLevelOne\LevelOneSublevelTwo.feature");
+            levelOneSublevelTwoFeature.ShouldBeType<FeatureDirectoryTreeNode>();
 
             GeneralTree<IDirectoryTreeNode> subLevelTwoNode = subLevelOneNode.ChildNodes[2];
-            Assert.AreEqual(1, subLevelTwoNode.ChildNodes.Count);
+            subLevelTwoNode.ChildNodes.Count.ShouldEqual(1);
 
             IDirectoryTreeNode subLevelTwoDirectory = subLevelOneNode.ChildNodes[2].Data;
-            Assert.NotNull(subLevelTwoDirectory);
-            Assert.AreEqual("Sub Level Two", subLevelTwoDirectory.Name);
-            Assert.AreEqual(@"SubLevelOne\SubLevelTwo\", subLevelTwoDirectory.RelativePathFromRoot);
-            Assert.IsInstanceOf<FolderDirectoryTreeNode>(subLevelTwoDirectory);
+            subLevelTwoDirectory.ShouldNotBeNull();
+            subLevelTwoDirectory.Name.ShouldEqual("Sub Level Two");
+            subLevelTwoDirectory.RelativePathFromRoot.ShouldEqual(@"SubLevelOne\SubLevelTwo\");
+            subLevelTwoDirectory.ShouldBeType<FolderDirectoryTreeNode>();
 
-            IDirectoryTreeNode levelOneSublevelOneSubLevelTwoDirectory =
-                subLevelOneNode.ChildNodes[2].ChildNodes[0].Data;
-            Assert.NotNull(levelOneSublevelOneSubLevelTwoDirectory);
-            Assert.AreEqual("Addition", levelOneSublevelOneSubLevelTwoDirectory.Name);
-            Assert.AreEqual(@"SubLevelOne\SubLevelTwo\LevelOneSublevelOneSubLevelTwo.feature",
-                            levelOneSublevelOneSubLevelTwoDirectory.RelativePathFromRoot);
-            Assert.IsInstanceOf<FeatureDirectoryTreeNode>(levelOneSublevelOneSubLevelTwoDirectory);
+            IDirectoryTreeNode levelOneSublevelOneSubLevelTwoDirectory = subLevelOneNode.ChildNodes[2].ChildNodes[0].Data;
+            levelOneSublevelOneSubLevelTwoDirectory.ShouldNotBeNull();
+            levelOneSublevelOneSubLevelTwoDirectory.Name.ShouldEqual("Addition");
+            levelOneSublevelOneSubLevelTwoDirectory.RelativePathFromRoot.ShouldEqual(@"SubLevelOne\SubLevelTwo\LevelOneSublevelOneSubLevelTwo.feature");
+            levelOneSublevelOneSubLevelTwoDirectory.ShouldBeType<FeatureDirectoryTreeNode>();
         }
     }
 }

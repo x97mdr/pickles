@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Pickles.Extensions;
+using Should;
 
 namespace Pickles.Test
 {
@@ -7,52 +8,52 @@ namespace Pickles.Test
     public class WhenFormattingWikiWords : BaseFixture
     {
         [Test]
-        public void Then_can_format_text_as_wiki_word_successfully()
+        public void ThenCanFormatTextAsWikiWordSuccessfully()
         {
             string actual = "ThisIsTheWikiWord".ExpandWikiWord();
-            Assert.AreEqual("This Is The Wiki Word", actual);
+            actual.ShouldEqual("This Is The Wiki Word");
         }
 
         [Test]
-        public void Then_can_format_text_with_acronym_and_number_as_wiki_word_successfully()
+        public void ThenCanFormatTextWithAcronymAndNumberAsWikiWordSuccessfully()
         {
             string actual = "ThisIsAnACRONYM1".ExpandWikiWord();
-            Assert.AreEqual("This Is An ACRONYM1", actual);
+            actual.ShouldEqual("This Is An ACRONYM1");
         }
 
         [Test]
-        public void Then_can_format_text_with_acronym_as_wiki_word_successfully()
+        public void ThenCanFormatTextWithAcronymAsWikiWordSuccessfully()
         {
             string actual = "ThisIsAnACRONYM".ExpandWikiWord();
-            Assert.AreEqual("This Is An ACRONYM", actual);
+            actual.ShouldEqual("This Is An ACRONYM");
         }
 
         [Test]
-        public void Then_can_format_text_with_long_numbers_as_wiki_word_successfully()
+        public void ThenCanFormatTextWithLongNumbersAsWikiWordSuccessfully()
         {
             string actual = "ThisIsThe5000thWikiWord".ExpandWikiWord();
-            Assert.AreEqual("This Is The 5000th Wiki Word", actual);
+            actual.ShouldEqual("This Is The 5000th Wiki Word");
         }
 
         [Test]
-        public void Then_can_format_text_with_number_followed_by_capital_as_wiki_word_successfully()
+        public void ThenCanFormatTextWithNumberFollowedByCapitalAsWikiWordSuccessfully()
         {
             string actual = "001FeatureOne".ExpandWikiWord();
-            Assert.AreEqual("001 Feature One", actual);
+            actual.ShouldEqual("001 Feature One");
         }
 
         [Test]
-        public void Then_can_format_text_with_numbers_as_wiki_word_successfully()
+        public void ThenCanFormatTextWithNumbersAsWikiWordSuccessfully()
         {
             string actual = "ThisIsThe4thWikiWord".ExpandWikiWord();
-            Assert.AreEqual("This Is The 4th Wiki Word", actual);
+            actual.ShouldEqual("This Is The 4th Wiki Word");
         }
 
         [Test]
-        public void Then_can_format_text_with_special_characters_as_wiki_word_successfully()
+        public void ThenCanFormatTextWithSpecialCharactersAsWikiWordSuccessfully()
         {
             string actual = "ThisIsThe_WikiWord".ExpandWikiWord();
-            Assert.AreEqual("This Is The Wiki Word", actual);
+            actual.ShouldEqual("This Is The Wiki Word");
         }
     }
 }

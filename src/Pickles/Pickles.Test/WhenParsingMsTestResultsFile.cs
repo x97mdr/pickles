@@ -9,7 +9,7 @@ using Should;
 namespace Pickles.Test
 {
     [TestFixture]
-    public class WhenParsingMSTestResultsFile : BaseFixture
+    public class WhenParsingMsTestResultsFile : BaseFixture
     {
         #region Setup/Teardown
 
@@ -19,10 +19,7 @@ namespace Pickles.Test
             _feature = new Feature {Name = "Addition"};
 
             // Write out the embedded test results file
-            using (
-                var input =
-                    new StreamReader(
-                        Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Test." + RESULTS_FILE_NAME)))
+            using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Test." + RESULTS_FILE_NAME)))
             using (var output = new StreamWriter(RESULTS_FILE_NAME))
             {
                 output.Write(input.ReadToEnd());

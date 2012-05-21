@@ -5,14 +5,13 @@ using Ninject;
 using Pickles.DirectoryCrawler;
 using Pickles.DocumentationBuilders.DITA;
 using Pickles.Parser;
+using Should;
 
 namespace Pickles.Test
 {
     [TestFixture]
     public class WhenGeneratingPathsFromFeaturesToDitaFiles : BaseFixture
     {
-        private Feature _testFeature = new Feature();
-
         [Test]
         public void ThenCanGeneratePathToDeepLevelFeatureFileSuccessfully()
         {
@@ -25,7 +24,7 @@ namespace Pickles.Test
             var ditaMapPathGenerator = Kernel.Get<DitaMapPathGenerator>();
 
             Uri existingUri = ditaMapPathGenerator.GeneratePathToFeature(featureNode);
-            Assert.AreEqual(@"path/to/the_feature.dita", existingUri.OriginalString);
+            existingUri.OriginalString.ShouldEqual(@"path/to/the_feature.dita");
         }
 
         [Test]
@@ -40,7 +39,7 @@ namespace Pickles.Test
             var ditaMapPathGenerator = Kernel.Get<DitaMapPathGenerator>();
 
             Uri existingUri = ditaMapPathGenerator.GeneratePathToFeature(featureNode);
-            Assert.AreEqual(@"the_feature.dita", existingUri.OriginalString);
+            existingUri.OriginalString.ShouldEqual(@"the_feature.dita");
         }
     }
 }

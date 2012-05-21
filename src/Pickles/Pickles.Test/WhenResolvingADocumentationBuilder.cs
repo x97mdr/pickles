@@ -23,6 +23,7 @@ using Ninject;
 using Pickles.DocumentationBuilders.DITA;
 using Pickles.DocumentationBuilders.Excel;
 using Pickles.DocumentationBuilders.Word;
+using Should;
 
 namespace Pickles.Test
 {
@@ -36,14 +37,12 @@ namespace Pickles.Test
 
             var item = Kernel.Get<IDocumentationBuilder>();
 
-            Assert.NotNull(item);
-            Assert.IsInstanceOf<HtmlDocumentationBuilder>(item);
+            item.ShouldNotBeNull();
+            item.ShouldBeType<HtmlDocumentationBuilder>();
         }
 
         [Test]
-        public void
-            Then_can_resolve_IDocumentationBuilder_as_HtmlDocumentationBuilder_as_singleton_if_the_user_selects_HTML_output
-            ()
+        public void ThenCanResolveIDocumentationBuilderAsHtmlDocumentationBuilderAsSingletonIfTheUserSelectsHtmlOutput()
         {
             var configuration = Kernel.Get<Configuration>();
             configuration.DocumentationFormat = DocumentationFormat.Html;
@@ -51,29 +50,27 @@ namespace Pickles.Test
             var item1 = Kernel.Get<IDocumentationBuilder>();
             var item2 = Kernel.Get<IDocumentationBuilder>();
 
-            Assert.NotNull(item1);
-            Assert.IsInstanceOf<HtmlDocumentationBuilder>(item1);
-            Assert.NotNull(item2);
-            Assert.IsInstanceOf<HtmlDocumentationBuilder>(item2);
-            Assert.AreSame(item1, item2);
+            item1.ShouldNotBeNull();
+            item1.ShouldBeType<HtmlDocumentationBuilder>();
+            item2.ShouldNotBeNull();
+            item2.ShouldBeType<HtmlDocumentationBuilder>();
+            item1.ShouldBeSameAs(item2);
         }
 
         [Test]
-        public void Then_can_resolve_IDocumentationBuilder_as_WordDocumentationBuilder_if_the_user_selects_Word_output()
+        public void ThenCanResolveIDocumentationBuilderAsWordDocumentationBuilderIfTheUserSelectsWordOutput()
         {
             var configuration = Kernel.Get<Configuration>();
             configuration.DocumentationFormat = DocumentationFormat.Word;
 
             var item = Kernel.Get<IDocumentationBuilder>();
 
-            Assert.NotNull(item);
-            Assert.IsInstanceOf<WordDocumentationBuilder>(item);
+            item.ShouldNotBeNull();
+            item.ShouldBeType<WordDocumentationBuilder>();
         }
 
         [Test]
-        public void
-            Then_can_resolve_IDocumentationBuilder_as_WordDocumentationBuilder_as_singleton_if_the_user_selects_Word_output
-            ()
+        public void ThenCanResolveIDocumentationBuilderAsWordDocumentationBuilderAsSingletonIfTheUserSelectsWordOutput()
         {
             var configuration = Kernel.Get<Configuration>();
             configuration.DocumentationFormat = DocumentationFormat.Word;
@@ -81,29 +78,27 @@ namespace Pickles.Test
             var item1 = Kernel.Get<IDocumentationBuilder>();
             var item2 = Kernel.Get<IDocumentationBuilder>();
 
-            Assert.NotNull(item1);
-            Assert.IsInstanceOf<WordDocumentationBuilder>(item1);
-            Assert.NotNull(item2);
-            Assert.IsInstanceOf<WordDocumentationBuilder>(item2);
-            Assert.AreSame(item1, item2);
+            item1.ShouldNotBeNull();
+            item1.ShouldBeType<WordDocumentationBuilder>();
+            item2.ShouldNotBeNull();
+            item2.ShouldBeType<WordDocumentationBuilder>();
+            item1.ShouldBeSameAs(item2);
         }
 
         [Test]
-        public void Then_can_resolve_IDocumentationBuilder_as_DitaDocumentationBuilder_if_the_user_selects_DITA_output()
+        public void ThenCanResolveIDocumentationBuilderAsDitaDocumentationBuilderIfTheUserSelectsDitaOutput()
         {
             var configuration = Kernel.Get<Configuration>();
             configuration.DocumentationFormat = DocumentationFormat.Dita;
 
             var item = Kernel.Get<IDocumentationBuilder>();
 
-            Assert.NotNull(item);
-            Assert.IsInstanceOf<DitaDocumentationBuilder>(item);
+            item.ShouldNotBeNull();
+            item.ShouldBeType<DitaDocumentationBuilder>();
         }
 
         [Test]
-        public void
-            Then_can_resolve_IDocumentationBuilder_as_DitaDocumentationBuilder_as_singleton_if_the_user_selects_DITA_output
-            ()
+        public void ThenCanResolveIDocumentationBuilderAsDitaDocumentationBuilderAsSingletonIfTheUserSelectsDitaOutput()
         {
             var configuration = Kernel.Get<Configuration>();
             configuration.DocumentationFormat = DocumentationFormat.Dita;
@@ -111,30 +106,27 @@ namespace Pickles.Test
             var item1 = Kernel.Get<IDocumentationBuilder>();
             var item2 = Kernel.Get<IDocumentationBuilder>();
 
-            Assert.NotNull(item1);
-            Assert.IsInstanceOf<DitaDocumentationBuilder>(item1);
-            Assert.NotNull(item2);
-            Assert.IsInstanceOf<DitaDocumentationBuilder>(item2);
-            Assert.AreSame(item1, item2);
+            item1.ShouldNotBeNull();
+            item1.ShouldBeType<DitaDocumentationBuilder>();
+            item2.ShouldNotBeNull();
+            item2.ShouldBeType<DitaDocumentationBuilder>();
+            item1.ShouldBeSameAs(item2);
         }
 
         [Test]
-        public void Then_can_resolve_IDocumentationBuilder_as_ExcelDocumentationBuilder_if_the_user_selects_Excel_output
-            ()
+        public void ThenCanResolveIDocumentationBuilderAsExcelDocumentationBuilderIfTheUserSelectsExcelOutput()
         {
             var configuration = Kernel.Get<Configuration>();
             configuration.DocumentationFormat = DocumentationFormat.Excel;
 
             var item = Kernel.Get<IDocumentationBuilder>();
 
-            Assert.NotNull(item);
-            Assert.IsInstanceOf<ExcelDocumentationBuilder>(item);
+            item.ShouldNotBeNull();
+            item.ShouldBeType<ExcelDocumentationBuilder>();
         }
 
         [Test]
-        public void
-            Then_can_resolve_IDocumentationBuilder_as_ExcelDocumentationBuilder_as_singleton_if_the_user_selects_Excel_output
-            ()
+        public void ThenCanResolveIDocumentationBuilderAsExcelDocumentationBuilderAsSingletonIfTheUserSelectsExcelOutput()
         {
             var configuration = Kernel.Get<Configuration>();
             configuration.DocumentationFormat = DocumentationFormat.Excel;
@@ -142,11 +134,11 @@ namespace Pickles.Test
             var item1 = Kernel.Get<IDocumentationBuilder>();
             var item2 = Kernel.Get<IDocumentationBuilder>();
 
-            Assert.NotNull(item1);
-            Assert.IsInstanceOf<ExcelDocumentationBuilder>(item1);
-            Assert.NotNull(item2);
-            Assert.IsInstanceOf<ExcelDocumentationBuilder>(item2);
-            Assert.AreSame(item1, item2);
+            item1.ShouldNotBeNull();
+            item1.ShouldBeType<ExcelDocumentationBuilder>();
+            item2.ShouldNotBeNull();
+            item2.ShouldBeType<ExcelDocumentationBuilder>();
+            item1.ShouldBeSameAs(item2);
         }
     }
 }

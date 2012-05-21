@@ -1,27 +1,32 @@
 ﻿using System.Linq;
 using System.Xml.Linq;
-using NUnit.Framework;
+using Should;
 
 namespace Pickles.Test
 {
     public static class AssertExtensions
     {
-        public static void AssertHasAttribute(this XElement element, string name, string value)
+        public static void ShouldHaveAttribute(this XElement element, string name, string value)
         {
-            XAttribute classAttribute =
-                element.Attributes().FirstOrDefault(attribute => attribute.Name.LocalName == name);
-            Assert.IsNotNull(classAttribute);
-            Assert.AreEqual(value, classAttribute.Value);
+            XAttribute classAttribute = element.Attributes().FirstOrDefault(attribute => attribute.Name.LocalName == name);
+            classAttribute.ShouldNotBeNull();
+            classAttribute.Value.ShouldEqual(value);
         }
 
-        public static void AssertIsInNamespace(this XElement element, string _namespace)
+        public static void ShouldBeInInNamespace(this XElement element, string _namespace)
         {
-            Assert.AreEqual(_namespace, element.Name.NamespaceName);
+            element.Name.NamespaceName.ShouldEqual(_namespace);
         }
 
-        public static void AssertIsNamed(this XElement element, string name)
+        public static void ShouldBeNamed(this XElement element, string name)
         {
-            Assert.AreEqual(name, element.Name.LocalName);
+            element.Name.LocalName.ShouldEqual(name);
+        }
+
+        public static void ShouldDeepEquals(this XElement element, XElement other)
+        {
+            const string format = "Expected:\r\n{0}\r\nActual:\r\n{1}\r\n";
+            XNode.DeepEquals(element, other).ShouldBeTrue(string.Format(format, element, other));
         }
     }
 }

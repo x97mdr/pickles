@@ -10,8 +10,7 @@ namespace Pickles.Test
     [TestFixture]
     public class WhenParsingCommandLineArguments
     {
-        private static readonly string expectedHelpString =
-            @"  -f, --feature-directory=VALUE
+        private const string expectedHelpString = @"  -f, --feature-directory=VALUE
                              directory to start scanning recursively for 
                                features
   -o, --output-directory=VALUE
@@ -36,7 +35,7 @@ namespace Pickles.Test
             string.Format(@"Pickles version {0}", Assembly.GetExecutingAssembly().GetName().Version);
 
         [Test]
-        public void Then_can_parse_excel_documentation_format_with_long_form_successfully()
+        public void ThenCanParseExcelDocumentationFormatWithLongFormSuccessfully()
         {
             var args = new[] {@"-documentation-format=excel"};
 
@@ -49,7 +48,7 @@ namespace Pickles.Test
         }
 
         [Test]
-        public void Then_can_parse_excel_documentation_format_with_short_form_successfully()
+        public void ThenCanParseExcelDocumentationFormatWithShortFormSuccessfully()
         {
             var args = new[] {@"-df=excel"};
 
@@ -62,7 +61,7 @@ namespace Pickles.Test
         }
 
         [Test]
-        public void Then_can_parse_help_request_with_long_form_successfully()
+        public void ThenCanParseHelpRequestWithLongFormSuccessfully()
         {
             var args = new[] {@"--help"};
 
@@ -71,8 +70,6 @@ namespace Pickles.Test
             var commandLineArgumentParser = new CommandLineArgumentParser();
             bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
 
-
-            string expectedVersionAndHelp = expectedVersionString + Environment.NewLine + expectedHelpString;
 
             StringAssert.Contains(expectedHelpString.ComparisonNormalize(),
                                   writer.GetStringBuilder().ToString().ComparisonNormalize());
@@ -85,7 +82,7 @@ namespace Pickles.Test
         }
 
         [Test]
-        public void Then_can_parse_help_request_with_question_mark_successfully()
+        public void ThenCanParseHelpRequestWithQuestionMarkSuccessfully()
         {
             var args = new[] {@"-?"};
 
@@ -105,7 +102,7 @@ namespace Pickles.Test
         }
 
         [Test]
-        public void Then_can_parse_help_request_with_short_form_successfully()
+        public void ThenCanParseHelpRequestWithShortFormSuccessfully()
         {
             var args = new[] {@"-h"};
 
@@ -125,7 +122,7 @@ namespace Pickles.Test
         }
 
         [Test]
-        public void Then_can_parse_long_form_arguments_successfully()
+        public void ThenCanParseLongFormArgumentsSuccessfully()
         {
             var args = new[] {@"--feature-directory=c:\features", @"--output-directory=c:\features-output"};
 
@@ -141,7 +138,7 @@ namespace Pickles.Test
         }
 
         [Test]
-        public void Then_can_parse_results_file_with_long_form_successfully()
+        public void ThenCanParseResultsFileWithLongFormSuccessfully()
         {
             var args = new[] {@"-link-results-file=c:\results.xml"};
 
@@ -158,7 +155,7 @@ namespace Pickles.Test
         }
 
         [Test]
-        public void Then_can_parse_results_file_with_short_form_successfully()
+        public void ThenCanParseResultsFileWithShortFormSuccessfully()
         {
             var args = new[] {@"-lr=c:\results.xml"};
 
@@ -175,7 +172,7 @@ namespace Pickles.Test
         }
 
         [Test]
-        public void Then_can_parse_results_format_mstest_with_long_form_successfully()
+        public void ThenCanParseResultsFormatMstestWithLongFormSuccessfully()
         {
             var args = new[] {@"-test-results-format=mstest"};
 
@@ -188,7 +185,7 @@ namespace Pickles.Test
         }
 
         [Test]
-        public void Then_can_parse_results_format_mstest_with_short_form_successfully()
+        public void ThenCanParseResultsFormatMstestWithShortFormSuccessfully()
         {
             var args = new[] {@"-trfmt=mstest"};
 
@@ -201,7 +198,7 @@ namespace Pickles.Test
         }
 
         [Test]
-        public void Then_can_parse_results_format_nunit_with_long_form_successfully()
+        public void ThenCanParseResultsFormatNunitWithLongFormSuccessfully()
         {
             var args = new[] {@"-test-results-format=nunit"};
 
@@ -214,7 +211,7 @@ namespace Pickles.Test
         }
 
         [Test]
-        public void Then_can_parse_results_format_nunit_with_short_form_successfully()
+        public void ThenCanParseResultsFormatNunitWithShortFormSuccessfully()
         {
             var args = new[] {@"-trfmt=nunit"};
 
@@ -227,7 +224,7 @@ namespace Pickles.Test
         }
 
         [Test]
-        public void Then_can_parse_results_format_xunit_with_long_form_successfully()
+        public void ThenCanParseResultsFormatXunitWithLongFormSuccessfully()
         {
             var args = new[] {@"-test-results-format=xunit"};
 
@@ -240,7 +237,7 @@ namespace Pickles.Test
         }
 
         [Test]
-        public void Then_can_parse_results_format_xunit_with_short_form_successfully()
+        public void ThenCanParseResultsFormatXunitWithShortFormSuccessfully()
         {
             var args = new[] {@"-trfmt=xunit"};
 
@@ -253,7 +250,7 @@ namespace Pickles.Test
         }
 
         [Test]
-        public void Then_can_parse_short_form_arguments_successfully()
+        public void ThenCanParseShortFormArgumentsSuccessfully()
         {
             var args = new[] {@"-f=c:\features", @"-o=c:\features-output"};
 
@@ -269,7 +266,7 @@ namespace Pickles.Test
         }
 
         [Test]
-        public void Then_can_parse_version_request_long_form_successfully()
+        public void ThenCanParseVersionRequestLongFormSuccessfully()
         {
             var args = new[] {@"--version"};
 
@@ -289,7 +286,7 @@ namespace Pickles.Test
         }
 
         [Test]
-        public void Then_can_parse_version_request_short_form_successfully()
+        public void ThenCanParseVersionRequestShortFormSuccessfully()
         {
             var args = new[] {@"-v"};
 

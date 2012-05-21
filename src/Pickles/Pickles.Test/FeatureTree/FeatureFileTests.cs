@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Pickles.FeatureTree;
 using Pickles.Parser;
+using Should;
 
 namespace Pickles.Test.FeatureTree
 {
@@ -15,7 +16,7 @@ namespace Pickles.Test.FeatureTree
         {
             var exception = Assert.Throws<ArgumentNullException>(() => new FeatureFile("feature", parentFolder, null));
 
-            Assert.AreEqual("feature", exception.ParamName);
+            exception.ParamName.ShouldEqual("feature");
         }
 
         [Test]
@@ -25,7 +26,7 @@ namespace Pickles.Test.FeatureTree
 
             var featureFile = new FeatureFile("filename.ext", parentFolder, feature);
 
-            Assert.AreEqual(feature, featureFile.Content);
+            featureFile.Content.ShouldEqual(feature);
         }
 
         [Test]
@@ -33,17 +34,7 @@ namespace Pickles.Test.FeatureTree
         {
             var featureFile = new FeatureFile("filename.ext", parentFolder, new Feature());
 
-// ReSharper disable CSharpWarnings::CS0183
-            Assert.IsTrue(featureFile is ITreeItem);
-// ReSharper restore CSharpWarnings::CS0183
+            featureFile.ShouldImplement<ITreeItem>();
         }
-
-        //[Test]
-        //public void Constructor_NullFolder_ThrowsArgumentNullException()
-        //{
-        //    ArgumentNullException exception = Assert.Throws<ArgumentNullException>(() => new FeatureFile(null, null, new Feature()));
-
-        //    Assert.AreEqual("folder", exception.ParamName);
-        //}
     }
 }

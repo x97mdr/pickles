@@ -51,20 +51,20 @@ I also enjoy ordering things
             XElement description = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
 
             Assert.NotNull(description);
-            description.AssertIsNamed("div");
-            description.AssertIsInNamespace("http://www.w3.org/1999/xhtml");
-            description.AssertHasAttribute("class", "description");
+            description.ShouldBeNamed("div");
+            description.ShouldBeInInNamespace("http://www.w3.org/1999/xhtml");
+            description.ShouldHaveAttribute("class", "description");
             Assert.AreEqual(9, description.Elements().Count());
 
-            description.Elements().ElementAt(0).AssertIsNamed("p");
-            description.Elements().ElementAt(1).AssertIsNamed("h1");
-            description.Elements().ElementAt(2).AssertIsNamed("p");
-            description.Elements().ElementAt(3).AssertIsNamed("h2");
-            description.Elements().ElementAt(4).AssertIsNamed("blockquote");
-            description.Elements().ElementAt(5).AssertIsNamed("p");
-            description.Elements().ElementAt(6).AssertIsNamed("ul");
-            description.Elements().ElementAt(7).AssertIsNamed("p");
-            description.Elements().ElementAt(8).AssertIsNamed("ol");
+            description.Elements().ElementAt(0).ShouldBeNamed("p");
+            description.Elements().ElementAt(1).ShouldBeNamed("h1");
+            description.Elements().ElementAt(2).ShouldBeNamed("p");
+            description.Elements().ElementAt(3).ShouldBeNamed("h2");
+            description.Elements().ElementAt(4).ShouldBeNamed("blockquote");
+            description.Elements().ElementAt(5).ShouldBeNamed("p");
+            description.Elements().ElementAt(6).ShouldBeNamed("ul");
+            description.Elements().ElementAt(7).ShouldBeNamed("p");
+            description.Elements().ElementAt(8).ShouldBeNamed("ol");
         }
     }
 }

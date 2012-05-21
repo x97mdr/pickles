@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using Pickles.FeatureTree;
+using Should;
 
 namespace Pickles.Test.FeatureTree
 {
@@ -22,7 +23,7 @@ namespace Pickles.Test.FeatureTree
         {
             var exception = Assert.Throws<ArgumentException>(() => new TestableFileBase("    .ext", parentFolder));
 
-            Assert.AreEqual("fileName", exception.ParamName);
+            exception.ParamName.ShouldEqual("fileName");
         }
 
         [Test]
@@ -30,7 +31,7 @@ namespace Pickles.Test.FeatureTree
         {
             var exception = Assert.Throws<ArgumentNullException>(() => new TestableFileBase(" ", parentFolder));
 
-            Assert.AreEqual("fileName", exception.ParamName);
+            exception.ParamName.ShouldEqual("fileName");
         }
 
         [Test]
@@ -38,7 +39,7 @@ namespace Pickles.Test.FeatureTree
         {
             var exception = Assert.Throws<ArgumentNullException>(() => new TestableFileBase("feature", null));
 
-            Assert.AreEqual("folder", exception.ParamName);
+            exception.ParamName.ShouldEqual("folder");
         }
 
         [Test]
@@ -46,7 +47,7 @@ namespace Pickles.Test.FeatureTree
         {
             var exception = Assert.Throws<ArgumentException>(() => new TestableFileBase(".ext", parentFolder));
 
-            Assert.AreEqual("fileName", exception.ParamName);
+            exception.ParamName.ShouldEqual("fileName");
         }
 
         [Test]
@@ -54,7 +55,7 @@ namespace Pickles.Test.FeatureTree
         {
             var featureFile = new TestableFileBase("Feature.ext", parentFolder);
 
-            Assert.AreEqual("Feature", featureFile.Name);
+            featureFile.Name.ShouldEqual("Feature");
         }
 
         [Test]
@@ -62,7 +63,7 @@ namespace Pickles.Test.FeatureTree
         {
             var exception = Assert.Throws<ArgumentNullException>(() => new TestableFileBase(null, parentFolder));
 
-            Assert.AreEqual("fileName", exception.ParamName);
+            exception.ParamName.ShouldEqual("fileName");
         }
 
         [Test]
@@ -70,7 +71,7 @@ namespace Pickles.Test.FeatureTree
         {
             var featureFile = new TestableFileBase("Feature", parentFolder);
 
-            Assert.AreEqual("Feature", featureFile.Name);
+            featureFile.Name.ShouldEqual("Feature");
         }
 
         [Test]
@@ -78,7 +79,7 @@ namespace Pickles.Test.FeatureTree
         {
             var featureFile = new TestableFileBase("filename.ext", parentFolder);
 
-            Assert.AreEqual(parentFolder, featureFile.Folder);
+            featureFile.Folder.ShouldEqual(parentFolder);
         }
 
         [Test]
@@ -88,7 +89,7 @@ namespace Pickles.Test.FeatureTree
 
             ITreeItem commonAncestor = file.FindCommonAncestor(parentFolder);
 
-            Assert.AreEqual(parentFolder, commonAncestor);
+            commonAncestor.ShouldEqual(parentFolder);
         }
 
         [Test]

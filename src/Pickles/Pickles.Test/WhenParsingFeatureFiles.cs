@@ -3,6 +3,7 @@ using System.Linq;
 using NUnit.Framework;
 using Ninject;
 using Pickles.Parser;
+using Should;
 
 namespace Pickles.Test
 {
@@ -12,7 +13,7 @@ namespace Pickles.Test
         private const string DOC_STRING_DELIMITER = "\"\"\"";
 
         [Test]
-        public void Then_can_parse_feature_with_multiple_scenarios_successfully()
+        public void ThenCanParseFeatureWithMultipleScenariosSuccessfully()
         {
             string featureText =
                 @"# ignore this comment
@@ -100,7 +101,7 @@ Feature: Test
         }
 
         [Test]
-        public void Then_can_parse_most_basic_feature_successfully()
+        public void ThenCanParseMostBasicFeatureSuccessfully()
         {
             string featureText =
                 @"# ignore this comment
@@ -152,7 +153,7 @@ Feature: Test
         }
 
         [Test]
-        public void Then_can_parse_scenario_outlines_successfully()
+        public void ThenCanParseScenarioOutlinesSuccessfully()
         {
             string featureText =
                 @"# ignore this comment
@@ -209,7 +210,7 @@ Feature: Test
         }
 
         [Test]
-        public void Then_can_parse_scenario_with_background_successfully()
+        public void ThenCanParseScenarioWithBackgroundSuccessfully()
         {
             string featureText =
                 @"# ignore this comment
@@ -250,7 +251,7 @@ Feature: Test
         }
 
         [Test]
-        public void Then_can_parse_scenario_with_docstring_successfully()
+        public void ThenCanParseScenarioWithDocstringSuccessfully()
         {
             string docstring = string.Format(@"{0}
 This is a document string
@@ -281,7 +282,7 @@ it can be many lines long",
         }
 
         [Test]
-        public void Then_can_parse_scenario_with_table_successfully()
+        public void ThenCanParseScenarioWithTableSuccessfully()
         {
             string featureText =
                 @"# ignore this comment

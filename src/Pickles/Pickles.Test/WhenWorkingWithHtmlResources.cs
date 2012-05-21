@@ -2,6 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 using Ninject;
+using Should;
 
 namespace Pickles.Test
 {
@@ -9,7 +10,7 @@ namespace Pickles.Test
     public class WhenWorkingWithHtmlResources : BaseFixture
     {
         [Test]
-        public void Then_can_detect_all_images_successfully()
+        public void ThenCanDetectAllImagesSuccessfully()
         {
             var configuration = Kernel.Get<Configuration>();
             configuration.OutputFolder = configuration.OutputFolder = new DirectoryInfo(@"c:\");
@@ -17,13 +18,13 @@ namespace Pickles.Test
             var htmlResources = Kernel.Get<HtmlResourceSet>();
             HtmlResource[] images = htmlResources.Images.ToArray();
 
-            Assert.AreEqual(2, images.Length);
-            Assert.AreEqual(true, images.Any(image => image.File == "success.png"));
-            Assert.AreEqual(true, images.Any(image => image.File == "failure.png"));
+            images.Length.ShouldEqual(2);
+            images.Any(image => image.File == "success.png").ShouldBeTrue();
+            images.Any(image => image.File == "failure.png").ShouldBeTrue();
         }
 
         [Test]
-        public void Then_can_detect_all_resources_successfully()
+        public void ThenCanDetectAllResourcesSuccessfully()
         {
             var configuration = Kernel.Get<Configuration>();
             configuration.OutputFolder = configuration.OutputFolder = new DirectoryInfo(@"c:\");
@@ -31,18 +32,18 @@ namespace Pickles.Test
             var htmlResources = Kernel.Get<HtmlResourceSet>();
             HtmlResource[] resources = htmlResources.All.ToArray();
 
-            Assert.AreEqual(7, resources.Length);
-            Assert.AreEqual(true, resources.Any(resource => resource.File == "success.png"));
-            Assert.AreEqual(true, resources.Any(resource => resource.File == "failure.png"));
-            Assert.AreEqual(true, resources.Any(resource => resource.File == "global.css"));
-            Assert.AreEqual(true, resources.Any(resource => resource.File == "master.css"));
-            Assert.AreEqual(true, resources.Any(resource => resource.File == "reset.css"));
-            Assert.AreEqual(true, resources.Any(resource => resource.File == "structure.css"));
-            Assert.AreEqual(true, resources.Any(resource => resource.File == "print.css"));
+            resources.Length.ShouldEqual(7);
+            resources.Any(resource => resource.File == "success.png").ShouldBeTrue();
+            resources.Any(resource => resource.File == "failure.png").ShouldBeTrue();
+            resources.Any(resource => resource.File == "global.css").ShouldBeTrue();
+            resources.Any(resource => resource.File == "master.css").ShouldBeTrue();
+            resources.Any(resource => resource.File == "reset.css").ShouldBeTrue();
+            resources.Any(resource => resource.File == "structure.css").ShouldBeTrue();
+            resources.Any(resource => resource.File == "print.css").ShouldBeTrue();
         }
 
         [Test]
-        public void Then_can_detect_all_scripts_successfully()
+        public void ThenCanDetectAllScriptsSuccessfully()
         {
             var configuration = Kernel.Get<Configuration>();
             configuration.OutputFolder = configuration.OutputFolder = new DirectoryInfo(@"c:\");
@@ -50,13 +51,13 @@ namespace Pickles.Test
             var htmlResources = Kernel.Get<HtmlResourceSet>();
             HtmlResource[] scripts = htmlResources.Scripts.ToArray();
 
-            Assert.AreEqual(2, scripts.Length);
-            Assert.AreEqual(true, scripts.Any(script => script.File == "jquery.js"));
-            Assert.AreEqual(true, scripts.Any(script => script.File == "scripts.js"));
+            scripts.Length.ShouldEqual(2);
+            scripts.Any(script => script.File == "jquery.js").ShouldBeTrue();
+            scripts.Any(script => script.File == "scripts.js").ShouldBeTrue();
         }
 
         [Test]
-        public void Then_can_detect_all_stylesheets_successfully()
+        public void ThenCanDetectAllStylesheetsSuccessfully()
         {
             var configuration = Kernel.Get<Configuration>();
             configuration.OutputFolder = configuration.OutputFolder = new DirectoryInfo(@"c:\");
@@ -64,12 +65,12 @@ namespace Pickles.Test
             var htmlResources = Kernel.Get<HtmlResourceSet>();
             HtmlResource[] stylesheets = htmlResources.Stylesheets.ToArray();
 
-            Assert.AreEqual(5, stylesheets.Length);
-            Assert.AreEqual(true, stylesheets.Any(stylesheet => stylesheet.File == "global.css"));
-            Assert.AreEqual(true, stylesheets.Any(stylesheet => stylesheet.File == "master.css"));
-            Assert.AreEqual(true, stylesheets.Any(stylesheet => stylesheet.File == "reset.css"));
-            Assert.AreEqual(true, stylesheets.Any(stylesheet => stylesheet.File == "structure.css"));
-            Assert.AreEqual(true, stylesheets.Any(stylesheet => stylesheet.File == "print.css"));
+            stylesheets.Length.ShouldEqual(5);
+            stylesheets.Any(stylesheet => stylesheet.File == "global.css").ShouldBeTrue();
+            stylesheets.Any(stylesheet => stylesheet.File == "master.css").ShouldBeTrue();
+            stylesheets.Any(stylesheet => stylesheet.File == "reset.css").ShouldBeTrue();
+            stylesheets.Any(stylesheet => stylesheet.File == "structure.css").ShouldBeTrue();
+            stylesheets.Any(stylesheet => stylesheet.File == "print.css").ShouldBeTrue();
         }
     }
 }

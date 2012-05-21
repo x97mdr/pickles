@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Ninject;
 using Pickles.DirectoryCrawler;
+using Should;
 
 namespace Pickles.Test
 {
@@ -9,22 +10,22 @@ namespace Pickles.Test
     public class WhenDeterminingRelevantFilesToConsider : BaseFixture
     {
         [Test]
-        public void Then_can_detect_feature_files_successfully()
+        public void ThenCanDetectFeatureFilesSuccessfully()
         {
             var relevantFileDetector = Kernel.Get<RelevantFileDetector>();
-            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new FileInfo("test.feature")));
-            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new FileInfo("test.markdown")));
-            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new FileInfo("test.mdown")));
-            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new FileInfo("test.mkdn")));
-            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new FileInfo("test.md")));
-            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new FileInfo("test.mdwn")));
-            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new FileInfo("test.mdtext")));
-            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new FileInfo("test.mdtxt")));
-            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new FileInfo("test.text")));
-            Assert.AreEqual(true, relevantFileDetector.IsRelevant(new FileInfo("test.txt")));
-            Assert.AreEqual(false, relevantFileDetector.IsRelevant(new FileInfo("test.pdf")));
-            Assert.AreEqual(false, relevantFileDetector.IsRelevant(new FileInfo("test.doc")));
-            Assert.AreEqual(false, relevantFileDetector.IsRelevant(new FileInfo("test.docx")));
+            relevantFileDetector.IsRelevant(new FileInfo("test.feature")).ShouldBeTrue();
+            relevantFileDetector.IsRelevant(new FileInfo("test.markdown")).ShouldBeTrue();
+            relevantFileDetector.IsRelevant(new FileInfo("test.mdown")).ShouldBeTrue();
+            relevantFileDetector.IsRelevant(new FileInfo("test.mkdn")).ShouldBeTrue();
+            relevantFileDetector.IsRelevant(new FileInfo("test.md")).ShouldBeTrue();
+            relevantFileDetector.IsRelevant(new FileInfo("test.mdwn")).ShouldBeTrue();
+            relevantFileDetector.IsRelevant(new FileInfo("test.mdtext")).ShouldBeTrue();
+            relevantFileDetector.IsRelevant(new FileInfo("test.mdtxt")).ShouldBeTrue();
+            relevantFileDetector.IsRelevant(new FileInfo("test.text")).ShouldBeTrue();
+            relevantFileDetector.IsRelevant(new FileInfo("test.txt")).ShouldBeTrue();
+            relevantFileDetector.IsRelevant(new FileInfo("test.pdf")).ShouldBeFalse();
+            relevantFileDetector.IsRelevant(new FileInfo("test.doc")).ShouldBeFalse();
+            relevantFileDetector.IsRelevant(new FileInfo("test.docx")).ShouldBeFalse();
         }
     }
 }

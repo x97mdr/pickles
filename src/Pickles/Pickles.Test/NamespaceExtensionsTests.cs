@@ -23,7 +23,7 @@ namespace Pickles.Test
 
             foreach (XElement node in tree1.DescendantsAndSelf())
             {
-                node.AssertIsInNamespace(newNamespace.NamespaceName);
+                node.ShouldBeInInNamespace(newNamespace.NamespaceName);
             }
         }
     }

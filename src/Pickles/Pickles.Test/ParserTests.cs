@@ -5,14 +5,14 @@ using Ninject;
 using Pickles.DocumentationBuilders.HTML;
 using Pickles.Parser;
 
-namespace Pickles.Test.HtmlFormatterTestFiles
+namespace Pickles.Test
 {
     [TestFixture]
     public class ParserTests : BaseFixture
     {
         [Test, TestCaseSource(typeof (ParserFileFactory), "Files")]
         [Ignore("The expected results files need some modification based on the latest changes to the formatters")]
-        public void Can_Parse_Feature_Files_Successfully(string featureText, string xhtmlText)
+        public void CanParseFeatureFilesSuccessfully(string featureText, string xhtmlText)
         {
             var parser = Kernel.Get<FeatureParser>();
             var htmlDocumentFormatter = Kernel.Get<HtmlFeatureFormatter>();

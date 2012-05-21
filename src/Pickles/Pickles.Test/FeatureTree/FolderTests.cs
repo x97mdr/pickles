@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using Pickles.FeatureTree;
+using Should;
 
 namespace Pickles.Test.FeatureTree
 {
@@ -11,7 +12,7 @@ namespace Pickles.Test.FeatureTree
         {
             var exception = Assert.Throws<ArgumentNullException>(() => new Folder(null));
 
-            Assert.AreEqual("folderName", exception.ParamName);
+            exception.ParamName.ShouldEqual("folderName");
         }
 
         [Test]
@@ -19,7 +20,7 @@ namespace Pickles.Test.FeatureTree
         {
             var folder = new Folder("Folder Name");
 
-            Assert.AreEqual("Folder Name", folder.Name);
+            folder.Name.ShouldEqual("Folder Name");
         }
 
         [Test]
@@ -27,7 +28,7 @@ namespace Pickles.Test.FeatureTree
         {
             var exception = Assert.Throws<ArgumentNullException>(() => new Folder("     "));
 
-            Assert.AreEqual("folderName", exception.ParamName);
+            exception.ParamName.ShouldEqual("folderName");
         }
 
         [Test]
@@ -37,7 +38,7 @@ namespace Pickles.Test.FeatureTree
 
             var folder = new Folder("Folder Name", parentFolder);
 
-            Assert.AreEqual(parentFolder, folder.ParentFolder);
+            folder.ParentFolder.ShouldEqual(parentFolder);
         }
 
         [Test]
@@ -47,7 +48,7 @@ namespace Pickles.Test.FeatureTree
 
             var exception = Assert.Throws<ArgumentNullException>(() => folder.FindCommonAncestor(null));
 
-            Assert.AreEqual("other", exception.ParamName);
+            exception.ParamName.ShouldEqual("other");
         }
 
         [Test]
@@ -59,7 +60,7 @@ namespace Pickles.Test.FeatureTree
 
             ITreeItem commonAncestor = folder.FindCommonAncestor(parentFolder);
 
-            Assert.AreEqual(parentFolder, commonAncestor);
+            commonAncestor.ShouldEqual(parentFolder);
         }
 
         [Test]
@@ -73,7 +74,7 @@ namespace Pickles.Test.FeatureTree
 
             ITreeItem commonAncestor = folder.FindCommonAncestor(grandParentFolder);
 
-            Assert.AreEqual(grandParentFolder, commonAncestor);
+            commonAncestor.ShouldEqual(grandParentFolder);
         }
 
         [Test]
@@ -86,7 +87,7 @@ namespace Pickles.Test.FeatureTree
 
             ITreeItem commonAncestor = sibling1.FindCommonAncestor(sibling2);
 
-            Assert.AreEqual(parentFolder, commonAncestor);
+            commonAncestor.ShouldEqual(parentFolder);
         }
 
         [Test]
@@ -97,7 +98,7 @@ namespace Pickles.Test.FeatureTree
 
             ITreeItem commonAncestor = folder.FindCommonAncestor(itsChild);
 
-            Assert.AreEqual(folder, commonAncestor);
+            commonAncestor.ShouldEqual(folder);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using Pickles.FeatureTree;
+using Should;
 
 namespace Pickles.Test.FeatureTree
 {
@@ -14,7 +15,7 @@ namespace Pickles.Test.FeatureTree
         {
             var exception = Assert.Throws<ArgumentNullException>(() => new TextFile("Text", parentFolder, null));
 
-            Assert.AreEqual("content", exception.ParamName);
+            exception.ParamName.ShouldEqual("content");
         }
 
         [Test]
@@ -24,7 +25,7 @@ namespace Pickles.Test.FeatureTree
 
             var TextFile = new TextFile("filename.ext", parentFolder, text);
 
-            Assert.AreEqual(text, TextFile.Content);
+            TextFile.Content.ShouldEqual(text);
         }
 
         [Test]
@@ -32,9 +33,7 @@ namespace Pickles.Test.FeatureTree
         {
             var TextFile = new TextFile("filename.ext", parentFolder, "# Text #");
 
-// ReSharper disable CSharpWarnings::CS0183
-            Assert.IsTrue(TextFile is ITreeItem);
-// ReSharper restore CSharpWarnings::CS0183
+            TextFile.ShouldImplement<ITreeItem>();
         }
     }
 }

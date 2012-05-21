@@ -12,7 +12,6 @@ namespace Pickles.Test
     {
         private const string EXPECTED_GIVEN_HTML = "Given ";
 
-
         private static void AssertDeepEqualNodes(XElement expected, XElement actual)
         {
             const string format = "Expected:\r\n{0}\r\nActual:\r\n{1}\r\n";
@@ -52,7 +51,7 @@ namespace Pickles.Test
                                             )
                 );
 
-            AssertDeepEqualNodes(expected, actual);
+            expected.ShouldDeepEquals(actual);
         }
 
 
@@ -79,7 +78,7 @@ namespace Pickles.Test
                                         "a simple step"
                 );
 
-            AssertDeepEqualNodes(expected, actual);
+            expected.ShouldDeepEquals(actual);
         }
 
         [Test]
@@ -107,7 +106,7 @@ namespace Pickles.Test
                 new XElement(xmlns + "span", new XAttribute("class", "keyword"), "Givet "),
                 "ett enkelt steg");
 
-            AssertDeepEqualNodes(expected, actual);
+            expected.ShouldDeepEquals(actual);
         }
 
         [Test]
@@ -161,7 +160,7 @@ namespace Pickles.Test
                                             )
                 );
 
-            AssertDeepEqualNodes(expected, actual);
+            expected.ShouldDeepEquals(actual);
         }
     }
 }
