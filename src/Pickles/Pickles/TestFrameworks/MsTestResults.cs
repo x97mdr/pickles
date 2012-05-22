@@ -58,6 +58,7 @@ namespace Pickles.TestFrameworks
             var idString =
                 (from unitTest in this.resultsDocument.Root.Descendants(ns + "UnitTest")
                  let properties = unitTest.Element(ns + "Properties")
+                 where properties != null
                  let property = properties.Element(ns + "Property")
                  let key = property.Element(ns + "Key")
                  let value = property.Element(ns + "Value")
@@ -96,7 +97,9 @@ namespace Pickles.TestFrameworks
         {
             var featureExecutionIds =
                 from unitTest in this.resultsDocument.Root.Descendants(ns + "UnitTest")
-                let property = unitTest.Element(ns + "Properties").Element(ns + "Property")
+                let properties = unitTest.Element(ns + "Properties")
+                where properties != null
+                let property = properties.Element(ns + "Property")
                 let key = property.Element(ns + "Key")
                 let value = property.Element(ns + "Value")
                 where key.Value == "FeatureTitle" && value.Value == feature.Name
@@ -118,7 +121,9 @@ namespace Pickles.TestFrameworks
         {
             var scenarioOutlineExecutionIds =
                 from unitTest in this.resultsDocument.Root.Descendants(ns + "UnitTest")
-                let property = unitTest.Element(ns + "Properties").Element(ns + "Property")
+                let properties = unitTest.Element(ns + "Properties")
+                where properties != null
+                let property = properties.Element(ns + "Property")
                 let key = property.Element(ns + "Key")
                 let value = property.Element(ns + "Value")
                 where key.Value == "FeatureTitle" && value.Value == scenarioOutline.Feature.Name
