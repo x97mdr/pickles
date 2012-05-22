@@ -39,7 +39,57 @@ namespace Pickles.TestFrameworks
             this.configuration = configuration;
             if (configuration.HasTestResults)
             {
-                resultsDocument = ReadResultsFile();
+                this.resultsDocument = ReadResultsFile();
+            }
+        }
+
+        private XDocument ReadResultsFile()
+        {
+            XDocument document;
+            using (var stream = configuration.TestResultsFile.OpenRead())
+            {
+                var xmlReader = XmlReader.Create(stream);
+                document = XDocument.Load(xmlReader);
+                stream.Close();
+            }
+            return document;
+        }
+
+        private Guid GetScenarioExecutionId(Scenario scenario)
+        {
+            var idString =
+                (from unitTest in this.resultsDocument.Root.Descendants(ns + "UnitTest")
+                 let properties = unitTest.Element(ns + "Properties")
+                 where properties != null
+                 let property = properties.Element(ns + "Property")
+                 let key = property.Element(ns + "Key")
+                 let value = property.Element(ns + "Value")
+                 where key.Value == "FeatureTitle" && value.Value == scenario.Feature.Name
+                 let description = unitTest.Element(ns + "Description")
+                 where description.Value == scenario.Name
+                 let id = unitTest.Element(ns + "Execution").Attribute("id").Value
+                 select id).FirstOrDefault();
+
+            return !string.IsNullOrEmpty(idString) ? new Guid(idString) : Guid.Empty;
+        }
+
+        private TestResult GetExecutionResult(Guid scenarioExecutionId)
+        {
+            var resultText =
+                (from unitTestResult in this.resultsDocument.Root.Descendants(ns + "UnitTestResult")
+                 let executionId = new Guid(unitTestResult.Attribute("executionId").Value)
+                 where scenarioExecutionId == executionId
+                 let outcome = unitTestResult.Attribute("outcome").Value
+                 select outcome).FirstOrDefault() ?? string.Empty;
+
+            switch (resultText.ToLowerInvariant())
+            {
+                case "passed":
+                    return new TestResult { WasExecuted = true, WasSuccessful = true };
+                case "failed":
+                    return new TestResult { WasExecuted = true, WasSuccessful = false };
+                default:
+                    return new TestResult { WasExecuted = false, WasSuccessful = false };
             }
         }
 
@@ -47,9 +97,11 @@ namespace Pickles.TestFrameworks
 
         public TestResult GetFeatureResult(Feature feature)
         {
-            IEnumerable<Guid> featureExecutionIds =
-                from unitTest in resultsDocument.Root.Descendants(ns + "UnitTest")
-                let property = unitTest.Element(ns + "Properties").Element(ns + "Property")
+            var featureExecutionIds =
+                from unitTest in this.resultsDocument.Root.Descendants(ns + "UnitTest")
+                let properties = unitTest.Element(ns + "Properties")
+                where properties != null
+                let property = properties.Element(ns + "Property")
                 let key = property.Element(ns + "Key")
                 let value = property.Element(ns + "Value")
                 where key.Value == "FeatureTitle" && value.Value == feature.Name
@@ -69,9 +121,11 @@ namespace Pickles.TestFrameworks
 
         public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
         {
-            IEnumerable<Guid> scenarioOutlineExecutionIds =
-                from unitTest in resultsDocument.Root.Descendants(ns + "UnitTest")
-                let property = unitTest.Element(ns + "Properties").Element(ns + "Property")
+            var scenarioOutlineExecutionIds =
+                from unitTest in this.resultsDocument.Root.Descendants(ns + "UnitTest")
+                let properties = unitTest.Element(ns + "Properties")
+                where properties != null
+                let property = properties.Element(ns + "Property")
                 let key = property.Element(ns + "Key")
                 let value = property.Element(ns + "Value")
                 where key.Value == "FeatureTitle" && value.Value == scenarioOutline.Feature.Name
