@@ -25,15 +25,15 @@ namespace Pickles
     [Serializable]
     public class FeatureParseException : Exception
     {
-        public FeatureParseException()
+        public FeatureParseException() : base()
         {
         }
 
-        public FeatureParseException(string msg)
+        public FeatureParseException(string msg) : base(msg)
         {
         }
 
-        public FeatureParseException(string msg, Exception e)
+        public FeatureParseException(string msg, Exception e) :base(msg,e)
         {
         }
     }
