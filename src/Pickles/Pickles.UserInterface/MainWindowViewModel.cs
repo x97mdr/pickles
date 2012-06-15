@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Windows.Input;
 using Ninject;
 using Pickles.Parser;
@@ -12,106 +9,83 @@ using System.Globalization;
 
 namespace Pickles.UserInterface
 {
-    public class MainWindowViewModel : INotifyPropertyChanged
+    public class MainWindowViewModel : NotifyPropertyChanged
     {
+        private readonly SelectableCollection<DocumentationFormat> documentationFormats;
+        private readonly SelectableCollection<TestResultsFormat> testResultsFormats;
         private string picklesVersion = typeof(Feature).Assembly.GetName().Version.ToString();
         private string featureFolder;
         private string outputFolder;
-        private DocumentationFormat selectedDocumentationFormat;
         private string projectName;
         private string projectVersion;
-        private TestResultsFormat selectedTestResultsFormat;
         private string testResultsFile;
         private CultureInfo selectedLanguage = CultureInfo.CurrentUICulture;
+
+        public MainWindowViewModel()
+        {
+            this.documentationFormats = new SelectableCollection<DocumentationFormat>(Enum.GetValues(typeof(DocumentationFormat)).Cast<DocumentationFormat>());
+            this.documentationFormats.First().IsSelected = true;
+
+            this.testResultsFormats = new SelectableCollection<TestResultsFormat>(Enum.GetValues(typeof(TestResultsFormat)).Cast<TestResultsFormat>());
+            this.documentationFormats.First().IsSelected = true;
+        }
 
         public string PicklesVersion
         {
             get { return picklesVersion; }
-            set { picklesVersion = value; RaisePropertyChanged("PicklesVersion"); }
+            set { picklesVersion = value; this.RaisePropertyChanged(() => this.PicklesVersion); }
         }
 
         public string FeatureFolder
         {
             get { return featureFolder; }
-            set { featureFolder = value; RaisePropertyChanged("FeatureFolder"); }
+            set { featureFolder = value; RaisePropertyChanged(() => this.FeatureFolder); }
         }
 
         public string OutputFolder
         {
             get { return outputFolder; }
-            set { outputFolder = value; RaisePropertyChanged("OutputFolder"); }
+            set { outputFolder = value; RaisePropertyChanged(() => this.OutputFolder); }
         }
 
-        public DocumentationFormat SelectedDocumentationFormat
+        public SelectableCollection<DocumentationFormat> DocumentationFormatValues
         {
-            get { return selectedDocumentationFormat; }
-            set { selectedDocumentationFormat = value; RaisePropertyChanged("SelectedDocumentationFormat"); }
-        }
-
-        public IEnumerable<DocumentationFormat> DocumentationFormatValues
-        {
-            get { return Enum.GetValues(typeof (DocumentationFormat)).Cast<DocumentationFormat>();  }
+            get { return this.documentationFormats; }
         }
 
         public string ProjectName
         {
             get { return projectName; }
-            set { projectName = value; RaisePropertyChanged("ProjectName"); }
+            set { projectName = value; RaisePropertyChanged(() => ProjectName); }
         }
 
         public string ProjectVersion
         {
             get { return projectVersion; }
-            set { projectVersion = value; RaisePropertyChanged("ProjectVersion"); }
+            set { projectVersion = value; RaisePropertyChanged(() => ProjectVersion); }
         }
 
         public string TestResultsFile
         {
             get { return testResultsFile; }
-            set { testResultsFile = value; RaisePropertyChanged("TestResultsFile"); }
+            set { testResultsFile = value; RaisePropertyChanged(() => TestResultsFile); }
         }
 
-        public TestResultsFormat SelectedTestResultsFormat
+        public SelectableCollection<TestResultsFormat> TestResultsFormatValues
         {
-            get { return selectedTestResultsFormat; }
-            set { selectedTestResultsFormat = value; RaisePropertyChanged("SelectedTestResultsFormat"); }
-        }
-
-        public IEnumerable<TestResultsFormat> TestResultsFormatValues
-        {
-            get { return Enum.GetValues(typeof(TestResultsFormat)).Cast<TestResultsFormat>(); }
+            get { return this.testResultsFormats; }
         }
 
         public CultureInfo SelectedLanguage
         {
             get { return selectedLanguage; }
-            set { selectedLanguage = value; RaisePropertyChanged("SelectedLanguage"); }
+            set { selectedLanguage = value; RaisePropertyChanged(() => SelectedLanguage); }
         }
 
         public IEnumerable<CultureInfo> LanguageValues
         {
             get { return CultureInfo.GetCultures(CultureTypes.NeutralCultures); }
         }
-
-        #region Methods
-
-        private void RaisePropertyChanged(string propertyName)
-        {
-            // take a copy to prevent thread issues
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        #endregion
-
-        #region INotifyPropertyChanged Members
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
 
         #region Commands
 
@@ -126,11 +100,11 @@ namespace Pickles.UserInterface
 
                                                 configuration.FeatureFolder = new DirectoryInfo(featureFolder);
                                                 configuration.OutputFolder = new DirectoryInfo(outputFolder);
-                                                configuration.DocumentationFormat = selectedDocumentationFormat;
+                                                configuration.DocumentationFormat = this.documentationFormats.Selected;
                                                 configuration.SystemUnderTestName = projectName;
                                                 configuration.SystemUnderTestVersion = projectVersion;
-                                                configuration.TestResultsFile = new FileInfo(testResultsFile);
-                                                configuration.TestResultsFormat = selectedTestResultsFormat;
+                                                configuration.TestResultsFile = testResultsFile != null ? new FileInfo(testResultsFile) : null;
+                                                configuration.TestResultsFormat = this.testResultsFormats.Selected;
                                                 configuration.Language = selectedLanguage != null ? selectedLanguage.TwoLetterISOLanguageName : CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
 
                                                 var runner = kernel.Get<Runner>();
