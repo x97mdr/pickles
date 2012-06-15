@@ -1,30 +1,89 @@
-﻿<Window x:Class="Pickles.UserInterface.MainWindow"
+﻿<mahapps:MetroWindow x:Class="Pickles.UserInterface.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:Pickles.UserInterface"
+        xmlns:mahapps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="Pickles" Height="350" Width="525">
-    <Window.DataContext>
+  <Window.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Window.Resources>
+  <Window.DataContext>
         <local:MainWindowViewModel />
     </Window.DataContext>
-    <Grid>
-        <Label Content="Feature Directory" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="FeatureFolderLabel" VerticalAlignment="Top" Width="142" />
-        <TextBox Text="{Binding FeatureFolder}" Height="23" HorizontalAlignment="Right" Margin="0,14,104,0" Name="FeatureFolder" VerticalAlignment="Top" Width="239" />
-        <Label Content="Output Directory" Height="28" HorizontalAlignment="Left" Margin="12,46,0,0" Name="OutputFolderLabel" VerticalAlignment="Top" Width="142" />
-        <TextBox Text="{Binding OutputFolder}" Height="23" HorizontalAlignment="Right" Margin="0,46,104,0" Name="OutputFolder" VerticalAlignment="Top" Width="239" />
-        <Label Content="Documentation Format" Height="28" HorizontalAlignment="Left" Margin="12,80,0,0" Name="DocumentationFormatLabel" VerticalAlignment="Top" Width="142" />
-        <ComboBox SelectedItem="{Binding SelectedDocumentationFormat}" ItemsSource="{Binding DocumentationFormatValues}" Height="23" HorizontalAlignment="Left" Margin="172,82,0,0" Name="DocumentationFormat" VerticalAlignment="Top" Width="75" />
-        <Button Command="{Binding GeneratePickles}" Content="Generate" Height="23" HorizontalAlignment="Left" Margin="12,276,0,0" Name="GenerateButton" VerticalAlignment="Top" Width="75" />
-        <Button Command="{Binding BrowseForFeatureFolder}" Content="Browse" Height="23" HorizontalAlignment="Left" Margin="416,14,0,0" Name="button1" VerticalAlignment="Top" Width="75" />
-        <Button Command="{Binding BrowseForOutputFolder}" Content="Browse" Height="23" HorizontalAlignment="Left" Margin="416,46,0,0" Name="button2" VerticalAlignment="Top" Width="75" />
-        <Label Content="Project Name" Height="28" HorizontalAlignment="Left" Margin="12,114,0,0" Name="ProjectNameLabel" VerticalAlignment="Top" Width="142" />
-        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,114,104,0" Name="ProjectName" Text="{Binding ProjectName}" VerticalAlignment="Top" Width="239" />
-        <Label Content="Project Version" Height="28" HorizontalAlignment="Left" Margin="12,148,0,0" Name="ProjectVersionLabel" VerticalAlignment="Top" Width="142" />
-        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,148,104,0" Name="ProjectVersion" Text="{Binding ProjectVersion}" VerticalAlignment="Top" Width="239" />
-        <Label Content="Test Results File" Height="28" HorizontalAlignment="Left" Margin="12,182,0,0" Name="label1" VerticalAlignment="Top" Width="142" />
-        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,182,104,0" Name="textBox1" Text="{Binding TestResultsFile}" VerticalAlignment="Top" Width="239" />
-        <Button Command="{Binding BrowseForTestResultsFile}" Content="Browse" Height="23" HorizontalAlignment="Left" Margin="416,181,0,0" Name="button3" VerticalAlignment="Top" Width="75" />
-        <Label Content="Test Results Format" Height="28" HorizontalAlignment="Left" Margin="12,216,0,0" Name="label2" VerticalAlignment="Top" Width="142" />
-        <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding TestResultsFormatValues}" Margin="172,216,0,0" Name="comboBox1" SelectedItem="{Binding SelectedTestResultsFormat}" VerticalAlignment="Top" Width="75" />
-        <Label Content="Language" Height="28" HorizontalAlignment="Left" Margin="12,245,0,0" Name="label3" VerticalAlignment="Top" Width="142" />
-        <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding LanguageValues}" Margin="172,245,0,0" Name="comboBox2" SelectedItem="{Binding SelectedLanguage}" VerticalAlignment="Top" Width="75" />
+    <Grid Margin="0,0,0,20">
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition />
+      <RowDefinition />
+      <RowDefinition />
+      <RowDefinition />
+      <RowDefinition />
+      <RowDefinition />
+      <RowDefinition />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition />
+      <ColumnDefinition Width="Auto" />
+    </Grid.ColumnDefinitions>
+      
+      <Label Content="Feature Directory" Grid.Column="0" Grid.Row="0" />
+      <TextBox Text="{Binding FeatureFolder}" Grid.Column="1" Grid.Row="0" />
+      <Button Command="{Binding BrowseForFeatureFolder}" Content="Browse ..." Grid.Row="0" Grid.Column="2" />
+    
+      <Label Content="Output Directory" Grid.Column="0" Grid.Row="1" />
+      <TextBox Text="{Binding OutputFolder}" Grid.Column="1" Grid.Row="1" />
+      <Button Command="{Binding BrowseForOutputFolder}" Content="Browse ..." Grid.Column="2" Grid.Row="1" />
+    
+      <Label Content="Documentation Format" Grid.Column="0" Grid.Row="2" />
+    <ListBox ItemsSource="{Binding DocumentationFormatValues}" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2">
+      <ListBox.ItemsPanel>
+        <ItemsPanelTemplate>
+          <StackPanel Orientation="Horizontal" />
+        </ItemsPanelTemplate>
+      </ListBox.ItemsPanel>
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <RadioButton Content="{Binding Path=Item}" GroupName="documentationFormat" IsChecked="{Binding Path=IsSelected}"></RadioButton>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+
+    <Label Content="Project Name" Grid.Column="0" Grid.Row="3" />
+    <TextBox Text="{Binding ProjectName}" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" />
+
+    <Label Content="Project Version" Grid.Column="0" Grid.Row="4" />
+    <TextBox Text="{Binding ProjectVersion}" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" />
+
+    <Label Content="Test Results File" Grid.Column="0" Grid.Row="5" />
+    <TextBox Text="{Binding TestResultsFile}" Grid.Column="1" Grid.Row="5" />
+    <Button Command="{Binding BrowseForTestResultsFile}" Content="Browse" Grid.Row="5" Grid.Column="2" />
+
+    <Label Content="Test Results Format" Grid.Column="0"  Grid.Row="6"/>
+    <ListBox ItemsSource="{Binding TestResultsFormatValues}" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2">
+      <ListBox.ItemsPanel>
+        <ItemsPanelTemplate>
+          <StackPanel Orientation="Horizontal" />
+        </ItemsPanelTemplate>
+      </ListBox.ItemsPanel>
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <RadioButton Content="{Binding Path=Item}" GroupName="testResultsFormat" IsChecked="{Binding Path=IsSelected}"></RadioButton>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+      
+    <Label Content="Language" Grid.Column="0" Grid.Row="7" />
+        <ComboBox ItemsSource="{Binding LanguageValues}" Grid.Column="1" SelectedItem="{Binding SelectedLanguage}" Grid.Row="7"  Grid.ColumnSpan="2"/>
+
+    <Button Command="{Binding GeneratePickles}" Content="Generate" Grid.Row="8" Grid.Column="2"/>
     </Grid>
-</Window>
+</mahapps:MetroWindow>
