@@ -182,7 +182,9 @@
     <Compile Include="Steps.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Features\00BasicGherkin\BasicGherkin.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BasicGherkin1.feature.cs</LastGenOutput>
