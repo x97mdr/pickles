@@ -129,7 +129,7 @@ namespace Pickles.UserInterface
                                                 configuration.DocumentationFormat = selectedDocumentationFormat;
                                                 configuration.SystemUnderTestName = projectName;
                                                 configuration.SystemUnderTestVersion = projectVersion;
-                                                configuration.TestResultsFile = new FileInfo(testResultsFile);
+                                                configuration.TestResultsFile = testResultsFile != null ? new FileInfo(testResultsFile) : null;
                                                 configuration.TestResultsFormat = selectedTestResultsFormat;
                                                 configuration.Language = selectedLanguage != null ? selectedLanguage.TwoLetterISOLanguageName : CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
 
