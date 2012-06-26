@@ -47,9 +47,7 @@ namespace Pickles.DocumentationBuilders.Excel
                 var featureChildNode = childNode.Data as FeatureDirectoryTreeNode;
                 if (featureChildNode != null)
                 {
-                    IXLWorksheet featureWorksheet =
-                        workbook.Worksheets.SingleOrDefault(
-                            sheet => sheet.Cell("A1").Value.ToString() == featureChildNode.Feature.Name);
+                    var featureWorksheet = FindFirstMatchingA1TitleUsingFeatureName(workbook, featureChildNode);
                     WriteFileCell(worksheet, ref row, column, featureWorksheet);
                 }
                 else if (!childNode.Data.IsContent)
@@ -58,6 +56,12 @@ namespace Pickles.DocumentationBuilders.Excel
                     BuildTableOfContents(workbook, worksheet, ref row, column + 1, childNode);
                 }
             }
+        }
+
+        private static IXLWorksheet FindFirstMatchingA1TitleUsingFeatureName(XLWorkbook workbook, FeatureDirectoryTreeNode featureChildNode)
+        {
+            return workbook.Worksheets.FirstOrDefault(
+                sheet => sheet.Cell("A1").Value.ToString() == featureChildNode.Feature.Name);
         }
 
         public void Format(XLWorkbook workbook, GeneralTree<IDirectoryTreeNode> features)

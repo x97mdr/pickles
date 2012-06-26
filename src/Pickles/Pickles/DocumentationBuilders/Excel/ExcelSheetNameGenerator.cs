@@ -28,7 +28,7 @@ namespace Pickles.DocumentationBuilders.Excel
     {
         public string GenerateSheetName(XLWorkbook workbook, Feature feature)
         {
-            string name = feature.Name.Replace(" ", string.Empty).Replace("\t", string.Empty).ToUpperInvariant();
+            string name = RemoveUnnecessaryAndIllegalCharacters(feature).ToUpperInvariant();
             if (name.Length > 31) name = name.Substring(0, 31);
 
             // check if the workbook contains any sheets with this name
@@ -40,6 +40,20 @@ namespace Pickles.DocumentationBuilders.Excel
             }
 
             return name;
+        }
+
+        private static string RemoveUnnecessaryAndIllegalCharacters(Feature feature)
+        {
+            return feature.Name
+                .Replace(" ", string.Empty)
+                .Replace("\t", string.Empty)
+                .Replace(":", string.Empty)
+                .Replace(@"\", string.Empty)
+                .Replace("/", string.Empty)
+                .Replace("?", string.Empty)
+                .Replace("*", string.Empty)
+                .Replace("[", string.Empty)
+                .Replace("]", string.Empty);
         }
     }
 }

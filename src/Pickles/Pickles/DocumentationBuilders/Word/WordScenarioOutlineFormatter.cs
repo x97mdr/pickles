@@ -28,23 +28,24 @@ namespace Pickles.DocumentationBuilders.Word
     public class WordScenarioOutlineFormatter
     {
         private readonly Configuration configuration;
-        private readonly ITestResults nunitResults;
+        private readonly ITestResults testResults;
         private readonly WordStepFormatter wordStepFormatter;
         private readonly WordTableFormatter wordTableFormatter;
 
         public WordScenarioOutlineFormatter(WordStepFormatter wordStepFormatter, WordTableFormatter wordTableFormatter,
-                                            Configuration configuration, ITestResults nunitResults)
+                                            Configuration configuration, ITestResults testResults)
         {
             this.wordStepFormatter = wordStepFormatter;
             this.wordTableFormatter = wordTableFormatter;
             this.configuration = configuration;
+            this.testResults = testResults;
         }
 
         public void Format(Body body, ScenarioOutline scenarioOutline)
         {
             if (configuration.HasTestResults)
             {
-                TestResult testResult = nunitResults.GetScenarioOutlineResult(scenarioOutline);
+                TestResult testResult = testResults.GetScenarioOutlineResult(scenarioOutline);
                 if (testResult.WasExecuted && testResult.WasSuccessful)
                 {
                     body.GenerateParagraph("Passed", "Passed");
