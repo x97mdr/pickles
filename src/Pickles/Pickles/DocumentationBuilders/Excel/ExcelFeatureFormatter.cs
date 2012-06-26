@@ -30,8 +30,7 @@ namespace Pickles.DocumentationBuilders.Excel
         private readonly ExcelScenarioOutlineFormatter excelScenarioOutlineFormatter;
         private readonly Configuration configuration;
         private readonly ITestResults testResults;
-        private uint nextId = 1;
-
+        
         public ExcelFeatureFormatter(ExcelScenarioFormatter excelScenarioFormatter,
                                      ExcelScenarioOutlineFormatter excelScenarioOutlineFormatter,
                                      Configuration configuration,
