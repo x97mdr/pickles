@@ -81,5 +81,20 @@ namespace Pickles.Test.DocumentationBuilders
 
             name.ShouldEqual("THISISAREALLYREALLYLONGFEATUREN");
         }
+
+        [Test]
+        public void ThenItWillRemoveUnnecessaryAndInvalidCharacters()
+        {
+            var excelSheetNameGenerator = Kernel.Get<ExcelSheetNameGenerator>();
+            var feature = new Feature { Name = @"This Had invalid characters: :\/?*[]" };
+            
+            string name;
+            using (var wb = new XLWorkbook())
+            {
+                name = excelSheetNameGenerator.GenerateSheetName(wb, feature);
+            }
+
+            name.ShouldEqual("THISHASINVALIDCHARACTERS");
+        }
     }
 }
