@@ -6,10 +6,11 @@ using System.Windows.Input;
 using Ninject;
 using Pickles.Parser;
 using System.Globalization;
+using System.ComponentModel;
 
 namespace Pickles.UserInterface
 {
-    public class MainWindowViewModel : NotifyPropertyChanged
+    public class MainWindowViewModel : NotifyPropertyChanged, IDataErrorInfo
     {
         private readonly SelectableCollection<DocumentationFormat> documentationFormats;
         private readonly SelectableCollection<TestResultsFormat> testResultsFormats;
@@ -150,6 +151,20 @@ namespace Pickles.UserInterface
                     if (result == true) OutputFolder = dlg.FileName;
                 });
             }
+        }
+
+        #endregion
+
+        #region IDataErrorInfo Members
+
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string this[string columnName]
+        {
+            get { throw new NotImplementedException(); }
         }
 
         #endregion
