@@ -21,37 +21,40 @@ namespace Pickles.UserInterface
         private string projectVersion;
         private string testResultsFile;
         private CultureInfo selectedLanguage = CultureInfo.CurrentUICulture;
+        private bool canGenerate;
 
         public MainWindowViewModel()
         {
-            this.documentationFormats = new SelectableCollection<DocumentationFormat>(Enum.GetValues(typeof(DocumentationFormat)).Cast<DocumentationFormat>());
-            this.documentationFormats.First().IsSelected = true;
+            documentationFormats = new SelectableCollection<DocumentationFormat>(Enum.GetValues(typeof(DocumentationFormat)).Cast<DocumentationFormat>());
+            documentationFormats.First().IsSelected = true;
 
-            this.testResultsFormats = new SelectableCollection<TestResultsFormat>(Enum.GetValues(typeof(TestResultsFormat)).Cast<TestResultsFormat>());
-            this.documentationFormats.First().IsSelected = true;
+            testResultsFormats = new SelectableCollection<TestResultsFormat>(Enum.GetValues(typeof(TestResultsFormat)).Cast<TestResultsFormat>());
+            documentationFormats.First().IsSelected = true;
+
+            canGenerate = true;
         }
 
         public string PicklesVersion
         {
             get { return picklesVersion; }
-            set { picklesVersion = value; this.RaisePropertyChanged(() => this.PicklesVersion); }
+            set { picklesVersion = value; RaisePropertyChanged(() => PicklesVersion); }
         }
 
         public string FeatureFolder
         {
             get { return featureFolder; }
-            set { featureFolder = value; RaisePropertyChanged(() => this.FeatureFolder); }
+            set { featureFolder = value; RaisePropertyChanged(() => FeatureFolder); }
         }
 
         public string OutputFolder
         {
             get { return outputFolder; }
-            set { outputFolder = value; RaisePropertyChanged(() => this.OutputFolder); }
+            set { outputFolder = value; RaisePropertyChanged(() => OutputFolder); }
         }
 
         public SelectableCollection<DocumentationFormat> DocumentationFormatValues
         {
-            get { return this.documentationFormats; }
+            get { return documentationFormats; }
         }
 
         public string ProjectName
@@ -74,7 +77,7 @@ namespace Pickles.UserInterface
 
         public SelectableCollection<TestResultsFormat> TestResultsFormatValues
         {
-            get { return this.testResultsFormats; }
+            get { return testResultsFormats; }
         }
 
         public CultureInfo SelectedLanguage
@@ -88,6 +91,12 @@ namespace Pickles.UserInterface
             get { return CultureInfo.GetCultures(CultureTypes.NeutralCultures); }
         }
 
+        public bool CanGenerate
+        {
+            get { return canGenerate; }
+            set { canGenerate = value; RaisePropertyChanged(() => CanGenerate); }
+        }
+
         #region Commands
 
         public ICommand GeneratePickles
@@ -96,20 +105,29 @@ namespace Pickles.UserInterface
             {
                 return new RelayCommand(() =>
                                             {
+                                                CanGenerate = false;
+
                                                 var kernel = new StandardKernel(new PicklesModule());
                                                 var configuration = kernel.Get<Configuration>();
 
                                                 configuration.FeatureFolder = new DirectoryInfo(featureFolder);
                                                 configuration.OutputFolder = new DirectoryInfo(outputFolder);
-                                                configuration.DocumentationFormat = this.documentationFormats.Selected;
+                                                configuration.DocumentationFormat = documentationFormats.Selected;
                                                 configuration.SystemUnderTestName = projectName;
                                                 configuration.SystemUnderTestVersion = projectVersion;
                                                 configuration.TestResultsFile = testResultsFile != null ? new FileInfo(testResultsFile) : null;
-                                                configuration.TestResultsFormat = this.testResultsFormats.Selected;
+                                                configuration.TestResultsFormat = testResultsFormats.Selected;
                                                 configuration.Language = selectedLanguage != null ? selectedLanguage.TwoLetterISOLanguageName : CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
 
                                                 var runner = kernel.Get<Runner>();
-                                                runner.Run(kernel);
+                                                try
+                                                {
+                                                    runner.Run(kernel);
+                                                }
+                                                finally
+                                                {
+                                                    CanGenerate = true;
+                                                }
                                             });
             }
         }

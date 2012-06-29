@@ -87,7 +87,7 @@
 
         <Label Content="Language" Grid.Column="0" Grid.Row="7" />
         <ComboBox ItemsSource="{Binding LanguageValues}" Grid.Column="1" SelectedItem="{Binding SelectedLanguage}" Grid.Row="7"  Grid.ColumnSpan="2"/>
-        <Button Command="{Binding GeneratePickles}" Content="Generate" Grid.Row="8" Grid.Column="2"/>
-        <TextBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="10" Grid.RowSpan="4" Text="Hello, World!\r\nHow ar" TextWrapping="Wrap" AcceptsReturn="True"/>
+        <Button Command="{Binding GeneratePickles}" Content="Generate" Grid.Row="8" Grid.Column="2" IsEnabled="{Binding CanGenerate}"/>
+        <TextBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="10" Grid.RowSpan="4" TextWrapping="Wrap" AcceptsReturn="True"/>
     </Grid>
 </mahapps:MetroWindow>
