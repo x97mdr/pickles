@@ -94,7 +94,7 @@ namespace Pickles.Test.DocumentationBuilders
                 name = excelSheetNameGenerator.GenerateSheetName(wb, feature);
             }
 
-            name.ShouldEqual("THISHASINVALIDCHARACTERS");
+            name.ShouldEqual("THISHADINVALIDCHARACTERS");
         }
     }
 }
