@@ -131,9 +131,21 @@ p.tocCollapser:hover {
     display: block;
 }
 
+#feature div.folderDescription a {
+    text-decoration: underline;
+}
 #feature div.folderDescription { margin-bottom: 2em; }
 
-#feature div.folderDescription li { list-style-type: disc; }
+#feature div.folderDescription ul,
+#feature div.folderDescription ol {
+    padding: 1em;
+}
+#feature div.folderDescription li {
+    list-style-type: disc;
+    list-style-position: outside;
+}
+
+#feature div.folderDescription ol li { list-style-type: decimal; }
 
 /*************************************************************************
  * Feature - formatting tables (example or step tables)
