@@ -45,6 +45,8 @@ ul, ol { padding: 0 0 1.25em 0; }
 blockquote {
     margin: 1.25em;
     padding: 1.25em 1.25em 0 1.25em;
+    border:  gray solid thin;
+    border-left: gray solid 0.5em;
 }
 
 small { font-size: 0.85em; }
@@ -67,6 +69,14 @@ acronym, abbr {
     border-bottom: 1px dashed;
     cursor: help;
     letter-spacing: 1px;
+}
+
+strong {
+    font-weight: bold;
+}
+
+em {
+    font-style: oblique;
 }
  
 /***** Links *****/
