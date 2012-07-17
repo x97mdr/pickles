@@ -71,6 +71,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ConfigurationValidationService.cs" />
+    <Compile Include="MultiSelectableCollection.cs" />
     <Compile Include="SelectableCollection.cs" />
     <Compile Include="SelectableItem.cs" />
     <Page Include="MainWindow.xaml">
