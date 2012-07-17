@@ -11,5 +11,10 @@ namespace Pickles.UserInterface
         {
             InitializeComponent();
         }
+
+        private void MetroWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+          (this.DataContext as MainWindowViewModel).LoadFromSettings();
+        }
     }
 }
