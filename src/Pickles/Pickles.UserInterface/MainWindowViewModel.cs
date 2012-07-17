@@ -12,7 +12,7 @@ namespace Pickles.UserInterface
 {
     public class MainWindowViewModel : NotifyPropertyChanged, IDataErrorInfo
     {
-        private readonly SelectableCollection<DocumentationFormat> documentationFormats;
+      private readonly MultiSelectableCollection<DocumentationFormat> documentationFormats;
         private readonly SelectableCollection<TestResultsFormat> testResultsFormats;
         private string picklesVersion = typeof(Feature).Assembly.GetName().Version.ToString();
         private string featureFolder;
@@ -21,17 +21,32 @@ namespace Pickles.UserInterface
         private string projectVersion;
         private string testResultsFile;
         private CultureInfo selectedLanguage = CultureInfo.CurrentUICulture;
-        private bool canGenerate;
 
-        public MainWindowViewModel()
+      private bool includeTests;
+
+      private readonly RelayCommand browseForFeatureFolderCommand;
+
+      private readonly RelayCommand browseForOutputFolderCommand;
+
+      private readonly RelayCommand browseForTestResultsFileCommand;
+
+      private readonly RelayCommand generateCommand;
+
+      private bool isRunning;
+
+      public MainWindowViewModel()
         {
-            documentationFormats = new SelectableCollection<DocumentationFormat>(Enum.GetValues(typeof(DocumentationFormat)).Cast<DocumentationFormat>());
+          documentationFormats = new MultiSelectableCollection<DocumentationFormat>(Enum.GetValues(typeof(DocumentationFormat)).Cast<DocumentationFormat>());
             documentationFormats.First().IsSelected = true;
 
             testResultsFormats = new SelectableCollection<TestResultsFormat>(Enum.GetValues(typeof(TestResultsFormat)).Cast<TestResultsFormat>());
             documentationFormats.First().IsSelected = true;
 
-            canGenerate = true;
+            browseForFeatureFolderCommand = new RelayCommand(DoBrowseForFeature);
+
+        browseForOutputFolderCommand = new RelayCommand(DoBrowseForOutputFolder);
+        browseForTestResultsFileCommand = new RelayCommand(DoBrowseForTestResultsFile);
+        generateCommand = new RelayCommand(DoGenerate, CanGenerate);
         }
 
         public string PicklesVersion
@@ -52,7 +67,7 @@ namespace Pickles.UserInterface
             set { outputFolder = value; RaisePropertyChanged(() => OutputFolder); }
         }
 
-        public SelectableCollection<DocumentationFormat> DocumentationFormatValues
+        public MultiSelectableCollection<DocumentationFormat> DocumentationFormatValues
         {
             get { return documentationFormats; }
         }
@@ -91,87 +106,110 @@ namespace Pickles.UserInterface
             get { return CultureInfo.GetCultures(CultureTypes.NeutralCultures); }
         }
 
-        public bool CanGenerate
+      private bool CanGenerate()
         {
-            get { return canGenerate; }
-            set { canGenerate = value; RaisePropertyChanged(() => CanGenerate); }
+            return !isRunning;
         }
 
-        #region Commands
+      public bool IncludeTests
+      {
+        get { return includeTests; }
+        set { includeTests = value; RaisePropertyChanged(() => IncludeTests); }
+      }
+
+      #region Commands
 
         public ICommand GeneratePickles
         {
             get
             {
-                return new RelayCommand(() =>
-                                            {
-                                                CanGenerate = false;
-
-                                                var kernel = new StandardKernel(new PicklesModule());
-                                                var configuration = kernel.Get<Configuration>();
-
-                                                configuration.FeatureFolder = new DirectoryInfo(featureFolder);
-                                                configuration.OutputFolder = new DirectoryInfo(outputFolder);
-                                                configuration.DocumentationFormat = documentationFormats.Selected;
-                                                configuration.SystemUnderTestName = projectName;
-                                                configuration.SystemUnderTestVersion = projectVersion;
-                                                configuration.TestResultsFile = testResultsFile != null ? new FileInfo(testResultsFile) : null;
-                                                configuration.TestResultsFormat = testResultsFormats.Selected;
-                                                configuration.Language = selectedLanguage != null ? selectedLanguage.TwoLetterISOLanguageName : CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
-
-                                                var runner = kernel.Get<Runner>();
-                                                try
-                                                {
-                                                    runner.Run(kernel);
-                                                }
-                                                finally
-                                                {
-                                                    CanGenerate = true;
-                                                }
-                                            });
+                return generateCommand;
             }
         }
 
-        public ICommand BrowseForFeatureFolder
+      private void DoGenerate()
+      {
+        IsRunning = true;
+        this.generateCommand.RaiseCanExecuteChanged();
+
+        var backgroundWorker = new BackgroundWorker();
+
+        backgroundWorker.DoWork += (sender, args) => DoWork();
+        backgroundWorker.RunWorkerCompleted += (sender, args) =>
+                                                 {
+                                                   this.IsRunning = false;
+                                                   this.generateCommand.RaiseCanExecuteChanged();
+                                                 };
+        backgroundWorker.RunWorkerAsync();
+      }
+
+      private void DoWork()
+      {
+        var kernel = new StandardKernel(new PicklesModule());
+        var configuration = kernel.Get<Configuration>();
+
+        configuration.FeatureFolder = new DirectoryInfo(featureFolder);
+        configuration.OutputFolder = new DirectoryInfo(outputFolder);
+        configuration.SystemUnderTestName = projectName;
+        configuration.SystemUnderTestVersion = projectVersion;
+        configuration.TestResultsFile = this.IncludeTests ? new FileInfo(testResultsFile) : null;
+        configuration.TestResultsFormat = this.IncludeTests ? testResultsFormats.Selected : default(TestResultsFormat);
+        configuration.Language = selectedLanguage != null ? selectedLanguage.TwoLetterISOLanguageName : CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+
+        foreach (DocumentationFormat documentationFormat in documentationFormats.Selected)
+        {
+          configuration.DocumentationFormat = documentationFormat;
+          var runner = kernel.Get<Runner>();
+          runner.Run(kernel);
+        }
+      }
+
+      public ICommand BrowseForFeatureFolder
         {
             get
             {
-                return new RelayCommand(() =>
-                                            {
-                                                var dlg = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
-                                                var result = dlg.ShowDialog();
-                                                if (result == true) FeatureFolder = dlg.SelectedPath;
-                                            });
+              return browseForFeatureFolderCommand;
             }
         }
 
-        public ICommand BrowseForOutputFolder
+      public ICommand BrowseForOutputFolder
         {
             get
             {
-                return new RelayCommand(() =>
-                {
-                    var dlg = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
-                    var result = dlg.ShowDialog();
-                    if (result == true) OutputFolder = dlg.SelectedPath;
-                });
+                return browseForOutputFolderCommand;
             }
         }
 
-        public ICommand BrowseForTestResultsFile
+      public ICommand BrowseForTestResultsFile
         {
             get
             {
-                return new RelayCommand(() =>
-                {
-                    var dlg = new Ookii.Dialogs.Wpf.VistaOpenFileDialog();
-                    var result = dlg.ShowDialog();
-                    if (result == true) OutputFolder = dlg.FileName;
-                });
+                return browseForTestResultsFileCommand;
             }
         }
 
-        #endregion
+      private void DoBrowseForTestResultsFile()
+      {
+        var dlg = new Ookii.Dialogs.Wpf.VistaOpenFileDialog();
+        var result = dlg.ShowDialog();
+        if (result == true) OutputFolder = dlg.FileName;
+      }
+
+      private void DoBrowseForFeature()
+      {
+        var dlg = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
+        var result = dlg.ShowDialog();
+        if (result == true) FeatureFolder = dlg.SelectedPath;
+      }
+
+      private void DoBrowseForOutputFolder()
+      {
+        var dlg = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
+        var result = dlg.ShowDialog();
+        if (result == true) OutputFolder = dlg.SelectedPath;
+      }
+
+      #endregion
 
         #region IDataErrorInfo Members
 
@@ -180,11 +218,21 @@ namespace Pickles.UserInterface
             get { throw new NotImplementedException(); }
         }
 
-        public string this[string columnName]
+      public string this[string columnName]
         {
             get { throw new NotImplementedException(); }
         }
 
         #endregion
+
+      public bool IsRunning
+      {
+        get
+        {
+          
+          return isRunning;
+        }
+        set { isRunning = value; this.RaisePropertyChanged(() => this.IsRunning); }
+      }
     }
 }
