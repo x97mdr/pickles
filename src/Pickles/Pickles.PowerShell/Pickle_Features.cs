@@ -90,6 +90,11 @@ namespace Pickles.PowerShell
             if (!string.IsNullOrEmpty(DocumentationFormat))
                 configuration.DocumentationFormat =
                     (DocumentationFormat) Enum.Parse(typeof (DocumentationFormat), DocumentationFormat, true);
+
+            if (!string.IsNullOrEmpty(Language))
+            {
+                configuration.Language = Language;
+             }
         }
     }
 }
