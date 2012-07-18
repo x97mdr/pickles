@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Pickles.UserInterface
 {
-  public class MainWindowViewModel : NotifyPropertyChanged, IDataErrorInfo
+  public class MainWindowViewModel : NotifyPropertyChanged
   {
     private readonly MultiSelectableCollection<DocumentationFormat> documentationFormats;
     private readonly SelectableCollection<TestResultsFormat> testResultsFormats;
@@ -151,16 +151,6 @@ namespace Pickles.UserInterface
       {
         return browseForTestResultsFileCommand;
       }
-    }
-
-    public string Error
-    {
-      get { throw new NotImplementedException(); }
-    }
-
-    public string this[string columnName]
-    {
-      get { throw new NotImplementedException(); }
     }
 
     public bool IsRunning
