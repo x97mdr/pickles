@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Pickles.UserInterface
 {
-  public class MainWindowViewModel : NotifyPropertyChanged, IDataErrorInfo
+  public class MainWindowViewModel : NotifyPropertyChanged
   {
     private readonly MultiSelectableCollection<DocumentationFormat> documentationFormats;
     private readonly SelectableCollection<TestResultsFormat> testResultsFormats;
@@ -27,6 +27,20 @@ namespace Pickles.UserInterface
     private CultureInfo selectedLanguage = CultureInfo.CurrentUICulture;
     private bool includeTests;
     private bool isRunning;
+
+    private bool isFeatureDirectoryValid;
+
+    private bool isOutputDirectoryValid;
+
+    private bool isProjectNameValid;
+
+    private bool isProjectVersionValid;
+
+    private bool isTestResultsFileValid;
+
+    private bool isTestResultsFormatValid;
+
+    private bool isLanguageValid = true;
 
     public MainWindowViewModel()
     {
@@ -139,16 +153,6 @@ namespace Pickles.UserInterface
       }
     }
 
-    public string Error
-    {
-      get { throw new NotImplementedException(); }
-    }
-
-    public string this[string columnName]
-    {
-      get { throw new NotImplementedException(); }
-    }
-
     public bool IsRunning
     {
       get
@@ -157,6 +161,48 @@ namespace Pickles.UserInterface
         return isRunning;
       }
       set { isRunning = value; this.RaisePropertyChanged(() => this.IsRunning); }
+    }
+
+    public bool IsFeatureDirectoryValid
+    {
+      get { return isFeatureDirectoryValid; }
+      set { isFeatureDirectoryValid = value; this.RaisePropertyChanged(() => this.IsFeatureDirectoryValid); }
+    }
+
+    public bool IsOutputDirectoryValid
+    {
+      get { return isOutputDirectoryValid; }
+      set { isOutputDirectoryValid = value; this.RaisePropertyChanged(() => this.IsOutputDirectoryValid); }
+    }
+
+    public bool IsProjectNameValid
+    {
+      get { return isProjectNameValid; }
+      set { isProjectNameValid = value; this.RaisePropertyChanged(() => this.IsProjectNameValid); }
+    }
+
+    public bool IsProjectVersionValid
+    {
+      get { return isProjectVersionValid; }
+      set { isProjectVersionValid = value; this.RaisePropertyChanged(() => this.IsProjectVersionValid); }
+    }
+
+    public bool IsTestResultsFileValid
+    {
+      get { return isTestResultsFileValid; }
+      set { isTestResultsFileValid = value; this.RaisePropertyChanged(() => this.IsTestResultsFileValid); }
+    }
+
+    public bool IsTestResultsFormatValid
+    {
+      get { return isTestResultsFormatValid; }
+      set { isTestResultsFormatValid = value; this.RaisePropertyChanged(() => this.IsTestResultsFormatValid); }
+    }
+
+    public bool IsLanguageValid
+    {
+      get { return isLanguageValid; }
+      set { isLanguageValid = value; this.RaisePropertyChanged(() => this.IsLanguageValid); }
     }
 
     public void LoadFromSettings()
@@ -180,7 +226,14 @@ namespace Pickles.UserInterface
             {
               Properties.Settings.Default.FeatureFolder = this.featureFolder;
               Properties.Settings.Default.Save();
+
+              this.IsFeatureDirectoryValid = true;
             }
+            else
+            {
+              this.IsFeatureDirectoryValid = false;
+            }
+
             break;
           }
 
@@ -190,17 +243,56 @@ namespace Pickles.UserInterface
             {
               Properties.Settings.Default.OutputFolder = this.outputFolder;
               Properties.Settings.Default.Save();
+
+              this.IsOutputDirectoryValid = true;
             }
+            else
+            {
+              this.IsOutputDirectoryValid = false;
+            }
+
             break;
           }
 
         case "TestResultsFile":
           {
-            if (Directory.Exists(this.testResultsFile))
+            if (File.Exists(this.testResultsFile))
             {
               Properties.Settings.Default.TestResultsFile = this.testResultsFile;
               Properties.Settings.Default.Save();
+
+              this.IsTestResultsFileValid = true;
             }
+            else
+            {
+              this.IsTestResultsFileValid = false;
+            }
+
+            break;
+          }
+
+        case "ProjectName":
+          {
+            this.IsProjectNameValid = !string.IsNullOrWhiteSpace(this.projectName);
+            break;
+          }
+
+        case "ProjectVersion":
+          {
+            this.IsProjectVersionValid = !string.IsNullOrWhiteSpace(this.projectVersion);
+            break;
+          }
+
+        case "IsRunning":
+        case "IsFeatureDirectoryValid":
+        case "IsOutputDirectoryValid":
+        case "IsProjectNameValid":
+        case "isProjectVersionValid":
+        case "IsTestResultsFileValid":
+        case "IsTestResultsFormatValid":
+        case "IsLanguageValid":
+          {
+            this.generateCommand.RaiseCanExecuteChanged();
             break;
           }
       }
@@ -208,13 +300,19 @@ namespace Pickles.UserInterface
 
     private bool CanGenerate()
     {
-      return !isRunning;
+      return !isRunning
+        && isFeatureDirectoryValid
+        && isOutputDirectoryValid
+        && isProjectNameValid
+        && isProjectVersionValid
+        && (isTestResultsFileValid || !includeTests)
+        && (isTestResultsFormatValid || !includeTests)
+        && isLanguageValid;
     }
 
     private void DoGenerate()
     {
       IsRunning = true;
-      this.generateCommand.RaiseCanExecuteChanged();
 
       var backgroundWorker = new BackgroundWorker();
 
@@ -222,7 +320,6 @@ namespace Pickles.UserInterface
       backgroundWorker.RunWorkerCompleted += (sender, args) =>
                                                {
                                                  this.IsRunning = false;
-                                                 this.generateCommand.RaiseCanExecuteChanged();
                                                };
       backgroundWorker.RunWorkerAsync();
     }
