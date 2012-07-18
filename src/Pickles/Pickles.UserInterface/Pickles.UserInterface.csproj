@@ -74,6 +74,10 @@
     <Compile Include="MultiSelectableCollection.cs" />
     <Compile Include="SelectableCollection.cs" />
     <Compile Include="SelectableItem.cs" />
+    <Page Include="CoolCheckBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
