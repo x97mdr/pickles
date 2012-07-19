@@ -1,6 +1,6 @@
 using System;
 
-namespace Pickles.UserInterface
+namespace Pickles.UserInterface.Mvvm
 {
   public class SelectableItem<T> : NotifyPropertyChanged
   {

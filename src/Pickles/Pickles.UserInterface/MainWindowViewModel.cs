@@ -9,6 +9,7 @@ using Ninject;
 using Pickles.Parser;
 using System.Globalization;
 using System.ComponentModel;
+using Pickles.UserInterface.Mvvm;
 using Pickles.UserInterface.Settings;
 
 namespace Pickles.UserInterface
