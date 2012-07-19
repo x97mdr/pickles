@@ -12,9 +12,19 @@ namespace Pickles.UserInterface
             InitializeComponent();
         }
 
+        private MainWindowViewModel ViewModel
+        {
+            get { return this.DataContext as MainWindowViewModel; }
+        }
+
         private void MetroWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-          (this.DataContext as MainWindowViewModel).LoadFromSettings();
+            ViewModel.LoadFromSettings();
+        }
+
+        private void MetroWindow_Closed(object sender, EventArgs e)
+        {
+            ViewModel.SaveToSettings();
         }
     }
 }

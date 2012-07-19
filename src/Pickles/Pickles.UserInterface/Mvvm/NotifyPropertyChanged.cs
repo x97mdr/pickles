@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Linq.Expressions;
 
-namespace Pickles.UserInterface
+namespace Pickles.UserInterface.Mvvm
 {
     /// <summary>
     /// An implementation of <see cref="INotifyPropertyChanged"/>.

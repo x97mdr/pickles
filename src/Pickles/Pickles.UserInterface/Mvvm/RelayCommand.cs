@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Pickles.UserInterface
+namespace Pickles.UserInterface.Mvvm
 {
   public class RelayCommand : ICommand
   {
