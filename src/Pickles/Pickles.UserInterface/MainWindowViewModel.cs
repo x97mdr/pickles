@@ -307,7 +307,7 @@ namespace Pickles.UserInterface
         case "IsFeatureDirectoryValid":
         case "IsOutputDirectoryValid":
         case "IsProjectNameValid":
-        case "isProjectVersionValid":
+        case "IsProjectVersionValid":
         case "IsTestResultsFileValid":
         case "IsTestResultsFormatValid":
         case "IsLanguageValid":
