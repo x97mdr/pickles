@@ -29,7 +29,7 @@ namespace Pickles.UserInterface
     private string projectName;
     private string projectVersion;
     private string testResultsFile;
-    private CultureInfo selectedLanguage = CultureInfo.CurrentUICulture;
+    private CultureInfo selectedLanguage;
     private bool includeTests;
     private bool isRunning;
 
@@ -47,6 +47,8 @@ namespace Pickles.UserInterface
 
     private bool isLanguageValid = true;
 
+    private readonly CultureInfo[] neutralCultures;
+
     public MainWindowViewModel()
     {
       documentationFormats = new MultiSelectableCollection<DocumentationFormat>(Enum.GetValues(typeof(DocumentationFormat)).Cast<DocumentationFormat>());
@@ -62,6 +64,8 @@ namespace Pickles.UserInterface
       openOutputDirectory = new RelayCommand(DoOpenOutputDirectory, CanOpenOutputDirectory);
 
       this.PropertyChanged += MainWindowViewModel_PropertyChanged;
+      neutralCultures = CultureInfo.GetCultures(CultureTypes.NeutralCultures);
+      selectedLanguage = CultureInfo.GetCultureInfo("en");
     }
 
     public string PicklesVersion
@@ -118,7 +122,10 @@ namespace Pickles.UserInterface
 
     public IEnumerable<CultureInfo> LanguageValues
     {
-      get { return CultureInfo.GetCultures(CultureTypes.NeutralCultures); }
+      get
+      {
+        return neutralCultures;
+      }
     }
 
     public bool IncludeTests
@@ -304,6 +311,7 @@ namespace Pickles.UserInterface
         case "IsTestResultsFileValid":
         case "IsTestResultsFormatValid":
         case "IsLanguageValid":
+        case "IncludeTests":
           {
             this.generateCommand.RaiseCanExecuteChanged();
             break;
