@@ -71,7 +71,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ConfigurationValidationService.cs" />
     <Compile Include="Settings\MainModel.cs" />
     <Compile Include="Mvvm\MultiSelectableCollection.cs" />
     <Compile Include="Mvvm\SelectableCollection.cs" />
