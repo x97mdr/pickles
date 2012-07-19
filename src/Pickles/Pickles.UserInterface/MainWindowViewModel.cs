@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Input;
 using Ninject;
 using Pickles.Parser;
@@ -18,6 +20,9 @@ namespace Pickles.UserInterface
     private readonly RelayCommand browseForOutputFolderCommand;
     private readonly RelayCommand browseForTestResultsFileCommand;
     private readonly RelayCommand generateCommand;
+
+    private readonly RelayCommand openOutputDirectory;
+
     private string picklesVersion = typeof(Feature).Assembly.GetName().Version.ToString();
     private string featureFolder;
     private string outputFolder;
@@ -54,6 +59,7 @@ namespace Pickles.UserInterface
       browseForOutputFolderCommand = new RelayCommand(DoBrowseForOutputFolder);
       browseForTestResultsFileCommand = new RelayCommand(DoBrowseForTestResultsFile);
       generateCommand = new RelayCommand(DoGenerate, CanGenerate);
+      openOutputDirectory = new RelayCommand(DoOpenOutputDirectory, CanOpenOutputDirectory);
 
       this.PropertyChanged += MainWindowViewModel_PropertyChanged;
     }
@@ -153,6 +159,11 @@ namespace Pickles.UserInterface
       }
     }
 
+    public RelayCommand OpenOutputDirectory
+    {
+      get { return openOutputDirectory; }
+    }
+
     public bool IsRunning
     {
       get
@@ -250,6 +261,8 @@ namespace Pickles.UserInterface
             {
               this.IsOutputDirectoryValid = false;
             }
+
+            this.openOutputDirectory.RaiseCanExecuteChanged();
 
             break;
           }
@@ -364,6 +377,16 @@ namespace Pickles.UserInterface
       var dlg = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
       var result = dlg.ShowDialog();
       if (result == true) OutputFolder = dlg.SelectedPath;
+    }
+
+    private void DoOpenOutputDirectory()
+    {
+      Process.Start(this.outputFolder);
+    }
+
+    private bool CanOpenOutputDirectory()
+    {
+      return this.isOutputDirectoryValid;
     }
   }
 }
