@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:Pickles.UserInterface"
         xmlns:mahapps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Pickles" Height="450" Width="800" Loaded="MetroWindow_Loaded">
+        Title="Pickles" Height="450" Width="800" Loaded="MetroWindow_Loaded" Closed="MetroWindow_Closed">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -25,7 +25,12 @@
     <Window.DataContext>
         <local:MainWindowViewModel />
     </Window.DataContext>
-    <Grid Margin="0,0,0,20">
+  <mahapps:MetroWindow.WindowCommands>
+    <mahapps:WindowCommands>
+      <Button Content="open output folder" Command="{Binding Path=OpenOutputDirectory}" />
+    </mahapps:WindowCommands>
+  </mahapps:MetroWindow.WindowCommands>
+  <Grid Margin="0,0,0,20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -105,7 +110,7 @@
     <CheckBox Template="{StaticResource ResourceKey=myCheckBox}" Grid.Column="3" Grid.Row="6" IsChecked="{Binding Path=IsTestResultsFormatValid}" Visibility="{Binding Path=IncludeTests, Converter={StaticResource ResourceKey=booleanToVisibilityConverter}}"/>
 
     <Label Content="Language" Grid.Column="0" Grid.Row="7" />
-        <ComboBox ItemsSource="{Binding LanguageValues}" Grid.Column="1" SelectedItem="{Binding SelectedLanguage}" Grid.Row="7"  Grid.ColumnSpan="2"/>
+        <ComboBox ItemsSource="{Binding LanguageValues}" Grid.Column="1" SelectedItem="{Binding SelectedLanguage}" Grid.Row="7"  Grid.ColumnSpan="2" DisplayMemberPath="NativeName"/>
     <CheckBox Template="{StaticResource ResourceKey=myCheckBox}" Grid.Column="3" Grid.Row="7" IsChecked="{Binding Path=IsLanguageValid}"/>
     
       <Button Command="{Binding GeneratePickles}" Content="Generate" Grid.Row="8" Grid.Column="2" VerticalAlignment="Top" />

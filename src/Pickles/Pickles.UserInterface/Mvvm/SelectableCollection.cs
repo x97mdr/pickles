@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace Pickles.UserInterface
+namespace Pickles.UserInterface.Mvvm
 {
   public class SelectableCollection<T> : ObservableCollection<SelectableItem<T>>
   {

@@ -50,6 +50,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Interactivity">
       <HintPath>..\packages\MahApps.Metro.0.8.0.0\lib\net40\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -70,10 +71,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ConfigurationValidationService.cs" />
-    <Compile Include="MultiSelectableCollection.cs" />
-    <Compile Include="SelectableCollection.cs" />
-    <Compile Include="SelectableItem.cs" />
+    <Compile Include="Settings\MainModel.cs" />
+    <Compile Include="Mvvm\MultiSelectableCollection.cs" />
+    <Compile Include="Mvvm\SelectableCollection.cs" />
+    <Compile Include="Mvvm\SelectableItem.cs" />
+    <Compile Include="Settings\MainModelSerializer.cs" />
+    <Compile Include="Settings\StreamExtensions.cs" />
     <Page Include="CoolCheckBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -86,9 +89,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EventHandlerExtensions.cs" />
-    <Compile Include="NotifyPropertyChanged.cs" />
-    <Compile Include="RelayCommand.cs" />
+    <Compile Include="Mvvm\EventHandlerExtensions.cs" />
+    <Compile Include="Mvvm\NotifyPropertyChanged.cs" />
+    <Compile Include="Mvvm\RelayCommand.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -104,21 +107,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
