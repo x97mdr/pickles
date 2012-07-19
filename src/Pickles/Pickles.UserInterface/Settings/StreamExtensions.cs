@@ -15,11 +15,12 @@
 // */
 // #endregion
 
+using System;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Xml;
 
-namespace Pickles.UserInterface
+namespace Pickles.UserInterface.Settings
 {
   internal static class StreamExtensions
   {

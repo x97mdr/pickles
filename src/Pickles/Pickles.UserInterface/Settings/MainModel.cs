@@ -15,9 +15,10 @@
 // */
 // #endregion
 
+using System;
 using System.Runtime.Serialization;
 
-namespace Pickles.UserInterface
+namespace Pickles.UserInterface.Settings
 {
     [DataContract(Name = "pickles", Namespace = "")]
     public class MainModel

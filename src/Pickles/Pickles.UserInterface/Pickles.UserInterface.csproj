@@ -72,12 +72,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ConfigurationValidationService.cs" />
-    <Compile Include="MainModel.cs" />
+    <Compile Include="Settings\MainModel.cs" />
     <Compile Include="MultiSelectableCollection.cs" />
     <Compile Include="SelectableCollection.cs" />
     <Compile Include="SelectableItem.cs" />
-    <Compile Include="MainModelSerializer.cs" />
-    <Compile Include="StreamExtensions.cs" />
+    <Compile Include="Settings\MainModelSerializer.cs" />
+    <Compile Include="Settings\StreamExtensions.cs" />
     <Page Include="CoolCheckBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
