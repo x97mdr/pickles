@@ -187,6 +187,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Formatters\HtmlContentFormatterTests.cs" />
+    <Compile Include="Formatters\HtmlDocumentationBuilderTests.cs" />
     <Compile Include="Formatters\HtmlScenarioFormatterTests.cs" />
     <Compile Include="Formatters\HtmlScenarioOutlineFormatterTests.cs" />
     <Compile Include="Formatters\JSON\when_creating_a_feature_with_meta_info_and_test_result_in_mstest_format.cs" />
@@ -309,7 +310,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="FakeFolderStructures\EmptyFolderTests\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
