@@ -32,7 +32,14 @@ namespace Pickles.UserInterface.Settings
             }
             else
             {
-                return Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+                Assembly entryAssembly = Assembly.GetEntryAssembly();
+
+                if (entryAssembly != null)
+                {
+                    return Path.GetDirectoryName(entryAssembly.Location);
+                }
+
+                return string.Empty;
             }
         }
     }
