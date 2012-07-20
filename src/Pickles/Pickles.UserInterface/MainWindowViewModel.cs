@@ -17,6 +17,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -82,6 +83,8 @@ namespace Pickles.UserInterface
 
         private readonly CultureInfo[] neutralCultures;
 
+        private bool isDocumentationFormatValid;
+
         public MainWindowViewModel()
             : this(new MainModelSerializer(DataDirectoryDeriver.DeriveDataDirectory()))
         {
@@ -91,9 +94,11 @@ namespace Pickles.UserInterface
         {
             documentationFormats = new MultiSelectableCollection<DocumentationFormat>(Enum.GetValues(typeof(DocumentationFormat)).Cast<DocumentationFormat>());
             documentationFormats.First().IsSelected = true;
+            documentationFormats.SelectionChanged += DocumentationFormatsOnCollectionChanged;
 
             testResultsFormats = new SelectableCollection<TestResultsFormat>(Enum.GetValues(typeof(TestResultsFormat)).Cast<TestResultsFormat>());
-            documentationFormats.First().IsSelected = true;
+            testResultsFormats.First().IsSelected = true;
+            testResultsFormats.SelectionChanged += TestResultsFormatsOnCollectionChanged;
 
             browseForFeatureFolderCommand = new RelayCommand(DoBrowseForFeature);
             browseForOutputFolderCommand = new RelayCommand(DoBrowseForOutputFolder);
@@ -106,6 +111,16 @@ namespace Pickles.UserInterface
             selectedLanguage = CultureInfo.GetCultureInfo("en");
 
             this.mainModelSerializer = mainModelSerializer;
+        }
+
+        private void TestResultsFormatsOnCollectionChanged(object sender, EventArgs notifyCollectionChangedEventArgs)
+        {
+            this.IsTestResultsFormatValid = Enum.IsDefined(typeof(TestResultsFormat), this.testResultsFormats.Selected);
+        }
+
+        private void DocumentationFormatsOnCollectionChanged(object sender, EventArgs notifyCollectionChangedEventArgs)
+        {
+            this.IsDocumentationFormatValid = this.documentationFormats.Selected.Any();
         }
 
         public string PicklesVersion
@@ -240,11 +255,29 @@ namespace Pickles.UserInterface
 
         public bool IsFeatureDirectoryValid
         {
-            get { return isFeatureDirectoryValid; }
+            get
+            {
+                return isFeatureDirectoryValid;
+            }
+
             set
             {
                 isFeatureDirectoryValid = value;
                 this.RaisePropertyChanged(() => this.IsFeatureDirectoryValid);
+            }
+        }
+
+        public bool IsDocumentationFormatValid
+        {
+            get
+            {
+                return isDocumentationFormatValid;
+            }
+
+            set
+            {
+                isDocumentationFormatValid = value;
+                this.RaisePropertyChanged(() => this.IsDocumentationFormatValid);
             }
         }
 
@@ -318,7 +351,7 @@ namespace Pickles.UserInterface
                                           ProjectVersion = this.projectVersion,
                                           IncludeTestResults = this.includeTests,
                                           TestResultsFile = this.testResultsFile,
-                                          TestResultsFormat = this.testResultsFormats.Any(it => it.IsSelected) ? this.testResultsFormats.Selected : default(TestResultsFormat),
+                                          TestResultsFormat = this.testResultsFormats.Selected,
                                           SelectedLanguageLcid = this.selectedLanguage.LCID,
                                           DocumentationFormats = this.documentationFormats.Where(item => item.IsSelected).Select(item => item.Item).ToArray()
                                       };
@@ -431,6 +464,7 @@ namespace Pickles.UserInterface
                 case "IsTestResultsFormatValid":
                 case "IsLanguageValid":
                 case "IncludeTests":
+                case "IsDocumentationFormatValid":
                     {
                         this.generateCommand.RaiseCanExecuteChanged();
                         break;
@@ -449,6 +483,7 @@ namespace Pickles.UserInterface
                    && isProjectVersionValid
                    && (isTestResultsFileValid || !includeTests)
                    && (isTestResultsFormatValid || !includeTests)
+                   && isDocumentationFormatValid
                    && isLanguageValid;
         }
 
@@ -476,7 +511,7 @@ namespace Pickles.UserInterface
             configuration.SystemUnderTestName = projectName;
             configuration.SystemUnderTestVersion = projectVersion;
             configuration.TestResultsFile = this.IncludeTests ? new FileInfo(testResultsFile) : null;
-            configuration.TestResultsFormat = this.IncludeTests ? testResultsFormats.Selected : default(TestResultsFormat);
+            configuration.TestResultsFormat = testResultsFormats.Selected;
             configuration.Language = selectedLanguage != null ? selectedLanguage.TwoLetterISOLanguageName : CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
 
             foreach (DocumentationFormat documentationFormat in documentationFormats.Selected)
