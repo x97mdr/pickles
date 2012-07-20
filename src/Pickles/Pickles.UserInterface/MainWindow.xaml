@@ -109,7 +109,7 @@
         </ListBox>
     <CheckBox Template="{StaticResource ResourceKey=myCheckBox}" Grid.Column="3" Grid.Row="6" IsChecked="{Binding Path=IsTestResultsFormatValid}" Visibility="{Binding Path=IncludeTests, Converter={StaticResource ResourceKey=booleanToVisibilityConverter}}"/>
 
-    <Label Content="Language" Grid.Column="0" Grid.Row="7" />
+    <Label Content="Gherkin Language" Grid.Column="0" Grid.Row="7" />
         <ComboBox ItemsSource="{Binding LanguageValues}" Grid.Column="1" SelectedItem="{Binding SelectedLanguage}" Grid.Row="7"  Grid.ColumnSpan="2" DisplayMemberPath="NativeName"/>
     <CheckBox Template="{StaticResource ResourceKey=myCheckBox}" Grid.Column="3" Grid.Row="7" IsChecked="{Binding Path=IsLanguageValid}"/>
     
