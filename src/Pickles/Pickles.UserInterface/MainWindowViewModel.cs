@@ -1,9 +1,25 @@
-﻿using System;
+﻿// #region License
+// 
+// 
+// /*
+//     Copyright [2011] [Jeffrey Cameron]
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//        http://www.apache.org/licenses/LICENSE-2.0
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+// */
+// #endregion
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Windows.Input;
 using Ninject;
 using Pickles.Parser;
@@ -30,7 +46,7 @@ namespace Pickles.UserInterface
 
         private readonly RelayCommand openOutputDirectory;
 
-        private readonly MainModelSerializer mainModelSerializer;
+        private readonly IMainModelSerializer mainModelSerializer;
 
         private string picklesVersion = typeof(Feature).Assembly.GetName().Version.ToString();
 
@@ -67,6 +83,11 @@ namespace Pickles.UserInterface
         private readonly CultureInfo[] neutralCultures;
 
         public MainWindowViewModel()
+            : this(new MainModelSerializer(DataDirectoryDeriver.DeriveDataDirectory()))
+        {
+        }
+
+        public MainWindowViewModel(IMainModelSerializer mainModelSerializer)
         {
             documentationFormats = new MultiSelectableCollection<DocumentationFormat>(Enum.GetValues(typeof(DocumentationFormat)).Cast<DocumentationFormat>());
             documentationFormats.First().IsSelected = true;
@@ -84,7 +105,7 @@ namespace Pickles.UserInterface
             neutralCultures = CultureInfo.GetCultures(CultureTypes.NeutralCultures);
             selectedLanguage = CultureInfo.GetCultureInfo("en");
 
-            this.mainModelSerializer = new MainModelSerializer(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location));
+            this.mainModelSerializer = mainModelSerializer;
         }
 
         public string PicklesVersion

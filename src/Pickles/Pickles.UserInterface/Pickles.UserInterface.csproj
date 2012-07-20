@@ -50,6 +50,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Interactivity">
       <HintPath>..\packages\MahApps.Metro.0.8.0.0\lib\net40\System.Windows.Interactivity.dll</HintPath>
@@ -71,6 +72,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Settings\DataDirectoryDeriver.cs" />
+    <Compile Include="Settings\IMainModelSerializer.cs" />
     <Compile Include="Settings\MainModel.cs" />
     <Compile Include="Mvvm\MultiSelectableCollection.cs" />
     <Compile Include="Mvvm\SelectableCollection.cs" />
