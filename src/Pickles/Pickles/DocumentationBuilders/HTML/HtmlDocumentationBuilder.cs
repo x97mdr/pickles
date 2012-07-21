@@ -36,16 +36,14 @@ namespace Pickles
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         private readonly Configuration configuration;
-        private readonly DirectoryTreeCrawler featureCrawler;
         private readonly HtmlDocumentFormatter htmlDocumentFormatter;
         private readonly HtmlResourceWriter htmlResourceWriter;
 
-        public HtmlDocumentationBuilder(Configuration configuration, DirectoryTreeCrawler featureCrawler,
+        public HtmlDocumentationBuilder(Configuration configuration,
                                         HtmlDocumentFormatter htmlDocumentFormatter,
                                         HtmlResourceWriter htmlResourceWriter)
         {
             this.configuration = configuration;
-            this.featureCrawler = featureCrawler;
             this.htmlDocumentFormatter = htmlDocumentFormatter;
             this.htmlResourceWriter = htmlResourceWriter;
         }
@@ -60,6 +58,7 @@ namespace Pickles
             }
 
             htmlResourceWriter.WriteTo(configuration.OutputFolder.FullName);
+
 
             var actionVisitor = new ActionVisitor<IDirectoryTreeNode>(node =>
                                                                           {
@@ -104,8 +103,8 @@ namespace Pickles
                                                                                   writer.Close();
                                                                               }
                                                                           });
-
-            features.AcceptVisitor(actionVisitor);
+            if (features != null)
+                features.AcceptVisitor(actionVisitor);
         }
 
         #endregion
