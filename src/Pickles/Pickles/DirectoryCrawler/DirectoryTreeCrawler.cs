@@ -18,6 +18,7 @@
 
 #endregion
 
+using System;
 using System.IO;
 using System.Linq;
 using NGenerics.DataStructures.Trees;
@@ -26,6 +27,7 @@ namespace Pickles.DirectoryCrawler
 {
     public class DirectoryTreeCrawler
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private readonly FeatureNodeFactory featureNodeFactory;
         private readonly FeatureParser featureParser;
         private readonly RelevantFileDetector relevantFileDetector;
@@ -64,8 +66,18 @@ namespace Pickles.DirectoryCrawler
             foreach (FileInfo file in directory.GetFiles().Where(file => relevantFileDetector.IsRelevant(file)))
             {
                 isRelevantFileFound = true;
-                IDirectoryTreeNode node = featureNodeFactory.Create(rootNode.OriginalLocation, file);
-                tree.Add(node);
+
+                IDirectoryTreeNode node = null;
+                try
+                {
+                    node = featureNodeFactory.Create(rootNode.OriginalLocation, file);
+                }
+                catch (Exception)
+                {     
+                    if (log.IsWarnEnabled) log.WarnFormat("The file, {0}, will be ignored because it could not be read in properly", file.FullName);
+                }
+
+                if (node != null) tree.Add(node);
             }
 
             bool isRelevantDirectoryFound = false;

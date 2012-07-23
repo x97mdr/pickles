@@ -55,7 +55,12 @@ namespace Pickles.DirectoryCrawler
             if (relevantFileDetector.IsFeatureFile(file))
             {
                 Feature feature = featureParser.Parse(file.FullName);
-                return new FeatureDirectoryTreeNode(file, relativePathFromRoot, feature);
+                if (feature != null)
+                {
+                    return new FeatureDirectoryTreeNode(file, relativePathFromRoot, feature);
+                }
+
+                throw new InvalidOperationException("This feature file could not be read and will be excluded");
             }
             else if (relevantFileDetector.IsMarkdownFile(file))
             {

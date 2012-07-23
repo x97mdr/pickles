@@ -168,6 +168,7 @@
     <Compile Include="AssertExtensions.cs" />
     <Compile Include="BaseFixture.cs" />
     <Compile Include="DirectoryCrawlers\FolderDirectoryTreeNodeTests.cs" />
+    <Compile Include="DocumentationBuilders\HTML\WhenFormattingScenarioOutlines.cs" />
     <Compile Include="Extensions\StringExtensionsTests.cs" />
     <Compile Include="Extensions\PathExtensionsTests.cs" />
     <Compile Include="DocumentationBuilders\Excel\WhenAddingADocumentStringToAWorksheet.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="DocumentationBuilders\Excel\WhenAddingATableToAWorksheet.cs" />
     <Compile Include="DocumentationBuilders\Excel\WhenCreatingSheetNamesFromFeatures.cs" />
     <Compile Include="Extensions\UriExtensionsTests.cs" />
+    <Compile Include="Extensions\XElementExtensions.cs" />
     <Compile Include="FeatureTree\FileBaseTests.cs" />
     <Compile Include="FeatureTree\FolderTests.cs" />
     <Compile Include="FeatureTree\Helpers.cs" />
@@ -205,8 +207,8 @@
     <Compile Include="WhenDeterminingRelevantFilesToConsider.cs" />
     <Compile Include="WhenDeterminingTheSignatureOfAnNUnitExampleRow.cs" />
     <Compile Include="WhenDeterminingTheSignatureOfAnXUnitExampleRow.cs" />
-    <Compile Include="WhenFormattingFeatures.cs" />
-    <Compile Include="WhenFormattingStep.cs" />
+    <Compile Include="DocumentationBuilders\HTML\WhenFormattingFeatures.cs" />
+    <Compile Include="DocumentationBuilders\HTML\WhenFormattingStep.cs" />
     <Compile Include="WhenFormattingWikiWords.cs" />
     <Compile Include="WhenGeneratingPathsFromFeaturesToDitaFiles.cs" />
     <Compile Include="WhenParsingCommandLineArguments.cs" />
