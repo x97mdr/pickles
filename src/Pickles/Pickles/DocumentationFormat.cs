@@ -18,14 +18,25 @@
 
 #endregion
 
+using System.ComponentModel;
+
 namespace Pickles
 {
     public enum DocumentationFormat
     {
+        [Description("HTML")]
         Html,
+        
+        [Description("Microsoft Word OpenXML (.docx)")]
         Word,
+
+        [Description("Darwin Information Typing Architecture (DITA)")]
         Dita,
+
+        [Description("Javascript Object Notation (JSON)")]
         JSON,
+
+        [Description("Microsoft Excel OpenXML (.xlsx)")]
         Excel
     }
 }
