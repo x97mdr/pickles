@@ -14,7 +14,7 @@ namespace Pickles.Test.Formatters.JSON
     {
         private const string ROOT_PATH = @"FakeFolderStructures";
         private const string OUTPUT_DIRECTORY = @"JSONFeatureOutput";
-        private readonly string filePath = Path.Combine(OUTPUT_DIRECTORY, JSONDocumentationBuilder.JS_FILE_NAME);
+        private readonly string filePath = Path.Combine(OUTPUT_DIRECTORY, JSONDocumentationBuilder.JsonFileName);
 
         [TestFixtureSetUp]
         public void Setup()

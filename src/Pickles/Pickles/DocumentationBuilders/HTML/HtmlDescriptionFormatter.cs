@@ -20,7 +20,7 @@
 
 using System;
 using System.Xml.Linq;
-using MarkdownSharp;
+using MarkdownDeep;
 using Pickles.Extensions;
 
 namespace Pickles.DocumentationBuilders.HTML

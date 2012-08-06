@@ -35,34 +35,20 @@ namespace Pickles
         {
             Bind<Configuration>().ToSelf().InSingletonScope();
 
-            Bind<IDocumentationBuilder>().To<HtmlDocumentationBuilder>().When(
-                request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.Html).InSingletonScope
-                ();
-            Bind<IDocumentationBuilder>().To<WordDocumentationBuilder>().When(
-                request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.Word).InSingletonScope
-                ();
-            Bind<IDocumentationBuilder>().To<DitaDocumentationBuilder>().When(
-                request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.Dita).InSingletonScope
-                ();
-            Bind<IDocumentationBuilder>().To<JSONDocumentationBuilder>().When(
-                request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.JSON).InSingletonScope
-                ();
-            Bind<IDocumentationBuilder>().To<ExcelDocumentationBuilder>().When(
-                request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.Excel).
-                InSingletonScope();
+            Bind<IDocumentationBuilder>().To<HtmlDocumentationBuilder>().When(request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.Html).InSingletonScope();
+            Bind<IDocumentationBuilder>().To<WordDocumentationBuilder>().When(request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.Word).InSingletonScope();
+            Bind<IDocumentationBuilder>().To<DitaDocumentationBuilder>().When(request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.Dita).InSingletonScope();
+            Bind<IDocumentationBuilder>().To<JSONDocumentationBuilder>().When(request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.JSON).InSingletonScope();
+            Bind<IDocumentationBuilder>().To<ExcelDocumentationBuilder>().When(request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.Excel).InSingletonScope();
 
-            Bind<ITestResults>().To<NullTestResults>().When(request => !Kernel.Get<Configuration>().HasTestResults).
-                InSingletonScope();
-            Bind<ITestResults>().To<NUnitResults>().When(
-                request =>
+            Bind<ITestResults>().To<NullTestResults>().When(request => !Kernel.Get<Configuration>().HasTestResults).InSingletonScope();
+            Bind<ITestResults>().To<NUnitResults>().When(request =>
                 Kernel.Get<Configuration>().HasTestResults &&
                 Kernel.Get<Configuration>().TestResultsFormat == TestResultsFormat.NUnit).InSingletonScope();
-            Bind<ITestResults>().To<XUnitResults>().When(
-                request =>
+            Bind<ITestResults>().To<XUnitResults>().When(request =>
                 Kernel.Get<Configuration>().HasTestResults &&
                 Kernel.Get<Configuration>().TestResultsFormat == TestResultsFormat.xUnit).InSingletonScope();
-            Bind<ITestResults>().To<MsTestResults>().When(
-                request =>
+            Bind<ITestResults>().To<MsTestResults>().When(request =>
                 Kernel.Get<Configuration>().HasTestResults &&
                 Kernel.Get<Configuration>().TestResultsFormat == TestResultsFormat.MsTest).InSingletonScope();
 
@@ -76,6 +62,11 @@ namespace Pickles
             Bind<HtmlTableFormatter>().ToSelf().InSingletonScope();
             Bind<HtmlMultilineStringFormatter>().ToSelf().InSingletonScope();
             Bind<HtmlDescriptionFormatter>().ToSelf().InSingletonScope();
+
+            var markdown = new MarkdownDeep.Markdown();
+            markdown.ExtraMode = true;
+            markdown.SafeMode = true;
+            Bind<MarkdownDeep.Markdown>().ToConstant(markdown).InSingletonScope();
         }
     }
 }

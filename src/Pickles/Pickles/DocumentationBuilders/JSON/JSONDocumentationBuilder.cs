@@ -34,7 +34,7 @@ namespace Pickles.DocumentationBuilders.JSON
 {
     public class JSONDocumentationBuilder : IDocumentationBuilder
     {
-        public const string JS_FILE_NAME = @"pickledFeatures.json";
+        public const string JsonFileName = @"pickledFeatures.json";
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         private readonly Configuration configuration;
@@ -49,7 +49,7 @@ namespace Pickles.DocumentationBuilders.JSON
 
         private string OutputFilePath
         {
-            get { return Path.Combine(configuration.OutputFolder.FullName, JS_FILE_NAME); }
+            get { return Path.Combine(configuration.OutputFolder.FullName, JsonFileName); }
         }
 
         #region IDocumentationBuilder Members
