@@ -12,7 +12,7 @@ namespace Pickles.Test.DocumentationBuilders.HTML
     public class WhenFormattingTables : BaseFixture
     {
         [Test]
-        public void ThenCanFormatNormalTableCorrectly()
+        public void ThenCanFormatNormalTableSuccessfully()
         {
             var table = new Table
             {
@@ -39,7 +39,7 @@ namespace Pickles.Test.DocumentationBuilders.HTML
         }
 
         [Test]
-        public void ThenCanFormatNullTableCorrectly()
+        public void ThenCanFormatNullTableSuccessfully()
         {
             var htmlTableFormatter = Kernel.Get<HtmlTableFormatter>();
             var output = htmlTableFormatter.Format(null);
