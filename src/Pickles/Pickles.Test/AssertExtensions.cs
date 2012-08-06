@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Xml.Linq;
 using Should;
+using Pickles.Test.Extensions;
 
 namespace Pickles.Test
 {
@@ -8,9 +9,14 @@ namespace Pickles.Test
     {
         public static void ShouldHaveAttribute(this XElement element, string name, string value)
         {
-            XAttribute classAttribute = element.Attributes().FirstOrDefault(attribute => attribute.Name.LocalName == name);
-            classAttribute.ShouldNotBeNull();
-            classAttribute.Value.ShouldEqual(value);
+            XAttribute xAttribute = element.Attributes().FirstOrDefault(attribute => attribute.Name.LocalName == name);
+            xAttribute.ShouldNotBeNull();
+            xAttribute.Value.ShouldEqual(value);
+        }
+
+        public static void ShouldHaveElement(this XElement element, string name)
+        {
+            element.HasElement(name).ShouldBeTrue();
         }
 
         public static void ShouldBeInInNamespace(this XElement element, string _namespace)

@@ -14,12 +14,15 @@ namespace Pickles.Test.Extensions
             return element.Attribute(name) != null && element.Attribute(name).Value == value;
         }
 
+        public static bool HasElement(this XElement element, string name)
+        {
+            return element.Elements().Any(e => e.Name.LocalName == name);
+        }
+
         public static bool RecursiveSearch(this XElement element, Predicate<XElement> searchCriteria)
         {
             var meetsCriteria = searchCriteria(element);
-            if (meetsCriteria) return true;
-
-            return element.Elements().Any(child => child.RecursiveSearch(searchCriteria));
+            return meetsCriteria || element.Elements().Any(child => child.RecursiveSearch(searchCriteria));
         }
 
         public static void ShouldContainGherkinTable(this XElement item)

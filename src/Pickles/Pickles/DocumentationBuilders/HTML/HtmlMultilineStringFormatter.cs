@@ -33,6 +33,8 @@ namespace Pickles.DocumentationBuilders.HTML
 
         public XElement Format(string multilineText)
         {
+            if (multilineText == null) return null;
+
             return new XElement(xmlns + "div",
                                 new XAttribute("class", "pre"),
                                 new XElement(xmlns + "pre",

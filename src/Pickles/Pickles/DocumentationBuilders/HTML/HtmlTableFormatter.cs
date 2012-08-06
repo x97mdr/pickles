@@ -35,6 +35,8 @@ namespace Pickles.DocumentationBuilders.HTML
 
         public XElement Format(Table table)
         {
+            if (table == null) return null;
+
             return new XElement(xmlns + "div",
                                 new XAttribute("class", "table_container"),
                                 new XElement(xmlns + "table",
