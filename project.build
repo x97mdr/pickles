@@ -141,18 +141,68 @@
     <zip zipfile="${deploy.dir}\pickles-${version}.zip">
         <fileset basedir="${assemblies.console.dir}" prefix="pickles-${version}\exe">
             <include name="**/*" />
+			<exclude name="**/IKVM.AWT.WinForms.dll" />
+			<exclude name="**/IKVM.OpenJDK.Beans.dll" />
+			<exclude name="**/IKVM.OpenJDK.Jdbc.dll" />
+			<exclude name="**/IKVM.OpenJDK.Media.dll" />
+			<exclude name="**/IKVM.OpenJDK.Misc.dll" />
+			<exclude name="**/IKVM.OpenJDK.Naming.dll" />
+			<exclude name="**/IKVM.OpenJDK.Remoting.dll" />
+			<exclude name="**/IKVM.OpenJDK.SwingAWT.dll" />
+			<exclude name="**/IKVM.OpenJDK.XML.API.dll" />
+			<exclude name="**/IKVM.Runtime.JNI.dll" />
         </fileset>
         <fileset basedir="${assemblies.msbuild.dir}" prefix="pickles-${version}\msbuild">
             <include name="**/*" />
+			<exclude name="**/IKVM.AWT.WinForms.dll" />
+			<exclude name="**/IKVM.OpenJDK.Beans.dll" />
+			<exclude name="**/IKVM.OpenJDK.Jdbc.dll" />
+			<exclude name="**/IKVM.OpenJDK.Media.dll" />
+			<exclude name="**/IKVM.OpenJDK.Misc.dll" />
+			<exclude name="**/IKVM.OpenJDK.Naming.dll" />
+			<exclude name="**/IKVM.OpenJDK.Remoting.dll" />
+			<exclude name="**/IKVM.OpenJDK.SwingAWT.dll" />
+			<exclude name="**/IKVM.OpenJDK.XML.API.dll" />
+			<exclude name="**/IKVM.Runtime.JNI.dll" />
         </fileset>
         <fileset basedir="${assemblies.nant.dir}" prefix="pickles-${version}\nant">
             <include name="**/*" />
+			<exclude name="**/IKVM.AWT.WinForms.dll" />
+			<exclude name="**/IKVM.OpenJDK.Beans.dll" />
+			<exclude name="**/IKVM.OpenJDK.Jdbc.dll" />
+			<exclude name="**/IKVM.OpenJDK.Media.dll" />
+			<exclude name="**/IKVM.OpenJDK.Misc.dll" />
+			<exclude name="**/IKVM.OpenJDK.Naming.dll" />
+			<exclude name="**/IKVM.OpenJDK.Remoting.dll" />
+			<exclude name="**/IKVM.OpenJDK.SwingAWT.dll" />
+			<exclude name="**/IKVM.OpenJDK.XML.API.dll" />
+			<exclude name="**/IKVM.Runtime.JNI.dll" />
         </fileset>        
         <fileset basedir="${assemblies.powershell.dir}" prefix="pickles-${version}\powershell">
             <include name="**/*" />
+			<exclude name="**/IKVM.AWT.WinForms.dll" />
+			<exclude name="**/IKVM.OpenJDK.Beans.dll" />
+			<exclude name="**/IKVM.OpenJDK.Jdbc.dll" />
+			<exclude name="**/IKVM.OpenJDK.Media.dll" />
+			<exclude name="**/IKVM.OpenJDK.Misc.dll" />
+			<exclude name="**/IKVM.OpenJDK.Naming.dll" />
+			<exclude name="**/IKVM.OpenJDK.Remoting.dll" />
+			<exclude name="**/IKVM.OpenJDK.SwingAWT.dll" />
+			<exclude name="**/IKVM.OpenJDK.XML.API.dll" />
+			<exclude name="**/IKVM.Runtime.JNI.dll" />
         </fileset>
         <fileset basedir="${assemblies.gui.dir}" prefix="pickles-${version}\gui">
             <include name="**/*" />
+			<exclude name="**/IKVM.AWT.WinForms.dll" />
+			<exclude name="**/IKVM.OpenJDK.Beans.dll" />
+			<exclude name="**/IKVM.OpenJDK.Jdbc.dll" />
+			<exclude name="**/IKVM.OpenJDK.Media.dll" />
+			<exclude name="**/IKVM.OpenJDK.Misc.dll" />
+			<exclude name="**/IKVM.OpenJDK.Naming.dll" />
+			<exclude name="**/IKVM.OpenJDK.Remoting.dll" />
+			<exclude name="**/IKVM.OpenJDK.SwingAWT.dll" />
+			<exclude name="**/IKVM.OpenJDK.XML.API.dll" />
+			<exclude name="**/IKVM.Runtime.JNI.dll" />
         </fileset>
     </zip>
   </target>
