@@ -141,6 +141,7 @@
     <zip zipfile="${deploy.dir}\pickles-${version}.zip">
         <fileset basedir="${assemblies.console.dir}" prefix="pickles-${version}\exe">
             <include name="**/*" />
+			<exclude name="**/*.xml" />
 			<exclude name="**/IKVM.AWT.WinForms.dll" />
 			<exclude name="**/IKVM.OpenJDK.Beans.dll" />
 			<exclude name="**/IKVM.OpenJDK.Jdbc.dll" />
@@ -154,6 +155,7 @@
         </fileset>
         <fileset basedir="${assemblies.msbuild.dir}" prefix="pickles-${version}\msbuild">
             <include name="**/*" />
+			<exclude name="**/*.xml" />
 			<exclude name="**/IKVM.AWT.WinForms.dll" />
 			<exclude name="**/IKVM.OpenJDK.Beans.dll" />
 			<exclude name="**/IKVM.OpenJDK.Jdbc.dll" />
@@ -167,6 +169,7 @@
         </fileset>
         <fileset basedir="${assemblies.nant.dir}" prefix="pickles-${version}\nant">
             <include name="**/*" />
+			<exclude name="**/*.xml" />
 			<exclude name="**/IKVM.AWT.WinForms.dll" />
 			<exclude name="**/IKVM.OpenJDK.Beans.dll" />
 			<exclude name="**/IKVM.OpenJDK.Jdbc.dll" />
@@ -180,6 +183,7 @@
         </fileset>        
         <fileset basedir="${assemblies.powershell.dir}" prefix="pickles-${version}\powershell">
             <include name="**/*" />
+			<exclude name="**/*.xml" />
 			<exclude name="**/IKVM.AWT.WinForms.dll" />
 			<exclude name="**/IKVM.OpenJDK.Beans.dll" />
 			<exclude name="**/IKVM.OpenJDK.Jdbc.dll" />
@@ -193,6 +197,7 @@
         </fileset>
         <fileset basedir="${assemblies.gui.dir}" prefix="pickles-${version}\gui">
             <include name="**/*" />
+			<exclude name="**/*.xml" />
 			<exclude name="**/IKVM.AWT.WinForms.dll" />
 			<exclude name="**/IKVM.OpenJDK.Beans.dll" />
 			<exclude name="**/IKVM.OpenJDK.Jdbc.dll" />
