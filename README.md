@@ -5,7 +5,23 @@ Pickles is an open source living documentation generator that works on feature f
 
 Why stop with just the features though?  Pickles can also read plain text files written in the Markdown format so you can add other files to your feature to add all sorts of context.  Well-written features are great to have but even the best written features can leave out some important context information.  Markdown is very simple to write and is designed to be easily read even in plain text files so they are a great way of adding additional context to your feature files to turn them into a real set of living documentation.
 
-Pickles primarily produces static HTML files.  The reason for this is that static HTML can be deployed to any old web server, you don't need any special libraries, databases or other tools that might limit your installation possiblities.  If you are behind a corporate firewall with no internet access then you will appreciate this option!  We plan to support other documentation formats in the future.  Office Open XML (.docx), PDF and JSON formats are on the wishlist.  If there are other formats you would like to see then why don't you post on the [newsgroup we have for pickles development][1]
+Supported Output Formats
+------------------------
+
+- static HTML
+- JSON
+- Word
+- Excel
+- DITA
+
+If there are other formats you would like to see then why don't you post on the [newsgroup we have for pickles development][1]
+
+Supported Test Runner Integrations
+----------------------------------
+
+- NUnit
+- xUnit
+- MSTest
 
 Contributing
 ------------
