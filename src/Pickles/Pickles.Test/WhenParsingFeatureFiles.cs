@@ -4,6 +4,7 @@ using NUnit.Framework;
 using Ninject;
 using Pickles.Parser;
 using Should;
+using System;
 
 namespace Pickles.Test
 {
@@ -199,8 +200,8 @@ Feature: Test
             Assert.AreEqual(null, thenStep.TableArgument);
 
             var examples = scenarioOutline.Examples;
-            Assert.AreEqual(string.Empty, examples.First().Name);
-            Assert.AreEqual(null, examples.First().Description);
+            Assert.AreEqual(true, String.IsNullOrEmpty(examples.First().Name));
+            Assert.AreEqual(true, String.IsNullOrEmpty(examples.First().Description));
 
             Table table = examples.First().TableArgument;
             Assert.AreEqual("keyword1", table.HeaderRow[0]);
