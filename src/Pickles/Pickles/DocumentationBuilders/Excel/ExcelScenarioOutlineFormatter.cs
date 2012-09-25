@@ -62,8 +62,13 @@ namespace Pickles.DocumentationBuilders.Excel
             }
 
             row++;
-            worksheet.Cell(row++, "B").Value = "Examples";
-            excelTableFormatter.Format(worksheet, scenarioOutline.Example.TableArgument, ref row);
+			
+			foreach (var example in scenarioOutline.Examples)
+			{
+	            worksheet.Cell(row++, "B").Value = "Examples";
+				worksheet.Cell(row, "C").Value = example.Description;
+	            excelTableFormatter.Format(worksheet, example.TableArgument, ref row);
+			}
         }
     }
 }

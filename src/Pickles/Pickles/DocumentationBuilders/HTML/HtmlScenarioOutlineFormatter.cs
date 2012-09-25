@@ -70,12 +70,19 @@ namespace Pickles.DocumentationBuilders.HTML
 
         private XElement FormatExamples(ScenarioOutline scenarioOutline)
         {
-            return new XElement(xmlns + "div",
-                                new XAttribute("class", "examples"),
-                                new XElement(xmlns + "h3", "Examples"),
-                                htmlDescriptionFormatter.Format(scenarioOutline.Example.Description),
-                                (scenarioOutline.Example.TableArgument == null) ? null : htmlTableFormatter.Format(scenarioOutline.Example.TableArgument)
-                );
+			var exampleDiv = new XElement(xmlns + "div");
+			
+			foreach (var example in scenarioOutline.Examples)
+			{
+	            exampleDiv.Add(new XElement(xmlns + "div",
+	                                new XAttribute("class", "examples"),
+	                                new XElement(xmlns + "h3", "Examples"),
+	                                htmlDescriptionFormatter.Format(example.Description),
+	                                (example.TableArgument == null) ? null : htmlTableFormatter.Format(example.TableArgument)
+	                ));
+			}
+			
+			return exampleDiv;
         }
 
         public XElement Format(ScenarioOutline scenarioOutline, int id)
@@ -85,7 +92,9 @@ namespace Pickles.DocumentationBuilders.HTML
                                 htmlImageResultFormatter.Format(scenarioOutline),
                                 FormatHeading(scenarioOutline),
                                 FormatSteps(scenarioOutline),
-                                scenarioOutline.Example == null ? null : FormatExamples(scenarioOutline)
+                                (scenarioOutline.Examples == null || !scenarioOutline.Examples.Any()) 
+			                    	? null 
+			                    	: FormatExamples(scenarioOutline)
                 );
         }
     }

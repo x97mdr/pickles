@@ -23,12 +23,16 @@ namespace Pickles.Test.DocumentationBuilders.HTML
                                                 new TableRow("5", "6", "7", "8")
                                             })
             };
+			
+			var example = new Example { Name = "Some examples", Description = "An example", TableArgument = table };
+			var examples = new List<Example>();
+			examples.Add(example);
 
             var scenarioOutline = new ScenarioOutline
             {
                 Name = "Testing a scenario outline",
                 Description = "We need to make sure that scenario outlines work properly",
-                Example = new Example { Name = "Some examples", Description = "An example", TableArgument = table }
+                Examples = examples
             };
 
             var htmlScenarioOutlineFormatter = Kernel.Get<HtmlScenarioOutlineFormatter>();
@@ -52,10 +56,14 @@ namespace Pickles.Test.DocumentationBuilders.HTML
                                             })
             };
 
+			var example = new Example { Name = "Some examples", Description = "An example", TableArgument = table };
+			var examples = new List<Example>();
+			examples.Add(example);
+
             var scenarioOutline = new ScenarioOutline
             {
                 Description = "We need to make sure that scenario outlines work properly",
-                Example = new Example { Name = "Some examples", Description = "An example", TableArgument = table }
+                Examples = examples
             };
 
             var htmlScenarioOutlineFormatter = Kernel.Get<HtmlScenarioOutlineFormatter>();
@@ -79,10 +87,14 @@ namespace Pickles.Test.DocumentationBuilders.HTML
                                             })
             };
 
-            var scenarioOutline = new ScenarioOutline
+            var example = new Example { Name = "Some examples", Description = "An example", TableArgument = table };
+			var examples = new List<Example>();
+			examples.Add(example);
+
+			var scenarioOutline = new ScenarioOutline
             {
                 Name = "Testing a scenario outline",
-                Example = new Example { Name = "Some examples", Description = "An example", TableArgument = table }
+                Examples = examples
             };
 
             var htmlScenarioOutlineFormatter = Kernel.Get<HtmlScenarioOutlineFormatter>();
@@ -99,7 +111,7 @@ namespace Pickles.Test.DocumentationBuilders.HTML
             {
                 Name = "Testing a scenario outline",
                 Description = "We need to make sure that scenario outlines work properly",
-                Example = null
+                Examples = new List<Example>()
             };
 
             var htmlScenarioOutlineFormatter = Kernel.Get<HtmlScenarioOutlineFormatter>();
@@ -112,11 +124,15 @@ namespace Pickles.Test.DocumentationBuilders.HTML
         [Test]
         public void ThenCanFormatScenarioOutlineWithMissingTableFromExampleCorrectly()
         {
-            var scenarioOutline = new ScenarioOutline
+            var example = new Example { Name = "Some examples", Description = "An example" };
+			var examples = new List<Example>();
+			examples.Add(example);
+
+			var scenarioOutline = new ScenarioOutline
             {
                 Name = "Testing a scenario outline",
                 Description = "We need to make sure that scenario outlines work properly",
-                Example = new Example { Name = "Some examples", Description = "An example" }
+                Examples = examples
             };
 
             var htmlScenarioOutlineFormatter = Kernel.Get<HtmlScenarioOutlineFormatter>();

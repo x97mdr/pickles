@@ -5,23 +5,23 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pickles", "Pickles\Pickles.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pickles.Test", "Pickles.Test\Pickles.Test.csproj", "{8BD9FCD2-7ED5-46B5-B6A4-7FA3775E159F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pickles.CommandLine", "Pickles.CommandLine\Pickles.CommandLine.csproj", "{A4EBBB5F-A18D-46D2-9ADE-2B90BD48CEC8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Runners", "Runners", "{4E977674-6919-4F15-A6E3-37BFAC18C7E5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pickles.MSBuild", "Pickles.MSBuild\Pickles.MSBuild.csproj", "{67DD16BD-E76B-475E-878C-7F54D9358730}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pickles.NAnt", "Pickles.NAnt\Pickles.NAnt.csproj", "{83D5827A-8806-4B9E-9410-73CD2A284E3C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Runners", "Runners", "{4E977674-6919-4F15-A6E3-37BFAC18C7E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pickles.CommandLine", "Pickles.CommandLine\Pickles.CommandLine.csproj", "{A4EBBB5F-A18D-46D2-9ADE-2B90BD48CEC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pickles.PowerShell", "Pickles.PowerShell\Pickles.PowerShell.csproj", "{AD9F6DD1-5C76-45C9-9FF9-DAE37DB7B2D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pickles.UserInterface", "Pickles.UserInterface\Pickles.UserInterface.csproj", "{F3768CCA-00C2-4280-9F8D-4585B5E214B1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example", "Example", "{7983EA6A-A6C9-443D-9759-B73462DAC17B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pickles.Example", "Pickles.Example\Pickles.Example.csproj", "{76BCDF34-BDAA-4474-A734-8C60041901D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pickles.PowerShell", "Pickles.PowerShell\Pickles.PowerShell.csproj", "{AD9F6DD1-5C76-45C9-9FF9-DAE37DB7B2D4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pickles.Example.xUnit", "Pickles.Example.xUnit\Pickles.Example.xUnit.csproj", "{F059CC12-C35A-421F-9180-2C6078A3D6C6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pickles.UserInterface", "Pickles.UserInterface\Pickles.UserInterface.csproj", "{F3768CCA-00C2-4280-9F8D-4585B5E214B1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FED9F7C2-2800-43DD-B98B-9D50BBBFF91A}"
 	ProjectSection(SolutionItems) = preProject
@@ -48,6 +48,36 @@ Global
 		{38BAD6E0-78AB-4AC3-91A8-BF72AF5EE394}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{38BAD6E0-78AB-4AC3-91A8-BF72AF5EE394}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{38BAD6E0-78AB-4AC3-91A8-BF72AF5EE394}.Release|x86.ActiveCfg = Release|Any CPU
+		{67DD16BD-E76B-475E-878C-7F54D9358730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67DD16BD-E76B-475E-878C-7F54D9358730}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67DD16BD-E76B-475E-878C-7F54D9358730}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{67DD16BD-E76B-475E-878C-7F54D9358730}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{67DD16BD-E76B-475E-878C-7F54D9358730}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{67DD16BD-E76B-475E-878C-7F54D9358730}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67DD16BD-E76B-475E-878C-7F54D9358730}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67DD16BD-E76B-475E-878C-7F54D9358730}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{67DD16BD-E76B-475E-878C-7F54D9358730}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{67DD16BD-E76B-475E-878C-7F54D9358730}.Release|x86.ActiveCfg = Release|Any CPU
+		{76BCDF34-BDAA-4474-A734-8C60041901D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76BCDF34-BDAA-4474-A734-8C60041901D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76BCDF34-BDAA-4474-A734-8C60041901D4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{76BCDF34-BDAA-4474-A734-8C60041901D4}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{76BCDF34-BDAA-4474-A734-8C60041901D4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{76BCDF34-BDAA-4474-A734-8C60041901D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76BCDF34-BDAA-4474-A734-8C60041901D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76BCDF34-BDAA-4474-A734-8C60041901D4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{76BCDF34-BDAA-4474-A734-8C60041901D4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{76BCDF34-BDAA-4474-A734-8C60041901D4}.Release|x86.ActiveCfg = Release|Any CPU
+		{83D5827A-8806-4B9E-9410-73CD2A284E3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83D5827A-8806-4B9E-9410-73CD2A284E3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83D5827A-8806-4B9E-9410-73CD2A284E3C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{83D5827A-8806-4B9E-9410-73CD2A284E3C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{83D5827A-8806-4B9E-9410-73CD2A284E3C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{83D5827A-8806-4B9E-9410-73CD2A284E3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83D5827A-8806-4B9E-9410-73CD2A284E3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83D5827A-8806-4B9E-9410-73CD2A284E3C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{83D5827A-8806-4B9E-9410-73CD2A284E3C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{83D5827A-8806-4B9E-9410-73CD2A284E3C}.Release|x86.ActiveCfg = Release|Any CPU
 		{8BD9FCD2-7ED5-46B5-B6A4-7FA3775E159F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8BD9FCD2-7ED5-46B5-B6A4-7FA3775E159F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BD9FCD2-7ED5-46B5-B6A4-7FA3775E159F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -69,36 +99,6 @@ Global
 		{A4EBBB5F-A18D-46D2-9ADE-2B90BD48CEC8}.Release|Mixed Platforms.Build.0 = Release|x86
 		{A4EBBB5F-A18D-46D2-9ADE-2B90BD48CEC8}.Release|x86.ActiveCfg = Release|x86
 		{A4EBBB5F-A18D-46D2-9ADE-2B90BD48CEC8}.Release|x86.Build.0 = Release|x86
-		{67DD16BD-E76B-475E-878C-7F54D9358730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{67DD16BD-E76B-475E-878C-7F54D9358730}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{67DD16BD-E76B-475E-878C-7F54D9358730}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{67DD16BD-E76B-475E-878C-7F54D9358730}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{67DD16BD-E76B-475E-878C-7F54D9358730}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{67DD16BD-E76B-475E-878C-7F54D9358730}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{67DD16BD-E76B-475E-878C-7F54D9358730}.Release|Any CPU.Build.0 = Release|Any CPU
-		{67DD16BD-E76B-475E-878C-7F54D9358730}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{67DD16BD-E76B-475E-878C-7F54D9358730}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{67DD16BD-E76B-475E-878C-7F54D9358730}.Release|x86.ActiveCfg = Release|Any CPU
-		{83D5827A-8806-4B9E-9410-73CD2A284E3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{83D5827A-8806-4B9E-9410-73CD2A284E3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{83D5827A-8806-4B9E-9410-73CD2A284E3C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{83D5827A-8806-4B9E-9410-73CD2A284E3C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{83D5827A-8806-4B9E-9410-73CD2A284E3C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{83D5827A-8806-4B9E-9410-73CD2A284E3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{83D5827A-8806-4B9E-9410-73CD2A284E3C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{83D5827A-8806-4B9E-9410-73CD2A284E3C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{83D5827A-8806-4B9E-9410-73CD2A284E3C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{83D5827A-8806-4B9E-9410-73CD2A284E3C}.Release|x86.ActiveCfg = Release|Any CPU
-		{76BCDF34-BDAA-4474-A734-8C60041901D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{76BCDF34-BDAA-4474-A734-8C60041901D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{76BCDF34-BDAA-4474-A734-8C60041901D4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{76BCDF34-BDAA-4474-A734-8C60041901D4}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{76BCDF34-BDAA-4474-A734-8C60041901D4}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{76BCDF34-BDAA-4474-A734-8C60041901D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{76BCDF34-BDAA-4474-A734-8C60041901D4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{76BCDF34-BDAA-4474-A734-8C60041901D4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{76BCDF34-BDAA-4474-A734-8C60041901D4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{76BCDF34-BDAA-4474-A734-8C60041901D4}.Release|x86.ActiveCfg = Release|Any CPU
 		{AD9F6DD1-5C76-45C9-9FF9-DAE37DB7B2D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AD9F6DD1-5C76-45C9-9FF9-DAE37DB7B2D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD9F6DD1-5C76-45C9-9FF9-DAE37DB7B2D4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -130,9 +130,6 @@ Global
 		{F3768CCA-00C2-4280-9F8D-4585B5E214B1}.Release|x86.ActiveCfg = Release|x86
 		{F3768CCA-00C2-4280-9F8D-4585B5E214B1}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{67DD16BD-E76B-475E-878C-7F54D9358730} = {4E977674-6919-4F15-A6E3-37BFAC18C7E5}
 		{83D5827A-8806-4B9E-9410-73CD2A284E3C} = {4E977674-6919-4F15-A6E3-37BFAC18C7E5}
@@ -141,5 +138,18 @@ Global
 		{F3768CCA-00C2-4280-9F8D-4585B5E214B1} = {4E977674-6919-4F15-A6E3-37BFAC18C7E5}
 		{76BCDF34-BDAA-4474-A734-8C60041901D4} = {7983EA6A-A6C9-443D-9759-B73462DAC17B}
 		{F059CC12-C35A-421F-9180-2C6078A3D6C6} = {7983EA6A-A6C9-443D-9759-B73462DAC17B}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Pickles.CommandLine\Pickles.CommandLine.csproj
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = None
+		$1.ResourceNamePolicy = FileFormatDefault
+		$0.StandardHeader = $2
+		$2.Text = @\n Copyright ${Year}  ${CopyrightHolder}\n\n   Licensed under the Apache License, Version 2.0 (the "License");\n   you may not use this file except in compliance with the License.\n   You may obtain a copy of the License at\n\n       http://www.apache.org/licenses/LICENSE-2.0\n\n   Unless required by applicable law or agreed to in writing, software\n   distributed under the License is distributed on an "AS IS" BASIS,\n   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n   See the License for the specific language governing permissions and\n   limitations under the License.
+		$2.IncludeInNewFiles = True
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

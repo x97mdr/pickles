@@ -30,7 +30,7 @@ namespace Pickles.Parser
             Tags = new List<string>();
         }
 
-        public Example Example { get; set; }
+        public List<Example> Examples { get; set; }
 
         #region IFeatureElement Members
 

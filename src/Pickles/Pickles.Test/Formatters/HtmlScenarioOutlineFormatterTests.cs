@@ -27,23 +27,25 @@ namespace Pickles.Test.Formatters
 
         private static ScenarioOutline BuildMinimalScenarioOutline()
         {
+			var examples = new List<Example>();
+			examples.Add(new Example
+                                                    {
+                                                        Description = "My Example Description",
+                                                        TableArgument = new Table
+                                                                            {
+                                                                                HeaderRow = new TableRow("Cell1"),
+                                                                                DataRows =
+                                                                                    new List<TableRow>(new[]
+                                                                                                           {
+                                                                                                               new TableRow
+                                                                                                                   ("Value1")
+                                                                                                           })
+                                                                            },
+                                                    });
             var scenarioOutline = new ScenarioOutline
                                       {
                                           Description = "My Outline Description",
-                                          Example = new Example
-                                                        {
-                                                            Description = "My Example Description",
-                                                            TableArgument = new Table
-                                                                                {
-                                                                                    HeaderRow = new TableRow("Cell1"),
-                                                                                    DataRows =
-                                                                                        new List<TableRow>(new[]
-                                                                                                               {
-                                                                                                                   new TableRow
-                                                                                                                       ("Value1")
-                                                                                                               })
-                                                                                },
-                                                        },
+                                          Examples = examples,
                                           Steps = new List<Step>
                                                       {
                                                           new Step

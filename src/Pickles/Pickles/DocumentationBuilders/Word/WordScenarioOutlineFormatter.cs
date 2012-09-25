@@ -64,9 +64,12 @@ namespace Pickles.DocumentationBuilders.Word
             {
                 wordStepFormatter.Format(body, step);
             }
-
-            body.GenerateParagraph("Examples:", "Heading3");
-            wordTableFormatter.Format(body, scenarioOutline.Example.TableArgument);
+			
+			foreach (var example in scenarioOutline.Examples)
+			{
+	            body.GenerateParagraph("Examples: " + example.Description, "Heading3");
+	            wordTableFormatter.Format(body, example.TableArgument);
+			}
         }
     }
 }

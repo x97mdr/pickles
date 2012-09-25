@@ -39,6 +39,7 @@ namespace Pickles.Parser
         private ScenarioBuilder scenarioBuilder;
         private ScenarioOutlineBuilder scenarioOutlineBuilder;
         private StepBuilder stepBuilder;
+		private ExampleBuilder exampleBuilder;
         private Feature theFeature;
 
         public PicklesParser(I18n nativeLanguageService)
@@ -114,8 +115,14 @@ namespace Pickles.Parser
         public void examples(string keyword, string name, string description, int line)
         {
             isInExample = true;
-            scenarioOutlineBuilder.SetExampleName(name);
-            scenarioOutlineBuilder.SetExampleDescription(description);
+			if (this.exampleBuilder != null)
+			{
+				this.scenarioOutlineBuilder.AddExample(this.exampleBuilder.GetResult());
+			}
+			
+			exampleBuilder = new ExampleBuilder();
+            exampleBuilder.SetName(name);
+            exampleBuilder.SetDescription(description);
         }
 
         public void step(string keyword, string name, int line)
@@ -134,7 +141,7 @@ namespace Pickles.Parser
         {
             if (isInExample)
             {
-                scenarioOutlineBuilder.SetExampleTableRow(cells.toArray().Select(cell => cell.ToString()).ToList());
+                exampleBuilder.AddRow(cells.toArray().Select(cell => cell.ToString()).ToList());
             }
             else
             {
@@ -177,6 +184,11 @@ namespace Pickles.Parser
 
         private void CaptureAndStoreRemainingElements()
         {
+			if (isInExample && exampleBuilder != null)
+			{
+				this.scenarioOutlineBuilder.AddExample(exampleBuilder.GetResult());
+			}
+			
             if (featureElementState.IsBackgroundActive)
             {
                 backgroundBuilder.AddStep(stepBuilder.GetResult());

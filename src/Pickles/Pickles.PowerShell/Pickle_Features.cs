@@ -18,6 +18,8 @@
 
 #endregion
 
+#if __MonoCS__
+#else
 using System;
 using System.IO;
 using System.Management.Automation;
@@ -98,3 +100,4 @@ namespace Pickles.PowerShell
         }
     }
 }
+#endif

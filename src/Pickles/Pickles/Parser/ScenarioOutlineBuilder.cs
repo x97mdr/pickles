@@ -25,18 +25,16 @@ namespace Pickles.Parser
     internal class ScenarioOutlineBuilder
     {
         private readonly List<Step> steps;
-        private readonly TableBuilder tableBuilder;
         private readonly List<string> tags;
         private string description;
-        private string exampleDescription;
-        private string exampleName;
+		private List<Example> examples;
         private string name;
 
         public ScenarioOutlineBuilder(TableBuilder tableBuilder)
         {
             steps = new List<Step>();
             tags = new List<string>();
-            this.tableBuilder = tableBuilder;
+			examples = new List<Example>();
         }
 
         public void SetName(string name)
@@ -59,20 +57,10 @@ namespace Pickles.Parser
             tags.Add(tag);
         }
 
-        public void SetExampleName(string name)
-        {
-            exampleName = name;
-        }
-
-        public void SetExampleDescription(string description)
-        {
-            exampleDescription = description;
-        }
-
-        public void SetExampleTableRow(IEnumerable<string> cells)
-        {
-            tableBuilder.AddRow(cells);
-        }
+        public void AddExample(Example example)
+		{
+			examples.Add(example);
+		}
 
         public ScenarioOutline GetResult()
         {
@@ -81,7 +69,7 @@ namespace Pickles.Parser
                            Name = name,
                            Description = description,
                            Steps = new List<Step>(steps),
-                           Example = new Example {Name = exampleName, TableArgument = tableBuilder.GetResult()},
+                           Examples = new List<Example>(examples),
                            Tags = new List<string>(tags)
                        };
         }

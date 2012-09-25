@@ -20,12 +20,14 @@ namespace Pickles.Test.DocumentationBuilders.Excel
             exampleTable.DataRows =
                 new List<TableRow>(new[] {new TableRow("1", "2", "3", "4"), new TableRow("5", "6", "7", "8")});
             var example = new Example {Name = "Examples", Description = string.Empty, TableArgument = exampleTable};
+			var examples = new List<Example>();
+			examples.Add(example);
             var scenarioOutline = new ScenarioOutline
                                       {
                                           Name = "Test Feature",
                                           Description =
                                               "In order to test this feature,\nAs a developer\nI want to test this feature",
-                                          Example = example
+                                          Examples = examples
                                       };
 
             using (var workbook = new XLWorkbook())
@@ -62,12 +64,14 @@ namespace Pickles.Test.DocumentationBuilders.Excel
             exampleTable.DataRows =
                 new List<TableRow>(new[] {new TableRow("1", "2", "3", "4"), new TableRow("5", "6", "7", "8")});
             var example = new Example {Name = "Examples", Description = string.Empty, TableArgument = exampleTable};
+			var examples = new List<Example>();
+			examples.Add(example);
             var scenarioOutline = new ScenarioOutline
                                       {
                                           Name = "Test Feature",
                                           Description =
                                               "In order to test this feature,\nAs a developer\nI want to test this feature",
-                                          Example = example
+                                          Examples = examples
                                       };
             var given = new Step {NativeKeyword = "Given", Name = "a precondition"};
             var when = new Step {NativeKeyword = "When", Name = "an event occurs"};

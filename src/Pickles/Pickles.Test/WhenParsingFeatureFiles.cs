@@ -198,11 +198,11 @@ Feature: Test
             Assert.AreEqual(null, thenStep.DocStringArgument);
             Assert.AreEqual(null, thenStep.TableArgument);
 
-            Example examples = scenarioOutline.Example;
-            Assert.AreEqual(string.Empty, examples.Name);
-            Assert.AreEqual(null, examples.Description);
+            var examples = scenarioOutline.Examples;
+            Assert.AreEqual(string.Empty, examples.First().Name);
+            Assert.AreEqual(null, examples.First().Description);
 
-            Table table = examples.TableArgument;
+            Table table = examples.First().TableArgument;
             Assert.AreEqual("keyword1", table.HeaderRow[0]);
             Assert.AreEqual("keyword2", table.HeaderRow[1]);
             Assert.AreEqual("this", table.DataRows[0][0]);
