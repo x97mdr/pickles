@@ -19,22 +19,22 @@
 #endregion
 
 using NGenerics.DataStructures.Trees;
-using Ninject;
 using Pickles.DirectoryCrawler;
+using Autofac;
 
 namespace Pickles
 {
     public class Runner
     {
-        public void Run(IKernel kernel)
+        public void Run(IContainer container)
         {
-            var configuration = kernel.Get<Configuration>();
+            var configuration = container.Resolve<Configuration>();
             if (!configuration.OutputFolder.Exists) configuration.OutputFolder.Create();
 
-            var featureCrawler = kernel.Get<DirectoryTreeCrawler>();
+            var featureCrawler = container.Resolve<DirectoryTreeCrawler>();
             GeneralTree<IDirectoryTreeNode> features = featureCrawler.Crawl(configuration.FeatureFolder);
 
-            var documentationBuilder = kernel.Get<IDocumentationBuilder>();
+            var documentationBuilder = container.Resolve<IDocumentationBuilder>();
             documentationBuilder.Build(features);
         }
     }

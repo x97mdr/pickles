@@ -18,55 +18,74 @@
 
 #endregion
 
-using Ninject;
-using Ninject.Modules;
+using Autofac;
 using Pickles.DocumentationBuilders.DITA;
 using Pickles.DocumentationBuilders.Excel;
 using Pickles.DocumentationBuilders.HTML;
 using Pickles.DocumentationBuilders.JSON;
 using Pickles.DocumentationBuilders.Word;
 using Pickles.TestFrameworks;
+using Pickles.DirectoryCrawler;
 
 namespace Pickles
 {
-    public class PicklesModule : NinjectModule
+    public class PicklesModule : Module
     {
-        public override void Load()
+        protected override void Load(ContainerBuilder builder)
         {
-            Bind<Configuration>().ToSelf().InSingletonScope();
+            builder.RegisterType<Configuration>().SingleInstance();
+            builder.RegisterType<DirectoryTreeCrawler>().SingleInstance();
+            builder.RegisterType<FeatureParser>().SingleInstance();
+            builder.RegisterType<RelevantFileDetector>().SingleInstance();
+            builder.RegisterType<FeatureNodeFactory>().SingleInstance();
 
-            Bind<IDocumentationBuilder>().To<HtmlDocumentationBuilder>().When(request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.Html).InSingletonScope();
-            Bind<IDocumentationBuilder>().To<WordDocumentationBuilder>().When(request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.Word).InSingletonScope();
-            Bind<IDocumentationBuilder>().To<DitaDocumentationBuilder>().When(request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.Dita).InSingletonScope();
-            Bind<IDocumentationBuilder>().To<JSONDocumentationBuilder>().When(request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.JSON).InSingletonScope();
-            Bind<IDocumentationBuilder>().To<ExcelDocumentationBuilder>().When(request => Kernel.Get<Configuration>().DocumentationFormat == DocumentationFormat.Excel).InSingletonScope();
+            builder.RegisterType<HtmlDocumentationBuilder>().SingleInstance();
+            builder.RegisterType<WordDocumentationBuilder>().SingleInstance();
+            builder.RegisterType<DitaDocumentationBuilder>().SingleInstance();
+            builder.RegisterType<JSONDocumentationBuilder>().SingleInstance();
+            builder.RegisterType<ExcelDocumentationBuilder>().SingleInstance();
 
-            Bind<ITestResults>().To<NullTestResults>().When(request => !Kernel.Get<Configuration>().HasTestResults).InSingletonScope();
-            Bind<ITestResults>().To<NUnitResults>().When(request =>
-                Kernel.Get<Configuration>().HasTestResults &&
-                Kernel.Get<Configuration>().TestResultsFormat == TestResultsFormat.NUnit).InSingletonScope();
-            Bind<ITestResults>().To<XUnitResults>().When(request =>
-                Kernel.Get<Configuration>().HasTestResults &&
-                Kernel.Get<Configuration>().TestResultsFormat == TestResultsFormat.xUnit).InSingletonScope();
-            Bind<ITestResults>().To<MsTestResults>().When(request =>
-                Kernel.Get<Configuration>().HasTestResults &&
-                Kernel.Get<Configuration>().TestResultsFormat == TestResultsFormat.MsTest).InSingletonScope();
+            builder.Register<IDocumentationBuilder>(c =>
+            {
+                var configuration = c.Resolve<Configuration>();
+                switch (configuration.DocumentationFormat)
+                {
+                    case DocumentationFormat.Html: return c.Resolve<HtmlDocumentationBuilder>();
+                    case DocumentationFormat.Word: return c.Resolve<WordDocumentationBuilder>();
+                    case DocumentationFormat.Dita: return c.Resolve<DitaDocumentationBuilder>();
+                    case DocumentationFormat.JSON: return c.Resolve<JSONDocumentationBuilder>();
+                    case DocumentationFormat.Excel: return c.Resolve<ExcelDocumentationBuilder>();
+                    default: return c.Resolve<HtmlDocumentationBuilder>();
+                }
+            }).SingleInstance();
 
-            Bind<LanguageServices>().ToSelf().InSingletonScope();
-            Bind<HtmlTableOfContentsFormatter>().ToSelf().InSingletonScope();
-            Bind<HtmlFooterFormatter>().ToSelf().InSingletonScope();
-            Bind<HtmlDocumentFormatter>().ToSelf().InSingletonScope();
-            Bind<IHtmlFeatureFormatter>().To<HtmlFeatureFormatter>().InSingletonScope();
-            Bind<HtmlScenarioFormatter>().ToSelf().InSingletonScope();
-            Bind<HtmlStepFormatter>().ToSelf().InSingletonScope();
-            Bind<HtmlTableFormatter>().ToSelf().InSingletonScope();
-            Bind<HtmlMultilineStringFormatter>().ToSelf().InSingletonScope();
-            Bind<HtmlDescriptionFormatter>().ToSelf().InSingletonScope();
+            builder.Register<ITestResults>(c =>
+                {
+                    var configuration = c.Resolve<Configuration>();
+                    if (!configuration.HasTestResults) return c.Resolve<NullTestResults>();
+
+                    switch (configuration.TestResultsFormat)
+                    {
+                        case TestResultsFormat.NUnit: return c.Resolve<NUnitResults>();
+                        case TestResultsFormat.xUnit: return c.Resolve<XUnitResults>();
+                        case TestResultsFormat.MsTest: return c.Resolve<MsTestResults>();
+                        default: return c.Resolve<NullTestResults>();
+                    }
+                }).SingleInstance();
+
+            builder.RegisterType<LanguageServices>().SingleInstance();
+
+            builder.RegisterType<HtmlMarkdownFormatter>().SingleInstance();
+            builder.RegisterType<HtmlResourceWriter>().SingleInstance();
+            builder.RegisterType<HtmlTableOfContentsFormatter>().SingleInstance();
+            builder.RegisterType<HtmlFooterFormatter>().SingleInstance();
+            builder.RegisterType<HtmlDocumentFormatter>().SingleInstance();
+            builder.RegisterType<HtmlFeatureFormatter>().As<IHtmlFeatureFormatter>().SingleInstance();
 
             var markdown = new MarkdownDeep.Markdown();
             markdown.ExtraMode = true;
             markdown.SafeMode = true;
-            Bind<MarkdownDeep.Markdown>().ToConstant(markdown).InSingletonScope();
+            builder.Register(c => markdown).SingleInstance();
         }
     }
 }

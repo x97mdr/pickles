@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Reflection;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.Parser;
 using Pickles.TestFrameworks;
 using Should;
@@ -25,10 +25,10 @@ namespace Pickles.Test
                 output.Write(input.ReadToEnd());
             }
 
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFile = new FileInfo(RESULTS_FILE_NAME);
 
-            _results = Kernel.Get<MsTestResults>();
+            _results = Container.Resolve<MsTestResults>();
         }
 
         #endregion

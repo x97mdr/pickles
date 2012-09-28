@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.Parser;
 using Pickles.TestFrameworks;
 using Should;
@@ -16,7 +16,7 @@ namespace Pickles.Test
             var scenarioOutline = new ScenarioOutline {Name = "Adding several numbers"};
             var exampleRow = new[] {"40", "50", "90"};
 
-            var signatureBuilder = Kernel.Get<NUnitExampleSignatureBuilder>();
+            var signatureBuilder = Container.Resolve<NUnitExampleSignatureBuilder>();
             Regex signature = signatureBuilder.Build(scenarioOutline, exampleRow);
 
             signature.IsMatch("Pickles.TestHarness.AdditionFeature.AddingSeveralNumbers(\"40\",\"50\",\"90\",System.String[])".ToLowerInvariant()).ShouldBeTrue();

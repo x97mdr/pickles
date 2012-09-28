@@ -22,7 +22,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Input;
-using Ninject;
+using Autofac;
 using Pickles.Parser;
 using System.Globalization;
 using System.ComponentModel;
@@ -503,8 +503,12 @@ namespace Pickles.UserInterface
 
         private void DoWork()
         {
-            var kernel = new StandardKernel(new PicklesModule());
-            var configuration = kernel.Get<Configuration>();
+            var builder = new ContainerBuilder();
+            builder.RegisterAssemblyTypes(typeof(Runner).Assembly);
+            builder.RegisterModule<PicklesModule>();
+            var container = builder.Build();
+
+            var configuration = container.Resolve<Configuration>();
 
             configuration.FeatureFolder = new DirectoryInfo(featureFolder);
             configuration.OutputFolder = new DirectoryInfo(outputFolder);
@@ -517,8 +521,8 @@ namespace Pickles.UserInterface
             foreach (DocumentationFormat documentationFormat in documentationFormats.Selected)
             {
                 configuration.DocumentationFormat = documentationFormat;
-                var runner = kernel.Get<Runner>();
-                runner.Run(kernel);
+                var runner = container.Resolve<Runner>();
+                runner.Run(container);
             }
         }
 

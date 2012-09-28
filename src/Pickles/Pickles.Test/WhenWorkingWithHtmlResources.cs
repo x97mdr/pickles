@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Should;
 
 namespace Pickles.Test
@@ -12,10 +12,10 @@ namespace Pickles.Test
         [Test]
         public void ThenCanDetectAllImagesSuccessfully()
         {
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.OutputFolder = configuration.OutputFolder = new DirectoryInfo(@"c:\");
 
-            var htmlResources = Kernel.Get<HtmlResourceSet>();
+            var htmlResources = Container.Resolve<HtmlResourceSet>();
             HtmlResource[] images = htmlResources.Images.ToArray();
 
             images.Length.ShouldEqual(2);
@@ -26,10 +26,10 @@ namespace Pickles.Test
         [Test]
         public void ThenCanDetectAllResourcesSuccessfully()
         {
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.OutputFolder = configuration.OutputFolder = new DirectoryInfo(@"c:\");
 
-            var htmlResources = Kernel.Get<HtmlResourceSet>();
+            var htmlResources = Container.Resolve<HtmlResourceSet>();
             HtmlResource[] resources = htmlResources.All.ToArray();
 
             resources.Length.ShouldEqual(7);
@@ -45,10 +45,10 @@ namespace Pickles.Test
         [Test]
         public void ThenCanDetectAllScriptsSuccessfully()
         {
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.OutputFolder = configuration.OutputFolder = new DirectoryInfo(@"c:\");
 
-            var htmlResources = Kernel.Get<HtmlResourceSet>();
+            var htmlResources = Container.Resolve<HtmlResourceSet>();
             HtmlResource[] scripts = htmlResources.Scripts.ToArray();
 
             scripts.Length.ShouldEqual(2);
@@ -59,10 +59,10 @@ namespace Pickles.Test
         [Test]
         public void ThenCanDetectAllStylesheetsSuccessfully()
         {
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.OutputFolder = configuration.OutputFolder = new DirectoryInfo(@"c:\");
 
-            var htmlResources = Kernel.Get<HtmlResourceSet>();
+            var htmlResources = Container.Resolve<HtmlResourceSet>();
             HtmlResource[] stylesheets = htmlResources.Stylesheets.ToArray();
 
             stylesheets.Length.ShouldEqual(5);

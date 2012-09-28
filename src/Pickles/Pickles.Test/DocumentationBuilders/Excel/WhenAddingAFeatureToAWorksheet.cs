@@ -1,6 +1,6 @@
 ﻿using ClosedXML.Excel;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.DocumentationBuilders.Excel;
 using Pickles.Parser;
 using Should;
@@ -13,7 +13,7 @@ namespace Pickles.Test.DocumentationBuilders
         [Test]
         public void Then_feature_is_added_successfully()
         {
-            var excelFeatureFormatter = Kernel.Get<ExcelFeatureFormatter>();
+            var excelFeatureFormatter = Container.Resolve<ExcelFeatureFormatter>();
             var feature = new Feature
                               {
                                   Name = "Test Feature",

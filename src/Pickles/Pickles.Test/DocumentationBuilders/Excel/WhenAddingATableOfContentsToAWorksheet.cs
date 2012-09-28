@@ -1,6 +1,6 @@
 ﻿using ClosedXML.Excel;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.DocumentationBuilders.Excel;
 
 namespace Pickles.Test.DocumentationBuilders.Excel
@@ -14,7 +14,7 @@ namespace Pickles.Test.DocumentationBuilders.Excel
             )]
         public void ThenCanAddTableOfContentsWorksheetSuccessfully()
         {
-            var excelTableOfContentsFormatter = Kernel.Get<ExcelTableOfContentsFormatter>();
+            var excelTableOfContentsFormatter = Container.Resolve<ExcelTableOfContentsFormatter>();
             using (var workbook = new XLWorkbook())
             {
                 IXLWorksheet worksheet = workbook.AddWorksheet("SHEET1");

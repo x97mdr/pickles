@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.DirectoryCrawler;
 using Should;
 
@@ -12,7 +12,7 @@ namespace Pickles.Test
         [Test]
         public void ThenCanDetectFeatureFilesSuccessfully()
         {
-            var relevantFileDetector = Kernel.Get<RelevantFileDetector>();
+            var relevantFileDetector = Container.Resolve<RelevantFileDetector>();
             relevantFileDetector.IsRelevant(new FileInfo("test.feature")).ShouldBeTrue();
             relevantFileDetector.IsRelevant(new FileInfo("test.markdown")).ShouldBeTrue();
             relevantFileDetector.IsRelevant(new FileInfo("test.mdown")).ShouldBeTrue();

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Linq;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.DocumentationBuilders.HTML;
 using Pickles.Parser;
 
@@ -15,10 +15,10 @@ namespace Pickles.Test.Formatters
         [SetUp]
         public void Setup()
         {
-            formatter = new HtmlScenarioOutlineFormatter(Kernel.Get<HtmlStepFormatter>(),
-                                                         Kernel.Get<HtmlDescriptionFormatter>(),
-                                                         Kernel.Get<HtmlTableFormatter>(),
-                                                         Kernel.Get<HtmlImageResultFormatter>());
+            formatter = new HtmlScenarioOutlineFormatter(Container.Resolve<HtmlStepFormatter>(),
+                                                         Container.Resolve<HtmlDescriptionFormatter>(),
+                                                         Container.Resolve<HtmlTableFormatter>(),
+                                                         Container.Resolve<HtmlImageResultFormatter>());
         }
 
         #endregion

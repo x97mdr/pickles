@@ -19,7 +19,7 @@
 #endregion
 
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.DocumentationBuilders.DITA;
 using Pickles.DocumentationBuilders.Excel;
 using Pickles.DocumentationBuilders.Word;
@@ -30,25 +30,13 @@ namespace Pickles.Test
     public class WhenResolvingADocumentationBuilder : BaseFixture
     {
         [Test]
-        public void Then_can_resolve_IDocumentationBuilder_as_HtmlDocumentationBuilder_if_the_user_selects_HTML_output()
-        {
-            var configuration = Kernel.Get<Configuration>();
-            configuration.DocumentationFormat = DocumentationFormat.Html;
-
-            var item = Kernel.Get<IDocumentationBuilder>();
-
-            item.ShouldNotBeNull();
-            item.ShouldBeType<HtmlDocumentationBuilder>();
-        }
-
-        [Test]
         public void ThenCanResolveIDocumentationBuilderAsHtmlDocumentationBuilderAsSingletonIfTheUserSelectsHtmlOutput()
         {
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.DocumentationFormat = DocumentationFormat.Html;
 
-            var item1 = Kernel.Get<IDocumentationBuilder>();
-            var item2 = Kernel.Get<IDocumentationBuilder>();
+            var item1 = Container.Resolve<IDocumentationBuilder>();
+            var item2 = Container.Resolve<IDocumentationBuilder>();
 
             item1.ShouldNotBeNull();
             item1.ShouldBeType<HtmlDocumentationBuilder>();
@@ -60,10 +48,10 @@ namespace Pickles.Test
         [Test]
         public void ThenCanResolveIDocumentationBuilderAsWordDocumentationBuilderIfTheUserSelectsWordOutput()
         {
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.DocumentationFormat = DocumentationFormat.Word;
 
-            var item = Kernel.Get<IDocumentationBuilder>();
+            var item = Container.Resolve<IDocumentationBuilder>();
 
             item.ShouldNotBeNull();
             item.ShouldBeType<WordDocumentationBuilder>();
@@ -72,11 +60,11 @@ namespace Pickles.Test
         [Test]
         public void ThenCanResolveIDocumentationBuilderAsWordDocumentationBuilderAsSingletonIfTheUserSelectsWordOutput()
         {
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.DocumentationFormat = DocumentationFormat.Word;
 
-            var item1 = Kernel.Get<IDocumentationBuilder>();
-            var item2 = Kernel.Get<IDocumentationBuilder>();
+            var item1 = Container.Resolve<IDocumentationBuilder>();
+            var item2 = Container.Resolve<IDocumentationBuilder>();
 
             item1.ShouldNotBeNull();
             item1.ShouldBeType<WordDocumentationBuilder>();
@@ -88,10 +76,10 @@ namespace Pickles.Test
         [Test]
         public void ThenCanResolveIDocumentationBuilderAsDitaDocumentationBuilderIfTheUserSelectsDitaOutput()
         {
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.DocumentationFormat = DocumentationFormat.Dita;
 
-            var item = Kernel.Get<IDocumentationBuilder>();
+            var item = Container.Resolve<IDocumentationBuilder>();
 
             item.ShouldNotBeNull();
             item.ShouldBeType<DitaDocumentationBuilder>();
@@ -100,11 +88,11 @@ namespace Pickles.Test
         [Test]
         public void ThenCanResolveIDocumentationBuilderAsDitaDocumentationBuilderAsSingletonIfTheUserSelectsDitaOutput()
         {
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.DocumentationFormat = DocumentationFormat.Dita;
 
-            var item1 = Kernel.Get<IDocumentationBuilder>();
-            var item2 = Kernel.Get<IDocumentationBuilder>();
+            var item1 = Container.Resolve<IDocumentationBuilder>();
+            var item2 = Container.Resolve<IDocumentationBuilder>();
 
             item1.ShouldNotBeNull();
             item1.ShouldBeType<DitaDocumentationBuilder>();
@@ -116,10 +104,10 @@ namespace Pickles.Test
         [Test]
         public void ThenCanResolveIDocumentationBuilderAsExcelDocumentationBuilderIfTheUserSelectsExcelOutput()
         {
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.DocumentationFormat = DocumentationFormat.Excel;
 
-            var item = Kernel.Get<IDocumentationBuilder>();
+            var item = Container.Resolve<IDocumentationBuilder>();
 
             item.ShouldNotBeNull();
             item.ShouldBeType<ExcelDocumentationBuilder>();
@@ -128,11 +116,11 @@ namespace Pickles.Test
         [Test]
         public void ThenCanResolveIDocumentationBuilderAsExcelDocumentationBuilderAsSingletonIfTheUserSelectsExcelOutput()
         {
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.DocumentationFormat = DocumentationFormat.Excel;
 
-            var item1 = Kernel.Get<IDocumentationBuilder>();
-            var item2 = Kernel.Get<IDocumentationBuilder>();
+            var item1 = Container.Resolve<IDocumentationBuilder>();
+            var item2 = Container.Resolve<IDocumentationBuilder>();
 
             item1.ShouldNotBeNull();
             item1.ShouldBeType<ExcelDocumentationBuilder>();

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ClosedXML.Excel;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.DocumentationBuilders.Excel;
 using Pickles.Parser;
 using Should;
@@ -14,7 +14,7 @@ namespace Pickles.Test.DocumentationBuilders.Excel
         [Test]
         public void ThenSingleScenarioOutlineAddedSuccessfully()
         {
-            var excelScenarioFormatter = Kernel.Get<ExcelScenarioOutlineFormatter>();
+            var excelScenarioFormatter = Container.Resolve<ExcelScenarioOutlineFormatter>();
             var exampleTable = new Table();
             exampleTable.HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4");
             exampleTable.DataRows =
@@ -58,7 +58,7 @@ namespace Pickles.Test.DocumentationBuilders.Excel
         [Test]
         public void ThenSingleScenarioOutlineWithStepsAddedSuccessfully()
         {
-            var excelScenarioFormatter = Kernel.Get<ExcelScenarioOutlineFormatter>();
+            var excelScenarioFormatter = Container.Resolve<ExcelScenarioOutlineFormatter>();
             var exampleTable = new Table();
             exampleTable.HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4");
             exampleTable.DataRows =

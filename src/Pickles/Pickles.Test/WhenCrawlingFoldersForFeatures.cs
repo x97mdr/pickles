@@ -1,6 +1,6 @@
 ﻿using NGenerics.DataStructures.Trees;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.DirectoryCrawler;
 using Should;
 
@@ -13,7 +13,7 @@ namespace Pickles.Test
         public void Then_can_crawl_all_folders_including_subfolders_for_features_successfully()
         {
             string rootPath = @"FakeFolderStructures\FeatureCrawlerTests";
-            GeneralTree<IDirectoryTreeNode> features = Kernel.Get<DirectoryTreeCrawler>().Crawl(rootPath);
+            GeneralTree<IDirectoryTreeNode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(rootPath);
 
             Assert.NotNull(features);
 

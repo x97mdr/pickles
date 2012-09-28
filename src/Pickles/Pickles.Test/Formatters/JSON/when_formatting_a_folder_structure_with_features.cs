@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using NGenerics.DataStructures.Trees;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.DirectoryCrawler;
 using Pickles.DocumentationBuilders.JSON;
 using Pickles.Test.Helpers;
@@ -19,7 +19,7 @@ namespace Pickles.Test.Formatters.JSON
         [TestFixtureSetUp]
         public void Setup()
         {
-            GeneralTree<IDirectoryTreeNode> features = Kernel.Get<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
+            GeneralTree<IDirectoryTreeNode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
 
             var outputDirectory = new DirectoryInfo(OUTPUT_DIRECTORY);
             if (!outputDirectory.Exists) outputDirectory.Create();

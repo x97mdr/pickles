@@ -4,7 +4,7 @@ using System.Linq;
 using NGenerics.DataStructures.Trees;
 using NUnit.Framework;
 using Newtonsoft.Json.Linq;
-using Ninject;
+using Autofac;
 using Pickles.DirectoryCrawler;
 using Pickles.DocumentationBuilders.JSON;
 using Pickles.Test.Helpers;
@@ -28,7 +28,7 @@ namespace Pickles.Test.Formatters.JSON
                 throw new FileNotFoundException("File " + testResultFilePath + " was not found");
             }
 
-            GeneralTree<IDirectoryTreeNode> features = Kernel.Get<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
+            GeneralTree<IDirectoryTreeNode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
 
             var outputDirectory = new DirectoryInfo(OUTPUT_DIRECTORY);
             if (!outputDirectory.Exists) outputDirectory.Create();

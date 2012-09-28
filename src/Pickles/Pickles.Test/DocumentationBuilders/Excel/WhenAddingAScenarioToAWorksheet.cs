@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ClosedXML.Excel;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.DocumentationBuilders.Excel;
 using Pickles.Parser;
 using Should;
@@ -14,7 +14,7 @@ namespace Pickles.Test.DocumentationBuilders
         [Test]
         public void ThenSingleScenarioAddedSuccessfully()
         {
-            var excelScenarioFormatter = Kernel.Get<ExcelScenarioFormatter>();
+            var excelScenarioFormatter = Container.Resolve<ExcelScenarioFormatter>();
             var scenario = new Scenario
                                {
                                    Name = "Test Feature",
@@ -37,7 +37,7 @@ namespace Pickles.Test.DocumentationBuilders
         [Test]
         public void ThenSingleScenarioWithStepsAddedSuccessfully()
         {
-            var excelScenarioFormatter = Kernel.Get<ExcelScenarioFormatter>();
+            var excelScenarioFormatter = Container.Resolve<ExcelScenarioFormatter>();
             var scenario = new Scenario
                                {
                                    Name = "Test Feature",

@@ -1,6 +1,6 @@
 ﻿using ClosedXML.Excel;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.DocumentationBuilders.Excel;
 using Pickles.Parser;
 using Should;
@@ -13,7 +13,7 @@ namespace Pickles.Test.DocumentationBuilders
         [Test]
         public void ThenCanCreateSimpleNameSuccessfully()
         {
-            var excelSheetNameGenerator = Kernel.Get<ExcelSheetNameGenerator>();
+            var excelSheetNameGenerator = Container.Resolve<ExcelSheetNameGenerator>();
             var feature = new Feature {Name = "A short feature name"};
 
             string name;
@@ -28,7 +28,7 @@ namespace Pickles.Test.DocumentationBuilders
         [Test]
         public void ThenCanShortenLongDuplicatedNameSuccessfully()
         {
-            var excelSheetNameGenerator = Kernel.Get<ExcelSheetNameGenerator>();
+            var excelSheetNameGenerator = Container.Resolve<ExcelSheetNameGenerator>();
             var feature1 = new Feature {Name = "This is a really really long feature name that needs to be shortened A"};
             var feature2 = new Feature {Name = "This is a really really long feature name that needs to be shortened B"};
 
@@ -47,7 +47,7 @@ namespace Pickles.Test.DocumentationBuilders
         [Test]
         public void ThenCanShortenLongMultipleDuplicatedNameSuccessfully()
         {
-            var excelSheetNameGenerator = Kernel.Get<ExcelSheetNameGenerator>();
+            var excelSheetNameGenerator = Container.Resolve<ExcelSheetNameGenerator>();
             var feature1 = new Feature {Name = "This is a really really long feature name that needs to be shortened A"};
             var feature2 = new Feature {Name = "This is a really really long feature name that needs to be shortened B"};
             var feature3 = new Feature {Name = "This is a really really long feature name that needs to be shortened C"};
@@ -70,7 +70,7 @@ namespace Pickles.Test.DocumentationBuilders
         [Test]
         public void ThenCanShortenLongNameSuccessfully()
         {
-            var excelSheetNameGenerator = Kernel.Get<ExcelSheetNameGenerator>();
+            var excelSheetNameGenerator = Container.Resolve<ExcelSheetNameGenerator>();
             var feature = new Feature {Name = "This is a really really long feature name that needs to be shortened"};
 
             string name;
@@ -85,7 +85,7 @@ namespace Pickles.Test.DocumentationBuilders
         [Test]
         public void ThenItWillRemoveUnnecessaryAndInvalidCharacters()
         {
-            var excelSheetNameGenerator = Kernel.Get<ExcelSheetNameGenerator>();
+            var excelSheetNameGenerator = Container.Resolve<ExcelSheetNameGenerator>();
             var feature = new Feature { Name = @"This Had invalid characters: :\/?*[]" };
             
             string name;

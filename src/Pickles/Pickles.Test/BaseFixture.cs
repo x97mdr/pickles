@@ -1,23 +1,34 @@
 ﻿using NUnit.Framework;
-using Ninject;
+using Autofac;
 
 namespace Pickles.Test
 {
     public class BaseFixture
     {
-        private IKernel kernel;
+        private IContainer container;
 
-        protected IKernel Kernel
+        protected IContainer Container
         {
-            get { return kernel ?? (kernel = new StandardKernel(new PicklesModule())); }
+            get 
+            {
+                if (container == null)
+                {
+                    var builder = new ContainerBuilder();
+                    builder.RegisterAssemblyTypes(typeof (Runner).Assembly);
+                    builder.RegisterModule<PicklesModule>();
+                    container = builder.Build();
+                }
+
+                return container;
+            }
         }
 
         [TearDown]
         public void TearDown()
         {
-            if (kernel != null)
-                kernel.Dispose();
-            kernel = null;
+            if (container != null)
+                container.Dispose();
+            container = null;
         }
     }
 }

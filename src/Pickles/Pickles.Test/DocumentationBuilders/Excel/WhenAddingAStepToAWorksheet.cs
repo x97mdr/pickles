@@ -1,6 +1,6 @@
 ﻿using ClosedXML.Excel;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.DocumentationBuilders.Excel;
 using Pickles.Parser;
 using Should;
@@ -13,7 +13,7 @@ namespace Pickles.Test.DocumentationBuilders
         [Test]
         public void ThenStepAddedSuccessfully()
         {
-            var excelStepFormatter = Kernel.Get<ExcelStepFormatter>();
+            var excelStepFormatter = Container.Resolve<ExcelStepFormatter>();
             var step = new Step {NativeKeyword = "Given", Name = "I have some precondition"};
 
             using (var workbook = new XLWorkbook())

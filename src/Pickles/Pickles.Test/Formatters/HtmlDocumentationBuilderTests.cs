@@ -1,6 +1,6 @@
 using System.IO;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.DirectoryCrawler;
 
 namespace Pickles.Test.Formatters
@@ -22,10 +22,10 @@ namespace Pickles.Test.Formatters
         [Test]
         public void ShouldNotBlowUpWHenParsingEmptyFolder()
         {
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.OutputFolder = new DirectoryInfo(ROOT_PATH + @"..\");
-            var features = Kernel.Get<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
-            var builder = Kernel.Get<HtmlDocumentationBuilder>();
+            var features = Container.Resolve<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
+            var builder = Container.Resolve<HtmlDocumentationBuilder>();
             
             builder.Build(features);
         }

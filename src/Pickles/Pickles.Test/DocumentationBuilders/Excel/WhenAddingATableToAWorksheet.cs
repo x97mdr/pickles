@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ClosedXML.Excel;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.DocumentationBuilders.Excel;
 using Pickles.Parser;
 using Should;
@@ -14,7 +14,7 @@ namespace Pickles.Test.DocumentationBuilders
         [Test]
         public void ThenTableAddedSuccessfully()
         {
-            var excelTableFormatter = Kernel.Get<ExcelTableFormatter>();
+            var excelTableFormatter = Container.Resolve<ExcelTableFormatter>();
             var table = new Table();
             table.HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4");
             table.DataRows =

@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Reflection;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.TestFrameworks;
 using Should;
 
@@ -13,8 +13,8 @@ namespace Pickles.Test
         [Test]
         public void ThenCanResolveAsSingletonWhenNoTestResultsSelected()
         {
-            var item1 = Kernel.Get<ITestResults>();
-            var item2 = Kernel.Get<ITestResults>();
+            var item1 = Container.Resolve<ITestResults>();
+            var item2 = Container.Resolve<ITestResults>();
 
             item1.ShouldNotBeNull();
             item1.ShouldBeType<NullTestResults>();
@@ -36,12 +36,12 @@ namespace Pickles.Test
                 output.Write(input.ReadToEnd());
             }
 
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.MsTest;
             configuration.TestResultsFile = new FileInfo(resultsFilename);
 
-            var item1 = Kernel.Get<ITestResults>();
-            var item2 = Kernel.Get<ITestResults>();
+            var item1 = Container.Resolve<ITestResults>();
+            var item2 = Container.Resolve<ITestResults>();
 
             item1.ShouldNotBeNull();
             item1.ShouldBeType<MsTestResults>();
@@ -63,12 +63,12 @@ namespace Pickles.Test
                 output.Write(input.ReadToEnd());
             }
 
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.NUnit;
             configuration.TestResultsFile = new FileInfo(resultsFilename);
 
-            var item1 = Kernel.Get<ITestResults>();
-            var item2 = Kernel.Get<ITestResults>();
+            var item1 = Container.Resolve<ITestResults>();
+            var item2 = Container.Resolve<ITestResults>();
 
             item1.ShouldNotBeNull();
             item1.ShouldBeType<NUnitResults>();
@@ -90,12 +90,12 @@ namespace Pickles.Test
                 output.Write(input.ReadToEnd());
             }
 
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.xUnit;
             configuration.TestResultsFile = new FileInfo(resultsFilename);
 
-            var item1 = Kernel.Get<ITestResults>();
-            var item2 = Kernel.Get<ITestResults>();
+            var item1 = Container.Resolve<ITestResults>();
+            var item2 = Container.Resolve<ITestResults>();
 
             item1.ShouldNotBeNull();
             item1.ShouldBeType<XUnitResults>();
@@ -107,7 +107,7 @@ namespace Pickles.Test
         [Test]
         public void ThenCanResolveWhenNoTestResultsSelected()
         {
-            var item = Kernel.Get<ITestResults>();
+            var item = Container.Resolve<ITestResults>();
 
             Assert.NotNull(item);
             Assert.IsInstanceOf<NullTestResults>(item);
@@ -124,11 +124,11 @@ namespace Pickles.Test
                 output.Write(input.ReadToEnd());
             }
 
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.MsTest;
             configuration.TestResultsFile = new FileInfo(resultsFilename);
 
-            var item = Kernel.Get<ITestResults>();
+            var item = Container.Resolve<ITestResults>();
 
             Assert.NotNull(item);
             Assert.IsInstanceOf<MsTestResults>(item);
@@ -144,11 +144,11 @@ namespace Pickles.Test
                 output.Write(input.ReadToEnd());
             }
 
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.NUnit;
             configuration.TestResultsFile = new FileInfo(resultsFilename);
 
-            var item = Kernel.Get<ITestResults>();
+            var item = Container.Resolve<ITestResults>();
 
             Assert.NotNull(item);
             Assert.IsInstanceOf<NUnitResults>(item);
@@ -164,11 +164,11 @@ namespace Pickles.Test
                 output.Write(input.ReadToEnd());
             }
 
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.xUnit;
             configuration.TestResultsFile = new FileInfo(resultsFilename);
 
-            var item = Kernel.Get<ITestResults>();
+            var item = Container.Resolve<ITestResults>();
 
             Assert.NotNull(item);
             Assert.IsInstanceOf<XUnitResults>(item);

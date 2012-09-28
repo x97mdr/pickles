@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Linq;
-using Ninject;
+using Autofac;
 using NUnit.Framework;
 using Pickles.DocumentationBuilders.HTML;
 using Pickles.Parser;
@@ -25,7 +25,7 @@ namespace Pickles.Test.DocumentationBuilders.HTML
                                             })
             };
 
-            var htmlTableFormatter = Kernel.Get<HtmlTableFormatter>();
+            var htmlTableFormatter = Container.Resolve<HtmlTableFormatter>();
 
             var output = htmlTableFormatter.Format(table);
 
@@ -41,7 +41,7 @@ namespace Pickles.Test.DocumentationBuilders.HTML
         [Test]
         public void ThenCanFormatNullTableSuccessfully()
         {
-            var htmlTableFormatter = Kernel.Get<HtmlTableFormatter>();
+            var htmlTableFormatter = Container.Resolve<HtmlTableFormatter>();
             var output = htmlTableFormatter.Format(null);
 
             output.ShouldBeNull();

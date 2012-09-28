@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Linq;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.DocumentationBuilders.HTML;
 using Pickles.Parser;
 
@@ -30,7 +30,7 @@ namespace Pickles.Test
                                DocStringArgument = "this is a\nmultiline table\nargument",
                            };
 
-            var formatter = Kernel.Get<HtmlStepFormatter>();
+            var formatter = Container.Resolve<HtmlStepFormatter>();
             XElement actual = formatter.Format(step);
 
             XNamespace xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
@@ -67,7 +67,7 @@ namespace Pickles.Test
                                DocStringArgument = null,
                            };
 
-            var formatter = Kernel.Get<HtmlStepFormatter>();
+            var formatter = Container.Resolve<HtmlStepFormatter>();
             XElement actual = formatter.Format(step);
 
             XNamespace xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
@@ -93,10 +93,10 @@ namespace Pickles.Test
                                DocStringArgument = null,
                            };
 
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.Language = "sv";
 
-            var formatter = Kernel.Get<HtmlStepFormatter>();
+            var formatter = Container.Resolve<HtmlStepFormatter>();
             XElement actual = formatter.Format(step);
 
             XNamespace xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");
@@ -127,7 +127,7 @@ namespace Pickles.Test
                                DocStringArgument = null,
                            };
 
-            var formatter = Kernel.Get<HtmlStepFormatter>();
+            var formatter = Container.Resolve<HtmlStepFormatter>();
             XElement actual = formatter.Format(step);
 
             XNamespace xmlns = XNamespace.Get("http://www.w3.org/1999/xhtml");

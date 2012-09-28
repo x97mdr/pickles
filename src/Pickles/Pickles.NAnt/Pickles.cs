@@ -23,7 +23,7 @@ using System.IO;
 using System.Reflection;
 using NAnt.Core;
 using NAnt.Core.Attributes;
-using Ninject;
+using Autofac;
 
 namespace Pickles.NAnt
 {
@@ -87,13 +87,16 @@ namespace Pickles.NAnt
                 Project.Log(Level.Info, "Reading features from {0}", FeatureDirectory ?? string.Empty);
                 Project.Log(Level.Info, "Writing output to {0}", OutputDirectory ?? string.Empty);
 
-                var kernel = new StandardKernel(new PicklesModule());
+                var builder = new ContainerBuilder();
+                builder.RegisterAssemblyTypes(typeof(Runner).Assembly);
+                builder.RegisterModule<PicklesModule>();
+                var container = builder.Build();
 
-                var configuration = kernel.Get<Configuration>();
+                var configuration = container.Resolve<Configuration>();
                 CaptureConfiguration(configuration);
 
-                var runner = kernel.Get<Runner>();
-                runner.Run(kernel);
+                var runner = container.Resolve<Runner>();
+                runner.Run(container);
             }
             catch (Exception e)
             {

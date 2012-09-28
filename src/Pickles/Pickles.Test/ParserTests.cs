@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Xml.Linq;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.DocumentationBuilders.HTML;
 using Pickles.Parser;
 
@@ -14,8 +14,8 @@ namespace Pickles.Test
         [Ignore("The expected results files need some modification based on the latest changes to the formatters")]
         public void CanParseFeatureFilesSuccessfully(string featureText, string xhtmlText)
         {
-            var parser = Kernel.Get<FeatureParser>();
-            var htmlDocumentFormatter = Kernel.Get<HtmlFeatureFormatter>();
+            var parser = Container.Resolve<FeatureParser>();
+            var htmlDocumentFormatter = Container.Resolve<HtmlFeatureFormatter>();
 
             string actual;
             using (var reader = new StringReader(featureText))

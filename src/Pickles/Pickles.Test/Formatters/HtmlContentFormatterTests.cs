@@ -2,7 +2,7 @@
 using System.IO;
 using Moq;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.DirectoryCrawler;
 using Pickles.DocumentationBuilders.HTML;
 using Pickles.Parser;
@@ -30,7 +30,7 @@ namespace Pickles.Test.Formatters
                 Assert.Throws<ArgumentNullException>(
                     () =>
                     new HtmlContentFormatter(
-                        Kernel.Get<HtmlFeatureFormatter>(),
+                        Container.Resolve<HtmlFeatureFormatter>(),
                         null));
 
             Assert.AreEqual("htmlIndexFormatter", exception.ParamName);
@@ -40,7 +40,7 @@ namespace Pickles.Test.Formatters
         public void Format_ContentIsFeatureNode_UsesHtmlFeatureFormatterWithCorrectArgument()
         {
             var fakeHtmlFeatureFormatter = new Mock<IHtmlFeatureFormatter>();
-            var formatter = new HtmlContentFormatter(fakeHtmlFeatureFormatter.Object, Kernel.Get<HtmlIndexFormatter>());
+            var formatter = new HtmlContentFormatter(fakeHtmlFeatureFormatter.Object, Container.Resolve<HtmlIndexFormatter>());
 
             var featureNode = new FeatureDirectoryTreeNode(
                 new FileInfo(@"c:\temp\test.feature"),

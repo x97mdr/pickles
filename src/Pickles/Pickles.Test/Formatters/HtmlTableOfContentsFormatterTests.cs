@@ -4,7 +4,7 @@ using System.Linq;
 using System.Xml.Linq;
 using NGenerics.DataStructures.Trees;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.DirectoryCrawler;
 using Pickles.DocumentationBuilders.HTML;
 using Pickles.Test.Helpers;
@@ -20,7 +20,7 @@ namespace Pickles.Test.Formatters
         [TestFixtureSetUp]
         public void Setup()
         {
-            GeneralTree<IDirectoryTreeNode> features = Kernel.Get<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
+            GeneralTree<IDirectoryTreeNode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
 
             var formatter = new HtmlTableOfContentsFormatter();
             _toc = formatter.Format(features.ChildNodes[0].Data.OriginalLocationUrl, features,

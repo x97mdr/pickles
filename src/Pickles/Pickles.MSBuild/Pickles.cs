@@ -23,7 +23,7 @@ using System.IO;
 using System.Reflection;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
-using Ninject;
+using Autofac;
 
 namespace Pickles.MSBuild
 {
@@ -72,12 +72,16 @@ namespace Pickles.MSBuild
                 Log.LogMessage("Reading features from {0}", FeatureDirectory ?? string.Empty);
                 Log.LogMessage("Writing output to {0}", OutputDirectory ?? string.Empty);
 
-                var kernel = new StandardKernel(new PicklesModule());
-                var configuration = kernel.Get<Configuration>();
+                var builder = new ContainerBuilder();
+                builder.RegisterAssemblyTypes(typeof(Runner).Assembly);
+                builder.RegisterModule<PicklesModule>();
+                var container = builder.Build();
+
+                var configuration = container.Resolve<Configuration>();
                 CaptureConfiguration(configuration);
 
-                var runner = kernel.Get<Runner>();
-                runner.Run(kernel);
+                var runner = container.Resolve<Runner>();
+                runner.Run(container);
             }
             catch (Exception e)
             {

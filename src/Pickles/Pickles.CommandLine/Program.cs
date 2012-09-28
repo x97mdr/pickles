@@ -20,7 +20,7 @@
 
 using System;
 using System.Reflection;
-using Ninject;
+using Autofac;
 using log4net;
 using log4net.Config;
 
@@ -34,10 +34,14 @@ namespace Pickles.CommandLine
         {
             XmlConfigurator.Configure();
 
-            var kernel = new StandardKernel(new PicklesModule());
-            var configuration = kernel.Get<Configuration>();
+            var builder = new ContainerBuilder();
+            builder.RegisterAssemblyTypes(typeof(Runner).Assembly);
+            builder.RegisterModule<PicklesModule>();
+            var container = builder.Build();
 
-            var commandLineArgumentParser = kernel.Get<CommandLineArgumentParser>();
+            var configuration = container.Resolve<Configuration>();
+
+            var commandLineArgumentParser = container.Resolve<CommandLineArgumentParser>();
             var shouldContinue = commandLineArgumentParser.Parse(args, configuration, Console.Out);
 
             if (shouldContinue)
@@ -49,8 +53,8 @@ namespace Pickles.CommandLine
                     log.InfoFormat("Reading features from {0}", configuration.FeatureFolder.FullName);
                 }
 
-                var runner = kernel.Get<Runner>();
-                runner.Run(kernel);
+                var runner = container.Resolve<Runner>();
+                runner.Run(container);
 
                 if (log.IsInfoEnabled)
                 {

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Xml.Linq;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.DocumentationBuilders.HTML;
 using Pickles.Parser;
 
@@ -13,7 +13,7 @@ namespace Pickles.Test
         [Test]
         public void ThenCanFormatDescriptionAsMarkdown()
         {
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFile = null;
 
             var feature = new Feature
@@ -46,7 +46,7 @@ I also enjoy ordering things
 2. This is the second reason"
                               };
 
-            var htmlFeatureFormatter = Kernel.Get<HtmlFeatureFormatter>();
+            var htmlFeatureFormatter = Container.Resolve<HtmlFeatureFormatter>();
             XElement featureElement = htmlFeatureFormatter.Format(feature);
             XElement description = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
 

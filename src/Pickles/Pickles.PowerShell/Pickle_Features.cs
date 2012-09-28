@@ -24,7 +24,7 @@ using System;
 using System.IO;
 using System.Management.Automation;
 using System.Reflection;
-using Ninject;
+using Autofac;
 
 namespace Pickles.PowerShell
 {
@@ -57,8 +57,12 @@ namespace Pickles.PowerShell
 
         protected override void ProcessRecord()
         {
-            var kernel = new StandardKernel(new PicklesModule());
-            var configuration = kernel.Get<Configuration>();
+            var builder = new ContainerBuilder();
+            builder.RegisterAssemblyTypes(typeof(Runner).Assembly);
+            builder.RegisterModule<PicklesModule>();
+            var container = builder.Build();
+
+            var configuration = container.Resolve<Configuration>();
 
             ParseParameters(configuration);
 
@@ -68,8 +72,8 @@ namespace Pickles.PowerShell
                                       configuration.FeatureFolder));
             WriteObject(string.Format(" - output to {0}", configuration.OutputFolder));
 
-            var runner = kernel.Get<Runner>();
-            runner.Run(kernel);
+            var runner = container.Resolve<Runner>();
+            runner.Run(container);
 
             WriteObject(string.Format("Pickles completed successfully"));
         }

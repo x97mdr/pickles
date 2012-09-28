@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.Parser;
 using Should;
 using System;
@@ -34,7 +34,7 @@ Feature: Test
 		Then I should see that this other thing happens
         And something else";
 
-            var parser = Kernel.Get<FeatureParser>();
+            var parser = Container.Resolve<FeatureParser>();
             Feature feature = parser.Parse(new StringReader(featureText));
 
             Assert.AreNotEqual(null, feature);
@@ -116,7 +116,7 @@ Feature: Test
 		When it runs
 		Then I should see that this thing happens";
 
-            var parser = Kernel.Get<FeatureParser>();
+            var parser = Container.Resolve<FeatureParser>();
             Feature feature = parser.Parse(new StringReader(featureText));
 
             Assert.AreNotEqual(null, feature);
@@ -172,7 +172,7 @@ Feature: Test
     | keyword1 | keyword2 |
     | this     | that     |";
 
-            var parser = Kernel.Get<FeatureParser>();
+            var parser = Container.Resolve<FeatureParser>();
             Feature feature = parser.Parse(new StringReader(featureText));
 
             var scenarioOutline = feature.FeatureElements[0] as ScenarioOutline;
@@ -229,7 +229,7 @@ Feature: Test
 		When it runs
 		Then I should see that this thing happens";
 
-            var parser = Kernel.Get<FeatureParser>();
+            var parser = Container.Resolve<FeatureParser>();
             Feature feature = parser.Parse(new StringReader(featureText));
 
             Assert.AreNotEqual(null, feature.Background);
@@ -274,7 +274,7 @@ it can be many lines long
         Then I should see that this thing happens",
                     docstring);
 
-            var parser = Kernel.Get<FeatureParser>();
+            var parser = Container.Resolve<FeatureParser>();
             Feature feature = parser.Parse(new StringReader(featureText));
 
             Assert.AreEqual(@"This is a document string
@@ -299,7 +299,7 @@ Feature: Test
 		When it runs
 		Then I should see that this thing happens";
 
-            var parser = Kernel.Get<FeatureParser>();
+            var parser = Container.Resolve<FeatureParser>();
             Feature feature = parser.Parse(new StringReader(featureText));
 
             Table table = feature.FeatureElements[0].Steps[0].TableArgument;

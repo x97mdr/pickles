@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Ninject;
+using Autofac;
 using NUnit.Framework;
 using Pickles.DocumentationBuilders.HTML;
 using Pickles.Parser;
@@ -35,7 +35,7 @@ namespace Pickles.Test.DocumentationBuilders.HTML
                 Examples = examples
             };
 
-            var htmlScenarioOutlineFormatter = Kernel.Get<HtmlScenarioOutlineFormatter>();
+            var htmlScenarioOutlineFormatter = Container.Resolve<HtmlScenarioOutlineFormatter>();
             var output = htmlScenarioOutlineFormatter.Format(scenarioOutline, 0);
 
             output.ShouldContainGherkinScenario();
@@ -66,7 +66,7 @@ namespace Pickles.Test.DocumentationBuilders.HTML
                 Examples = examples
             };
 
-            var htmlScenarioOutlineFormatter = Kernel.Get<HtmlScenarioOutlineFormatter>();
+            var htmlScenarioOutlineFormatter = Container.Resolve<HtmlScenarioOutlineFormatter>();
             var output = htmlScenarioOutlineFormatter.Format(scenarioOutline, 0);
 
             output.ShouldContainGherkinScenario();
@@ -97,7 +97,7 @@ namespace Pickles.Test.DocumentationBuilders.HTML
                 Examples = examples
             };
 
-            var htmlScenarioOutlineFormatter = Kernel.Get<HtmlScenarioOutlineFormatter>();
+            var htmlScenarioOutlineFormatter = Container.Resolve<HtmlScenarioOutlineFormatter>();
             var output = htmlScenarioOutlineFormatter.Format(scenarioOutline, 0);
 
             output.ShouldContainGherkinScenario();
@@ -114,7 +114,7 @@ namespace Pickles.Test.DocumentationBuilders.HTML
                 Examples = new List<Example>()
             };
 
-            var htmlScenarioOutlineFormatter = Kernel.Get<HtmlScenarioOutlineFormatter>();
+            var htmlScenarioOutlineFormatter = Container.Resolve<HtmlScenarioOutlineFormatter>();
             var output = htmlScenarioOutlineFormatter.Format(scenarioOutline, 0);
 
             output.ShouldContainGherkinScenario();
@@ -135,7 +135,7 @@ namespace Pickles.Test.DocumentationBuilders.HTML
                 Examples = examples
             };
 
-            var htmlScenarioOutlineFormatter = Kernel.Get<HtmlScenarioOutlineFormatter>();
+            var htmlScenarioOutlineFormatter = Container.Resolve<HtmlScenarioOutlineFormatter>();
             var output = htmlScenarioOutlineFormatter.Format(scenarioOutline, 0);
 
             output.ShouldContainGherkinScenario();

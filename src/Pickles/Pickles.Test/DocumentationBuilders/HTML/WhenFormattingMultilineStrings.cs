@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Linq;
-using Ninject;
+using Autofac;
 using NUnit.Framework;
 using Pickles.DocumentationBuilders.HTML;
 using Pickles.Parser;
@@ -19,7 +19,7 @@ multiline string
 that has been put into a 
 gherkin-style spec";
 
-            var multilineStringFormatter = Kernel.Get<HtmlMultilineStringFormatter>();
+            var multilineStringFormatter = Container.Resolve<HtmlMultilineStringFormatter>();
             var output = multilineStringFormatter.Format(multilineString);
 
             output.ShouldNotBeNull();
@@ -28,7 +28,7 @@ gherkin-style spec";
         [Test]
         public void ThenCanFormatNullMultilineStringSuccessfully()
         {
-            var multilineStringFormatter = Kernel.Get<HtmlMultilineStringFormatter>();
+            var multilineStringFormatter = Container.Resolve<HtmlMultilineStringFormatter>();
             var output = multilineStringFormatter.Format(null);
 
             output.ShouldBeNull();

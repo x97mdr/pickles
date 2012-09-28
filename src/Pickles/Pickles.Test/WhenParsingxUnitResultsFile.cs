@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Reflection;
 using NUnit.Framework;
-using Ninject;
+using Autofac;
 using Pickles.Parser;
 using Pickles.TestFrameworks;
 using Should;
@@ -23,10 +23,10 @@ namespace Pickles.Test
                 output.Write(input.ReadToEnd());
             }
 
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFile = new FileInfo(RESULTS_FILE_NAME);
 
-            var results = Kernel.Get<XUnitResults>();
+            var results = Container.Resolve<XUnitResults>();
 
             var feature = new Feature {Name = "Addition"};
             TestResult result = results.GetFeatureResult(feature);
@@ -45,10 +45,10 @@ namespace Pickles.Test
                 output.Write(input.ReadToEnd());
             }
 
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFile = new FileInfo(RESULTS_FILE_NAME);
 
-            var results = Kernel.Get<XUnitResults>();
+            var results = Container.Resolve<XUnitResults>();
 
             var feature = new Feature {Name = "Addition"};
 
@@ -77,10 +77,10 @@ namespace Pickles.Test
                 output.Write(input.ReadToEnd());
             }
 
-            var configuration = Kernel.Get<Configuration>();
+            var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFile = new FileInfo(RESULTS_FILE_NAME);
 
-            var results = Kernel.Get<XUnitResults>();
+            var results = Container.Resolve<XUnitResults>();
 
             var feature = new Feature {Name = "Addition"};
 
