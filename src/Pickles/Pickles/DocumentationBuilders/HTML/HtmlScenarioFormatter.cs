@@ -18,6 +18,7 @@
 
 #endregion
 
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using Pickles.Parser;
@@ -52,8 +53,7 @@ namespace Pickles.DocumentationBuilders.HTML
           var tags = RetrieveTags(scenario);
           if (tags.Length > 0)
           {
-            var orderedTags = tags.OrderBy(t => t).ToArray();
-            header.Add(new XElement(xmlns + "p", "Tags: " + string.Join(", ", orderedTags)));
+            header.Add(new XElement(this.xmlns + "p", CreateTagElements(tags.OrderBy(t => t).ToArray())));
           }
 
           header.Add(htmlDescriptionFormatter.Format(scenario.Description));
@@ -71,6 +71,22 @@ namespace Pickles.DocumentationBuilders.HTML
                 scenario.Steps.Select(step => htmlStepFormatter.Format(step))))
             );
         }
+
+      private XNode[] CreateTagElements(string[] tags)
+      {
+        List<XNode> result = new List<XNode>();
+
+        result.Add(new XText("Tags: "));
+        result.Add(new XElement(xmlns + "span", tags.First()));
+
+        foreach (var tag in tags.Skip(1))
+        {
+          result.Add(new XText(", "));
+          result.Add(new XElement(xmlns + "span", tag));
+        }
+
+        return result.ToArray();
+      }
 
       private static string[] RetrieveTags(Scenario scenario)
       {
