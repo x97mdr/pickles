@@ -44,20 +44,41 @@ namespace Pickles.DocumentationBuilders.HTML
 
         public XElement Format(Scenario scenario, int id)
         {
-            return new XElement(xmlns + "li",
-                                new XAttribute("class", "scenario"),
-                                htmlImageResultFormatter.Format(scenario),
-                                new XElement(xmlns + "div",
-                                             new XAttribute("class", "scenario-heading"),
-                                             new XElement(xmlns + "h2", scenario.Name),
-                                             htmlDescriptionFormatter.Format(scenario.Description)
-                                    ),
-                                new XElement(xmlns + "div",
-                                             new XAttribute("class", "steps"),
-                                             new XElement(xmlns + "ul",
-                                                          scenario.Steps.Select(step => htmlStepFormatter.Format(step)))
-                                    )
-                );
+          var header = new XElement(
+            xmlns + "div", 
+            new XAttribute("class", "scenario-heading"), 
+            new XElement(xmlns + "h2", scenario.Name));
+
+          var tags = RetrieveTags(scenario);
+          if (tags.Length > 0)
+          {
+            var orderedTags = tags.OrderBy(t => t).ToArray();
+            header.Add(new XElement(xmlns + "p", "Tags: " + string.Join(", ", orderedTags)));
+          }
+
+          header.Add(htmlDescriptionFormatter.Format(scenario.Description));
+
+          return new XElement(
+            xmlns + "li",
+            new XAttribute("class", "scenario"),
+            htmlImageResultFormatter.Format(scenario),
+            header,
+            new XElement(
+              xmlns + "div",
+              new XAttribute("class", "steps"),
+              new XElement(
+                xmlns + "ul",
+                scenario.Steps.Select(step => htmlStepFormatter.Format(step))))
+            );
         }
+
+      private static string[] RetrieveTags(Scenario scenario)
+      {
+        if (scenario == null) return new string[0];
+
+        if (scenario.Feature == null) return scenario.Tags.ToArray();
+
+        return scenario.Feature.Tags.Concat(scenario.Tags).ToArray();
+      }
     }
 }
