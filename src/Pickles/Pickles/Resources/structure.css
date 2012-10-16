@@ -147,6 +147,10 @@ p.tocCollapser:hover {
 
 #feature div.folderDescription ol li { list-style-type: decimal; }
 
+#feature div.scenario-heading p.tags {
+    font-style: italic;
+}
+
 /*************************************************************************
  * Feature - formatting tables (example or step tables)
  *************************************************************************/
