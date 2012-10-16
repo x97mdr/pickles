@@ -53,7 +53,9 @@ namespace Pickles.DocumentationBuilders.HTML
           var tags = RetrieveTags(scenario);
           if (tags.Length > 0)
           {
-            header.Add(new XElement(this.xmlns + "p", CreateTagElements(tags.OrderBy(t => t).ToArray())));
+            var paragraph = new XElement(this.xmlns + "p", CreateTagElements(tags.OrderBy(t => t).ToArray()));
+            paragraph.Add(new XAttribute("class", "tags"));
+            header.Add(paragraph);
           }
 
           header.Add(htmlDescriptionFormatter.Format(scenario.Description));

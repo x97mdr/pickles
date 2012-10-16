@@ -40,7 +40,7 @@ namespace Pickles.Test
             var tagsParagraph = header.Elements().ElementAt(1);
 
             Assert.AreEqual(
-              @"<p xmlns=""http://www.w3.org/1999/xhtml"">Tags: <span>tag1</span>, <span>tag2</span></p>",
+              @"<p class=""tags"" xmlns=""http://www.w3.org/1999/xhtml"">Tags: <span>tag1</span>, <span>tag2</span></p>",
               tagsParagraph.ToString());
         }
 
@@ -105,7 +105,7 @@ namespace Pickles.Test
           var tagsParagraph = header.Elements().ElementAt(1);
 
           Assert.AreEqual(
-            @"<p xmlns=""http://www.w3.org/1999/xhtml"">Tags: <span>featureTag1</span>, <span>featureTag2</span>, <span>scenarioTag1</span>, <span>scenarioTag2</span></p>",
+            @"<p class=""tags"" xmlns=""http://www.w3.org/1999/xhtml"">Tags: <span>featureTag1</span>, <span>featureTag2</span>, <span>scenarioTag1</span>, <span>scenarioTag2</span></p>",
             tagsParagraph.ToString());
         }
 
@@ -143,7 +143,7 @@ namespace Pickles.Test
           var tagsParagraph = header.Elements().ElementAt(1);
 
           Assert.AreEqual(
-            @"<p xmlns=""http://www.w3.org/1999/xhtml"">Tags: <span>a</span>, <span>b</span>, <span>c</span>, <span>d</span></p>",
+            @"<p class=""tags"" xmlns=""http://www.w3.org/1999/xhtml"">Tags: <span>a</span>, <span>b</span>, <span>c</span>, <span>d</span></p>",
             tagsParagraph.ToString());
         }
     }
