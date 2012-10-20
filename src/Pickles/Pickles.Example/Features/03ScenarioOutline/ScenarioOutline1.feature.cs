@@ -88,6 +88,30 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Add two negative numbers with many examples")]
+        [NUnit.Framework.TestCaseAttribute("10", "20", "30", null)]
+        [NUnit.Framework.TestCaseAttribute("20", "20", "40", null)]
+        [NUnit.Framework.TestCaseAttribute("20", "30", "50", null)]
+        [NUnit.Framework.TestCaseAttribute("100", "20", "120", null)]
+        [NUnit.Framework.TestCaseAttribute("1000", "20", "1020", null)]
+        public virtual void AddTwoNegativeNumbersWithManyExamples(string number1, string number2, string result, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two negative numbers with many examples", exampleTags);
+#line 26
+this.ScenarioSetup(scenarioInfo);
+#line 27
+ testRunner.Given(string.Format("I ented {0} into the calculator", number1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 28
+ testRunner.And(string.Format("I enter {0} into the calculator", number2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 29
+ testRunner.When("I perform add", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 30
+ testRunner.Then(string.Format("the result should be {0}", result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

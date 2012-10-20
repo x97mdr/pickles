@@ -187,6 +187,7 @@ namespace Pickles.Parser
 			if (isInExample && exampleBuilder != null)
 			{
 				this.scenarioOutlineBuilder.AddExample(exampleBuilder.GetResult());
+			    exampleBuilder = null;
 			}
 			
             if (featureElementState.IsBackgroundActive)
