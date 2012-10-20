@@ -76,7 +76,7 @@ namespace Pickles.DocumentationBuilders.HTML
 			{
 	            exampleDiv.Add(new XElement(xmlns + "div",
 	                                new XAttribute("class", "examples"),
-	                                new XElement(xmlns + "h3", "Examples"),
+	                                new XElement(xmlns + "h3", "Examples: " + example.Name),
 	                                htmlDescriptionFormatter.Format(example.Description),
 	                                (example.TableArgument == null) ? null : htmlTableFormatter.Format(example.TableArgument)
 	                ));
