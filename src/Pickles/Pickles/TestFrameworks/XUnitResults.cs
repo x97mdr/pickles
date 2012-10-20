@@ -77,7 +77,9 @@ namespace Pickles.TestFrameworks
         public TestResult GetScenarioResult(Scenario scenario)
         {
             XElement scenarioElement = GetScenarioElement(scenario);
-            return GetResultFromElement(scenarioElement);
+            return scenarioElement != null 
+                ? GetResultFromElement(scenarioElement)
+                : new TestResult() { WasExecuted = false, WasSuccessful = false };
         }
 
         #endregion
