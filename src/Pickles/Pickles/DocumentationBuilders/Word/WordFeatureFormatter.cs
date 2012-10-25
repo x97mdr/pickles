@@ -33,15 +33,19 @@ namespace Pickles.DocumentationBuilders.Word
         private readonly WordScenarioFormatter wordScenarioFormatter;
         private readonly WordScenarioOutlineFormatter wordScenarioOutlineFormatter;
         private readonly WordStyleApplicator wordStyleApplicator;
+        private readonly WordDescriptionFormatter wordDescriptionFormatter;
 
         public WordFeatureFormatter(WordScenarioFormatter wordScenarioFormatter,
                                     WordScenarioOutlineFormatter wordScenarioOutlineFormatter,
-                                    WordStyleApplicator wordStyleApplicator, Configuration configuration,
+                                    WordStyleApplicator wordStyleApplicator, 
+                                    WordDescriptionFormatter wordDescriptionFormatter,
+                                    Configuration configuration,
                                     ITestResults nunitResults)
         {
             this.wordScenarioFormatter = wordScenarioFormatter;
             this.wordScenarioOutlineFormatter = wordScenarioOutlineFormatter;
             this.wordStyleApplicator = wordStyleApplicator;
+            this.wordDescriptionFormatter = wordDescriptionFormatter;
             this.configuration = configuration;
             this.nunitResults = nunitResults;
         }
@@ -66,7 +70,7 @@ namespace Pickles.DocumentationBuilders.Word
             }
 
             body.GenerateParagraph(feature.Name, "Heading1");
-            body.GenerateParagraph(feature.Description, "Normal");
+            this.wordDescriptionFormatter.Format(body, feature.Description);
 
             foreach (IFeatureElement featureElement in feature.FeatureElements)
             {
