@@ -42,10 +42,19 @@ namespace Pickles.DocumentationBuilders.HTML
             xmlns = HtmlNamespace.Xhtml;
         }
 
-        private string BuildTitle(bool wasSuccessful)
+        private string BuildTitle(TestResult successful)
         {
             var sb = new StringBuilder();
-            sb.AppendFormat("{0}", wasSuccessful ? "Successful" : "Failed");
+
+            if (!successful.WasExecuted)
+            {
+              sb.AppendFormat("{0}", "Inconclusive");
+            }
+            else
+            {
+              sb.AppendFormat("{0}", successful.WasSuccessful ? "Successful" : "Failed");
+            }
+
             if (!string.IsNullOrEmpty(configuration.SystemUnderTestName) &&
                 !string.IsNullOrEmpty(configuration.SystemUnderTestVersion))
             {
@@ -69,8 +78,8 @@ namespace Pickles.DocumentationBuilders.HTML
                                 new XAttribute("class", "float-right"),
                                 new XElement(xmlns + "img",
                                              new XAttribute("src", this.DetermineImage(result)),
-                                             new XAttribute("title", BuildTitle(result.WasSuccessful)),
-                                             new XAttribute("alt", BuildTitle(result.WasSuccessful))
+                                             new XAttribute("title", this.BuildTitle(result)),
+                                             new XAttribute("alt", this.BuildTitle(result))
                                     )
                 );
         }
@@ -89,40 +98,24 @@ namespace Pickles.DocumentationBuilders.HTML
         }
       }
 
-      public XElement Format(Feature feature)
+        public XElement Format(Feature feature)
         {
-            if (configuration.HasTestResults)
-            {
-                TestResult scenarioResult = results.GetFeatureResult(feature);
-
-                return BuildImageElement(scenarioResult);
-            }
-
-            return null;
+            TestResult scenarioResult = this.configuration.HasTestResults ? this.results.GetFeatureResult(feature) : TestResult.Inconclusive();
+            return BuildImageElement(scenarioResult);
         }
 
         public XElement Format(Scenario scenario)
         {
-            if (configuration.HasTestResults)
-            {
-                TestResult scenarioResult = results.GetScenarioResult(scenario);
+            TestResult scenarioResult = this.configuration.HasTestResults ? this.results.GetScenarioResult(scenario) : TestResult.Inconclusive();
 
-                return BuildImageElement(scenarioResult);
-            }
-
-            return null;
+            return BuildImageElement(scenarioResult);
         }
 
         public XElement Format(ScenarioOutline scenarioOutline)
         {
-            if (configuration.HasTestResults)
-            {
-                TestResult scenarioResult = results.GetScenarioOutlineResult(scenarioOutline);
+            TestResult scenarioResult = this.configuration.HasTestResults ? this.results.GetScenarioOutlineResult(scenarioOutline) : TestResult.Inconclusive();
 
-                return BuildImageElement(scenarioResult);
-            }
-
-            return null;
+            return BuildImageElement(scenarioResult);
         }
     }
 }
