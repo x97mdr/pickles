@@ -85,11 +85,11 @@ namespace Pickles.TestFrameworks
             switch (resultText.ToLowerInvariant())
             {
                 case "passed":
-                    return new TestResult { WasExecuted = true, WasSuccessful = true };
+                    return TestResult.Passed();
                 case "failed":
-                    return new TestResult { WasExecuted = true, WasSuccessful = false };
+                    return TestResult.Failed();
                 default:
-                    return new TestResult { WasExecuted = false, WasSuccessful = false };
+                    return TestResult.Inconclusive();
             }
         }
 

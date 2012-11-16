@@ -24,5 +24,20 @@ namespace Pickles.TestFrameworks
     {
         public bool WasExecuted;
         public bool WasSuccessful;
+
+        public static TestResult Passed()
+        {
+          return new TestResult { WasExecuted = true, WasSuccessful = true };
+        }
+
+        public static TestResult Failed()
+        {
+          return new TestResult { WasExecuted = true, WasSuccessful = false };
+        }
+
+        public static TestResult Inconclusive()
+        {
+          return new TestResult { WasExecuted = false, WasSuccessful = false };
+        }
     }
 }

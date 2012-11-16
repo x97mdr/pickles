@@ -18,9 +18,10 @@ namespace Pickles.Test
             var htmlResources = Container.Resolve<HtmlResourceSet>();
             HtmlResource[] images = htmlResources.Images.ToArray();
 
-            images.Length.ShouldEqual(2);
+            images.Length.ShouldEqual(3);
             images.Any(image => image.File == "success.png").ShouldBeTrue();
             images.Any(image => image.File == "failure.png").ShouldBeTrue();
+            images.Any(image => image.File == "inconclusive.png").ShouldBeTrue();
         }
 
         [Test]

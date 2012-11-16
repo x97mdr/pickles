@@ -85,6 +85,7 @@ namespace Pickles
             if (!Directory.Exists(imagesFolder)) Directory.CreateDirectory(imagesFolder);
             WriteImage(imagesFolder, "success.png");
             WriteImage(imagesFolder, "failure.png");
+            WriteImage(imagesFolder, "inconclusive.png");
 
             string scriptsFolder = Path.Combine(folder, "scripts");
             if (!Directory.Exists(scriptsFolder)) Directory.CreateDirectory(scriptsFolder);

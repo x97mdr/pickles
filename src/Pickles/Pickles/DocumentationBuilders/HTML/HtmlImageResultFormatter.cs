@@ -18,6 +18,7 @@
 
 #endregion
 
+using System;
 using System.Text;
 using System.Xml.Linq;
 using Pickles.Parser;
@@ -67,23 +68,34 @@ namespace Pickles.DocumentationBuilders.HTML
             return new XElement(xmlns + "div",
                                 new XAttribute("class", "float-right"),
                                 new XElement(xmlns + "img",
-                                             new XAttribute("src",
-                                                            result.WasSuccessful
-                                                                ? htmlResourceSet.SuccessImage
-                                                                : htmlResourceSet.FailureImage),
+                                             new XAttribute("src", this.DetermineImage(result)),
                                              new XAttribute("title", BuildTitle(result.WasSuccessful)),
                                              new XAttribute("alt", BuildTitle(result.WasSuccessful))
                                     )
                 );
         }
 
-        public XElement Format(Feature feature)
+      private Uri DetermineImage(TestResult result)
+      {
+        if (!result.WasExecuted)
+        {
+          return this.htmlResourceSet.InconclusiveImage;
+        }
+        else
+        {
+          return result.WasSuccessful 
+            ? this.htmlResourceSet.SuccessImage 
+            : this.htmlResourceSet.FailureImage;
+        }
+      }
+
+      public XElement Format(Feature feature)
         {
             if (configuration.HasTestResults)
             {
                 TestResult scenarioResult = results.GetFeatureResult(feature);
 
-                return scenarioResult.WasExecuted ? BuildImageElement(scenarioResult) : null;
+                return BuildImageElement(scenarioResult);
             }
 
             return null;
@@ -95,7 +107,7 @@ namespace Pickles.DocumentationBuilders.HTML
             {
                 TestResult scenarioResult = results.GetScenarioResult(scenario);
 
-                return scenarioResult.WasExecuted ? BuildImageElement(scenarioResult) : null;
+                return BuildImageElement(scenarioResult);
             }
 
             return null;
@@ -107,7 +119,7 @@ namespace Pickles.DocumentationBuilders.HTML
             {
                 TestResult scenarioResult = results.GetScenarioOutlineResult(scenarioOutline);
 
-                return scenarioResult.WasExecuted ? BuildImageElement(scenarioResult) : null;
+                return BuildImageElement(scenarioResult);
             }
 
             return null;

@@ -26,6 +26,8 @@
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=1E930ED562259944AEA3B9C0F8347D8E/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=1E930ED562259944AEA3B9C0F8347D8E/AbsolutePath/@EntryValue">C:\dev\bzr-ei-data-dictionary-trunk\src\STC.EI.DataDictionary\Pickles.DotSettings</s:String>
 	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=1E930ED562259944AEA3B9C0F8347D8E/RelativePath/@EntryValue">..\..\..\..\bzr-ei-data-dictionary-trunk\src\STC.EI.DataDictionary\Pickles.DotSettings</s:String>
+	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File1E930ED562259944AEA3B9C0F8347D8E/@KeyIndexDefined">True</s:Boolean>
+	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File1E930ED562259944AEA3B9C0F8347D8E/RelativePriority/@EntryValue">5</s:Double>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File_003A_003AC_003A_005Cdev_005Cbzr_002Dei_002Ddata_002Ddictionary_002Dtrunk_005Csrc_005CSTC_002EEI_002EDataDictionary_005CPickles_002EDotSettings/@KeyIndexDefined">True</s:Boolean>
 	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File_003A_003AC_003A_005Cdev_005Cbzr_002Dei_002Ddata_002Ddictionary_002Dtrunk_005Csrc_005CSTC_002EEI_002EDataDictionary_005CPickles_002EDotSettings/RelativePriority/@EntryValue">1</s:Double>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File_003A_003AC_003A_005CDev_005CCode_005Cpicklesdoc_002Dpickles_005Cbzr_002Dei_002Ddata_002Ddictionary_002Dtrunk_005Csrc_005CSTC_002EEI_002EDataDictionary_005CPickles_002EDotSettings/@KeyIndexDefined">True</s:Boolean>
