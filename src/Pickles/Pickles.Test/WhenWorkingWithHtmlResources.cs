@@ -33,14 +33,16 @@ namespace Pickles.Test
             var htmlResources = Container.Resolve<HtmlResourceSet>();
             HtmlResource[] resources = htmlResources.All.ToArray();
 
-            resources.Length.ShouldEqual(7);
+            resources.Length.ShouldEqual(9);
             resources.Any(resource => resource.File == "success.png").ShouldBeTrue();
             resources.Any(resource => resource.File == "failure.png").ShouldBeTrue();
+            resources.Any(resource => resource.File == "inconclusive.png").ShouldBeTrue();
             resources.Any(resource => resource.File == "global.css").ShouldBeTrue();
             resources.Any(resource => resource.File == "master.css").ShouldBeTrue();
             resources.Any(resource => resource.File == "reset.css").ShouldBeTrue();
             resources.Any(resource => resource.File == "structure.css").ShouldBeTrue();
             resources.Any(resource => resource.File == "print.css").ShouldBeTrue();
+            resources.Any(resource => resource.File == "font-awesome.css").ShouldBeTrue();
         }
 
         [Test]
@@ -66,12 +68,13 @@ namespace Pickles.Test
             var htmlResources = Container.Resolve<HtmlResourceSet>();
             HtmlResource[] stylesheets = htmlResources.Stylesheets.ToArray();
 
-            stylesheets.Length.ShouldEqual(5);
+            stylesheets.Length.ShouldEqual(6);
             stylesheets.Any(stylesheet => stylesheet.File == "global.css").ShouldBeTrue();
             stylesheets.Any(stylesheet => stylesheet.File == "master.css").ShouldBeTrue();
             stylesheets.Any(stylesheet => stylesheet.File == "reset.css").ShouldBeTrue();
             stylesheets.Any(stylesheet => stylesheet.File == "structure.css").ShouldBeTrue();
             stylesheets.Any(stylesheet => stylesheet.File == "print.css").ShouldBeTrue();
+            stylesheets.Any(resource => resource.File == "font-awesome.css").ShouldBeTrue();
         }
     }
 }
