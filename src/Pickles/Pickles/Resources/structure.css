@@ -241,3 +241,25 @@ li.scenario {
     margin: 0 0 3px 0;
     padding: 0 0 3px 0;
 }
+
+
+/*******************
+  * Test Results
+  **********************************/
+i.inconclusive {
+  color: orange;
+  font-size: 200%;
+  margin-top: 0.5em;
+}
+
+i.failed {
+  color: red;
+  font-size: 200%;
+  margin-top: 0.5em;
+}
+
+i.passed {
+  color: inherit;
+  font-size: 200%;
+  margin-top: 0.5em;
+}

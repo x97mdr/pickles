@@ -72,31 +72,33 @@ namespace Pickles.DocumentationBuilders.HTML
             return sb.ToString();
         }
 
-        private XElement BuildImageElement(TestResult result)
-        {
-            return new XElement(xmlns + "div",
-                                new XAttribute("class", "float-right"),
-                                new XElement(xmlns + "img",
-                                             new XAttribute("src", this.DetermineImage(result)),
-                                             new XAttribute("title", this.BuildTitle(result)),
-                                             new XAttribute("alt", this.BuildTitle(result))
-                                    )
-                );
-        }
 
-      private Uri DetermineImage(TestResult result)
+      private XElement BuildImageElement(TestResult result)
+      {
+        return new XElement(xmlns + "div",
+                            new XAttribute("class", "float-right"),
+                            new XElement(xmlns + "i",
+                                         new XAttribute("class", this.DetermineClass(result)),
+                                         new XAttribute("title", this.BuildTitle(result)),
+                                         " "
+                                )
+            );
+      }
+
+      private string DetermineClass(TestResult result)
       {
         if (!result.WasExecuted)
         {
-          return this.htmlResourceSet.InconclusiveImage;
+          return "icon-warning-sign inconclusive";
         }
         else
         {
-          return result.WasSuccessful 
-            ? this.htmlResourceSet.SuccessImage 
-            : this.htmlResourceSet.FailureImage;
+          return result.WasSuccessful
+            ? "icon-ok passed"
+            : "icon-minus-sign failed";
         }
       }
+
 
         public XElement Format(Feature feature)
         {
