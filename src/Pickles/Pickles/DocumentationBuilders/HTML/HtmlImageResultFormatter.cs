@@ -102,22 +102,38 @@ namespace Pickles.DocumentationBuilders.HTML
 
         public XElement Format(Feature feature)
         {
-            TestResult scenarioResult = this.configuration.HasTestResults ? this.results.GetFeatureResult(feature) : TestResult.Inconclusive();
-            return BuildImageElement(scenarioResult);
+	          if (configuration.HasTestResults)
+	          {
+	              TestResult scenarioResult = results.GetFeatureResult(feature);
+	
+	              return BuildImageElement(scenarioResult);
+	          }
+
+            return null;
         }
 
         public XElement Format(Scenario scenario)
         {
-            TestResult scenarioResult = this.configuration.HasTestResults ? this.results.GetScenarioResult(scenario) : TestResult.Inconclusive();
+          if (configuration.HasTestResults)
+          {
+            TestResult scenarioResult = results.GetScenarioResult(scenario);
 
             return BuildImageElement(scenarioResult);
+          }
+
+          return null;
         }
 
         public XElement Format(ScenarioOutline scenarioOutline)
         {
-            TestResult scenarioResult = this.configuration.HasTestResults ? this.results.GetScenarioOutlineResult(scenarioOutline) : TestResult.Inconclusive();
+          if (configuration.HasTestResults)
+          {
+            TestResult scenarioResult = results.GetScenarioOutlineResult(scenarioOutline);
 
             return BuildImageElement(scenarioResult);
+          }
+
+          return null;
         }
     }
 }
