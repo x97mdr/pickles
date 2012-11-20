@@ -110,9 +110,13 @@ namespace Pickles
             WriteScript(scriptsFolder, "jquery.js");
             WriteScript(scriptsFolder, "scripts.js");
 
-          string fontsFolder = Path.Combine(folder, "fonts");
-          if (!Directory.Exists(fontsFolder)) Directory.CreateDirectory(fontsFolder);
-          WriteFont(fontsFolder, "FontAwesome.ttf");
+            string fontsFolder = Path.Combine(folder, "fonts");
+            if (!Directory.Exists(fontsFolder)) Directory.CreateDirectory(fontsFolder);
+            WriteFont(fontsFolder, "FontAwesome.ttf");
+            WriteFont(fontsFolder, "fontawesome-webfont.eot");
+            WriteFont(fontsFolder, "fontawesome-webfont.svg");
+            WriteFont(fontsFolder, "fontawesome-webfont.ttf");
+            WriteFont(fontsFolder, "fontawesome-webfont.woff");
         }
     }
 }

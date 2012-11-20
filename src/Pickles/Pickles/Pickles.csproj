@@ -289,6 +289,9 @@
   <ItemGroup>
     <None Include="FeatureTree\ClassDiagram.cd" />
     <None Include="packages.config" />
+    <EmbeddedResource Include="Resources\fonts\fontawesome-webfont.eot" />
+    <EmbeddedResource Include="Resources\fonts\fontawesome-webfont.ttf" />
+    <EmbeddedResource Include="Resources\fonts\fontawesome-webfont.woff" />
     <EmbeddedResource Include="Resources\fonts\FontAwesome.ttf" />
   </ItemGroup>
   <ItemGroup>
@@ -315,6 +318,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\font-awesome.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\fonts\fontawesome-webfont.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
