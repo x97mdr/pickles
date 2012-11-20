@@ -278,4 +278,5 @@ i.passed {
 #toc i.passed {
   font-size: 100%;
   margin-top: 0;
+  color: gray;
 }
