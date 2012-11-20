@@ -19,8 +19,6 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
@@ -107,16 +105,9 @@ namespace Pickles.TestFrameworks
                 where key.Value == "FeatureTitle" && value.Value == feature.Name
                 select new Guid(unitTest.Element(ns + "Execution").Attribute("id").Value);
 
-            bool wasExecuted = true;
-            bool wasSuccessful = true;
-            foreach (Guid featureExecutionId in featureExecutionIds)
-            {
-                TestResult result = GetExecutionResult(featureExecutionId);
-                if (!result.WasExecuted) wasExecuted = false;
-                if (!result.WasSuccessful) wasSuccessful = false;
-            }
+            TestResult result = featureExecutionIds.Select(GetExecutionResult).Merge();
 
-            return new TestResult {WasExecuted = wasExecuted, WasSuccessful = wasSuccessful};
+            return result;
         }
 
         public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
@@ -133,16 +124,9 @@ namespace Pickles.TestFrameworks
                 where description.Value == scenarioOutline.Name
                 select new Guid(unitTest.Element(ns + "Execution").Attribute("id").Value);
 
-            bool wasExecuted = true;
-            bool wasSuccessful = true;
-            foreach (Guid scenarioOutlineExecutionId in scenarioOutlineExecutionIds)
-            {
-                TestResult result = GetExecutionResult(scenarioOutlineExecutionId);
-                if (!result.WasExecuted) wasExecuted = false;
-                if (!result.WasSuccessful) wasSuccessful = false;
-            }
+            TestResult result = scenarioOutlineExecutionIds.Select(GetExecutionResult).Merge();
 
-            return new TestResult {WasExecuted = wasExecuted, WasSuccessful = wasSuccessful};
+            return result;
         }
 
         public TestResult GetScenarioResult(Scenario scenario)
