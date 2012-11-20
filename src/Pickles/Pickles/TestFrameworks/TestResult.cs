@@ -58,7 +58,7 @@ namespace Pickles.TestFrameworks
 
       if (!items.Any())
       {
-        throw new ArgumentException("The sequence must not be empty.");
+        return new TestResult();
       }
 
       if (items.Count() == 1)

@@ -31,12 +31,14 @@ namespace Pickles.Test
       }
 
       [Test]
-      [ExpectedException(typeof(ArgumentException))]
-      public void Merge_EmptySequence_ThrowsArgumentException()
+      public void Merge_EmptySequence_ResultsInWasExecutedFalseAndWasSuccessfulFalse()
       {
         var testResults = new TestResult[0];
 
-        testResults.Merge();
+        TestResult actual = testResults.Merge();
+
+        actual.WasExecuted.ShouldBeFalse();
+        actual.WasSuccessful.ShouldBeFalse();
       }
 
       [Test]
