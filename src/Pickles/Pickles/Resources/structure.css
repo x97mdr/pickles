@@ -80,11 +80,12 @@
 
 #toc.collapsed { border-right-width: 0; }
 
-p.tocCollapser {
+#toc p.tocCollapser {
     color: gray;
     cursor: pointer;
     float: right;
-    padding-right: 1em;
+    padding: 0 1em 0 0;
+    margin: 0;
 }
 
 p.tocCollapser:hover {
@@ -262,4 +263,19 @@ i.passed {
   color: inherit;
   font-size: 200%;
   margin-top: 0.5em;
+}
+
+#toc i.inconclusive {
+  font-size: 100%;
+  margin-top: 0;
+}
+
+#toc i.failed {
+  font-size: 100%;
+  margin-top: 0;
+}
+
+#toc i.passed {
+  font-size: 100%;
+  margin-top: 0;
 }

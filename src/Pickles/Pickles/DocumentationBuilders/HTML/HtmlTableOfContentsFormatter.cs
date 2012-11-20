@@ -24,34 +24,42 @@ using System.Xml.Linq;
 using NGenerics.DataStructures.Trees;
 using Pickles.DirectoryCrawler;
 using Pickles.Extensions;
+using Pickles.Parser;
 
 namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlTableOfContentsFormatter
     {
-        private XElement BuildListItems(XNamespace xmlns, Uri file, GeneralTree<IDirectoryTreeNode> features)
+        private readonly HtmlImageResultFormatter imageResultFormatter;
+
+        public HtmlTableOfContentsFormatter(HtmlImageResultFormatter imageResultFormatter)
         {
-            var ul = new XElement(xmlns + "ul", new XAttribute("class", "features"));
-
-            foreach (var childNode in features.ChildNodes)
-            {
-                if (childNode.Data.IsContent)
-                {
-                    if (childNode.Data.IsIndexMarkDownNode())
-                    {
-                        continue;
-                    }
-
-                    ul.Add(AddNodeForFile(xmlns, file, childNode));
-                }
-                else
-                {
-                    ul.Add(AddNodeForDirectory(xmlns, file, childNode));
-                }
-            }
-
-            return ul;
+          this.imageResultFormatter = imageResultFormatter;
         }
+
+        private XElement BuildListItems(XNamespace xmlns, Uri file, GeneralTree<IDirectoryTreeNode> features)
+          {
+              var ul = new XElement(xmlns + "ul", new XAttribute("class", "features"));
+
+              foreach (var childNode in features.ChildNodes)
+              {
+                  if (childNode.Data.IsContent)
+                  {
+                      if (childNode.Data.IsIndexMarkDownNode())
+                      {
+                          continue;
+                      }
+
+                      ul.Add(AddNodeForFile(xmlns, file, childNode));
+                  }
+                  else
+                  {
+                      ul.Add(AddNodeForDirectory(xmlns, file, childNode));
+                  }
+              }
+
+              return ul;
+          }
 
         private XElement AddNodeForDirectory(XNamespace xmlns, Uri file, GeneralTree<IDirectoryTreeNode> childNode)
         {
@@ -108,7 +116,7 @@ namespace Pickles.DocumentationBuilders.HTML
             return false;
         }
 
-        private static XElement AddNodeForFile(XNamespace xmlns, Uri file, GeneralTree<IDirectoryTreeNode> childNode)
+        private XElement AddNodeForFile(XNamespace xmlns, Uri file, GeneralTree<IDirectoryTreeNode> childNode)
         {
             var xElement = new XElement(xmlns + "li", new XAttribute("class", "file"));
 
@@ -123,7 +131,20 @@ namespace Pickles.DocumentationBuilders.HTML
                                           nodeText));
             }
 
-            return xElement;
+          var featureNode = childNode.Data as FeatureDirectoryTreeNode;
+          if (featureNode != null && this.imageResultFormatter != null)
+          {
+            Feature feature = featureNode.Feature;
+
+            XElement formatForToC = this.imageResultFormatter.FormatForToC(feature);
+
+            if (formatForToC != null)
+            {
+              xElement.Add(formatForToC);
+            }
+          }
+
+          return xElement;
         }
 
         private XElement BuildCollapser(XNamespace xmlns)

@@ -29,16 +29,14 @@ namespace Pickles.DocumentationBuilders.HTML
     public class HtmlImageResultFormatter
     {
         private readonly Configuration configuration;
-        private readonly HtmlResourceSet htmlResourceSet;
-        private readonly ITestResults results;
+
+      private readonly ITestResults results;
         private readonly XNamespace xmlns;
 
-        public HtmlImageResultFormatter(Configuration configuration, ITestResults results,
-                                        HtmlResourceSet htmlResourceSet)
+        public HtmlImageResultFormatter(Configuration configuration, ITestResults results)
         {
             this.configuration = configuration;
             this.results = results;
-            this.htmlResourceSet = htmlResourceSet;
             xmlns = HtmlNamespace.Xhtml;
         }
 
@@ -73,9 +71,9 @@ namespace Pickles.DocumentationBuilders.HTML
         }
 
 
-      private XElement BuildImageElement(TestResult result)
+      private XElement BuildImageElement(TestResult result, string elementName = "div")
       {
-        return new XElement(xmlns + "div",
+        return new XElement(xmlns + elementName,
                             new XAttribute("class", "float-right"),
                             new XElement(xmlns + "i",
                                          new XAttribute("class", this.DetermineClass(result)),
@@ -100,17 +98,29 @@ namespace Pickles.DocumentationBuilders.HTML
       }
 
 
-        public XElement Format(Feature feature)
+      public XElement Format(Feature feature)
+      {
+        if (configuration.HasTestResults)
         {
-	          if (configuration.HasTestResults)
-	          {
-	              TestResult scenarioResult = results.GetFeatureResult(feature);
-	
-	              return BuildImageElement(scenarioResult);
-	          }
+          TestResult scenarioResult = results.GetFeatureResult(feature);
 
-            return null;
+          return BuildImageElement(scenarioResult);
         }
+
+        return null;
+      }
+
+      public XElement FormatForToC(Feature feature)
+      {
+        if (configuration.HasTestResults)
+        {
+          TestResult scenarioResult = results.GetFeatureResult(feature);
+
+          return BuildImageElement(scenarioResult, "span");
+        }
+
+        return null;
+      }
 
         public XElement Format(Scenario scenario)
         {
