@@ -13,8 +13,8 @@ namespace Pickles
         {
             writeToLog("Generating documentation based on the following parameters");
             writeToLog("----------------------------------------------------------");
-            writeToLog(string.Format("Feature Directory         : {0}", configuration.FeatureFolder));
-            writeToLog(string.Format("Output Directory          : {0}", configuration.OutputFolder));
+            writeToLog(string.Format("Feature Directory         : {0}", configuration.FeatureFolder.FullName));
+            writeToLog(string.Format("Output Directory          : {0}", configuration.OutputFolder.FullName));
             writeToLog(string.Format("Project Name              : {0}", configuration.SystemUnderTestName));
             writeToLog(string.Format("Project Version           : {0}", configuration.SystemUnderTestVersion));
             writeToLog(string.Format("Language                  : {0}", configuration.Language));
