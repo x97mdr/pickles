@@ -47,7 +47,7 @@ namespace Pickles.TestFrameworks
 
   public static class TestResultExtensions
   {
-    public static TestResult Merge(IEnumerable<TestResult> testResults)
+    public static TestResult Merge(this IEnumerable<TestResult> testResults)
     {
       if (testResults == null)
       {
