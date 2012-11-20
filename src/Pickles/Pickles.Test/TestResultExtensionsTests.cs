@@ -34,17 +34,20 @@ namespace Pickles.Test
       [ExpectedException(typeof(ArgumentException))]
       public void Merge_EmptySequence_ThrowsArgumentException()
       {
-        TestResultExtensions.Merge(new TestResult[0]);
+        var testResults = new TestResult[0];
+
+        testResults.Merge();
       }
 
       [Test]
       public void Merge_SingleItem_ReturnsThatItem()
       {
-        TestResult actual = TestResultExtensions.Merge(
-          new[]
-            {
-              new TestResult { WasExecuted = true, WasSuccessful = false}
-            });
+        var testResults = new[]
+          {
+            new TestResult { WasExecuted = true, WasSuccessful = false }
+          };
+
+        TestResult actual = testResults.Merge();
 
         actual.WasExecuted.ShouldBeTrue();
         actual.WasSuccessful.ShouldBeFalse();
@@ -53,12 +56,12 @@ namespace Pickles.Test
       [Test]
       public void Merge_MultipleItemsWasExecutedTrueAndTrue_ReturnsWasExecutedTrue()
       {
-        TestResult actual = TestResultExtensions.Merge(
-          new[]
-            {
-              new TestResult { WasExecuted = true },
-              new TestResult { WasExecuted = true }
-            });
+        var testResults = new[]
+          {
+            new TestResult { WasExecuted = true }, new TestResult { WasExecuted = true }
+          };
+
+        TestResult actual = testResults.Merge();
 
         actual.WasExecuted.ShouldBeTrue();
       }
@@ -66,12 +69,13 @@ namespace Pickles.Test
       [Test]
       public void Merge_MultipleItemsWasExecutedTrueAndFalse_ReturnsWasExecutedFalse()
       {
-        TestResult actual = TestResultExtensions.Merge(
-          new[]
-            {
-              new TestResult { WasExecuted = true },
-              new TestResult { WasExecuted = false }
-            });
+        var testResults = new[]
+          {
+            new TestResult { WasExecuted = true },
+            new TestResult { WasExecuted = false }
+          };
+
+        TestResult actual = testResults.Merge();
 
         actual.WasExecuted.ShouldBeFalse();
       }
@@ -79,12 +83,13 @@ namespace Pickles.Test
       [Test]
       public void Merge_MultipleItemsWasSuccessfulTrueAndTrue_ReturnsWasSuccessfulTrue()
       {
-        TestResult actual = TestResultExtensions.Merge(
-          new[]
-            {
-              new TestResult { WasSuccessful = true },
-              new TestResult { WasSuccessful = true }
-            });
+        var testResults = new[]
+          {
+            new TestResult { WasSuccessful = true },
+            new TestResult { WasSuccessful = true }
+          };
+
+        TestResult actual = testResults.Merge();
 
         actual.WasSuccessful.ShouldBeTrue();
       }
@@ -92,12 +97,13 @@ namespace Pickles.Test
       [Test]
       public void Merge_MultipleItemsWasSuccessfulTrueAndFalse_ReturnsWasSuccessfulFalse()
       {
-        TestResult actual = TestResultExtensions.Merge(
-          new[]
-            {
-              new TestResult { WasSuccessful = true },
-              new TestResult { WasSuccessful = false }
-            });
+        var testResults = new[]
+          {
+            new TestResult { WasSuccessful = true },
+            new TestResult { WasSuccessful = false }
+          };
+
+        TestResult actual = testResults.Merge();
 
         actual.WasSuccessful.ShouldBeFalse();
       }
