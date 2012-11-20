@@ -68,9 +68,7 @@ namespace Pickles.PowerShell
 
             WriteObject(string.Format("Pickles v.{0}{1}", Assembly.GetExecutingAssembly().GetName().Version,
                                       Environment.NewLine));
-            WriteObject(string.Format(" - generating feature documentations for features in {0}",
-                                      configuration.FeatureFolder));
-            WriteObject(string.Format(" - output to {0}", configuration.OutputFolder));
+            new ConfigurationReporter().ReportOn(configuration, message => WriteObject(message));
 
             var runner = container.Resolve<Runner>();
             runner.Run(container);

@@ -178,6 +178,7 @@
     </Compile>
     <Compile Include="CommandLineArgumentParser.cs" />
     <Compile Include="Configuration.cs" />
+    <Compile Include="ConfigurationReporter.cs" />
     <Compile Include="DirectoryCrawler\FolderDirectoryTreeNode.cs" />
     <Compile Include="DocumentationBuilders\DITA\DitaDocumentationBuilder.cs" />
     <Compile Include="DocumentationBuilders\DITA\DitaFeatureFormatter.cs" />

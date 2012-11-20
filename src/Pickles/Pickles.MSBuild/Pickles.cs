@@ -69,8 +69,6 @@ namespace Pickles.MSBuild
             try
             {
                 Log.LogMessage("Pickles v.{0}", Assembly.GetExecutingAssembly().GetName().Version.ToString());
-                Log.LogMessage("Reading features from {0}", FeatureDirectory ?? string.Empty);
-                Log.LogMessage("Writing output to {0}", OutputDirectory ?? string.Empty);
 
                 var builder = new ContainerBuilder();
                 builder.RegisterAssemblyTypes(typeof(Runner).Assembly);
@@ -80,6 +78,8 @@ namespace Pickles.MSBuild
                 var configuration = container.Resolve<Configuration>();
                 CaptureConfiguration(configuration);
 
+                new ConfigurationReporter().ReportOn(configuration, message => Log.LogMessage(message));
+
                 var runner = container.Resolve<Runner>();
                 runner.Run(container);
             }
@@ -88,8 +88,8 @@ namespace Pickles.MSBuild
                 Log.LogWarningFromException(e, false);
             }
 
+            // HACK - since this is merely producing documentation we do not want it to cause a build to fail if something goes wrong
             return true;
-                // HACK - since this is merely producing documentation we do not want it to cause a build to fail if something goes wrong
         }
     }
 }

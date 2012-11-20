@@ -50,7 +50,7 @@ namespace Pickles.CommandLine
                 {
                     log.InfoFormat("Pickles v.{0}{1}", Assembly.GetExecutingAssembly().GetName().Version,
                                    Environment.NewLine);
-                    log.InfoFormat("Reading features from {0}", configuration.FeatureFolder.FullName);
+                    new ConfigurationReporter().ReportOn(configuration, message => log.Info(message));
                 }
 
                 var runner = container.Resolve<Runner>();

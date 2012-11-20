@@ -84,8 +84,6 @@ namespace Pickles.NAnt
             try
             {
                 Project.Log(Level.Info, "Pickles v.{0}", Assembly.GetExecutingAssembly().GetName().Version.ToString());
-                Project.Log(Level.Info, "Reading features from {0}", FeatureDirectory ?? string.Empty);
-                Project.Log(Level.Info, "Writing output to {0}", OutputDirectory ?? string.Empty);
 
                 var builder = new ContainerBuilder();
                 builder.RegisterAssemblyTypes(typeof(Runner).Assembly);
@@ -94,6 +92,8 @@ namespace Pickles.NAnt
 
                 var configuration = container.Resolve<Configuration>();
                 CaptureConfiguration(configuration);
+
+                new ConfigurationReporter().ReportOn(configuration, message => Project.Log(Level.Info, message));
 
                 var runner = container.Resolve<Runner>();
                 runner.Run(container);
