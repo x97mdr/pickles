@@ -5,13 +5,24 @@
 		
 	<property name="features.dir" value="Features" />
 	<property name="documentation.dir" value="Documentation-ViaNAnt" />
+	<property name="source.dir" value="..\..\..\src" />
+	<property name="nunit.executable.dir" value="${source.dir}\Pickles\packages\NUnit.Runners.2.6.1\tools" />
+	<property name="results.file" value="..\..\..\reports\nunit\results-example.xml" />
+	<property name="results.format" value="nunit" />
 
 	<target name="init">
 		<mkdir dir="${documentation.dir}" />
 	</target>
 	
-	<target name="document" depends="init">
-		<pickles features="${features.dir}" output="${documentation.dir}" />
+	<target name="test" depends="init">
+		<exec program="nunit-console.exe" basedir="${nunit.executable.dir}">
+		  <arg value="/xml:${results.file}" />
+		  <arg value="..\..\..\src\Pickles\Pickles.Example\bin\Release\Pickles.Example.dll" />
+		</exec>
+	</target>
+
+	<target name="document" depends="test">
+		<pickles features="${features.dir}" output="${documentation.dir}" resultsFormat="${results.format}" resultsFile="${results.file}" />
 	</target>
 
 </project>
