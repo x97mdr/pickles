@@ -18,11 +18,59 @@
 
 #endregion
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Pickles.TestFrameworks
 {
     public struct TestResult
     {
         public bool WasExecuted;
         public bool WasSuccessful;
+
+        public static TestResult Passed()
+        {
+          return new TestResult { WasExecuted = true, WasSuccessful = true };
+        }
+
+        public static TestResult Failed()
+        {
+          return new TestResult { WasExecuted = true, WasSuccessful = false };
+        }
+
+        public static TestResult Inconclusive()
+        {
+          return new TestResult { WasExecuted = false, WasSuccessful = false };
+        }
     }
+
+  public static class TestResultExtensions
+  {
+    public static TestResult Merge(this IEnumerable<TestResult> testResults)
+    {
+      if (testResults == null)
+      {
+        throw new ArgumentNullException("testResults");
+      }
+
+      TestResult[] items = testResults.ToArray();
+
+      if (!items.Any())
+      {
+        return new TestResult();
+      }
+
+      if (items.Count() == 1)
+      {
+        return items.Single();
+      }
+
+      return new TestResult
+        {
+          WasExecuted = items.All(i => i.WasExecuted),
+          WasSuccessful = items.All(i => i.WasSuccessful),
+        };
+    }
+  }
 }

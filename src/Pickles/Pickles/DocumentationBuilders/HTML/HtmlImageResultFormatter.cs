@@ -18,6 +18,7 @@
 
 #endregion
 
+using System;
 using System.Text;
 using System.Xml.Linq;
 using Pickles.Parser;
@@ -28,23 +29,30 @@ namespace Pickles.DocumentationBuilders.HTML
     public class HtmlImageResultFormatter
     {
         private readonly Configuration configuration;
-        private readonly HtmlResourceSet htmlResourceSet;
-        private readonly ITestResults results;
+
+      private readonly ITestResults results;
         private readonly XNamespace xmlns;
 
-        public HtmlImageResultFormatter(Configuration configuration, ITestResults results,
-                                        HtmlResourceSet htmlResourceSet)
+        public HtmlImageResultFormatter(Configuration configuration, ITestResults results)
         {
             this.configuration = configuration;
             this.results = results;
-            this.htmlResourceSet = htmlResourceSet;
             xmlns = HtmlNamespace.Xhtml;
         }
 
-        private string BuildTitle(bool wasSuccessful)
+        private string BuildTitle(TestResult successful)
         {
             var sb = new StringBuilder();
-            sb.AppendFormat("{0}", wasSuccessful ? "Successful" : "Failed");
+
+            if (!successful.WasExecuted)
+            {
+              sb.AppendFormat("{0}", "Inconclusive");
+            }
+            else
+            {
+              sb.AppendFormat("{0}", successful.WasSuccessful ? "Successful" : "Failed");
+            }
+
             if (!string.IsNullOrEmpty(configuration.SystemUnderTestName) &&
                 !string.IsNullOrEmpty(configuration.SystemUnderTestVersion))
             {
@@ -62,55 +70,80 @@ namespace Pickles.DocumentationBuilders.HTML
             return sb.ToString();
         }
 
-        private XElement BuildImageElement(TestResult result)
+
+      private XElement BuildImageElement(TestResult result, string elementName = "div")
+      {
+        return new XElement(xmlns + elementName,
+                            new XAttribute("class", "float-right"),
+                            new XElement(xmlns + "i",
+                                         new XAttribute("class", this.DetermineClass(result)),
+                                         new XAttribute("title", this.BuildTitle(result)),
+                                         " "
+                                )
+            );
+      }
+
+      private string DetermineClass(TestResult result)
+      {
+        if (!result.WasExecuted)
         {
-            return new XElement(xmlns + "div",
-                                new XAttribute("class", "float-right"),
-                                new XElement(xmlns + "img",
-                                             new XAttribute("src",
-                                                            result.WasSuccessful
-                                                                ? htmlResourceSet.SuccessImage
-                                                                : htmlResourceSet.FailureImage),
-                                             new XAttribute("title", BuildTitle(result.WasSuccessful)),
-                                             new XAttribute("alt", BuildTitle(result.WasSuccessful))
-                                    )
-                );
+          return "icon-warning-sign inconclusive";
+        }
+        else
+        {
+          return result.WasSuccessful
+            ? "icon-ok passed"
+            : "icon-minus-sign failed";
+        }
+      }
+
+
+      public XElement Format(Feature feature)
+      {
+        if (configuration.HasTestResults)
+        {
+          TestResult scenarioResult = results.GetFeatureResult(feature);
+
+          return BuildImageElement(scenarioResult);
         }
 
-        public XElement Format(Feature feature)
+        return null;
+      }
+
+      public XElement FormatForToC(Feature feature)
+      {
+        if (configuration.HasTestResults)
         {
-            if (configuration.HasTestResults)
-            {
-                TestResult scenarioResult = results.GetFeatureResult(feature);
+          TestResult scenarioResult = results.GetFeatureResult(feature);
 
-                return scenarioResult.WasExecuted ? BuildImageElement(scenarioResult) : null;
-            }
-
-            return null;
+          return BuildImageElement(scenarioResult, "span");
         }
+
+        return null;
+      }
 
         public XElement Format(Scenario scenario)
         {
-            if (configuration.HasTestResults)
-            {
-                TestResult scenarioResult = results.GetScenarioResult(scenario);
+          if (configuration.HasTestResults)
+          {
+            TestResult scenarioResult = results.GetScenarioResult(scenario);
 
-                return scenarioResult.WasExecuted ? BuildImageElement(scenarioResult) : null;
-            }
+            return BuildImageElement(scenarioResult);
+          }
 
-            return null;
+          return null;
         }
 
         public XElement Format(ScenarioOutline scenarioOutline)
         {
-            if (configuration.HasTestResults)
-            {
-                TestResult scenarioResult = results.GetScenarioOutlineResult(scenarioOutline);
+          if (configuration.HasTestResults)
+          {
+            TestResult scenarioResult = results.GetScenarioOutlineResult(scenarioOutline);
 
-                return scenarioResult.WasExecuted ? BuildImageElement(scenarioResult) : null;
-            }
+            return BuildImageElement(scenarioResult);
+          }
 
-            return null;
+          return null;
         }
     }
 }

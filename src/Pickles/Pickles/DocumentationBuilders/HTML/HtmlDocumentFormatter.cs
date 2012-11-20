@@ -102,6 +102,8 @@ namespace Pickles.DocumentationBuilders.HTML
                                   new XAttribute("type", "text/javascript"),
                                   documentReady));
 
+            head.Add(new XComment(" We are using Font Awesome - http://fortawesome.github.com/Font-Awesome - licensed under CC BY 3.0 "));
+
             var html = new XElement(xmlns + "html",
                                     new XAttribute(XNamespace.Xml + "lang", "en"),
                                     head,

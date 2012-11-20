@@ -115,6 +115,13 @@ namespace Pickles
             }
         }
 
+        public Uri InconclusiveImage
+        {
+          get { return new Uri(Path.Combine(ImagesFolder, "inconclusive.png")); }
+        }
+
+
+
         private string GetNameFromResourceName(string resourceName)
         {
             if (resourceName.StartsWith("Pickles.Resources.images"))
