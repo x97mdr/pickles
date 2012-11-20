@@ -18,6 +18,10 @@
 
 #endregion
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Pickles.TestFrameworks
 {
     public struct TestResult
@@ -40,4 +44,33 @@ namespace Pickles.TestFrameworks
           return new TestResult { WasExecuted = false, WasSuccessful = false };
         }
     }
+
+  public static class TestResultExtensions
+  {
+    public static TestResult Merge(IEnumerable<TestResult> testResults)
+    {
+      if (testResults == null)
+      {
+        throw new ArgumentNullException("testResults");
+      }
+
+      TestResult[] items = testResults.ToArray();
+
+      if (!items.Any())
+      {
+        throw new ArgumentException("The sequence must not be empty.");
+      }
+
+      if (items.Count() == 1)
+      {
+        return items.Single();
+      }
+
+      return new TestResult
+        {
+          WasExecuted = items.All(i => i.WasExecuted),
+          WasSuccessful = items.All(i => i.WasSuccessful),
+        };
+    }
+  }
 }
