@@ -163,6 +163,11 @@
     <Compile Include="Features\11ContextInjection\FeatureWithASingleContextSteps.cs" />
     <Compile Include="Features\11ContextInjection\FeatureWithMultipleContextsSteps.cs" />
     <Compile Include="Features\11ContextInjection\FeatureWithNoContextSteps.cs" />
+    <Compile Include="Features\12ParentFolder\ChildFolder\LeafFolder\Leaf.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Leaf.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\99TestEntities\Person.cs" />
     <Compile Include="Features\99TestEntities\Style.cs" />
     <Compile Include="Features\Arithmetic1.feature.cs">
@@ -244,6 +249,10 @@
     <None Include="Features\11ContextInjection\ContextInjection.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ContextInjection1.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\12ParentFolder\ChildFolder\LeafFolder\Leaf.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Leaf.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Arithmetic.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
