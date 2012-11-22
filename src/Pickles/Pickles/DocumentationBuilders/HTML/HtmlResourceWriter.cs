@@ -27,6 +27,18 @@ namespace Pickles
 {
     public class HtmlResourceWriter
     {
+        private static void CopyStream(Stream input, Stream output)
+        {
+            byte[] buffer = new byte[32768];
+            while (true)
+            {
+                int read = input.Read(buffer, 0, buffer.Length);
+                if (read <= 0)
+                    return;
+                output.Write(buffer, 0, read);
+            }
+        }
+
         private void WriteStyleSheet(string folder, string filename)
         {
             string path = Path.Combine(folder, filename);
@@ -74,21 +86,16 @@ namespace Pickles
       }
 
       private void WriteFont(string folder, string filename)
-        {
-            string path = Path.Combine(folder, filename);
-            using (
-                var reader =
-                    new StreamReader(
-                        Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Resources.fonts." +
-                                                                                  filename)))
-            using (var writer = new StreamWriter(path))
-            {
-                writer.Write(reader.ReadToEnd());
-                writer.Flush();
-                writer.Close();
-                reader.Close();
-            }
-        }
+      {
+          Assembly assembly = Assembly.GetExecutingAssembly();
+          using (var input = assembly.GetManifestResourceStream("Pickles.Resources.fonts." + filename))
+          {
+              using (var output = File.Open(Path.Combine(folder, filename), FileMode.Create))
+              {
+                  CopyStream(input, output);
+              }
+          }
+      }
 
         public void WriteTo(string folder)
         {
