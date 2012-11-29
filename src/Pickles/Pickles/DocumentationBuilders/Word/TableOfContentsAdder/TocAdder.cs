@@ -14,7 +14,7 @@ using System.Linq;
 using System.Xml.Linq;
 using DocumentFormat.OpenXml.Packaging;
 
-namespace OpenXmlPowerTools
+namespace Pickles.DocumentationBuilders.Word.TableOfContentsAdder
 {
     public class TocAdder
     {

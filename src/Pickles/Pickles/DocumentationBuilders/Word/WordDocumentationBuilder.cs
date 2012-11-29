@@ -26,8 +26,8 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
-using OpenXmlPowerTools;
 using Pickles.DirectoryCrawler;
+using Pickles.DocumentationBuilders.Word.TableOfContentsAdder;
 
 namespace Pickles.DocumentationBuilders.Word
 {

@@ -1,11 +1,12 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Xml.Linq;
 using NUnit.Framework;
 using Autofac;
 using Pickles.DocumentationBuilders.HTML;
 using Pickles.Parser;
 
-namespace Pickles.Test
+namespace Pickles.Test.DocumentationBuilders.HTML
 {
     [TestFixture]
     public class WhenFormattingFeatures : BaseFixture

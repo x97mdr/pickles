@@ -17,28 +17,28 @@ using System.Xml;
 using System.Xml.Linq;
 using DocumentFormat.OpenXml.Packaging;
 
-namespace OpenXmlPowerTools
+namespace Pickles.DocumentationBuilders.Word.TableOfContentsAdder
 {
     public class WmlDocument
     {
         public WmlDocument(WmlDocument original)
         {
-            DocumentByteArray = new byte[original.DocumentByteArray.Length];
-            Array.Copy(original.DocumentByteArray, DocumentByteArray, original.DocumentByteArray.Length);
-            FileName = original.FileName;
+            this.DocumentByteArray = new byte[original.DocumentByteArray.Length];
+            Array.Copy(original.DocumentByteArray, this.DocumentByteArray, original.DocumentByteArray.Length);
+            this.FileName = original.FileName;
         }
 
         public WmlDocument(string fileName)
         {
-            FileName = FileName;
-            DocumentByteArray = File.ReadAllBytes(fileName);
+            this.FileName = this.FileName;
+            this.DocumentByteArray = File.ReadAllBytes(fileName);
         }
 
         public WmlDocument(byte[] byteArray)
         {
-            DocumentByteArray = new byte[byteArray.Length];
-            Array.Copy(byteArray, DocumentByteArray, byteArray.Length);
-            FileName = null;
+            this.DocumentByteArray = new byte[byteArray.Length];
+            Array.Copy(byteArray, this.DocumentByteArray, byteArray.Length);
+            this.FileName = null;
         }
 
         public string FileName { get; set; }
@@ -47,22 +47,22 @@ namespace OpenXmlPowerTools
         public WordprocessingDocument GetWordprocessingDocument()
         {
             var mem = new MemoryStream();
-            mem.Write(DocumentByteArray, 0, DocumentByteArray.Length);
+            mem.Write(this.DocumentByteArray, 0, this.DocumentByteArray.Length);
             WordprocessingDocument doc = WordprocessingDocument.Open(mem, true);
             return doc;
         }
 
         public void SaveAs(string fileName)
         {
-            File.WriteAllBytes(fileName, DocumentByteArray);
+            File.WriteAllBytes(fileName, this.DocumentByteArray);
         }
 
         public void Save()
         {
-            if (FileName == null)
+            if (this.FileName == null)
                 throw new OpenXmlPowerToolsException(
                     "Attempting to Save a document that has no file name.  Use SaveAs instead.");
-            File.WriteAllBytes(FileName, DocumentByteArray);
+            File.WriteAllBytes(this.FileName, this.DocumentByteArray);
         }
     }
 

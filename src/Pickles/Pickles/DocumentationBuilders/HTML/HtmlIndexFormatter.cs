@@ -24,10 +24,9 @@ using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using Pickles.DirectoryCrawler;
-using Pickles.DocumentationBuilders.HTML;
 using Pickles.Extensions;
 
-namespace Pickles
+namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlIndexFormatter
     {
@@ -58,9 +57,9 @@ namespace Pickles
                 features.Where(f => f.OriginalLocation is FileInfo).Where(
                     f => files.Contains(f.OriginalLocation.FullName)).ToArray();
 
-            var div = new XElement(xmlns + "div",
+            var div = new XElement(this.xmlns + "div",
                                    new XAttribute("id", "feature"),
-                                   new XElement(xmlns + "h1", node.Name));
+                                   new XElement(this.xmlns + "h1", node.Name));
 
             MarkdownTreeNode markdownTreeNode =
                 featuresThatAreDirectChildrenOfFolder.Where(n => n.IsIndexMarkDownNode()).OfType<MarkdownTreeNode>().
@@ -69,12 +68,12 @@ namespace Pickles
             {
                 div.Add(
                     new XElement(
-                        xmlns + "div",
+                        this.xmlns + "div",
                         new XAttribute("class", "folderDescription"),
                         markdownTreeNode.MarkdownContent));
             }
 
-            div.Add(FormatList(node, featuresThatAreDirectChildrenOfFolder.OfType<FeatureDirectoryTreeNode>()));
+            div.Add(this.FormatList(node, featuresThatAreDirectChildrenOfFolder.OfType<FeatureDirectoryTreeNode>()));
 
             return div;
         }
@@ -83,13 +82,13 @@ namespace Pickles
         {
             // <ul class="list">...</ul>
 
-            var list = new XElement(xmlns + "ul", new XAttribute("class", "list"));
+            var list = new XElement(this.xmlns + "ul", new XAttribute("class", "list"));
 
             foreach (
                 XElement li in
                     items.Select(
                         item =>
-                        FormatListItem(item.GetRelativeUriTo(node.OriginalLocationUrl), item.Feature.Name,
+                        this.FormatListItem(item.GetRelativeUriTo(node.OriginalLocationUrl), item.Feature.Name,
                                        item.Feature.Description)))
             {
                 list.Add(li);
@@ -102,20 +101,20 @@ namespace Pickles
         {
             // <li><a href="[link]"><span class="title">[title]</span><span class="separator"> - </span><span class="description">[description]</span></a></li>
             return new XElement(
-                xmlns + "li",
+                this.xmlns + "li",
                 new XElement(
-                    xmlns + "a",
+                    this.xmlns + "a",
                     new XAttribute("href", link),
                     new XElement(
-                        xmlns + "span",
+                        this.xmlns + "span",
                         new XAttribute("class", "title"),
                         title),
                     new XElement(
-                        xmlns + "span",
+                        this.xmlns + "span",
                         new XAttribute("class", "separator"),
                         " - "),
                     new XElement(
-                        xmlns + "span",
+                        this.xmlns + "span",
                         new XAttribute("class", "description"),
                         description)));
         }

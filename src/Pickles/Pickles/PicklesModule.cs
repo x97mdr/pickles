@@ -19,6 +19,7 @@
 #endregion
 
 using Autofac;
+using Pickles.DocumentationBuilders;
 using Pickles.DocumentationBuilders.DITA;
 using Pickles.DocumentationBuilders.Excel;
 using Pickles.DocumentationBuilders.HTML;

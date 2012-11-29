@@ -2,7 +2,7 @@
 using Should;
 using TechTalk.SpecFlow;
 
-namespace Pickles.Example
+namespace Pickles.Example.xUnit
 {
     [Binding]
     public class Steps
@@ -14,13 +14,13 @@ namespace Pickles.Example
         [Given("I have entered (.*) into the calculator")]
         public void GivenIHaveEnteredSomethingIntoTheCalculator(int number)
         {
-            if (!value1.HasValue)
+            if (!this.value1.HasValue)
             {
-                value1 = number;
+                this.value1 = number;
             }
             else
             {
-                value2 = number;
+                this.value2 = number;
             }
         }
 
@@ -30,28 +30,28 @@ namespace Pickles.Example
             switch (button.ToLowerInvariant())
             {
                 case "add":
-                    result = value1.Value + value2.Value;
+                    this.result = this.value1.Value + this.value2.Value;
                     break;
                 case "subtract":
-                    result = value1.Value - value2.Value;
+                    this.result = this.value1.Value - this.value2.Value;
                     break;
                 case "multiply":
-                    result = value1.Value*value2.Value;
+                    this.result = this.value1.Value*this.value2.Value;
                     break;
                 case "divide":
-                    result = value1.Value/value2.Value;
+                    this.result = this.value1.Value/this.value2.Value;
                     break;
                 case "sin":
-                    result = Convert.ToInt32(Math.Sin(Convert.ToDouble(value1.Value)));
+                    this.result = Convert.ToInt32(Math.Sin(Convert.ToDouble(this.value1.Value)));
                     break;
                 case "cos":
-                    result = Convert.ToInt32(Math.Cos(Convert.ToDouble(value1.Value)));
+                    this.result = Convert.ToInt32(Math.Cos(Convert.ToDouble(this.value1.Value)));
                     break;
                 case "tan":
-                    result = Convert.ToInt32(Math.Floor(Math.Tan(Convert.ToDouble(value1.Value))));
+                    this.result = Convert.ToInt32(Math.Floor(Math.Tan(Convert.ToDouble(this.value1.Value))));
                     break;
                 case "C":
-                    result = null;
+                    this.result = null;
                     break;
             }
         }
@@ -65,7 +65,7 @@ namespace Pickles.Example
         [Then(@"the screen should be empty")]
         public void ThenTheScreenShouldBeEmpty()
         {
-            result.HasValue.ShouldBeFalse();
+            this.result.HasValue.ShouldBeFalse();
         }
     }
 }

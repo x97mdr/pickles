@@ -1,11 +1,12 @@
-﻿using ClosedXML.Excel;
+﻿using System;
+using ClosedXML.Excel;
 using NUnit.Framework;
 using Autofac;
 using Pickles.DocumentationBuilders.Excel;
 using Pickles.Parser;
 using Should;
 
-namespace Pickles.Test.DocumentationBuilders
+namespace Pickles.Test.DocumentationBuilders.Excel
 {
     [TestFixture]
     public class WhenAddingAStepToAWorksheet : BaseFixture

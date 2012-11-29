@@ -21,6 +21,7 @@
 using NGenerics.DataStructures.Trees;
 using Pickles.DirectoryCrawler;
 using Autofac;
+using Pickles.DocumentationBuilders;
 
 namespace Pickles
 {

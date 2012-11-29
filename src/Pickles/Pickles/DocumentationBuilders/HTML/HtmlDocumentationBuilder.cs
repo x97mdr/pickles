@@ -18,6 +18,7 @@
 
 #endregion
 
+using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -25,11 +26,10 @@ using System.Xml.Linq;
 using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
 using Pickles.DirectoryCrawler;
-using Pickles.DocumentationBuilders.HTML;
 using Pickles.Extensions;
 using log4net;
 
-namespace Pickles
+namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlDocumentationBuilder : IDocumentationBuilder
     {
@@ -54,10 +54,10 @@ namespace Pickles
         {
             if (log.IsInfoEnabled)
             {
-                log.InfoFormat("Writing HTML to {0}", configuration.OutputFolder.FullName);
+                log.InfoFormat("Writing HTML to {0}", this.configuration.OutputFolder.FullName);
             }
 
-            htmlResourceWriter.WriteTo(configuration.OutputFolder.FullName);
+            this.htmlResourceWriter.WriteTo(this.configuration.OutputFolder.FullName);
 
 
             var actionVisitor = new ActionVisitor<IDirectoryTreeNode>(node =>
@@ -69,7 +69,7 @@ namespace Pickles
 
                                                                               string nodePath =
                                                                                   Path.Combine(
-                                                                                      configuration.OutputFolder.
+                                                                                      this.configuration.OutputFolder.
                                                                                           FullName,
                                                                                       node.RelativePathFromRoot);
                                                                               string htmlFilePath;
@@ -96,9 +96,9 @@ namespace Pickles
                                                                                                        Encoding.UTF8))
                                                                               {
                                                                                   XDocument document =
-                                                                                      htmlDocumentFormatter.Format(
+                                                                                      this.htmlDocumentFormatter.Format(
                                                                                           node, features,
-                                                                                          configuration.FeatureFolder);
+                                                                                          this.configuration.FeatureFolder);
                                                                                   document.Save(writer);
                                                                                   writer.Close();
                                                                               }

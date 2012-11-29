@@ -20,8 +20,10 @@
 
 using NUnit.Framework;
 using Autofac;
+using Pickles.DocumentationBuilders;
 using Pickles.DocumentationBuilders.DITA;
 using Pickles.DocumentationBuilders.Excel;
+using Pickles.DocumentationBuilders.HTML;
 using Pickles.DocumentationBuilders.Word;
 using Should;
 

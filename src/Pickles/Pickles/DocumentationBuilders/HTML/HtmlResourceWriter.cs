@@ -18,12 +18,13 @@
 
 #endregion
 
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Reflection;
 
-namespace Pickles
+namespace Pickles.DocumentationBuilders.HTML
 {
     public class HtmlResourceWriter
     {
@@ -99,31 +100,31 @@ namespace Pickles
 
         public void WriteTo(string folder)
         {
-            WriteStyleSheet(folder, "master.css");
-            WriteStyleSheet(folder, "reset.css");
-            WriteStyleSheet(folder, "global.css");
-            WriteStyleSheet(folder, "structure.css");
-            WriteStyleSheet(folder, "print.css");
-            WriteStyleSheet(folder, "font-awesome.css");
+            this.WriteStyleSheet(folder, "master.css");
+            this.WriteStyleSheet(folder, "reset.css");
+            this.WriteStyleSheet(folder, "global.css");
+            this.WriteStyleSheet(folder, "structure.css");
+            this.WriteStyleSheet(folder, "print.css");
+            this.WriteStyleSheet(folder, "font-awesome.css");
 
             string imagesFolder = Path.Combine(folder, "images");
             if (!Directory.Exists(imagesFolder)) Directory.CreateDirectory(imagesFolder);
-            WriteImage(imagesFolder, "success.png");
-            WriteImage(imagesFolder, "failure.png");
-            WriteImage(imagesFolder, "inconclusive.png");
+            this.WriteImage(imagesFolder, "success.png");
+            this.WriteImage(imagesFolder, "failure.png");
+            this.WriteImage(imagesFolder, "inconclusive.png");
 
             string scriptsFolder = Path.Combine(folder, "scripts");
             if (!Directory.Exists(scriptsFolder)) Directory.CreateDirectory(scriptsFolder);
-            WriteScript(scriptsFolder, "jquery.js");
-            WriteScript(scriptsFolder, "scripts.js");
+            this.WriteScript(scriptsFolder, "jquery.js");
+            this.WriteScript(scriptsFolder, "scripts.js");
 
             string fontsFolder = Path.Combine(folder, "fonts");
             if (!Directory.Exists(fontsFolder)) Directory.CreateDirectory(fontsFolder);
-            WriteFont(fontsFolder, "FontAwesome.ttf");
-            WriteFont(fontsFolder, "fontawesome-webfont.eot");
-            WriteFont(fontsFolder, "fontawesome-webfont.svg");
-            WriteFont(fontsFolder, "fontawesome-webfont.ttf");
-            WriteFont(fontsFolder, "fontawesome-webfont.woff");
+            this.WriteFont(fontsFolder, "FontAwesome.ttf");
+            this.WriteFont(fontsFolder, "fontawesome-webfont.eot");
+            this.WriteFont(fontsFolder, "fontawesome-webfont.svg");
+            this.WriteFont(fontsFolder, "fontawesome-webfont.ttf");
+            this.WriteFont(fontsFolder, "fontawesome-webfont.woff");
         }
     }
 }

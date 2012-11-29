@@ -2,6 +2,7 @@ using System.IO;
 using NUnit.Framework;
 using Autofac;
 using Pickles.DirectoryCrawler;
+using Pickles.DocumentationBuilders.HTML;
 
 namespace Pickles.Test.Formatters
 {

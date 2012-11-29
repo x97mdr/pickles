@@ -19,10 +19,9 @@
 #endregion
 
 using System;
-using Pickles.Parser;
 using System.Collections.Generic;
 
-namespace Pickles
+namespace Pickles.Parser
 {
 	public class ExampleBuilder
 	{
@@ -32,7 +31,7 @@ namespace Pickles
 		
 		public ExampleBuilder()
 		{
-			tableBuilder = new TableBuilder();
+			this.tableBuilder = new TableBuilder();
 		}
 		
 		public void SetName(string name)
@@ -53,9 +52,9 @@ namespace Pickles
 		public Example GetResult()
 		{
 			var example = new Example();
-			example.Name = name;
-			example.Description = description;
-			example.TableArgument = tableBuilder.GetResult();
+			example.Name = this.name;
+			example.Description = this.description;
+			example.TableArgument = this.tableBuilder.GetResult();
 			return example;
 		}
 	}

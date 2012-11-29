@@ -18,7 +18,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace OpenXmlPowerTools
+namespace Pickles.DocumentationBuilders.Word.TableOfContentsAdder
 {
     public static class PtExtensions
     {
@@ -188,8 +188,8 @@ namespace OpenXmlPowerTools
     {
         public GroupOfAdjacent(List<TSource> source, TKey key)
         {
-            GroupList = source;
-            Key = key;
+            this.GroupList = source;
+            this.Key = key;
         }
 
         private List<TSource> GroupList { get; set; }
@@ -204,7 +204,7 @@ namespace OpenXmlPowerTools
         IEnumerator<TSource>
             IEnumerable<TSource>.GetEnumerator()
         {
-            foreach (TSource s in GroupList)
+            foreach (TSource s in this.GroupList)
                 yield return s;
         }
 

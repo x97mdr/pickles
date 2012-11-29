@@ -2,6 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 using Autofac;
+using Pickles.DocumentationBuilders.HTML;
 using Should;
 
 namespace Pickles.Test
