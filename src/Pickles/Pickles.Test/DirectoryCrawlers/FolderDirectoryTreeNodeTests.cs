@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using NUnit.Framework;
-using Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.DirectoryCrawler;
 
-namespace Pickles.Test.DirectoryCrawlers
+namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
 {
     [TestFixture]
     public class FolderDirectoryTreeNodeTests

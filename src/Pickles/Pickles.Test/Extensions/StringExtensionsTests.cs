@@ -1,7 +1,8 @@
-﻿using NUnit.Framework;
-using Pickles.Extensions;
+﻿using System;
+using NUnit.Framework;
+using PicklesDoc.Pickles.Extensions;
 
-namespace Pickles.Test.Extensions
+namespace PicklesDoc.Pickles.Test.Extensions
 {
     [TestFixture]
     public class StringExtensionsTests

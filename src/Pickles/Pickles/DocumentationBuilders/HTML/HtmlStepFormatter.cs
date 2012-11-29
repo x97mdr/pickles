@@ -18,10 +18,11 @@
 
 #endregion
 
+using System;
 using System.Xml.Linq;
-using Pickles.Parser;
+using PicklesDoc.Pickles.Parser;
 
-namespace Pickles.DocumentationBuilders.HTML
+namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlStepFormatter
     {
@@ -39,25 +40,25 @@ namespace Pickles.DocumentationBuilders.HTML
             this.htmlTableFormatter = htmlTableFormatter;
             this.htmlMultilineStringFormatter = htmlMultilineStringFormatter;
             this.languageServices = languageServices;
-            xmlns = HtmlNamespace.Xhtml;
+            this.xmlns = HtmlNamespace.Xhtml;
         }
 
         public XElement Format(Step step)
         {
             var li = new XElement(
-                xmlns + "li",
+                this.xmlns + "li",
                 new XAttribute("class", "step"),
-                new XElement(xmlns + "span", new XAttribute("class", "keyword"), step.NativeKeyword),
+                new XElement(this.xmlns + "span", new XAttribute("class", "keyword"), step.NativeKeyword),
                 step.Name);
 
             if (step.TableArgument != null)
             {
-                li.Add(htmlTableFormatter.Format(step.TableArgument));
+                li.Add(this.htmlTableFormatter.Format(step.TableArgument));
             }
 
             if (!string.IsNullOrEmpty(step.DocStringArgument))
             {
-                li.Add(htmlMultilineStringFormatter.Format(step.DocStringArgument));
+                li.Add(this.htmlMultilineStringFormatter.Format(step.DocStringArgument));
             }
 
             return li;

@@ -1,10 +1,10 @@
 ﻿using System;
 using NUnit.Framework;
-using Pickles.FeatureTree;
-using Pickles.Parser;
+using PicklesDoc.Pickles.FeatureTree;
+using PicklesDoc.Pickles.Parser;
 using Should;
 
-namespace Pickles.Test.FeatureTree
+namespace PicklesDoc.Pickles.Test.FeatureTree
 {
     [TestFixture]
     public class FeatureFileTests

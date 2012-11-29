@@ -8,8 +8,8 @@
     <ProjectGuid>{A4EBBB5F-A18D-46D2-9ADE-2B90BD48CEC8}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pickles.CommandLine</RootNamespace>
-    <AssemblyName>Pickles.CommandLine</AssemblyName>
+    <RootNamespace>PicklesDoc.Pickles.CommandLine</RootNamespace>
+    <AssemblyName>PicklesDoc.Pickles.CommandLine</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BuildPackage>false</BuildPackage>
@@ -36,7 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Pickles.CommandLine.Program</StartupObject>
+    <StartupObject>PicklesDoc.Pickles.CommandLine.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autofac">

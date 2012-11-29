@@ -26,7 +26,7 @@ using System.Management.Automation;
 using System.Reflection;
 using Autofac;
 
-namespace Pickles.PowerShell
+namespace PicklesDoc.Pickles.PowerShell
 {
     [Cmdlet("Pickle", "Features")]
     public class Pickle_Features : PSCmdlet
@@ -64,7 +64,7 @@ namespace Pickles.PowerShell
 
             var configuration = container.Resolve<Configuration>();
 
-            ParseParameters(configuration);
+            this.ParseParameters(configuration);
 
             WriteObject(string.Format("Pickles v.{0}{1}", Assembly.GetExecutingAssembly().GetName().Version,
                                       Environment.NewLine));
@@ -78,26 +78,26 @@ namespace Pickles.PowerShell
 
         private void ParseParameters(Configuration configuration)
         {
-            configuration.FeatureFolder = new DirectoryInfo(FeatureDirectory);
-            configuration.OutputFolder = new DirectoryInfo(OutputDirectory);
-            if (!string.IsNullOrEmpty(TestResultsFormat))
+            configuration.FeatureFolder = new DirectoryInfo(this.FeatureDirectory);
+            configuration.OutputFolder = new DirectoryInfo(this.OutputDirectory);
+            if (!string.IsNullOrEmpty(this.TestResultsFormat))
             {
                 configuration.TestResultsFormat =
-                    (TestResultsFormat) Enum.Parse(typeof (TestResultsFormat), TestResultsFormat, true);
+                    (TestResultsFormat) Enum.Parse(typeof (TestResultsFormat), this.TestResultsFormat, true);
             }
-            if (!string.IsNullOrEmpty(TestResultsFile))
+            if (!string.IsNullOrEmpty(this.TestResultsFile))
             {
-                configuration.TestResultsFile = new FileInfo(TestResultsFile);
+                configuration.TestResultsFile = new FileInfo(this.TestResultsFile);
             }
-            configuration.SystemUnderTestName = SystemUnderTestName;
-            configuration.SystemUnderTestVersion = SystemUnderTestVersion;
-            if (!string.IsNullOrEmpty(DocumentationFormat))
+            configuration.SystemUnderTestName = this.SystemUnderTestName;
+            configuration.SystemUnderTestVersion = this.SystemUnderTestVersion;
+            if (!string.IsNullOrEmpty(this.DocumentationFormat))
                 configuration.DocumentationFormat =
-                    (DocumentationFormat) Enum.Parse(typeof (DocumentationFormat), DocumentationFormat, true);
+                    (DocumentationFormat) Enum.Parse(typeof (DocumentationFormat), this.DocumentationFormat, true);
 
-            if (!string.IsNullOrEmpty(Language))
+            if (!string.IsNullOrEmpty(this.Language))
             {
-                configuration.Language = Language;
+                configuration.Language = this.Language;
              }
         }
     }

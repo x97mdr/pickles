@@ -18,11 +18,12 @@
 
 #endregion
 
+using System;
 using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
-using Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.DirectoryCrawler;
 
-namespace Pickles.DocumentationBuilders.DITA
+namespace PicklesDoc.Pickles.DocumentationBuilders.DITA
 {
     public class DitaDocumentationBuilder : IDocumentationBuilder
     {
@@ -39,7 +40,7 @@ namespace Pickles.DocumentationBuilders.DITA
 
         public void Build(GeneralTree<IDirectoryTreeNode> features)
         {
-            ditaMapBuilder.Build(features);
+            this.ditaMapBuilder.Build(features);
 
             var actionVisitor = new ActionVisitor<IDirectoryTreeNode>(node =>
                                                                           {
@@ -47,7 +48,7 @@ namespace Pickles.DocumentationBuilders.DITA
                                                                                   node as FeatureDirectoryTreeNode;
                                                                               if (featureDirectoryTreeNode != null)
                                                                               {
-                                                                                  ditaFeatureFormatter.Format(
+                                                                                  this.ditaFeatureFormatter.Format(
                                                                                       featureDirectoryTreeNode);
                                                                               }
                                                                           });

@@ -1,7 +1,8 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Autofac;
 
-namespace Pickles.Test
+namespace PicklesDoc.Pickles.Test
 {
     public class BaseFixture
     {
@@ -11,24 +12,24 @@ namespace Pickles.Test
         {
             get 
             {
-                if (container == null)
+                if (this.container == null)
                 {
                     var builder = new ContainerBuilder();
                     builder.RegisterAssemblyTypes(typeof (Runner).Assembly);
                     builder.RegisterModule<PicklesModule>();
-                    container = builder.Build();
+                    this.container = builder.Build();
                 }
 
-                return container;
+                return this.container;
             }
         }
 
         [TearDown]
         public void TearDown()
         {
-            if (container != null)
-                container.Dispose();
-            container = null;
+            if (this.container != null)
+                this.container.Dispose();
+            this.container = null;
         }
     }
 }

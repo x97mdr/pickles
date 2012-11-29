@@ -18,11 +18,12 @@
 
 #endregion
 
+using System;
 using System.Xml.Linq;
 using MarkdownDeep;
-using Pickles.Extensions;
+using PicklesDoc.Pickles.Extensions;
 
-namespace Pickles.DocumentationBuilders.HTML
+namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlMarkdownFormatter
     {
@@ -33,16 +34,16 @@ namespace Pickles.DocumentationBuilders.HTML
         public HtmlMarkdownFormatter(Markdown markdown)
         {
             this.markdown = markdown;
-            xmlns = HtmlNamespace.Xhtml;
+            this.xmlns = HtmlNamespace.Xhtml;
         }
 
         public XElement Format(string text)
         {
             // HACK - we add the div around the markdown content because XElement requires a single root element from which to parse and Markdown.Transform() returns a series of elements
-            XElement xElement = XElement.Parse("<div>" + markdown.Transform(text) + "</div>");
+            XElement xElement = XElement.Parse("<div>" + this.markdown.Transform(text) + "</div>");
             xElement.SetAttributeValue("id", "markdown");
 
-            xElement.MoveToNamespace(xmlns);
+            xElement.MoveToNamespace(this.xmlns);
 
             return xElement;
         }

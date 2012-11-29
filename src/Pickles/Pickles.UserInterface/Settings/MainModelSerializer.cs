@@ -18,7 +18,7 @@
 using System;
 using System.IO;
 
-namespace Pickles.UserInterface.Settings
+namespace PicklesDoc.Pickles.UserInterface.Settings
 {
   /// <summary>
   /// A serializer class for <see cref="MainModel"/>.

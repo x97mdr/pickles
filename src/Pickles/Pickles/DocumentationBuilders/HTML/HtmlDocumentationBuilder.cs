@@ -25,11 +25,11 @@ using System.Text;
 using System.Xml.Linq;
 using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
-using Pickles.DirectoryCrawler;
-using Pickles.Extensions;
+using PicklesDoc.Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.Extensions;
 using log4net;
 
-namespace Pickles.DocumentationBuilders.HTML
+namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlDocumentationBuilder : IDocumentationBuilder
     {

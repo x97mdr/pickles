@@ -21,9 +21,9 @@
 using System;
 using System.Xml.Linq;
 using MarkdownDeep;
-using Pickles.Extensions;
+using PicklesDoc.Pickles.Extensions;
 
-namespace Pickles.DocumentationBuilders.HTML
+namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlDescriptionFormatter
     {
@@ -34,18 +34,18 @@ namespace Pickles.DocumentationBuilders.HTML
         public HtmlDescriptionFormatter(Markdown markdown)
         {
             this.markdown = markdown;
-            xmlns = HtmlNamespace.Xhtml;
+            this.xmlns = HtmlNamespace.Xhtml;
         }
 
         public XElement Format(string descriptionText)
         {
             if (String.IsNullOrEmpty(descriptionText)) return null;
 
-            string markdownResult = "<div>" + markdown.Transform(descriptionText) + "</div>";
+            string markdownResult = "<div>" + this.markdown.Transform(descriptionText) + "</div>";
             XElement descriptionElements = XElement.Parse(markdownResult);
             descriptionElements.SetAttributeValue("class", "description");
 
-            descriptionElements.MoveToNamespace(xmlns);
+            descriptionElements.MoveToNamespace(this.xmlns);
 
             return descriptionElements;
         }

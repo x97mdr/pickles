@@ -18,15 +18,16 @@
 
 #endregion
 
+using System;
 using System.IO;
 using System.Reflection;
 using ClosedXML.Excel;
 using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
-using Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.DirectoryCrawler;
 using log4net;
 
-namespace Pickles.DocumentationBuilders.Excel
+namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 {
     public class ExcelDocumentationBuilder : IDocumentationBuilder
     {
@@ -56,10 +57,10 @@ namespace Pickles.DocumentationBuilders.Excel
         {
             if (log.IsInfoEnabled)
             {
-                log.InfoFormat("Writing Excel workbook to {0}", configuration.OutputFolder.FullName);
+                log.InfoFormat("Writing Excel workbook to {0}", this.configuration.OutputFolder.FullName);
             }
 
-            string spreadsheetPath = Path.Combine(configuration.OutputFolder.FullName, "features.xlsx");
+            string spreadsheetPath = Path.Combine(this.configuration.OutputFolder.FullName, "features.xlsx");
             using (var workbook = new XLWorkbook())
             {
                 var actionVisitor = new ActionVisitor<IDirectoryTreeNode>(node =>
@@ -70,12 +71,12 @@ namespace Pickles.DocumentationBuilders.Excel
                                                                                   {
                                                                                       IXLWorksheet worksheet =
                                                                                           workbook.AddWorksheet(
-                                                                                              excelSheetNameGenerator.
+                                                                                              this.excelSheetNameGenerator.
                                                                                                   GenerateSheetName(
                                                                                                       workbook,
                                                                                                       featureDirectoryTreeNode
                                                                                                           .Feature));
-                                                                                      excelFeatureFormatter.Format(
+                                                                                      this.excelFeatureFormatter.Format(
                                                                                           worksheet,
                                                                                           featureDirectoryTreeNode.
                                                                                               Feature);
@@ -84,7 +85,7 @@ namespace Pickles.DocumentationBuilders.Excel
 
                 features.AcceptVisitor(actionVisitor);
 
-                excelTableOfContentsFormatter.Format(workbook, features);
+                this.excelTableOfContentsFormatter.Format(workbook, features);
 
                 workbook.SaveAs(spreadsheetPath);
             }

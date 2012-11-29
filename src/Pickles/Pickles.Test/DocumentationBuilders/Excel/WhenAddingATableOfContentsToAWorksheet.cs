@@ -1,9 +1,10 @@
-﻿using ClosedXML.Excel;
+﻿using System;
+using ClosedXML.Excel;
 using NUnit.Framework;
 using Autofac;
-using Pickles.DocumentationBuilders.Excel;
+using PicklesDoc.Pickles.DocumentationBuilders.Excel;
 
-namespace Pickles.Test.DocumentationBuilders.Excel
+namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
 {
     [TestFixture]
     public class WhenAddingATableOfContentsToAWorksheet : BaseFixture

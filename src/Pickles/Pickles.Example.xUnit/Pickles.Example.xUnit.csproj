@@ -8,8 +8,8 @@
     <ProjectGuid>{F059CC12-C35A-421F-9180-2C6078A3D6C6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pickles.Example.xUnit</RootNamespace>
-    <AssemblyName>Pickles.Example.xUnit</AssemblyName>
+    <RootNamespace>PicklesDoc.Pickles.Example.xUnit</RootNamespace>
+    <AssemblyName>PicklesDoc.Pickles.Example.xUnit</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\Pickles\</SolutionDir>
     <RestorePackages>true</RestorePackages>

@@ -1,13 +1,14 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using NGenerics.DataStructures.Trees;
 using NUnit.Framework;
 using Autofac;
-using Pickles.DirectoryCrawler;
-using Pickles.DocumentationBuilders.JSON;
-using Pickles.Test.Helpers;
+using PicklesDoc.Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.DocumentationBuilders.JSON;
+using PicklesDoc.Pickles.Test.Helpers;
 using Should.Fluent;
 
-namespace Pickles.Test.Formatters.JSON
+namespace PicklesDoc.Pickles.Test.Formatters.JSON
 {
     [TestFixture]
     public class when_formatting_a_folder_structure_with_features : BaseFixture
@@ -49,13 +50,13 @@ namespace Pickles.Test.Formatters.JSON
         [Test]
         public void a_single_file_should_have_been_created()
         {
-            File.Exists(filePath).Should().Be.True();
+            File.Exists(this.filePath).Should().Be.True();
         }
 
         [Test]
         public void should_contain_the_features()
         {
-            string content = File.ReadAllText(filePath);
+            string content = File.ReadAllText(this.filePath);
             content.AssertJSONKeyValue("Name", "Addition");
         }
     }

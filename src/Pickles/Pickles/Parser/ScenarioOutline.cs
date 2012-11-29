@@ -18,16 +18,17 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 
-namespace Pickles.Parser
+namespace PicklesDoc.Pickles.Parser
 {
     public class ScenarioOutline : IFeatureElement
     {
         public ScenarioOutline()
         {
-            Steps = new List<Step>();
-            Tags = new List<string>();
+            this.Steps = new List<Step>();
+            this.Tags = new List<string>();
         }
 
         public List<Example> Examples { get; set; }

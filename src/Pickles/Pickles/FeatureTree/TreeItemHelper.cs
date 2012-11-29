@@ -18,9 +18,10 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 
-namespace Pickles.FeatureTree
+namespace PicklesDoc.Pickles.FeatureTree
 {
     internal static class TreeItemHelper
     {

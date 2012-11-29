@@ -24,7 +24,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Reflection;
 
-namespace Pickles.DocumentationBuilders.HTML
+namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlResourceWriter
     {
@@ -46,7 +46,7 @@ namespace Pickles.DocumentationBuilders.HTML
             using (
                 var reader =
                     new StreamReader(
-                        Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Resources." + filename)))
+                        Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Resources." + filename)))
             using (var writer = new StreamWriter(path))
             {
                 writer.Write(reader.ReadToEnd());
@@ -62,7 +62,7 @@ namespace Pickles.DocumentationBuilders.HTML
             using (
                 Image image =
                     Image.FromStream(
-                        Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Resources.images." + filename))
+                        Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Resources.images." + filename))
                 )
             {
                 image.Save(path, ImageFormat.Png);
@@ -75,7 +75,7 @@ namespace Pickles.DocumentationBuilders.HTML
         using (
           var reader =
             new StreamReader(
-              Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Resources.scripts." +
+              Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Resources.scripts." +
                                                                         filename)))
         using (var writer = new StreamWriter(path))
         {
@@ -89,7 +89,7 @@ namespace Pickles.DocumentationBuilders.HTML
       private void WriteFont(string folder, string filename)
       {
           Assembly assembly = Assembly.GetExecutingAssembly();
-          using (var input = assembly.GetManifestResourceStream("Pickles.Resources.fonts." + filename))
+          using (var input = assembly.GetManifestResourceStream("PicklesDoc.Pickles.Resources.fonts." + filename))
           {
               using (var output = File.Open(Path.Combine(folder, filename), FileMode.Create))
               {

@@ -18,11 +18,12 @@
 
 #endregion
 
+using System;
 using System.Linq;
 using System.Xml.Linq;
-using Pickles.Parser;
+using PicklesDoc.Pickles.Parser;
 
-namespace Pickles.DocumentationBuilders.HTML
+namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlScenarioOutlineFormatter
     {
@@ -42,17 +43,17 @@ namespace Pickles.DocumentationBuilders.HTML
             this.htmlDescriptionFormatter = htmlDescriptionFormatter;
             this.htmlTableFormatter = htmlTableFormatter;
             this.htmlImageResultFormatter = htmlImageResultFormatter;
-            xmlns = HtmlNamespace.Xhtml;
+            this.xmlns = HtmlNamespace.Xhtml;
         }
 
         private XElement FormatHeading(ScenarioOutline scenarioOutline)
         {
             if (string.IsNullOrEmpty(scenarioOutline.Name)) return null;
 
-            return new XElement(xmlns + "div",
+            return new XElement(this.xmlns + "div",
                                     new XAttribute("class", "scenario-heading"),
-                                    new XElement(xmlns + "h2", scenarioOutline.Name),
-                                    htmlDescriptionFormatter.Format(scenarioOutline.Description)
+                                    new XElement(this.xmlns + "h2", scenarioOutline.Name),
+                                    this.htmlDescriptionFormatter.Format(scenarioOutline.Description)
                                 );
         }
 
@@ -60,25 +61,25 @@ namespace Pickles.DocumentationBuilders.HTML
         {
             if (scenarioOutline.Steps == null) return null;
 
-            return new XElement(xmlns + "div",
+            return new XElement(this.xmlns + "div",
                                 new XAttribute("class", "steps"),
-                                new XElement(xmlns + "ul",
+                                new XElement(this.xmlns + "ul",
                                              scenarioOutline.Steps.Select(
-                                                 step => htmlStepFormatter.Format(step)))
+                                                 step => this.htmlStepFormatter.Format(step)))
                 );
         }
 
         private XElement FormatExamples(ScenarioOutline scenarioOutline)
         {
-			var exampleDiv = new XElement(xmlns + "div");
+			var exampleDiv = new XElement(this.xmlns + "div");
 			
 			foreach (var example in scenarioOutline.Examples)
 			{
-	            exampleDiv.Add(new XElement(xmlns + "div",
+	            exampleDiv.Add(new XElement(this.xmlns + "div",
 	                                new XAttribute("class", "examples"),
-	                                new XElement(xmlns + "h3", "Examples: " + example.Name),
-	                                htmlDescriptionFormatter.Format(example.Description),
-	                                (example.TableArgument == null) ? null : htmlTableFormatter.Format(example.TableArgument)
+	                                new XElement(this.xmlns + "h3", "Examples: " + example.Name),
+	                                this.htmlDescriptionFormatter.Format(example.Description),
+	                                (example.TableArgument == null) ? null : this.htmlTableFormatter.Format(example.TableArgument)
 	                ));
 			}
 			
@@ -87,14 +88,14 @@ namespace Pickles.DocumentationBuilders.HTML
 
         public XElement Format(ScenarioOutline scenarioOutline, int id)
         {
-            return new XElement(xmlns + "li",
+            return new XElement(this.xmlns + "li",
                                 new XAttribute("class", "scenario"),
-                                htmlImageResultFormatter.Format(scenarioOutline),
-                                FormatHeading(scenarioOutline),
-                                FormatSteps(scenarioOutline),
+                                this.htmlImageResultFormatter.Format(scenarioOutline),
+                                this.FormatHeading(scenarioOutline),
+                                this.FormatSteps(scenarioOutline),
                                 (scenarioOutline.Examples == null || !scenarioOutline.Examples.Any()) 
 			                    	? null 
-			                    	: FormatExamples(scenarioOutline)
+			                    	: this.FormatExamples(scenarioOutline)
                 );
         }
     }

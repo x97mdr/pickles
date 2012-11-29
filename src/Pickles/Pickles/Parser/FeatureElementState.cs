@@ -18,7 +18,9 @@
 
 #endregion
 
-namespace Pickles.Parser
+using System;
+
+namespace PicklesDoc.Pickles.Parser
 {
     public struct FeatureElementState
     {
@@ -28,23 +30,23 @@ namespace Pickles.Parser
 
         public void SetBackgroundActive()
         {
-            IsBackgroundActive = true;
-            IsScenarioActive = false;
-            IsScenarioOutlineActive = false;
+            this.IsBackgroundActive = true;
+            this.IsScenarioActive = false;
+            this.IsScenarioOutlineActive = false;
         }
 
         public void SetScenarioActive()
         {
-            IsBackgroundActive = false;
-            IsScenarioActive = true;
-            IsScenarioOutlineActive = false;
+            this.IsBackgroundActive = false;
+            this.IsScenarioActive = true;
+            this.IsScenarioOutlineActive = false;
         }
 
         public void SetScenarioOutlineActive()
         {
-            IsBackgroundActive = false;
-            IsScenarioActive = false;
-            IsScenarioOutlineActive = true;
+            this.IsBackgroundActive = false;
+            this.IsScenarioActive = false;
+            this.IsScenarioOutlineActive = true;
         }
     }
 }

@@ -20,10 +20,10 @@
 
 using System;
 using System.IO;
-using Pickles.DirectoryCrawler;
-using Pickles.Extensions;
+using PicklesDoc.Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.Extensions;
 
-namespace Pickles.DocumentationBuilders.DITA
+namespace PicklesDoc.Pickles.DocumentationBuilders.DITA
 {
     public class DitaMapPathGenerator
     {
@@ -45,7 +45,7 @@ namespace Pickles.DocumentationBuilders.DITA
                 string nodeDitaName = nodeFilename.ToDitaName() + ".dita";
                 Uri newUri = fileInfo.Directory.ToFileUriCombined(nodeDitaName);
 
-                return configuration.FeatureFolder.ToUri().MakeRelativeUri(newUri);
+                return this.configuration.FeatureFolder.ToUri().MakeRelativeUri(newUri);
             }
 
             throw new InvalidOperationException("Cannot Generate Path to a file that is not a feature");

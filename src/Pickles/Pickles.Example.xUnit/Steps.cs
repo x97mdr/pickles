@@ -2,7 +2,7 @@
 using Should;
 using TechTalk.SpecFlow;
 
-namespace Pickles.Example.xUnit
+namespace PicklesDoc.Pickles.Example.xUnit
 {
     [Binding]
     public class Steps

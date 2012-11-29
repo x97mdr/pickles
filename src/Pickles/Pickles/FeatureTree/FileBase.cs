@@ -1,8 +1,8 @@
 using System;
 using System.IO;
-using Pickles.Extensions;
+using PicklesDoc.Pickles.Extensions;
 
-namespace Pickles.FeatureTree
+namespace PicklesDoc.Pickles.FeatureTree
 {
     public abstract class FileBase : ITreeItem
     {
@@ -18,35 +18,35 @@ namespace Pickles.FeatureTree
             if (name.IsNullOrWhiteSpace())
                 throw new ArgumentException("Filename must consist of more than only the extension.", "fileName");
 
-            mName = name;
+            this.mName = name;
 
             if (folder == null) throw new ArgumentNullException("folder");
 
-            mFolder = folder;
+            this.mFolder = folder;
         }
 
         public Folder Folder
         {
-            get { return mFolder; }
+            get { return this.mFolder; }
         }
 
         #region ITreeItem Members
 
         public string Name
         {
-            get { return mName; }
+            get { return this.mName; }
         }
 
         public ITreeItem Parent
         {
-            get { return Folder; }
+            get { return this.Folder; }
         }
 
         public ITreeItem FindCommonAncestor(ITreeItem other)
         {
             if (other == null) throw new ArgumentNullException("other");
 
-            return Folder;
+            return this.Folder;
         }
 
         public string GetRelativePathFromHereToThere(ITreeItem there)

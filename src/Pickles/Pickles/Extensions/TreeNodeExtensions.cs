@@ -1,7 +1,7 @@
 ﻿using System;
-using Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.DirectoryCrawler;
 
-namespace Pickles.Extensions
+namespace PicklesDoc.Pickles.Extensions
 {
     public static class TreeNodeExtensions
     {

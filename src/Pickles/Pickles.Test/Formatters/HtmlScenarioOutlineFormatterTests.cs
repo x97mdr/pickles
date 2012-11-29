@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Xml.Linq;
 using NUnit.Framework;
 using Autofac;
-using Pickles.DocumentationBuilders.HTML;
-using Pickles.Parser;
+using PicklesDoc.Pickles.DocumentationBuilders.HTML;
+using PicklesDoc.Pickles.Parser;
 
-namespace Pickles.Test.Formatters
+namespace PicklesDoc.Pickles.Test.Formatters
 {
     [TestFixture]
     public class HtmlScenarioOutlineFormatterTests : BaseFixture
@@ -15,7 +16,7 @@ namespace Pickles.Test.Formatters
         [SetUp]
         public void Setup()
         {
-            formatter = new HtmlScenarioOutlineFormatter(Container.Resolve<HtmlStepFormatter>(),
+            this.formatter = new HtmlScenarioOutlineFormatter(Container.Resolve<HtmlStepFormatter>(),
                                                          Container.Resolve<HtmlDescriptionFormatter>(),
                                                          Container.Resolve<HtmlTableFormatter>(),
                                                          Container.Resolve<HtmlImageResultFormatter>());
@@ -74,7 +75,7 @@ namespace Pickles.Test.Formatters
         {
             ScenarioOutline scenarioOutline = BuildMinimalScenarioOutline();
 
-            XElement li = formatter.Format(scenarioOutline, 1);
+            XElement li = this.formatter.Format(scenarioOutline, 1);
 
             XAttribute idAttribute = li.Attribute("id");
 

@@ -21,11 +21,11 @@
 using System;
 using System.IO;
 using System.Xml.Linq;
-using Pickles.DocumentationBuilders.HTML;
-using Pickles.Extensions;
-using Pickles.Parser;
+using PicklesDoc.Pickles.DocumentationBuilders.HTML;
+using PicklesDoc.Pickles.Extensions;
+using PicklesDoc.Pickles.Parser;
 
-namespace Pickles.DirectoryCrawler
+namespace PicklesDoc.Pickles.DirectoryCrawler
 {
     public class FeatureNodeFactory
     {
@@ -52,9 +52,9 @@ namespace Pickles.DirectoryCrawler
             }
 
             var file = location as FileInfo;
-            if (relevantFileDetector.IsFeatureFile(file))
+            if (this.relevantFileDetector.IsFeatureFile(file))
             {
-                Feature feature = featureParser.Parse(file.FullName);
+                Feature feature = this.featureParser.Parse(file.FullName);
                 if (feature != null)
                 {
                     return new FeatureDirectoryTreeNode(file, relativePathFromRoot, feature);
@@ -62,9 +62,9 @@ namespace Pickles.DirectoryCrawler
 
                 throw new InvalidOperationException("This feature file could not be read and will be excluded");
             }
-            else if (relevantFileDetector.IsMarkdownFile(file))
+            else if (this.relevantFileDetector.IsMarkdownFile(file))
             {
-                XElement markdownContent = htmlMarkdownFormatter.Format(File.ReadAllText(file.FullName));
+                XElement markdownContent = this.htmlMarkdownFormatter.Format(File.ReadAllText(file.FullName));
                 return new MarkdownTreeNode(file, relativePathFromRoot, markdownContent);
             }
 

@@ -18,10 +18,11 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Pickles.Parser
+namespace PicklesDoc.Pickles.Parser
 {
     internal class TableBuilder
     {
@@ -31,32 +32,32 @@ namespace Pickles.Parser
 
         public TableBuilder()
         {
-            hasHeader = false;
-            header = new TableRow();
-            cells = new List<TableRow>();
+            this.hasHeader = false;
+            this.header = new TableRow();
+            this.cells = new List<TableRow>();
         }
 
         public void AddRow(IEnumerable<string> cells)
         {
-            if (hasHeader)
+            if (this.hasHeader)
             {
                 this.cells.Add(new TableRow(cells.ToArray()));
             }
             else
             {
-                hasHeader = true;
-                header.AddRange(cells);
+                this.hasHeader = true;
+                this.header.AddRange(cells);
             }
         }
 
         public Table GetResult()
         {
-            if (!hasHeader) return null;
+            if (!this.hasHeader) return null;
 
             return new Table
                        {
-                           HeaderRow = header,
-                           DataRows = cells
+                           HeaderRow = this.header,
+                           DataRows = this.cells
                        };
         }
     }

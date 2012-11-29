@@ -21,9 +21,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Pickles.Extensions;
+using PicklesDoc.Pickles.Extensions;
 
-namespace Pickles.FeatureTree
+namespace PicklesDoc.Pickles.FeatureTree
 {
     public class Folder : ITreeItem
     {
@@ -46,28 +46,28 @@ namespace Pickles.FeatureTree
 
         public Folder ParentFolder
         {
-            get { return parentFolder; }
+            get { return this.parentFolder; }
         }
 
         #region ITreeItem Members
 
         public string Name
         {
-            get { return folderName; }
+            get { return this.folderName; }
         }
 
         public ITreeItem Parent
         {
-            get { return ParentFolder; }
+            get { return this.ParentFolder; }
         }
 
         public ITreeItem FindCommonAncestor(ITreeItem other)
         {
             if (other == null) throw new ArgumentNullException("other");
 
-            if (Parent == other)
+            if (this.Parent == other)
             {
-                return Parent;
+                return this.Parent;
             }
             else
             {

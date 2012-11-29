@@ -1,7 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Xml.Linq;
 
-namespace Pickles.Test.Helpers
+namespace PicklesDoc.Pickles.Test.Helpers
 {
     public static class XElementExentions
     {

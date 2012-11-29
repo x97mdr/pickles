@@ -18,7 +18,9 @@
 
 #endregion
 
-namespace Pickles
+using System;
+
+namespace PicklesDoc.Pickles
 {
     public enum TestResultsFormat
     {

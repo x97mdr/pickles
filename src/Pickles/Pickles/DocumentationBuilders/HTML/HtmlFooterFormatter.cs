@@ -22,7 +22,7 @@ using System;
 using System.Reflection;
 using System.Xml.Linq;
 
-namespace Pickles.DocumentationBuilders.HTML
+namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlFooterFormatter
     {
@@ -32,29 +32,29 @@ namespace Pickles.DocumentationBuilders.HTML
         public HtmlFooterFormatter(Configuration configuration)
         {
             this.configuration = configuration;
-            xmlns = HtmlNamespace.Xhtml;
+            this.xmlns = HtmlNamespace.Xhtml;
         }
 
         private XElement BuildVersionString()
         {
-            if (!string.IsNullOrEmpty(configuration.SystemUnderTestName) &&
-                !string.IsNullOrEmpty(configuration.SystemUnderTestVersion))
+            if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestName) &&
+                !string.IsNullOrEmpty(this.configuration.SystemUnderTestVersion))
             {
-                return new XElement(xmlns + "p",
+                return new XElement(this.xmlns + "p",
                                     string.Format("Test results generated for: {0}, version {1}",
-                                                  configuration.SystemUnderTestName,
-                                                  configuration.SystemUnderTestVersion));
+                                                  this.configuration.SystemUnderTestName,
+                                                  this.configuration.SystemUnderTestVersion));
             }
-            else if (!string.IsNullOrEmpty(configuration.SystemUnderTestName))
+            else if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestName))
             {
-                return new XElement(xmlns + "p",
-                                    string.Format("Test results generated for: {0}", configuration.SystemUnderTestName));
+                return new XElement(this.xmlns + "p",
+                                    string.Format("Test results generated for: {0}", this.configuration.SystemUnderTestName));
             }
-            else if (!string.IsNullOrEmpty(configuration.SystemUnderTestVersion))
+            else if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestVersion))
             {
-                return new XElement(xmlns + "p",
+                return new XElement(this.xmlns + "p",
                                     string.Format("Test results generated for: version {1}",
-                                                  configuration.SystemUnderTestVersion));
+                                                  this.configuration.SystemUnderTestVersion));
             }
 
             return null;
@@ -62,11 +62,11 @@ namespace Pickles.DocumentationBuilders.HTML
 
         public XElement Format()
         {
-            return new XElement(xmlns + "div",
+            return new XElement(this.xmlns + "div",
                                 new XAttribute("id", "footer"),
-                                BuildVersionString(),
-                                new XElement(xmlns + "p", "Pickled on: " + DateTime.Now.ToString("d MMMM yyyy hh:mm:ss")),
-                                new XElement(xmlns + "p",
+                                this.BuildVersionString(),
+                                new XElement(this.xmlns + "p", "Pickled on: " + DateTime.Now.ToString("d MMMM yyyy hh:mm:ss")),
+                                new XElement(this.xmlns + "p",
                                              "Produced by Pickles, version " +
                                              Assembly.GetExecutingAssembly().GetName().Version)
                 );

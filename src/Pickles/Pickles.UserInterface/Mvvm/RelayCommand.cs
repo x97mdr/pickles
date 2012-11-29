@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Pickles.UserInterface.Mvvm
+namespace PicklesDoc.Pickles.UserInterface.Mvvm
 {
   public class RelayCommand : ICommand
   {
@@ -34,12 +34,12 @@ namespace Pickles.UserInterface.Mvvm
 
     public void Execute(object parameter)
     {
-      execute(parameter);
+      this.execute(parameter);
     }
 
     public bool CanExecute(object parameter)
     {
-      return canExecute(parameter);
+      return this.canExecute(parameter);
     }
 
     public event EventHandler CanExecuteChanged;

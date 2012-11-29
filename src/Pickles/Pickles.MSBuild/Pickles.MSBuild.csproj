@@ -8,8 +8,8 @@
     <ProjectGuid>{67DD16BD-E76B-475E-878C-7F54D9358730}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pickles.MSBuild</RootNamespace>
-    <AssemblyName>Pickles.MSBuild.Tasks</AssemblyName>
+    <RootNamespace>PicklesDoc.Pickles.MSBuild</RootNamespace>
+    <AssemblyName>PicklesDoc.Pickles.MSBuild.Tasks</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\Pickles\</SolutionDir>

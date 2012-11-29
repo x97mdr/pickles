@@ -1,8 +1,9 @@
-﻿using NUnit.Framework;
-using Pickles.Extensions;
+﻿using System;
+using NUnit.Framework;
+using PicklesDoc.Pickles.Extensions;
 using Should;
 
-namespace Pickles.Test
+namespace PicklesDoc.Pickles.Test
 {
     [TestFixture]
     public class WhenFormattingWikiWords : BaseFixture

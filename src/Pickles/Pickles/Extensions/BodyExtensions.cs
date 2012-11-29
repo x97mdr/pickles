@@ -1,6 +1,7 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
+﻿using System;
+using DocumentFormat.OpenXml.Wordprocessing;
 
-namespace Pickles.Extensions
+namespace PicklesDoc.Pickles.Extensions
 {
     public static class BodyExtensions
     {

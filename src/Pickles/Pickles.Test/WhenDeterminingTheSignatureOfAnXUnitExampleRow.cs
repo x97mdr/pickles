@@ -1,11 +1,12 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using NUnit.Framework;
 using Autofac;
-using Pickles.Parser;
-using Pickles.TestFrameworks;
+using PicklesDoc.Pickles.Parser;
+using PicklesDoc.Pickles.TestFrameworks;
 using Should;
 
-namespace Pickles.Test
+namespace PicklesDoc.Pickles.Test
 {
     [TestFixture]
     public class WhenDeterminingTheSignatureOfAnXUnitExampleRow : BaseFixture

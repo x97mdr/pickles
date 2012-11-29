@@ -1,10 +1,11 @@
+using System;
 using System.IO;
 using NUnit.Framework;
 using Autofac;
-using Pickles.DirectoryCrawler;
-using Pickles.DocumentationBuilders.HTML;
+using PicklesDoc.Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 
-namespace Pickles.Test.Formatters
+namespace PicklesDoc.Pickles.Test.Formatters
 {
     [TestFixture]
     public class HtmlDocumentationBuilderTests : BaseFixture

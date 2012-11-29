@@ -18,7 +18,9 @@
 
 #endregion
 
-namespace Pickles.FeatureTree
+using System;
+
+namespace PicklesDoc.Pickles.FeatureTree
 {
     public interface ITreeItem
     {

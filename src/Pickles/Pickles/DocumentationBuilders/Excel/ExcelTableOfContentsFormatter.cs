@@ -18,12 +18,13 @@
 
 #endregion
 
+using System;
 using System.Linq;
 using ClosedXML.Excel;
 using NGenerics.DataStructures.Trees;
-using Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.DirectoryCrawler;
 
-namespace Pickles.DocumentationBuilders.Excel
+namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 {
     public class ExcelTableOfContentsFormatter
     {
@@ -48,12 +49,12 @@ namespace Pickles.DocumentationBuilders.Excel
                 if (featureChildNode != null)
                 {
                     var featureWorksheet = FindFirstMatchingA1TitleUsingFeatureName(workbook, featureChildNode);
-                    WriteFileCell(worksheet, ref row, column, featureWorksheet);
+                    this.WriteFileCell(worksheet, ref row, column, featureWorksheet);
                 }
                 else if (!childNode.Data.IsContent)
                 {
-                    WriteDirectoryCell(worksheet, ref row, column, childNode.Data.Name);
-                    BuildTableOfContents(workbook, worksheet, ref row, column + 1, childNode);
+                    this.WriteDirectoryCell(worksheet, ref row, column, childNode.Data.Name);
+                    this.BuildTableOfContents(workbook, worksheet, ref row, column + 1, childNode);
                 }
             }
         }
@@ -69,7 +70,7 @@ namespace Pickles.DocumentationBuilders.Excel
             IXLWorksheet tocWorksheet = workbook.AddWorksheet("TOC", 0);
 
             int startRow = 1;
-            BuildTableOfContents(workbook, tocWorksheet, ref startRow, 1, features);
+            this.BuildTableOfContents(workbook, tocWorksheet, ref startRow, 1, features);
         }
     }
 }

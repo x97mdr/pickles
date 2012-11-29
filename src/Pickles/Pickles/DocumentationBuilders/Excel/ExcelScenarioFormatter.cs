@@ -18,11 +18,12 @@
 
 #endregion
 
+using System;
 using ClosedXML.Excel;
-using Pickles.Parser;
-using Pickles.TestFrameworks;
+using PicklesDoc.Pickles.Parser;
+using PicklesDoc.Pickles.TestFrameworks;
 
-namespace Pickles.DocumentationBuilders.Excel
+namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 {
     public class ExcelScenarioFormatter
     {
@@ -46,8 +47,8 @@ namespace Pickles.DocumentationBuilders.Excel
             worksheet.Cell(row++, "B").Value = scenario.Name;
             worksheet.Cell(row++, "C").Value = scenario.Description;
 
-            var results = testResults.GetScenarioResult(scenario);
-            if (configuration.HasTestResults && results.WasExecuted)
+            var results = this.testResults.GetScenarioResult(scenario);
+            if (this.configuration.HasTestResults && results.WasExecuted)
             {
                 worksheet.Cell(originalRow, "B").Style.Fill.SetBackgroundColor(results.WasSuccessful
                                                                                    ? XLColor.AppleGreen
@@ -57,7 +58,7 @@ namespace Pickles.DocumentationBuilders.Excel
 
             foreach (Step step in scenario.Steps)
             {
-                excelStepFormatter.Format(worksheet, step, ref row);
+                this.excelStepFormatter.Format(worksheet, step, ref row);
             }
         }
     }

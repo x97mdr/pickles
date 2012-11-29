@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using DocumentFormat.OpenXml.Wordprocessing;
-using Pickles.Extensions;
+using PicklesDoc.Pickles.Extensions;
 
-namespace Pickles.DocumentationBuilders.Word
+namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 {
     public class WordDescriptionFormatter
     {

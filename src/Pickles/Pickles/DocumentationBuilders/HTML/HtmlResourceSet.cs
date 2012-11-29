@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Pickles.Extensions;
+using PicklesDoc.Pickles.Extensions;
 
-namespace Pickles.DocumentationBuilders.HTML
+namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlResourceSet
     {
@@ -124,11 +124,11 @@ namespace Pickles.DocumentationBuilders.HTML
 
         private string GetNameFromResourceName(string resourceName)
         {
-            if (resourceName.StartsWith("Pickles.Resources.images"))
-                return resourceName.Replace("Pickles.Resources.images.", string.Empty);
-            else if (resourceName.StartsWith("Pickles.Resources.scripts"))
-                return resourceName.Replace("Pickles.Resources.scripts.", string.Empty);
-            else return resourceName.Replace("Pickles.Resources.", string.Empty);
+          if (resourceName.StartsWith("PicklesDoc.Pickles.Resources.images"))
+            return resourceName.Replace("PicklesDoc.Pickles.Resources.images.", string.Empty);
+          else if (resourceName.StartsWith("PicklesDoc.Pickles.Resources.scripts"))
+            return resourceName.Replace("PicklesDoc.Pickles.Resources.scripts.", string.Empty);
+          else return resourceName.Replace("PicklesDoc.Pickles.Resources.", string.Empty);
         }
     }
 }

@@ -1,11 +1,12 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
 using NUnit.Framework;
 using Autofac;
-using Pickles.TestFrameworks;
+using PicklesDoc.Pickles.TestFrameworks;
 using Should;
 
-namespace Pickles.Test
+namespace PicklesDoc.Pickles.Test
 {
     [TestFixture]
     public class WhenResolvingTestResults : BaseFixture
@@ -30,7 +31,7 @@ namespace Pickles.Test
             using (
                 var input =
                     new StreamReader(
-                        Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Test." + resultsFilename)))
+                        Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
             using (var output = new StreamWriter(resultsFilename))
             {
                 output.Write(input.ReadToEnd());
@@ -57,7 +58,7 @@ namespace Pickles.Test
             using (
                 var input =
                     new StreamReader(
-                        Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Test." + resultsFilename)))
+                        Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
             using (var output = new StreamWriter(resultsFilename))
             {
                 output.Write(input.ReadToEnd());
@@ -84,7 +85,7 @@ namespace Pickles.Test
             using (
                 var input =
                     new StreamReader(
-                        Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Test." + resultsFilename)))
+                        Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
             using (var output = new StreamWriter(resultsFilename))
             {
                 output.Write(input.ReadToEnd());
@@ -118,7 +119,7 @@ namespace Pickles.Test
         public void ThenCanResolveWhenTestResultsAreMSTest()
         {
             const string resultsFilename = "results-example-mstest.trx";
-            using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Test." + resultsFilename)))
+            using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
             using (var output = new StreamWriter(resultsFilename))
             {
                 output.Write(input.ReadToEnd());
@@ -138,7 +139,7 @@ namespace Pickles.Test
         public void ThenCanResolveWhenTestResultsAreNUnit()
         {
             const string resultsFilename = "results-example-nunit.xml";
-            using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Test." + resultsFilename)))
+            using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
             using (var output = new StreamWriter(resultsFilename))
             {
                 output.Write(input.ReadToEnd());
@@ -158,7 +159,7 @@ namespace Pickles.Test
         public void ThenCanResolveWhenTestResultsArexUnit()
         {
             const string resultsFilename = "results-example-xunit.xml";
-            using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Test." + resultsFilename)))
+            using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
             using (var output = new StreamWriter(resultsFilename))
             {
                 output.Write(input.ReadToEnd());

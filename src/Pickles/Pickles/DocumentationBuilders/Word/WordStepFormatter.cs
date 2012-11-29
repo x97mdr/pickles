@@ -21,10 +21,10 @@
 using System;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Wordprocessing;
-using Pickles.Extensions;
-using Pickles.Parser;
+using PicklesDoc.Pickles.Extensions;
+using PicklesDoc.Pickles.Parser;
 
-namespace Pickles.DocumentationBuilders.Word
+namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 {
     public class WordStepFormatter
     {
@@ -57,7 +57,7 @@ namespace Pickles.DocumentationBuilders.Word
 
             if (step.TableArgument != null)
             {
-                wordTableFormatter.Format(body, step.TableArgument);
+                this.wordTableFormatter.Format(body, step.TableArgument);
             }
         }
     }

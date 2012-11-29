@@ -18,12 +18,13 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using Pickles.Parser;
+using PicklesDoc.Pickles.Parser;
 
-namespace Pickles.DocumentationBuilders.HTML
+namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlScenarioFormatter
     {
@@ -40,37 +41,37 @@ namespace Pickles.DocumentationBuilders.HTML
             this.htmlStepFormatter = htmlStepFormatter;
             this.htmlDescriptionFormatter = htmlDescriptionFormatter;
             this.htmlImageResultFormatter = htmlImageResultFormatter;
-            xmlns = HtmlNamespace.Xhtml;
+            this.xmlns = HtmlNamespace.Xhtml;
         }
 
         public XElement Format(Scenario scenario, int id)
         {
           var header = new XElement(
-            xmlns + "div", 
+            this.xmlns + "div", 
             new XAttribute("class", "scenario-heading"), 
-            new XElement(xmlns + "h2", scenario.Name));
+            new XElement(this.xmlns + "h2", scenario.Name));
 
           var tags = RetrieveTags(scenario);
           if (tags.Length > 0)
           {
-            var paragraph = new XElement(this.xmlns + "p", CreateTagElements(tags.OrderBy(t => t).ToArray()));
+            var paragraph = new XElement(this.xmlns + "p", this.CreateTagElements(tags.OrderBy(t => t).ToArray()));
             paragraph.Add(new XAttribute("class", "tags"));
             header.Add(paragraph);
           }
 
-          header.Add(htmlDescriptionFormatter.Format(scenario.Description));
+          header.Add(this.htmlDescriptionFormatter.Format(scenario.Description));
 
           return new XElement(
-            xmlns + "li",
+            this.xmlns + "li",
             new XAttribute("class", "scenario"),
-            htmlImageResultFormatter.Format(scenario),
+            this.htmlImageResultFormatter.Format(scenario),
             header,
             new XElement(
-              xmlns + "div",
+              this.xmlns + "div",
               new XAttribute("class", "steps"),
               new XElement(
-                xmlns + "ul",
-                scenario.Steps.Select(step => htmlStepFormatter.Format(step))))
+                this.xmlns + "ul",
+                scenario.Steps.Select(step => this.htmlStepFormatter.Format(step))))
             );
         }
 
@@ -79,12 +80,12 @@ namespace Pickles.DocumentationBuilders.HTML
         List<XNode> result = new List<XNode>();
 
         result.Add(new XText("Tags: "));
-        result.Add(new XElement(xmlns + "span", tags.First()));
+        result.Add(new XElement(this.xmlns + "span", tags.First()));
 
         foreach (var tag in tags.Skip(1))
         {
           result.Add(new XText(", "));
-          result.Add(new XElement(xmlns + "span", tag));
+          result.Add(new XElement(this.xmlns + "span", tag));
         }
 
         return result.ToArray();

@@ -20,19 +20,19 @@
 
 using System;
 using System.IO;
-using Pickles.Extensions;
-using Pickles.Parser;
+using PicklesDoc.Pickles.Extensions;
+using PicklesDoc.Pickles.Parser;
 
-namespace Pickles.DirectoryCrawler
+namespace PicklesDoc.Pickles.DirectoryCrawler
 {
     public class FeatureDirectoryTreeNode : IDirectoryTreeNode
     {
         public FeatureDirectoryTreeNode(FileSystemInfo location, string relativePathFromRoot, Feature feature)
         {
-            OriginalLocation = location;
-            OriginalLocationUrl = location.ToUri();
-            RelativePathFromRoot = relativePathFromRoot;
-            Feature = feature;
+            this.OriginalLocation = location;
+            this.OriginalLocationUrl = location.ToUri();
+            this.RelativePathFromRoot = relativePathFromRoot;
+            this.Feature = feature;
         }
 
         public Feature Feature { get; private set; }
@@ -41,12 +41,12 @@ namespace Pickles.DirectoryCrawler
 
         public string GetRelativeUriTo(Uri other, string newExtension)
         {
-            return other.GetUriForTargetRelativeToMe(OriginalLocation, newExtension);
+            return other.GetUriForTargetRelativeToMe(this.OriginalLocation, newExtension);
         }
 
         public string GetRelativeUriTo(Uri other)
         {
-            return GetRelativeUriTo(other, ".html");
+            return this.GetRelativeUriTo(other, ".html");
         }
 
         public bool IsContent
@@ -56,7 +56,7 @@ namespace Pickles.DirectoryCrawler
 
         public string Name
         {
-            get { return Feature.Name; }
+            get { return this.Feature.Name; }
         }
 
         public FileSystemInfo OriginalLocation { get; private set; }

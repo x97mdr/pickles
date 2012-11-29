@@ -8,8 +8,8 @@
     <ProjectGuid>{83D5827A-8806-4B9E-9410-73CD2A284E3C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pickles.NAnt</RootNamespace>
-    <AssemblyName>Pickles.NAnt.Tasks</AssemblyName>
+    <RootNamespace>PicklesDoc.Pickles.NAnt</RootNamespace>
+    <AssemblyName>PicklesDoc.Pickles.NAnt.Tasks</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\Pickles\</SolutionDir>

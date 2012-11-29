@@ -1,6 +1,6 @@
 using System;
 
-namespace Pickles.UserInterface.Mvvm
+namespace PicklesDoc.Pickles.UserInterface.Mvvm
 {
   public class SelectableItem<T> : NotifyPropertyChanged
   {
@@ -21,13 +21,13 @@ namespace Pickles.UserInterface.Mvvm
 
     public T Item
     {
-      get { return item; }
+      get { return this.item; }
     }
 
     public bool IsSelected
     {
-      get { return isSelected; }
-      set { isSelected = value; this.RaisePropertyChanged(() => this.IsSelected);
+      get { return this.isSelected; }
+      set { this.isSelected = value; this.RaisePropertyChanged(() => this.IsSelected);
       }
     }
   }

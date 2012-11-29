@@ -18,6 +18,7 @@
 
 #endregion
 
+using System;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -26,10 +27,10 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
-using Pickles.DirectoryCrawler;
-using Pickles.DocumentationBuilders.Word.TableOfContentsAdder;
+using PicklesDoc.Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder;
 
-namespace Pickles.DocumentationBuilders.Word
+namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 {
     public class WordDocumentationBuilder : IDocumentationBuilder
     {
@@ -54,10 +55,10 @@ namespace Pickles.DocumentationBuilders.Word
 
         public void Build(GeneralTree<IDirectoryTreeNode> features)
         {
-            string filename = string.IsNullOrEmpty(configuration.SystemUnderTestName)
+            string filename = string.IsNullOrEmpty(this.configuration.SystemUnderTestName)
                                   ? "features.docx"
-                                  : configuration.SystemUnderTestName + ".docx";
-            string documentFileName = Path.Combine(configuration.OutputFolder.FullName, filename);
+                                  : this.configuration.SystemUnderTestName + ".docx";
+            string documentFileName = Path.Combine(this.configuration.OutputFolder.FullName, filename);
             if (File.Exists(documentFileName)) File.Delete(documentFileName);
 
             using (
@@ -66,12 +67,12 @@ namespace Pickles.DocumentationBuilders.Word
                                                                                                   .Document))
             {
                 MainDocumentPart mainDocumentPart = wordProcessingDocument.AddMainDocumentPart();
-                wordStyleApplicator.AddStylesPartToPackage(wordProcessingDocument);
-                wordStyleApplicator.AddStylesWithEffectsPartToPackage(wordProcessingDocument);
-                wordFontApplicator.AddFontTablePartToPackage(wordProcessingDocument);
+                this.wordStyleApplicator.AddStylesPartToPackage(wordProcessingDocument);
+                this.wordStyleApplicator.AddStylesWithEffectsPartToPackage(wordProcessingDocument);
+                this.wordFontApplicator.AddFontTablePartToPackage(wordProcessingDocument);
                 var documentSettingsPart = mainDocumentPart.AddNewPart<DocumentSettingsPart>();
                 documentSettingsPart.Settings = new Settings();
-                wordHeaderFooterFormatter.ApplyHeaderAndFooter(wordProcessingDocument);
+                this.wordHeaderFooterFormatter.ApplyHeaderAndFooter(wordProcessingDocument);
 
                 var document = new Document();
                 var body = new Body();
@@ -83,7 +84,7 @@ namespace Pickles.DocumentationBuilders.Word
                                                                                       node as FeatureDirectoryTreeNode;
                                                                                   if (featureDirectoryTreeNode != null)
                                                                                   {
-                                                                                      wordFeatureFormatter.Format(body,
+                                                                                      this.wordFeatureFormatter.Format(body,
                                                                                                                   featureDirectoryTreeNode);
                                                                                   }
                                                                               });

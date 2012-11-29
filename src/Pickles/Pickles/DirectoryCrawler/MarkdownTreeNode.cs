@@ -22,18 +22,18 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using Pickles.Extensions;
+using PicklesDoc.Pickles.Extensions;
 
-namespace Pickles.DirectoryCrawler
+namespace PicklesDoc.Pickles.DirectoryCrawler
 {
     public class MarkdownTreeNode : IDirectoryTreeNode
     {
         public MarkdownTreeNode(FileSystemInfo location, string relativePathFromRoot, XElement markdownContent)
         {
-            OriginalLocation = location;
-            OriginalLocationUrl = location.ToUri();
-            RelativePathFromRoot = relativePathFromRoot;
-            MarkdownContent = markdownContent;
+            this.OriginalLocation = location;
+            this.OriginalLocationUrl = location.ToUri();
+            this.RelativePathFromRoot = relativePathFromRoot;
+            this.MarkdownContent = markdownContent;
         }
 
         public XElement MarkdownContent { get; private set; }
@@ -42,12 +42,12 @@ namespace Pickles.DirectoryCrawler
 
         public string GetRelativeUriTo(Uri other, string newExtension)
         {
-            return other.GetUriForTargetRelativeToMe(OriginalLocation, newExtension);
+            return other.GetUriForTargetRelativeToMe(this.OriginalLocation, newExtension);
         }
 
         public string GetRelativeUriTo(Uri other)
         {
-            return GetRelativeUriTo(other, ".html");
+            return this.GetRelativeUriTo(other, ".html");
         }
 
         public bool IsContent
@@ -60,10 +60,10 @@ namespace Pickles.DirectoryCrawler
             get
             {
                 XElement headerElement =
-                    MarkdownContent.Descendants().FirstOrDefault(element => element.Name.LocalName == "h1");
+                    this.MarkdownContent.Descendants().FirstOrDefault(element => element.Name.LocalName == "h1");
                 return headerElement != null
                            ? headerElement.Value
-                           : OriginalLocation.Name.Replace(OriginalLocation.Extension, string.Empty).ExpandWikiWord();
+                           : this.OriginalLocation.Name.Replace(this.OriginalLocation.Extension, string.Empty).ExpandWikiWord();
             }
         }
 

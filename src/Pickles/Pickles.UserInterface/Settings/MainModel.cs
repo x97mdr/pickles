@@ -18,7 +18,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Pickles.UserInterface.Settings
+namespace PicklesDoc.Pickles.UserInterface.Settings
 {
     [DataContract(Name = "pickles", Namespace = "")]
     public class MainModel

@@ -18,13 +18,14 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using gherkin;
 using gherkin.lexer;
 using java.util;
 
-namespace Pickles.Parser
+namespace PicklesDoc.Pickles.Parser
 {
     public class PicklesParser : Listener
     {
@@ -45,8 +46,8 @@ namespace Pickles.Parser
         public PicklesParser(I18n nativeLanguageService)
         {
             this.nativeLanguageService = nativeLanguageService;
-            featureTags = new List<string>();
-            scenarioTags = new List<string>();
+            this.featureTags = new List<string>();
+            this.scenarioTags = new List<string>();
         }
 
         #region Listener Members
@@ -58,158 +59,158 @@ namespace Pickles.Parser
 
         public void tag(string tag, int line)
         {
-            if (!isFeatureFound)
+            if (!this.isFeatureFound)
             {
-                featureTags.Add(tag);
+                this.featureTags.Add(tag);
             }
             else
             {
-                scenarioTags.Add(tag);
+                this.scenarioTags.Add(tag);
             }
         }
 
         public void feature(string keyword, string name, string description, int line)
         {
-            isInExample = false;
-            isFeatureFound = true;
-            theFeature = new Feature();
-            theFeature.Name = name;
-            theFeature.Description = description;
-            theFeature.Tags = new List<string>(featureTags);
-            featureTags.Clear();
+            this.isInExample = false;
+            this.isFeatureFound = true;
+            this.theFeature = new Feature();
+            this.theFeature.Name = name;
+            this.theFeature.Description = description;
+            this.theFeature.Tags = new List<string>(this.featureTags);
+            this.featureTags.Clear();
         }
 
         public void background(string keyword, string name, string description, int line)
         {
-            isInExample = false;
-            featureElementState.SetBackgroundActive();
-            backgroundBuilder = new ScenarioBuilder();
-            backgroundBuilder.SetName(name);
-            backgroundBuilder.SetDescription(description);
+            this.isInExample = false;
+            this.featureElementState.SetBackgroundActive();
+            this.backgroundBuilder = new ScenarioBuilder();
+            this.backgroundBuilder.SetName(name);
+            this.backgroundBuilder.SetDescription(description);
         }
 
         public void scenario(string keyword, string name, string description, int line)
         {
-            CaptureAndStoreRemainingElements();
+            this.CaptureAndStoreRemainingElements();
 
-            isInExample = false;
-            featureElementState.SetScenarioActive();
-            scenarioBuilder = new ScenarioBuilder();
-            scenarioBuilder.SetName(name);
-            scenarioBuilder.SetDescription(description);
-            scenarioBuilder.AddTags(scenarioTags);
-            scenarioTags.Clear();
+            this.isInExample = false;
+            this.featureElementState.SetScenarioActive();
+            this.scenarioBuilder = new ScenarioBuilder();
+            this.scenarioBuilder.SetName(name);
+            this.scenarioBuilder.SetDescription(description);
+            this.scenarioBuilder.AddTags(this.scenarioTags);
+            this.scenarioTags.Clear();
         }
 
         public void scenarioOutline(string keyword, string name, string description, int line)
         {
-            CaptureAndStoreRemainingElements();
+            this.CaptureAndStoreRemainingElements();
 
-            isInExample = false;
-            featureElementState.SetScenarioOutlineActive();
-            scenarioOutlineBuilder = new ScenarioOutlineBuilder(new TableBuilder());
-            scenarioOutlineBuilder.SetName(name);
-            scenarioOutlineBuilder.SetDescription(description);
+            this.isInExample = false;
+            this.featureElementState.SetScenarioOutlineActive();
+            this.scenarioOutlineBuilder = new ScenarioOutlineBuilder(new TableBuilder());
+            this.scenarioOutlineBuilder.SetName(name);
+            this.scenarioOutlineBuilder.SetDescription(description);
         }
 
         public void examples(string keyword, string name, string description, int line)
         {
-            isInExample = true;
+            this.isInExample = true;
 			if (this.exampleBuilder != null)
 			{
 				this.scenarioOutlineBuilder.AddExample(this.exampleBuilder.GetResult());
 			}
 			
-			exampleBuilder = new ExampleBuilder();
-            exampleBuilder.SetName(name);
-            exampleBuilder.SetDescription(description);
+			this.exampleBuilder = new ExampleBuilder();
+            this.exampleBuilder.SetName(name);
+            this.exampleBuilder.SetDescription(description);
         }
 
         public void step(string keyword, string name, int line)
         {
-            if (stepBuilder != null)
+            if (this.stepBuilder != null)
             {
-                AddStepToElement(stepBuilder.GetResult());
+                this.AddStepToElement(this.stepBuilder.GetResult());
             }
 
-            stepBuilder = new StepBuilder(new TableBuilder(), nativeLanguageService);
-            stepBuilder.SetKeyword(keyword);
-            stepBuilder.SetName(name);
+            this.stepBuilder = new StepBuilder(new TableBuilder(), this.nativeLanguageService);
+            this.stepBuilder.SetKeyword(keyword);
+            this.stepBuilder.SetName(name);
         }
 
         public void row(List cells, int line)
         {
-            if (isInExample)
+            if (this.isInExample)
             {
-                exampleBuilder.AddRow(cells.toArray().Select(cell => cell.ToString()).ToList());
+                this.exampleBuilder.AddRow(cells.toArray().Select(cell => cell.ToString()).ToList());
             }
             else
             {
-                stepBuilder.AddTableRow(cells.toArray().Select(cell => cell.ToString()).ToList());
+                this.stepBuilder.AddTableRow(cells.toArray().Select(cell => cell.ToString()).ToList());
             }
         }
 
         public void docString(string contentType, string content, int line)
         {
-            stepBuilder.SetDocString(content);
+            this.stepBuilder.SetDocString(content);
         }
 
         public void eof()
         {
-            CaptureAndStoreRemainingElements();
+            this.CaptureAndStoreRemainingElements();
         }
 
         #endregion
 
         public Feature GetFeature()
         {
-            return theFeature;
+            return this.theFeature;
         }
 
         private void AddStepToElement(Step step)
         {
-            if (featureElementState.IsBackgroundActive)
+            if (this.featureElementState.IsBackgroundActive)
             {
-                backgroundBuilder.AddStep(step);
+                this.backgroundBuilder.AddStep(step);
             }
-            else if (featureElementState.IsScenarioActive)
+            else if (this.featureElementState.IsScenarioActive)
             {
-                scenarioBuilder.AddStep(step);
+                this.scenarioBuilder.AddStep(step);
             }
-            else if (featureElementState.IsScenarioOutlineActive)
+            else if (this.featureElementState.IsScenarioOutlineActive)
             {
-                scenarioOutlineBuilder.AddStep(step);
+                this.scenarioOutlineBuilder.AddStep(step);
             }
         }
 
         private void CaptureAndStoreRemainingElements()
         {
-			if (isInExample && exampleBuilder != null)
+			if (this.isInExample && this.exampleBuilder != null)
 			{
-				this.scenarioOutlineBuilder.AddExample(exampleBuilder.GetResult());
-			    exampleBuilder = null;
+				this.scenarioOutlineBuilder.AddExample(this.exampleBuilder.GetResult());
+			    this.exampleBuilder = null;
 			}
 			
-            if (featureElementState.IsBackgroundActive)
+            if (this.featureElementState.IsBackgroundActive)
             {
-                backgroundBuilder.AddStep(stepBuilder.GetResult());
-                theFeature.AddBackground(backgroundBuilder.GetResult());
+                this.backgroundBuilder.AddStep(this.stepBuilder.GetResult());
+                this.theFeature.AddBackground(this.backgroundBuilder.GetResult());
             }
-            else if (featureElementState.IsScenarioActive)
+            else if (this.featureElementState.IsScenarioActive)
             {
-                if (stepBuilder != null) scenarioBuilder.AddStep(stepBuilder.GetResult());
-                theFeature.AddFeatureElement(scenarioBuilder.GetResult());
+                if (this.stepBuilder != null) this.scenarioBuilder.AddStep(this.stepBuilder.GetResult());
+                this.theFeature.AddFeatureElement(this.scenarioBuilder.GetResult());
             }
-            else if (featureElementState.IsScenarioOutlineActive)
+            else if (this.featureElementState.IsScenarioOutlineActive)
             {
-                if (stepBuilder != null) scenarioOutlineBuilder.AddStep(stepBuilder.GetResult());
-                theFeature.AddFeatureElement(scenarioOutlineBuilder.GetResult());
+                if (this.stepBuilder != null) this.scenarioOutlineBuilder.AddStep(this.stepBuilder.GetResult());
+                this.theFeature.AddFeatureElement(this.scenarioOutlineBuilder.GetResult());
             }
 
-            stepBuilder = null;
-            scenarioBuilder = null;
-            scenarioOutlineBuilder = null;
-            backgroundBuilder = null;
+            this.stepBuilder = null;
+            this.scenarioBuilder = null;
+            this.scenarioOutlineBuilder = null;
+            this.backgroundBuilder = null;
         }
     }
 }

@@ -18,10 +18,11 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 using gherkin;
 
-namespace Pickles.Parser
+namespace PicklesDoc.Pickles.Parser
 {
     internal class StepBuilder
     {
@@ -41,9 +42,9 @@ namespace Pickles.Parser
 
         public void SetKeyword(string keywordText)
         {
-            nativeKeyword = keywordText;
+            this.nativeKeyword = keywordText;
 
-            Keyword? keyword = TryParseKeyword(keywordText);
+            Keyword? keyword = this.TryParseKeyword(keywordText);
             if (keyword.HasValue)
             {
                 this.keyword = keyword.Value;
@@ -52,17 +53,17 @@ namespace Pickles.Parser
 
         public Keyword? TryParseKeyword(string keyword)
         {
-            if (nativeLanguageService.keywords("and").contains(keyword)) return Keyword.And;
+            if (this.nativeLanguageService.keywords("and").contains(keyword)) return Keyword.And;
 
-            if (nativeLanguageService.keywords("given").contains(keyword)) return Keyword.Given;
+            if (this.nativeLanguageService.keywords("given").contains(keyword)) return Keyword.Given;
 
-            if (nativeLanguageService.keywords("when").contains(keyword)) return Keyword.When;
+            if (this.nativeLanguageService.keywords("when").contains(keyword)) return Keyword.When;
 
-            if (nativeLanguageService.keywords("then").contains(keyword)) return Keyword.Then;
+            if (this.nativeLanguageService.keywords("then").contains(keyword)) return Keyword.Then;
 
-            if (nativeLanguageService.keywords("but").contains(keyword)) return Keyword.But;
+            if (this.nativeLanguageService.keywords("but").contains(keyword)) return Keyword.But;
 
-            if (!keyword.EndsWith(" ")) return TryParseKeyword(keyword + " ");
+            if (!keyword.EndsWith(" ")) return this.TryParseKeyword(keyword + " ");
 
             return null;
         }
@@ -74,7 +75,7 @@ namespace Pickles.Parser
 
         public void AddTableRow(IEnumerable<string> cells)
         {
-            tableBuilder.AddRow(cells);
+            this.tableBuilder.AddRow(cells);
         }
 
         public void SetDocString(string docString)
@@ -86,11 +87,11 @@ namespace Pickles.Parser
         {
             return new Step
                        {
-                           Keyword = keyword,
-                           NativeKeyword = nativeKeyword,
-                           Name = name,
-                           DocStringArgument = docString,
-                           TableArgument = tableBuilder.GetResult()
+                           Keyword = this.keyword,
+                           NativeKeyword = this.nativeKeyword,
+                           Name = this.name,
+                           DocStringArgument = this.docString,
+                           TableArgument = this.tableBuilder.GetResult()
                        };
         }
     }

@@ -1,10 +1,11 @@
-﻿using NGenerics.DataStructures.Trees;
+﻿using System;
+using NGenerics.DataStructures.Trees;
 using NUnit.Framework;
 using Autofac;
-using Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.DirectoryCrawler;
 using Should;
 
-namespace Pickles.Test
+namespace PicklesDoc.Pickles.Test
 {
     [TestFixture]
     public class WhenCrawlingFoldersForFeatures : BaseFixture

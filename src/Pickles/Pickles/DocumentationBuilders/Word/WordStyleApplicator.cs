@@ -18,11 +18,12 @@
 
 #endregion
 
+using System;
 using System.Linq;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
-namespace Pickles.DocumentationBuilders.Word
+namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 {
     /// <summary>
     /// 
@@ -49,16 +50,16 @@ namespace Pickles.DocumentationBuilders.Word
             // If the Styles part does not exist, add it and then add the style.
             if (part == null)
             {
-                part = AddStylesPartToPackage(doc);
+                part = this.AddStylesPartToPackage(doc);
                 AddNewStyle(part, styleid, stylename);
             }
             else
             {
                 // If the style is not in the document, add it.
-                if (IsStyleIdInDocument(doc, styleid) != true)
+                if (this.IsStyleIdInDocument(doc, styleid) != true)
                 {
                     // No match on styleid, so let's try style name.
-                    string styleidFromName = GetStyleIdFromStyleName(doc, stylename);
+                    string styleidFromName = this.GetStyleIdFromStyleName(doc, stylename);
                     if (styleidFromName == null)
                     {
                         AddNewStyle(part, styleid, stylename);
@@ -151,7 +152,7 @@ namespace Pickles.DocumentationBuilders.Word
         public StyleDefinitionsPart AddStylesPartToPackage(WordprocessingDocument doc)
         {
             var part = doc.MainDocumentPart.AddNewPart<StyleDefinitionsPart>();
-            GeneratePartContent(part);
+            this.GeneratePartContent(part);
             var root = new Styles();
             root.Save(part);
             return part;
@@ -3689,10 +3690,10 @@ namespace Pickles.DocumentationBuilders.Word
             styles1.Append(style27);
             styles1.Append(style28);
 
-            styles1.Append(GenerateHeaderStyle());
-            styles1.Append(GenerateHeaderCharStyle());
-            styles1.Append(GenerateFooterStyle());
-            styles1.Append(GenerateFooterCharStyle());
+            styles1.Append(this.GenerateHeaderStyle());
+            styles1.Append(this.GenerateHeaderCharStyle());
+            styles1.Append(this.GenerateFooterStyle());
+            styles1.Append(this.GenerateFooterCharStyle());
 
             part.Styles = styles1;
         }

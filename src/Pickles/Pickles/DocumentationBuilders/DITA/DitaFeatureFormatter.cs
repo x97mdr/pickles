@@ -18,14 +18,15 @@
 
 #endregion
 
+using System;
 using System.IO;
 using System.Xml.Linq;
-using Pickles.DirectoryCrawler;
-using Pickles.Extensions;
-using Pickles.Parser;
-using Pickles.TestFrameworks;
+using PicklesDoc.Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.Extensions;
+using PicklesDoc.Pickles.Parser;
+using PicklesDoc.Pickles.TestFrameworks;
 
-namespace Pickles.DocumentationBuilders.DITA
+namespace PicklesDoc.Pickles.DocumentationBuilders.DITA
 {
     public class DitaFeatureFormatter
     {
@@ -57,9 +58,9 @@ namespace Pickles.DocumentationBuilders.DITA
             var body = new XElement("body");
             topic.Add(body);
 
-            if (configuration.HasTestResults)
+            if (this.configuration.HasTestResults)
             {
-                TestResult testResult = nunitResults.GetFeatureResult(feature);
+                TestResult testResult = this.nunitResults.GetFeatureResult(feature);
                 if (testResult.WasExecuted && testResult.WasSuccessful)
                 {
                     body.Add(new XElement("note", "This feature passed"));
@@ -75,19 +76,19 @@ namespace Pickles.DocumentationBuilders.DITA
                 var scenario = featureElement as Scenario;
                 if (scenario != null)
                 {
-                    ditaScenarioFormatter.Format(body, scenario);
+                    this.ditaScenarioFormatter.Format(body, scenario);
                 }
 
                 var scenarioOutline = featureElement as ScenarioOutline;
                 if (scenarioOutline != null)
                 {
-                    ditaScenarioOutlineFormatter.Format(body, scenarioOutline);
+                    this.ditaScenarioOutlineFormatter.Format(body, scenarioOutline);
                 }
             }
 
             // HACK - This relative path stuff needs to be refactored
             string relativePath =
-                new FileInfo(Path.Combine(configuration.OutputFolder.FullName, featureNode.RelativePathFromRoot)).
+                new FileInfo(Path.Combine(this.configuration.OutputFolder.FullName, featureNode.RelativePathFromRoot)).
                     Directory.FullName.ToLowerInvariant();
             if (!Directory.Exists(relativePath)) Directory.CreateDirectory(relativePath);
             string filename = Path.Combine(relativePath, feature.Name.ToDitaName() + ".dita");

@@ -18,11 +18,12 @@
 
 #endregion
 
+using System;
 using System.Linq;
 using ClosedXML.Excel;
-using Pickles.Parser;
+using PicklesDoc.Pickles.Parser;
 
-namespace Pickles.DocumentationBuilders.Excel
+namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 {
     public class ExcelSheetNameGenerator
     {

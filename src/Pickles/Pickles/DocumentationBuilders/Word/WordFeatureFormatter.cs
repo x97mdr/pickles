@@ -18,13 +18,14 @@
 
 #endregion
 
+using System;
 using DocumentFormat.OpenXml.Wordprocessing;
-using Pickles.DirectoryCrawler;
-using Pickles.Extensions;
-using Pickles.Parser;
-using Pickles.TestFrameworks;
+using PicklesDoc.Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.Extensions;
+using PicklesDoc.Pickles.Parser;
+using PicklesDoc.Pickles.TestFrameworks;
 
-namespace Pickles.DocumentationBuilders.Word
+namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 {
     public class WordFeatureFormatter
     {
@@ -56,9 +57,9 @@ namespace Pickles.DocumentationBuilders.Word
 
             body.InsertPageBreak();
 
-            if (configuration.HasTestResults)
+            if (this.configuration.HasTestResults)
             {
-                TestResult testResult = nunitResults.GetFeatureResult(feature);
+                TestResult testResult = this.nunitResults.GetFeatureResult(feature);
                 if (testResult.WasExecuted && testResult.WasSuccessful)
                 {
                     body.GenerateParagraph("Passed", "Passed");
@@ -77,13 +78,13 @@ namespace Pickles.DocumentationBuilders.Word
                 var scenario = featureElement as Scenario;
                 if (scenario != null)
                 {
-                    wordScenarioFormatter.Format(body, scenario);
+                    this.wordScenarioFormatter.Format(body, scenario);
                 }
 
                 var scenarioOutline = featureElement as ScenarioOutline;
                 if (scenarioOutline != null)
                 {
-                    wordScenarioOutlineFormatter.Format(body, scenarioOutline);
+                    this.wordScenarioOutlineFormatter.Format(body, scenarioOutline);
                 }
             }
         }

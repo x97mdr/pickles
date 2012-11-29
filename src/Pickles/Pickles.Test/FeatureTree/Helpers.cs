@@ -1,6 +1,7 @@
-﻿using Pickles.FeatureTree;
+﻿using System;
+using PicklesDoc.Pickles.FeatureTree;
 
-namespace Pickles.Test.FeatureTree
+namespace PicklesDoc.Pickles.Test.FeatureTree
 {
     internal static class Helpers
     {

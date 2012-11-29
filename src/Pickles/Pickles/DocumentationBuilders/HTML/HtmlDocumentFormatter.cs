@@ -22,9 +22,9 @@ using System;
 using System.IO;
 using System.Xml.Linq;
 using NGenerics.DataStructures.Trees;
-using Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.DirectoryCrawler;
 
-namespace Pickles.DocumentationBuilders.HTML
+namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlDocumentFormatter
     {
@@ -58,15 +58,15 @@ namespace Pickles.DocumentationBuilders.HTML
                                 DirectoryInfo rootFolder)
         {
             XNamespace xmlns = HtmlNamespace.Xhtml;
-            string featureNodeOutputPath = Path.Combine(configuration.OutputFolder.FullName,
+            string featureNodeOutputPath = Path.Combine(this.configuration.OutputFolder.FullName,
                                                         featureNode.RelativePathFromRoot);
             var featureNodeOutputUri = new Uri(featureNodeOutputPath);
 
             var container = new XElement(xmlns + "div", new XAttribute("id", "container"));
-            container.Add(htmlHeaderFormatter.Format());
-            container.Add(htmlTableOfContentsFormatter.Format(featureNode.OriginalLocationUrl, features, rootFolder));
-            container.Add(htmlContentFormatter.Format(featureNode, features));
-            container.Add(htmlFooterFormatter.Format());
+            container.Add(this.htmlHeaderFormatter.Format());
+            container.Add(this.htmlTableOfContentsFormatter.Format(featureNode.OriginalLocationUrl, features, rootFolder));
+            container.Add(this.htmlContentFormatter.Format(featureNode, features));
+            container.Add(this.htmlFooterFormatter.Format());
 
             var body = new XElement(xmlns + "body");
             body.Add(container);
@@ -77,24 +77,24 @@ namespace Pickles.DocumentationBuilders.HTML
             head.Add(new XElement(xmlns + "link",
                                   new XAttribute("rel", "stylesheet"),
                                   new XAttribute("href",
-                                                 featureNodeOutputUri.MakeRelativeUri(htmlResources.MasterStylesheet)),
+                                                 featureNodeOutputUri.MakeRelativeUri(this.htmlResources.MasterStylesheet)),
                                   new XAttribute("type", "text/css")));
 
             head.Add(new XElement(xmlns + "link",
                                   new XAttribute("rel", "stylesheet"),
                                   new XAttribute("href",
-                                                 featureNodeOutputUri.MakeRelativeUri(htmlResources.PrintStylesheet)),
+                                                 featureNodeOutputUri.MakeRelativeUri(this.htmlResources.PrintStylesheet)),
                                   new XAttribute("type", "text/css"),
                                   new XAttribute("media", "print")));
 
             head.Add(new XElement(xmlns + "script",
-                                  new XAttribute("src", featureNodeOutputUri.MakeRelativeUri(htmlResources.jQueryScript)),
+                                  new XAttribute("src", featureNodeOutputUri.MakeRelativeUri(this.htmlResources.jQueryScript)),
                                   new XAttribute("type", "text/javascript"),
                                   new XText(string.Empty)));
 
             head.Add(new XElement(xmlns + "script",
                                   new XAttribute("src",
-                                                 featureNodeOutputUri.MakeRelativeUri(htmlResources.AdditionalScripts)),
+                                                 featureNodeOutputUri.MakeRelativeUri(this.htmlResources.AdditionalScripts)),
                                   new XAttribute("type", "text/javascript"),
                                   new XText(string.Empty)));
 

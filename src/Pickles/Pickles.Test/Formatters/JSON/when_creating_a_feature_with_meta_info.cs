@@ -1,11 +1,12 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using NUnit.Framework;
-using Pickles.DirectoryCrawler;
-using Pickles.DocumentationBuilders.JSON;
-using Pickles.Parser;
+using PicklesDoc.Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.DocumentationBuilders.JSON;
+using PicklesDoc.Pickles.Parser;
 using Should.Fluent;
 
-namespace Pickles.Test.Formatters.JSON
+namespace PicklesDoc.Pickles.Test.Formatters.JSON
 {
     public class when_creating_a_feature_with_meta_info
     {
@@ -21,25 +22,25 @@ namespace Pickles.Test.Formatters.JSON
         [TestFixtureSetUp]
         public void Setup()
         {
-            _testFeature = new Feature {Name = "Test"};
-            _featureFileInfo = new FileInfo(Path.Combine(ROOT_PATH, FEATURE_PATH));
-            _featureDirectoryNode = new FeatureDirectoryTreeNode(_featureFileInfo, RELATIVE_PATH, _testFeature);
+            this._testFeature = new Feature {Name = "Test"};
+            this._featureFileInfo = new FileInfo(Path.Combine(ROOT_PATH, FEATURE_PATH));
+            this._featureDirectoryNode = new FeatureDirectoryTreeNode(this._featureFileInfo, RELATIVE_PATH, this._testFeature);
 
-            _featureWithMeta = new FeatureWithMetaInfo(_featureDirectoryNode);
+            this._featureWithMeta = new FeatureWithMetaInfo(this._featureDirectoryNode);
         }
 
 
         [Test]
         public void it_should_contain_the_feature()
         {
-            _featureWithMeta.Feature.Should().Not.Be.Null();
-            _featureWithMeta.Feature.Name.Should().Equal("Test");
+            this._featureWithMeta.Feature.Should().Not.Be.Null();
+            this._featureWithMeta.Feature.Name.Should().Equal("Test");
         }
 
         [Test]
         public void it_should_contain_the_relative_path()
         {
-            _featureWithMeta.RelativeFolder.Should().Equal(RELATIVE_PATH);
+            this._featureWithMeta.RelativeFolder.Should().Equal(RELATIVE_PATH);
         }
     }
 }

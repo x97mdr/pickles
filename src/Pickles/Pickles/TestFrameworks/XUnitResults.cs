@@ -18,15 +18,16 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
-using Pickles.Parser;
+using PicklesDoc.Pickles.Parser;
 
-namespace Pickles.TestFrameworks
+namespace PicklesDoc.Pickles.TestFrameworks
 {
     public class XUnitResults : ITestResults
     {
@@ -40,7 +41,7 @@ namespace Pickles.TestFrameworks
             this.exampleSignatureBuilder = exampleSignatureBuilder;
             if (configuration.HasTestResults)
             {
-                resultsDocument = ReadResultsFile();
+                this.resultsDocument = this.ReadResultsFile();
             }
         }
 
@@ -48,7 +49,7 @@ namespace Pickles.TestFrameworks
 
         public TestResult GetFeatureResult(Feature feature)
         {
-            XElement featureElement = GetFeatureElement(feature);
+            XElement featureElement = this.GetFeatureElement(feature);
             int passedCount = int.Parse(featureElement.Attribute("passed").Value);
             int failedCount = int.Parse(featureElement.Attribute("failed").Value);
             int skippedCount = int.Parse(featureElement.Attribute("skipped").Value);
@@ -58,14 +59,14 @@ namespace Pickles.TestFrameworks
 
         public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
         {
-            IEnumerable<XElement> exampleElements = GetScenarioOutlineElements(scenarioOutline);
+            IEnumerable<XElement> exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
             int passedCount = 0;
             int failedCount = 0;
             int skippedCount = 0;
 
             foreach (XElement exampleElement in exampleElements)
             {
-                TestResult result = GetResultFromElement(exampleElement);
+                TestResult result = this.GetResultFromElement(exampleElement);
                 if (result.WasExecuted == false) skippedCount++;
                 if (result.WasExecuted && result.WasSuccessful) passedCount++;
                 if (result.WasExecuted && !result.WasSuccessful) failedCount++;
@@ -76,9 +77,9 @@ namespace Pickles.TestFrameworks
 
         public TestResult GetScenarioResult(Scenario scenario)
         {
-            XElement scenarioElement = GetScenarioElement(scenario);
+            XElement scenarioElement = this.GetScenarioElement(scenario);
             return scenarioElement != null 
-                ? GetResultFromElement(scenarioElement)
+                ? this.GetResultFromElement(scenarioElement)
                 : new TestResult() { WasExecuted = false, WasSuccessful = false };
         }
 
@@ -87,7 +88,7 @@ namespace Pickles.TestFrameworks
         private XDocument ReadResultsFile()
         {
             XDocument document;
-            using (FileStream stream = configuration.TestResultsFile.OpenRead())
+            using (FileStream stream = this.configuration.TestResultsFile.OpenRead())
             {
                 XmlReader xmlReader = XmlReader.Create(stream);
                 document = XDocument.Load(xmlReader);
@@ -99,7 +100,7 @@ namespace Pickles.TestFrameworks
         private XElement GetFeatureElement(Feature feature)
         {
             IEnumerable<XElement> featureQuery =
-                from clazz in resultsDocument.Root.Descendants("class")
+                from clazz in this.resultsDocument.Root.Descendants("class")
                 from test in clazz.Descendants("test")
                 from trait in clazz.Descendants("traits").Descendants("trait")
                 where trait.Attribute("name").Value == "FeatureTitle" && trait.Attribute("value").Value == feature.Name
@@ -110,7 +111,7 @@ namespace Pickles.TestFrameworks
 
         private XElement GetScenarioElement(Scenario scenario)
         {
-            XElement featureElement = GetFeatureElement(scenario.Feature);
+            XElement featureElement = this.GetFeatureElement(scenario.Feature);
 
             IEnumerable<XElement> scenarioQuery =
                 from test in featureElement.Descendants("test")
@@ -123,7 +124,7 @@ namespace Pickles.TestFrameworks
 
         private IEnumerable<XElement> GetScenarioOutlineElements(ScenarioOutline scenario)
         {
-            XElement featureElement = GetFeatureElement(scenario.Feature);
+            XElement featureElement = this.GetFeatureElement(scenario.Feature);
 
             IEnumerable<XElement> scenarioQuery =
                 from test in featureElement.Descendants("test")
@@ -184,15 +185,15 @@ namespace Pickles.TestFrameworks
 
         public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] row)
         {
-            IEnumerable<XElement> exampleElements = GetScenarioOutlineElements(scenarioOutline);
+            IEnumerable<XElement> exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
 
             var result = new TestResult();
             foreach (XElement exampleElement in exampleElements)
             {
-                Regex signature = exampleSignatureBuilder.Build(scenarioOutline, row);
+                Regex signature = this.exampleSignatureBuilder.Build(scenarioOutline, row);
                 if (signature.IsMatch(exampleElement.Attribute("name").Value.ToLowerInvariant()))
                 {
-                    return GetResultFromElement(exampleElement);
+                    return this.GetResultFromElement(exampleElement);
                 }
             }
             return result;

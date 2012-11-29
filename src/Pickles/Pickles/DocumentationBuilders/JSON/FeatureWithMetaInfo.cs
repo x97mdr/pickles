@@ -1,21 +1,22 @@
-﻿using Pickles.DirectoryCrawler;
-using Pickles.Parser;
-using Pickles.TestFrameworks;
+﻿using System;
+using PicklesDoc.Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.Parser;
+using PicklesDoc.Pickles.TestFrameworks;
 
-namespace Pickles.DocumentationBuilders.JSON
+namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
 {
     public class FeatureWithMetaInfo
     {
         public FeatureWithMetaInfo(FeatureDirectoryTreeNode featureNodeTreeNode)
         {
-            Feature = featureNodeTreeNode.Feature;
-            RelativeFolder = featureNodeTreeNode.RelativePathFromRoot;
+            this.Feature = featureNodeTreeNode.Feature;
+            this.RelativeFolder = featureNodeTreeNode.RelativePathFromRoot;
         }
 
         public FeatureWithMetaInfo(FeatureDirectoryTreeNode featureNodeTreeNode, TestResult result)
             : this(featureNodeTreeNode)
         {
-            Result = result;
+            this.Result = result;
         }
 
         public string RelativeFolder { get; set; }

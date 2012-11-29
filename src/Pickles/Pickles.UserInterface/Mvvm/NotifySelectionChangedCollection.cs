@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-namespace Pickles.UserInterface.Mvvm
+namespace PicklesDoc.Pickles.UserInterface.Mvvm
 {
     public abstract class NotifySelectionChangedCollection<T> : ObservableCollection<SelectableItem<T>>
     {
@@ -25,19 +25,19 @@ namespace Pickles.UserInterface.Mvvm
         {
             base.InsertItem(index, item);
 
-            item.PropertyChanged += ItemOnPropertyChanged;
+            item.PropertyChanged += this.ItemOnPropertyChanged;
         }
 
         protected override void SetItem(int index, SelectableItem<T> item)
         {
-            this[index].PropertyChanged -= ItemOnPropertyChanged;
+            this[index].PropertyChanged -= this.ItemOnPropertyChanged;
             base.SetItem(index, item);
-            item.PropertyChanged += ItemOnPropertyChanged;
+            item.PropertyChanged += this.ItemOnPropertyChanged;
         }
 
         protected override void RemoveItem(int index)
         {
-            this[index].PropertyChanged -= ItemOnPropertyChanged;
+            this[index].PropertyChanged -= this.ItemOnPropertyChanged;
             base.RemoveItem(index);
         }
 
@@ -45,7 +45,7 @@ namespace Pickles.UserInterface.Mvvm
         {
             foreach (var item in Items)
             {
-                item.PropertyChanged -= ItemOnPropertyChanged;
+                item.PropertyChanged -= this.ItemOnPropertyChanged;
             }
 
             base.ClearItems();

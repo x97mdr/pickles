@@ -18,17 +18,18 @@
 
 #endregion
 
+using System;
 using Autofac;
-using Pickles.DocumentationBuilders;
-using Pickles.DocumentationBuilders.DITA;
-using Pickles.DocumentationBuilders.Excel;
-using Pickles.DocumentationBuilders.HTML;
-using Pickles.DocumentationBuilders.JSON;
-using Pickles.DocumentationBuilders.Word;
-using Pickles.TestFrameworks;
-using Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.DocumentationBuilders;
+using PicklesDoc.Pickles.DocumentationBuilders.DITA;
+using PicklesDoc.Pickles.DocumentationBuilders.Excel;
+using PicklesDoc.Pickles.DocumentationBuilders.HTML;
+using PicklesDoc.Pickles.DocumentationBuilders.JSON;
+using PicklesDoc.Pickles.DocumentationBuilders.Word;
+using PicklesDoc.Pickles.TestFrameworks;
 
-namespace Pickles
+namespace PicklesDoc.Pickles
 {
     public class PicklesModule : Module
     {

@@ -18,9 +18,10 @@
 
 #endregion
 
+using System;
 using System.IO;
 
-namespace Pickles
+namespace PicklesDoc.Pickles
 {
     public class Configuration
     {
@@ -36,7 +37,7 @@ namespace Pickles
 
         public bool HasTestResults
         {
-            get { return TestResultsFile != null; }
+            get { return this.TestResultsFile != null; }
         }
 
         public FileInfo TestResultsFile { get; set; }

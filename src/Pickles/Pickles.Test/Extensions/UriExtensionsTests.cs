@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using NUnit.Framework;
-using Pickles.Extensions;
+using PicklesDoc.Pickles.Extensions;
 
-namespace Pickles.Test.Extensions
+namespace PicklesDoc.Pickles.Test.Extensions
 {
     [TestFixture]
     public class UriExtensionsTests

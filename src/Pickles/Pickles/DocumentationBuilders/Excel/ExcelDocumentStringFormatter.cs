@@ -21,7 +21,7 @@
 using System;
 using ClosedXML.Excel;
 
-namespace Pickles.DocumentationBuilders.Excel
+namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 {
     public class ExcelDocumentStringFormatter
     {

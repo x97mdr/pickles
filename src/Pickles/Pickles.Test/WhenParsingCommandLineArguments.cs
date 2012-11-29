@@ -2,10 +2,10 @@
 using System.IO;
 using System.Reflection;
 using NUnit.Framework;
-using Pickles.Extensions;
+using PicklesDoc.Pickles.Extensions;
 using Should;
 
-namespace Pickles.Test
+namespace PicklesDoc.Pickles.Test
 {
     [TestFixture]
     public class WhenParsingCommandLineArguments

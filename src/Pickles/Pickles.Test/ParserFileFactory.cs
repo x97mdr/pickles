@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
 
-namespace Pickles.Test
+namespace PicklesDoc.Pickles.Test
 {
     public class ParserFileFactory
     {

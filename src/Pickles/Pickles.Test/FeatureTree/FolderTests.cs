@@ -1,9 +1,9 @@
 ﻿using System;
 using NUnit.Framework;
-using Pickles.FeatureTree;
+using PicklesDoc.Pickles.FeatureTree;
 using Should;
 
-namespace Pickles.Test.FeatureTree
+namespace PicklesDoc.Pickles.Test.FeatureTree
 {
     public class FolderTests
     {

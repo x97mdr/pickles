@@ -18,10 +18,11 @@
 
 #endregion
 
+using System;
 using System.Xml.Linq;
-using Pickles.Parser;
+using PicklesDoc.Pickles.Parser;
 
-namespace Pickles.DocumentationBuilders.DITA
+namespace PicklesDoc.Pickles.DocumentationBuilders.DITA
 {
     public class DitaStepFormatter
     {
@@ -43,7 +44,7 @@ namespace Pickles.DocumentationBuilders.DITA
 
             if (step.TableArgument != null)
             {
-                ditaTableFormatter.Format(section, step.TableArgument);
+                this.ditaTableFormatter.Format(section, step.TableArgument);
             }
         }
     }

@@ -18,12 +18,13 @@
 
 #endregion
 
+using System;
 using System.IO;
 using System.Xml.Linq;
 using NGenerics.DataStructures.Trees;
-using Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.DirectoryCrawler;
 
-namespace Pickles.DocumentationBuilders.DITA
+namespace PicklesDoc.Pickles.DocumentationBuilders.DITA
 {
     public class DitaMapBuilder
     {
@@ -43,7 +44,7 @@ namespace Pickles.DocumentationBuilders.DITA
             {
                 container = new XElement("topicref",
                                          new XAttribute("href",
-                                                        ditaMapPathGenerator.GeneratePathToFeature(features.Data)));
+                                                        this.ditaMapPathGenerator.GeneratePathToFeature(features.Data)));
             }
             else
             {
@@ -56,11 +57,11 @@ namespace Pickles.DocumentationBuilders.DITA
                 {
                     container.Add(new XElement("topicref",
                                                new XAttribute("href",
-                                                              ditaMapPathGenerator.GeneratePathToFeature(childNode.Data))));
+                                                              this.ditaMapPathGenerator.GeneratePathToFeature(childNode.Data))));
                 }
                 else
                 {
-                    container.Add(BuildListItems(childNode));
+                    container.Add(this.BuildListItems(childNode));
                 }
             }
 
@@ -70,10 +71,10 @@ namespace Pickles.DocumentationBuilders.DITA
         public void Build(GeneralTree<IDirectoryTreeNode> features)
         {
             var map = new XElement("map", new XAttribute("title", "Features"), new XAttribute("id", "features"),
-                                   BuildListItems(features));
+                                   this.BuildListItems(features));
             var document = new XDocument(
                 new XDocumentType("map", "-//OASIS//DTD DITA Map//EN", "map.dtd", string.Empty), map);
-            document.Save(Path.Combine(configuration.OutputFolder.FullName, "features.ditamap"));
+            document.Save(Path.Combine(this.configuration.OutputFolder.FullName, "features.ditamap"));
         }
     }
 }

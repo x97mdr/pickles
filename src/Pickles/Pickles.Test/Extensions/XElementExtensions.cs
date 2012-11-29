@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 using Should;
 
-namespace Pickles.Test.Extensions
+namespace PicklesDoc.Pickles.Test.Extensions
 {
     public static class XElementExtensions
     {

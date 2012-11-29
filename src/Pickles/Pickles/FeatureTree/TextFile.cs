@@ -20,7 +20,7 @@
 
 using System;
 
-namespace Pickles.FeatureTree
+namespace PicklesDoc.Pickles.FeatureTree
 {
     public class TextFile : FileBase
     {
@@ -31,12 +31,12 @@ namespace Pickles.FeatureTree
         {
             if (content == null) throw new ArgumentNullException("content");
 
-            mContent = content;
+            this.mContent = content;
         }
 
         public string Content
         {
-            get { return mContent; }
+            get { return this.mContent; }
         }
     }
 }

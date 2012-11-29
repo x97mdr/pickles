@@ -18,11 +18,12 @@
 
 #endregion
 
+using System;
 using ClosedXML.Excel;
-using Pickles.Parser;
-using Pickles.TestFrameworks;
+using PicklesDoc.Pickles.Parser;
+using PicklesDoc.Pickles.TestFrameworks;
 
-namespace Pickles.DocumentationBuilders.Excel
+namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 {
     public class ExcelScenarioOutlineFormatter
     {
@@ -48,8 +49,8 @@ namespace Pickles.DocumentationBuilders.Excel
             worksheet.Cell(row++, "B").Value = scenarioOutline.Name;
             worksheet.Cell(row++, "C").Value = scenarioOutline.Description;
 
-            var results = testResults.GetScenarioOutlineResult(scenarioOutline);
-            if (configuration.HasTestResults && results.WasExecuted)
+            var results = this.testResults.GetScenarioOutlineResult(scenarioOutline);
+            if (this.configuration.HasTestResults && results.WasExecuted)
             {
                 worksheet.Cell(originalRow, "B").Style.Fill.SetBackgroundColor(results.WasSuccessful
                                                                                    ? XLColor.AppleGreen
@@ -58,7 +59,7 @@ namespace Pickles.DocumentationBuilders.Excel
 
             foreach (Step step in scenarioOutline.Steps)
             {
-                excelStepFormatter.Format(worksheet, step, ref row);
+                this.excelStepFormatter.Format(worksheet, step, ref row);
             }
 
             row++;
@@ -67,7 +68,7 @@ namespace Pickles.DocumentationBuilders.Excel
 			{
 	            worksheet.Cell(row++, "B").Value = "Examples";
 				worksheet.Cell(row, "C").Value = example.Description;
-	            excelTableFormatter.Format(worksheet, example.TableArgument, ref row);
+	            this.excelTableFormatter.Format(worksheet, example.TableArgument, ref row);
 			}
         }
     }

@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Xml.Linq;
 using NUnit.Framework;
 using Autofac;
-using Pickles.DocumentationBuilders.HTML;
-using Pickles.Parser;
+using PicklesDoc.Pickles.DocumentationBuilders.HTML;
+using PicklesDoc.Pickles.Parser;
 
-namespace Pickles.Test.Formatters
+namespace PicklesDoc.Pickles.Test.Formatters
 {
     [TestFixture]
     public class HtmlScenarioFormatterTests : BaseFixture
@@ -15,7 +16,7 @@ namespace Pickles.Test.Formatters
         [SetUp]
         public void Setup()
         {
-            formatter = new HtmlScenarioFormatter(
+            this.formatter = new HtmlScenarioFormatter(
                 Container.Resolve<HtmlStepFormatter>(),
                 Container.Resolve<HtmlDescriptionFormatter>(),
                 Container.Resolve<HtmlImageResultFormatter>());
@@ -44,9 +45,9 @@ namespace Pickles.Test.Formatters
         [Test]
         public void Li_Element_Must_Not_Have_Id_Attribute()
         {
-            Scenario scenario = BuildMinimalScenario();
+            Scenario scenario = this.BuildMinimalScenario();
 
-            XElement li = formatter.Format(scenario, 1);
+            XElement li = this.formatter.Format(scenario, 1);
 
             XAttribute idAttribute = li.Attribute("id");
 

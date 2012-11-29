@@ -1,7 +1,7 @@
 using System;
-using Pickles.Parser;
+using PicklesDoc.Pickles.Parser;
 
-namespace Pickles.FeatureTree
+namespace PicklesDoc.Pickles.FeatureTree
 {
     public class FeatureFile : FileBase
     {
@@ -12,12 +12,12 @@ namespace Pickles.FeatureTree
         {
             if (feature == null) throw new ArgumentNullException("feature");
 
-            mContent = feature;
+            this.mContent = feature;
         }
 
         public Feature Content
         {
-            get { return mContent; }
+            get { return this.mContent; }
         }
     }
 }

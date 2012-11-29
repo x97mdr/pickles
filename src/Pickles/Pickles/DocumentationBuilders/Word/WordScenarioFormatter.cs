@@ -18,12 +18,13 @@
 
 #endregion
 
+using System;
 using DocumentFormat.OpenXml.Wordprocessing;
-using Pickles.Extensions;
-using Pickles.Parser;
-using Pickles.TestFrameworks;
+using PicklesDoc.Pickles.Extensions;
+using PicklesDoc.Pickles.Parser;
+using PicklesDoc.Pickles.TestFrameworks;
 
-namespace Pickles.DocumentationBuilders.Word
+namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 {
     public class WordScenarioFormatter
     {
@@ -41,9 +42,9 @@ namespace Pickles.DocumentationBuilders.Word
 
         public void Format(Body body, Scenario scenario)
         {
-            if (configuration.HasTestResults)
+            if (this.configuration.HasTestResults)
             {
-                TestResult testResult = nunitResults.GetScenarioResult(scenario);
+                TestResult testResult = this.nunitResults.GetScenarioResult(scenario);
                 if (testResult.WasExecuted && testResult.WasSuccessful)
                 {
                     body.GenerateParagraph("Passed", "Passed");
@@ -59,7 +60,7 @@ namespace Pickles.DocumentationBuilders.Word
 
             foreach (Step step in scenario.Steps)
             {
-                wordStepFormatter.Format(body, step);
+                this.wordStepFormatter.Format(body, step);
             }
         }
     }

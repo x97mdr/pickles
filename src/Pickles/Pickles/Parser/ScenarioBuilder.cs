@@ -18,9 +18,10 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 
-namespace Pickles.Parser
+namespace PicklesDoc.Pickles.Parser
 {
     internal class ScenarioBuilder
     {
@@ -31,8 +32,8 @@ namespace Pickles.Parser
 
         public ScenarioBuilder()
         {
-            steps = new List<Step>();
-            tags = new List<string>();
+            this.steps = new List<Step>();
+            this.tags = new List<string>();
         }
 
         public void SetName(string name)
@@ -47,7 +48,7 @@ namespace Pickles.Parser
 
         public void AddStep(Step step)
         {
-            steps.Add(step);
+            this.steps.Add(step);
         }
 
         public void AddTags(List<string> tags)
@@ -59,10 +60,10 @@ namespace Pickles.Parser
         {
             return new Scenario
                        {
-                           Name = name,
-                           Description = description,
-                           Steps = new List<Step>(steps),
-                           Tags = new List<string>(tags)
+                           Name = this.name,
+                           Description = this.description,
+                           Steps = new List<Step>(this.steps),
+                           Tags = new List<string>(this.tags)
                        };
         }
     }

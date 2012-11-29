@@ -20,7 +20,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Xml;
 
-namespace Pickles.UserInterface.Settings
+namespace PicklesDoc.Pickles.UserInterface.Settings
 {
   internal static class StreamExtensions
   {

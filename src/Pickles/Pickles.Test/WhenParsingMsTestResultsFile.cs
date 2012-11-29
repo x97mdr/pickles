@@ -1,12 +1,13 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
 using NUnit.Framework;
 using Autofac;
-using Pickles.Parser;
-using Pickles.TestFrameworks;
+using PicklesDoc.Pickles.Parser;
+using PicklesDoc.Pickles.TestFrameworks;
 using Should;
 
-namespace Pickles.Test
+namespace PicklesDoc.Pickles.Test
 {
     [TestFixture]
     public class WhenParsingMsTestResultsFile : BaseFixture
@@ -16,10 +17,10 @@ namespace Pickles.Test
         [SetUp]
         public void Setup()
         {
-            _feature = new Feature {Name = "Addition"};
+            this._feature = new Feature {Name = "Addition"};
 
             // Write out the embedded test results file
-            using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Test." + RESULTS_FILE_NAME)))
+            using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + RESULTS_FILE_NAME)))
             using (var output = new StreamWriter(RESULTS_FILE_NAME))
             {
                 output.Write(input.ReadToEnd());
@@ -28,7 +29,7 @@ namespace Pickles.Test
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFile = new FileInfo(RESULTS_FILE_NAME);
 
-            _results = Container.Resolve<MsTestResults>();
+            this._results = Container.Resolve<MsTestResults>();
         }
 
         #endregion
@@ -40,10 +41,10 @@ namespace Pickles.Test
         [Test]
         public void ThenCanReadBackgroundResultSuccessfully()
         {
-            var background = new Scenario {Name = "Background", Feature = _feature};
-            _feature.AddBackground(background);
+            var background = new Scenario {Name = "Background", Feature = this._feature};
+            this._feature.AddBackground(background);
 
-            TestResult result = _results.GetScenarioResult(background);
+            TestResult result = this._results.GetScenarioResult(background);
 
             result.WasExecuted.ShouldBeFalse();
             result.WasSuccessful.ShouldBeFalse();
@@ -52,7 +53,7 @@ namespace Pickles.Test
         [Test]
         public void ThenCanReadFeatureResultSuccessfully()
         {
-            TestResult result = _results.GetFeatureResult(_feature);
+            TestResult result = this._results.GetFeatureResult(this._feature);
 
             result.WasExecuted.ShouldBeTrue();
             result.WasSuccessful.ShouldBeFalse();
@@ -61,8 +62,8 @@ namespace Pickles.Test
         [Test]
         public void ThenCanReadScenarioOutlineResultSuccessfully()
         {
-            var scenarioOutline = new ScenarioOutline {Name = "Adding several numbers", Feature = _feature};
-            TestResult result = _results.GetScenarioOutlineResult(scenarioOutline);
+            var scenarioOutline = new ScenarioOutline {Name = "Adding several numbers", Feature = this._feature};
+            TestResult result = this._results.GetScenarioOutlineResult(scenarioOutline);
 
             result.WasExecuted.ShouldBeTrue();
             result.WasSuccessful.ShouldBeTrue();
@@ -71,14 +72,14 @@ namespace Pickles.Test
         [Test]
         public void ThenCanReadScenarioResultSuccessfully()
         {
-            var scenario1 = new Scenario {Name = "Add two numbers", Feature = _feature};
-            TestResult result1 = _results.GetScenarioResult(scenario1);
+            var scenario1 = new Scenario {Name = "Add two numbers", Feature = this._feature};
+            TestResult result1 = this._results.GetScenarioResult(scenario1);
 
             result1.WasExecuted.ShouldBeTrue();
             result1.WasSuccessful.ShouldBeTrue();
 
-            var scenario2 = new Scenario {Name = "Fail to add two numbers", Feature = _feature};
-            TestResult result2 = _results.GetScenarioResult(scenario2);
+            var scenario2 = new Scenario {Name = "Fail to add two numbers", Feature = this._feature};
+            TestResult result2 = this._results.GetScenarioResult(scenario2);
 
             result2.WasExecuted.ShouldBeTrue();
             result2.WasSuccessful.ShouldBeFalse();

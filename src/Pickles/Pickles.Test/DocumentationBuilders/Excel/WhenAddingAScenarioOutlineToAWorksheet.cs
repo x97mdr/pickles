@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ClosedXML.Excel;
 using NUnit.Framework;
 using Autofac;
-using Pickles.DocumentationBuilders.Excel;
-using Pickles.Parser;
+using PicklesDoc.Pickles.DocumentationBuilders.Excel;
+using PicklesDoc.Pickles.Parser;
 using Should;
 
-namespace Pickles.Test.DocumentationBuilders.Excel
+namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
 {
     [TestFixture]
     public class WhenAddingAScenarioOutlineToAWorksheet : BaseFixture

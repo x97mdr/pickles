@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
-namespace Pickles.Parser
+namespace PicklesDoc.Pickles.Parser
 {
     public interface IFeatureElement
     {

@@ -22,7 +22,7 @@ using System;
 using System.Linq;
 using System.Text;
 
-namespace Pickles.Extensions
+namespace PicklesDoc.Pickles.Extensions
 {
     public static class StringExtensions
     {

@@ -20,7 +20,7 @@
 
 using System;
 
-namespace Pickles
+namespace PicklesDoc.Pickles
 {
     [Serializable]
     public class FeatureParseException : Exception

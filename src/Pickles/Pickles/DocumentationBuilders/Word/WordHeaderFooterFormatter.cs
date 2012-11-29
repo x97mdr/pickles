@@ -18,11 +18,12 @@
 
 #endregion
 
+using System;
 using System.Reflection;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
-namespace Pickles.DocumentationBuilders.Word
+namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 {
     public class WordHeaderFooterFormatter
     {
@@ -36,10 +37,10 @@ namespace Pickles.DocumentationBuilders.Word
         public void ApplyHeaderAndFooter(WordprocessingDocument wordProcessingDocument)
         {
             var headerPart = wordProcessingDocument.MainDocumentPart.AddNewPart<HeaderPart>();
-            ApplyHeader(headerPart);
+            this.ApplyHeader(headerPart);
 
             var footerPart = wordProcessingDocument.MainDocumentPart.AddNewPart<FooterPart>();
-            ApplyFooter(footerPart);
+            this.ApplyFooter(footerPart);
         }
 
         private void ApplyFooter(FooterPart footerPart)
@@ -101,19 +102,19 @@ namespace Pickles.DocumentationBuilders.Word
             var run1 = new Run();
             var text1 = new Text();
 
-            if (!string.IsNullOrEmpty(configuration.SystemUnderTestName) &&
-                !string.IsNullOrEmpty(configuration.SystemUnderTestVersion))
+            if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestName) &&
+                !string.IsNullOrEmpty(this.configuration.SystemUnderTestVersion))
             {
-                text1.Text = string.Format("{0}, version {1}", configuration.SystemUnderTestName,
-                                           configuration.SystemUnderTestVersion);
+                text1.Text = string.Format("{0}, version {1}", this.configuration.SystemUnderTestName,
+                                           this.configuration.SystemUnderTestVersion);
             }
-            else if (!string.IsNullOrEmpty(configuration.SystemUnderTestName))
+            else if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestName))
             {
-                text1.Text = configuration.SystemUnderTestName;
+                text1.Text = this.configuration.SystemUnderTestName;
             }
-            else if (!string.IsNullOrEmpty(configuration.SystemUnderTestVersion))
+            else if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestVersion))
             {
-                text1.Text = string.Format("Features for version {0}", configuration.SystemUnderTestVersion);
+                text1.Text = string.Format("Features for version {0}", this.configuration.SystemUnderTestVersion);
             }
 
             run1.Append(text1);

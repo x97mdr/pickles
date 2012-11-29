@@ -23,7 +23,7 @@ using System.IO;
 using System.Linq;
 using NGenerics.DataStructures.Trees;
 
-namespace Pickles.DirectoryCrawler
+namespace PicklesDoc.Pickles.DirectoryCrawler
 {
     public class DirectoryTreeCrawler
     {
@@ -42,18 +42,18 @@ namespace Pickles.DirectoryCrawler
 
         public GeneralTree<IDirectoryTreeNode> Crawl(string directory)
         {
-            return Crawl(new DirectoryInfo(directory), null);
+            return this.Crawl(new DirectoryInfo(directory), null);
         }
 
         public GeneralTree<IDirectoryTreeNode> Crawl(DirectoryInfo directory)
         {
-            return Crawl(directory, null);
+            return this.Crawl(directory, null);
         }
 
         private GeneralTree<IDirectoryTreeNode> Crawl(DirectoryInfo directory, IDirectoryTreeNode rootNode)
         {
             IDirectoryTreeNode currentNode =
-                featureNodeFactory.Create(rootNode != null ? rootNode.OriginalLocation : null, directory);
+                this.featureNodeFactory.Create(rootNode != null ? rootNode.OriginalLocation : null, directory);
 
             if (rootNode == null)
             {
@@ -63,14 +63,14 @@ namespace Pickles.DirectoryCrawler
             var tree = new GeneralTree<IDirectoryTreeNode>(currentNode);
 
             bool isRelevantFileFound = false;
-            foreach (FileInfo file in directory.GetFiles().Where(file => relevantFileDetector.IsRelevant(file)))
+            foreach (FileInfo file in directory.GetFiles().Where(file => this.relevantFileDetector.IsRelevant(file)))
             {
                 isRelevantFileFound = true;
 
                 IDirectoryTreeNode node = null;
                 try
                 {
-                    node = featureNodeFactory.Create(rootNode.OriginalLocation, file);
+                    node = this.featureNodeFactory.Create(rootNode.OriginalLocation, file);
                 }
                 catch (Exception)
                 {     
@@ -83,7 +83,7 @@ namespace Pickles.DirectoryCrawler
             bool isRelevantDirectoryFound = false;
             foreach (DirectoryInfo subDirectory in directory.GetDirectories())
             {
-                GeneralTree<IDirectoryTreeNode> subTree = Crawl(subDirectory, rootNode);
+                GeneralTree<IDirectoryTreeNode> subTree = this.Crawl(subDirectory, rootNode);
                 if (subTree != null)
                 {
                     isRelevantDirectoryFound = true;

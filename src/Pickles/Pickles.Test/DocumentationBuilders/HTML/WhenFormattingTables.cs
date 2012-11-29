@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Xml.Linq;
 using Autofac;
 using NUnit.Framework;
-using Pickles.DocumentationBuilders.HTML;
-using Pickles.Parser;
+using PicklesDoc.Pickles.DocumentationBuilders.HTML;
+using PicklesDoc.Pickles.Parser;
 using Should;
 
-namespace Pickles.Test.DocumentationBuilders.HTML
+namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 {
     [TestFixture]
     public class WhenFormattingTables : BaseFixture

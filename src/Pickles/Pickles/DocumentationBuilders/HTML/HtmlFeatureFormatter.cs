@@ -18,10 +18,11 @@
 
 #endregion
 
+using System;
 using System.Xml.Linq;
-using Pickles.Parser;
+using PicklesDoc.Pickles.Parser;
 
-namespace Pickles.DocumentationBuilders.HTML
+namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlFeatureFormatter : IHtmlFeatureFormatter
     {
@@ -41,26 +42,26 @@ namespace Pickles.DocumentationBuilders.HTML
             this.htmlScenarioOutlineFormatter = htmlScenarioOutlineFormatter;
             this.htmlDescriptionFormatter = htmlDescriptionFormatter;
             this.htmlImageResultFormatter = htmlImageResultFormatter;
-            xmlns = HtmlNamespace.Xhtml;
+            this.xmlns = HtmlNamespace.Xhtml;
         }
 
         #region IHtmlFeatureFormatter Members
 
         public XElement Format(Feature feature)
         {
-            var div = new XElement(xmlns + "div",
+            var div = new XElement(this.xmlns + "div",
                                    new XAttribute("id", "feature"),
-                                   htmlImageResultFormatter.Format(feature),
-                                   new XElement(xmlns + "h1", feature.Name),
-                                   htmlDescriptionFormatter.Format(feature.Description)
+                                   this.htmlImageResultFormatter.Format(feature),
+                                   new XElement(this.xmlns + "h1", feature.Name),
+                                   this.htmlDescriptionFormatter.Format(feature.Description)
                 );
 
-            var scenarios = new XElement(xmlns + "ul", new XAttribute("id", "scenarios"));
+            var scenarios = new XElement(this.xmlns + "ul", new XAttribute("id", "scenarios"));
             int id = 0;
 
             if (feature.Background != null)
             {
-                scenarios.Add(htmlScenarioFormatter.Format(feature.Background, id++));
+                scenarios.Add(this.htmlScenarioFormatter.Format(feature.Background, id++));
             }
 
             foreach (IFeatureElement featureElement in feature.FeatureElements)
@@ -68,13 +69,13 @@ namespace Pickles.DocumentationBuilders.HTML
                 var scenario = featureElement as Scenario;
                 if (scenario != null)
                 {
-                    scenarios.Add(htmlScenarioFormatter.Format(scenario, id++));
+                    scenarios.Add(this.htmlScenarioFormatter.Format(scenario, id++));
                 }
 
                 var scenarioOutline = featureElement as ScenarioOutline;
                 if (scenarioOutline != null)
                 {
-                    scenarios.Add(htmlScenarioOutlineFormatter.Format(scenarioOutline, id++));
+                    scenarios.Add(this.htmlScenarioOutlineFormatter.Format(scenarioOutline, id++));
                 }
             }
 

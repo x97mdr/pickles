@@ -18,6 +18,7 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -26,11 +27,11 @@ using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using Pickles.DirectoryCrawler;
-using Pickles.TestFrameworks;
+using PicklesDoc.Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.TestFrameworks;
 using log4net;
 
-namespace Pickles.DocumentationBuilders.JSON
+namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
 {
     public class JSONDocumentationBuilder : IDocumentationBuilder
     {
@@ -49,7 +50,7 @@ namespace Pickles.DocumentationBuilders.JSON
 
         private string OutputFilePath
         {
-            get { return Path.Combine(configuration.OutputFolder.FullName, JsonFileName); }
+            get { return Path.Combine(this.configuration.OutputFolder.FullName, JsonFileName); }
         }
 
         #region IDocumentationBuilder Members
@@ -58,7 +59,7 @@ namespace Pickles.DocumentationBuilders.JSON
         {
             if (log.IsInfoEnabled)
             {
-                log.InfoFormat("Writing JSON to {0}", configuration.OutputFolder.FullName);
+                log.InfoFormat("Writing JSON to {0}", this.configuration.OutputFolder.FullName);
             }
 
             var featuresToFormat = new List<FeatureWithMetaInfo>();
@@ -69,12 +70,12 @@ namespace Pickles.DocumentationBuilders.JSON
                                                                                   node as FeatureDirectoryTreeNode;
                                                                               if (featureTreeNode != null)
                                                                               {
-                                                                                  if (configuration.HasTestResults)
+                                                                                  if (this.configuration.HasTestResults)
                                                                                   {
                                                                                       featuresToFormat.Add(
                                                                                           new FeatureWithMetaInfo(
                                                                                               featureTreeNode,
-                                                                                              testResults.
+                                                                                              this.testResults.
                                                                                                   GetFeatureResult(
                                                                                                       featureTreeNode.
                                                                                                           Feature)));
@@ -90,7 +91,7 @@ namespace Pickles.DocumentationBuilders.JSON
 
             features.AcceptVisitor(actionVisitor);
 
-            CreateFile(OutputFilePath, GenerateJSON(featuresToFormat));
+            CreateFile(this.OutputFilePath, GenerateJSON(featuresToFormat));
         }
 
         #endregion

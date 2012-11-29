@@ -19,7 +19,7 @@ using System;
 using System.Globalization;
 using System.Windows.Data;
 
-namespace Pickles.UserInterface.Mvvm
+namespace PicklesDoc.Pickles.UserInterface.Mvvm
 {
     public class BooleanToInvisibilityConverter : IValueConverter
     {

@@ -20,33 +20,33 @@
 
 using System;
 using System.IO;
-using Pickles.Extensions;
+using PicklesDoc.Pickles.Extensions;
 
-namespace Pickles.DirectoryCrawler
+namespace PicklesDoc.Pickles.DirectoryCrawler
 {
     public class FolderDirectoryTreeNode : IDirectoryTreeNode
     {
         public FolderDirectoryTreeNode(FileSystemInfo location, string relativePathFromRoot)
         {
-            OriginalLocation = location;
-            OriginalLocationUrl = location.ToUri();
-            RelativePathFromRoot = relativePathFromRoot;
+            this.OriginalLocation = location;
+            this.OriginalLocationUrl = location.ToUri();
+            this.RelativePathFromRoot = relativePathFromRoot;
         }
 
         #region IDirectoryTreeNode Members
 
         public string GetRelativeUriTo(Uri other, string newExtension)
         {
-            bool areSameLocation = OriginalLocation.FullName == other.LocalPath;
+            bool areSameLocation = this.OriginalLocation.FullName == other.LocalPath;
 
             if (areSameLocation)
             {
                 return "#";
             }
 
-            string result = other.MakeRelativeUri(OriginalLocationUrl).ToString();
+            string result = other.MakeRelativeUri(this.OriginalLocationUrl).ToString();
 
-            string oldExtension = OriginalLocation.Extension;
+            string oldExtension = this.OriginalLocation.Extension;
 
             if (!string.IsNullOrEmpty(oldExtension))
             {
@@ -58,7 +58,7 @@ namespace Pickles.DirectoryCrawler
 
         public string GetRelativeUriTo(Uri other)
         {
-            return GetRelativeUriTo(other, ".html");
+            return this.GetRelativeUriTo(other, ".html");
         }
 
         public bool IsContent
@@ -68,7 +68,7 @@ namespace Pickles.DirectoryCrawler
 
         public string Name
         {
-            get { return OriginalLocation.Name.ExpandWikiWord(); }
+            get { return this.OriginalLocation.Name.ExpandWikiWord(); }
         }
 
         public FileSystemInfo OriginalLocation { get; private set; }

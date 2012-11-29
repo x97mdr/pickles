@@ -21,9 +21,9 @@
 using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
-using Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.DirectoryCrawler;
 
-namespace Pickles.DocumentationBuilders.HTML
+namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlContentFormatter
     {
@@ -45,13 +45,13 @@ namespace Pickles.DocumentationBuilders.HTML
             var featureItemNode = contentNode as FeatureDirectoryTreeNode;
             if (featureItemNode != null)
             {
-                return htmlFeatureFormatter.Format(featureItemNode.Feature);
+                return this.htmlFeatureFormatter.Format(featureItemNode.Feature);
             }
 
             var indexItemNode = contentNode as FolderDirectoryTreeNode;
             if (indexItemNode != null)
             {
-                return htmlIndexFormatter.Format(indexItemNode, features);
+                return this.htmlIndexFormatter.Format(indexItemNode, features);
             }
 
             var markdownItemNode = contentNode as MarkdownTreeNode;

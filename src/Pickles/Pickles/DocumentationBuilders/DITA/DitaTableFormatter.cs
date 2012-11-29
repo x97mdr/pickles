@@ -1,7 +1,8 @@
-﻿using System.Xml.Linq;
-using Pickles.Parser;
+﻿using System;
+using System.Xml.Linq;
+using PicklesDoc.Pickles.Parser;
 
-namespace Pickles.DocumentationBuilders.DITA
+namespace PicklesDoc.Pickles.DocumentationBuilders.DITA
 {
     public class DitaTableFormatter
     {

@@ -20,7 +20,7 @@ using System.Deployment.Application;
 using System.IO;
 using System.Reflection;
 
-namespace Pickles.UserInterface.Settings
+namespace PicklesDoc.Pickles.UserInterface.Settings
 {
     public static class DataDirectoryDeriver
     {

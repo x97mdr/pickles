@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Autofac;
 using NUnit.Framework;
-using Pickles.DocumentationBuilders.HTML;
-using Pickles.Parser;
-using Pickles.Test.Extensions;
+using PicklesDoc.Pickles.DocumentationBuilders.HTML;
+using PicklesDoc.Pickles.Parser;
+using PicklesDoc.Pickles.Test.Extensions;
 
-namespace Pickles.Test.DocumentationBuilders.HTML
+namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 {
     [TestFixture]
     public class WhenFormattingScenarioOutlines : BaseFixture

@@ -18,9 +18,10 @@
 
 #endregion
 
+using System;
 using System.ComponentModel;
 
-namespace Pickles
+namespace PicklesDoc.Pickles
 {
     public enum DocumentationFormat
     {

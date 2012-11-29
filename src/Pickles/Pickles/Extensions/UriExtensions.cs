@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Pickles.Extensions
+namespace PicklesDoc.Pickles.Extensions
 {
     public static class UriExtensions
     {

@@ -18,7 +18,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace Pickles.DocumentationBuilders.Word.TableOfContentsAdder
+namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
 {
     public static class PtExtensions
     {

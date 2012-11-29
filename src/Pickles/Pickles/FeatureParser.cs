@@ -20,10 +20,10 @@
 
 using System;
 using System.IO;
-using Pickles.Parser;
+using PicklesDoc.Pickles.Parser;
 using gherkin.lexer;
 
-namespace Pickles
+namespace PicklesDoc.Pickles
 {
     public class FeatureParser
     {
@@ -41,7 +41,7 @@ namespace Pickles
             {
                 try
                 {
-                    feature = Parse(reader);
+                    feature = this.Parse(reader);
                 }
                 catch (Exception e)
                 {
@@ -63,8 +63,8 @@ namespace Pickles
         {
             string fileContent = featureFileReader.ReadToEnd();
 
-            var parser = new PicklesParser(languageService.GetLanguage());
-            Lexer lexer = languageService.GetNativeLexer(parser);
+            var parser = new PicklesParser(this.languageService.GetLanguage());
+            Lexer lexer = this.languageService.GetNativeLexer(parser);
             lexer.scan(fileContent);
 
             return parser.GetFeature();

@@ -20,7 +20,7 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Pickles.UserInterface.Mvvm
+namespace PicklesDoc.Pickles.UserInterface.Mvvm
 {
   public static class EventHandlerExtensions
   {

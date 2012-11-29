@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Pickles
+namespace PicklesDoc.Pickles
 {
     public class ConfigurationReporter
     {

@@ -1,12 +1,13 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
 using NUnit.Framework;
 using Autofac;
-using Pickles.Parser;
-using Pickles.TestFrameworks;
+using PicklesDoc.Pickles.Parser;
+using PicklesDoc.Pickles.TestFrameworks;
 using Should;
 
-namespace Pickles.Test
+namespace PicklesDoc.Pickles.Test
 {
     [TestFixture]
     public class WhenParsingNUnitResultsFile : BaseFixture
@@ -17,7 +18,7 @@ namespace Pickles.Test
         public void ThenCanReadFeatureResultSuccessfully()
         {
             // Write out the embedded test results file
-            using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Test." + RESULTS_FILE_NAME)))
+          using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + RESULTS_FILE_NAME)))
             using (var output = new StreamWriter(RESULTS_FILE_NAME))
             {
                 output.Write(input.ReadToEnd());
@@ -39,7 +40,7 @@ namespace Pickles.Test
         public void ThenCanReadScenarioOutlineResultSuccessfully()
         {
             // Write out the embedded test results file
-            using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Test." + RESULTS_FILE_NAME)))
+          using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + RESULTS_FILE_NAME)))
             using (var output = new StreamWriter(RESULTS_FILE_NAME))
             {
                 output.Write(input.ReadToEnd());
@@ -71,7 +72,7 @@ namespace Pickles.Test
         public void ThenCanReadScenarioResultSuccessfully()
         {
             // Write out the embedded test results file
-            using ( var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("Pickles.Test." + RESULTS_FILE_NAME)))
+          using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + RESULTS_FILE_NAME)))
             using (var output = new StreamWriter(RESULTS_FILE_NAME))
             {
                 output.Write(input.ReadToEnd());

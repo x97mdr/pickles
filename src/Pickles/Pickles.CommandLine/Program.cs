@@ -24,7 +24,7 @@ using Autofac;
 using log4net;
 using log4net.Config;
 
-namespace Pickles.CommandLine
+namespace PicklesDoc.Pickles.CommandLine
 {
     internal class Program
     {

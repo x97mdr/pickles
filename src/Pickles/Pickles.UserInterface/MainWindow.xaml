@@ -1,8 +1,10 @@
-﻿<mahapps:MetroWindow x:Class="Pickles.UserInterface.MainWindow"
+﻿<mahapps:MetroWindow x:Class="PicklesDoc.Pickles.UserInterface.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:Pickles.UserInterface"
-        xmlns:mahapps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-                     xmlns:Mvvm="clr-namespace:Pickles.UserInterface.Mvvm" Title="Pickles" Height="450" Width="800" Loaded="MetroWindow_Loaded" Closed="MetroWindow_Closed">
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:mahapps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                     xmlns:Mvvm="clr-namespace:PicklesDoc.Pickles.UserInterface.Mvvm"
+                     xmlns:local="clr-namespace:PicklesDoc.Pickles.UserInterface"
+                     Title="Pickles" Height="450" Width="800" Loaded="MetroWindow_Loaded" Closed="MetroWindow_Closed">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

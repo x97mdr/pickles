@@ -17,7 +17,7 @@ using System.Xml;
 using System.Xml.Linq;
 using DocumentFormat.OpenXml.Packaging;
 
-namespace Pickles.DocumentationBuilders.Word.TableOfContentsAdder
+namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
 {
     public class WmlDocument
     {

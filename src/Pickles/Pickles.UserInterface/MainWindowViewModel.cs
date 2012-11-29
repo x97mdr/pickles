@@ -17,19 +17,18 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Input;
 using Autofac;
-using Pickles.Parser;
 using System.Globalization;
 using System.ComponentModel;
-using Pickles.UserInterface.Mvvm;
-using Pickles.UserInterface.Settings;
+using PicklesDoc.Pickles.Parser;
+using PicklesDoc.Pickles.UserInterface.Mvvm;
+using PicklesDoc.Pickles.UserInterface.Settings;
 
-namespace Pickles.UserInterface
+namespace PicklesDoc.Pickles.UserInterface
 {
     public class MainWindowViewModel : NotifyPropertyChanged
     {
@@ -92,23 +91,23 @@ namespace Pickles.UserInterface
 
         public MainWindowViewModel(IMainModelSerializer mainModelSerializer)
         {
-            documentationFormats = new MultiSelectableCollection<DocumentationFormat>(Enum.GetValues(typeof(DocumentationFormat)).Cast<DocumentationFormat>());
-            documentationFormats.First().IsSelected = true;
-            documentationFormats.SelectionChanged += DocumentationFormatsOnCollectionChanged;
+            this.documentationFormats = new MultiSelectableCollection<DocumentationFormat>(Enum.GetValues(typeof(DocumentationFormat)).Cast<DocumentationFormat>());
+            this.documentationFormats.First().IsSelected = true;
+            this.documentationFormats.SelectionChanged += this.DocumentationFormatsOnCollectionChanged;
 
-            testResultsFormats = new SelectableCollection<TestResultsFormat>(Enum.GetValues(typeof(TestResultsFormat)).Cast<TestResultsFormat>());
-            testResultsFormats.First().IsSelected = true;
-            testResultsFormats.SelectionChanged += TestResultsFormatsOnCollectionChanged;
+            this.testResultsFormats = new SelectableCollection<TestResultsFormat>(Enum.GetValues(typeof(TestResultsFormat)).Cast<TestResultsFormat>());
+            this.testResultsFormats.First().IsSelected = true;
+            this.testResultsFormats.SelectionChanged += this.TestResultsFormatsOnCollectionChanged;
 
-            browseForFeatureFolderCommand = new RelayCommand(DoBrowseForFeature);
-            browseForOutputFolderCommand = new RelayCommand(DoBrowseForOutputFolder);
-            browseForTestResultsFileCommand = new RelayCommand(DoBrowseForTestResultsFile);
-            generateCommand = new RelayCommand(DoGenerate, CanGenerate);
-            openOutputDirectory = new RelayCommand(DoOpenOutputDirectory, CanOpenOutputDirectory);
+            this.browseForFeatureFolderCommand = new RelayCommand(this.DoBrowseForFeature);
+            this.browseForOutputFolderCommand = new RelayCommand(this.DoBrowseForOutputFolder);
+            this.browseForTestResultsFileCommand = new RelayCommand(this.DoBrowseForTestResultsFile);
+            this.generateCommand = new RelayCommand(this.DoGenerate, this.CanGenerate);
+            this.openOutputDirectory = new RelayCommand(this.DoOpenOutputDirectory, this.CanOpenOutputDirectory);
 
-            this.PropertyChanged += MainWindowViewModel_PropertyChanged;
-            neutralCultures = CultureInfo.GetCultures(CultureTypes.NeutralCultures);
-            selectedLanguage = CultureInfo.GetCultureInfo("en");
+            this.PropertyChanged += this.MainWindowViewModel_PropertyChanged;
+            this.neutralCultures = CultureInfo.GetCultures(CultureTypes.NeutralCultures);
+            this.selectedLanguage = CultureInfo.GetCultureInfo("en");
 
             this.mainModelSerializer = mainModelSerializer;
         }
@@ -125,130 +124,130 @@ namespace Pickles.UserInterface
 
         public string PicklesVersion
         {
-            get { return picklesVersion; }
+            get { return this.picklesVersion; }
             set
             {
-                picklesVersion = value;
-                RaisePropertyChanged(() => PicklesVersion);
+                this.picklesVersion = value;
+                RaisePropertyChanged(() => this.PicklesVersion);
             }
         }
 
         public string FeatureFolder
         {
-            get { return featureFolder; }
+            get { return this.featureFolder; }
             set
             {
-                featureFolder = value;
-                RaisePropertyChanged(() => FeatureFolder);
+                this.featureFolder = value;
+                RaisePropertyChanged(() => this.FeatureFolder);
             }
         }
 
         public string OutputFolder
         {
-            get { return outputFolder; }
+            get { return this.outputFolder; }
             set
             {
-                outputFolder = value;
-                RaisePropertyChanged(() => OutputFolder);
+                this.outputFolder = value;
+                RaisePropertyChanged(() => this.OutputFolder);
             }
         }
 
         public MultiSelectableCollection<DocumentationFormat> DocumentationFormatValues
         {
-            get { return documentationFormats; }
+            get { return this.documentationFormats; }
         }
 
         public string ProjectName
         {
-            get { return projectName; }
+            get { return this.projectName; }
             set
             {
-                projectName = value;
-                RaisePropertyChanged(() => ProjectName);
+                this.projectName = value;
+                RaisePropertyChanged(() => this.ProjectName);
             }
         }
 
         public string ProjectVersion
         {
-            get { return projectVersion; }
+            get { return this.projectVersion; }
             set
             {
-                projectVersion = value;
-                RaisePropertyChanged(() => ProjectVersion);
+                this.projectVersion = value;
+                RaisePropertyChanged(() => this.ProjectVersion);
             }
         }
 
         public string TestResultsFile
         {
-            get { return testResultsFile; }
+            get { return this.testResultsFile; }
             set
             {
-                testResultsFile = value;
-                RaisePropertyChanged(() => TestResultsFile);
+                this.testResultsFile = value;
+                RaisePropertyChanged(() => this.TestResultsFile);
             }
         }
 
         public SelectableCollection<TestResultsFormat> TestResultsFormatValues
         {
-            get { return testResultsFormats; }
+            get { return this.testResultsFormats; }
         }
 
         public CultureInfo SelectedLanguage
         {
-            get { return selectedLanguage; }
+            get { return this.selectedLanguage; }
             set
             {
-                selectedLanguage = value;
-                RaisePropertyChanged(() => SelectedLanguage);
+                this.selectedLanguage = value;
+                RaisePropertyChanged(() => this.SelectedLanguage);
             }
         }
 
         public IEnumerable<CultureInfo> LanguageValues
         {
-            get { return neutralCultures; }
+            get { return this.neutralCultures; }
         }
 
         public bool IncludeTests
         {
-            get { return includeTests; }
+            get { return this.includeTests; }
             set
             {
-                includeTests = value;
-                RaisePropertyChanged(() => IncludeTests);
+                this.includeTests = value;
+                RaisePropertyChanged(() => this.IncludeTests);
             }
         }
 
         public ICommand GeneratePickles
         {
-            get { return generateCommand; }
+            get { return this.generateCommand; }
         }
 
         public ICommand BrowseForFeatureFolder
         {
-            get { return browseForFeatureFolderCommand; }
+            get { return this.browseForFeatureFolderCommand; }
         }
 
         public ICommand BrowseForOutputFolder
         {
-            get { return browseForOutputFolderCommand; }
+            get { return this.browseForOutputFolderCommand; }
         }
 
         public ICommand BrowseForTestResultsFile
         {
-            get { return browseForTestResultsFileCommand; }
+            get { return this.browseForTestResultsFileCommand; }
         }
 
         public RelayCommand OpenOutputDirectory
         {
-            get { return openOutputDirectory; }
+            get { return this.openOutputDirectory; }
         }
 
         public bool IsRunning
         {
-            get { return isRunning; }
+            get { return this.isRunning; }
             set
             {
-                isRunning = value;
+                this.isRunning = value;
                 this.RaisePropertyChanged(() => this.IsRunning);
             }
         }
@@ -257,12 +256,12 @@ namespace Pickles.UserInterface
         {
             get
             {
-                return isFeatureDirectoryValid;
+                return this.isFeatureDirectoryValid;
             }
 
             set
             {
-                isFeatureDirectoryValid = value;
+                this.isFeatureDirectoryValid = value;
                 this.RaisePropertyChanged(() => this.IsFeatureDirectoryValid);
             }
         }
@@ -271,72 +270,72 @@ namespace Pickles.UserInterface
         {
             get
             {
-                return isDocumentationFormatValid;
+                return this.isDocumentationFormatValid;
             }
 
             set
             {
-                isDocumentationFormatValid = value;
+                this.isDocumentationFormatValid = value;
                 this.RaisePropertyChanged(() => this.IsDocumentationFormatValid);
             }
         }
 
         public bool IsOutputDirectoryValid
         {
-            get { return isOutputDirectoryValid; }
+            get { return this.isOutputDirectoryValid; }
             set
             {
-                isOutputDirectoryValid = value;
+                this.isOutputDirectoryValid = value;
                 this.RaisePropertyChanged(() => this.IsOutputDirectoryValid);
             }
         }
 
         public bool IsProjectNameValid
         {
-            get { return isProjectNameValid; }
+            get { return this.isProjectNameValid; }
             set
             {
-                isProjectNameValid = value;
+                this.isProjectNameValid = value;
                 this.RaisePropertyChanged(() => this.IsProjectNameValid);
             }
         }
 
         public bool IsProjectVersionValid
         {
-            get { return isProjectVersionValid; }
+            get { return this.isProjectVersionValid; }
             set
             {
-                isProjectVersionValid = value;
+                this.isProjectVersionValid = value;
                 this.RaisePropertyChanged(() => this.IsProjectVersionValid);
             }
         }
 
         public bool IsTestResultsFileValid
         {
-            get { return isTestResultsFileValid; }
+            get { return this.isTestResultsFileValid; }
             set
             {
-                isTestResultsFileValid = value;
+                this.isTestResultsFileValid = value;
                 this.RaisePropertyChanged(() => this.IsTestResultsFileValid);
             }
         }
 
         public bool IsTestResultsFormatValid
         {
-            get { return isTestResultsFormatValid; }
+            get { return this.isTestResultsFormatValid; }
             set
             {
-                isTestResultsFormatValid = value;
+                this.isTestResultsFormatValid = value;
                 this.RaisePropertyChanged(() => this.IsTestResultsFormatValid);
             }
         }
 
         public bool IsLanguageValid
         {
-            get { return isLanguageValid; }
+            get { return this.isLanguageValid; }
             set
             {
-                isLanguageValid = value;
+                this.isLanguageValid = value;
                 this.RaisePropertyChanged(() => this.IsLanguageValid);
             }
         }
@@ -375,7 +374,7 @@ namespace Pickles.UserInterface
             this.IncludeTests = mainModel.IncludeTestResults;
             this.TestResultsFile = mainModel.TestResultsFile;
 
-            foreach (var item in TestResultsFormatValues)
+            foreach (var item in this.TestResultsFormatValues)
             {
                 if (item.Item == mainModel.TestResultsFormat)
                 {
@@ -389,7 +388,7 @@ namespace Pickles.UserInterface
 
             this.SelectedLanguage = this.neutralCultures.Where(lv => lv.LCID == mainModel.SelectedLanguageLcid).FirstOrDefault();
 
-            foreach (var item in documentationFormats)
+            foreach (var item in this.documentationFormats)
             {
                 item.IsSelected = mainModel.DocumentationFormats.Contains(item.Item);
             }
@@ -476,24 +475,24 @@ namespace Pickles.UserInterface
 
         private bool CanGenerate()
         {
-            return !isRunning
-                   && isFeatureDirectoryValid
-                   && isOutputDirectoryValid
-                   && isProjectNameValid
-                   && isProjectVersionValid
-                   && (isTestResultsFileValid || !includeTests)
-                   && (isTestResultsFormatValid || !includeTests)
-                   && isDocumentationFormatValid
-                   && isLanguageValid;
+            return !this.isRunning
+                   && this.isFeatureDirectoryValid
+                   && this.isOutputDirectoryValid
+                   && this.isProjectNameValid
+                   && this.isProjectVersionValid
+                   && (this.isTestResultsFileValid || !this.includeTests)
+                   && (this.isTestResultsFormatValid || !this.includeTests)
+                   && this.isDocumentationFormatValid
+                   && this.isLanguageValid;
         }
 
         private void DoGenerate()
         {
-            IsRunning = true;
+            this.IsRunning = true;
 
             var backgroundWorker = new BackgroundWorker();
 
-            backgroundWorker.DoWork += (sender, args) => DoWork();
+            backgroundWorker.DoWork += (sender, args) => this.DoWork();
             backgroundWorker.RunWorkerCompleted += (sender, args) =>
                                                        {
                                                            this.IsRunning = false;
@@ -510,15 +509,15 @@ namespace Pickles.UserInterface
 
             var configuration = container.Resolve<Configuration>();
 
-            configuration.FeatureFolder = new DirectoryInfo(featureFolder);
-            configuration.OutputFolder = new DirectoryInfo(outputFolder);
-            configuration.SystemUnderTestName = projectName;
-            configuration.SystemUnderTestVersion = projectVersion;
-            configuration.TestResultsFile = this.IncludeTests ? new FileInfo(testResultsFile) : null;
-            configuration.TestResultsFormat = testResultsFormats.Selected;
-            configuration.Language = selectedLanguage != null ? selectedLanguage.TwoLetterISOLanguageName : CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+            configuration.FeatureFolder = new DirectoryInfo(this.featureFolder);
+            configuration.OutputFolder = new DirectoryInfo(this.outputFolder);
+            configuration.SystemUnderTestName = this.projectName;
+            configuration.SystemUnderTestVersion = this.projectVersion;
+            configuration.TestResultsFile = this.IncludeTests ? new FileInfo(this.testResultsFile) : null;
+            configuration.TestResultsFormat = this.testResultsFormats.Selected;
+            configuration.Language = this.selectedLanguage != null ? this.selectedLanguage.TwoLetterISOLanguageName : CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
 
-            foreach (DocumentationFormat documentationFormat in documentationFormats.Selected)
+            foreach (DocumentationFormat documentationFormat in this.documentationFormats.Selected)
             {
                 configuration.DocumentationFormat = documentationFormat;
                 var runner = container.Resolve<Runner>();
@@ -530,21 +529,21 @@ namespace Pickles.UserInterface
         {
             var dlg = new Ookii.Dialogs.Wpf.VistaOpenFileDialog();
             var result = dlg.ShowDialog();
-            if (result == true) TestResultsFile = dlg.FileName;
+            if (result == true) this.TestResultsFile = dlg.FileName;
         }
 
         private void DoBrowseForFeature()
         {
             var dlg = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
             var result = dlg.ShowDialog();
-            if (result == true) FeatureFolder = dlg.SelectedPath;
+            if (result == true) this.FeatureFolder = dlg.SelectedPath;
         }
 
         private void DoBrowseForOutputFolder()
         {
             var dlg = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
             var result = dlg.ShowDialog();
-            if (result == true) OutputFolder = dlg.SelectedPath;
+            if (result == true) this.OutputFolder = dlg.SelectedPath;
         }
 
         private void DoOpenOutputDirectory()

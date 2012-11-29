@@ -18,11 +18,12 @@
 
 #endregion
 
+using System;
 using System.Xml.Linq;
-using Pickles.Parser;
-using Pickles.TestFrameworks;
+using PicklesDoc.Pickles.Parser;
+using PicklesDoc.Pickles.TestFrameworks;
 
-namespace Pickles.DocumentationBuilders.DITA
+namespace PicklesDoc.Pickles.DocumentationBuilders.DITA
 {
     public class DitaScenarioOutlineFormatter
     {
@@ -50,9 +51,9 @@ namespace Pickles.DocumentationBuilders.DITA
                 section.Add(new XElement("p", scenario.Description));
             }
 
-            if (configuration.HasTestResults)
+            if (this.configuration.HasTestResults)
             {
-                TestResult testResult = nunitResults.GetScenarioOutlineResult(scenario);
+                TestResult testResult = this.nunitResults.GetScenarioOutlineResult(scenario);
                 if (testResult.WasExecuted && testResult.WasSuccessful)
                 {
                     section.Add(new XElement("note", "This scenario passed"));
@@ -65,7 +66,7 @@ namespace Pickles.DocumentationBuilders.DITA
 
             foreach (Step step in scenario.Steps)
             {
-                ditaStepFormatter.Format(section, step);
+                this.ditaStepFormatter.Format(section, step);
             }
 
             parentElement.Add(section);

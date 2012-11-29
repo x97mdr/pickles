@@ -1,8 +1,9 @@
-﻿using System.Xml.Linq;
+﻿using System;
+using System.Xml.Linq;
 using NUnit.Framework;
-using Pickles.Extensions;
+using PicklesDoc.Pickles.Extensions;
 
-namespace Pickles.Test
+namespace PicklesDoc.Pickles.Test
 {
     [TestFixture]
     public class NamespaceExtensionsTests

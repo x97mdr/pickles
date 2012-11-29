@@ -22,7 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Pickles.TestFrameworks
+namespace PicklesDoc.Pickles.TestFrameworks
 {
     public struct TestResult
     {

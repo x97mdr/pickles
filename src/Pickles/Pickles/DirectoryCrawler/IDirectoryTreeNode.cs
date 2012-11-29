@@ -21,7 +21,7 @@
 using System;
 using System.IO;
 
-namespace Pickles.DirectoryCrawler
+namespace PicklesDoc.Pickles.DirectoryCrawler
 {
     public interface IDirectoryTreeNode
     {

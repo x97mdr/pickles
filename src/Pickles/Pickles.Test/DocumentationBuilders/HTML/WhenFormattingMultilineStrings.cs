@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Xml.Linq;
+﻿using System;
 using Autofac;
 using NUnit.Framework;
-using Pickles.DocumentationBuilders.HTML;
-using Pickles.Parser;
+using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using Should;
 
-namespace Pickles.Test.DocumentationBuilders.HTML
+namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 {
     [TestFixture]
     public class WhenFormattingMultilineStrings : BaseFixture

@@ -18,10 +18,11 @@
 
 #endregion
 
+using System;
 using ClosedXML.Excel;
-using Pickles.Parser;
+using PicklesDoc.Pickles.Parser;
 
-namespace Pickles.DocumentationBuilders.Excel
+namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 {
     public class ExcelStepFormatter
     {
@@ -44,12 +45,12 @@ namespace Pickles.DocumentationBuilders.Excel
 
             if (step.TableArgument != null)
             {
-                excelTableFormatter.Format(worksheet, step.TableArgument, ref row);
+                this.excelTableFormatter.Format(worksheet, step.TableArgument, ref row);
             }
 
             if (!string.IsNullOrEmpty(step.DocStringArgument))
             {
-                excelDocumentStringFormatter.Format(worksheet, step.DocStringArgument, ref row);
+                this.excelDocumentStringFormatter.Format(worksheet, step.DocStringArgument, ref row);
             }
         }
     }

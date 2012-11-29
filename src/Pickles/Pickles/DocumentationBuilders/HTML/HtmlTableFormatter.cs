@@ -18,11 +18,12 @@
 
 #endregion
 
+using System;
 using System.Linq;
 using System.Xml.Linq;
-using Pickles.Parser;
+using PicklesDoc.Pickles.Parser;
 
-namespace Pickles.DocumentationBuilders.HTML
+namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlTableFormatter
     {
@@ -30,29 +31,29 @@ namespace Pickles.DocumentationBuilders.HTML
 
         public HtmlTableFormatter()
         {
-            xmlns = HtmlNamespace.Xhtml;
+            this.xmlns = HtmlNamespace.Xhtml;
         }
 
         public XElement Format(Table table)
         {
             if (table == null) return null;
 
-            return new XElement(xmlns + "div",
+            return new XElement(this.xmlns + "div",
                                 new XAttribute("class", "table_container"),
-                                new XElement(xmlns + "table",
+                                new XElement(this.xmlns + "table",
                                              new XAttribute("class", "datatable"),
-                                             new XElement(xmlns + "thead",
-                                                          new XElement(xmlns + "tr",
+                                             new XElement(this.xmlns + "thead",
+                                                          new XElement(this.xmlns + "tr",
                                                                        table.HeaderRow.Select(
-                                                                           cell => new XElement(xmlns + "th", cell))
+                                                                           cell => new XElement(this.xmlns + "th", cell))
                                                               )
                                                  ),
-                                             new XElement(xmlns + "tbody",
-                                                          table.DataRows.Select(row => new XElement(xmlns + "tr",
+                                             new XElement(this.xmlns + "tbody",
+                                                          table.DataRows.Select(row => new XElement(this.xmlns + "tr",
                                                                                                     row.Select(
                                                                                                         cell =>
                                                                                                         new XElement(
-                                                                                                            xmlns + "td",
+                                                                                                            this.xmlns + "td",
                                                                                                             cell)))
                                                               )
                                                  )

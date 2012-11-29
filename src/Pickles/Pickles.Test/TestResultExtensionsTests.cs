@@ -15,10 +15,10 @@
 
 using System;
 using NUnit.Framework;
-using Pickles.TestFrameworks;
+using PicklesDoc.Pickles.TestFrameworks;
 using Should;
 
-namespace Pickles.Test
+namespace PicklesDoc.Pickles.Test
 {
     [TestFixture]
     public class TestResultExtensionsTests

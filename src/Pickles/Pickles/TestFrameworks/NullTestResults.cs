@@ -18,9 +18,10 @@
 
 #endregion
 
-using Pickles.Parser;
+using System;
+using PicklesDoc.Pickles.Parser;
 
-namespace Pickles.TestFrameworks
+namespace PicklesDoc.Pickles.TestFrameworks
 {
     public class NullTestResults : ITestResults
     {

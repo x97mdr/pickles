@@ -18,11 +18,12 @@
 
 #endregion
 
+using System;
 using System.Text;
 using System.Text.RegularExpressions;
-using Pickles.Parser;
+using PicklesDoc.Pickles.Parser;
 
-namespace Pickles.TestFrameworks
+namespace PicklesDoc.Pickles.TestFrameworks
 {
     public class xUnitExampleSignatureBuilder
     {

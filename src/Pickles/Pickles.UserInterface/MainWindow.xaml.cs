@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Pickles.UserInterface
+namespace PicklesDoc.Pickles.UserInterface
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -9,7 +9,7 @@ namespace Pickles.UserInterface
     {
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         private MainWindowViewModel ViewModel
@@ -19,12 +19,12 @@ namespace Pickles.UserInterface
 
         private void MetroWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            ViewModel.LoadFromSettings();
+            this.ViewModel.LoadFromSettings();
         }
 
         private void MetroWindow_Closed(object sender, EventArgs e)
         {
-            ViewModel.SaveToSettings();
+            this.ViewModel.SaveToSettings();
         }
     }
 }

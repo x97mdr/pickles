@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Pickles.DocumentationBuilders.HTML
+namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlResource
     {

@@ -2,11 +2,10 @@
 using System.Linq;
 using NUnit.Framework;
 using Autofac;
-using Pickles.Parser;
-using Should;
+using PicklesDoc.Pickles.Parser;
 using System;
 
-namespace Pickles.Test
+namespace PicklesDoc.Pickles.Test
 {
     [TestFixture]
     public class WhenParsingFeatureFiles : BaseFixture

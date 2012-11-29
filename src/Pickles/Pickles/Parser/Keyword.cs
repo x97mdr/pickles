@@ -18,7 +18,9 @@
 
 #endregion
 
-namespace Pickles.Parser
+using System;
+
+namespace PicklesDoc.Pickles.Parser
 {
     public enum Keyword
     {

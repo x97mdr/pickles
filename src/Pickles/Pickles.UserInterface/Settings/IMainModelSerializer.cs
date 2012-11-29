@@ -15,7 +15,9 @@
 // */
 // #endregion
 
-namespace Pickles.UserInterface.Settings
+using System;
+
+namespace PicklesDoc.Pickles.UserInterface.Settings
 {
     public interface IMainModelSerializer
     {

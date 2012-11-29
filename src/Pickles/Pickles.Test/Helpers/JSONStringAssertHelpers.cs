@@ -1,6 +1,7 @@
-﻿using Should.Fluent;
+﻿using System;
+using Should.Fluent;
 
-namespace Pickles.Test.Helpers
+namespace PicklesDoc.Pickles.Test.Helpers
 {
     public static class JSONStringAssertHelpers
     {

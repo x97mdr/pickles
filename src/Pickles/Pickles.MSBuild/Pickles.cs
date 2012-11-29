@@ -25,7 +25,7 @@ using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using Autofac;
 
-namespace Pickles.MSBuild
+namespace PicklesDoc.Pickles.MSBuild
 {
     public class Pickles : Task
     {
@@ -49,19 +49,19 @@ namespace Pickles.MSBuild
 
         private void CaptureConfiguration(Configuration configuration)
         {
-            configuration.FeatureFolder = new DirectoryInfo(FeatureDirectory);
-            configuration.OutputFolder = new DirectoryInfo(OutputDirectory);
-            if (!string.IsNullOrEmpty(Language)) configuration.Language = Language;
-            if (!string.IsNullOrEmpty(ResultsFormat))
+            configuration.FeatureFolder = new DirectoryInfo(this.FeatureDirectory);
+            configuration.OutputFolder = new DirectoryInfo(this.OutputDirectory);
+            if (!string.IsNullOrEmpty(this.Language)) configuration.Language = this.Language;
+            if (!string.IsNullOrEmpty(this.ResultsFormat))
                 configuration.TestResultsFormat =
-                    (TestResultsFormat) Enum.Parse(typeof (TestResultsFormat), ResultsFormat, true);
-            if (!string.IsNullOrEmpty(ResultsFile)) configuration.TestResultsFile = new FileInfo(ResultsFile);
-            if (!string.IsNullOrEmpty(SystemUnderTestName)) configuration.SystemUnderTestName = SystemUnderTestName;
-            if (!string.IsNullOrEmpty(SystemUnderTestVersion))
-                configuration.SystemUnderTestVersion = SystemUnderTestVersion;
-            if (!string.IsNullOrEmpty(DocumentationFormat))
+                    (TestResultsFormat) Enum.Parse(typeof (TestResultsFormat), this.ResultsFormat, true);
+            if (!string.IsNullOrEmpty(this.ResultsFile)) configuration.TestResultsFile = new FileInfo(this.ResultsFile);
+            if (!string.IsNullOrEmpty(this.SystemUnderTestName)) configuration.SystemUnderTestName = this.SystemUnderTestName;
+            if (!string.IsNullOrEmpty(this.SystemUnderTestVersion))
+                configuration.SystemUnderTestVersion = this.SystemUnderTestVersion;
+            if (!string.IsNullOrEmpty(this.DocumentationFormat))
                 configuration.DocumentationFormat =
-                    (DocumentationFormat) Enum.Parse(typeof (DocumentationFormat), DocumentationFormat, true);
+                    (DocumentationFormat) Enum.Parse(typeof (DocumentationFormat), this.DocumentationFormat, true);
         }
 
         public override bool Execute()
@@ -76,7 +76,7 @@ namespace Pickles.MSBuild
                 var container = builder.Build();
 
                 var configuration = container.Resolve<Configuration>();
-                CaptureConfiguration(configuration);
+                this.CaptureConfiguration(configuration);
 
                 new ConfigurationReporter().ReportOn(configuration, message => Log.LogMessage(message));
 

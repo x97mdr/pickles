@@ -20,9 +20,9 @@
 
 using System;
 using NGenerics.DataStructures.Trees;
-using Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.DirectoryCrawler;
 
-namespace Pickles.DocumentationBuilders
+namespace PicklesDoc.Pickles.DocumentationBuilders
 {
     public interface IDocumentationBuilder
     {

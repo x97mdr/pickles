@@ -1,6 +1,7 @@
-﻿using System.Xml.Linq;
+﻿using System;
+using System.Xml.Linq;
 
-namespace Pickles.Extensions
+namespace PicklesDoc.Pickles.Extensions
 {
     /// <summary>
     /// Extension Methods to work with namespaces.

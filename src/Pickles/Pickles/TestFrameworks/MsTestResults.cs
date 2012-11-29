@@ -22,9 +22,9 @@ using System;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
-using Pickles.Parser;
+using PicklesDoc.Pickles.Parser;
 
-namespace Pickles.TestFrameworks
+namespace PicklesDoc.Pickles.TestFrameworks
 {
     public class MsTestResults : ITestResults
     {
@@ -37,14 +37,14 @@ namespace Pickles.TestFrameworks
             this.configuration = configuration;
             if (configuration.HasTestResults)
             {
-                this.resultsDocument = ReadResultsFile();
+                this.resultsDocument = this.ReadResultsFile();
             }
         }
 
         private XDocument ReadResultsFile()
         {
             XDocument document;
-            using (var stream = configuration.TestResultsFile.OpenRead())
+            using (var stream = this.configuration.TestResultsFile.OpenRead())
             {
                 var xmlReader = XmlReader.Create(stream);
                 document = XDocument.Load(xmlReader);
@@ -105,7 +105,7 @@ namespace Pickles.TestFrameworks
                 where key.Value == "FeatureTitle" && value.Value == feature.Name
                 select new Guid(unitTest.Element(ns + "Execution").Attribute("id").Value);
 
-            TestResult result = featureExecutionIds.Select(GetExecutionResult).Merge();
+            TestResult result = featureExecutionIds.Select(this.GetExecutionResult).Merge();
 
             return result;
         }
@@ -124,15 +124,15 @@ namespace Pickles.TestFrameworks
                 where description.Value == scenarioOutline.Name
                 select new Guid(unitTest.Element(ns + "Execution").Attribute("id").Value);
 
-            TestResult result = scenarioOutlineExecutionIds.Select(GetExecutionResult).Merge();
+            TestResult result = scenarioOutlineExecutionIds.Select(this.GetExecutionResult).Merge();
 
             return result;
         }
 
         public TestResult GetScenarioResult(Scenario scenario)
         {
-            Guid scenarioExecutionId = GetScenarioExecutionId(scenario);
-            return GetExecutionResult(scenarioExecutionId);
+            Guid scenarioExecutionId = this.GetScenarioExecutionId(scenario);
+            return this.GetExecutionResult(scenarioExecutionId);
         }
 
         #endregion

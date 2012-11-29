@@ -8,8 +8,8 @@
     <ProjectGuid>{AD9F6DD1-5C76-45C9-9FF9-DAE37DB7B2D4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pickles.PowerShell</RootNamespace>
-    <AssemblyName>Pickles.PowerShell</AssemblyName>
+    <RootNamespace>PicklesDoc.Pickles.PowerShell</RootNamespace>
+    <AssemblyName>PicklesDoc.Pickles.PowerShell</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\Pickles\</SolutionDir>

@@ -1,9 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Xml.Linq;
+using PicklesDoc.Pickles.Test.Extensions;
 using Should;
-using Pickles.Test.Extensions;
 
-namespace Pickles.Test
+namespace PicklesDoc.Pickles.Test
 {
     public static class AssertExtensions
     {

@@ -21,10 +21,10 @@
 using System;
 using System.Text;
 using System.Xml.Linq;
-using Pickles.Parser;
-using Pickles.TestFrameworks;
+using PicklesDoc.Pickles.Parser;
+using PicklesDoc.Pickles.TestFrameworks;
 
-namespace Pickles.DocumentationBuilders.HTML
+namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlImageResultFormatter
     {
@@ -37,7 +37,7 @@ namespace Pickles.DocumentationBuilders.HTML
         {
             this.configuration = configuration;
             this.results = results;
-            xmlns = HtmlNamespace.Xhtml;
+            this.xmlns = HtmlNamespace.Xhtml;
         }
 
         private string BuildTitle(TestResult successful)
@@ -53,19 +53,19 @@ namespace Pickles.DocumentationBuilders.HTML
               sb.AppendFormat("{0}", successful.WasSuccessful ? "Successful" : "Failed");
             }
 
-            if (!string.IsNullOrEmpty(configuration.SystemUnderTestName) &&
-                !string.IsNullOrEmpty(configuration.SystemUnderTestVersion))
+            if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestName) &&
+                !string.IsNullOrEmpty(this.configuration.SystemUnderTestVersion))
             {
-                sb.AppendFormat(" with {0} version {1}", configuration.SystemUnderTestName,
-                                configuration.SystemUnderTestVersion);
+                sb.AppendFormat(" with {0} version {1}", this.configuration.SystemUnderTestName,
+                                this.configuration.SystemUnderTestVersion);
             }
-            else if (!string.IsNullOrEmpty(configuration.SystemUnderTestName))
+            else if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestName))
             {
-                sb.AppendFormat(" with {0}", configuration.SystemUnderTestName);
+                sb.AppendFormat(" with {0}", this.configuration.SystemUnderTestName);
             }
-            else if (!string.IsNullOrEmpty(configuration.SystemUnderTestVersion))
+            else if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestVersion))
             {
-                sb.AppendFormat(" with version {0}", configuration.SystemUnderTestVersion);
+                sb.AppendFormat(" with version {0}", this.configuration.SystemUnderTestVersion);
             }
             return sb.ToString();
         }
@@ -73,9 +73,9 @@ namespace Pickles.DocumentationBuilders.HTML
 
       private XElement BuildImageElement(TestResult result, string elementName = "div")
       {
-        return new XElement(xmlns + elementName,
+        return new XElement(this.xmlns + elementName,
                             new XAttribute("class", "float-right"),
-                            new XElement(xmlns + "i",
+                            new XElement(this.xmlns + "i",
                                          new XAttribute("class", this.DetermineClass(result)),
                                          new XAttribute("title", this.BuildTitle(result)),
                                          " "
@@ -100,11 +100,11 @@ namespace Pickles.DocumentationBuilders.HTML
 
       public XElement Format(Feature feature)
       {
-        if (configuration.HasTestResults)
+        if (this.configuration.HasTestResults)
         {
-          TestResult scenarioResult = results.GetFeatureResult(feature);
+          TestResult scenarioResult = this.results.GetFeatureResult(feature);
 
-          return BuildImageElement(scenarioResult);
+          return this.BuildImageElement(scenarioResult);
         }
 
         return null;
@@ -112,11 +112,11 @@ namespace Pickles.DocumentationBuilders.HTML
 
       public XElement FormatForToC(Feature feature)
       {
-        if (configuration.HasTestResults)
+        if (this.configuration.HasTestResults)
         {
-          TestResult scenarioResult = results.GetFeatureResult(feature);
+          TestResult scenarioResult = this.results.GetFeatureResult(feature);
 
-          return BuildImageElement(scenarioResult, "span");
+          return this.BuildImageElement(scenarioResult, "span");
         }
 
         return null;
@@ -124,11 +124,11 @@ namespace Pickles.DocumentationBuilders.HTML
 
         public XElement Format(Scenario scenario)
         {
-          if (configuration.HasTestResults)
+          if (this.configuration.HasTestResults)
           {
-            TestResult scenarioResult = results.GetScenarioResult(scenario);
+            TestResult scenarioResult = this.results.GetScenarioResult(scenario);
 
-            return BuildImageElement(scenarioResult);
+            return this.BuildImageElement(scenarioResult);
           }
 
           return null;
@@ -136,11 +136,11 @@ namespace Pickles.DocumentationBuilders.HTML
 
         public XElement Format(ScenarioOutline scenarioOutline)
         {
-          if (configuration.HasTestResults)
+          if (this.configuration.HasTestResults)
           {
-            TestResult scenarioResult = results.GetScenarioOutlineResult(scenarioOutline);
+            TestResult scenarioResult = this.results.GetScenarioOutlineResult(scenarioOutline);
 
-            return BuildImageElement(scenarioResult);
+            return this.BuildImageElement(scenarioResult);
           }
 
           return null;

@@ -1,17 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using NGenerics.DataStructures.Trees;
 using NUnit.Framework;
 using Newtonsoft.Json.Linq;
 using Autofac;
-using Pickles.DirectoryCrawler;
-using Pickles.DocumentationBuilders.JSON;
-using Pickles.Test.Helpers;
-using Pickles.TestFrameworks;
+using PicklesDoc.Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.DocumentationBuilders.JSON;
+using PicklesDoc.Pickles.Test.Helpers;
+using PicklesDoc.Pickles.TestFrameworks;
 using Should.Fluent;
 
-namespace Pickles.Test.Formatters.JSON
+namespace PicklesDoc.Pickles.Test.Formatters.JSON
 {
     public class when_creating_a_feature_with_meta_info_and_test_result_in_mstest_format : BaseFixture
     {
@@ -23,9 +24,9 @@ namespace Pickles.Test.Formatters.JSON
         [TestFixtureSetUp]
         public void Setup()
         {
-            if (File.Exists(testResultFilePath) == false)
+            if (File.Exists(this.testResultFilePath) == false)
             {
-                throw new FileNotFoundException("File " + testResultFilePath + " was not found");
+                throw new FileNotFoundException("File " + this.testResultFilePath + " was not found");
             }
 
             GeneralTree<IDirectoryTreeNode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
@@ -37,7 +38,7 @@ namespace Pickles.Test.Formatters.JSON
                                     {
                                         OutputFolder = new DirectoryInfo(OUTPUT_DIRECTORY),
                                         DocumentationFormat = DocumentationFormat.JSON,
-                                        TestResultsFile = new FileInfo(testResultFilePath),
+                                        TestResultsFile = new FileInfo(this.testResultFilePath),
                                         TestResultsFormat = TestResultsFormat.MsTest
                                     };
 
@@ -59,20 +60,20 @@ namespace Pickles.Test.Formatters.JSON
         [Test]
         public void a_single_file_should_have_been_created()
         {
-            File.Exists(filePath).Should().Be.True();
+            File.Exists(this.filePath).Should().Be.True();
         }
 
         [Test]
         public void it_should_contain_result_keys_in_the_json_document()
         {
-            string content = File.ReadAllText(filePath);
+            string content = File.ReadAllText(this.filePath);
             content.AssertJsonContainsKey("Result");
         }
 
         [Test]
         public void it_should_indicate_WasSuccessful_is_true()
         {
-            string content = File.ReadAllText(filePath);
+            string content = File.ReadAllText(this.filePath);
             JArray jsonArray = JArray.Parse(content);
 
 
@@ -88,7 +89,7 @@ namespace Pickles.Test.Formatters.JSON
         [Test]
         public void it_should_indicate_WasSuccessful_is_true_for_the_other_success_feature()
         {
-            string content = File.ReadAllText(filePath);
+            string content = File.ReadAllText(this.filePath);
             JArray jsonArray = JArray.Parse(content);
 
 
@@ -104,7 +105,7 @@ namespace Pickles.Test.Formatters.JSON
         [Test]
         public void it_should_indicate_WasSuccessful_is_false_for_failing_scenario()
         {
-            string content = File.ReadAllText(filePath);
+            string content = File.ReadAllText(this.filePath);
             JArray jsonArray = JArray.Parse(content);
 
 
@@ -121,7 +122,7 @@ namespace Pickles.Test.Formatters.JSON
         [Test]
         public void it_should_indicate_WasSuccessful_is_false_for_another_failing_scenario()
         {
-            string content = File.ReadAllText(filePath);
+            string content = File.ReadAllText(this.filePath);
             JArray jsonArray = JArray.Parse(content);
 
 
@@ -138,7 +139,7 @@ namespace Pickles.Test.Formatters.JSON
         [Test]
         public void it_should_contain_WasSuccessful_key_in_Json_document()
         {
-            string content = File.ReadAllText(filePath);
+            string content = File.ReadAllText(this.filePath);
             JArray jsonArray = JArray.Parse(content);
 
             Assert.IsNotEmpty(jsonArray[0]["Result"]["WasSuccessful"].ToString());
@@ -148,7 +149,7 @@ namespace Pickles.Test.Formatters.JSON
         [Test]
         public void it_should_WasSuccessful_false_for_feature_X_Json_document()
         {
-            string content = File.ReadAllText(filePath);
+            string content = File.ReadAllText(this.filePath);
             JArray jsonArray = JArray.Parse(content);
 
             Assert.IsNotEmpty(jsonArray[0]["Result"]["WasSuccessful"].ToString());

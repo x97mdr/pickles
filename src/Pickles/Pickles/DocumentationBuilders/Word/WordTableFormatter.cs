@@ -18,11 +18,11 @@
 
 #endregion
 
+using System;
 using DocumentFormat.OpenXml.Wordprocessing;
-using Table = Pickles.Parser.Table;
-using WordTable = DocumentFormat.OpenXml.Wordprocessing.Table;
+using Table = PicklesDoc.Pickles.Parser.Table;
 
-namespace Pickles.DocumentationBuilders.Word
+namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 {
     public class WordTableFormatter
     {
@@ -41,7 +41,7 @@ namespace Pickles.DocumentationBuilders.Word
 
         public void Format(Body body, Table table)
         {
-            var wordTable = new WordTable();
+            var wordTable = new DocumentFormat.OpenXml.Wordprocessing.Table();
             wordTable.Append(GenerateTableProperties());
             var headerRow = new TableRow();
             foreach (string cell in table.HeaderRow)

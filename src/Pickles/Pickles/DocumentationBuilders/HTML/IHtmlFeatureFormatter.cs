@@ -18,10 +18,11 @@
 
 #endregion
 
+using System;
 using System.Xml.Linq;
-using Pickles.Parser;
+using PicklesDoc.Pickles.Parser;
 
-namespace Pickles.DocumentationBuilders.HTML
+namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public interface IHtmlFeatureFormatter
     {

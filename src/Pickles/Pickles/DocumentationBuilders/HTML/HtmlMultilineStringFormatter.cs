@@ -18,9 +18,10 @@
 
 #endregion
 
+using System;
 using System.Xml.Linq;
 
-namespace Pickles.DocumentationBuilders.HTML
+namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlMultilineStringFormatter
     {
@@ -28,17 +29,17 @@ namespace Pickles.DocumentationBuilders.HTML
 
         public HtmlMultilineStringFormatter()
         {
-            xmlns = HtmlNamespace.Xhtml;
+            this.xmlns = HtmlNamespace.Xhtml;
         }
 
         public XElement Format(string multilineText)
         {
             if (multilineText == null) return null;
 
-            return new XElement(xmlns + "div",
+            return new XElement(this.xmlns + "div",
                                 new XAttribute("class", "pre"),
-                                new XElement(xmlns + "pre",
-                                             new XElement(xmlns + "code",
+                                new XElement(this.xmlns + "pre",
+                                             new XElement(this.xmlns + "code",
                                                           new XAttribute("class", "no-highlight"),
                                                           new XText(multilineText)
                                                  )

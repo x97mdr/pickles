@@ -8,8 +8,8 @@
     <ProjectGuid>{38BAD6E0-78AB-4AC3-91A8-BF72AF5EE394}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pickles</RootNamespace>
-    <AssemblyName>Pickles.Library</AssemblyName>
+    <RootNamespace>PicklesDoc.Pickles</RootNamespace>
+    <AssemblyName>PicklesDoc.Pickles.Library</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <RestorePackages>true</RestorePackages>

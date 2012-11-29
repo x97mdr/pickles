@@ -21,7 +21,7 @@
 using System;
 using System.IO;
 
-namespace Pickles.DirectoryCrawler
+namespace PicklesDoc.Pickles.DirectoryCrawler
 {
     public class RelevantFileDetector
     {
@@ -51,7 +51,7 @@ namespace Pickles.DirectoryCrawler
 
         public bool IsRelevant(FileInfo file)
         {
-            return IsFeatureFile(file) || IsMarkdownFile(file);
+            return this.IsFeatureFile(file) || this.IsMarkdownFile(file);
         }
     }
 }
