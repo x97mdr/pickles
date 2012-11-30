@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PicklesDoc.Pickles.CommandLine</RootNamespace>
-    <AssemblyName>PicklesDoc.Pickles.CommandLine</AssemblyName>
+    <AssemblyName>Pickles</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BuildPackage>false</BuildPackage>
