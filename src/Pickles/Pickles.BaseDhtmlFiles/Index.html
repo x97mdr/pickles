@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Features</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="shortcut icon" href="../assets/ico/favicon.ico">-->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+</head>
+
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="brand">Features</div>
+                <div class="nav-collapse collapse">
+                    <p class="navbar-text pull-right">
+                        Search (<i>by @tag or feature name</i>):
+                        <input type="text" id="TypeAheadSearchBox" data-bind="value: whatToSearchFor">
+                        <button id="SearchButton" data-bind="click: Search" class="btn">Search</button>
+                    </p>
+
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span3">
+                <ul class="nav nav-tabs nav-stacked" data-bind="foreach: featuresList">
+                    <li data-bind="css: { active: $parent.currentFeature().RelativeFolder == RelativeFolder }"><a data-bind="text: Feature.Name, attr: { href: '#'+RelativeFolder }, click: $parent.showFeature.bind(RelativeFolder)"></a></li>
+                </ul>
+            </div>
+            <div class="span9" data-bind="with: currentFeature">
+                <div data-bind="with: Feature">
+                    <h1 data-bind="text: Name"></h1>
+                    <pre data-bind="text: Description"></pre>
+                </div>
+                <div class="row-fluid" data-bind="with: Feature">
+                    <ul id="scenarios" data-bind="foreach: FeatureElements">
+                        <li class="scenario">
+                            <div>
+                                <h3 data-bind="text: Name"></h3>
+                            </div>
+                            <div class="steps">
+                                <ul data-bind="foreach: Steps">
+                                    <li class="step">
+                                        <span class="keyword" data-bind="text: NativeKeyword"></span><span data-bind="text:Name"></span>
+                                        <div data-bind="if: TableArgument.HeaderRow">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr data-bind="foreach: TableArgument.HeaderRow">
+                                                        <th data-bind="text: $data"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody data-bind="foreach: TableArgument.DataRows">
+                                                    <tr data-bind="foreach: $data">
+                                                        <td data-bind="text: $data"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Enable to dump JSON to the screen -->
+                <!--<div class="row-fluid">
+                Current Features List JSON:
+                <pre data-bind="text: ko.toJSON($parent.featuresList())"></pre>
+                </div>-->
+            </div>
+            <!--/span-->
+        </div>
+        <!--/row-->
+
+        <hr>
+
+        <footer>
+            <p></p>
+        </footer>
+
+    </div>
+    <!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.8.3.js" type="text/javascript"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/knockout-2.2.0.debug.js"></script>
+    <script src="js/knockout.mapping-latest.debug.js"></script>
+    <script src="js/underscore.js"></script>
+    <script src="js/featuresModel.js"></script>
+    <script src="js/logger.js"></script>
+    <script src="js/stringFormatting.js"></script>
+    <script type="text/javascript">
+        //$(document).ready(function () {
+            function ViewModel(features) {
+                var self = this;
+
+                self.originalFeaturesList = ko.observableArray(features); //ko.observableArray(promoteToLocallyDefinedJsClassToNeutralizeOptionalElements(features));
+                self.featuresList = ko.observableArray(features);//promoteToLocallyDefinedJsClassToNeutralizeOptionalElements(features));
+
+                self.currentFeature = ko.observable(self.originalFeaturesList()[0]);
+                self.whatToSearchFor = ko.observable("");
+
+                self.featureFolders = function () {
+                    var shit = _.groupBy(self.originalFeaturesList(), function (feature) {
+                        if (feature.RelativeFolder.indexOf('\\') > -1) {
+                            return feature.RelativeFolder.substring(0, feature.RelativeFolder.lastIndexOf('\\'));
+                        } else {
+                            return '';
+                        }
+                    });
+                    for (var key in shit) {
+                        logSomething(key.toString());
+                    }
+
+                    return shit;
+                };
+
+                self.Search = function () {
+                    var searchString = this.whatToSearchFor().toLowerCase();
+                    logSomething("searchString: " + searchString.toString());
+
+                    if (searchString == "") {
+                        self.featuresList(self.originalFeaturesList());
+                        if (self.originalFeaturesList().length > 0) {
+                            self.currentFeature(self.originalFeaturesList()[0]);
+                        }
+                        return;
+                    }
+                    var filteredFeaturesByTag;
+
+                    if (searchString.substring(0, 1) == '@') {
+                        filteredFeaturesByTag = ko.utils.arrayFilter(self.originalFeaturesList(), function (feature) {
+                            if (feature.Feature.FeatureElements != null) {
+                                for (var i = 0; i < feature.Feature.FeatureElements.length; i++) {
+                                    var tags = feature.Feature.FeatureElements[i].Tags;
+                                    logSomething("Found tags: " + tags.toString() + " " + _.indexOf(tags, searchString));
+                                    if (_.indexOf(tags, searchString) > -1) {
+                                        logSomething("Found tag: " + searchString);
+                                        return feature;
+                                    }
+                                }
+                            }
+                            return null;
+                        });
+                    } else {
+                        filteredFeaturesByTag = ko.utils.arrayFilter(self.originalFeaturesList(), function (feature) {
+                            if (feature.Feature.FeatureElements != null) {
+                                for (var i = 0; i < feature.Feature.FeatureElements.length; i++) {
+                                    var featureName = feature.Feature.Name.toLowerCase();
+                                    logSomething("Feature name: " + featureName + " " + featureName.indexOf(searchString));
+                                    if (featureName.indexOf(searchString) > -1) {
+                                        logSomething("Found search string: " + searchString + " in " + featureName);
+                                        return feature;
+                                    }
+                                }
+                            }
+                            return null;
+                        });
+                    }
+                    
+                    self.featuresList(filteredFeaturesByTag);
+
+                    if (filteredFeaturesByTag.length > 0) {
+                        self.currentFeature(filteredFeaturesByTag[0]);
+                    }
+                };
+
+                self.showFeature = function (data) {
+                    logSomething(data.RelativeFolder.toString());
+                    var originalFeatures = self.originalFeaturesList();
+                    for (var i = 0; i < originalFeatures.length; i++) {
+                        if (originalFeatures[i].RelativeFolder == data.RelativeFolder) {
+                            logSomething("found match");
+                            self.currentFeature(originalFeatures[i]);
+                            break;
+                        }
+                    }
+                };
+            };
+
+            function promoteToLocallyDefinedJsClassToNeutralizeOptionalElements(features) {
+                return $.map(features, function (val) {
+                    return new FeatureParent(val.RelativeFolder, val.Feature);
+                });
+            }
+
+            //$.getJSON('pickledFeatures.json', function (data) {
+            //    data.reverse();
+            //    ko.applyBindings(new ViewModel(data));
+            //});
+            
+            //$.getJSON('pickledFeatures.js&callback=?', jsonPWrapper);
+        //});
+        
+        function jsonPWrapper(data) {
+            data.reverse();
+            window.ko.applyBindings(new window.ViewModel(data));
+        }
+
+        $(document).ready(function() {
+            function chromeSopHack_LoadJsonPFileAndCreateDynamicScriptTag() {
+                var url = "pickledFeatures.js"; // URL of the external script
+
+                // this shows dynamic script insertion
+                var script = document.createElement('script');
+                script.setAttribute('src', url);
+
+                // load the script
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+
+            chromeSopHack_LoadJsonPFileAndCreateDynamicScriptTag();
+        });
+    </script>
+</body>
+</html>
