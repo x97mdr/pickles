@@ -28,7 +28,11 @@ namespace PicklesDoc.Pickles
 
         public string Transform(string text)
         {
-          return this.markdown.Transform(text);
+            string transform = this.markdown.Transform(text);
+
+            transform = transform.Replace("&nbsp;", string.Empty);
+
+            return transform;
         }
     }
 }
