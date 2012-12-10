@@ -1,23 +1,75 @@
-﻿body { padding-top: 60px; padding-bottom: 40px; }
+﻿body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
 
-.sidebar-nav { padding: 9px 0; }
+.sidebar-nav {
+    padding: 9px 0;
+}
 
-#scenarios, .steps { list-style-type: none; margin: 0; padding: 0; }
+#scenarios, .steps {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
 
-li.scenario { background-color: #F5F5F5; border: 1px solid #D0D0D0; margin: 6px 0px 28px 0px; padding: 2px 12px 6px 12px; }
+.scenario {
+    background-color: #F5F5F5;
+    border: 1px solid #D0D0D0;
+    margin: 6px 0px 28px 0px;
+    padding: 6px;
+}
 
-li.step { list-style-type: none; margin: 6px 0px 6px 0px; padding: 0; }
+    .scenario h4 {
+        margin: 5px;
+    }
 
-.keyword { font-weight: bold; color: #0000FF; }
+li.step {
+    list-style-type: none;
+    margin: 6px 0px 6px 0px;
+    padding: 0;
+}
 
-.steps table { margin-bottom: 0px; }
+.keyword {
+    font-weight: bold;
+    color: #0000FF;
+}
 
-    .steps table td { color: #B21515; }
+.steps table {
+    margin-bottom: 0px;
+}
 
-    .steps table th { font-style: italic; }
+    .steps table td {
+        color: #B21515;
+    }
 
-#TypeAheadSearchBox { margin-top: 10px; }
+    .steps table th {
+        font-style: italic;
+    }
 
-#SearchButton { margin-top: 0; }
+/*#TypeAheadSearchBox { margin-top: 10px; }*/
 
-.nav .nav-tabs .nav-stacked .active { background-color: #0088CC; color: white; }
+#SearchButton {
+    margin-top: 0;
+}
+
+.nav .nav-tabs .nav-stacked .active {
+    background-color: #0088CC;
+    color: white;
+}
+
+#FolderNav {
+    border: 1px lightgrey solid;
+}
+
+#FolderNav a:hover {
+    background-color: #EEEEEE;
+    color: #1A668C;
+    text-decoration: none;
+}
+
+.feature:hover {
+    background-color: #EEEEEE;
+    cursor: pointer;
+    color: #1A668C;
+}

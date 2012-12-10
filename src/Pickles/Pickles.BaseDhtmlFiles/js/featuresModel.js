@@ -20,6 +20,16 @@ function TableArgument(headerRow, dataRows) {
     this.HeaderRow = headerRow;
     this.DataRows = dataRows;
 }
+function Examples() {
+    this.Name = '';
+    this.TableArgument = null;
+    this.DataRows = new Array();
+}
+function Background() {
+    this.Name = '';
+    this.Description = '';
+    this.Steps = new Array();
+}
 /* JSON Sample
         {
         "RelativeFolder": "06CompareToAssist\\CompareTo.feature",
