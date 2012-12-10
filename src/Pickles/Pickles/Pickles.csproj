@@ -253,6 +253,7 @@
     <Compile Include="FeatureTree\TreeItemHelper.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="LanguageServices.cs" />
+    <Compile Include="MarkdownProvider.cs" />
     <Compile Include="Parser\Example.cs" />
     <Compile Include="Parser\FeatureElementState.cs" />
     <Compile Include="Parser\IFeatureElement.cs" />
