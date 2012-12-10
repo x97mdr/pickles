@@ -157,7 +157,7 @@ div.description ul {
 
 #feature div.folderDescription ol li { list-style-type: decimal; }
 
-#feature div.scenario-heading p.tags {
+#feature p.tags {
     font-style: italic;
 }
 
