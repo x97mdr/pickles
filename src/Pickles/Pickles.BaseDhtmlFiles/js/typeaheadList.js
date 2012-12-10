@@ -1,9 +1,11 @@
-﻿function getTags(json) {
+﻿function getFeatureAndScenarioTags(json) {
     var tags = new Array();
 
-    $.each(json, function (key, value) {
-        $.each(value.Feature.FeatureElements, function (fKey, fValue) {
-            $.merge(tags, fValue.Tags);
+    $.each(json, function (key, scenario) {
+        $.merge(tags, scenario.Feature.Tags);
+        
+        $.each(scenario.Feature.FeatureElements, function (fKey, feature) {
+            $.merge(tags, feature.Tags);
         });
     });
 
@@ -13,17 +15,17 @@
     return tags;
 }
 
-function getScenarioAndFeatureNames(json) {
+function getFeatureAndScenarioNames(json) {
     var names = new Array();
 
-    $.each(json, function (key, value) {
-        $.each(value.Feature.FeatureElements, function (fKey, fValue) {
-            names.push(fValue.Name);
+    $.each(json, function (key, scenario) {
+        $.each(scenario.Feature.FeatureElements, function (fKey, feature) {
+            names.push(feature.Name);
         });
     });
     
-    $.each(json, function (key, value) {
-        names.push(value.Feature.Name);
+    $.each(json, function (key, scenario) {
+        names.push(scenario.Feature.Name);
     });
 
     names = _.uniq(names);
@@ -32,6 +34,6 @@ function getScenarioAndFeatureNames(json) {
     return names;
 }
 
-function getTagsAndFeatureNames(json) {
-    return $.merge(getTags(json), getScenarioAndFeatureNames(json));
+function getTagsAndFeatureAndScenarioNames(json) {
+    return $.merge(getFeatureAndScenarioTags(json), getFeatureAndScenarioNames(json));
 }

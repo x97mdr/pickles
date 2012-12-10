@@ -130,7 +130,9 @@ var sampleJSONForTypeAhead = [
                     ]
                 }
             ],
-            "Tags": []
+            "Tags": [
+                "@clearing"
+            ]
         },
         "Result": {
             "WasExecuted": false,
@@ -227,26 +229,172 @@ var sampleJSONForTypeAheadWithDuplicateTagsAndScenarioNames = [
             "WasSuccessful": false
         }
     }
-]
+];
 
 test("Can build a list of tags and scenario titles for type ahead box", function () {
     {
-        var expectedTags = ["@nestedFolders", "@slow", "@workflow"];
-        deepEqual(getTags(sampleJSONForTypeAhead), expectedTags, "Will collect tags from all features.");
+        var expectedTags = ["@clearing", "@nestedFolders", "@slow", "@workflow"];
+        deepEqual(getFeatureAndScenarioTags(sampleJSONForTypeAhead), expectedTags,
+            "Will collect tags from all scenarios and features.");
     }
     {
         var expectedNames = ['Clear the screen', 'Clearing Screen', 'Nested - Add two numbers', 'Nested Folder Example'];
-        deepEqual(getScenarioAndFeatureNames(sampleJSONForTypeAhead), expectedNames, "Will collect all feature names.");
+        deepEqual(getFeatureAndScenarioNames(sampleJSONForTypeAhead), expectedNames,
+            "Will collect all scenario and feature names.");
     }
     {
-        var expectedCombinedList = ['@nestedFolders', '@slow', '@workflow', 'Clear the screen', 'Clearing Screen', 'Nested - Add two numbers', 'Nested Folder Example'];
-        deepEqual(getTagsAndFeatureNames(sampleJSONForTypeAhead), expectedCombinedList, "Will get a combined list of tags and features.");
+        var expectedCombinedList = ['@clearing', '@nestedFolders', '@slow', '@workflow', 'Clear the screen', 'Clearing Screen', 'Nested - Add two numbers', 'Nested Folder Example'];
+        deepEqual(getTagsAndFeatureAndScenarioNames(sampleJSONForTypeAhead), expectedCombinedList,
+            "Will get a combined list of tags and features, sorted.");
     }
     {
         var expectedCombinedListWithNoDupes = ['@slow', '@workflow', 'Clear the screen', 'Clearing Screen'];
-        deepEqual(getTagsAndFeatureNames(sampleJSONForTypeAheadWithDuplicateTagsAndScenarioNames), expectedCombinedListWithNoDupes, "Will get a combined list of tags and features - with no duplicate.");
+        deepEqual(getTagsAndFeatureAndScenarioNames(sampleJSONForTypeAheadWithDuplicateTagsAndScenarioNames), expectedCombinedListWithNoDupes,
+            "Will get a combined list of tags and features, sorted, and with no duplicate.");
     }
 });
+
+
+var sampleJSONForSearch = [
+    {
+        "RelativeFolder": "Workflow\\ClearingScreen.feature",
+        "Feature": {
+            "Name": "Clearing Screen - Daily",
+            "Description": "In order to restart a new set of calculations\r\nAs a math idiot\r\nI want to be able to clear the screen",
+            "FeatureElements": [
+                {
+                    "Name": "Clear the screen",
+                    "Description": "",
+                    "Steps": [
+                        {
+                            "Keyword": "Given",
+                            "NativeKeyword": "Given ",
+                            "Name": "I have entered 50 into the calculator"
+                        },
+                        {
+                            "Keyword": "And",
+                            "NativeKeyword": "And ",
+                            "Name": "I have entered 70 into the calculator"
+                        },
+                        {
+                            "Keyword": "When",
+                            "NativeKeyword": "When ",
+                            "Name": "I press C"
+                        },
+                        {
+                            "Keyword": "Then",
+                            "NativeKeyword": "Then ",
+                            "Name": "the screen should be empty"
+                        }
+                    ],
+                    "Tags": [
+                        "@workflow",
+                        "@slow"
+                    ]
+                }
+            ],
+            "Tags": [
+                "@clearing"
+            ]
+        },
+        "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+        }
+    },
+    {
+        "RelativeFolder": "12NestedFolders\\ChildFolder\\ChildChildFolder\\NestedFolderExample.feature",
+        "Feature": {
+            "Name": "Nested Folder Example",
+            "Description": "In order to test nested folder output\r\nAs a silly contributer\r\nI want to create an example of something several folders deep",
+            "FeatureElements": [
+                {
+                    "Name": "Nested - Add two numbers - Daily",
+                    "Description": "",
+                    "Steps": [
+                        {
+                            "Keyword": "Given",
+                            "NativeKeyword": "Given ",
+                            "Name": "I have entered 50 into the calculator"
+                        },
+                        {
+                            "Keyword": "And",
+                            "NativeKeyword": "And ",
+                            "Name": "I have entered 70 into the calculator"
+                        },
+                        {
+                            "Keyword": "When",
+                            "NativeKeyword": "When ",
+                            "Name": "I press add"
+                        },
+                        {
+                            "Keyword": "Then",
+                            "NativeKeyword": "Then ",
+                            "Name": "the result should be 120 on the screen"
+                        }
+                    ],
+                    "Tags": [
+                        "@nestedFolders"
+                    ]
+                }
+            ],
+            "Tags": []
+        },
+        "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+        }
+    }
+];
+
+test("Can search for tags and feature/scenarios names", function () {
+
+    deepEqual(getFeaturesMatching('Clearing Screen', sampleJSONForSearch), [sampleJSONForSearch[0]],
+        "Feature Name search");
+    deepEqual(getFeaturesMatching('clearing screen', sampleJSONForSearch), [sampleJSONForSearch[0]],
+        "Feature Name search - case insensitive");
+    deepEqual(getFeaturesMatching('clearing', sampleJSONForSearch), [sampleJSONForSearch[0]],
+        "Feature Name partial search - case insensitive");
+    deepEqual(getFeaturesMatching('Clear the screen', sampleJSONForSearch), [sampleJSONForSearch[0]],
+        "Scenario Name search");
+    deepEqual(getFeaturesMatching('clear THE Screen', sampleJSONForSearch), [sampleJSONForSearch[0]],
+        "Scenario Name search - case insensitive");
+    deepEqual(getFeaturesMatching('the', sampleJSONForSearch), [sampleJSONForSearch[0]],
+        "Scenario Name partial search - case insensitive");
+    deepEqual(getFeaturesMatching('the', sampleJSONForSearch), sampleJSONForSearch,
+        "Scenario & Feature Name partial search - across multiple items");
+    //@clearing
+});
+
+function getFeaturesMatching(searchString, features) {
+    searchString = searchString.toLowerCase();
+    var filteredFeatures = ko.utils.arrayFilter(features, function (feature) {
+        if (matchesFeatureName(searchString, feature)) {
+            return feature;
+        } else if (matchesScenarioName(searchString, feature)) {
+            return feature;
+        }
+
+        return null;
+    });
+
+    return filteredFeatures;
+}
+
+function matchesFeatureName(searchString, feature) {
+    var featureName = feature.Feature.Name.toLowerCase();
+    return featureName.indexOf(searchString) > -1;
+}
+
+function matchesScenarioName(searchString, feature) {
+    for (var i = 0; i < feature.Feature.FeatureElements.length; i++) {
+        var scenarioName = feature.Feature.FeatureElements[i].Name.toLowerCase();
+        if (scenarioName.indexOf(searchString) > -1) {
+            return true;
+        }
+    }
+    return false;
+}
 
 
 

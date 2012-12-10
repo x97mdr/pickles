@@ -190,7 +190,7 @@
             self.currentFeature = ko.observable(self.originalFeaturesList()[0]);
             self.whatToSearchFor = ko.observable("");
             self.typeAheads = ko.observableArray(function () {
-                return getTagsAndFeatureNames(features);
+                return getTagsAndFeatureAndScenarioNames(features);
             });
             self.featureFolders = function () {
                 var shit = _.groupBy(self.originalFeaturesList(), function (feature) {
@@ -294,7 +294,7 @@
             data.reverse();
             window.ko.applyBindings(new window.ViewModel(data));
 
-            var searchItems = getTagsAndFeatureNames(data);
+            var searchItems = getTagsAndFeatureAndScenarioNames(data);
             $('#TypeAheadSearchBox').typeahead({
                 source: searchItems
             });
