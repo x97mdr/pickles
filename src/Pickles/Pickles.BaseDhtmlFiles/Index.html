@@ -213,6 +213,7 @@
             };
 
             self.search = function () {
+                // idea: highlight found word(s) in searched item - probably a jquery replace will work?
                 var searchString = this.whatToSearchFor().toLowerCase();
                 logSomething("searchString: " + searchString.toString());
 

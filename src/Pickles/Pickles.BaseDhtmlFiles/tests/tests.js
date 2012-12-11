@@ -361,8 +361,12 @@ test("Can search for tags and feature/scenarios names", function () {
         "Scenario Name search - case insensitive");
     deepEqual(getFeaturesMatching('the', sampleJSONForSearch), [sampleJSONForSearch[0]],
         "Scenario Name partial search - case insensitive");
-    deepEqual(getFeaturesMatching('the', sampleJSONForSearch), sampleJSONForSearch,
+    deepEqual(getFeaturesMatching('Daily', sampleJSONForSearch), sampleJSONForSearch,
         "Scenario & Feature Name partial search - across multiple items");
+    deepEqual(getFeaturesMatching('@clearing', sampleJSONForSearch), [sampleJSONForSearch[0]],
+        "Scenario level tag search");
+    deepEqual(getFeaturesMatching('@nestedFolders', sampleJSONForSearch), [sampleJSONForSearch[1]],
+        "Feature level level tag search");
     //@clearing
 });
 
@@ -373,9 +377,21 @@ function getFeaturesMatching(searchString, features) {
             return feature;
         } else if (matchesScenarioName(searchString, feature)) {
             return feature;
-        }
+        } else {
+            var featureTags = feature.Feature.Tags;
+            if (_.indexOf(featureTags, searchString) > -1) {
+                return feature;
+            }
+            for (var i = 0; i < feature.Feature.FeatureElements.length; i++) {
+                var scenarioTags = feature.Feature.FeatureElements[i].Tags;
+                alert(scenarioTags.toString());
+                if (_.indexOf(scenarioTags, searchString) > -1) {
+                    return feature;
+                }
+            }
 
-        return null;
+            return null;
+        }
     });
 
     return filteredFeatures;
@@ -395,6 +411,8 @@ function matchesScenarioName(searchString, feature) {
     }
     return false;
 }
+
+
 
 
 
