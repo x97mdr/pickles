@@ -26,14 +26,14 @@
 <body>
 
     <script type="text/html" id="features-template">
-        <div style="padding: 5px" class="feature" data-bind="click: $root.showFeature2.bind(Path)"><a data-bind="text: Name, click: $root.showFeature2.bind(Path)" href="#"></a></div>
+        <div style="padding: 5px" class="feature" data-bind="click: $root.showFeature.bind(Path)"><a data-bind="text: Name, click: $root.showFeature.bind(Path)" href="#"></a></div>
     </script>
 
-    <script type="text/html" id="dirs-template">
+    <script type="text/html" id="featuresByFolder-template">
         <div data-bind="text: Name" style="padding: 5px"></div>
         <div style="margin-left: 15px">
             <div data-bind="template: { name: 'features-template', foreach: features }"></div>
-            <div data-bind="template: { name: 'dirs-template', foreach: SubDirectories }"></div>
+            <div data-bind="template: { name: 'featuresByFolder-template', foreach: SubDirectories }"></div>
         </div>
     </script>
 
@@ -80,12 +80,9 @@
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span3">
-                <!--<ul class="nav nav-tabs nav-stacked" data-bind="foreach: featuresList" style="border-top: 0px">
-                    <li data-bind="css: { active: $parent.currentFeature().RelativeFolder == RelativeFolder }"><a data-bind="text: Feature.Name, attr: { href: '#'+RelativeFolder }, click: $parent.showFeature.bind(RelativeFolder)"></a></li>
-                </ul>-->
                 <div id="FolderNav">
-                    <div data-bind="template: { name: 'features-template', foreach: dirs().features }"></div>
-                    <div data-bind="template: { name: 'dirs-template', foreach: dirs().SubDirectories }"></div>
+                    <div data-bind="template: { name: 'features-template', foreach: featuresByFolder().features }"></div>
+                    <div data-bind="template: { name: 'featuresByFolder-template', foreach: featuresByFolder().SubDirectories }"></div>
                 </div>
             </div>
             <div class="span9" data-bind="with: currentFeature">
@@ -179,34 +176,17 @@
     <script src="js/stringFormatting.js"></script>
     <script src="js/heirarchyBuilder.js"></script>
     <script src="js/typeaheadList.js"></script>
+    <script src="js/featureSearch.js"></script>
     <script type="text/javascript">
         //$(document).ready(function () {
         function ViewModel(features) {
             var self = this;
 
-            self.originalFeaturesList = ko.observableArray(features); 
-            self.featuresList = ko.observableArray(features);
-            self.dirs = ko.observable(buildFullHierarchy(getFeaturesFromScenariosList(features)));
+            self.originalFeaturesList = ko.observableArray(features);
+            self.featuresByFolder = ko.observable(buildFullHierarchy(getFeaturesFromScenariosList(features)));
             self.currentFeature = ko.observable(self.originalFeaturesList()[0]);
             self.whatToSearchFor = ko.observable("");
-            self.typeAheads = ko.observableArray(function () {
-                return getTagsAndFeatureAndScenarioNames(features);
-            });
-            self.featureFolders = function () {
-                var shit = _.groupBy(self.originalFeaturesList(), function (feature) {
-                    if (feature.RelativeFolder.indexOf('\\') > -1) {
-                        return feature.RelativeFolder.substring(0, feature.RelativeFolder.lastIndexOf('\\'));
-                    } else {
-                        return '';
-                    }
-                });
-                for (var key in shit) {
-                    logSomething(key.toString());
-                }
-
-                return shit;
-            };
-
+            
             self.clearSearch = function () {
                 self.whatToSearchFor('');
                 self.search();
@@ -215,79 +195,26 @@
             self.search = function () {
                 // idea: highlight found word(s) in searched item - probably a jquery replace will work?
                 var searchString = this.whatToSearchFor().toLowerCase();
-                logSomething("searchString: " + searchString.toString());
-
+                
                 if (searchString == "") {
-                    self.featuresList(self.originalFeaturesList());
-                    self.dirs(buildFullHierarchy(getFeaturesFromScenariosList(self.originalFeaturesList())));
+                    self.featuresByFolder(buildFullHierarchy(getFeaturesFromScenariosList(features)));
                     if (self.originalFeaturesList().length > 0) {
                         self.currentFeature(self.originalFeaturesList()[0]);
                     }
                     return;
                 } else {
-                    var filteredFeaturesByTag;
+                    var matchingFeatures = getFeaturesMatching(searchString, features);
 
-                    if (searchString.substring(0, 1) == '@') {
-                        filteredFeaturesByTag = ko.utils.arrayFilter(self.originalFeaturesList(), function (feature) {
-                            if (feature.Feature.FeatureElements != null) {
-                                for (var i = 0; i < feature.Feature.FeatureElements.length; i++) {
-                                    var tags = feature.Feature.FeatureElements[i].Tags;
-                                    logSomething("Found tags: " + tags.toString() + " " + _.indexOf(tags, searchString));
-                                    if (_.indexOf(tags, searchString) > -1) {
-                                        logSomething("Found tag: " + searchString);
-                                        return feature;
-                                    }
-                                }
-                            }
-                            return null;
-                        });
-                    } else {
-                        filteredFeaturesByTag = ko.utils.arrayFilter(self.originalFeaturesList(), function (feature) {
-                            if (feature.Feature.FeatureElements != null) {
-                                for (var i = 0; i < feature.Feature.FeatureElements.length; i++) {
-                                    var featureName = feature.Feature.Name.toLowerCase();
-                                    logSomething("Feature name: " + featureName + " " + featureName.indexOf(searchString));
-                                    if (featureName.indexOf(searchString) > -1) {
-                                        logSomething("Found search string: " + searchString + " in " + featureName);
-                                        return feature;
-                                    }
-                                }
-                            }
-                            return null;
-                        });
-                    }
+                    self.featuresByFolder(buildFullHierarchy(getFeaturesFromScenariosList(matchingFeatures)));
 
-                    self.featuresList(filteredFeaturesByTag);
-                    self.dirs(buildFullHierarchy(getFeaturesFromScenariosList(filteredFeaturesByTag)));
-
-                    if (filteredFeaturesByTag.length > 0) {
-                        self.currentFeature(filteredFeaturesByTag[0]);
+                    if (matchingFeatures.length > 0) {
+                        self.currentFeature(matchingFeatures[0]);
                     }
                 }
             };
 
             self.showFeature = function (data) {
-                logSomething(data.RelativeFolder.toString());
-                var originalFeatures = self.originalFeaturesList();
-                for (var i = 0; i < originalFeatures.length; i++) {
-                    if (originalFeatures[i].RelativeFolder == data.RelativeFolder) {
-                        logSomething("found match");
-                        self.currentFeature(originalFeatures[i]);
-                        break;
-                    }
-                }
-            };
-
-            self.showFeature2 = function (data) {
-                logSomething(data.Path.toString());
-                var originalFeatures = self.originalFeaturesList();
-                for (var i = 0; i < originalFeatures.length; i++) {
-                    if (originalFeatures[i].RelativeFolder == data.Path) {
-                        logSomething("found match");
-                        self.currentFeature(originalFeatures[i]);
-                        break;
-                    }
-                }
+                self.currentFeature(findFeatureByRelativeFolder(data.Path, features));
             };
         };
 
@@ -302,7 +229,7 @@
         }
 
         $(document).ready(function () {
-            function chromeSopHack_LoadJsonPFileAndCreateDynamicScriptTag() {
+            function chromeSOPHack_LoadJsonPFileAndCreateDynamicScriptTag() {
                 var url = "pickledFeatures.js"; // URL of the external script
 
                 // this shows dynamic script insertion
@@ -313,7 +240,7 @@
                 document.getElementsByTagName('head')[0].appendChild(script);
             }
 
-            chromeSopHack_LoadJsonPFileAndCreateDynamicScriptTag();
+            chromeSOPHack_LoadJsonPFileAndCreateDynamicScriptTag();
         });
     </script>
 </body>

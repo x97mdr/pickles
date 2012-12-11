@@ -54,8 +54,8 @@ test("Can get folder heirarchy from JSON", function () {
     {
         // Split Directory Path Into Array Of Folders
         deepEqual(
-            splitDirectoryPathIntoArrayOfFolders('2NestedFolders\\ChildFolder\\NestedFolderExample.feature'),
-            ['2NestedFolders', 'ChildFolder', 'NestedFolderExample.feature'],
+            splitDirectoryPathIntoArrayOfFormattedFolders('2NestedFolders\\ChildFolder\\NestedFolderExample.feature'),
+            ['2 Nested Folders', 'Child Folder', 'NestedFolderExample.feature'],
             'Split Directory Path Into Array Of Folders'
         );
     }
@@ -73,7 +73,7 @@ test("Can get folder heirarchy from JSON", function () {
         startingPaths.push(new Feature('Nested Folder Example #1', '12NestedFolders\\NestedFolderExample1.feature'));
         startingPaths.push(new Feature('Nested Folder Example #2', '12NestedFolders\\NestedFolderExample2.feature'));
         var expected = new Directory('');
-        expected.SubDirectories.push(new Directory('12NestedFolders'));
+        expected.SubDirectories.push(new Directory('12 Nested Folders'));
         expected.SubDirectories[0].features.push(new Feature('Nested Folder Example #1', '12NestedFolders\\NestedFolderExample1.feature'));
         expected.SubDirectories[0].features.push(new Feature('Nested Folder Example #2', '12NestedFolders\\NestedFolderExample2.feature'));
         deepEqual(buildFullHierarchy(startingPaths), expected, "Convert array of paths to Folders / files - two features under a folder.");
@@ -83,10 +83,10 @@ test("Can get folder heirarchy from JSON", function () {
         var startingPaths = getFeaturesFromScenariosList(sampleJSONForHeirarchy);
         var expectedDirStructure = new Directory("");
         expectedDirStructure.features.push(new Feature('Clearing Screen', 'ClearingScreen.feature'));
-        expectedDirStructure.SubDirectories.push(new Directory('12NestedFolders'));
-        expectedDirStructure.SubDirectories[0].SubDirectories.push(new Directory('ChildFolder'));
+        expectedDirStructure.SubDirectories.push(new Directory('12 Nested Folders'));
+        expectedDirStructure.SubDirectories[0].SubDirectories.push(new Directory('Child Folder'));
         expectedDirStructure.SubDirectories[0].SubDirectories[0].features.push(new Feature('Nested Folder Example 2', '12NestedFolders\\ChildFolder\\NestedFolderExample2.feature'));
-        expectedDirStructure.SubDirectories[0].SubDirectories[0].SubDirectories.push(new Directory('ChildChildFolder'));
+        expectedDirStructure.SubDirectories[0].SubDirectories[0].SubDirectories.push(new Directory('Child Child Folder'));
         expectedDirStructure.SubDirectories[0].SubDirectories[0].SubDirectories[0].features.push(new Feature('Nested Folder Example 1', '12NestedFolders\\ChildFolder\\ChildChildFolder\\NestedFolderExample.feature'));
         deepEqual(buildFullHierarchy(startingPaths), expectedDirStructure, 'End Goal!');
     }
@@ -254,7 +254,6 @@ test("Can build a list of tags and scenario titles for type ahead box", function
     }
 });
 
-
 var sampleJSONForSearch = [
     {
         "RelativeFolder": "Workflow\\ClearingScreen.feature",
@@ -334,7 +333,8 @@ var sampleJSONForSearch = [
                         }
                     ],
                     "Tags": [
-                        "@nestedFolders"
+                        "@nestedFolders",
+                        "@slow"
                     ]
                 }
             ],
@@ -362,55 +362,23 @@ test("Can search for tags and feature/scenarios names", function () {
     deepEqual(getFeaturesMatching('the', sampleJSONForSearch), [sampleJSONForSearch[0]],
         "Scenario Name partial search - case insensitive");
     deepEqual(getFeaturesMatching('Daily', sampleJSONForSearch), sampleJSONForSearch,
-        "Scenario & Feature Name partial search - across multiple items");
+        "Scenario & Feature Name partial search - across multiple features");
     deepEqual(getFeaturesMatching('@clearing', sampleJSONForSearch), [sampleJSONForSearch[0]],
         "Scenario level tag search");
     deepEqual(getFeaturesMatching('@nestedFolders', sampleJSONForSearch), [sampleJSONForSearch[1]],
         "Feature level level tag search");
-    //@clearing
+    deepEqual(getFeaturesMatching('@slow', sampleJSONForSearch), sampleJSONForSearch,
+        "Feature level level tag search - across multiple features");
+    deepEqual(getFeaturesMatching('@doesnotexist', sampleJSONForSearch), [],
+        "Neither a tag or feature in list.");
 });
 
-function getFeaturesMatching(searchString, features) {
-    searchString = searchString.toLowerCase();
-    var filteredFeatures = ko.utils.arrayFilter(features, function (feature) {
-        if (matchesFeatureName(searchString, feature)) {
-            return feature;
-        } else if (matchesScenarioName(searchString, feature)) {
-            return feature;
-        } else {
-            var featureTags = feature.Feature.Tags;
-            if (_.indexOf(featureTags, searchString) > -1) {
-                return feature;
-            }
-            for (var i = 0; i < feature.Feature.FeatureElements.length; i++) {
-                var scenarioTags = feature.Feature.FeatureElements[i].Tags;
-                alert(scenarioTags.toString());
-                if (_.indexOf(scenarioTags, searchString) > -1) {
-                    return feature;
-                }
-            }
-
-            return null;
-        }
-    });
-
-    return filteredFeatures;
-}
-
-function matchesFeatureName(searchString, feature) {
-    var featureName = feature.Feature.Name.toLowerCase();
-    return featureName.indexOf(searchString) > -1;
-}
-
-function matchesScenarioName(searchString, feature) {
-    for (var i = 0; i < feature.Feature.FeatureElements.length; i++) {
-        var scenarioName = feature.Feature.FeatureElements[i].Name.toLowerCase();
-        if (scenarioName.indexOf(searchString) > -1) {
-            return true;
-        }
-    }
-    return false;
-}
+test("Can find feature by RelativeFolder", function() {
+    deepEqual(findFeatureByRelativeFolder('Workflow\\ClearingScreen.feature', sampleJSONForSearch), sampleJSONForSearch[0],
+        "Feature exists");
+    deepEqual(findFeatureByRelativeFolder('Workflow\\ClearingScreen2.feature', sampleJSONForSearch), null,
+        "Feature does not exist");
+});
 
 
 

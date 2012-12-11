@@ -10,7 +10,7 @@ function Feature(name, path) {
 }
 
 Feature.prototype.getPathParts = function () {
-    return splitDirectoryPathIntoArrayOfFolders(this.Path);
+    return splitDirectoryPathIntoArrayOfFormattedFolders(this.Path);
 };
 
 function getFeaturesFromScenariosList(scenarios) {
@@ -42,7 +42,7 @@ function createAnotherDirectory(dir, feature, pathArray, index) {
 function buildFullHierarchy(paths) {
     var rootDir = new Directory('');
     $.each(paths, function (key, value) {
-        createAnotherDirectory(rootDir, value, splitDirectoryPathIntoArrayOfFolders(value.Path), 0);
+        createAnotherDirectory(rootDir, value, splitDirectoryPathIntoArrayOfFormattedFolders(value.Path), 0);
     });
 
     return rootDir;
@@ -64,10 +64,18 @@ function getElementInDirectoryList(list, dirName) {
     return _.find(list, function (dir) { return dir.Name == dirName; });
 };
 
-function splitDirectoryPathIntoArrayOfFolders(path) {
-    return $.map(path.split('\\'), function (directory) {
+function splitDirectoryPathIntoArrayOfFormattedFolders(path) {
+    var paths = $.map(path.split('\\'), function (directory) {
         return directory;
     });
+
+    $.each(paths, function (key, value) {
+        if (value.indexOf('.feature') == -1) {
+            paths[key] = addSpacesToCamelCasedString(value);
+        }
+    });
+
+    return paths;
 }
 
 function getFoldersWithASubdirectory(folderList) {
