@@ -24,5 +24,30 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.DHTML
             var resourceWriter = new DhtmlResourceWriter(conf, new DhtmlResourceSet(conf));
             resourceWriter.WriteZippedResources();
         }
+
+        [Test]
+        [Ignore]
+        public void CanAddFunctionWrapperAroundJson()
+        {
+            var jsonTweaker = new JsonTweaker();
+            string filePath = @"d:\output\pickledFeatures.json";
+            jsonTweaker.AddJsonPWrapperTo(filePath);
+
+            var expected = "jsonPWrapper (\r\n[]\r\n);";
+            Assert.AreEqual(expected, File.ReadAllText(filePath));
+        }
+
+        [Test]
+        [Ignore]
+        public void CanRenameJsonFile()
+        {
+            var jsonTweaker = new JsonTweaker();
+            string oldfilePath = @"d:\output\pickledFeatures.json";
+            string newFilePath = @"d:\output\pickledFeatures.js";
+            jsonTweaker.RenameFileTo(oldfilePath, newFilePath);
+
+            Assert.IsTrue(File.Exists(newFilePath));
+            Assert.IsFalse(File.Exists(oldfilePath));
+        }
     }
 }

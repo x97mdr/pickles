@@ -77,7 +77,7 @@
         </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid" id="MainContainer">
         <div class="row-fluid">
             <div class="span3">
                 <div id="FolderNav">
@@ -171,6 +171,7 @@
     <script src="js/knockout-2.2.0.debug.js"></script>
     <script src="js/knockout.mapping-latest.debug.js"></script>
     <script src="js/underscore.js"></script>
+    <script src="js/jquery.highlight.js"></script>
     <script src="js/featuresModel.js"></script>
     <script src="js/logger.js"></script>
     <script src="js/stringFormatting.js"></script>
@@ -186,7 +187,7 @@
             self.featuresByFolder = ko.observable(buildFullHierarchy(getFeaturesFromScenariosList(features)));
             self.currentFeature = ko.observable(self.originalFeaturesList()[0]);
             self.whatToSearchFor = ko.observable("");
-            
+
             self.clearSearch = function () {
                 self.whatToSearchFor('');
                 self.search();
@@ -195,7 +196,7 @@
             self.search = function () {
                 // idea: highlight found word(s) in searched item - probably a jquery replace will work?
                 var searchString = this.whatToSearchFor().toLowerCase();
-                
+
                 if (searchString == "") {
                     self.featuresByFolder(buildFullHierarchy(getFeaturesFromScenariosList(features)));
                     if (self.originalFeaturesList().length > 0) {
@@ -241,6 +242,16 @@
             }
 
             chromeSOPHack_LoadJsonPFileAndCreateDynamicScriptTag();
+
+            function setupSubmitSearchWhenEnterKeyPressed() {
+                $("#TypeAheadSearchBox").keyup(function (event) {
+                    if (event.keyCode == 13) {
+                        $("#SearchButton").click();
+                    }
+                });
+            }
+
+            setupSubmitSearchWhenEnterKeyPressed();
         });
     </script>
 </body>

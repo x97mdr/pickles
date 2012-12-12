@@ -59,18 +59,21 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
 
             log.Info("UtilizeJsonBuilderToDumpJsonFeatureFileNextToDthmlResources");
             UtilizeJsonBuilderToDumpJsonFeatureFileNextToDthmlResources(features);
+
+            log.Info("Tweak Json file");
+            TweakJsonFile();
         }
 
         private void UtilizeJsonBuilderToDumpJsonFeatureFileNextToDthmlResources(GeneralTree<IDirectoryTreeNode> features)
         {
-            var shit = new JSONDocumentationBuilder(configuration, testResults);
-            shit.Build(features);
+            var jsonBuilder = new JSONDocumentationBuilder(configuration, testResults);
+            jsonBuilder.Build(features);
         }
 
         private void UnzipDhtmlResources(DhtmlResourceSet dhtmlResourceSet)
         {
             var unzipper = new UnZipper();
-            unzipper.UnZip(dhtmlResourceSet.ZippedResources.AbsolutePath, configuration.OutputFolder.FullName, "BaseDhtmlFiles");
+            unzipper.UnZip(dhtmlResourceSet.ZippedResources.AbsolutePath, configuration.OutputFolder.FullName, "Pickles.BaseDhtmlFiles");
         }
 
         private void DeployZippedDhtmlResourcesForExtraction(DhtmlResourceSet dhtmlResourceSet)
@@ -79,6 +82,15 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
             resourceWriter.WriteZippedResources();
         }
 
+        private void TweakJsonFile()
+        {
+            var jsonBuilder = new JSONDocumentationBuilder(configuration, testResults);
+            var jsonFilePath = jsonBuilder.OutputFilePath;
+
+            var tweaker = new JsonTweaker();
+            tweaker.AddJsonPWrapperTo(jsonFilePath);
+            tweaker.RenameFileTo(jsonFilePath, jsonFilePath.Replace(".json", ".js"));
+        }
         #endregion
     }
 }

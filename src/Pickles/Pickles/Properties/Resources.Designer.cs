@@ -63,9 +63,9 @@ namespace PicklesDoc.Pickles.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] BaseDhtmlFiles {
+        internal static byte[] Pickles_BaseDhtmlFiles {
             get {
-                object obj = ResourceManager.GetObject("BaseDhtmlFiles", resourceCulture);
+                object obj = ResourceManager.GetObject("Pickles_BaseDhtmlFiles", resourceCulture);
                 return ((byte[])(obj));
             }
         }

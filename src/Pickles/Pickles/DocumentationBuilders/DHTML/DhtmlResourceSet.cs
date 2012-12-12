@@ -19,7 +19,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
 
         public Uri ZippedResources
         {
-            get { return this.configuration.OutputFolder.ToFileUriCombined("BaseDhtmlFiles.zip"); }
+            get { return this.configuration.OutputFolder.ToFileUriCombined("Pickles.BaseDhtmlFiles.zip"); }
         }
     }
 }

@@ -40,7 +40,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
         {
             using (var binWriter = new BinaryWriter(File.OpenWrite(MyDhtmlResourceSet.ZippedResources.AbsolutePath)))
             {
-                binWriter.Write(Properties.Resources.BaseDhtmlFiles);
+                binWriter.Write(Properties.Resources.Pickles_BaseDhtmlFiles);
                 binWriter.Flush();
                 binWriter.Close();
             }
