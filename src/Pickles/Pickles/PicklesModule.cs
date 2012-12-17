@@ -83,11 +83,7 @@ namespace PicklesDoc.Pickles
             builder.RegisterType<HtmlFooterFormatter>().SingleInstance();
             builder.RegisterType<HtmlDocumentFormatter>().SingleInstance();
             builder.RegisterType<HtmlFeatureFormatter>().As<IHtmlFeatureFormatter>().SingleInstance();
-
-            var markdown = new MarkdownDeep.Markdown();
-            markdown.ExtraMode = true;
-            markdown.SafeMode = true;
-            builder.Register(c => markdown).SingleInstance();
+            builder.RegisterType<MarkdownProvider>().SingleInstance();
         }
     }
 }

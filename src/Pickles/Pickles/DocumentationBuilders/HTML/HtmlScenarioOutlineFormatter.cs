@@ -50,11 +50,20 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
         {
             if (string.IsNullOrEmpty(scenarioOutline.Name)) return null;
 
-            return new XElement(this.xmlns + "div",
+            var result = new XElement(this.xmlns + "div",
                                     new XAttribute("class", "scenario-heading"),
-                                    new XElement(this.xmlns + "h2", scenarioOutline.Name),
-                                    this.htmlDescriptionFormatter.Format(scenarioOutline.Description)
-                                );
+                                    new XElement(this.xmlns + "h2", scenarioOutline.Name));
+            var tags = RetrieveTags(scenarioOutline);
+            if (tags.Length > 0)
+            {
+              var paragraph = new XElement(this.xmlns + "p", HtmlScenarioFormatter.CreateTagElements(tags.OrderBy(t => t).ToArray(), this.xmlns));
+              paragraph.Add(new XAttribute("class", "tags"));
+              result.Add(paragraph);
+            }
+
+          result.Add(this.htmlDescriptionFormatter.Format(scenarioOutline.Description));
+
+          return result;
         }
 
         private XElement FormatSteps(ScenarioOutline scenarioOutline)
@@ -97,6 +106,15 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 			                    	? null 
 			                    	: this.FormatExamples(scenarioOutline)
                 );
+        }
+
+        private static string[] RetrieveTags(ScenarioOutline scenarioOutline)
+        {
+          if (scenarioOutline == null) return new string[0];
+
+          if (scenarioOutline.Feature == null) return scenarioOutline.Tags.ToArray();
+
+          return scenarioOutline.Feature.Tags.Concat(scenarioOutline.Tags).ToArray();
         }
     }
 }
