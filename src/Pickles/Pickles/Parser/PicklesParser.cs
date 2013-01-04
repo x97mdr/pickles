@@ -111,6 +111,8 @@ namespace PicklesDoc.Pickles.Parser
             this.scenarioOutlineBuilder = new ScenarioOutlineBuilder(new TableBuilder());
             this.scenarioOutlineBuilder.SetName(name);
             this.scenarioOutlineBuilder.SetDescription(description);
+            this.scenarioOutlineBuilder.AddTags(this.scenarioTags);
+            this.scenarioTags.Clear();
         }
 
         public void examples(string keyword, string name, string description, int line)

@@ -347,4 +347,338 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{38BAD6E0-78AB-4AC3-91A8-BF72AF5EE394}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PicklesDoc.Pickles</RootNamespace>
+    <AssemblyName>PicklesDoc.Pickles.Library</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <RestorePackages>true</RestorePackages>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <BuildPackage>false</BuildPackage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.2.6.3.862\lib\NET35\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Configuration">
+      <HintPath>..\packages\Autofac.2.6.3.862\lib\NET35\Autofac.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="gherkin">
+      <HintPath>..\packages\gherkin.2.9.0\lib\gherkin.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.AWT.WinForms">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.AWT.WinForms.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Beans">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Beans.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Charsets">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Charsets.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Corba">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Corba.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Jdbc">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Jdbc.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Management">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Management.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Media">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Media.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Misc">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Misc.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Naming">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Naming.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Remoting">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Remoting.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Security">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.SwingAWT">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.SwingAWT.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Text">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Tools">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Tools.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Util">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.API">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.XML.API.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Bind">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.XML.Bind.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Crypto">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.XML.Crypto.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Parse">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.XML.Parse.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Transform">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.XML.Transform.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.WebServices">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.XML.WebServices.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.XPath">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.XML.XPath.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IKVM.Reflection">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.Reflection.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IKVM.Runtime.JNI">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.Runtime.JNI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MarkdownDeep">
+      <HintPath>..\packages\MarkdownDeep.NET.1.4\lib\.NetFramework 3.5\MarkdownDeep.dll</HintPath>
+    </Reference>
+    <Reference Include="NDesk.Options">
+      <HintPath>..\packages\NDesk.Options.0.2.1\lib\NDesk.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="NGenerics">
+      <HintPath>..\..\..\lib\ngenerics\NGenerics.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="ClosedXML">
+      <HintPath>..\packages\ClosedXML.0.66.1\lib\net35-client\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\DocumentFormat.OpenXml.1.0\lib\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Core">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Runtime">
+      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.0\lib\net35-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.8\lib\net35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\VersionInfo.cs">
+      <Link>VersionInfo.cs</Link>
+    </Compile>
+    <Compile Include="CommandLineArgumentParser.cs" />
+    <Compile Include="Configuration.cs" />
+    <Compile Include="ConfigurationReporter.cs" />
+    <Compile Include="DirectoryCrawler\FolderDirectoryTreeNode.cs" />
+    <Compile Include="DocumentationBuilders\DITA\DitaDocumentationBuilder.cs" />
+    <Compile Include="DocumentationBuilders\DITA\DitaFeatureFormatter.cs" />
+    <Compile Include="DocumentationBuilders\DITA\DitaMapBuilder.cs" />
+    <Compile Include="DocumentationBuilders\DITA\DitaMapPathGenerator.cs" />
+    <Compile Include="DocumentationBuilders\DITA\DitaScenarioFormatter.cs" />
+    <Compile Include="DocumentationBuilders\DITA\DitaScenarioOutlineFormatter.cs" />
+    <Compile Include="DocumentationBuilders\DITA\DitaStepFormatter.cs" />
+    <Compile Include="DocumentationBuilders\DITA\DitaTableFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Excel\ExcelDocumentationBuilder.cs" />
+    <Compile Include="DocumentationBuilders\Excel\ExcelDocumentStringFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Excel\ExcelFeatureFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Excel\ExcelScenarioFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Excel\ExcelScenarioOutlineFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Excel\ExcelSheetNameGenerator.cs" />
+    <Compile Include="DocumentationBuilders\Excel\ExcelStepFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Excel\ExcelTableFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Excel\ExcelTableOfContentsFormatter.cs" />
+    <Compile Include="DocumentationBuilders\HTML\HtmlContentFormatter.cs" />
+    <Compile Include="DocumentationBuilders\HTML\HtmlDescriptionFormatter.cs" />
+    <Compile Include="DocumentationBuilders\HTML\HtmlDocumentationBuilder.cs" />
+    <Compile Include="DocumentationBuilders\HTML\HtmlDocumentFormatter.cs" />
+    <Compile Include="DocumentationBuilders\HTML\HtmlFeatureFormatter.cs" />
+    <Compile Include="DocumentationBuilders\HTML\HtmlFooterFormatter.cs" />
+    <Compile Include="DocumentationBuilders\HTML\HtmlHeaderFormatter.cs" />
+    <Compile Include="DocumentationBuilders\HTML\HtmlImageResultFormatter.cs" />
+    <Compile Include="DocumentationBuilders\HTML\HtmlIndexFormatter.cs" />
+    <Compile Include="DocumentationBuilders\HTML\HtmlMarkdownFormatter.cs" />
+    <Compile Include="DocumentationBuilders\HTML\HtmlMultilineStringFormatter.cs" />
+    <Compile Include="DocumentationBuilders\HTML\HtmlNamespace.cs" />
+    <Compile Include="DocumentationBuilders\HTML\HtmlResource.cs" />
+    <Compile Include="DocumentationBuilders\HTML\HtmlResourceSet.cs" />
+    <Compile Include="DocumentationBuilders\HTML\HtmlResourceWriter.cs" />
+    <Compile Include="DocumentationBuilders\HTML\HtmlScenarioFormatter.cs" />
+    <Compile Include="DocumentationBuilders\HTML\HtmlScenarioOutlineFormatter.cs" />
+    <Compile Include="DocumentationBuilders\HTML\HtmlStepFormatter.cs" />
+    <Compile Include="DocumentationBuilders\HTML\HtmlTableFormatter.cs" />
+    <Compile Include="DocumentationBuilders\HTML\HtmlTableOfContentsFormatter.cs" />
+    <Compile Include="DocumentationBuilders\HTML\IHtmlFeatureFormatter.cs" />
+    <Compile Include="DocumentationBuilders\IDocumentationBuilder.cs" />
+    <Compile Include="DocumentationBuilders\JSON\FeatureWithMetaInfo.cs" />
+    <Compile Include="DocumentationBuilders\JSON\JSONDocumentationBuilder.cs" />
+    <Compile Include="DocumentationBuilders\Word\TableOfContentsAdder\PtOpenXmlUtil.cs" />
+    <Compile Include="DocumentationBuilders\Word\TableOfContentsAdder\PtUtil.cs" />
+    <Compile Include="DocumentationBuilders\Word\TableOfContentsAdder\TocAdder.cs" />
+    <Compile Include="DocumentationBuilders\Word\WordDescriptionFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Word\WordDocumentationBuilder.cs" />
+    <Compile Include="DocumentationBuilders\Word\WordFeatureFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Word\WordFontApplicator.cs" />
+    <Compile Include="DocumentationBuilders\Word\WordHeaderFooterFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Word\WordScenarioFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Word\WordScenarioOutlineFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Word\WordStepFormatter.cs" />
+    <Compile Include="DocumentationBuilders\Word\WordStyleApplicator.cs" />
+    <Compile Include="DocumentationBuilders\Word\WordTableFormatter.cs" />
+    <Compile Include="DocumentationFormat.cs" />
+    <Compile Include="Extensions\BodyExtensions.cs" />
+    <Compile Include="Extensions\NamespaceExtensions.cs" />
+    <Compile Include="Extensions\PathExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="DirectoryCrawler\FeatureDirectoryTreeNode.cs" />
+    <Compile Include="DirectoryCrawler\FeatureNodeFactory.cs" />
+    <Compile Include="DirectoryCrawler\IDirectoryTreeNode.cs" />
+    <Compile Include="DirectoryCrawler\MarkdownTreeNode.cs" />
+    <Compile Include="Extensions\TreeNodeExtensions.cs" />
+    <Compile Include="Extensions\UriExtensions.cs" />
+    <Compile Include="FeatureParseException.cs" />
+    <Compile Include="FeatureTree\FeatureFile.cs" />
+    <Compile Include="FeatureTree\FileBase.cs" />
+    <Compile Include="FeatureTree\Folder.cs" />
+    <Compile Include="FeatureTree\ITreeItem.cs" />
+    <Compile Include="FeatureTree\TreeItemHelper.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="LanguageServices.cs" />
+    <Compile Include="MarkdownProvider.cs" />
+    <Compile Include="Parser\Example.cs" />
+    <Compile Include="Parser\FeatureElementState.cs" />
+    <Compile Include="Parser\IFeatureElement.cs" />
+    <Compile Include="Parser\PicklesParser.cs" />
+    <Compile Include="Parser\ScenarioBuilder.cs" />
+    <Compile Include="Parser\ScenarioOutlineBuilder.cs" />
+    <Compile Include="Parser\StepBuilder.cs" />
+    <Compile Include="Parser\Table.cs" />
+    <Compile Include="Parser\Feature.cs" />
+    <Compile Include="Parser\Keyword.cs" />
+    <Compile Include="DirectoryCrawler\DirectoryTreeCrawler.cs" />
+    <Compile Include="FeatureParser.cs" />
+    <Compile Include="Parser\Scenario.cs" />
+    <Compile Include="Parser\ScenarioOutline.cs" />
+    <Compile Include="Parser\Step.cs" />
+    <Compile Include="Parser\TableBuilder.cs" />
+    <Compile Include="Parser\TableRow.cs" />
+    <Compile Include="PicklesModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DirectoryCrawler\RelevantFileDetector.cs" />
+    <Compile Include="Runner.cs" />
+    <Compile Include="TestFrameworks\ITestResults.cs" />
+    <Compile Include="TestFrameworks\MsTestResults.cs" />
+    <Compile Include="TestFrameworks\NullTestResults.cs" />
+    <Compile Include="TestFrameworks\NUnitExampleSignatureBuilder.cs" />
+    <Compile Include="TestFrameworks\NUnitResults.cs" />
+    <Compile Include="TestFrameworks\TestResult.cs" />
+    <Compile Include="TestFrameworks\xUnitExampleSignatureBuilder.cs" />
+    <Compile Include="TestFrameworks\XUnitResults.cs" />
+    <Compile Include="TestResultsFormat.cs" />
+    <Compile Include="FeatureTree\TextFile.cs" />
+    <Compile Include="Parser\ExampleBuilder.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FeatureTree\ClassDiagram.cd" />
+    <None Include="packages.config" />
+    <EmbeddedResource Include="Resources\fonts\fontawesome-webfont.eot" />
+    <EmbeddedResource Include="Resources\fonts\fontawesome-webfont.ttf" />
+    <EmbeddedResource Include="Resources\fonts\fontawesome-webfont.woff" />
+    <EmbeddedResource Include="Resources\fonts\FontAwesome.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\global.css" />
+    <EmbeddedResource Include="Resources\master.css" />
+    <EmbeddedResource Include="Resources\reset.css" />
+    <EmbeddedResource Include="Resources\structure.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\failure.png" />
+    <EmbeddedResource Include="Resources\images\success.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\scripts\jquery.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\print.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\scripts\scripts.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\inconclusive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\font-awesome.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\fonts\fontawesome-webfont.svg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>

@@ -54,7 +54,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
           var tags = RetrieveTags(scenario);
           if (tags.Length > 0)
           {
-            var paragraph = new XElement(this.xmlns + "p", this.CreateTagElements(tags.OrderBy(t => t).ToArray()));
+            var paragraph = new XElement(this.xmlns + "p", CreateTagElements(tags.OrderBy(t => t).ToArray(), this.xmlns));
             paragraph.Add(new XAttribute("class", "tags"));
             header.Add(paragraph);
           }
@@ -75,17 +75,17 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             );
         }
 
-      private XNode[] CreateTagElements(string[] tags)
+      internal static XNode[] CreateTagElements(string[] tags, XNamespace xNamespace)
       {
         List<XNode> result = new List<XNode>();
 
         result.Add(new XText("Tags: "));
-        result.Add(new XElement(this.xmlns + "span", tags.First()));
+        result.Add(new XElement(xNamespace + "span", tags.First()));
 
         foreach (var tag in tags.Skip(1))
         {
           result.Add(new XText(", "));
-          result.Add(new XElement(this.xmlns + "span", tag));
+          result.Add(new XElement(xNamespace + "span", tag));
         }
 
         return result.ToArray();

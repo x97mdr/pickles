@@ -53,9 +53,9 @@ namespace PicklesDoc.Pickles.Parser
             this.steps.Add(step);
         }
 
-        public void AddTag(string tag)
+        public void AddTags(List<string> tags)
         {
-            this.tags.Add(tag);
+            this.tags.AddRange(tags);
         }
 
         public void AddExample(Example example)

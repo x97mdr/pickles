@@ -19,6 +19,7 @@
 #endregion
 
 using System;
+using System.Linq;
 using System.Xml.Linq;
 using PicklesDoc.Pickles.Parser;
 
@@ -52,9 +53,18 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             var div = new XElement(this.xmlns + "div",
                                    new XAttribute("id", "feature"),
                                    this.htmlImageResultFormatter.Format(feature),
-                                   new XElement(this.xmlns + "h1", feature.Name),
-                                   this.htmlDescriptionFormatter.Format(feature.Description)
-                );
+                                   new XElement(this.xmlns + "h1", feature.Name));
+
+            var tags = RetrieveTags(feature);
+            if (tags.Length > 0)
+            {
+              var paragraph = new XElement(this.xmlns + "p", HtmlScenarioFormatter.CreateTagElements(tags.OrderBy(t => t).ToArray(), this.xmlns));
+              paragraph.Add(new XAttribute("class", "tags"));
+              div.Add(paragraph);
+            }
+
+            div.Add(this.htmlDescriptionFormatter.Format(feature.Description));
+
 
             var scenarios = new XElement(this.xmlns + "ul", new XAttribute("id", "scenarios"));
             int id = 0;
@@ -85,5 +95,12 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
         }
 
         #endregion
+
+        private static string[] RetrieveTags(Feature feature)
+        {
+          if (feature == null) return new string[0];
+
+          return feature.Tags.ToArray();
+        }
     }
 }

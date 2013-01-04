@@ -4,7 +4,7 @@
     
   <!-- set the major and minor version number here -->
   <property name="version.major" value="0" />
-  <property name="version.minor" value="8" />
+  <property name="version.minor" value="9" />
   
   <!-- set build number from continuous integration tool -->
   <if test="${environment::variable-exists('BUILD_NUMBER')}">
@@ -70,7 +70,7 @@
   <target name="test" depends="build">
     <exec program="nunit-console.exe" basedir="src\Pickles\packages\NUnit.Runners.2.6.1\tools">
       <arg value="/xml:${report.nunit.dir}\results.xml" />
-      <arg value=".\src\Pickles\Pickles.Test\bin\Release\Pickles.Test.dll" />
+      <arg value=".\src\Pickles\Pickles.Test\bin\Release\PicklesDoc.Pickles.Test.dll" />
     </exec>
   </target>
   
@@ -88,40 +88,40 @@
       <arg value="/wildcards"/>
       <arg value="/allowDup"/>
       <arg value="/log:${merged.dir}\merge.exe.log" />
-      <arg value="${assemblies.console.dir}\Pickles.CommandLine.exe"/>
+      <arg value="${assemblies.console.dir}\Pickles.exe"/>
       <arg value="${assemblies.console.dir}\*.dll"/>
     </exec>
     
     <exec program="ilmerge.exe" basedir="${ilmerge.dir}">
-      <arg value="/out=${merged.dir}\Pickles.MSBuild.Tasks.dll"/>
+      <arg value="/out=${merged.dir}\PicklesDoc.Pickles.MSBuild.Tasks.dll"/>
       <arg value="/target=dll"/>
       <arg value="/ndebug"/>
       <arg value="/wildcards"/>
       <arg value="/allowDup"/>
       <arg value="/log:${merged.dir}\merge.msbuild.log" />
-      <arg value="${assemblies.msbuild.dir}\Pickles.MSBuild.Tasks.dll"/>
+      <arg value="${assemblies.msbuild.dir}\PicklesDoc.Pickles.MSBuild.Tasks.dll"/>
       <arg value="${assemblies.msbuild.dir}\*.dll"/>
     </exec>
 
     <exec program="ilmerge.exe" basedir="${ilmerge.dir}">
-      <arg value="/out=${merged.dir}\Pickles.NAnt.Tasks.dll"/>
+      <arg value="/out=${merged.dir}\PicklesDoc.Pickles.NAnt.Tasks.dll"/>
       <arg value="/target=dll"/>
       <arg value="/ndebug"/>
       <arg value="/wildcards"/>
       <arg value="/allowDup"/>
       <arg value="/log:${merged.dir}\merge.nant.log" />
-      <arg value="${assemblies.nant.dir}\Pickles.NAnt.Tasks.dll"/>
+      <arg value="${assemblies.nant.dir}\PicklesDoc.Pickles.NAnt.Tasks.dll"/>
       <arg value="${assemblies.nant.dir}\*.dll"/>
     </exec>
     
     <exec program="ilmerge.exe" basedir="${ilmerge.dir}">
-      <arg value="/out=${merged.dir}\Pickles.PowerShell.dll"/>
+      <arg value="/out=${merged.dir}\PicklesDoc.Pickles.PowerShell.dll"/>
       <arg value="/target=dll"/>
       <arg value="/ndebug"/>
       <arg value="/wildcards"/>
       <arg value="/allowDup"/>
       <arg value="/log:${merged.dir}\merge.powershell.log" />
-      <arg value="${assemblies.powershell.dir}\Pickles.Powershell.dll"/>
+      <arg value="${assemblies.powershell.dir}\PicklesDoc.Pickles.Powershell.dll"/>
       <arg value="${assemblies.powershell.dir}\*.dll"/>
     </exec>
   </target>
