@@ -2,15 +2,16 @@
     this.RelativeFolder = relativeFolder;
     this.Feature = new Feature(feature.Name, feature.Description, feature.FeatureElements);
 }
-function Feature(name, description, featureElements) {
-    this.Name = name;
-    this.Description = description;
-    this.FeatureElements = featureElements;
+function Feature() { //}name, description, featureElements) {
+    this.Name = '';//name;
+    this.Description = '';//description;
+    this.FeatureElements = new Array();//featureElements;
 }
-function FeatureElement(name, description) {
-    this.Name = name;
-    this.Description = description;
-}
+//function FeatureElement() {
+//    this.Name = '';
+//    this.Description = '';
+//    this.Result = new Result();
+//}
 function Step(keyword, nativeKeyword, name) {
     this.Keyword = keyword;
     this.NativeKeyword = nativeKeyword;
@@ -29,6 +30,10 @@ function Background() {
     this.Name = '';
     this.Description = '';
     this.Steps = new Array();
+}
+function Result() {
+    this.WasExecuted = false;
+    this.WasSuccessful = false;
 }
 /* JSON Sample
         {

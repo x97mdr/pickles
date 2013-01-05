@@ -4,6 +4,12 @@
     equal(addSpacesToCamelCasedString("ThisIsATestString."), "This Is A Test String.", "String ending with puncuation.");
 });
 
+test("Can pull of # from hashtag", function() {
+    equal(removeBeginningHash("#hash"), "hash");
+    equal(removeBeginningHash("hash"), "hash");
+    equal(removeBeginningHash(""), "");
+});
+
 var sampleJSONForHeirarchy = [
     {
         "RelativeFolder": "ClearingScreen.feature",
