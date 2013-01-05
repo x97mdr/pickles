@@ -17,7 +17,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             this.configuration = configuration;
         }
         
-        public void Relocate(FeatureDirectoryTreeNode node, XElement parsedFeature)
+        public virtual void Relocate(IDirectoryTreeNode node, XElement parsedFeature)
         {
             var images = parsedFeature.Descendants(HtmlNamespace.Xhtml + "img");
 

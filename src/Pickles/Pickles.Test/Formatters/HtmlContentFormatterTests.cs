@@ -6,6 +6,7 @@ using Autofac;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.Parser;
+using System.Xml.Linq;
 
 namespace PicklesDoc.Pickles.Test.Formatters
 {
@@ -18,7 +19,7 @@ namespace PicklesDoc.Pickles.Test.Formatters
             var exception =
                 Assert.Throws<ArgumentNullException>(
                     () =>
-                    new HtmlContentFormatter(null, null));
+                    new HtmlContentFormatter(null, null, null));
 
             Assert.AreEqual("htmlFeatureFormatter", exception.ParamName);
         }
@@ -31,6 +32,7 @@ namespace PicklesDoc.Pickles.Test.Formatters
                     () =>
                     new HtmlContentFormatter(
                         Container.Resolve<HtmlFeatureFormatter>(),
+                        null,
                         null));
 
             Assert.AreEqual("htmlIndexFormatter", exception.ParamName);
@@ -40,7 +42,9 @@ namespace PicklesDoc.Pickles.Test.Formatters
         public void Format_ContentIsFeatureNode_UsesHtmlFeatureFormatterWithCorrectArgument()
         {
             var fakeHtmlFeatureFormatter = new Mock<IHtmlFeatureFormatter>();
-            var formatter = new HtmlContentFormatter(fakeHtmlFeatureFormatter.Object, Container.Resolve<HtmlIndexFormatter>());
+            var fakeHtmlImageRelocator = new Mock<HtmlImageRelocator>(null);
+            fakeHtmlImageRelocator.Setup(x => x.Relocate(It.IsAny<IDirectoryTreeNode>(), It.IsAny<XElement>()));
+            var formatter = new HtmlContentFormatter(fakeHtmlFeatureFormatter.Object, Container.Resolve<HtmlIndexFormatter>(), fakeHtmlImageRelocator.Object);
 
             var featureNode = new FeatureDirectoryTreeNode(
                 new FileInfo(@"c:\temp\test.feature"),
