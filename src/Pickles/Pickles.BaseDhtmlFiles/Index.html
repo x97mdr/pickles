@@ -39,8 +39,12 @@
 
     <script type="text/html" id="testResults-template">
         <div style="float: right" data-bind="if: WasExecuted">
-            <div data-bind="if: WasSuccessful"><div class="label label-success"><i class="icon-thumbs-up icon-white"></i> Success</div></div>
-            <div data-bind="if: !WasSuccessful"><div class="label label-important"><i class="icon-fire icon-white"></i> Fail</div></div>            
+            <div data-bind="if: WasSuccessful">
+                <div class="label label-success"><i class="icon-thumbs-up icon-white"></i>Success</div>
+            </div>
+            <div data-bind="if: !WasSuccessful">
+                <div class="label label-important"><i class="icon-fire icon-white"></i>Fail</div>
+            </div>
         </div>
     </script>
 
@@ -53,22 +57,22 @@
 
     <script type="text/html" id="table-template">
         <div data-bind="if: TableArgument.HeaderRow">
-            <div style="overflow-x:auto">
-            <table class="table table-bordered table-condensed table-striped">
+            <div style="overflow-x: auto">
+                <table class="table table-bordered table-condensed table-striped">
 
-                <thead>
-                    <tr data-bind="foreach: TableArgument.HeaderRow">
-                        <th data-bind="text: $data"></th>
-                    </tr>
-                </thead>
+                    <thead>
+                        <tr data-bind="foreach: TableArgument.HeaderRow">
+                            <th data-bind="text: $data"></th>
+                        </tr>
+                    </thead>
 
-                <tbody data-bind="foreach: TableArgument.DataRows">
-                    <tr data-bind="foreach: $data">
-                        <td data-bind="text: $data"></td>
-                    </tr>
-                </tbody>
+                    <tbody data-bind="foreach: TableArgument.DataRows">
+                        <tr data-bind="foreach: $data">
+                            <td data-bind="text: $data"></td>
+                        </tr>
+                    </tbody>
 
-            </table>
+                </table>
             </div>
         </div>
     </script>
@@ -100,10 +104,9 @@
                         Current Features List JSON:
                         <pre data-bind="text: ko.toJSON($data)"></pre>
                     </div>-->
-                
-                <div data-bind="template: { name: 'testResults-template', data: Result }"></div>
-                
+
                 <div data-bind="with: Feature">
+                    <div data-bind="template: { name: 'testResults-template', data: Result }"></div>
                     <div data-bind="if: Tags.length > 0">
                         <i class=" icon-tags"></i>
                         <!-- ko foreach: Tags.sort() -->
@@ -122,19 +125,20 @@
                         </div>
                     </div>
 
-                    <ul id="scenarios" data-bind="foreach: FeatureElements">
-                        <!-- uncomment when scenarior level test results added to json output -->
-                        <!--<div data-bind="template: { name: 'testResults-template', data: Result }"></div>-->
-                        
+                    <div id="scenarios" data-bind="foreach: FeatureElements">
+                        <div data-bind="template: { name: 'testResults-template', data: Result }"></div>
+                        <div data-bind="if: Tags.length == 0">
+                            <div>&nbsp;</div>
+                        </div>
                         <div data-bind="if: Tags.length > 0">
                             <i class=" icon-tags"></i><em>
-                                                          <!-- ko foreach: Tags.sort() -->
-                                                          <span data-bind="text: $data" class="inline"></span>
-                                                          <!-- /ko -->
-                                                      </em>
+                                <!-- ko foreach: Tags.sort() -->
+                                <span data-bind="text: $data" class="inline"></span>
+                                <!-- /ko -->
+                            </em>
                         </div>
 
-                        <li class="scenario">
+                        <div class="scenario">
 
                             <div>
                                 <h4 data-bind="text: Name"></h4>
@@ -143,7 +147,7 @@
                             <div class="steps">
 
                                 <ul data-bind="template: { name: 'steps-template', foreach: Steps }"></ul>
-                                
+
                                 <ul data-bind="foreach: Examples">
                                     <li class="step">
                                         <div><strong>Examples:</strong> <span data-bind="text: Name"></span></div>
@@ -153,8 +157,8 @@
 
                             </div>
 
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
                 <!-- Enable to dump JSON to the screen -->
                 <!--<div class="row-fluid">
@@ -197,7 +201,7 @@
             self.originalFeaturesList = ko.observableArray(features);
             self.featuresByFolder = ko.observable(buildFullHierarchy(getFeaturesFromScenariosList(features)));
             self.currentFeature = ko.observable();
-            
+
             self.setCurrentFeature = function () {
                 if (window.location.hash != '') {
                     var featureFromHashLocation = findFeatureByRelativeFolder(removeBeginningHash(window.location.hash), features);
@@ -206,7 +210,7 @@
                     self.currentFeature(self.originalFeaturesList()[0]);
                 }
             };
-            
+
             self.whatToSearchFor = ko.observable("");
 
             self.clearSearch = function () {
@@ -249,7 +253,7 @@
             viewModel.setCurrentFeature();
 
             window.ko.applyBindings(viewModel);
-            
+
             var searchItems = getTagsAndFeatureAndScenarioNames(data);
             $('#TypeAheadSearchBox').typeahead({
                 source: searchItems

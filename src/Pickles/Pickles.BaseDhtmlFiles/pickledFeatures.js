@@ -1,4 +1,4 @@
-﻿jsonPWrapper (
+jsonPWrapper (
 [
   {
     "RelativeFolder": "Workflow\\ClearingScreen.feature",
@@ -34,14 +34,22 @@
           "Tags": [
             "@workflow",
             "@slow"
-          ]
+          ],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         }
       ],
+      "Result": {
+        "WasExecuted": false,
+        "WasSuccessful": false
+      },
       "Tags": []
     },
     "Result": {
-      "WasExecuted": true,
-      "WasSuccessful": true
+      "WasExecuted": false,
+      "WasSuccessful": false
     }
   },
   {
@@ -77,9 +85,17 @@
           ],
           "Tags": [
             "@nestedFolders"
-          ]
+          ],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         }
       ],
+      "Result": {
+        "WasExecuted": false,
+        "WasSuccessful": false
+      },
       "Tags": []
     },
     "Result": {
@@ -108,7 +124,11 @@
               "Name": "everything is dandy"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "Feature with a single context",
@@ -125,7 +145,11 @@
               "Name": "the context is set"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "Feature with multiple contexts",
@@ -142,7 +166,11 @@
               "Name": "the contexts are set"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "Feature with recursive contexts",
@@ -164,7 +192,11 @@
               "Name": "its sub-context is set"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "Feature with a dependent context",
@@ -186,9 +218,17 @@
               "Name": "the context was created by the feature with a single context scenario"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         }
       ],
+      "Result": {
+        "WasExecuted": false,
+        "WasSuccessful": false
+      },
       "Tags": []
     },
     "Result": {
@@ -222,9 +262,17 @@
               "Name": "I should be able to see Aslak at terminal 2"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         }
       ],
+      "Result": {
+        "WasExecuted": false,
+        "WasSuccessful": false
+      },
       "Tags": []
     },
     "Result": {
@@ -263,7 +311,11 @@
               "Name": "the welcome page should be displayed"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "Do something meaningful",
@@ -285,9 +337,17 @@
               "Name": "I should get rewarded"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         }
       ],
+      "Result": {
+        "WasExecuted": false,
+        "WasSuccessful": false
+      },
       "Tags": []
     },
     "Result": {
@@ -341,9 +401,17 @@
               "Name": "the number 3 is odd"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         }
       ],
+      "Result": {
+        "WasExecuted": false,
+        "WasSuccessful": false
+      },
       "Tags": []
     },
     "Result": {
@@ -458,7 +526,11 @@
               }
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "CompareToSet",
@@ -547,9 +619,17 @@
               }
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         }
       ],
+      "Result": {
+        "WasExecuted": false,
+        "WasSuccessful": false
+      },
       "Tags": []
     },
     "Result": {
@@ -576,34 +656,10 @@
                   "Name",
                   "Style",
                   "Birth date",
-                  "Cred",
-                  "Name",
-                  "Style",
-                  "Birth date",
-                  "Cred",
-                  "Name",
-                  "Style",
-                  "Birth date",
-                  "Cred",
-                  "Name",
-                  "Style",
-                  "Birth date",
                   "Cred"
                 ],
                 "DataRows": [
                   [
-                    "Marcus",
-                    "Cool",
-                    "1972-10-09",
-                    "50",
-                    "Marcus",
-                    "Cool",
-                    "1972-10-09",
-                    "50",
-                    "Marcus",
-                    "Cool",
-                    "1972-10-09",
-                    "50",
                     "Marcus",
                     "Cool",
                     "1972-10-09",
@@ -613,33 +669,9 @@
                     "Anders",
                     "Butch",
                     "1977-01-01",
-                    "500",
-                    "Anders",
-                    "Butch",
-                    "1977-01-01",
-                    "500",
-                    "Anders",
-                    "Butch",
-                    "1977-01-01",
-                    "500",
-                    "Anders",
-                    "Butch",
-                    "1977-01-01",
                     "500"
                   ],
                   [
-                    "Jocke",
-                    "Soft",
-                    "1974-04-04",
-                    "1000",
-                    "Jocke",
-                    "Soft",
-                    "1974-04-04",
-                    "1000",
-                    "Jocke",
-                    "Soft",
-                    "1974-04-04",
-                    "1000",
                     "Jocke",
                     "Soft",
                     "1974-04-04",
@@ -675,7 +707,11 @@
               }
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "Using tables with SpecFlow Assist",
@@ -741,7 +777,11 @@
               }
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "Creating a entity from field value",
@@ -798,9 +838,73 @@
               }
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
+        },
+        {
+          "Name": "Example of a wide table",
+          "Description": "",
+          "Steps": [
+            {
+              "Keyword": "Given",
+              "NativeKeyword": "Given ",
+              "Name": "this wide table",
+              "TableArgument": {
+                "HeaderRow": [
+                  "Name",
+                  "Style",
+                  "Birth date",
+                  "Cred",
+                  "Name",
+                  "Style",
+                  "Birth date",
+                  "Cred",
+                  "Name",
+                  "Style",
+                  "Birth date",
+                  "Cred",
+                  "Name",
+                  "Style",
+                  "Birth date",
+                  "Cred"
+                ],
+                "DataRows": [
+                  [
+                    "Marcus",
+                    "Very cool",
+                    "10/9/1972",
+                    "1000",
+                    "Marcus",
+                    "Very cool",
+                    "10/9/1972",
+                    "1000",
+                    "Marcus",
+                    "Very cool",
+                    "10/9/1972",
+                    "1000",
+                    "Marcus",
+                    "Very cool",
+                    "10/9/1972",
+                    "1000"
+                  ]
+                ]
+              }
+            }
+          ],
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         }
       ],
+      "Result": {
+        "WasExecuted": false,
+        "WasSuccessful": false
+      },
       "Tags": []
     },
     "Result": {
@@ -829,7 +933,11 @@
               "Name": "the total sum should be 2"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "Add 2 to the sum",
@@ -846,7 +954,11 @@
               "Name": "the total sum should be 3"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         }
       ],
       "Background": {
@@ -864,7 +976,15 @@
             "Name": "I add 1 to the Sum-variable"
           }
         ],
-        "Tags": []
+        "Tags": [],
+        "Result": {
+          "WasExecuted": false,
+          "WasSuccessful": false
+        }
+      },
+      "Result": {
+        "WasExecuted": false,
+        "WasSuccessful": false
       },
       "Tags": []
     },
@@ -957,7 +1077,11 @@
               "Name": "the result should be <result>"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Examples": [
@@ -1037,9 +1161,17 @@
               "Name": "the result should be <result>"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         }
       ],
+      "Result": {
+        "WasExecuted": false,
+        "WasSuccessful": false
+      },
       "Tags": []
     },
     "Result": {
@@ -1068,7 +1200,11 @@
               "Name": "a person called Marcus can easily be retrieved from the current FeatureContext"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "Showing information of the feature",
@@ -1113,9 +1249,17 @@
               }
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         }
       ],
+      "Result": {
+        "WasExecuted": false,
+        "WasSuccessful": false
+      },
       "Tags": [
         "@showUpInScenarioInfo",
         "@andThisToo"
@@ -1147,7 +1291,11 @@
               "Name": "a person called Marcus can easily be retrieved"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "Showing information of the scenario",
@@ -1183,7 +1331,11 @@
           "Tags": [
             "@showUpInScenarioInfo",
             "@andThisToo"
-          ]
+          ],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "Show the type of step we're currently on",
@@ -1210,7 +1362,11 @@
               "Name": "I have a Then step"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "Display error information in AfterScenario",
@@ -1225,7 +1381,11 @@
           "Tags": [
             "@ignore",
             "@showingErrorHandling"
-          ]
+          ],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "Pending step",
@@ -1242,9 +1402,17 @@
               "Name": "this step will not even be executed"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         }
       ],
+      "Result": {
+        "WasExecuted": false,
+        "WasSuccessful": false
+      },
       "Tags": []
     },
     "Result": {
@@ -1285,7 +1453,11 @@
           ],
           "Tags": [
             "@ignore"
-          ]
+          ],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "A scenario without tags",
@@ -1307,7 +1479,11 @@
               "Name": "before scenario hook with '' is run"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "A scenario with 1 tag",
@@ -1331,7 +1507,11 @@
           ],
           "Tags": [
             "@testTag1"
-          ]
+          ],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "A scenario with 3 tags",
@@ -1357,7 +1537,11 @@
             "@testTag1",
             "@testTag2",
             "@testTag3"
-          ]
+          ],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "A scenario with 2 tags",
@@ -1382,15 +1566,24 @@
           "Tags": [
             "@testTag1",
             "@testTag3"
-          ]
+          ],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         }
       ],
+      "Result": {
+        "WasExecuted": false,
+        "WasSuccessful": false
+      },
       "Tags": [
-          "@tagsAtTheFeature"
+        "@allAboutTags",
+        "@important"
       ]
     },
     "Result": {
-      "WasExecuted": true,
+      "WasExecuted": false,
       "WasSuccessful": false
     }
   },
@@ -1415,7 +1608,11 @@
               "Name": "the BeforeTestRun hook should have been executed"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "Hooking into pre conditions for Features in SpecFlow",
@@ -1432,7 +1629,11 @@
               "Name": "the BeforeFeature hook should have been executed"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "Hooking into pre conditions for Scenarios in SpecFlow",
@@ -1449,7 +1650,11 @@
               "Name": "the BeforeScenario hook should have been executed"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "Hooking into pre conditions for ScenarioBlocks in SpecFlow",
@@ -1466,7 +1671,11 @@
               "Name": "the BeforeScenarioBlock hook should have been executed"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "Hooking into pre conditions for Steps in SpecFlow",
@@ -1483,9 +1692,17 @@
               "Name": "the BeforeStep hook should have been executed"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         }
       ],
+      "Result": {
+        "WasExecuted": false,
+        "WasSuccessful": false
+      },
       "Tags": []
     },
     "Result": {
@@ -1519,9 +1736,17 @@
               "Name": "the step should have been called"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         }
       ],
+      "Result": {
+        "WasExecuted": false,
+        "WasSuccessful": false
+      },
       "Tags": []
     },
     "Result": {
@@ -1555,7 +1780,11 @@
               "Name": "I should see Running as the answer"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+            "WasExecuted": true,
+            "WasSuccessful": true
+          }
         },
         {
           "Name": "Using And and But",
@@ -1592,9 +1821,17 @@
               "Name": "the state of the application should not be Stopped"
             }
           ],
-          "Tags": []
+          "Tags": [],
+          "Result": {
+              "WasExecuted": true,
+            "WasSuccessful": false
+          }
         }
       ],
+      "Result": {
+          "WasExecuted": true,
+        "WasSuccessful": false
+      },
       "Tags": []
     },
     "Result": {
@@ -1631,7 +1868,11 @@
           "Tags": [
             "@trigonometric",
             "@fast"
-          ]
+          ],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "Cosine",
@@ -1656,7 +1897,11 @@
           "Tags": [
             "@trigonometric",
             "@fast"
-          ]
+          ],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "Tangent",
@@ -1681,13 +1926,21 @@
           "Tags": [
             "@trigonometric",
             "@fast"
-          ]
+          ],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         }
       ],
+      "Result": {
+        "WasExecuted": false,
+        "WasSuccessful": false
+      },
       "Tags": []
     },
     "Result": {
-      "WasExecuted": true,
+      "WasExecuted": false,
       "WasSuccessful": false
     }
   },
@@ -1727,8 +1980,8 @@
             "@fast"
           ],
           "Result": {
-              "WasExecuted": true,
-              "WasSuccessful": true
+            "WasExecuted": false,
+            "WasSuccessful": false
           }
         },
         {
@@ -1759,7 +2012,11 @@
           "Tags": [
             "@arithmetic",
             "@fast"
-          ]
+          ],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "Multiply two numbers",
@@ -1789,7 +2046,11 @@
           "Tags": [
             "@arithmetic",
             "@fast"
-          ]
+          ],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
         },
         {
           "Name": "Divide two numbers",
@@ -1826,11 +2087,15 @@
           }
         }
       ],
+      "Result": {
+        "WasExecuted": true,
+        "WasSuccessful": true
+      },
       "Tags": []
     },
     "Result": {
-      "WasExecuted": true,
-      "WasSuccessful": true
+        "WasExecuted": true,
+        "WasSuccessful": true
     }
   }
 ]
