@@ -73,3 +73,9 @@ li.step {
     cursor: pointer;
     color: #1A668C;
 }
+
+.canHighlight {
+    
+}
+
+.highlight { background-color: yellow; }
