@@ -79,3 +79,7 @@ li.step {
 }
 
 .highlight { background-color: yellow; }
+
+.inconclusive, .failed, .passed {
+  font-size: 300%;
+}
