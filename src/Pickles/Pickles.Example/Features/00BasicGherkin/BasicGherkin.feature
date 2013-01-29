@@ -3,6 +3,8 @@
 	As a SpecFlow evangelist
 	I want to show that basic syntax
 
+	![Test Image](test.jpg)
+
 Scenario: Simple GWT
 	Given the initial state of the application is Running
 	When I ask what the application state is

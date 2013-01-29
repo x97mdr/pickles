@@ -1,5 +1,5 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<UsingTask AssemblyFile="..\..\..\src\Pickles\Pickles.MSBuild\bin\Release\Pickles.MSBuild.Tasks.dll" TaskName="Pickles" />
+	<UsingTask AssemblyFile="..\..\..\src\Pickles\Pickles.MSBuild\bin\Release\PicklesDoc.Pickles.MSBuild.Tasks.dll" TaskName="Pickles" />
 	
 	<PropertyGroup>
 		<FeatureDirectory>Features</FeatureDirectory>
