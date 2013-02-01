@@ -14,7 +14,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
             {
                 var zipFile = new ZipFile(zipFileLocation);
                 var zipFileEntries = zipFile.entries();
-
+                
                 while (zipFileEntries.hasMoreElements())
                 {
                     var zipEntry = (ZipEntry)zipFileEntries.nextElement();
@@ -54,6 +54,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
                         }
                     }
                 }
+
+                zipFile.close();
             }
             catch (IOException e)
             {

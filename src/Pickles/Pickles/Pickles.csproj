@@ -182,7 +182,7 @@
     <Compile Include="DirectoryCrawler\FolderDirectoryTreeNode.cs" />
     <Compile Include="DocumentationBuilders\DHTML\DhtmlDocumentationBuilder.cs" />
     <Compile Include="DocumentationBuilders\DHTML\DhtmlResourceSet.cs" />
-    <Compile Include="DocumentationBuilders\DHTML\DhtmlResourceWriter.cs" />
+    <Compile Include="DocumentationBuilders\DHTML\DhtmlResourceProcessor.cs" />
     <Compile Include="DocumentationBuilders\DHTML\JsonTweaker.cs" />
     <Compile Include="DocumentationBuilders\DHTML\UnZipper.cs" />
     <Compile Include="DocumentationBuilders\DITA\DitaDocumentationBuilder.cs" />

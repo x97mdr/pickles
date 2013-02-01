@@ -7,6 +7,10 @@
     padding: 9px 0;
 }
 
+#featureDetails h5 {
+    margin-bottom: 20px
+}
+
 #scenarios, .steps {
     list-style-type: none;
     margin: 0;

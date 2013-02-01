@@ -25,12 +25,12 @@ using System.Reflection;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
 {
-    public class DhtmlResourceWriter
+    public class DhtmlResourceProcessor
     {
         private readonly Configuration MyConfiguration;
         public DhtmlResourceSet MyDhtmlResourceSet { get; set; }
 
-        public DhtmlResourceWriter(Configuration configuration, DhtmlResourceSet dhtmlResourceSet)
+        public DhtmlResourceProcessor(Configuration configuration, DhtmlResourceSet dhtmlResourceSet)
         {
             this.MyConfiguration = configuration;
             this.MyDhtmlResourceSet = dhtmlResourceSet;
@@ -44,6 +44,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
                 binWriter.Flush();
                 binWriter.Close();
             }
+        }
+
+        public void CleanupZippedResources()
+        {
+            File.Delete(MyDhtmlResourceSet.ZippedResources.AbsolutePath);
         }
     }
 }

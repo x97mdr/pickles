@@ -56,12 +56,16 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
 
             log.Info("UnzipDhtmlResources");
             UnzipDhtmlResources(resource);
-
+            
             log.Info("UtilizeJsonBuilderToDumpJsonFeatureFileNextToDthmlResources");
             UtilizeJsonBuilderToDumpJsonFeatureFileNextToDthmlResources(features);
 
             log.Info("Tweak Json file");
             TweakJsonFile();
+
+            log.Info("CleanupZippedDhtmlResources");
+            CleanupZippedDhtmlResources(resource);
+
         }
 
         private void UtilizeJsonBuilderToDumpJsonFeatureFileNextToDthmlResources(GeneralTree<IDirectoryTreeNode> features)
@@ -76,10 +80,16 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
             unzipper.UnZip(dhtmlResourceSet.ZippedResources.AbsolutePath, configuration.OutputFolder.FullName, "Pickles.BaseDhtmlFiles");
         }
 
+        private void CleanupZippedDhtmlResources(DhtmlResourceSet dhtmlResourceSet)
+        {
+            var resourceProcessor = new DhtmlResourceProcessor(configuration, dhtmlResourceSet);
+            resourceProcessor.CleanupZippedResources();
+        }
+
         private void DeployZippedDhtmlResourcesForExtraction(DhtmlResourceSet dhtmlResourceSet)
         {
-            var resourceWriter = new DhtmlResourceWriter(configuration, dhtmlResourceSet);
-            resourceWriter.WriteZippedResources();
+            var resourceProcessor = new DhtmlResourceProcessor(configuration, dhtmlResourceSet);
+            resourceProcessor.WriteZippedResources();
         }
 
         private void TweakJsonFile()

@@ -21,7 +21,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.DHTML
         {
             var conf = new Configuration();
             conf.OutputFolder = new DirectoryInfo(@"d:\output");
-            var resourceWriter = new DhtmlResourceWriter(conf, new DhtmlResourceSet(conf));
+            var resourceWriter = new DhtmlResourceProcessor(conf, new DhtmlResourceSet(conf));
             resourceWriter.WriteZippedResources();
         }
 
