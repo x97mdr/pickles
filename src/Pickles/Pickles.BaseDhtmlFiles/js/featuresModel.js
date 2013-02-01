@@ -2,24 +2,14 @@
     this.RelativeFolder = relativeFolder;
     this.Feature = new Feature(feature.Name, feature.Description, feature.FeatureElements);
 }
-function Feature() { //}name, description, featureElements) {
-    this.Name = '';//name;
-    this.Description = '';//description;
-    this.FeatureElements = new Array();//featureElements;
+function Feature() { 
+    this.Name = '';
+    this.Description = '';
+    this.FeatureElements = new Array();
 }
-//function FeatureElement() {
-//    this.Name = '';
-//    this.Description = '';
-//    this.Result = new Result();
-//}
-function Step(keyword, nativeKeyword, name) {
-    this.Keyword = keyword;
-    this.NativeKeyword = nativeKeyword;
-    this.Name = name;
-}
-function TableArgument(headerRow, dataRows) {
-    this.HeaderRow = headerRow;
-    this.DataRows = dataRows;
+function TableArgument() {
+    this.HeaderRow = new Array();
+    this.DataRows = new Array();
 }
 function Examples() {
     this.Name = '';
@@ -35,6 +25,9 @@ function Result() {
     this.WasExecuted = false;
     this.WasSuccessful = false;
 }
+// putting it here to define it so I can check if it exists - it is an optional value
+var DocStringArgument = '';
+
 /* JSON Sample
         {
         "RelativeFolder": "06CompareToAssist\\CompareTo.feature",

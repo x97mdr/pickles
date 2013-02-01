@@ -50,6 +50,7 @@
     <script type="text/html" id="steps-template">
         <li class="step">
             <span class="keyword" data-bind="text: NativeKeyword"></span><span data-bind="text:Name"></span>
+            <div data-bind="if: DocStringArgument != ''"><div data-bind="text: DocStringArgument" class="pre"></div></div>
             <div data-bind="template: { name: 'table-template', data: $data }"></div>
         </li>
     </script>
@@ -108,7 +109,7 @@
                         <!-- /ko -->
                     </div>
                     <h1 data-bind="text: Name" class="canHighlight"></h1>
-                    <pre data-bind="text: Description" style="margin-bottom: 20px"></pre>
+                    <h4 data-bind="text: Description" style="margin-bottom: 20px" class="pre"></h4>
                 </div>
 
                 <div class="row-fluid" data-bind="with: Feature">
@@ -210,7 +211,6 @@
             };
 
             self.search = function () {
-                // idea: highlight found word(s) in searched item - probably a jquery replace will work?
                 var searchString = this.whatToSearchFor().toLowerCase();
 
                 if (searchString == "") {

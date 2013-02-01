@@ -20,9 +20,9 @@
     padding: 6px;
 }
 
-    .scenario h4 {
-        margin: 5px;
-    }
+.scenario h4 {
+    margin: 5px;
+}
 
 li.step {
     list-style-type: none;
@@ -39,15 +39,13 @@ li.step {
     margin-bottom: 0px;
 }
 
-    .steps table td {
-        color: #B21515;
-    }
+.steps table td {
+    color: #B21515;
+}
 
-    .steps table th {
-        font-style: italic;
-    }
-
-/*#TypeAheadSearchBox { margin-top: 10px; }*/
+.steps table th {
+    font-style: italic;
+}
 
 #SearchButton {
     margin-top: 0;
@@ -82,4 +80,13 @@ li.step {
 
 .inconclusive, .failed, .passed {
   font-size: 300%;
+}
+
+.pre {
+    border-color: #fff;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    white-space: pre-wrap;
+    font-style: italic;
 }

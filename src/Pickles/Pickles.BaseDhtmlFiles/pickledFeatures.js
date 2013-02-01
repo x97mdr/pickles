@@ -53,6 +53,58 @@ jsonPWrapper (
     }
   },
   {
+    "RelativeFolder": "13MultilineText\\MultilineFeatureExample.feature",
+    "Feature": {
+      "Name": "Multiline Feature Example",
+      "Description": "In order capture this particular Gherkin feature\r\nAs a Pickles contributer\r\nI want to demonstrate an example of using multiline text in a Scenario",
+      "FeatureElements": [
+        {
+          "Name": "Mutliline Output",
+          "Description": "",
+          "Steps": [
+            {
+              "Keyword": "Given",
+              "NativeKeyword": "Given ",
+              "Name": "I have read in some text from the user",
+              "DocStringArgument": "This is line 1.\r\nThis is line 2!\r\nThis is line 3!!"
+            },
+            {
+              "Keyword": "And",
+              "NativeKeyword": "And ",
+              "Name": "I have entered 70 into the calculator"
+            },
+            {
+              "Keyword": "When",
+              "NativeKeyword": "When ",
+              "Name": "I process this input"
+            },
+            {
+              "Keyword": "Then",
+              "NativeKeyword": "Then ",
+              "Name": "the result will be saved to the multiline text data store"
+            }
+          ],
+          "Tags": [
+            "@mytag"
+          ],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
+        }
+      ],
+      "Result": {
+        "WasExecuted": false,
+        "WasSuccessful": false
+      },
+      "Tags": []
+    },
+    "Result": {
+      "WasExecuted": false,
+      "WasSuccessful": false
+    }
+  },
+  {
     "RelativeFolder": "12NestedFolders\\ChildFolder\\ChildChildFolder\\NestedFolderExample.feature",
     "Feature": {
       "Name": "Nested Folder Example",
@@ -869,10 +921,42 @@ jsonPWrapper (
                   "Name",
                   "Style",
                   "Birth date",
+                  "Cred",
+                  "Name",
+                  "Style",
+                  "Birth date",
+                  "Cred",
+                  "Name",
+                  "Style",
+                  "Birth date",
+                  "Cred",
+                  "Name",
+                  "Style",
+                  "Birth date",
+                  "Cred",
+                  "Name",
+                  "Style",
+                  "Birth date",
                   "Cred"
                 ],
                 "DataRows": [
                   [
+                    "Marcus",
+                    "Very cool",
+                    "10/9/1972",
+                    "1000",
+                    "Marcus",
+                    "Very cool",
+                    "10/9/1972",
+                    "1000",
+                    "Marcus",
+                    "Very cool",
+                    "10/9/1972",
+                    "1000",
+                    "Marcus",
+                    "Very cool",
+                    "10/9/1972",
+                    "1000",
                     "Marcus",
                     "Very cool",
                     "10/9/1972",
@@ -1758,7 +1842,7 @@ jsonPWrapper (
     "RelativeFolder": "00BasicGherkin\\BasicGherkin.feature",
     "Feature": {
       "Name": "Showing basic gherkin syntax",
-      "Description": "In order to see that gherkin is a very simple langauge\r\nAs a SpecFlow evangelist\r\nI want to show that basic syntax",
+      "Description": "In order to see that gherkin is a very simple langauge\r\nAs a SpecFlow evangelist\r\nI want to show that basic syntax\r\n\r\n![Test Image](test.jpg)",
       "FeatureElements": [
         {
           "Name": "Simple GWT",
@@ -1782,8 +1866,8 @@ jsonPWrapper (
           ],
           "Tags": [],
           "Result": {
-            "WasExecuted": true,
-            "WasSuccessful": true
+            "WasExecuted": false,
+            "WasSuccessful": false
           }
         },
         {
@@ -1823,13 +1907,13 @@ jsonPWrapper (
           ],
           "Tags": [],
           "Result": {
-              "WasExecuted": true,
+            "WasExecuted": false,
             "WasSuccessful": false
           }
         }
       ],
       "Result": {
-          "WasExecuted": true,
+        "WasExecuted": false,
         "WasSuccessful": false
       },
       "Tags": []
@@ -2082,20 +2166,20 @@ jsonPWrapper (
             "@fast"
           ],
           "Result": {
-            "WasExecuted": true,
-            "WasSuccessful": true
+            "WasExecuted": false,
+            "WasSuccessful": false
           }
         }
       ],
       "Result": {
-        "WasExecuted": true,
-        "WasSuccessful": true
+        "WasExecuted": false,
+        "WasSuccessful": false
       },
       "Tags": []
     },
     "Result": {
-        "WasExecuted": true,
-        "WasSuccessful": true
+      "WasExecuted": false,
+      "WasSuccessful": false
     }
   }
 ]
