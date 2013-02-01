@@ -39,6 +39,8 @@ namespace PicklesDoc.Pickles
 
         [Description("Microsoft Excel OpenXML (.xlsx)")]
         Excel,
+
+        [Description("HTML w/search")]
         DHtml
     }
 }
