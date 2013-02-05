@@ -36,9 +36,9 @@
             <div data-bind="if: WasSuccessful"><span class="badge badge-success"><i class="icon-ok passed" title="Passed"></i></span></div>
             <div data-bind="if: !WasSuccessful"><span class="badge badge-important"><i class="icon-minus-sign failed" title="Failed"></i></span></div>
         </div>
-        <div style="float: right" data-bind="if: !WasExecuted">
+        <!--<div style="float: right" data-bind="if: !WasExecuted">
             <span class="badge badge-warning"><i class="icon-warning-sign inconclusive" title="Inconclusive"></i></span>
-        </div>
+        </div>-->
     </script>
 
     <script type="text/html" id="steps-template">
@@ -191,9 +191,9 @@
             self.setCurrentFeature = function () {
                 if (window.location.hash != '') {
                     var featureFromHashLocation = findFeatureByRelativeFolder(removeBeginningHash(window.location.hash), features);
-                    self.currentFeature(featureFromHashLocation);
+                    self.updateCurrentFeature(featureFromHashLocation);
                 } else {
-                    self.currentFeature(self.originalFeaturesList()[0]);
+                    self.updateCurrentFeature(self.originalFeaturesList()[0]);
                 }
             };
 
@@ -217,7 +217,7 @@
                     self.featuresByFolder(buildFullHierarchy(getFeaturesFromScenariosList(matchingFeatures)));
 
                     if (matchingFeatures.length > 0) {
-                        self.currentFeature(matchingFeatures[0]);
+                        self.updateCurrentFeature(matchingFeatures[0]);
                     }
 
                     highlightSearchString(self.whatToSearchFor());
@@ -225,8 +225,14 @@
             };
 
             self.showFeature = function (data) {
-                self.currentFeature(findFeatureByRelativeFolder(data.Path, features));
-                document.location.hash = data.Path;
+                var foundFeature = findFeatureByRelativeFolder(data.Path, features);
+                self.updateCurrentFeature(foundFeature);
+            };
+
+            self.updateCurrentFeature = function (feature) {
+                self.currentFeature(feature);
+                document.location.hash = feature.RelativeFolder;
+                document.title = feature.Feature.Name;
                 window.scroll(0, 0);
                 highlightSearchString(self.whatToSearchFor());
             };
