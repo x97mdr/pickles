@@ -152,6 +152,9 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="TechTalk.SpecFlow">
+      <HintPath>..\packages\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\VersionInfo.cs">
@@ -161,6 +164,14 @@
     <Compile Include="BaseFixture.cs" />
     <Compile Include="DirectoryCrawlers\FolderDirectoryTreeNodeTests.cs" />
     <Compile Include="DocumentationBuilders\DHTML\WhenDoingGarbageIntegrationTests.cs" />
+    <Compile Include="DocumentationBuilders\HTML\AutomationLayer\CurrentScenarioContext.cs" />
+    <Compile Include="DocumentationBuilders\HTML\FormattingAFeature.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FormattingAFeature.feature</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentationBuilders\HTML\AutomationLayer\Hooks.cs" />
+    <Compile Include="DocumentationBuilders\HTML\AutomationLayer\StepDefinitions.cs" />
     <Compile Include="DocumentationBuilders\HTML\WhenFormattingScenario.cs" />
     <Compile Include="DocumentationBuilders\HTML\WhenFormattingMultilineStrings.cs" />
     <Compile Include="DocumentationBuilders\HTML\WhenFormattingScenarioOutlines.cs" />
@@ -230,6 +241,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="DocumentationBuilders\HTML\FormattingAFeature.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>FormattingAFeature.feature.cs</LastGenOutput>
+    </None>
     <None Include="Resources\test.jpg" />
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -332,4 +347,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  </Project>
+</Project>
