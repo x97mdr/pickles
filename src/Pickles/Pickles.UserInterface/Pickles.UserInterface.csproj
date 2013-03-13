@@ -122,6 +122,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <AppDesigner Include="Properties\" />
+    <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pickles\Pickles.csproj">

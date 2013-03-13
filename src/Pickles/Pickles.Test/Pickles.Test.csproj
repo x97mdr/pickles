@@ -323,6 +323,7 @@
     <None Include="Formatters\JSON\results-example-failing-and-pasing-mstest.trx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FakeFolderStructures\FeatureCrawlerTests\SubLevelOne\ignorethisfile.ignore">

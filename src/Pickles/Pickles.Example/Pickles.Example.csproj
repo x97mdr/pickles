@@ -267,6 +267,7 @@
       <LastGenOutput>ClearingScreen.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Features\00BasicGherkin\test.jpg" />
