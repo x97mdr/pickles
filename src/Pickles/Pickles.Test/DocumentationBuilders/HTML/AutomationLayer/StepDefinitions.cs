@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Xml;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.Parser;
@@ -46,7 +48,25 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML.AutomationLayer
       var actual = CurrentScenarioContext.Html.ToString();
       actual = actual.Replace(" xmlns=\"http://www.w3.org/1999/xhtml\"", string.Empty);
 
+      actual = FormatXml(actual);
+      multilineText = FormatXml(multilineText);
+
       actual.ShouldEqual(multilineText);
+    }
+
+
+    private static string FormatXml(string xmlDocument)
+    {
+      using (StringWriter sw = new StringWriter())
+      {
+        using (XmlWriter xw = XmlWriter.Create(sw, new XmlWriterSettings { Indent = true, NewLineHandling = NewLineHandling.Replace, NewLineChars = Environment.NewLine }))
+        {
+          xw.WriteRaw(xmlDocument);
+          xw.Flush();
+
+          return sw.ToString();
+        }
+      }
     }
   }
 }
