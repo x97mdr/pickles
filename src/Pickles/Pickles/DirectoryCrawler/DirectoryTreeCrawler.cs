@@ -19,6 +19,7 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using NGenerics.DataStructures.Trees;
@@ -52,48 +53,71 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
 
         private GeneralTree<INode> Crawl(DirectoryInfo directory, INode rootNode)
         {
-            INode currentNode =
-                this.featureNodeFactory.Create(rootNode != null ? rootNode.OriginalLocation : null, directory);
+          INode currentNode =
+              this.featureNodeFactory.Create(rootNode != null ? rootNode.OriginalLocation : null, directory);
 
-            if (rootNode == null)
-            {
-                rootNode = currentNode;
-            }
+          if (rootNode == null)
+          {
+            rootNode = currentNode;
+          }
 
-            var tree = new GeneralTree<INode>(currentNode);
+          var tree = new GeneralTree<INode>(currentNode);
 
-            bool isRelevantFileFound = false;
-            foreach (FileInfo file in directory.GetFiles().Where(file => this.relevantFileDetector.IsRelevant(file)))
-            {
-                isRelevantFileFound = true;
+          var filesAreFound = this.CollectFiles(directory, rootNode, tree);
 
-                INode node = null;
-                try
-                {
-                    node = this.featureNodeFactory.Create(rootNode.OriginalLocation, file);
-                }
-                catch (Exception)
-                {     
-                    if (log.IsWarnEnabled) log.WarnFormat("The file, {0}, will be ignored because it could not be read in properly", file.FullName);
-                }
+          var directoriesAreFound = this.CollectDirectories(directory, rootNode, tree);
 
-                if (node != null) tree.Add(node);
-            }
+          if (!filesAreFound && !directoriesAreFound) return null;
 
-            bool isRelevantDirectoryFound = false;
-            foreach (DirectoryInfo subDirectory in directory.GetDirectories())
-            {
-                GeneralTree<INode> subTree = this.Crawl(subDirectory, rootNode);
-                if (subTree != null)
-                {
-                    isRelevantDirectoryFound = true;
-                    tree.Add(subTree);
-                }
-            }
-
-            if (!isRelevantFileFound && !isRelevantDirectoryFound) return null;
-
-            return tree;
+          return tree;
         }
+
+      private bool CollectDirectories(DirectoryInfo directory, INode rootNode, GeneralTree<INode> tree)
+      {
+        bool directoriesAreFound = false;
+        foreach (DirectoryInfo subDirectory in directory.GetDirectories())
+        {
+          GeneralTree<INode> subTree = this.Crawl(subDirectory, rootNode);
+          if (subTree != null)
+          {
+            directoriesAreFound = true;
+            tree.Add(subTree);
+          }
+        }
+        return directoriesAreFound;
+      }
+
+      private bool CollectFiles(DirectoryInfo directory, INode rootNode, GeneralTree<INode> tree)
+      {
+        List<INode> collectedNodes = new List<INode>();
+
+        foreach (FileInfo file in directory.GetFiles().Where(file => this.relevantFileDetector.IsRelevant(file)))
+        {
+          INode node = null;
+          try
+          {
+            node = this.featureNodeFactory.Create(rootNode.OriginalLocation, file);
+          }
+          catch (Exception)
+          {
+            if (log.IsWarnEnabled)
+            {
+              log.WarnFormat("The file, {0}, will be ignored because it could not be read in properly", file.FullName);
+            }
+          }
+
+          if (node != null)
+          {
+            collectedNodes.Add(node);
+          }
+        }
+
+        foreach (var node in collectedNodes)
+        {
+          tree.Add(node);
+        }
+
+        return collectedNodes.Count > 0;
+      }
     }
 }
