@@ -50,7 +50,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         #region IDocumentationBuilder Members
 
-        public void Build(GeneralTree<IDirectoryTreeNode> features)
+        public void Build(GeneralTree<INode> features)
         {
             if (log.IsInfoEnabled)
             {
@@ -60,7 +60,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             this.htmlResourceWriter.WriteTo(this.configuration.OutputFolder.FullName);
 
 
-            var actionVisitor = new ActionVisitor<IDirectoryTreeNode>(node =>
+            var actionVisitor = new ActionVisitor<INode>(node =>
                                                                           {
                                                                               if (node.IsIndexMarkDownNode())
                                                                               {

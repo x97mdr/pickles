@@ -17,7 +17,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var configuration = Container.Resolve<Configuration>();
             configuration.FeatureFolder = new DirectoryInfo(@"c:\features");
-            var featureNode = new FeatureDirectoryTreeNode(new FileInfo(@"c:\features\path\to\the_feature.feature"),
+            var featureNode = new FeatureNode(new FileInfo(@"c:\features\path\to\the_feature.feature"),
                                                            @"features\path\to\the_feature.feature",
                                                            new Feature {Name = "The Feature"});
 
@@ -32,7 +32,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var configuration = Container.Resolve<Configuration>();
             configuration.FeatureFolder = new DirectoryInfo(@"c:\features");
-            var featureNode = new FeatureDirectoryTreeNode(new FileInfo(@"c:\features\the_feature.feature"),
+            var featureNode = new FeatureNode(new FileInfo(@"c:\features\the_feature.feature"),
                                                            @"features\the_feature.feature",
                                                            new Feature {Name = "The Feature"});
 

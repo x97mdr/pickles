@@ -37,7 +37,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
           this.imageResultFormatter = imageResultFormatter;
         }
 
-        private XElement BuildListItems(XNamespace xmlns, Uri file, GeneralTree<IDirectoryTreeNode> features)
+        private XElement BuildListItems(XNamespace xmlns, Uri file, GeneralTree<INode> features)
           {
               var ul = new XElement(xmlns + "ul", new XAttribute("class", "features"));
 
@@ -61,7 +61,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
               return ul;
           }
 
-        private XElement AddNodeForDirectory(XNamespace xmlns, Uri file, GeneralTree<IDirectoryTreeNode> childNode)
+        private XElement AddNodeForDirectory(XNamespace xmlns, Uri file, GeneralTree<INode> childNode)
         {
             var xElement = new XElement(
                 xmlns + "li",
@@ -116,7 +116,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             return false;
         }
 
-        private XElement AddNodeForFile(XNamespace xmlns, Uri file, GeneralTree<IDirectoryTreeNode> childNode)
+        private XElement AddNodeForFile(XNamespace xmlns, Uri file, GeneralTree<INode> childNode)
         {
             var xElement = new XElement(xmlns + "li", new XAttribute("class", "file"));
 
@@ -131,7 +131,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                                           nodeText));
             }
 
-          var featureNode = childNode.Data as FeatureDirectoryTreeNode;
+          var featureNode = childNode.Data as FeatureNode;
           if (featureNode != null && this.imageResultFormatter != null)
           {
             Feature feature = featureNode.Feature;
@@ -155,7 +155,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                                 new XText("«"));
         }
 
-        public XElement Format(Uri file, GeneralTree<IDirectoryTreeNode> features, DirectoryInfo outputFolder)
+        public XElement Format(Uri file, GeneralTree<INode> features, DirectoryInfo outputFolder)
         {
             XNamespace xmlns = HtmlNamespace.Xhtml;
 

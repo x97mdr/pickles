@@ -14,57 +14,57 @@ namespace PicklesDoc.Pickles.Test
         public void Then_can_crawl_all_folders_including_subfolders_for_features_successfully()
         {
             string rootPath = @"FakeFolderStructures\FeatureCrawlerTests";
-            GeneralTree<IDirectoryTreeNode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(rootPath);
+            GeneralTree<INode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(rootPath);
 
             Assert.NotNull(features);
 
-            IDirectoryTreeNode indexMd = features.ChildNodes[0].Data;
+            INode indexMd = features.ChildNodes[0].Data;
             indexMd.ShouldNotBeNull();
             indexMd.Name.ShouldEqual("This is an index written in Markdown");
             indexMd.RelativePathFromRoot.ShouldEqual("index.md");
-            indexMd.ShouldBeType<MarkdownTreeNode>();
+            indexMd.ShouldBeType<MarkdownNode>();
 
-            IDirectoryTreeNode levelOneFeature = features.ChildNodes[1].Data;
+            INode levelOneFeature = features.ChildNodes[1].Data;
             levelOneFeature.ShouldNotBeNull();
             levelOneFeature.Name.ShouldEqual("Addition");
             levelOneFeature.RelativePathFromRoot.ShouldEqual("LevelOne.feature");
-            levelOneFeature.ShouldBeType<FeatureDirectoryTreeNode>();
+            levelOneFeature.ShouldBeType<FeatureNode>();
 
-            IDirectoryTreeNode subLevelOneDirectory = features.ChildNodes[2].Data;
+            INode subLevelOneDirectory = features.ChildNodes[2].Data;
             subLevelOneDirectory.ShouldNotBeNull();
             subLevelOneDirectory.Name.ShouldEqual("Sub Level One");
             subLevelOneDirectory.RelativePathFromRoot.ShouldEqual(@"SubLevelOne\");
-            subLevelOneDirectory.ShouldBeType<FolderDirectoryTreeNode>();
+            subLevelOneDirectory.ShouldBeType<FolderNode>();
 
-            GeneralTree<IDirectoryTreeNode> subLevelOneNode = features.ChildNodes[2];
+            GeneralTree<INode> subLevelOneNode = features.ChildNodes[2];
             subLevelOneNode.ChildNodes.Count.ShouldEqual(3);
 
-            IDirectoryTreeNode levelOneSublevelOneFeature = subLevelOneNode.ChildNodes[0].Data;
+            INode levelOneSublevelOneFeature = subLevelOneNode.ChildNodes[0].Data;
             levelOneSublevelOneFeature.ShouldNotBeNull();
             levelOneSublevelOneFeature.Name.ShouldEqual("Addition");
             levelOneSublevelOneFeature.RelativePathFromRoot.ShouldEqual(@"SubLevelOne\LevelOneSublevelOne.feature");
-            levelOneSublevelOneFeature.ShouldBeType<FeatureDirectoryTreeNode>();
+            levelOneSublevelOneFeature.ShouldBeType<FeatureNode>();
 
-            IDirectoryTreeNode levelOneSublevelTwoFeature = subLevelOneNode.ChildNodes[1].Data;
+            INode levelOneSublevelTwoFeature = subLevelOneNode.ChildNodes[1].Data;
             levelOneSublevelTwoFeature.ShouldNotBeNull();
             levelOneSublevelTwoFeature.Name.ShouldEqual("Addition");
             levelOneSublevelTwoFeature.RelativePathFromRoot.ShouldEqual(@"SubLevelOne\LevelOneSublevelTwo.feature");
-            levelOneSublevelTwoFeature.ShouldBeType<FeatureDirectoryTreeNode>();
+            levelOneSublevelTwoFeature.ShouldBeType<FeatureNode>();
 
-            GeneralTree<IDirectoryTreeNode> subLevelTwoNode = subLevelOneNode.ChildNodes[2];
+            GeneralTree<INode> subLevelTwoNode = subLevelOneNode.ChildNodes[2];
             subLevelTwoNode.ChildNodes.Count.ShouldEqual(1);
 
-            IDirectoryTreeNode subLevelTwoDirectory = subLevelOneNode.ChildNodes[2].Data;
+            INode subLevelTwoDirectory = subLevelOneNode.ChildNodes[2].Data;
             subLevelTwoDirectory.ShouldNotBeNull();
             subLevelTwoDirectory.Name.ShouldEqual("Sub Level Two");
             subLevelTwoDirectory.RelativePathFromRoot.ShouldEqual(@"SubLevelOne\SubLevelTwo\");
-            subLevelTwoDirectory.ShouldBeType<FolderDirectoryTreeNode>();
+            subLevelTwoDirectory.ShouldBeType<FolderNode>();
 
-            IDirectoryTreeNode levelOneSublevelOneSubLevelTwoDirectory = subLevelOneNode.ChildNodes[2].ChildNodes[0].Data;
+            INode levelOneSublevelOneSubLevelTwoDirectory = subLevelOneNode.ChildNodes[2].ChildNodes[0].Data;
             levelOneSublevelOneSubLevelTwoDirectory.ShouldNotBeNull();
             levelOneSublevelOneSubLevelTwoDirectory.Name.ShouldEqual("Addition");
             levelOneSublevelOneSubLevelTwoDirectory.RelativePathFromRoot.ShouldEqual(@"SubLevelOne\SubLevelTwo\LevelOneSublevelOneSubLevelTwo.feature");
-            levelOneSublevelOneSubLevelTwoDirectory.ShouldBeType<FeatureDirectoryTreeNode>();
+            levelOneSublevelOneSubLevelTwoDirectory.ShouldBeType<FeatureNode>();
         }
     }
 }

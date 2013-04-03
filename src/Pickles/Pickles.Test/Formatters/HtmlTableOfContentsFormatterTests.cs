@@ -21,7 +21,7 @@ namespace PicklesDoc.Pickles.Test.Formatters
         [TestFixtureSetUp]
         public void Setup()
         {
-            GeneralTree<IDirectoryTreeNode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
+            GeneralTree<INode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
 
             var formatter = new HtmlTableOfContentsFormatter(null);
             this._toc = formatter.Format(features.ChildNodes[0].Data.OriginalLocationUrl, features,

@@ -14,7 +14,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         private const string ROOT_PATH = @"FakeFolderStructures\AcceptanceTest";
         private const string FEATURE_PATH = @"AdvancedFeature.feature";
 
-        private FeatureDirectoryTreeNode _featureDirectoryNode;
+        private FeatureNode _featureDirectoryNode;
         private FileInfo _featureFileInfo;
         private FeatureWithMetaInfo _featureWithMeta;
         private Feature _testFeature;
@@ -24,7 +24,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         {
             this._testFeature = new Feature {Name = "Test"};
             this._featureFileInfo = new FileInfo(Path.Combine(ROOT_PATH, FEATURE_PATH));
-            this._featureDirectoryNode = new FeatureDirectoryTreeNode(this._featureFileInfo, RELATIVE_PATH, this._testFeature);
+            this._featureDirectoryNode = new FeatureNode(this._featureFileInfo, RELATIVE_PATH, this._testFeature);
 
             this._featureWithMeta = new FeatureWithMetaInfo(this._featureDirectoryNode);
         }

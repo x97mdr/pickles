@@ -53,7 +53,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
         #region IDocumentationBuilder Members
 
-        public void Build(GeneralTree<IDirectoryTreeNode> features)
+        public void Build(GeneralTree<INode> features)
         {
             string filename = string.IsNullOrEmpty(this.configuration.SystemUnderTestName)
                                   ? "features.docx"
@@ -78,10 +78,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
                 var body = new Body();
                 document.Append(body);
 
-                var actionVisitor = new ActionVisitor<IDirectoryTreeNode>(node =>
+                var actionVisitor = new ActionVisitor<INode>(node =>
                                                                               {
                                                                                   var featureDirectoryTreeNode =
-                                                                                      node as FeatureDirectoryTreeNode;
+                                                                                      node as FeatureNode;
                                                                                   if (featureDirectoryTreeNode != null)
                                                                                   {
                                                                                       this.wordFeatureFormatter.Format(body,

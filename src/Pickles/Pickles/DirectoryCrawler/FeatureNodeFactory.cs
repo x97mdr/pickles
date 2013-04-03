@@ -41,14 +41,14 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
             this.htmlMarkdownFormatter = htmlMarkdownFormatter;
         }
 
-        public IDirectoryTreeNode Create(FileSystemInfo root, FileSystemInfo location)
+        public INode Create(FileSystemInfo root, FileSystemInfo location)
         {
             string relativePathFromRoot = root == null ? @".\" : PathExtensions.MakeRelativePath(root, location);
 
             var directory = location as DirectoryInfo;
             if (directory != null)
             {
-                return new FolderDirectoryTreeNode(directory, relativePathFromRoot);
+                return new FolderNode(directory, relativePathFromRoot);
             }
 
             var file = location as FileInfo;
@@ -57,7 +57,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
                 Feature feature = this.featureParser.Parse(file.FullName);
                 if (feature != null)
                 {
-                    return new FeatureDirectoryTreeNode(file, relativePathFromRoot, feature);
+                    return new FeatureNode(file, relativePathFromRoot, feature);
                 }
 
                 throw new InvalidOperationException("This feature file could not be read and will be excluded");
@@ -65,7 +65,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
             else if (this.relevantFileDetector.IsMarkdownFile(file))
             {
                 XElement markdownContent = this.htmlMarkdownFormatter.Format(File.ReadAllText(file.FullName));
-                return new MarkdownTreeNode(file, relativePathFromRoot, markdownContent);
+                return new MarkdownNode(file, relativePathFromRoot, markdownContent);
             }
 
             throw new InvalidOperationException("Cannot create an IItemNode-derived object for " + file.FullName);

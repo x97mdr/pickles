@@ -13,7 +13,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         {
             var directoryInfo = new DirectoryInfo(@"c:\temp");
 
-            var node = new FolderDirectoryTreeNode(directoryInfo, "");
+            var node = new FolderNode(directoryInfo, "");
 
             Assert.AreEqual(@"c:\temp", node.OriginalLocation.FullName);
         }
@@ -23,7 +23,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         {
             var directoryInfo = new DirectoryInfo(@"c:\temp");
 
-            var node = new FolderDirectoryTreeNode(directoryInfo, "");
+            var node = new FolderNode(directoryInfo, "");
 
             Assert.AreEqual(@"file:///c:/temp/", node.OriginalLocationUrl.ToString());
         }
@@ -33,7 +33,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         {
             var directoryInfo = new DirectoryInfo(@"c:\temp");
 
-            var node = new FolderDirectoryTreeNode(directoryInfo, "../");
+            var node = new FolderNode(directoryInfo, "../");
 
             Assert.AreEqual(@"../", node.RelativePathFromRoot);
         }
@@ -43,7 +43,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         {
             var directoryInfo = new DirectoryInfo(@"c:\temp");
 
-            var node = new FolderDirectoryTreeNode(directoryInfo, "../");
+            var node = new FolderNode(directoryInfo, "../");
 
             string relative = node.GetRelativeUriTo(new Uri(@"file:///c:/temp/child/"));
 
@@ -55,7 +55,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         {
             var directoryInfo = new DirectoryInfo(@"c:\temp");
 
-            var node = new FolderDirectoryTreeNode(directoryInfo, "../");
+            var node = new FolderNode(directoryInfo, "../");
 
             string relative = node.GetRelativeUriTo(new Uri(@"file:///c:/temp/test2.html"));
 
@@ -67,7 +67,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         {
             var directoryInfo = new DirectoryInfo(@"c:\temp");
 
-            var node = new FolderDirectoryTreeNode(directoryInfo, "../");
+            var node = new FolderNode(directoryInfo, "../");
 
             string relative = node.GetRelativeUriTo(new Uri(@"file:///c:/temp2/test2.html"));
 
@@ -79,7 +79,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         {
             var directoryInfo = new DirectoryInfo(@"c:\temp\child");
 
-            var node = new FolderDirectoryTreeNode(directoryInfo, "../");
+            var node = new FolderNode(directoryInfo, "../");
 
             string relative = node.GetRelativeUriTo(new Uri(@"file:///c:/temp/"));
 
@@ -91,7 +91,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         {
             var fileInfo = new FileInfo(@"c:\temp\test1.html");
 
-            var node = new FolderDirectoryTreeNode(fileInfo, "../");
+            var node = new FolderNode(fileInfo, "../");
 
             string relative = node.GetRelativeUriTo(new Uri(@"file:///c:/temp/"));
 
@@ -103,7 +103,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         {
             var fileInfo = new FileInfo(@"c:\temp\test1.html");
 
-            var node = new FolderDirectoryTreeNode(fileInfo, "../");
+            var node = new FolderNode(fileInfo, "../");
 
             string relative = node.GetRelativeUriTo(new Uri(@"file:///c:/temp/test2.html"));
 
@@ -117,7 +117,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
                 new DirectoryInfo(
                     @"C:\tfs\Dev.CAX\src\CAX_Main\src\net\Projects\Aim.Gain.GoldenCopy.FunctionalTesting\CAX\DistributionOfRights");
 
-            var node = new FolderDirectoryTreeNode(originalLocation, "");
+            var node = new FolderNode(originalLocation, "");
 
             var other =
                 new Uri(

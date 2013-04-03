@@ -34,13 +34,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DITA
             this.configuration = configuration;
         }
 
-        public Uri GeneratePathToFeature(IDirectoryTreeNode directoryTreeNode)
+        public Uri GeneratePathToFeature(INode node)
         {
-            var fileInfo = directoryTreeNode.OriginalLocation as FileInfo;
+            var fileInfo = node.OriginalLocation as FileInfo;
             if (fileInfo != null)
             {
                 string nodeFilename =
-                    directoryTreeNode.OriginalLocation.Name.Replace(directoryTreeNode.OriginalLocation.Extension,
+                    node.OriginalLocation.Name.Replace(node.OriginalLocation.Extension,
                                                                     string.Empty);
                 string nodeDitaName = nodeFilename.ToDitaName() + ".dita";
                 Uri newUri = fileInfo.Directory.ToFileUriCombined(nodeDitaName);

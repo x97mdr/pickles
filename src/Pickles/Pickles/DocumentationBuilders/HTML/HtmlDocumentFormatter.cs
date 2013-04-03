@@ -54,7 +54,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             this.htmlResources = htmlResources;
         }
 
-        public XDocument Format(IDirectoryTreeNode featureNode, GeneralTree<IDirectoryTreeNode> features,
+        public XDocument Format(INode featureNode, GeneralTree<INode> features,
                                 DirectoryInfo rootFolder)
         {
             XNamespace xmlns = HtmlNamespace.Xhtml;

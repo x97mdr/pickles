@@ -20,29 +20,40 @@
 
 using System;
 using System.IO;
-using System.Linq;
-using System.Xml.Linq;
 using PicklesDoc.Pickles.Extensions;
 
 namespace PicklesDoc.Pickles.DirectoryCrawler
 {
-    public class MarkdownTreeNode : IDirectoryTreeNode
+    public class FolderNode : INode
     {
-        public MarkdownTreeNode(FileSystemInfo location, string relativePathFromRoot, XElement markdownContent)
+        public FolderNode(FileSystemInfo location, string relativePathFromRoot)
         {
             this.OriginalLocation = location;
             this.OriginalLocationUrl = location.ToUri();
             this.RelativePathFromRoot = relativePathFromRoot;
-            this.MarkdownContent = markdownContent;
         }
 
-        public XElement MarkdownContent { get; private set; }
-
-        #region IDirectoryTreeNode Members
+        #region INode Members
 
         public string GetRelativeUriTo(Uri other, string newExtension)
         {
-            return other.GetUriForTargetRelativeToMe(this.OriginalLocation, newExtension);
+            bool areSameLocation = this.OriginalLocation.FullName == other.LocalPath;
+
+            if (areSameLocation)
+            {
+                return "#";
+            }
+
+            string result = other.MakeRelativeUri(this.OriginalLocationUrl).ToString();
+
+            string oldExtension = this.OriginalLocation.Extension;
+
+            if (!string.IsNullOrEmpty(oldExtension))
+            {
+                result = result.Replace(oldExtension, newExtension);
+            }
+
+            return result;
         }
 
         public string GetRelativeUriTo(Uri other)
@@ -52,19 +63,12 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
 
         public bool IsContent
         {
-            get { return true; }
+            get { return false; }
         }
 
         public string Name
         {
-            get
-            {
-                XElement headerElement =
-                    this.MarkdownContent.Descendants().FirstOrDefault(element => element.Name.LocalName == "h1");
-                return headerElement != null
-                           ? headerElement.Value
-                           : this.OriginalLocation.Name.Replace(this.OriginalLocation.Extension, string.Empty).ExpandWikiWord();
-            }
+            get { return this.OriginalLocation.Name.ExpandWikiWord(); }
         }
 
         public FileSystemInfo OriginalLocation { get; private set; }

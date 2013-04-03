@@ -42,7 +42,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
 
         #region IDocumentationBuilder Members
 
-        public void Build(GeneralTree<IDirectoryTreeNode> features)
+        public void Build(GeneralTree<INode> features)
         {
             if (log.IsInfoEnabled)
             {
@@ -68,7 +68,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
 
         }
 
-        private void UtilizeJsonBuilderToDumpJsonFeatureFileNextToDthmlResources(GeneralTree<IDirectoryTreeNode> features)
+        private void UtilizeJsonBuilderToDumpJsonFeatureFileNextToDthmlResources(GeneralTree<INode> features)
         {
             var jsonBuilder = new JSONDocumentationBuilder(configuration, testResults);
             jsonBuilder.Build(features);

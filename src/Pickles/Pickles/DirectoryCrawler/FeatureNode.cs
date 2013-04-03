@@ -25,9 +25,9 @@ using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.DirectoryCrawler
 {
-    public class FeatureDirectoryTreeNode : IDirectoryTreeNode
+    public class FeatureNode : INode
     {
-        public FeatureDirectoryTreeNode(FileSystemInfo location, string relativePathFromRoot, Feature feature)
+        public FeatureNode(FileSystemInfo location, string relativePathFromRoot, Feature feature)
         {
             this.OriginalLocation = location;
             this.OriginalLocationUrl = location.ToUri();
@@ -37,7 +37,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
 
         public Feature Feature { get; set; }
 
-        #region IDirectoryTreeNode Members
+        #region INode Members
 
         public string GetRelativeUriTo(Uri other, string newExtension)
         {

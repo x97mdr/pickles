@@ -51,9 +51,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             this.nunitResults = nunitResults;
         }
 
-        public void Format(Body body, FeatureDirectoryTreeNode featureDirectoryTreeNode)
+        public void Format(Body body, FeatureNode featureNode)
         {
-            Feature feature = featureDirectoryTreeNode.Feature;
+            Feature feature = featureNode.Feature;
 
             body.InsertPageBreak();
 

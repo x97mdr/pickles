@@ -41,9 +41,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             this.htmlImageRelocator = htmlImageRelocator;
         }
 
-        public XElement Format(IDirectoryTreeNode contentNode, IEnumerable<IDirectoryTreeNode> features)
+        public XElement Format(INode contentNode, IEnumerable<INode> features)
         {
-            var featureItemNode = contentNode as FeatureDirectoryTreeNode;
+            var featureItemNode = contentNode as FeatureNode;
             if (featureItemNode != null)
             {
                 var formattedContent = this.htmlFeatureFormatter.Format(featureItemNode.Feature);
@@ -51,13 +51,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                 return formattedContent;
             }
 
-            var indexItemNode = contentNode as FolderDirectoryTreeNode;
+            var indexItemNode = contentNode as FolderNode;
             if (indexItemNode != null)
             {
                 return this.htmlIndexFormatter.Format(indexItemNode, features);
             }
 
-            var markdownItemNode = contentNode as MarkdownTreeNode;
+            var markdownItemNode = contentNode as MarkdownNode;
             if (markdownItemNode != null)
             {
                 this.htmlImageRelocator.Relocate(contentNode, markdownItemNode.MarkdownContent);

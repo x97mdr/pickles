@@ -43,15 +43,15 @@ namespace PicklesDoc.Pickles.Test.Formatters
         {
             var fakeHtmlFeatureFormatter = new Mock<IHtmlFeatureFormatter>();
             var fakeHtmlImageRelocator = new Mock<HtmlImageRelocator>(null);
-            fakeHtmlImageRelocator.Setup(x => x.Relocate(It.IsAny<IDirectoryTreeNode>(), It.IsAny<XElement>()));
+            fakeHtmlImageRelocator.Setup(x => x.Relocate(It.IsAny<INode>(), It.IsAny<XElement>()));
             var formatter = new HtmlContentFormatter(fakeHtmlFeatureFormatter.Object, Container.Resolve<HtmlIndexFormatter>(), fakeHtmlImageRelocator.Object);
 
-            var featureNode = new FeatureDirectoryTreeNode(
+            var featureNode = new FeatureNode(
                 new FileInfo(@"c:\temp\test.feature"),
                 ".",
                 new Feature());
 
-            formatter.Format(featureNode, new IDirectoryTreeNode[0]);
+            formatter.Format(featureNode, new INode[0]);
 
             fakeHtmlFeatureFormatter.Verify(f => f.Format(featureNode.Feature));
         }

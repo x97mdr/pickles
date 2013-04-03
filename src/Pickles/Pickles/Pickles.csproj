@@ -180,7 +180,7 @@
     <Compile Include="CommandLineArgumentParser.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="ConfigurationReporter.cs" />
-    <Compile Include="DirectoryCrawler\FolderDirectoryTreeNode.cs" />
+    <Compile Include="DirectoryCrawler\FolderNode.cs" />
     <Compile Include="DocumentationBuilders\DHTML\DhtmlDocumentationBuilder.cs" />
     <Compile Include="DocumentationBuilders\DHTML\DhtmlResourceSet.cs" />
     <Compile Include="DocumentationBuilders\DHTML\DhtmlResourceProcessor.cs" />
@@ -246,10 +246,10 @@
     <Compile Include="Extensions\NamespaceExtensions.cs" />
     <Compile Include="Extensions\PathExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="DirectoryCrawler\FeatureDirectoryTreeNode.cs" />
+    <Compile Include="DirectoryCrawler\FeatureNode.cs" />
     <Compile Include="DirectoryCrawler\FeatureNodeFactory.cs" />
-    <Compile Include="DirectoryCrawler\IDirectoryTreeNode.cs" />
-    <Compile Include="DirectoryCrawler\MarkdownTreeNode.cs" />
+    <Compile Include="DirectoryCrawler\INode.cs" />
+    <Compile Include="DirectoryCrawler\MarkdownNode.cs" />
     <Compile Include="Extensions\TreeNodeExtensions.cs" />
     <Compile Include="Extensions\UriExtensions.cs" />
     <Compile Include="FeatureParseException.cs" />

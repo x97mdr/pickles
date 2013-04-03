@@ -37,7 +37,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DITA
             this.ditaMapPathGenerator = ditaMapPathGenerator;
         }
 
-        private XElement BuildListItems(GeneralTree<IDirectoryTreeNode> features)
+        private XElement BuildListItems(GeneralTree<INode> features)
         {
             XElement container;
             if (features.Data.IsContent)
@@ -68,7 +68,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DITA
             return container;
         }
 
-        public void Build(GeneralTree<IDirectoryTreeNode> features)
+        public void Build(GeneralTree<INode> features)
         {
             var map = new XElement("map", new XAttribute("title", "Features"), new XAttribute("id", "features"),
                                    this.BuildListItems(features));

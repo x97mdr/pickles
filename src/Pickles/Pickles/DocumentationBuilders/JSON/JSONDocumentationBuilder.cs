@@ -55,7 +55,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
 
         #region IDocumentationBuilder Members
 
-        public void Build(GeneralTree<IDirectoryTreeNode> features)
+        public void Build(GeneralTree<INode> features)
         {
             if (log.IsInfoEnabled)
             {
@@ -64,10 +64,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
 
             var featuresToFormat = new List<FeatureWithMetaInfo>();
 
-            var actionVisitor = new ActionVisitor<IDirectoryTreeNode>(node =>
+            var actionVisitor = new ActionVisitor<INode>(node =>
                                                                           {
                                                                               var featureTreeNode =
-                                                                                  node as FeatureDirectoryTreeNode;
+                                                                                  node as FeatureNode;
                                                                               if (featureTreeNode != null)
                                                                               {
                                                                                   if (this.configuration.HasTestResults)

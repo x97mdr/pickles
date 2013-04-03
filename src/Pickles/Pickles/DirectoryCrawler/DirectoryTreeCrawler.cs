@@ -40,19 +40,19 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
             this.featureNodeFactory = featureNodeFactory;
         }
 
-        public GeneralTree<IDirectoryTreeNode> Crawl(string directory)
+        public GeneralTree<INode> Crawl(string directory)
         {
             return this.Crawl(new DirectoryInfo(directory), null);
         }
 
-        public GeneralTree<IDirectoryTreeNode> Crawl(DirectoryInfo directory)
+        public GeneralTree<INode> Crawl(DirectoryInfo directory)
         {
             return this.Crawl(directory, null);
         }
 
-        private GeneralTree<IDirectoryTreeNode> Crawl(DirectoryInfo directory, IDirectoryTreeNode rootNode)
+        private GeneralTree<INode> Crawl(DirectoryInfo directory, INode rootNode)
         {
-            IDirectoryTreeNode currentNode =
+            INode currentNode =
                 this.featureNodeFactory.Create(rootNode != null ? rootNode.OriginalLocation : null, directory);
 
             if (rootNode == null)
@@ -60,14 +60,14 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
                 rootNode = currentNode;
             }
 
-            var tree = new GeneralTree<IDirectoryTreeNode>(currentNode);
+            var tree = new GeneralTree<INode>(currentNode);
 
             bool isRelevantFileFound = false;
             foreach (FileInfo file in directory.GetFiles().Where(file => this.relevantFileDetector.IsRelevant(file)))
             {
                 isRelevantFileFound = true;
 
-                IDirectoryTreeNode node = null;
+                INode node = null;
                 try
                 {
                     node = this.featureNodeFactory.Create(rootNode.OriginalLocation, file);
@@ -83,7 +83,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
             bool isRelevantDirectoryFound = false;
             foreach (DirectoryInfo subDirectory in directory.GetDirectories())
             {
-                GeneralTree<IDirectoryTreeNode> subTree = this.Crawl(subDirectory, rootNode);
+                GeneralTree<INode> subTree = this.Crawl(subDirectory, rootNode);
                 if (subTree != null)
                 {
                     isRelevantDirectoryFound = true;

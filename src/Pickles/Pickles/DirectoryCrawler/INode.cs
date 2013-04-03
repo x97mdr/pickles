@@ -23,14 +23,20 @@ using System.IO;
 
 namespace PicklesDoc.Pickles.DirectoryCrawler
 {
-    public interface IDirectoryTreeNode
+    public interface INode
     {
         bool IsContent { get; }
+
         string Name { get; }
+
         FileSystemInfo OriginalLocation { get; }
+
         Uri OriginalLocationUrl { get; }
+
         string RelativePathFromRoot { get; }
+
         string GetRelativeUriTo(Uri other);
+
         string GetRelativeUriTo(Uri other, string newExtension);
     }
 }

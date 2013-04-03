@@ -47,7 +47,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DITA
             this.nunitResults = nunitResults;
         }
 
-        public void Format(FeatureDirectoryTreeNode featureNode)
+        public void Format(FeatureNode featureNode)
         {
             Feature feature = featureNode.Feature;
 

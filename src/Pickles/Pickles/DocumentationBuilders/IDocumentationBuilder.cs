@@ -26,6 +26,6 @@ namespace PicklesDoc.Pickles.DocumentationBuilders
 {
     public interface IDocumentationBuilder
     {
-        void Build(GeneralTree<IDirectoryTreeNode> features);
+        void Build(GeneralTree<INode> features);
     }
 }

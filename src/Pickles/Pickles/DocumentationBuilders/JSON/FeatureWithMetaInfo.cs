@@ -7,13 +7,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
 {
     public class FeatureWithMetaInfo
     {
-        public FeatureWithMetaInfo(FeatureDirectoryTreeNode featureNodeTreeNode)
+        public FeatureWithMetaInfo(FeatureNode featureNodeTreeNode)
         {
             this.Feature = featureNodeTreeNode.Feature;
             this.RelativeFolder = featureNodeTreeNode.RelativePathFromRoot;
         }
 
-        public FeatureWithMetaInfo(FeatureDirectoryTreeNode featureNodeTreeNode, TestResult result)
+        public FeatureWithMetaInfo(FeatureNode featureNodeTreeNode, TestResult result)
             : this(featureNodeTreeNode)
         {
             this.Result = result;

@@ -36,7 +36,7 @@ namespace PicklesDoc.Pickles
             if (!configuration.OutputFolder.Exists) configuration.OutputFolder.Create();
 
             var featureCrawler = container.Resolve<DirectoryTreeCrawler>();
-            GeneralTree<IDirectoryTreeNode> features = featureCrawler.Crawl(configuration.FeatureFolder);
+            GeneralTree<INode> features = featureCrawler.Crawl(configuration.FeatureFolder);
 
             ApplyTestResultsToFeatures(container, configuration, features);
 
@@ -44,13 +44,13 @@ namespace PicklesDoc.Pickles
             documentationBuilder.Build(features);
         }
 
-        private static void ApplyTestResultsToFeatures(IContainer container, Configuration configuration, GeneralTree<IDirectoryTreeNode> features)
+        private static void ApplyTestResultsToFeatures(IContainer container, Configuration configuration, GeneralTree<INode> features)
         {
             var testResults = container.Resolve<ITestResults>();
 
-            var actionVisitor = new ActionVisitor<IDirectoryTreeNode>(node =>
+            var actionVisitor = new ActionVisitor<INode>(node =>
                 {
-                    var featureTreeNode = node as FeatureDirectoryTreeNode;
+                    var featureTreeNode = node as FeatureNode;
                     if (featureTreeNode == null) return;
                     if (configuration.HasTestResults)
                     {
@@ -66,7 +66,7 @@ namespace PicklesDoc.Pickles
             features.AcceptVisitor(actionVisitor);
         }
 
-        private static void SetResultsForIndividualScenariosUnderFeature(FeatureDirectoryTreeNode featureTreeNode, ITestResults testResults)
+        private static void SetResultsForIndividualScenariosUnderFeature(FeatureNode featureTreeNode, ITestResults testResults)
         {
             foreach (var scenario in featureTreeNode.Feature.FeatureElements)
             {
@@ -76,7 +76,7 @@ namespace PicklesDoc.Pickles
             }
         }
 
-        private static void SetResultsAtFeatureLevel(FeatureDirectoryTreeNode featureTreeNode, ITestResults testResults)
+        private static void SetResultsAtFeatureLevel(FeatureNode featureTreeNode, ITestResults testResults)
         {
             featureTreeNode.Feature.Result = testResults.GetFeatureResult(featureTreeNode.Feature);
         }

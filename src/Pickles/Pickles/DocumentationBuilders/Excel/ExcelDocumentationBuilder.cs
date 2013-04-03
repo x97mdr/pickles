@@ -53,7 +53,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 
         #region IDocumentationBuilder Members
 
-        public void Build(GeneralTree<IDirectoryTreeNode> features)
+        public void Build(GeneralTree<INode> features)
         {
             if (log.IsInfoEnabled)
             {
@@ -63,10 +63,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
             string spreadsheetPath = Path.Combine(this.configuration.OutputFolder.FullName, "features.xlsx");
             using (var workbook = new XLWorkbook())
             {
-                var actionVisitor = new ActionVisitor<IDirectoryTreeNode>(node =>
+                var actionVisitor = new ActionVisitor<INode>(node =>
                                                                               {
                                                                                   var featureDirectoryTreeNode =
-                                                                                      node as FeatureDirectoryTreeNode;
+                                                                                      node as FeatureNode;
                                                                                   if (featureDirectoryTreeNode != null)
                                                                                   {
                                                                                       IXLWorksheet worksheet =

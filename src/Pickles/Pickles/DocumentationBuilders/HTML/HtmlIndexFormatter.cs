@@ -32,7 +32,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
     {
         private readonly XNamespace xmlns = HtmlNamespace.Xhtml;
 
-        public XElement Format(IDirectoryTreeNode node, IEnumerable<IDirectoryTreeNode> features)
+        public XElement Format(INode node, IEnumerable<INode> features)
         {
             /*
        <div id="feature">
@@ -53,7 +53,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
             string[] files = directoryInfo.GetFiles().Select(f => f.FullName).ToArray();
 
-            IDirectoryTreeNode[] featuresThatAreDirectChildrenOfFolder =
+            INode[] featuresThatAreDirectChildrenOfFolder =
                 features.Where(f => f.OriginalLocation is FileInfo).Where(
                     f => files.Contains(f.OriginalLocation.FullName)).ToArray();
 
@@ -61,24 +61,24 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                                    new XAttribute("id", "feature"),
                                    new XElement(this.xmlns + "h1", node.Name));
 
-            MarkdownTreeNode markdownTreeNode =
-                featuresThatAreDirectChildrenOfFolder.Where(n => n.IsIndexMarkDownNode()).OfType<MarkdownTreeNode>().
+            MarkdownNode markdownNode =
+                featuresThatAreDirectChildrenOfFolder.Where(n => n.IsIndexMarkDownNode()).OfType<MarkdownNode>().
                     FirstOrDefault();
-            if (markdownTreeNode != null)
+            if (markdownNode != null)
             {
                 div.Add(
                     new XElement(
                         this.xmlns + "div",
                         new XAttribute("class", "folderDescription"),
-                        markdownTreeNode.MarkdownContent));
+                        markdownNode.MarkdownContent));
             }
 
-            div.Add(this.FormatList(node, featuresThatAreDirectChildrenOfFolder.OfType<FeatureDirectoryTreeNode>()));
+            div.Add(this.FormatList(node, featuresThatAreDirectChildrenOfFolder.OfType<FeatureNode>()));
 
             return div;
         }
 
-        private XElement FormatList(IDirectoryTreeNode node, IEnumerable<FeatureDirectoryTreeNode> items)
+        private XElement FormatList(INode node, IEnumerable<FeatureNode> items)
         {
             // <ul class="list">...</ul>
 

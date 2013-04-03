@@ -5,9 +5,9 @@ namespace PicklesDoc.Pickles.Extensions
 {
     public static class TreeNodeExtensions
     {
-        public static bool IsIndexMarkDownNode(this IDirectoryTreeNode node)
+        public static bool IsIndexMarkDownNode(this INode node)
         {
-            var markdownItemNode = node as MarkdownTreeNode;
+            var markdownItemNode = node as MarkdownNode;
             if (markdownItemNode != null &&
                 markdownItemNode.OriginalLocation.Name.StartsWith("index", StringComparison.InvariantCultureIgnoreCase))
             {

@@ -41,11 +41,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
         }
 
         public void BuildTableOfContents(XLWorkbook workbook, IXLWorksheet worksheet, ref int row, int column,
-                                         GeneralTree<IDirectoryTreeNode> features)
+                                         GeneralTree<INode> features)
         {
             foreach (var childNode in features.ChildNodes)
             {
-                var featureChildNode = childNode.Data as FeatureDirectoryTreeNode;
+                var featureChildNode = childNode.Data as FeatureNode;
                 if (featureChildNode != null)
                 {
                     var featureWorksheet = FindFirstMatchingA1TitleUsingFeatureName(workbook, featureChildNode);
@@ -59,13 +59,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
             }
         }
 
-        private static IXLWorksheet FindFirstMatchingA1TitleUsingFeatureName(XLWorkbook workbook, FeatureDirectoryTreeNode featureChildNode)
+        private static IXLWorksheet FindFirstMatchingA1TitleUsingFeatureName(XLWorkbook workbook, FeatureNode featureChildNode)
         {
             return workbook.Worksheets.FirstOrDefault(
                 sheet => sheet.Cell("A1").Value.ToString() == featureChildNode.Feature.Name);
         }
 
-        public void Format(XLWorkbook workbook, GeneralTree<IDirectoryTreeNode> features)
+        public void Format(XLWorkbook workbook, GeneralTree<INode> features)
         {
             IXLWorksheet tocWorksheet = workbook.AddWorksheet("TOC", 0);
 

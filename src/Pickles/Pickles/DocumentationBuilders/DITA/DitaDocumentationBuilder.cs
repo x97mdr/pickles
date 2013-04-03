@@ -38,14 +38,14 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DITA
 
         #region IDocumentationBuilder Members
 
-        public void Build(GeneralTree<IDirectoryTreeNode> features)
+        public void Build(GeneralTree<INode> features)
         {
             this.ditaMapBuilder.Build(features);
 
-            var actionVisitor = new ActionVisitor<IDirectoryTreeNode>(node =>
+            var actionVisitor = new ActionVisitor<INode>(node =>
                                                                           {
                                                                               var featureDirectoryTreeNode =
-                                                                                  node as FeatureDirectoryTreeNode;
+                                                                                  node as FeatureNode;
                                                                               if (featureDirectoryTreeNode != null)
                                                                               {
                                                                                   this.ditaFeatureFormatter.Format(

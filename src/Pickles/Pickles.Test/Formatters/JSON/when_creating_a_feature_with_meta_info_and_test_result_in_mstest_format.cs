@@ -29,7 +29,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
                 throw new FileNotFoundException("File " + this.testResultFilePath + " was not found");
             }
 
-            GeneralTree<IDirectoryTreeNode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
+            GeneralTree<INode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
 
             var outputDirectory = new DirectoryInfo(OUTPUT_DIRECTORY);
             if (!outputDirectory.Exists) outputDirectory.Create();
