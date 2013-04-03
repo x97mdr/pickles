@@ -67,24 +67,33 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
 
           var directoriesAreFound = this.CollectDirectories(directory, rootNode, tree);
 
-          if (!filesAreFound && !directoriesAreFound) return null;
+          if (!filesAreFound && !directoriesAreFound)
+          {
+            return null;
+          }
 
           return tree;
         }
 
       private bool CollectDirectories(DirectoryInfo directory, INode rootNode, GeneralTree<INode> tree)
       {
-        bool directoriesAreFound = false;
+        List<GeneralTree<INode>> collectedNodes = new List<GeneralTree<INode>>();
+
         foreach (DirectoryInfo subDirectory in directory.GetDirectories())
         {
           GeneralTree<INode> subTree = this.Crawl(subDirectory, rootNode);
           if (subTree != null)
           {
-            directoriesAreFound = true;
-            tree.Add(subTree);
+            collectedNodes.Add(subTree);
           }
         }
-        return directoriesAreFound;
+
+        foreach (var node in collectedNodes)
+        {
+          tree.Add(node);
+        }
+
+        return collectedNodes.Count > 0;
       }
 
       private bool CollectFiles(DirectoryInfo directory, INode rootNode, GeneralTree<INode> tree)
