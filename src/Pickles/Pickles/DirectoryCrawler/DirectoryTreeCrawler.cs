@@ -30,13 +30,11 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private readonly FeatureNodeFactory featureNodeFactory;
-        private readonly FeatureParser featureParser;
+
         private readonly RelevantFileDetector relevantFileDetector;
 
-        public DirectoryTreeCrawler(FeatureParser featureParser, RelevantFileDetector relevantFileDetector,
-                                    FeatureNodeFactory featureNodeFactory)
+        public DirectoryTreeCrawler(RelevantFileDetector relevantFileDetector, FeatureNodeFactory featureNodeFactory)
         {
-            this.featureParser = featureParser;
             this.relevantFileDetector = relevantFileDetector;
             this.featureNodeFactory = featureNodeFactory;
         }
