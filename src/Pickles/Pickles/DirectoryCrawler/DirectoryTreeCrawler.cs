@@ -79,7 +79,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
       {
         List<GeneralTree<INode>> collectedNodes = new List<GeneralTree<INode>>();
 
-        foreach (DirectoryInfo subDirectory in directory.GetDirectories())
+        foreach (DirectoryInfo subDirectory in directory.GetDirectories().OrderBy(di => di.Name))
         {
           GeneralTree<INode> subTree = this.Crawl(subDirectory, rootNode);
           if (subTree != null)
@@ -121,12 +121,20 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
           }
         }
 
-        foreach (var node in collectedNodes)
+        foreach (var node in OrderFileNodes(collectedNodes))
         {
           tree.Add(node);
         }
 
         return collectedNodes.Count > 0;
+      }
+
+      private static IEnumerable<INode> OrderFileNodes(List<INode> collectedNodes)
+      {
+        var indexFiles = collectedNodes.Where(node => node.OriginalLocation.Name.StartsWith("index", StringComparison.InvariantCultureIgnoreCase));
+        var otherFiles = collectedNodes.Except(indexFiles);
+
+        return indexFiles.OrderBy(node => node.Name).Concat(otherFiles.OrderBy(node => node.Name));
       }
     }
 }
