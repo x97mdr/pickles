@@ -73,7 +73,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                         markdownNode.MarkdownContent));
             }
 
-            div.Add(this.FormatList(node, featuresThatAreDirectChildrenOfFolder.OfType<FeatureNode>()));
+            div.Add(this.FormatList(node, featuresThatAreDirectChildrenOfFolder.OfType<FeatureNode>().OrderBy(feature => feature.Name)));
 
             return div;
         }
