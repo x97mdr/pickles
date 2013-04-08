@@ -19,6 +19,7 @@
 #endregion
 
 using System;
+using System.IO.Abstractions;
 using System.Reflection;
 using Autofac;
 using log4net;
@@ -36,6 +37,7 @@ namespace PicklesDoc.Pickles.CommandLine
 
             var builder = new ContainerBuilder();
             builder.RegisterAssemblyTypes(typeof(Runner).Assembly);
+            builder.Register<FileSystem>(_ => new FileSystem()).As<IFileSystem>().SingleInstance();
             builder.RegisterModule<PicklesModule>();
             var container = builder.Build();
 
