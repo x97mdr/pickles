@@ -19,7 +19,7 @@
 #endregion
 
 using System;
-using System.IO;
+using System.IO.Abstractions;
 using System.Reflection;
 using NAnt.Core;
 using NAnt.Core.Attributes;
@@ -62,15 +62,15 @@ namespace PicklesDoc.Pickles.NAnt
         [StringValidator(AllowEmpty = true)]
         public string DocumentationFormat { get; set; }
 
-        private void CaptureConfiguration(Configuration configuration)
+        private void CaptureConfiguration(Configuration configuration, IFileSystem fileSystem)
         {
-            configuration.FeatureFolder = new DirectoryInfo(this.FeatureDirectory);
-            configuration.OutputFolder = new DirectoryInfo(this.OutputDirectory);
+            configuration.FeatureFolder = fileSystem.DirectoryInfo.FromDirectoryName(this.FeatureDirectory);
+            configuration.OutputFolder = fileSystem.DirectoryInfo.FromDirectoryName(this.OutputDirectory);
             if (!string.IsNullOrEmpty(this.Language)) configuration.Language = this.Language;
             if (!string.IsNullOrEmpty(this.ResultsFormat))
                 configuration.TestResultsFormat =
                     (TestResultsFormat) Enum.Parse(typeof (TestResultsFormat), this.ResultsFormat, true);
-            if (!string.IsNullOrEmpty(this.ResultsFile)) configuration.TestResultsFile = new FileInfo(this.ResultsFile);
+            if (!string.IsNullOrEmpty(this.ResultsFile)) configuration.TestResultsFile = fileSystem.FileInfo.FromFileName(this.ResultsFile);
             if (!string.IsNullOrEmpty(this.SystemUnderTestName)) configuration.SystemUnderTestName = this.SystemUnderTestName;
             if (!string.IsNullOrEmpty(this.SystemUnderTestVersion))
                 configuration.SystemUnderTestVersion = this.SystemUnderTestVersion;
@@ -87,11 +87,12 @@ namespace PicklesDoc.Pickles.NAnt
 
                 var builder = new ContainerBuilder();
                 builder.RegisterAssemblyTypes(typeof(Runner).Assembly);
+                builder.Register<FileSystem>(_ => new FileSystem()).As<IFileSystem>().SingleInstance();
                 builder.RegisterModule<PicklesModule>();
                 var container = builder.Build();
 
                 var configuration = container.Resolve<Configuration>();
-                this.CaptureConfiguration(configuration);
+                this.CaptureConfiguration(configuration, container.Resolve<IFileSystem>());
 
                 new ConfigurationReporter().ReportOn(configuration, message => Project.Log(Level.Info, message));
 
