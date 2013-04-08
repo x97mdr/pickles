@@ -6,12 +6,12 @@ using PicklesDoc.Pickles.DirectoryCrawler;
 namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
 {
     [TestFixture]
-    public class FolderDirectoryTreeNodeTests
+    public class FolderDirectoryTreeNodeTests : BaseFixture
     {
         [Test]
         public void Constructor_ValidFileSystemInfo_SetsOriginalLocation()
         {
-            var directoryInfo = new DirectoryInfo(@"c:\temp");
+            var directoryInfo = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\temp");
 
             var node = new FolderNode(directoryInfo, "");
 
@@ -21,7 +21,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         [Test]
         public void Constructor_ValidFileSystemInfo_SetsOriginalLocationUrl()
         {
-            var directoryInfo = new DirectoryInfo(@"c:\temp");
+            var directoryInfo = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\temp");
 
             var node = new FolderNode(directoryInfo, "");
 
@@ -31,7 +31,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         [Test]
         public void Constructor_ValidRelativePath()
         {
-            var directoryInfo = new DirectoryInfo(@"c:\temp");
+            var directoryInfo = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\temp");
 
             var node = new FolderNode(directoryInfo, "../");
 
@@ -41,7 +41,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         [Test]
         public void GetRelativeUriTo_DirectoryToChildDirectory_ReturnsRelativePath()
         {
-            var directoryInfo = new DirectoryInfo(@"c:\temp");
+            var directoryInfo = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\temp");
 
             var node = new FolderNode(directoryInfo, "../");
 
@@ -53,7 +53,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         [Test]
         public void GetRelativeUriTo_DirectoryToFileBelow_ReturnsEmpty()
         {
-            var directoryInfo = new DirectoryInfo(@"c:\temp");
+            var directoryInfo = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\temp");
 
             var node = new FolderNode(directoryInfo, "../");
 
@@ -65,7 +65,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         [Test]
         public void GetRelativeUriTo_DirectoryToFileOutside_ReturnsRelativePath()
         {
-            var directoryInfo = new DirectoryInfo(@"c:\temp");
+            var directoryInfo = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\temp");
 
             var node = new FolderNode(directoryInfo, "../");
 
@@ -77,7 +77,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         [Test]
         public void GetRelativeUriTo_DirectoryToParentDirectory_ReturnsRelativePath()
         {
-            var directoryInfo = new DirectoryInfo(@"c:\temp\child");
+            var directoryInfo = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\temp\child");
 
             var node = new FolderNode(directoryInfo, "../");
 
@@ -89,7 +89,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         [Test]
         public void GetRelativeUriTo_FileToDirectory_ReturnsNodesFileName()
         {
-            var fileInfo = new FileInfo(@"c:\temp\test1.html");
+            var fileInfo = FileSystem.FileInfo.FromFileName(@"c:\temp\test1.html");
 
             var node = new FolderNode(fileInfo, "../");
 
@@ -101,7 +101,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         [Test]
         public void GetRelativeUriTo_FileToFile_ReturnsNodesFileName()
         {
-            var fileInfo = new FileInfo(@"c:\temp\test1.html");
+            var fileInfo = FileSystem.FileInfo.FromFileName(@"c:\temp\test1.html");
 
             var node = new FolderNode(fileInfo, "../");
 
@@ -114,7 +114,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         public void RealData()
         {
             var originalLocation =
-                new DirectoryInfo(
+                FileSystem.DirectoryInfo.FromDirectoryName(
                     @"C:\tfs\Dev.CAX\src\CAX_Main\src\net\Projects\Aim.Gain.GoldenCopy.FunctionalTesting\CAX\DistributionOfRights");
 
             var node = new FolderNode(originalLocation, "");

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.IO.Abstractions;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.JSON;
@@ -8,22 +9,22 @@ using Should.Fluent;
 
 namespace PicklesDoc.Pickles.Test.Formatters.JSON
 {
-    public class when_creating_a_feature_with_meta_info
+    public class when_creating_a_feature_with_meta_info : BaseFixture
     {
         private const string RELATIVE_PATH = @"AcceptanceTest";
         private const string ROOT_PATH = @"FakeFolderStructures\AcceptanceTest";
         private const string FEATURE_PATH = @"AdvancedFeature.feature";
 
         private FeatureNode _featureDirectoryNode;
-        private FileInfo _featureFileInfo;
+        private FileInfoBase _featureFileInfo;
         private FeatureWithMetaInfo _featureWithMeta;
         private Feature _testFeature;
 
         [TestFixtureSetUp]
         public void Setup()
         {
-            this._testFeature = new Feature {Name = "Test"};
-            this._featureFileInfo = new FileInfo(Path.Combine(ROOT_PATH, FEATURE_PATH));
+            this._testFeature = new Feature { Name = "Test" };
+            this._featureFileInfo = this.FileSystem.FileInfo.FromFileName(FileSystem.Path.Combine(ROOT_PATH, FEATURE_PATH));
             this._featureDirectoryNode = new FeatureNode(this._featureFileInfo, RELATIVE_PATH, this._testFeature);
 
             this._featureWithMeta = new FeatureWithMetaInfo(this._featureDirectoryNode);

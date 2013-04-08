@@ -7,14 +7,14 @@ using Should;
 namespace PicklesDoc.Pickles.Test.FeatureTree
 {
     [TestFixture]
-    public class FeatureFileTests
+    public class FeatureFileTests : BaseFixture
     {
         private static readonly Folder parentFolder = Helpers.CreateSimpleFolder();
 
         [Test]
         public void Constructor_EmptyFeature_ThrowsArgumentException()
         {
-            var exception = Assert.Throws<ArgumentNullException>(() => new FeatureFile("feature", parentFolder, null));
+            var exception = Assert.Throws<ArgumentNullException>(() => new FeatureFile("feature", parentFolder, null, FileSystem));
 
             exception.ParamName.ShouldEqual("feature");
         }
@@ -24,7 +24,7 @@ namespace PicklesDoc.Pickles.Test.FeatureTree
         {
             var feature = new Feature();
 
-            var featureFile = new FeatureFile("filename.ext", parentFolder, feature);
+            var featureFile = new FeatureFile("filename.ext", parentFolder, feature, FileSystem);
 
             featureFile.Content.ShouldEqual(feature);
         }
@@ -32,7 +32,7 @@ namespace PicklesDoc.Pickles.Test.FeatureTree
         [Test]
         public void FeatureFile_Implements_ITreeItem()
         {
-            var featureFile = new FeatureFile("filename.ext", parentFolder, new Feature());
+            var featureFile = new FeatureFile("filename.ext", parentFolder, new Feature(), FileSystem);
 
             featureFile.ShouldImplement<ITreeItem>();
         }

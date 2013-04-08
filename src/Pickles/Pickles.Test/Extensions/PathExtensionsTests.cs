@@ -5,7 +5,7 @@ using PicklesDoc.Pickles.Extensions;
 namespace PicklesDoc.Pickles.Test.Extensions
 {
     [TestFixture]
-    internal class PathExtensionsTests
+    internal class PathExtensionsTests : BaseFixture
     {
         [Test]
         public void Get_A_Relative_Path_When_Location_Is_Deeper_Than_Root()
@@ -17,7 +17,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
             string expected = @"test\blah.feature";
 
             // Act
-            string actual = PathExtensions.MakeRelativePath(root, location);
+            string actual = PathExtensions.MakeRelativePath(root, location, FileSystem);
 
             // Assert
             Assert.AreEqual(actual, expected, string.Format("Expected {0} got {1}", expected, actual));
@@ -30,7 +30,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
             string location = @"c:\test\blah.feature";
             string expected = @"test\blah.feature";
 
-            string actual = PathExtensions.MakeRelativePath(root, location);
+            string actual = PathExtensions.MakeRelativePath(root, location, FileSystem);
 
             Assert.AreEqual(actual, expected, string.Format("Expected {0} got {1}", expected, actual));
         }

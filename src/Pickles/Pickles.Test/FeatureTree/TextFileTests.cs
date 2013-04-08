@@ -6,14 +6,14 @@ using Should;
 namespace PicklesDoc.Pickles.Test.FeatureTree
 {
     [TestFixture]
-    public class TextFileTests
+    public class TextFileTests : BaseFixture
     {
         private static readonly Folder parentFolder = Helpers.CreateSimpleFolder();
 
         [Test]
         public void Constructor_EmptyFeature_ThrowsArgumentException()
         {
-            var exception = Assert.Throws<ArgumentNullException>(() => new TextFile("Text", parentFolder, null));
+            var exception = Assert.Throws<ArgumentNullException>(() => new TextFile("Text", parentFolder, null, FileSystem));
 
             exception.ParamName.ShouldEqual("content");
         }
@@ -23,7 +23,7 @@ namespace PicklesDoc.Pickles.Test.FeatureTree
         {
             string text = "# Text #";
 
-            var TextFile = new TextFile("filename.ext", parentFolder, text);
+            var TextFile = new TextFile("filename.ext", parentFolder, text, FileSystem);
 
             TextFile.Content.ShouldEqual(text);
         }
@@ -31,7 +31,7 @@ namespace PicklesDoc.Pickles.Test.FeatureTree
         [Test]
         public void TextFile_Implements_ITreeItem()
         {
-            var TextFile = new TextFile("filename.ext", parentFolder, "# Text #");
+            var TextFile = new TextFile("filename.ext", parentFolder, "# Text #", FileSystem);
 
             TextFile.ShouldImplement<ITreeItem>();
         }

@@ -43,7 +43,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
                                     };
 
             ITestResults testResults = new MsTestResults(configuration);
-            var jsonDocumentationBuilder = new JSONDocumentationBuilder(configuration, testResults);
+            var jsonDocumentationBuilder = new JSONDocumentationBuilder(configuration, testResults, FileSystem);
             jsonDocumentationBuilder.Build(features);
         }
 

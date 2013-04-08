@@ -11,7 +11,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.DHTML
         [Ignore]
         public void TestTheUnzipper()
         {
-            var unzipper = new UnZipper();
+            var unzipper = new UnZipper(FileSystem);
             unzipper.UnZip(@"D:\features\Pickles.Examples\BaseDhtmlFiles.zip", @"d:\output", "BaseDhtmlFiles");
         }
 
@@ -21,7 +21,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.DHTML
         {
             var conf = new Configuration();
             conf.OutputFolder = new DirectoryInfo(@"d:\output");
-            var resourceWriter = new DhtmlResourceProcessor(conf, new DhtmlResourceSet(conf));
+            var resourceWriter = new DhtmlResourceProcessor(conf, new DhtmlResourceSet(conf, FileSystem), FileSystem);
             resourceWriter.WriteZippedResources();
         }
 
@@ -29,7 +29,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.DHTML
         [Ignore]
         public void CanAddFunctionWrapperAroundJson()
         {
-            var jsonTweaker = new JsonTweaker();
+            var jsonTweaker = new JsonTweaker(FileSystem);
             string filePath = @"d:\output\pickledFeatures.json";
             jsonTweaker.AddJsonPWrapperTo(filePath);
 
@@ -41,7 +41,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.DHTML
         [Ignore]
         public void CanRenameJsonFile()
         {
-            var jsonTweaker = new JsonTweaker();
+            var jsonTweaker = new JsonTweaker(FileSystem);
             string oldfilePath = @"d:\output\pickledFeatures.json";
             string newFilePath = @"d:\output\pickledFeatures.js";
             jsonTweaker.RenameFileTo(oldfilePath, newFilePath);

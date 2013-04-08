@@ -43,7 +43,7 @@ Feature: Test Image Relocation
                 File.WriteAllText(featureFilePath, featureText, System.Text.Encoding.UTF8);
 
                 var factory = Container.Resolve<FeatureNodeFactory>();
-                var node = (FeatureNode)factory.Create(configuration.FeatureFolder, new FileInfo(featureFilePath));
+                var node = (FeatureNode)factory.Create(configuration.FeatureFolder, FileSystem.FileInfo.FromFileName(featureFilePath));
 
                 var htmlFeatureFormatter = Container.Resolve<HtmlFeatureFormatter>();
                 var featureXml = htmlFeatureFormatter.Format(node.Feature);

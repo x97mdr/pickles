@@ -23,7 +23,7 @@ namespace PicklesDoc.Pickles.Test.Formatters
         {
             GeneralTree<INode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
 
-            var formatter = new HtmlTableOfContentsFormatter(null);
+            var formatter = new HtmlTableOfContentsFormatter(null, FileSystem);
             this._toc = formatter.Format(features.ChildNodes[0].Data.OriginalLocationUrl, features,
                                     new DirectoryInfo(ROOT_PATH));
         }
