@@ -21,7 +21,7 @@
 #if __MonoCS__
 #else
 using System;
-using System.IO;
+using System.IO.Abstractions;
 using System.Management.Automation;
 using System.Reflection;
 using Autofac;
@@ -59,12 +59,13 @@ namespace PicklesDoc.Pickles.PowerShell
         {
             var builder = new ContainerBuilder();
             builder.RegisterAssemblyTypes(typeof(Runner).Assembly);
+            builder.Register<FileSystem>(_ => new FileSystem()).As<IFileSystem>().SingleInstance();
             builder.RegisterModule<PicklesModule>();
             var container = builder.Build();
 
             var configuration = container.Resolve<Configuration>();
 
-            this.ParseParameters(configuration);
+            this.ParseParameters(configuration, container.Resolve<IFileSystem>());
 
             WriteObject(string.Format("Pickles v.{0}{1}", Assembly.GetExecutingAssembly().GetName().Version,
                                       Environment.NewLine));
@@ -76,10 +77,10 @@ namespace PicklesDoc.Pickles.PowerShell
             WriteObject(string.Format("Pickles completed successfully"));
         }
 
-        private void ParseParameters(Configuration configuration)
+        private void ParseParameters(Configuration configuration, IFileSystem fileSystem)
         {
-            configuration.FeatureFolder = new DirectoryInfo(this.FeatureDirectory);
-            configuration.OutputFolder = new DirectoryInfo(this.OutputDirectory);
+            configuration.FeatureFolder = fileSystem.DirectoryInfo.FromDirectoryName(this.FeatureDirectory);
+            configuration.OutputFolder = fileSystem.DirectoryInfo.FromDirectoryName(this.OutputDirectory);
             if (!string.IsNullOrEmpty(this.TestResultsFormat))
             {
                 configuration.TestResultsFormat =
@@ -87,7 +88,7 @@ namespace PicklesDoc.Pickles.PowerShell
             }
             if (!string.IsNullOrEmpty(this.TestResultsFile))
             {
-                configuration.TestResultsFile = new FileInfo(this.TestResultsFile);
+                configuration.TestResultsFile = fileSystem.FileInfo.FromFileName(this.TestResultsFile);
             }
             configuration.SystemUnderTestName = this.SystemUnderTestName;
             configuration.SystemUnderTestVersion = this.SystemUnderTestVersion;
