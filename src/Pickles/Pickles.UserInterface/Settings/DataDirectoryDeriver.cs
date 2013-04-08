@@ -17,7 +17,6 @@
 
 using System;
 using System.Deployment.Application;
-using System.IO;
 using System.Reflection;
 
 namespace PicklesDoc.Pickles.UserInterface.Settings
@@ -36,7 +35,7 @@ namespace PicklesDoc.Pickles.UserInterface.Settings
 
                 if (entryAssembly != null)
                 {
-                    return Path.GetDirectoryName(entryAssembly.Location);
+                    return System.IO.Path.GetDirectoryName(entryAssembly.Location);
                 }
 
                 return string.Empty;

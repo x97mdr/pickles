@@ -16,7 +16,6 @@
 // #endregion
 
 using System;
-using System.IO;
 using System.Runtime.Serialization;
 using System.Xml;
 
@@ -24,7 +23,7 @@ namespace PicklesDoc.Pickles.UserInterface.Settings
 {
   internal static class StreamExtensions
   {
-    internal static void Serialize<T>(this Stream stream, T item)
+    internal static void Serialize<T>(this System.IO.Stream stream, T item)
     {
       using (XmlWriter writer = XmlWriter.Create(stream, new XmlWriterSettings { Indent = true }))
       {
@@ -32,7 +31,7 @@ namespace PicklesDoc.Pickles.UserInterface.Settings
       }
     }
 
-    internal static T Deserialize<T>(this Stream stream)
+    internal static T Deserialize<T>(this System.IO.Stream stream)
     {
       T result;
 

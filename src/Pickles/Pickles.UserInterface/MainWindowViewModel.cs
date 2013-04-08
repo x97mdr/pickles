@@ -17,13 +17,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
+using System.IO.Abstractions;
 using System.Linq;
 using System.Windows.Input;
 using Autofac;
-using System.Globalization;
-using System.ComponentModel;
 using PicklesDoc.Pickles.Parser;
 using PicklesDoc.Pickles.UserInterface.Mvvm;
 using PicklesDoc.Pickles.UserInterface.Settings;
@@ -85,7 +86,7 @@ namespace PicklesDoc.Pickles.UserInterface
         private bool isDocumentationFormatValid;
 
         public MainWindowViewModel()
-            : this(new MainModelSerializer(DataDirectoryDeriver.DeriveDataDirectory()))
+            : this(new MainModelSerializer(DataDirectoryDeriver.DeriveDataDirectory(), new FileSystem()))
         {
         }
 
@@ -504,16 +505,18 @@ namespace PicklesDoc.Pickles.UserInterface
         {
             var builder = new ContainerBuilder();
             builder.RegisterAssemblyTypes(typeof(Runner).Assembly);
+            builder.Register<FileSystem>(_ => new FileSystem()).As<IFileSystem>().SingleInstance();
             builder.RegisterModule<PicklesModule>();
             var container = builder.Build();
 
             var configuration = container.Resolve<Configuration>();
+            var fileSystem = container.Resolve<IFileSystem>();
 
-            configuration.FeatureFolder = new DirectoryInfo(this.featureFolder);
-            configuration.OutputFolder = new DirectoryInfo(this.outputFolder);
+            configuration.FeatureFolder = fileSystem.DirectoryInfo.FromDirectoryName(this.featureFolder);
+            configuration.OutputFolder = fileSystem.DirectoryInfo.FromDirectoryName(this.outputFolder);
             configuration.SystemUnderTestName = this.projectName;
             configuration.SystemUnderTestVersion = this.projectVersion;
-            configuration.TestResultsFile = this.IncludeTests ? new FileInfo(this.testResultsFile) : null;
+            configuration.TestResultsFile = this.IncludeTests ? fileSystem.FileInfo.FromFileName(this.testResultsFile) : null;
             configuration.TestResultsFormat = this.testResultsFormats.Selected;
             configuration.Language = this.selectedLanguage != null ? this.selectedLanguage.TwoLetterISOLanguageName : CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
 

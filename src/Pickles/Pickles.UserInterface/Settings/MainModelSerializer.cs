@@ -16,7 +16,7 @@
 // #endregion
 
 using System;
-using System.IO;
+using System.IO.Abstractions;
 
 namespace PicklesDoc.Pickles.UserInterface.Settings
 {
@@ -29,24 +29,28 @@ namespace PicklesDoc.Pickles.UserInterface.Settings
 
     private readonly string dataDirectory;
 
+    private readonly IFileSystem fileSystem;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="MainModelSerializer"/> class.
     /// </summary>
     /// <param name="dataDirectory">The data directory.</param>
-    public MainModelSerializer(string dataDirectory)
+    /// <param name="fileSystem">The wrapper for the file system.</param>
+    public MainModelSerializer(string dataDirectory, IFileSystem fileSystem)
     {
-      this.dataDirectory = dataDirectory;
+        this.dataDirectory = dataDirectory;
+        this.fileSystem = fileSystem;
     }
 
-    /// <summary>
+      /// <summary>
     /// Writes the specified item with the specified id.
     /// </summary>
     /// <param name="item">The item.</param>
     public void Write(MainModel item)
     {
-      string path = Path.Combine(this.dataDirectory, entitiesNameV1 + ".xml");
+      string path = this.fileSystem.Path.Combine(this.dataDirectory, entitiesNameV1 + ".xml");
 
-      using (FileStream stream = new FileStream(path, FileMode.Create))
+      using (var stream = this.fileSystem.File.Create(path))
       {
         stream.Serialize(item);
       }
@@ -60,14 +64,14 @@ namespace PicklesDoc.Pickles.UserInterface.Settings
     {
       MainModel result;
 
-      string path = Path.Combine(this.dataDirectory, entitiesNameV1 + ".xml");
+      string path = this.fileSystem.Path.Combine(this.dataDirectory, entitiesNameV1 + ".xml");
 
-      if (!File.Exists(path))
+      if (!this.fileSystem.File.Exists(path))
       {
           return null;
       }
 
-      using (FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read))
+      using (var stream = this.fileSystem.File.OpenRead(path))
       {
         result = stream.Deserialize<MainModel>();
       }
