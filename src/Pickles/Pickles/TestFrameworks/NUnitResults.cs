@@ -19,7 +19,7 @@
 #endregion
 
 using System;
-using System.IO;
+using System.IO; // this is a legitimate usage of System.IO
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -85,7 +85,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
         private XDocument ReadResultsFile()
         {
             XDocument document;
-            using (FileStream stream = this.configuration.TestResultsFile.OpenRead())
+            using (Stream stream = this.configuration.TestResultsFile.OpenRead())
             {
                 XmlReader xmlReader = XmlReader.Create(stream);
                 document = XDocument.Load(xmlReader);

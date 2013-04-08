@@ -19,7 +19,7 @@
 #endregion
 
 using System;
-using System.IO;
+using System.IO.Abstractions;
 using System.Xml.Linq;
 using NGenerics.DataStructures.Trees;
 using PicklesDoc.Pickles.DirectoryCrawler;
@@ -39,12 +39,14 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
         private readonly HtmlFooterFormatter htmlFooterFormatter;
         private readonly HtmlHeaderFormatter htmlHeaderFormatter;
         private readonly HtmlResourceSet htmlResources;
+        private readonly IFileSystem fileSystem;
         private readonly HtmlTableOfContentsFormatter htmlTableOfContentsFormatter;
 
         public HtmlDocumentFormatter(Configuration configuration, HtmlHeaderFormatter htmlHeaderFormatter,
                                      HtmlTableOfContentsFormatter htmlTableOfContentsFormatter,
                                      HtmlContentFormatter htmlContentFormatter, HtmlFooterFormatter htmlFooterFormatter,
-                                     HtmlResourceSet htmlResources)
+                                     HtmlResourceSet htmlResources,
+          IFileSystem fileSystem)
         {
             this.configuration = configuration;
             this.htmlHeaderFormatter = htmlHeaderFormatter;
@@ -52,13 +54,14 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             this.htmlContentFormatter = htmlContentFormatter;
             this.htmlFooterFormatter = htmlFooterFormatter;
             this.htmlResources = htmlResources;
+          this.fileSystem = fileSystem;
         }
 
         public XDocument Format(INode featureNode, GeneralTree<INode> features,
-                                DirectoryInfo rootFolder)
+                                DirectoryInfoBase rootFolder)
         {
             XNamespace xmlns = HtmlNamespace.Xhtml;
-            string featureNodeOutputPath = Path.Combine(this.configuration.OutputFolder.FullName,
+            string featureNodeOutputPath = this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName,
                                                         featureNode.RelativePathFromRoot);
             var featureNodeOutputUri = new Uri(featureNodeOutputPath);
 

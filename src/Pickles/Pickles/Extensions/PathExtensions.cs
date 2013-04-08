@@ -19,19 +19,19 @@
 #endregion
 
 using System;
-using System.IO;
+using System.IO.Abstractions;
 
 namespace PicklesDoc.Pickles.Extensions
 {
     public static class PathExtensions
     {
-        public static string MakeRelativePath(string from, string to)
+        public static string MakeRelativePath(string from, string to, IFileSystem fileSystem)
         {
             if (string.IsNullOrEmpty(from)) throw new ArgumentNullException("from");
             if (string.IsNullOrEmpty(to)) throw new ArgumentNullException("to");
 
-            string fromString = AddTrailingSlashToDirectoriesForUriMethods(from);
-            string toString = AddTrailingSlashToDirectoriesForUriMethods(to);
+            string fromString = AddTrailingSlashToDirectoriesForUriMethods(from, fileSystem);
+            string toString = AddTrailingSlashToDirectoriesForUriMethods(to, fileSystem);
 
             var fromUri = new Uri(fromString);
             var toUri = new Uri(toString);
@@ -39,16 +39,16 @@ namespace PicklesDoc.Pickles.Extensions
             Uri relativeUri = fromUri.MakeRelativeUri(toUri);
             string relativePath = Uri.UnescapeDataString(relativeUri.ToString());
 
-            return relativePath.Replace('/', Path.DirectorySeparatorChar);
+            return relativePath.Replace('/', fileSystem.Path.DirectorySeparatorChar);
         }
 
-        private static string AddTrailingSlashToDirectoriesForUriMethods(string path)
+        private static string AddTrailingSlashToDirectoriesForUriMethods(string path, IFileSystem fileSystem)
         {
             // Uri class treats paths that end in \ as directories, and without \ as files. 
             // So if its a file then we need to append the \ to make the Uri class recognize it as a directory
             path = RemoveEndSlashSoWeDoNotHaveTwoIfThisIsADirectory(path);
 
-            return Directory.Exists(path) ? path + @"\" : path;
+            return fileSystem.Directory.Exists(path) ? path + @"\" : path;
         }
 
         private static string RemoveEndSlashSoWeDoNotHaveTwoIfThisIsADirectory(string path)
@@ -56,12 +56,12 @@ namespace PicklesDoc.Pickles.Extensions
             return path.TrimEnd('\\');
         }
 
-        public static string MakeRelativePath(FileSystemInfo from, FileSystemInfo to)
+        public static string MakeRelativePath(FileSystemInfoBase from, FileSystemInfoBase to, IFileSystem fileSystem)
         {
             if (from == null) throw new ArgumentNullException("from");
             if (to == null) throw new ArgumentNullException("to");
 
-            return MakeRelativePath(from.FullName, to.FullName);
+            return MakeRelativePath(from.FullName, to.FullName, fileSystem);
         }
     }
 }

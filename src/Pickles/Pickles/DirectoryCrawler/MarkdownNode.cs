@@ -19,7 +19,7 @@
 #endregion
 
 using System;
-using System.IO;
+using System.IO.Abstractions;
 using System.Linq;
 using System.Xml.Linq;
 using PicklesDoc.Pickles.Extensions;
@@ -28,7 +28,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
 {
     public class MarkdownNode : INode
     {
-        public MarkdownNode(FileSystemInfo location, string relativePathFromRoot, XElement markdownContent)
+        public MarkdownNode(FileSystemInfoBase location, string relativePathFromRoot, XElement markdownContent)
         {
             this.OriginalLocation = location;
             this.OriginalLocationUrl = location.ToUri();
@@ -67,7 +67,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
             }
         }
 
-        public FileSystemInfo OriginalLocation { get; private set; }
+        public FileSystemInfoBase OriginalLocation { get; private set; }
 
         public Uri OriginalLocationUrl { get; private set; }
 

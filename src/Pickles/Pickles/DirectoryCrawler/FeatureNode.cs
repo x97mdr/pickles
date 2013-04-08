@@ -19,7 +19,7 @@
 #endregion
 
 using System;
-using System.IO;
+using System.IO.Abstractions;
 using PicklesDoc.Pickles.Extensions;
 using PicklesDoc.Pickles.Parser;
 
@@ -27,7 +27,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
 {
     public class FeatureNode : INode
     {
-        public FeatureNode(FileSystemInfo location, string relativePathFromRoot, Feature feature)
+        public FeatureNode(FileSystemInfoBase location, string relativePathFromRoot, Feature feature)
         {
             this.OriginalLocation = location;
             this.OriginalLocationUrl = location.ToUri();
@@ -59,7 +59,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
             get { return this.Feature.Name; }
         }
 
-        public FileSystemInfo OriginalLocation { get; private set; }
+        public FileSystemInfoBase OriginalLocation { get; private set; }
 
         public Uri OriginalLocationUrl { get; private set; }
 

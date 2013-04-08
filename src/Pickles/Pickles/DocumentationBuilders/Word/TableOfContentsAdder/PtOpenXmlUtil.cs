@@ -6,12 +6,15 @@ This code is licensed using the Microsoft Public License (Ms-PL).  The text of t
 can be found here:
 
 http://www.microsoft.com/resources/sharedsource/licensingbasics/publiclicense.mspx
+  
+ This code was modified to use System.IO.Abstractions in the appropriate places.
 
 ***************************************************************************/
 
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.IO; // this is a legitimate usage of System.IO
+using System.IO.Abstractions;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
@@ -21,21 +24,26 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
 {
     public class WmlDocument
     {
-        public WmlDocument(WmlDocument original)
+        private readonly IFileSystem fileSystem;
+
+        public WmlDocument(IFileSystem fileSystem, WmlDocument original)
         {
+            this.fileSystem = fileSystem;
             this.DocumentByteArray = new byte[original.DocumentByteArray.Length];
             Array.Copy(original.DocumentByteArray, this.DocumentByteArray, original.DocumentByteArray.Length);
             this.FileName = original.FileName;
         }
 
-        public WmlDocument(string fileName)
+        public WmlDocument(IFileSystem fileSystem, string fileName)
         {
+            this.fileSystem = fileSystem;
             this.FileName = this.FileName;
-            this.DocumentByteArray = File.ReadAllBytes(fileName);
+            this.DocumentByteArray = this.fileSystem.File.ReadAllBytes(fileName);
         }
 
-        public WmlDocument(byte[] byteArray)
+        public WmlDocument(IFileSystem fileSystem, byte[] byteArray)
         {
+            this.fileSystem = fileSystem;
             this.DocumentByteArray = new byte[byteArray.Length];
             Array.Copy(byteArray, this.DocumentByteArray, byteArray.Length);
             this.FileName = null;
@@ -54,7 +62,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
 
         public void SaveAs(string fileName)
         {
-            File.WriteAllBytes(fileName, this.DocumentByteArray);
+            this.fileSystem.File.WriteAllBytes(fileName, this.DocumentByteArray);
         }
 
         public void Save()
@@ -62,7 +70,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
             if (this.FileName == null)
                 throw new OpenXmlPowerToolsException(
                     "Attempting to Save a document that has no file name.  Use SaveAs instead.");
-            File.WriteAllBytes(this.FileName, this.DocumentByteArray);
+            this.fileSystem.File.WriteAllBytes(this.FileName, this.DocumentByteArray);
         }
     }
 

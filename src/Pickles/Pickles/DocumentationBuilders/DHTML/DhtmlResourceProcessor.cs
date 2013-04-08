@@ -18,27 +18,28 @@
 
 #endregion
 
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Reflection;
+using System.IO.Abstractions;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
 {
     public class DhtmlResourceProcessor
     {
         private readonly Configuration MyConfiguration;
+
+        private readonly IFileSystem fileSystem;
+
         public DhtmlResourceSet MyDhtmlResourceSet { get; set; }
 
-        public DhtmlResourceProcessor(Configuration configuration, DhtmlResourceSet dhtmlResourceSet)
+        public DhtmlResourceProcessor(Configuration configuration, DhtmlResourceSet dhtmlResourceSet, IFileSystem fileSystem)
         {
             this.MyConfiguration = configuration;
+            this.fileSystem = fileSystem;
             this.MyDhtmlResourceSet = dhtmlResourceSet;
         }
 
         public void WriteZippedResources()
         {
-            using (var binWriter = new BinaryWriter(File.OpenWrite(MyDhtmlResourceSet.ZippedResources.AbsolutePath)))
+            using (var binWriter = new System.IO.BinaryWriter(this.fileSystem.File.OpenWrite(MyDhtmlResourceSet.ZippedResources.AbsolutePath)))
             {
                 binWriter.Write(Properties.Resources.Pickles_BaseDhtmlFiles);
                 binWriter.Flush();
@@ -48,7 +49,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
 
         public void CleanupZippedResources()
         {
-            File.Delete(MyDhtmlResourceSet.ZippedResources.AbsolutePath);
+            this.fileSystem.File.Delete(MyDhtmlResourceSet.ZippedResources.AbsolutePath);
         }
     }
 }

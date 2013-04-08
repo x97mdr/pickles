@@ -19,7 +19,7 @@
 #endregion
 
 using System;
-using System.IO;
+using System.IO.Abstractions;
 using System.Xml.Linq;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.Extensions;
@@ -35,16 +35,18 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DITA
         private readonly DitaScenarioFormatter ditaScenarioFormatter;
         private readonly DitaScenarioOutlineFormatter ditaScenarioOutlineFormatter;
         private readonly ITestResults nunitResults;
+        private readonly IFileSystem fileSystem;
 
         public DitaFeatureFormatter(Configuration configuration, DitaScenarioFormatter ditaScenarioFormatter,
                                     DitaScenarioOutlineFormatter ditaScenarioOutlineFormatter,
-                                    DitaMapPathGenerator ditaMapPathGenerator, ITestResults nunitResults)
+                                    DitaMapPathGenerator ditaMapPathGenerator, ITestResults nunitResults, IFileSystem fileSystem)
         {
             this.configuration = configuration;
             this.ditaScenarioFormatter = ditaScenarioFormatter;
             this.ditaScenarioOutlineFormatter = ditaScenarioOutlineFormatter;
             this.ditaMapPathGenerator = ditaMapPathGenerator;
             this.nunitResults = nunitResults;
+            this.fileSystem = fileSystem;
         }
 
         public void Format(FeatureNode featureNode)
@@ -87,12 +89,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DITA
             }
 
             // HACK - This relative path stuff needs to be refactored
-            string relativePath =
-                new FileInfo(Path.Combine(this.configuration.OutputFolder.FullName, featureNode.RelativePathFromRoot)).
-                    Directory.FullName.ToLowerInvariant();
-            if (!Directory.Exists(relativePath)) Directory.CreateDirectory(relativePath);
+            string relativePath = this.fileSystem.FileInfo.FromFileName(this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, featureNode.RelativePathFromRoot)).Directory.FullName.ToLowerInvariant();
+            if (!this.fileSystem.Directory.Exists(relativePath)) this.fileSystem.Directory.CreateDirectory(relativePath);
             Uri relativeFilePath = ditaMapPathGenerator.GeneratePathToFeature(featureNode);
-            string filename = Path.Combine(relativePath, Path.GetFileName(relativeFilePath.ToString()));
+            string filename = this.fileSystem.Path.Combine(relativePath, this.fileSystem.Path.GetFileName(relativeFilePath.ToString()));
             var document =
                 new XDocument(new XDocumentType("topic", "-//OASIS//DTD DITA Topic//EN", "topic.dtd", string.Empty),
                               topic);

@@ -20,7 +20,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.IO.Abstractions;
 using System.Reflection;
 using System.Text;
 using NGenerics.DataStructures.Trees;
@@ -41,16 +41,18 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
         private readonly Configuration configuration;
         private readonly ITestResults testResults;
 
+        private readonly IFileSystem fileSystem;
 
-        public JSONDocumentationBuilder(Configuration configuration, ITestResults testResults)
+        public JSONDocumentationBuilder(Configuration configuration, ITestResults testResults, IFileSystem fileSystem)
         {
             this.configuration = configuration;
             this.testResults = testResults;
+            this.fileSystem = fileSystem;
         }
 
         public string OutputFilePath
         {
-            get { return Path.Combine(this.configuration.OutputFolder.FullName, JsonFileName); }
+            get { return this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, JsonFileName); }
         }
 
         #region IDocumentationBuilder Members
@@ -110,7 +112,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
 
         private static void CreateFile(string outputFolderName, string jsonToWrite)
         {
-            using (var writer = new StreamWriter(outputFolderName, false, Encoding.UTF8))
+            using (var writer = new System.IO.StreamWriter(outputFolderName, false, Encoding.UTF8))
             {
                 writer.Write(jsonToWrite);
                 writer.Close();

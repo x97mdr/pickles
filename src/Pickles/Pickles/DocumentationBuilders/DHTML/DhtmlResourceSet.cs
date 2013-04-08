@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using PicklesDoc.Pickles.DocumentationBuilders.HTML;
+using System.IO.Abstractions;
 using PicklesDoc.Pickles.Extensions;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
@@ -12,14 +8,17 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
     {
         private readonly Configuration configuration;
 
-        public DhtmlResourceSet(Configuration configuration)
+        private readonly IFileSystem fileSystem;
+
+        public DhtmlResourceSet(Configuration configuration, IFileSystem fileSystem)
         {
             this.configuration = configuration;
+            this.fileSystem = fileSystem;
         }
 
         public Uri ZippedResources
         {
-            get { return this.configuration.OutputFolder.ToFileUriCombined("Pickles.BaseDhtmlFiles.zip"); }
+            get { return this.configuration.OutputFolder.ToFileUriCombined("Pickles.BaseDhtmlFiles.zip", this.fileSystem); }
         }
     }
 }

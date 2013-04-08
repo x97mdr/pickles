@@ -19,18 +19,18 @@
 #endregion
 
 using System;
-using System.IO;
+using System.IO.Abstractions;
 
 namespace PicklesDoc.Pickles.DirectoryCrawler
 {
     public class RelevantFileDetector
     {
-        public bool IsFeatureFile(FileInfo file)
+        public bool IsFeatureFile(FileInfoBase file)
         {
             return file.Extension.Equals(".feature", StringComparison.InvariantCultureIgnoreCase);
         }
 
-        public bool IsMarkdownFile(FileInfo file)
+        public bool IsMarkdownFile(FileInfoBase file)
         {
             switch (file.Extension.ToLowerInvariant())
             {
@@ -49,7 +49,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
             return false;
         }
 
-        public bool IsRelevant(FileInfo file)
+        public bool IsRelevant(FileInfoBase file)
         {
             return this.IsFeatureFile(file) || this.IsMarkdownFile(file);
         }

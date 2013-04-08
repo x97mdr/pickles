@@ -19,7 +19,7 @@
 #endregion
 
 using System;
-using System.IO;
+using System.IO.Abstractions;
 using System.Reflection;
 using ClosedXML.Excel;
 using NGenerics.DataStructures.Trees;
@@ -37,18 +37,23 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
         private readonly ExcelFeatureFormatter excelFeatureFormatter;
         private readonly ExcelSheetNameGenerator excelSheetNameGenerator;
         private readonly ExcelTableOfContentsFormatter excelTableOfContentsFormatter;
+        private readonly IFileSystem fileSystem;
         private readonly DirectoryTreeCrawler featureCrawler;
 
-        public ExcelDocumentationBuilder(Configuration configuration, DirectoryTreeCrawler featureCrawler,
-                                         ExcelFeatureFormatter excelFeatureFormatter,
-                                         ExcelSheetNameGenerator excelSheetNameGenerator,
-                                         ExcelTableOfContentsFormatter excelTableOfContentsFormatter)
+        public ExcelDocumentationBuilder(
+            Configuration configuration,
+            DirectoryTreeCrawler featureCrawler,
+            ExcelFeatureFormatter excelFeatureFormatter,
+            ExcelSheetNameGenerator excelSheetNameGenerator,
+            ExcelTableOfContentsFormatter excelTableOfContentsFormatter,
+            IFileSystem fileSystem)
         {
             this.configuration = configuration;
             this.featureCrawler = featureCrawler;
             this.excelFeatureFormatter = excelFeatureFormatter;
             this.excelSheetNameGenerator = excelSheetNameGenerator;
             this.excelTableOfContentsFormatter = excelTableOfContentsFormatter;
+            this.fileSystem = fileSystem;
         }
 
         #region IDocumentationBuilder Members
@@ -60,7 +65,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
                 log.InfoFormat("Writing Excel workbook to {0}", this.configuration.OutputFolder.FullName);
             }
 
-            string spreadsheetPath = Path.Combine(this.configuration.OutputFolder.FullName, "features.xlsx");
+            string spreadsheetPath = this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, "features.xlsx");
             using (var workbook = new XLWorkbook())
             {
                 var actionVisitor = new ActionVisitor<INode>(node =>

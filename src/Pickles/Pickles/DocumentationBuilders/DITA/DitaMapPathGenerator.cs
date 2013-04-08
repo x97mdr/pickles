@@ -19,7 +19,7 @@
 #endregion
 
 using System;
-using System.IO;
+using System.IO.Abstractions;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.Extensions;
 
@@ -29,21 +29,24 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DITA
     {
         private readonly Configuration configuration;
 
-        public DitaMapPathGenerator(Configuration configuration)
+        private readonly IFileSystem fileSystem;
+
+        public DitaMapPathGenerator(Configuration configuration, IFileSystem fileSystem)
         {
             this.configuration = configuration;
+            this.fileSystem = fileSystem;
         }
 
         public Uri GeneratePathToFeature(INode node)
         {
-            var fileInfo = node.OriginalLocation as FileInfo;
+            var fileInfo = node.OriginalLocation as FileInfoBase;
             if (fileInfo != null)
             {
                 string nodeFilename =
                     node.OriginalLocation.Name.Replace(node.OriginalLocation.Extension,
                                                                     string.Empty);
                 string nodeDitaName = nodeFilename.ToDitaName() + ".dita";
-                Uri newUri = fileInfo.Directory.ToFileUriCombined(nodeDitaName);
+                Uri newUri = fileInfo.Directory.ToFileUriCombined(nodeDitaName, this.fileSystem);
 
                 return this.configuration.FeatureFolder.ToUri().MakeRelativeUri(newUri);
             }

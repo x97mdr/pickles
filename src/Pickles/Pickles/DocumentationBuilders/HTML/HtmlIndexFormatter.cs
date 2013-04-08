@@ -20,7 +20,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.IO.Abstractions;
 using System.Linq;
 using System.Xml.Linq;
 using PicklesDoc.Pickles.DirectoryCrawler;
@@ -44,7 +44,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
           </ul>
        <div>
        */
-            var directoryInfo = node.OriginalLocation as DirectoryInfo;
+            var directoryInfo = node.OriginalLocation as DirectoryInfoBase;
 
             if (directoryInfo == null)
             {
@@ -54,7 +54,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             string[] files = directoryInfo.GetFiles().Select(f => f.FullName).ToArray();
 
             INode[] featuresThatAreDirectChildrenOfFolder =
-                features.Where(f => f.OriginalLocation is FileInfo).Where(
+                features.Where(f => f.OriginalLocation is FileInfoBase).Where(
                     f => files.Contains(f.OriginalLocation.FullName)).ToArray();
 
             var div = new XElement(this.xmlns + "div",
@@ -62,8 +62,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                                    new XElement(this.xmlns + "h1", node.Name));
 
             MarkdownNode markdownNode =
-                featuresThatAreDirectChildrenOfFolder.Where(n => n.IsIndexMarkDownNode()).OfType<MarkdownNode>().
-                    FirstOrDefault();
+                featuresThatAreDirectChildrenOfFolder.Where(n => n.IsIndexMarkDownNode()).OfType<MarkdownNode>().FirstOrDefault();
             if (markdownNode != null)
             {
                 div.Add(

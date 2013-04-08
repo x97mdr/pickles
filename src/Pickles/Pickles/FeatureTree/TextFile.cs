@@ -19,6 +19,7 @@
 #endregion
 
 using System;
+using System.IO.Abstractions;
 
 namespace PicklesDoc.Pickles.FeatureTree
 {
@@ -26,8 +27,8 @@ namespace PicklesDoc.Pickles.FeatureTree
     {
         private readonly string mContent;
 
-        public TextFile(string fileName, Folder folder, string content)
-            : base(fileName, folder)
+        public TextFile(string fileName, Folder folder, string content, IFileSystem fileSystem)
+            : base(fileName, folder, fileSystem)
         {
             if (content == null) throw new ArgumentNullException("content");
 

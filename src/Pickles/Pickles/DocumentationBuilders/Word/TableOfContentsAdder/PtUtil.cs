@@ -6,13 +6,15 @@ This code is licensed using the Microsoft Public License (Ms-PL).  The text of t
 can be found here:
 
 http://www.microsoft.com/resources/sharedsource/licensingbasics/publiclicense.mspx
+  
+ This code was modified to include a comment that the usage of System.IO is a legitimate one.
 
 ***************************************************************************/
 
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
+using System.IO; // this is a legitimate usage of System.IO
 using System.Linq;
 using System.Text;
 using System.Xml;

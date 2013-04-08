@@ -19,7 +19,7 @@
 #endregion
 
 using System;
-using System.IO;
+using System.IO.Abstractions;
 using System.Linq;
 using System.Xml.Linq;
 using DocumentFormat.OpenXml;
@@ -38,17 +38,21 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
         private readonly WordFeatureFormatter wordFeatureFormatter;
         private readonly WordFontApplicator wordFontApplicator;
         private readonly WordHeaderFooterFormatter wordHeaderFooterFormatter;
+
+        private readonly IFileSystem fileSystem;
+
         private readonly WordStyleApplicator wordStyleApplicator;
 
         public WordDocumentationBuilder(Configuration configuration, WordFeatureFormatter wordFeatureFormatter,
                                         WordStyleApplicator wordStyleApplicator, WordFontApplicator wordFontApplicator,
-                                        WordHeaderFooterFormatter wordHeaderFooterFormatter)
+                                        WordHeaderFooterFormatter wordHeaderFooterFormatter, IFileSystem fileSystem)
         {
             this.configuration = configuration;
             this.wordFeatureFormatter = wordFeatureFormatter;
             this.wordStyleApplicator = wordStyleApplicator;
             this.wordFontApplicator = wordFontApplicator;
             this.wordHeaderFooterFormatter = wordHeaderFooterFormatter;
+            this.fileSystem = fileSystem;
         }
 
         #region IDocumentationBuilder Members
@@ -58,8 +62,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             string filename = string.IsNullOrEmpty(this.configuration.SystemUnderTestName)
                                   ? "features.docx"
                                   : this.configuration.SystemUnderTestName + ".docx";
-            string documentFileName = Path.Combine(this.configuration.OutputFolder.FullName, filename);
-            if (File.Exists(documentFileName)) File.Delete(documentFileName);
+            string documentFileName = this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, filename);
+            if (this.fileSystem.File.Exists(documentFileName)) this.fileSystem.File.Delete(documentFileName);
 
             using (
                 WordprocessingDocument wordProcessingDocument = WordprocessingDocument.Create(documentFileName,

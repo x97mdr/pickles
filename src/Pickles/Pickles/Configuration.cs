@@ -19,15 +19,15 @@
 #endregion
 
 using System;
-using System.IO;
+using System.IO.Abstractions;
 
 namespace PicklesDoc.Pickles
 {
     public class Configuration
     {
-        public DirectoryInfo FeatureFolder { get; set; }
+        public DirectoryInfoBase FeatureFolder { get; set; }
 
-        public DirectoryInfo OutputFolder { get; set; }
+        public DirectoryInfoBase OutputFolder { get; set; }
 
         public DocumentationFormat DocumentationFormat { get; set; }
 
@@ -40,7 +40,7 @@ namespace PicklesDoc.Pickles
             get { return this.TestResultsFile != null; }
         }
 
-        public FileInfo TestResultsFile { get; set; }
+        public FileInfoBase TestResultsFile { get; set; }
 
         public string SystemUnderTestName { get; set; }
 

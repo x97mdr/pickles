@@ -1,13 +1,21 @@
-﻿using ikvm.extensions;
+﻿using System;
+using System.IO.Abstractions;
+using ikvm.extensions;
 using java.io;
 using java.util.zip;
-using System.IO;
 using IOException = System.IO.IOException;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
 {
     public class UnZipper
     {
+        private readonly IFileSystem fileSystem;
+
+        public UnZipper(IFileSystem fileSystem)
+        {
+            this.fileSystem = fileSystem;
+        }
+
         public void UnZip(string zipFileLocation, string destinationRootFolder, string zipRootToRemove)
         {
             try
@@ -20,13 +28,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
                     var zipEntry = (ZipEntry)zipFileEntries.nextElement();
 
                     var name = zipEntry.getName().Replace(zipRootToRemove, "").Replace("/", "\\").TrimStart('/').TrimStart('\\');
-                    var p = Path.Combine(destinationRootFolder, name);
+                    var p = this.fileSystem.Path.Combine(destinationRootFolder, name);
 
                     if (zipEntry.isDirectory())
                     {
-                        if (!Directory.Exists(p))
+                        if (!this.fileSystem.Directory.Exists(p))
                         {
-                            Directory.CreateDirectory(p);
+                            this.fileSystem.Directory.CreateDirectory(p);
                         };
                     }
                     else
@@ -61,7 +69,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
             {
                 e.printStackTrace();
             }
-            catch(System.Exception e)
+            catch (Exception e)
             {
                 var t = e.ToString();
             }

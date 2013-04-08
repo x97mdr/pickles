@@ -20,7 +20,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.IO; // this is a legitimate usage of System.IO
+using System.IO.Abstractions;
 using System.Reflection;
 using NDesk.Options;
 
@@ -28,6 +29,8 @@ namespace PicklesDoc.Pickles
 {
     public class CommandLineArgumentParser
     {
+        private readonly IFileSystem fileSystem;
+
         public const string HELP_FEATURE_DIR = "directory to start scanning recursively for features";
         public const string HELP_OUTPUT_DIR = "directory where output files will be placed";
         public const string HELP_RESULT_FILE = "a file containing the results of testing the features";
@@ -50,8 +53,9 @@ namespace PicklesDoc.Pickles
         private string testResultsFormat;
         private bool versionRequested;
 
-        public CommandLineArgumentParser()
+        public CommandLineArgumentParser(IFileSystem fileSystem)
         {
+            this.fileSystem = fileSystem;
             this.options = new OptionSet
                           {
                               {"f|feature-directory=", HELP_FEATURE_DIR, v => this.featureDirectory = v},
@@ -80,8 +84,8 @@ namespace PicklesDoc.Pickles
 
         public bool Parse(string[] args, Configuration configuration, TextWriter stdout)
         {
-            configuration.FeatureFolder = new DirectoryInfo(Directory.GetCurrentDirectory());
-            configuration.OutputFolder = new DirectoryInfo(Environment.GetEnvironmentVariable("TEMP"));
+            configuration.FeatureFolder = this.fileSystem.DirectoryInfo.FromDirectoryName(this.fileSystem.Directory.GetCurrentDirectory());
+            configuration.OutputFolder = this.fileSystem.DirectoryInfo.FromDirectoryName(Environment.GetEnvironmentVariable("TEMP"));
 
             List<string> extra = this.options.Parse(args);
 
@@ -97,12 +101,12 @@ namespace PicklesDoc.Pickles
             }
 
             if (!string.IsNullOrEmpty(this.featureDirectory))
-                configuration.FeatureFolder = new DirectoryInfo(this.featureDirectory);
-            if (!string.IsNullOrEmpty(this.outputDirectory)) configuration.OutputFolder = new DirectoryInfo(this.outputDirectory);
+                configuration.FeatureFolder = this.fileSystem.DirectoryInfo.FromDirectoryName(this.featureDirectory);
+            if (!string.IsNullOrEmpty(this.outputDirectory)) configuration.OutputFolder = this.fileSystem.DirectoryInfo.FromDirectoryName(this.outputDirectory);
             if (!string.IsNullOrEmpty(this.testResultsFormat))
                 configuration.TestResultsFormat =
                     (TestResultsFormat) Enum.Parse(typeof (TestResultsFormat), this.testResultsFormat, true);
-            if (!string.IsNullOrEmpty(this.testResultsFile)) configuration.TestResultsFile = new FileInfo(this.testResultsFile);
+            if (!string.IsNullOrEmpty(this.testResultsFile)) configuration.TestResultsFile = this.fileSystem.FileInfo.FromFileName(this.testResultsFile);
             if (!string.IsNullOrEmpty(this.systemUnderTestName)) configuration.SystemUnderTestName = this.systemUnderTestName;
             if (!string.IsNullOrEmpty(this.systemUnderTestVersion))
                 configuration.SystemUnderTestVersion = this.systemUnderTestVersion;

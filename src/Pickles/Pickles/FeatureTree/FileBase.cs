@@ -1,5 +1,5 @@
 using System;
-using System.IO;
+using System.IO.Abstractions;
 using PicklesDoc.Pickles.Extensions;
 
 namespace PicklesDoc.Pickles.FeatureTree
@@ -9,11 +9,11 @@ namespace PicklesDoc.Pickles.FeatureTree
         private readonly Folder mFolder;
         private readonly string mName;
 
-        protected FileBase(string fileName, Folder folder)
+        protected FileBase(string fileName, Folder folder, IFileSystem fileSystem)
         {
             if (fileName.IsNullOrWhiteSpace()) throw new ArgumentNullException("fileName");
 
-            string name = Path.GetFileNameWithoutExtension(fileName);
+            string name = fileSystem.Path.GetFileNameWithoutExtension(fileName);
 
             if (name.IsNullOrWhiteSpace())
                 throw new ArgumentException("Filename must consist of more than only the extension.", "fileName");

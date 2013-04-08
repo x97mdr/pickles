@@ -18,6 +18,7 @@
 
 #endregion
 
+using System.IO.Abstractions;
 using log4net;
 using NGenerics.DataStructures.Trees;
 using PicklesDoc.Pickles.DirectoryCrawler;
@@ -34,10 +35,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
         private readonly Configuration configuration;
         private readonly ITestResults testResults;
 
-        public DhtmlDocumentationBuilder(Configuration configuration, ITestResults testResults)
+        private readonly IFileSystem fileSystem;
+
+        public DhtmlDocumentationBuilder(Configuration configuration, ITestResults testResults, IFileSystem fileSystem)
         {
             this.configuration = configuration;
             this.testResults = testResults;
+            this.fileSystem = fileSystem;
         }
 
         #region IDocumentationBuilder Members
@@ -49,7 +53,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
                 log.InfoFormat("Writing DHTML files to {0}", this.configuration.OutputFolder.FullName);
             }
 
-            var resource = new DhtmlResourceSet(configuration);
+            var resource = new DhtmlResourceSet(configuration, this.fileSystem);
 
             log.Info("DeployZippedDhtmlResourcesForExtraction");
             DeployZippedDhtmlResourcesForExtraction(resource);
@@ -70,34 +74,34 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
 
         private void UtilizeJsonBuilderToDumpJsonFeatureFileNextToDthmlResources(GeneralTree<INode> features)
         {
-            var jsonBuilder = new JSONDocumentationBuilder(configuration, testResults);
+            var jsonBuilder = new JSONDocumentationBuilder(configuration, testResults, this.fileSystem);
             jsonBuilder.Build(features);
         }
 
         private void UnzipDhtmlResources(DhtmlResourceSet dhtmlResourceSet)
         {
-            var unzipper = new UnZipper();
+            var unzipper = new UnZipper(this.fileSystem);
             unzipper.UnZip(dhtmlResourceSet.ZippedResources.AbsolutePath, configuration.OutputFolder.FullName, "Pickles.BaseDhtmlFiles");
         }
 
         private void CleanupZippedDhtmlResources(DhtmlResourceSet dhtmlResourceSet)
         {
-            var resourceProcessor = new DhtmlResourceProcessor(configuration, dhtmlResourceSet);
+            var resourceProcessor = new DhtmlResourceProcessor(configuration, dhtmlResourceSet, this.fileSystem);
             resourceProcessor.CleanupZippedResources();
         }
 
         private void DeployZippedDhtmlResourcesForExtraction(DhtmlResourceSet dhtmlResourceSet)
         {
-            var resourceProcessor = new DhtmlResourceProcessor(configuration, dhtmlResourceSet);
+            var resourceProcessor = new DhtmlResourceProcessor(configuration, dhtmlResourceSet, this.fileSystem);
             resourceProcessor.WriteZippedResources();
         }
 
         private void TweakJsonFile()
         {
-            var jsonBuilder = new JSONDocumentationBuilder(configuration, testResults);
+            var jsonBuilder = new JSONDocumentationBuilder(configuration, testResults, this.fileSystem);
             var jsonFilePath = jsonBuilder.OutputFilePath;
 
-            var tweaker = new JsonTweaker();
+            var tweaker = new JsonTweaker(this.fileSystem);
             tweaker.AddJsonPWrapperTo(jsonFilePath);
             tweaker.RenameFileTo(jsonFilePath, jsonFilePath.Replace(".json", ".js"));
         }

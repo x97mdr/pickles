@@ -19,7 +19,7 @@
 #endregion
 
 using System;
-using System.IO;
+using System.IO.Abstractions;
 
 namespace PicklesDoc.Pickles.DirectoryCrawler
 {
@@ -29,7 +29,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
 
         string Name { get; }
 
-        FileSystemInfo OriginalLocation { get; }
+        FileSystemInfoBase OriginalLocation { get; }
 
         Uri OriginalLocationUrl { get; }
 

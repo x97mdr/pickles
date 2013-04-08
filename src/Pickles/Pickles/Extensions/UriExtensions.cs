@@ -1,11 +1,11 @@
 ﻿using System;
-using System.IO;
+using System.IO.Abstractions;
 
 namespace PicklesDoc.Pickles.Extensions
 {
     public static class UriExtensions
     {
-        public static Uri ToUri(this DirectoryInfo instance)
+        public static Uri ToUri(this DirectoryInfoBase instance)
         {
             string fullName = instance.FullName;
 
@@ -17,26 +17,26 @@ namespace PicklesDoc.Pickles.Extensions
             return fullName.ToFolderUri();
         }
 
-        public static Uri ToFileUriCombined(this DirectoryInfo instance, string file)
+        public static Uri ToFileUriCombined(this DirectoryInfoBase instance, string file, IFileSystem fileSystem)
         {
-            string path = Path.Combine(instance.FullName, file);
+            string path = fileSystem.Path.Combine(instance.FullName, file);
 
             return path.ToFileUri();
         }
 
-        public static Uri ToUri(this FileSystemInfo instance)
+        public static Uri ToUri(this FileSystemInfoBase instance)
         {
-            var di = instance as DirectoryInfo;
+            var di = instance as DirectoryInfoBase;
 
             if (di != null)
             {
                 return ToUri(di);
             }
 
-            return ToUri((FileInfo) instance);
+            return ToUri((FileInfoBase)instance);
         }
 
-        public static Uri ToUri(this FileInfo instance)
+        public static Uri ToUri(this FileInfoBase instance)
         {
             return ToFileUri(instance.FullName);
         }
@@ -52,10 +52,11 @@ namespace PicklesDoc.Pickles.Extensions
             {
                 return new Uri(instance + @"\");
             }
+
             return new Uri(instance);
         }
 
-        public static string GetUriForTargetRelativeToMe(this Uri me, FileSystemInfo target, string newExtension)
+        public static string GetUriForTargetRelativeToMe(this Uri me, FileSystemInfoBase target, string newExtension)
         {
             return target.FullName != me.LocalPath
                        ? me.MakeRelativeUri(target.ToUri()).ToString().Replace(target.Extension, newExtension)

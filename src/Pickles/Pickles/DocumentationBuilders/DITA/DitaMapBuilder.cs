@@ -19,7 +19,7 @@
 #endregion
 
 using System;
-using System.IO;
+using System.IO.Abstractions;
 using System.Xml.Linq;
 using NGenerics.DataStructures.Trees;
 using PicklesDoc.Pickles.DirectoryCrawler;
@@ -31,10 +31,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DITA
         private readonly Configuration configuration;
         private readonly DitaMapPathGenerator ditaMapPathGenerator;
 
-        public DitaMapBuilder(Configuration configuration, DitaMapPathGenerator ditaMapPathGenerator)
+        private readonly IFileSystem fileSystem;
+
+        public DitaMapBuilder(Configuration configuration, DitaMapPathGenerator ditaMapPathGenerator, IFileSystem fileSystem)
         {
             this.configuration = configuration;
             this.ditaMapPathGenerator = ditaMapPathGenerator;
+            this.fileSystem = fileSystem;
         }
 
         private XElement BuildListItems(GeneralTree<INode> features)
@@ -74,7 +77,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DITA
                                    this.BuildListItems(features));
             var document = new XDocument(
                 new XDocumentType("map", "-//OASIS//DTD DITA Map//EN", "map.dtd", string.Empty), map);
-            document.Save(Path.Combine(this.configuration.OutputFolder.FullName, "features.ditamap"));
+            document.Save(this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, "features.ditamap"));
         }
     }
 }

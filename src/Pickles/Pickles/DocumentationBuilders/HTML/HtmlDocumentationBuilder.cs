@@ -19,15 +19,15 @@
 #endregion
 
 using System;
-using System.IO;
+using System.IO.Abstractions;
 using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
+using log4net;
 using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.Extensions;
-using log4net;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
@@ -39,13 +39,18 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
         private readonly HtmlDocumentFormatter htmlDocumentFormatter;
         private readonly HtmlResourceWriter htmlResourceWriter;
 
-        public HtmlDocumentationBuilder(Configuration configuration,
-                                        HtmlDocumentFormatter htmlDocumentFormatter,
-                                        HtmlResourceWriter htmlResourceWriter)
+        private readonly IFileSystem fileSystem;
+
+        public HtmlDocumentationBuilder(
+            Configuration configuration,
+            HtmlDocumentFormatter htmlDocumentFormatter,
+            HtmlResourceWriter htmlResourceWriter,
+            IFileSystem fileSystem)
         {
             this.configuration = configuration;
             this.htmlDocumentFormatter = htmlDocumentFormatter;
             this.htmlResourceWriter = htmlResourceWriter;
+            this.fileSystem = fileSystem;
         }
 
         #region IDocumentationBuilder Members
@@ -68,7 +73,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                                                                               }
 
                                                                               string nodePath =
-                                                                                  Path.Combine(
+                                                                                  this.fileSystem.Path.Combine(
                                                                                       this.configuration.OutputFolder.
                                                                                           FullName,
                                                                                       node.RelativePathFromRoot);
@@ -78,20 +83,20 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                                                                               {
                                                                                   htmlFilePath =
                                                                                       nodePath.Replace(
-                                                                                          Path.GetExtension(nodePath),
+                                                                                          this.fileSystem.Path.GetExtension(nodePath),
                                                                                           ".html");
                                                                               }
                                                                               else
                                                                               {
-                                                                                  Directory.CreateDirectory(nodePath);
+                                                                                  this.fileSystem.Directory.CreateDirectory(nodePath);
 
-                                                                                  htmlFilePath = Path.Combine(nodePath,
+                                                                                  htmlFilePath = this.fileSystem.Path.Combine(nodePath,
                                                                                                               "index.html");
                                                                               }
 
                                                                               using (
                                                                                   var writer =
-                                                                                      new StreamWriter(htmlFilePath,
+                                                                                      new System.IO.StreamWriter(htmlFilePath,
                                                                                                        false,
                                                                                                        Encoding.UTF8))
                                                                               {

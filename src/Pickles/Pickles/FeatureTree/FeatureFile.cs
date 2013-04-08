@@ -1,4 +1,5 @@
 using System;
+using System.IO.Abstractions;
 using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.FeatureTree
@@ -7,8 +8,8 @@ namespace PicklesDoc.Pickles.FeatureTree
     {
         private readonly Feature mContent;
 
-        public FeatureFile(string fileName, Folder folder, Feature feature)
-            : base(fileName, folder)
+        public FeatureFile(string fileName, Folder folder, Feature feature, IFileSystem fileSystem)
+            : base(fileName, folder, fileSystem)
         {
             if (feature == null) throw new ArgumentNullException("feature");
 

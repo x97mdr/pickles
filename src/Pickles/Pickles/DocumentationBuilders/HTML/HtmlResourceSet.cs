@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.IO.Abstractions;
 using System.Linq;
 using System.Reflection;
 using PicklesDoc.Pickles.Extensions;
@@ -11,49 +11,52 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
     {
         private readonly Configuration configuration;
 
-        public HtmlResourceSet(Configuration configuration)
+        private readonly IFileSystem fileSystem;
+
+        public HtmlResourceSet(Configuration configuration, IFileSystem fileSystem)
         {
             this.configuration = configuration;
+            this.fileSystem = fileSystem;
         }
 
         public Uri MasterStylesheet
         {
-            get { return this.configuration.OutputFolder.ToFileUriCombined("master.css"); }
+            get { return this.configuration.OutputFolder.ToFileUriCombined("master.css", this.fileSystem); }
         }
 
         public Uri PrintStylesheet
         {
-            get { return this.configuration.OutputFolder.ToFileUriCombined("print.css"); }
+            get { return this.configuration.OutputFolder.ToFileUriCombined("print.css", this.fileSystem); }
         }
 
         public Uri jQueryScript
         {
-            get { return this.configuration.OutputFolder.ToFileUriCombined("scripts/jquery.js"); }
+            get { return this.configuration.OutputFolder.ToFileUriCombined("scripts/jquery.js", this.fileSystem); }
         }
 
         public Uri AdditionalScripts
         {
-            get { return this.configuration.OutputFolder.ToFileUriCombined("scripts/scripts.js"); }
+            get { return this.configuration.OutputFolder.ToFileUriCombined("scripts/scripts.js", this.fileSystem); }
         }
 
         public Uri SuccessImage
         {
-            get { return new Uri(Path.Combine(this.ImagesFolder, "success.png")); }
+            get { return new Uri(this.fileSystem.Path.Combine(this.ImagesFolder, "success.png")); }
         }
 
         public string ImagesFolder
         {
-            get { return Path.Combine(this.configuration.OutputFolder.FullName, "images"); }
+            get { return this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, "images"); }
         }
 
         public string ScriptsFolder
         {
-            get { return Path.Combine(this.configuration.OutputFolder.FullName, "scripts"); }
+            get { return this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, "scripts"); }
         }
 
         public Uri FailureImage
         {
-            get { return new Uri(Path.Combine(this.ImagesFolder, "failure.png")); }
+            get { return new Uri(this.fileSystem.Path.Combine(this.ImagesFolder, "failure.png")); }
         }
 
         public IEnumerable<HtmlResource> All
@@ -73,7 +76,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                     yield return new HtmlResource
                                      {
                                          File = fileName,
-                                         Uri = this.configuration.OutputFolder.ToFileUriCombined(fileName)
+                                         Uri = this.configuration.OutputFolder.ToFileUriCombined(fileName, this.fileSystem)
                                      };
                 }
             }
@@ -91,7 +94,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                     yield return new HtmlResource
                                      {
                                          File = fileName,
-                                         Uri = new Uri(Path.Combine(this.ImagesFolder, fileName))
+                                         Uri = new Uri(this.fileSystem.Path.Combine(this.ImagesFolder, fileName))
                                      };
                 }
             }
@@ -109,7 +112,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                     yield return new HtmlResource
                                      {
                                          File = fileName,
-                                         Uri = new Uri(Path.Combine(this.ScriptsFolder, fileName))
+                                         Uri = new Uri(this.fileSystem.Path.Combine(this.ScriptsFolder, fileName))
                                      };
                 }
             }
@@ -117,7 +120,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         public Uri InconclusiveImage
         {
-          get { return new Uri(Path.Combine(this.ImagesFolder, "inconclusive.png")); }
+            get { return new Uri(this.fileSystem.Path.Combine(this.ImagesFolder, "inconclusive.png")); }
         }
 
 

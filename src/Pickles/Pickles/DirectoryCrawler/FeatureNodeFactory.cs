@@ -19,7 +19,7 @@
 #endregion
 
 using System;
-using System.IO;
+using System.IO.Abstractions;
 using System.Xml.Linq;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.Extensions;
@@ -32,26 +32,28 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
         private readonly FeatureParser featureParser;
         private readonly HtmlMarkdownFormatter htmlMarkdownFormatter;
         private readonly RelevantFileDetector relevantFileDetector;
+        private readonly IFileSystem fileSystem;
 
         public FeatureNodeFactory(RelevantFileDetector relevantFileDetector, FeatureParser featureParser,
-                                  HtmlMarkdownFormatter htmlMarkdownFormatter)
+                                  HtmlMarkdownFormatter htmlMarkdownFormatter, IFileSystem fileSystem)
         {
             this.relevantFileDetector = relevantFileDetector;
             this.featureParser = featureParser;
             this.htmlMarkdownFormatter = htmlMarkdownFormatter;
+            this.fileSystem = fileSystem;
         }
 
-        public INode Create(FileSystemInfo root, FileSystemInfo location)
+        public INode Create(FileSystemInfoBase root, FileSystemInfoBase location)
         {
-            string relativePathFromRoot = root == null ? @".\" : PathExtensions.MakeRelativePath(root, location);
+            string relativePathFromRoot = root == null ? @".\" : PathExtensions.MakeRelativePath(root, location, this.fileSystem);
 
-            var directory = location as DirectoryInfo;
+            var directory = location as DirectoryInfoBase;
             if (directory != null)
             {
                 return new FolderNode(directory, relativePathFromRoot);
             }
 
-            var file = location as FileInfo;
+            var file = location as FileInfoBase;
             if (this.relevantFileDetector.IsFeatureFile(file))
             {
                 Feature feature = this.featureParser.Parse(file.FullName);
@@ -64,7 +66,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
             }
             else if (this.relevantFileDetector.IsMarkdownFile(file))
             {
-                XElement markdownContent = this.htmlMarkdownFormatter.Format(File.ReadAllText(file.FullName));
+                XElement markdownContent = this.htmlMarkdownFormatter.Format(this.fileSystem.File.ReadAllText(file.FullName));
                 return new MarkdownNode(file, relativePathFromRoot, markdownContent);
             }
 

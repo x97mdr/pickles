@@ -19,7 +19,7 @@
 #endregion
 
 using System;
-using System.IO;
+using System.IO; // this is a legitimate usage of System.IO
 using PicklesDoc.Pickles.Parser;
 using gherkin.lexer;
 

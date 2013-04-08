@@ -19,7 +19,7 @@
 #endregion
 
 using System;
-using System.IO;
+using System.IO.Abstractions;
 using System.Xml.Linq;
 using NGenerics.DataStructures.Trees;
 using PicklesDoc.Pickles.DirectoryCrawler;
@@ -32,9 +32,12 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
     {
         private readonly HtmlImageResultFormatter imageResultFormatter;
 
-        public HtmlTableOfContentsFormatter(HtmlImageResultFormatter imageResultFormatter)
+        private readonly IFileSystem fileSystem;
+
+        public HtmlTableOfContentsFormatter(HtmlImageResultFormatter imageResultFormatter, IFileSystem fileSystem)
         {
           this.imageResultFormatter = imageResultFormatter;
+          this.fileSystem = fileSystem;
         }
 
         private XElement BuildListItems(XNamespace xmlns, Uri file, GeneralTree<INode> features)
@@ -75,9 +78,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             return xElement;
         }
 
-        private static XElement AddNodeForHome(XNamespace xmlns, Uri file, DirectoryInfo rootFolder)
+        private XElement AddNodeForHome(XNamespace xmlns, Uri file, DirectoryInfoBase rootFolder)
         {
-            var rootfile = new FileInfo(Path.Combine(rootFolder.FullName, "index.html"));
+            var rootfile = this.fileSystem.FileInfo.FromFileName(this.fileSystem.Path.Combine(rootFolder.FullName, "index.html"));
 
             var xElement = new XElement(xmlns + "li", new XAttribute("class", "file"), new XAttribute("id", "root"));
 
@@ -98,9 +101,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             return xElement;
         }
 
-        private static bool DetermineWhetherFileIsTheRootFile(Uri file, FileInfo rootfile)
+        private bool DetermineWhetherFileIsTheRootFile(Uri file, FileInfoBase rootfile)
         {
-            var fileInfo = new FileInfo(file.LocalPath);
+            var fileInfo = this.fileSystem.FileInfo.FromFileName(file.LocalPath);
 
             if (rootfile.DirectoryName != fileInfo.DirectoryName)
                 return false; // they're not even in the same directory
@@ -155,7 +158,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                                 new XText("«"));
         }
 
-        public XElement Format(Uri file, GeneralTree<INode> features, DirectoryInfo outputFolder)
+        public XElement Format(Uri file, GeneralTree<INode> features, DirectoryInfoBase outputFolder)
         {
             XNamespace xmlns = HtmlNamespace.Xhtml;
 
