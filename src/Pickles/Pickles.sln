@@ -24,11 +24,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pickles.Example.xUnit", "Pickles.Example.xUnit\Pickles.Example.xUnit.csproj", "{F059CC12-C35A-421F-9180-2C6078A3D6C6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FED9F7C2-2800-43DD-B98B-9D50BBBFF91A}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\packages.config = .nuget\packages.config
-	EndProjectSection
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Pickles.BaseDhtmlFiles", "Pickles.BaseDhtmlFiles", "{1F17FEE9-0033-42CE-9E91-48D3B2CCD34A}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Pickles.BaseDhtmlFiles", "Pickles.BaseDhtmlFiles\", "{1F17FEE9-0033-42CE-9E91-48D3B2CCD34A}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/Pickles.BaseDhtmlFiles"
