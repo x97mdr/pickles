@@ -39,7 +39,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
 
         public void WriteZippedResources()
         {
-            using (var binWriter = new System.IO.BinaryWriter(this.fileSystem.File.OpenWrite(MyDhtmlResourceSet.ZippedResources.AbsolutePath)))
+            using (var binWriter = new System.IO.BinaryWriter(this.fileSystem.File.OpenWrite(MyDhtmlResourceSet.ZippedResources.LocalPath)))
             {
                 binWriter.Write(Properties.Resources.Pickles_BaseDhtmlFiles);
                 binWriter.Flush();
@@ -49,7 +49,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
 
         public void CleanupZippedResources()
         {
-            this.fileSystem.File.Delete(MyDhtmlResourceSet.ZippedResources.AbsolutePath);
+            this.fileSystem.File.Delete(MyDhtmlResourceSet.ZippedResources.LocalPath);
         }
     }
 }

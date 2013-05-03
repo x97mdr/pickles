@@ -81,7 +81,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
         private void UnzipDhtmlResources(DhtmlResourceSet dhtmlResourceSet)
         {
             var unzipper = new UnZipper(this.fileSystem);
-            unzipper.UnZip(dhtmlResourceSet.ZippedResources.AbsolutePath, configuration.OutputFolder.FullName, "Pickles.BaseDhtmlFiles");
+            unzipper.UnZip(dhtmlResourceSet.ZippedResources.LocalPath, configuration.OutputFolder.FullName, "Pickles.BaseDhtmlFiles");
         }
 
         private void CleanupZippedDhtmlResources(DhtmlResourceSet dhtmlResourceSet)
