@@ -84,8 +84,9 @@ namespace PicklesDoc.Pickles
 
         public bool Parse(string[] args, Configuration configuration, TextWriter stdout)
         {
-            configuration.FeatureFolder = this.fileSystem.DirectoryInfo.FromDirectoryName(this.fileSystem.Directory.GetCurrentDirectory());
-            configuration.OutputFolder = this.fileSystem.DirectoryInfo.FromDirectoryName(Environment.GetEnvironmentVariable("TEMP"));
+            var currentDirectory = this.fileSystem.DirectoryInfo.FromDirectoryName(this.fileSystem.Directory.GetCurrentDirectory());
+            configuration.FeatureFolder = currentDirectory;
+            configuration.OutputFolder = currentDirectory;
 
             List<string> extra = this.options.Parse(args);
 

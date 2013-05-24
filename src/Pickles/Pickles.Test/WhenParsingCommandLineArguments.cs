@@ -75,8 +75,7 @@ namespace PicklesDoc.Pickles.Test
                                   writer.GetStringBuilder().ToString().ComparisonNormalize());
             Assert.AreEqual(false, shouldContinue);
             Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
-            Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")),
-                            configuration.OutputFolder.FullName);
+            Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.OutputFolder.FullName);
             Assert.AreEqual(false, configuration.HasTestResults);
             Assert.AreEqual(null, configuration.TestResultsFile);
         }
@@ -95,8 +94,7 @@ namespace PicklesDoc.Pickles.Test
                                   writer.GetStringBuilder().ToString().ComparisonNormalize());
             Assert.AreEqual(false, shouldContinue);
             Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
-            Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")),
-                            configuration.OutputFolder.FullName);
+            Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.OutputFolder.FullName);
             Assert.AreEqual(false, configuration.HasTestResults);
             Assert.AreEqual(null, configuration.TestResultsFile);
         }
@@ -115,8 +113,7 @@ namespace PicklesDoc.Pickles.Test
                                   writer.GetStringBuilder().ToString().ComparisonNormalize());
             Assert.AreEqual(false, shouldContinue);
             Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
-            Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")),
-                            configuration.OutputFolder.FullName);
+            Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.OutputFolder.FullName);
             Assert.AreEqual(false, configuration.HasTestResults);
             Assert.AreEqual(null, configuration.TestResultsFile);
         }
@@ -148,8 +145,7 @@ namespace PicklesDoc.Pickles.Test
 
             Assert.AreEqual(true, shouldContinue);
             Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
-            Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")),
-                            configuration.OutputFolder.FullName);
+            Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.OutputFolder.FullName);
             Assert.AreEqual(true, configuration.HasTestResults);
             Assert.AreEqual(@"c:\results.xml", configuration.TestResultsFile.FullName);
         }
@@ -165,8 +161,7 @@ namespace PicklesDoc.Pickles.Test
 
             Assert.AreEqual(true, shouldContinue);
             Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
-            Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")),
-                            configuration.OutputFolder.FullName);
+            Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.OutputFolder.FullName);
             Assert.AreEqual(true, configuration.HasTestResults);
             Assert.AreEqual(@"c:\results.xml", configuration.TestResultsFile.FullName);
         }
@@ -279,8 +274,7 @@ namespace PicklesDoc.Pickles.Test
                                  writer.GetStringBuilder().ToString().ComparisonNormalize());
             Assert.AreEqual(false, shouldContinue);
             Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
-            Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")),
-                            configuration.OutputFolder.FullName);
+            Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.OutputFolder.FullName);
             Assert.AreEqual(false, configuration.HasTestResults);
             Assert.AreEqual(null, configuration.TestResultsFile);
         }
@@ -299,10 +293,23 @@ namespace PicklesDoc.Pickles.Test
                                  writer.GetStringBuilder().ToString().ComparisonNormalize());
             Assert.AreEqual(false, shouldContinue);
             Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
-            Assert.AreEqual(Path.GetFullPath(Environment.GetEnvironmentVariable("TEMP")),
-                            configuration.OutputFolder.FullName);
+            Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.OutputFolder.FullName);
             Assert.AreEqual(false, configuration.HasTestResults);
             Assert.AreEqual(null, configuration.TestResultsFile);
+        }
+
+        [Test]
+        public void ThenInputAndOutputDirectoryAreSetToTheCurrentDirectory()
+        {
+          var args = new[] { @"-v" };
+
+          var configuration = new Configuration();
+          var writer = new StringWriter();
+          var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
+          commandLineArgumentParser.Parse(args, configuration, writer);
+
+          Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.FeatureFolder.FullName);
+          Assert.AreEqual(Path.GetFullPath(Directory.GetCurrentDirectory()), configuration.OutputFolder.FullName);
         }
     }
 }
