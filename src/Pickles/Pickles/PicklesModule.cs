@@ -19,6 +19,7 @@
 #endregion
 
 using System;
+using System.Reflection;
 using Autofac;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders;
@@ -32,7 +33,7 @@ using PicklesDoc.Pickles.TestFrameworks;
 
 namespace PicklesDoc.Pickles
 {
-    public class PicklesModule : Module
+    public class PicklesModule : Autofac.Module
     {
         protected override void Load(ContainerBuilder builder)
         {
@@ -74,6 +75,7 @@ namespace PicklesDoc.Pickles
                         case TestResultsFormat.NUnit: return c.Resolve<NUnitResults>();
                         case TestResultsFormat.xUnit: return c.Resolve<XUnitResults>();
                         case TestResultsFormat.MsTest: return c.Resolve<MsTestResults>();
+                        case TestResultsFormat.CucumberJson: return c.Resolve<CucumberJsonResults>();
                         default: return c.Resolve<NullTestResults>();
                     }
                 }).SingleInstance();
