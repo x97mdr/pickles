@@ -331,7 +331,7 @@
     <None Include="Formatters\JSON\results-example-failing-and-pasing-mstest.trx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="results-example-json.json" />
+    <EmbeddedResource Include="results-example-json.json" />
     <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>

@@ -19,7 +19,6 @@
 #endregion
 
 using System;
-using System.Reflection;
 using Autofac;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders;
@@ -33,7 +32,7 @@ using PicklesDoc.Pickles.TestFrameworks;
 
 namespace PicklesDoc.Pickles
 {
-    public class PicklesModule : Autofac.Module
+    public class PicklesModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
