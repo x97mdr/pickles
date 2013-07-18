@@ -23,6 +23,7 @@ Supported Test Runner Integrations
 - NUnit
 - xUnit
 - MSTest
+- Cucumber JSON
 
 Contributing
 ------------
