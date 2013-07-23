@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyCompany("Pickles")]
 [assembly: AssemblyProduct("Pickles")]
-[assembly: AssemblyCopyright("Copyright � Jeffrey Cameron 2010-2012")]
+[assembly: AssemblyCopyright("Copyright (c) Jeffrey Cameron 2010-2012, PicklesDoc 2012-2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
