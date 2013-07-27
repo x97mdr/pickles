@@ -73,8 +73,8 @@ namespace PicklesDoc.Pickles.Test
         {
             var results = ParseResultsFile();
             var feature = new Feature { Name = "Addition" };
-            var scenario2 = new Scenario { Name = "Fail to add two numbers", Feature = feature };
-            TestResult result = results.GetScenarioResult(scenario2);
+            var scenario = new Scenario { Name = "Fail to add two numbers", Feature = feature };
+            TestResult result = results.GetScenarioResult(scenario);
 
             result.WasExecuted.ShouldBeTrue();
             result.WasSuccessful.ShouldBeFalse();
