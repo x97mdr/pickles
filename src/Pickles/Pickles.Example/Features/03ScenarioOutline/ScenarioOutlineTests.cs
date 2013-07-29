@@ -31,12 +31,13 @@ namespace Specs.ScenarioOutline
         }
 
 
-        [When(@"I preform add")]
+        [When(@"I perform add")]
         public void WhenIPressAdd()
         {
             ScenarioContext.Current.Set(TalLista.Sum(), SUM_KEY);
         }
 
+        
         [Then(@"the result should be (\d+)")]
         public void ThenTheResultShouldBe(int expectedResult)
         {
