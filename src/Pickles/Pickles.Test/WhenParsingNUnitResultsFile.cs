@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 using NUnit.Framework;
 using Autofac;
@@ -125,7 +124,7 @@ namespace PicklesDoc.Pickles.Test
         }
 
         [Test]
-        public void ShouldReadNotFoundScenarioCorrectly()
+        public void ThenCanReadNotFoundScenarioCorrectly()
         {
             var results = ParseResultsFile();
             var feature = new Feature { Name = "Addition" };
