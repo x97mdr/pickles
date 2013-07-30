@@ -28,7 +28,7 @@ namespace PicklesDoc.Pickles.Test
             }
         }
 
-        protected IFileSystem FileSystem
+        protected IFileSystem RealFileSystem
         {
             get { return this.Container.Resolve<IFileSystem>(); }
         }
