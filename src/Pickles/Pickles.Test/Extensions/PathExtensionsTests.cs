@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO.Abstractions.TestingHelpers;
 using NUnit.Framework;
 using PicklesDoc.Pickles.Extensions;
+using Should;
 
 namespace PicklesDoc.Pickles.Test.Extensions
 {
@@ -10,28 +12,23 @@ namespace PicklesDoc.Pickles.Test.Extensions
         [Test]
         public void Get_A_Relative_Path_When_Location_Is_Deeper_Than_Root()
         {
-            // Arrange
-            string root = @"c:\test";
-            string location = @"c:\test\deep\blah.feature";
-            string expected = @"deep\blah.feature";
+            var fileSystem = new MockFileSystem();
+            fileSystem.AddFile(@"c:\test\deep\blah.feature", "Feature:"); // adding a file automatically adds all parent directories
 
-            // Act
-            string actual = PathExtensions.MakeRelativePath(root, location, FileSystem);
+            string actual = PathExtensions.MakeRelativePath(@"c:\test", @"c:\test\deep\blah.feature", fileSystem);
 
-            // Assert
-            Assert.AreEqual(actual, expected, string.Format("Expected {0} got {1}", expected, actual));
+            actual.ShouldEqual(@"deep\blah.feature");
         }
 
         [Test]
         public void Get_A_Relative_Path_When_Location_Is_Deeper_Than_Root_Even_When_Root_Contains_End_Slash()
         {
-            string root = @"c:\test\";
-            string location = @"c:\test\deep\blah.feature";
-            string expected = @"deep\blah.feature";
+            var fileSystem = new MockFileSystem();
+            fileSystem.AddFile(@"c:\test\deep\blah.feature", "Feature:"); // adding a file automatically adds all parent directories
 
-            string actual = PathExtensions.MakeRelativePath(root, location, FileSystem);
+            string actual = PathExtensions.MakeRelativePath(@"c:\test\", @"c:\test\deep\blah.feature", fileSystem);
 
-            Assert.AreEqual(actual, expected, string.Format("Expected {0} got {1}", expected, actual));
+            actual.ShouldEqual(@"deep\blah.feature");
         }
     }
 }
