@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO.Abstractions;
+using System.IO.Abstractions.TestingHelpers;
 using Autofac;
 using NUnit.Framework;
 
@@ -18,6 +19,7 @@ namespace PicklesDoc.Pickles.Test
                     var builder = new ContainerBuilder();
                     builder.RegisterAssemblyTypes(typeof(Runner).Assembly);
                     builder.Register<FileSystem>(_ => new FileSystem()).As<IFileSystem>().SingleInstance();
+                    builder.Register<MockFileSystem>(_ => new MockFileSystem()).SingleInstance();
                     builder.RegisterModule<PicklesModule>();
                     this.container = builder.Build();
                 }
@@ -29,6 +31,11 @@ namespace PicklesDoc.Pickles.Test
         protected IFileSystem FileSystem
         {
             get { return this.Container.Resolve<IFileSystem>(); }
+        }
+
+        protected MockFileSystem MockFileSystem
+        {
+            get { return this.Container.Resolve<MockFileSystem>(); }
         }
 
         [TearDown]
