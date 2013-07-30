@@ -14,7 +14,7 @@ namespace PicklesDoc.Pickles.Test.FeatureTree
         [Test]
         public void Constructor_EmptyFeature_ThrowsArgumentException()
         {
-            var exception = Assert.Throws<ArgumentNullException>(() => new FeatureFile("feature", parentFolder, null, FileSystem));
+            var exception = Assert.Throws<ArgumentNullException>(() => new FeatureFile("feature", parentFolder, null, RealFileSystem));
 
             exception.ParamName.ShouldEqual("feature");
         }
@@ -24,7 +24,7 @@ namespace PicklesDoc.Pickles.Test.FeatureTree
         {
             var feature = new Feature();
 
-            var featureFile = new FeatureFile("filename.ext", parentFolder, feature, FileSystem);
+            var featureFile = new FeatureFile("filename.ext", parentFolder, feature, RealFileSystem);
 
             featureFile.Content.ShouldEqual(feature);
         }
@@ -32,7 +32,7 @@ namespace PicklesDoc.Pickles.Test.FeatureTree
         [Test]
         public void FeatureFile_Implements_ITreeItem()
         {
-            var featureFile = new FeatureFile("filename.ext", parentFolder, new Feature(), FileSystem);
+            var featureFile = new FeatureFile("filename.ext", parentFolder, new Feature(), RealFileSystem);
 
             featureFile.ShouldImplement<ITreeItem>();
         }

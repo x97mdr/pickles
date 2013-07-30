@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.IO; // this one needs a lot of work to move to System.IO.Abstractions
 using System.Linq;
 using NGenerics.DataStructures.Trees;
 using NUnit.Framework;
@@ -43,7 +43,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
                                     };
 
             ITestResults testResults = new MsTestResults(configuration);
-            var jsonDocumentationBuilder = new JSONDocumentationBuilder(configuration, testResults, FileSystem);
+            var jsonDocumentationBuilder = new JSONDocumentationBuilder(configuration, testResults, RealFileSystem);
             jsonDocumentationBuilder.Build(features);
         }
 

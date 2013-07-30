@@ -10,9 +10,9 @@ namespace PicklesDoc.Pickles.Test.Extensions
         [Test]
         public void ToFileUriCombined_ValidIntput_ValidOutput()
         {
-            var info = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\temp");
+            var info = RealFileSystem.DirectoryInfo.FromDirectoryName(@"c:\temp");
 
-            Uri uri = info.ToFileUriCombined("test.txt", FileSystem);
+            Uri uri = info.ToFileUriCombined("test.txt", RealFileSystem);
 
             Assert.AreEqual("file:///c:/temp/test.txt", uri.ToString());
         }
@@ -44,7 +44,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
         [Test]
         public void ToUriDirectoryInfo_WithTrailingSlash_ProducesUriWithTrailingSlash()
         {
-            var directoryInfo = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\temp\");
+            var directoryInfo = RealFileSystem.DirectoryInfo.FromDirectoryName(@"c:\temp\");
 
             Uri uri = directoryInfo.ToUri();
 
@@ -54,7 +54,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
         [Test]
         public void ToUriDirectoryInfo_WithoutTrailingSlash_ProducesUriWithTrailingSlash()
         {
-            var directoryInfo = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\temp");
+            var directoryInfo = RealFileSystem.DirectoryInfo.FromDirectoryName(@"c:\temp");
 
             Uri uri = directoryInfo.ToUri();
 
@@ -64,7 +64,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
         [Test]
         public void ToUriFileInfo_NormalFilename_ProducesUri()
         {
-            var fileInfo = FileSystem.FileInfo.FromFileName(@"c:\temp\test.txt");
+            var fileInfo = RealFileSystem.FileInfo.FromFileName(@"c:\temp\test.txt");
 
             Uri uri = fileInfo.ToUri();
 
@@ -74,7 +74,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
         [Test]
         public void ToUriFileSystemInfo_DirectoryWithTrailingSlash_ProducesUriWithTrailingSlash()
         {
-            var fsi = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\temp\");
+            var fsi = RealFileSystem.DirectoryInfo.FromDirectoryName(@"c:\temp\");
 
             Uri uri = fsi.ToUri();
 
@@ -84,7 +84,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
         [Test]
         public void ToUriFileSystemInfo_FileInfo_ProducesUri()
         {
-            var fsi = FileSystem.FileInfo.FromFileName(@"c:\temp\test.txt");
+            var fsi = RealFileSystem.FileInfo.FromFileName(@"c:\temp\test.txt");
 
             Uri uri = fsi.ToUri();
 
