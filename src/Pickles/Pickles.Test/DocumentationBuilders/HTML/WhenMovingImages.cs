@@ -1,10 +1,10 @@
-﻿using Autofac;
+﻿using System.IO; // this one needs a lot of work to move to System.IO.Abstractions
+using Autofac;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using Should;
 using System.Drawing.Imaging;
-using System.IO;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 {

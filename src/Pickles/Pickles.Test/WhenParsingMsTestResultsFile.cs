@@ -1,11 +1,13 @@
 ﻿using System;
-using System.IO;
 using System.Reflection;
 using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.Parser;
 using PicklesDoc.Pickles.TestFrameworks;
 using Should;
+
+using StreamReader = System.IO.StreamReader;
+using StreamWriter = System.IO.StreamWriter;
 
 namespace PicklesDoc.Pickles.Test
 {
@@ -133,7 +135,7 @@ namespace PicklesDoc.Pickles.Test
             }
 
             var configuration = Container.Resolve<Configuration>();
-            configuration.TestResultsFile = new FileInfo(RESULTS_FILE_NAME);
+            configuration.TestResultsFile = RealFileSystem.FileInfo.FromFileName(RESULTS_FILE_NAME);
 
             var results = Container.Resolve<MsTestResults>();
             return results;

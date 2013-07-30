@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using NGenerics.DataStructures.Trees;
@@ -25,7 +24,7 @@ namespace PicklesDoc.Pickles.Test.Formatters
 
             var formatter = new HtmlTableOfContentsFormatter(null, RealFileSystem);
             this._toc = formatter.Format(features.ChildNodes[0].Data.OriginalLocationUrl, features,
-                                    new DirectoryInfo(ROOT_PATH));
+                                    RealFileSystem.DirectoryInfo.FromDirectoryName(ROOT_PATH));
         }
 
         [Test]

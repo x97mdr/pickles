@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using Autofac;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DirectoryCrawler;
@@ -16,7 +15,7 @@ namespace PicklesDoc.Pickles.Test
         public void ThenCanGeneratePathToDeepLevelFeatureFileSuccessfully()
         {
             var configuration = Container.Resolve<Configuration>();
-            configuration.FeatureFolder = new DirectoryInfo(@"c:\features");
+            configuration.FeatureFolder = MockFileSystem.DirectoryInfo.FromDirectoryName(@"c:\features");
             var featureNode = new FeatureNode(RealFileSystem.FileInfo.FromFileName(@"c:\features\path\to\the_feature.feature"),
                                                            @"features\path\to\the_feature.feature",
                                                            new Feature {Name = "The Feature"});
@@ -31,7 +30,7 @@ namespace PicklesDoc.Pickles.Test
         public void ThenCanGeneratePathToTopLevelFeatureFileSuccessfully()
         {
             var configuration = Container.Resolve<Configuration>();
-            configuration.FeatureFolder = new DirectoryInfo(@"c:\features");
+            configuration.FeatureFolder = MockFileSystem.DirectoryInfo.FromDirectoryName(@"c:\features");
             var featureNode = new FeatureNode(RealFileSystem.FileInfo.FromFileName(@"c:\features\the_feature.feature"),
                                                            @"features\the_feature.feature",
                                                            new Feature {Name = "The Feature"});

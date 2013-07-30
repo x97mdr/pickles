@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Xml.Linq;
 using NUnit.Framework;
 using Autofac;
@@ -19,7 +18,7 @@ namespace PicklesDoc.Pickles.Test
             var htmlDocumentFormatter = Container.Resolve<HtmlFeatureFormatter>();
 
             string actual;
-            using (var reader = new StringReader(featureText))
+            using (var reader = new System.IO.StringReader(featureText))
             {
                 Feature feature = parser.Parse(reader);
                 XElement document = htmlDocumentFormatter.Format(feature);

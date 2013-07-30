@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.DirectoryCrawler;
@@ -15,9 +14,9 @@ namespace PicklesDoc.Pickles.Test.Formatters
         [TestFixtureSetUp]
         public void SetUp()
         {
-            if (!Directory.Exists(ROOT_PATH))
+            if (!System.IO.Directory.Exists(ROOT_PATH))
             {
-                Directory.CreateDirectory(ROOT_PATH);
+                System.IO.Directory.CreateDirectory(ROOT_PATH);
             }
         }
 
@@ -25,7 +24,7 @@ namespace PicklesDoc.Pickles.Test.Formatters
         public void ShouldNotBlowUpWHenParsingEmptyFolder()
         {
             var configuration = Container.Resolve<Configuration>();
-            configuration.OutputFolder = new DirectoryInfo(ROOT_PATH + @"..\");
+            configuration.OutputFolder = MockFileSystem.DirectoryInfo.FromDirectoryName(ROOT_PATH + @"..\");
             var features = Container.Resolve<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
             var builder = Container.Resolve<HtmlDocumentationBuilder>();
             
@@ -35,9 +34,9 @@ namespace PicklesDoc.Pickles.Test.Formatters
         [TestFixtureTearDown]
         public void TearDown()
         {
-            if (Directory.Exists(ROOT_PATH))
+            if (System.IO.Directory.Exists(ROOT_PATH))
             {
-                Directory.Delete(ROOT_PATH, true);
+                System.IO.Directory.Delete(ROOT_PATH, true);
             }
         }
     }

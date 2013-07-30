@@ -1,9 +1,12 @@
 ﻿using System;
-using System.IO;
+using System.IO; // this one needs a lot of work to move to System.IO.Abstractions
 using System.Reflection;
 using NUnit.Framework;
 using PicklesDoc.Pickles.Extensions;
 using Should;
+
+using TextWriter = System.IO.TextWriter;
+using StringWriter = System.IO.StringWriter;
 
 namespace PicklesDoc.Pickles.Test
 {
