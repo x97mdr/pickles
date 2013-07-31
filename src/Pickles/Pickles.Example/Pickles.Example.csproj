@@ -37,8 +37,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Should.Fluent">
-      <HintPath>..\packages\ShouldFluent.1.1.12.0\lib\Should.Fluent.dll</HintPath>
+    <Reference Include="Should">
+      <HintPath>..\packages\Should.1.1.20\lib\Should.dll</HintPath>
+    </Reference>
+    <Reference Include="Should.Fluent, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ShouldFluent.1.1.19\lib\Should.Fluent.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -165,6 +169,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MultilineFeatureExample.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\13MultilineText\MultiLineSteps.cs" />
     <Compile Include="Features\99TestEntities\Person.cs" />
     <Compile Include="Features\99TestEntities\Style.cs" />
     <Compile Include="Features\Arithmetic1.feature.cs">

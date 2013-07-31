@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Xml;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
@@ -57,7 +56,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML.AutomationLayer
 
     private static string FormatXml(string xmlDocument)
     {
-      using (StringWriter sw = new StringWriter())
+      using (var sw = new System.IO.StringWriter())
       {
         using (XmlWriter xw = XmlWriter.Create(sw, new XmlWriterSettings { Indent = true, NewLineHandling = NewLineHandling.Replace, NewLineChars = Environment.NewLine }))
         {

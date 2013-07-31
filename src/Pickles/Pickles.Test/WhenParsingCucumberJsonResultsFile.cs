@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using Autofac;
 using NUnit.Framework;
 using PicklesDoc.Pickles.Parser;
@@ -21,14 +17,14 @@ namespace PicklesDoc.Pickles.Test
         public void ThenCanReadFeatureResultSuccesfully()
         {
             // Write out the embedded test results file
-            using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + RESULTS_FILE_NAME)))
-            using (var output = new StreamWriter(RESULTS_FILE_NAME))
+            using (var input = new System.IO.StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + RESULTS_FILE_NAME)))
+            using (var output = new System.IO.StreamWriter(RESULTS_FILE_NAME))
             {
                 output.Write(input.ReadToEnd());
             }
 
             var configuration = Container.Resolve<Configuration>();
-            configuration.TestResultsFile = new FileInfo(RESULTS_FILE_NAME);
+            configuration.TestResultsFile = RealFileSystem.FileInfo.FromFileName(RESULTS_FILE_NAME);
 
             var results = Container.Resolve<CucumberJsonResults>();
 
@@ -43,14 +39,14 @@ namespace PicklesDoc.Pickles.Test
         public void ThenCanReadScenarioResultSuccessfully()
         {
             // Write out the embedded test results file
-            using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + RESULTS_FILE_NAME)))
-            using (var output = new StreamWriter(RESULTS_FILE_NAME))
+            using (var input = new System.IO.StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + RESULTS_FILE_NAME)))
+            using (var output = new System.IO.StreamWriter(RESULTS_FILE_NAME))
             {
                 output.Write(input.ReadToEnd());
             }
 
             var configuration = Container.Resolve<Configuration>();
-            configuration.TestResultsFile = new FileInfo(RESULTS_FILE_NAME);
+            configuration.TestResultsFile = RealFileSystem.FileInfo.FromFileName(RESULTS_FILE_NAME);
 
             var results = Container.Resolve<CucumberJsonResults>();
 

@@ -4,7 +4,6 @@ using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using Should;
 using System.Drawing.Imaging;
-using System.IO;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 {
@@ -14,20 +13,20 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
         [Test]
         public void ThenCanMoveImageAsRelativePathToOutputLocation()
         {
-            var rootDirectory = Path.Combine(Directory.GetCurrentDirectory(), "MovingImagesTest");
-            Directory.CreateDirectory(rootDirectory);
+            var rootDirectory = RealFileSystem.Path.Combine(RealFileSystem.Directory.GetCurrentDirectory(), "MovingImagesTest");
+            RealFileSystem.Directory.CreateDirectory(rootDirectory);
 
             try
             {
                 var configuration = Container.Resolve<Configuration>();
 
-                configuration.FeatureFolder = new DirectoryInfo(Path.Combine(rootDirectory, "Features"));
-                Directory.CreateDirectory(configuration.FeatureFolder.FullName);
+                configuration.FeatureFolder = RealFileSystem.DirectoryInfo.FromDirectoryName(RealFileSystem.Path.Combine(rootDirectory, "Features"));
+                RealFileSystem.Directory.CreateDirectory(configuration.FeatureFolder.FullName);
 
-                configuration.OutputFolder = new DirectoryInfo(Path.Combine(rootDirectory, "Output"));
-                Directory.CreateDirectory(configuration.OutputFolder.FullName);
+                configuration.OutputFolder = RealFileSystem.DirectoryInfo.FromDirectoryName(RealFileSystem.Path.Combine(rootDirectory, "Output"));
+                RealFileSystem.Directory.CreateDirectory(configuration.OutputFolder.FullName);
 
-                var imageFilePath = Path.Combine(configuration.FeatureFolder.FullName, "test.jpg");
+                var imageFilePath = RealFileSystem.Path.Combine(configuration.FeatureFolder.FullName, "test.jpg");
                 Resources.test.Save(imageFilePath, ImageFormat.Jpeg);
 
                 var featureText = @"
@@ -39,11 +38,11 @@ Feature: Test Image Relocation
     ![Test Image](test.jpg)
 ";
 
-                var featureFilePath = Path.Combine(configuration.FeatureFolder.FullName, "test.feature");
-                File.WriteAllText(featureFilePath, featureText, System.Text.Encoding.UTF8);
+                var featureFilePath = RealFileSystem.Path.Combine(configuration.FeatureFolder.FullName, "test.feature");
+                RealFileSystem.File.WriteAllText(featureFilePath, featureText, System.Text.Encoding.UTF8);
 
                 var factory = Container.Resolve<FeatureNodeFactory>();
-                var node = (FeatureNode)factory.Create(configuration.FeatureFolder, FileSystem.FileInfo.FromFileName(featureFilePath));
+                var node = (FeatureNode)factory.Create(configuration.FeatureFolder, RealFileSystem.FileInfo.FromFileName(featureFilePath));
 
                 var htmlFeatureFormatter = Container.Resolve<HtmlFeatureFormatter>();
                 var featureXml = htmlFeatureFormatter.Format(node.Feature);
@@ -51,12 +50,12 @@ Feature: Test Image Relocation
                 var imageRelocator = Container.Resolve<HtmlImageRelocator>();
                 imageRelocator.Relocate(node, featureXml);
 
-                var outputImage = new FileInfo(Path.Combine(configuration.OutputFolder.FullName, "test.jpg"));
+                var outputImage = RealFileSystem.FileInfo.FromFileName(RealFileSystem.Path.Combine(configuration.OutputFolder.FullName, "test.jpg"));
                 outputImage.Exists.ShouldBeTrue();
             }
             finally
             {
-                Directory.Delete(rootDirectory, true);
+              RealFileSystem.Directory.Delete(rootDirectory, true);
             }
         }
     }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.IO.Abstractions;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DirectoryCrawler;
@@ -24,7 +23,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         public void Setup()
         {
             this._testFeature = new Feature { Name = "Test" };
-            this._featureFileInfo = this.FileSystem.FileInfo.FromFileName(FileSystem.Path.Combine(ROOT_PATH, FEATURE_PATH));
+            this._featureFileInfo = this.RealFileSystem.FileInfo.FromFileName(RealFileSystem.Path.Combine(ROOT_PATH, FEATURE_PATH));
             this._featureDirectoryNode = new FeatureNode(this._featureFileInfo, RELATIVE_PATH, this._testFeature);
 
             this._featureWithMeta = new FeatureWithMetaInfo(this._featureDirectoryNode);

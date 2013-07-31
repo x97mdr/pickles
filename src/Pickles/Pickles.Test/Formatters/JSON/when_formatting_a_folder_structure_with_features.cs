@@ -1,5 +1,5 @@
 ﻿using System;
-using System.IO;
+using System.IO; // this one needs a lot of work to move to System.IO.Abstractions
 using NGenerics.DataStructures.Trees;
 using NUnit.Framework;
 using Autofac;
@@ -32,7 +32,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
                                     };
 
 
-            var jsonDocumentationBuilder = new JSONDocumentationBuilder(configuration, null, FileSystem);
+            var jsonDocumentationBuilder = new JSONDocumentationBuilder(configuration, null, RealFileSystem);
             jsonDocumentationBuilder.Build(features);
         }
 

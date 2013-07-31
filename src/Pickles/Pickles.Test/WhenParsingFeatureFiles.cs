@@ -1,9 +1,10 @@
-﻿using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.Parser;
 using System;
+
+using StringReader = System.IO.StringReader;
 
 namespace PicklesDoc.Pickles.Test
 {
@@ -22,15 +23,15 @@ Feature: Test
     As a user
     I want to run this scenario
 
-	Scenario: A scenario
-		Given some feature
-		When it runs
-		Then I should see that this thing happens	
+  Scenario: A scenario
+    Given some feature
+    When it runs
+    Then I should see that this thing happens	
 
     Scenario: Another scenario
-		Given some other feature
-		When it runs
-		Then I should see that this other thing happens
+    Given some other feature
+    When it runs
+    Then I should see that this other thing happens
         And something else";
 
             var parser = Container.Resolve<FeatureParser>();
@@ -110,10 +111,10 @@ Feature: Test
     As a user
     I want to run this scenario
 
-	Scenario: A scenario
-		Given some feature
-		When it runs
-		Then I should see that this thing happens";
+  Scenario: A scenario
+    Given some feature
+    When it runs
+    Then I should see that this thing happens";
 
             var parser = Container.Resolve<FeatureParser>();
             Feature feature = parser.Parse(new StringReader(featureText));
@@ -162,10 +163,10 @@ Feature: Test
     As a user
     I want to run this scenario
 
-	Scenario Outline: A scenario outline
-		Given some feature with <keyword1>
-		When it runs
-		Then I should see <keyword2>
+  Scenario Outline: A scenario outline
+    Given some feature with <keyword1>
+    When it runs
+    Then I should see <keyword2>
 
     Examples:
     | keyword1 | keyword2 |
@@ -220,13 +221,13 @@ Feature: Test
     I want to run this scenario
 
     Background: Some background for the scenarios
-		Given some prior context
+    Given some prior context
         And yet more prior context
 
-	Scenario: A scenario
-		Given some feature
-		When it runs
-		Then I should see that this thing happens";
+  Scenario: A scenario
+    Given some feature
+    When it runs
+    Then I should see that this thing happens";
 
             var parser = Container.Resolve<FeatureParser>();
             Feature feature = parser.Parse(new StringReader(featureText));
@@ -291,12 +292,12 @@ Feature: Test
     As a user
     I want to run this scenario
 
-	Scenario: A scenario
-		Given some feature with a table
+  Scenario: A scenario
+    Given some feature with a table
         | Column1 | Column2 |
         | Value 1 | Value 2 |
-		When it runs
-		Then I should see that this thing happens";
+    When it runs
+    Then I should see that this thing happens";
 
             var parser = Container.Resolve<FeatureParser>();
             Feature feature = parser.Parse(new StringReader(featureText));
@@ -320,10 +321,10 @@ Feature: Test
     I want to run this scenario
 
     @scenario-tag-1 @scenario-tag-2
-	Scenario: A scenario
-		Given some feature
-		When it runs
-		Then I should see that this thing happens";
+  Scenario: A scenario
+    Given some feature
+    When it runs
+    Then I should see that this thing happens";
 
             var parser = new FeatureParser(new LanguageServices(new Configuration()));
             Feature feature = parser.Parse(new StringReader(featureText));

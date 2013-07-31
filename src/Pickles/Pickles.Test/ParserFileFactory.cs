@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.AccessControl;
 using NUnit.Framework;
 
 namespace PicklesDoc.Pickles.Test
@@ -30,10 +30,10 @@ namespace PicklesDoc.Pickles.Test
                     {
                         using (
                             var featureStreamReader =
-                                new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream(feature)))
+                                new System.IO.StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream(feature)))
                         using (
                             var xhtmlStreamReader =
-                                new StreamReader(
+                                new System.IO.StreamReader(
                                     Assembly.GetExecutingAssembly().GetManifestResourceStream(associatedXhtml)))
                         {
                             string featureText = featureStreamReader.ReadToEnd();

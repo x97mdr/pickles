@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using NUnit.Framework;
 using Autofac;
@@ -15,7 +14,7 @@ namespace PicklesDoc.Pickles.Test
         public void ThenCanDetectAllImagesSuccessfully()
         {
             var configuration = Container.Resolve<Configuration>();
-            configuration.OutputFolder = configuration.OutputFolder = new DirectoryInfo(@"c:\");
+            configuration.OutputFolder = configuration.OutputFolder = MockFileSystem.DirectoryInfo.FromDirectoryName(@"c:\");
 
             var htmlResources = Container.Resolve<HtmlResourceSet>();
             HtmlResource[] images = htmlResources.Images.ToArray();
@@ -30,7 +29,7 @@ namespace PicklesDoc.Pickles.Test
         public void ThenCanDetectAllResourcesSuccessfully()
         {
             var configuration = Container.Resolve<Configuration>();
-            configuration.OutputFolder = configuration.OutputFolder = new DirectoryInfo(@"c:\");
+            configuration.OutputFolder = configuration.OutputFolder = MockFileSystem.DirectoryInfo.FromDirectoryName(@"c:\");
 
             var htmlResources = Container.Resolve<HtmlResourceSet>();
             HtmlResource[] resources = htmlResources.All.ToArray();
@@ -51,7 +50,7 @@ namespace PicklesDoc.Pickles.Test
         public void ThenCanDetectAllScriptsSuccessfully()
         {
             var configuration = Container.Resolve<Configuration>();
-            configuration.OutputFolder = configuration.OutputFolder = new DirectoryInfo(@"c:\");
+            configuration.OutputFolder = configuration.OutputFolder = MockFileSystem.DirectoryInfo.FromDirectoryName(@"c:\");
 
             var htmlResources = Container.Resolve<HtmlResourceSet>();
             HtmlResource[] scripts = htmlResources.Scripts.ToArray();
@@ -65,7 +64,7 @@ namespace PicklesDoc.Pickles.Test
         public void ThenCanDetectAllStylesheetsSuccessfully()
         {
             var configuration = Container.Resolve<Configuration>();
-            configuration.OutputFolder = configuration.OutputFolder = new DirectoryInfo(@"c:\");
+            configuration.OutputFolder = configuration.OutputFolder = MockFileSystem.DirectoryInfo.FromDirectoryName(@"c:\");
 
             var htmlResources = Container.Resolve<HtmlResourceSet>();
             HtmlResource[] stylesheets = htmlResources.Stylesheets.ToArray();

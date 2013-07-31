@@ -1,9 +1,10 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using NUnit.Framework;
 using PicklesDoc.Pickles.Parser;
 using Should;
+
+using StringReader = System.IO.StringReader;
 
 namespace PicklesDoc.Pickles.Test
 {
@@ -20,7 +21,7 @@ Egenskap: Test egenskap
     Vill jag skriva mina krav på svenska
     Så att beställaren kan förstå dem
 
-	Scenario: Ett scenario
+  Scenario: Ett scenario
         Givet en egenskap
         När den körs
         Så skall jag se att det inträffat";
