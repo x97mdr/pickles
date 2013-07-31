@@ -60,7 +60,6 @@ namespace PicklesDoc.Pickles.TestFrameworks
                 (from scenario in AllScenariosInResultFile()
                  let properties = PropertiesOf(scenario)
                  where properties != null
-                 let property = PropertiesOf(scenario)
                  where FeatureNamePropertyExistsWith(queriedScenario.Feature.Name, among: properties)
                  where NameOf(scenario) == queriedScenario.Name
                  select ScenarioExecutionIdStringOf(scenario)).FirstOrDefault();
