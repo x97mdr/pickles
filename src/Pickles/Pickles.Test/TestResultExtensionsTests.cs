@@ -23,91 +23,66 @@ namespace PicklesDoc.Pickles.Test
     [TestFixture]
     public class TestResultExtensionsTests
     {
-      [Test]
-      [ExpectedException(typeof(ArgumentNullException))]
-      public void Merge_NullReference_ThrowsArgumentNullException()
-      {
-        TestResultExtensions.Merge(null);
-      }
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Merge_NullReference_ThrowsArgumentNullException()
+        {
+            TestResultExtensions.Merge(null);
+        }
 
-      [Test]
-      public void Merge_EmptySequence_ResultsInWasExecutedFalseAndWasSuccessfulFalse()
-      {
-        var testResults = new TestResult[0];
+        [Test]
+        public void Merge_EmptySequence_ResultsInWasExecutedFalseAndWasSuccessfulFalse()
+        {
+            var testResults = new TestResult[0];
 
-        TestResult actual = testResults.Merge();
+            TestResult actual = testResults.Merge();
 
-        actual.WasExecuted.ShouldBeFalse();
-        actual.WasSuccessful.ShouldBeFalse();
-      }
+            actual.ShouldEqual(TestResult.Inconclusive());
+        }
 
-      [Test]
-      public void Merge_SingleItem_ReturnsThatItem()
-      {
-        var testResults = new[]
+        [Test]
+        public void Merge_SingleItem_ReturnsThatItem()
+        {
+            var testResults = new[]
           {
-            new TestResult { WasExecuted = true, WasSuccessful = false }
+            new TestResult { WasExecuted = true, WasSuccessful = true, WasNotFound = true}
           };
 
-        TestResult actual = testResults.Merge();
+            TestResult actual = testResults.Merge();
 
-        actual.WasExecuted.ShouldBeTrue();
-        actual.WasSuccessful.ShouldBeFalse();
-      }
+            actual.WasExecuted.ShouldBeTrue();
+            actual.WasSuccessful.ShouldBeTrue();
+            actual.WasNotFound.ShouldBeTrue();
+        }
 
-      [Test]
-      public void Merge_MultipleItemsWasExecutedTrueAndTrue_ReturnsWasExecutedTrue()
-      {
-        var testResults = new[]
-          {
-            new TestResult { WasExecuted = true }, new TestResult { WasExecuted = true }
-          };
+        [Test]
+        public void Merge_MultiplePassedResults_ShouldReturnPassed()
+        {
+            var testResults = new[] { TestResult.Passed(), TestResult.Passed() };
 
-        TestResult actual = testResults.Merge();
+            TestResult actual = testResults.Merge();
 
-        actual.WasExecuted.ShouldBeTrue();
-      }
+            actual.ShouldEqual(TestResult.Passed());
+        }
 
-      [Test]
-      public void Merge_MultipleItemsWasExecutedTrueAndFalse_ReturnsWasExecutedFalse()
-      {
-        var testResults = new[]
-          {
-            new TestResult { WasExecuted = true },
-            new TestResult { WasExecuted = false }
-          };
+        [Test]
+        public void Merge_MultiplePassedOneInconclusiveResults_ShouldReturnInconclusive()
+        {
+            var testResults = new[] { TestResult.Passed(), TestResult.Passed(), TestResult.Inconclusive() };
 
-        TestResult actual = testResults.Merge();
+            TestResult actual = testResults.Merge();
 
-        actual.WasExecuted.ShouldBeFalse();
-      }
+            actual.ShouldEqual(TestResult.Inconclusive());
+        }
 
-      [Test]
-      public void Merge_MultipleItemsWasSuccessfulTrueAndTrue_ReturnsWasSuccessfulTrue()
-      {
-        var testResults = new[]
-          {
-            new TestResult { WasSuccessful = true },
-            new TestResult { WasSuccessful = true }
-          };
+        [Test]
+        public void Merge_PassedInconclusiveAndFailedResults_ShouldReturnFailed()
+        {
+            var testResults = new[] { TestResult.Passed(), TestResult.Inconclusive(), TestResult.Failed() };
 
-        TestResult actual = testResults.Merge();
+            TestResult actual = testResults.Merge();
 
-        actual.WasSuccessful.ShouldBeTrue();
-      }
-
-      [Test]
-      public void Merge_MultipleItemsWasSuccessfulTrueAndFalse_ReturnsWasSuccessfulFalse()
-      {
-        var testResults = new[]
-          {
-            new TestResult { WasSuccessful = true },
-            new TestResult { WasSuccessful = false }
-          };
-
-        TestResult actual = testResults.Merge();
-
-        actual.WasSuccessful.ShouldBeFalse();
-      }
+            actual.ShouldEqual(TestResult.Failed());
+        }
     }
 }

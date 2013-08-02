@@ -32,51 +32,91 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         public static TestResult Passed()
         {
-          return new TestResult { WasExecuted = true, WasSuccessful = true };
+            return new TestResult { WasExecuted = true, WasSuccessful = true };
         }
 
         public static TestResult Failed()
         {
-          return new TestResult { WasExecuted = true, WasSuccessful = false };
+            return new TestResult { WasExecuted = true, WasSuccessful = false };
         }
 
         public static TestResult Inconclusive()
         {
-          return new TestResult { WasExecuted = false, WasSuccessful = false };
+            return new TestResult { WasExecuted = false, WasSuccessful = false };
         }
 
         public static TestResult NotFound()
         {
-            return new TestResult {WasExecuted = false, WasSuccessful = false, WasNotFound = true};
+            return new TestResult { WasExecuted = false, WasSuccessful = false, WasNotFound = true };
+        }
+
+        public bool Equals(TestResult other)
+        {
+            return this.WasExecuted.Equals(other.WasExecuted) && this.WasSuccessful.Equals(other.WasSuccessful) && this.WasNotFound.Equals(other.WasNotFound);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            return obj is TestResult && Equals((TestResult)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = this.WasExecuted.GetHashCode();
+            hashCode = (hashCode) ^ this.WasSuccessful.GetHashCode();
+            hashCode = (hashCode) ^ this.WasNotFound.GetHashCode();
+            return hashCode;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("WasExecuted: {0}, WasSuccessful: {1}, WasNotFound: {2}", this.WasExecuted, this.WasSuccessful, this.WasNotFound);
+        }
+
+        public static bool operator ==(TestResult left, TestResult right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(TestResult left, TestResult right)
+        {
+            return !(left == right);
         }
     }
 
-  public static class TestResultExtensions
-  {
-    public static TestResult Merge(this IEnumerable<TestResult> testResults)
+    public static class TestResultExtensions
     {
-      if (testResults == null)
-      {
-        throw new ArgumentNullException("testResults");
-      }
-
-      TestResult[] items = testResults.ToArray();
-
-      if (!items.Any())
-      {
-        return new TestResult();
-      }
-
-      if (items.Count() == 1)
-      {
-        return items.Single();
-      }
-
-      return new TestResult
+        public static TestResult Merge(this IEnumerable<TestResult> testResults)
         {
-          WasExecuted = items.All(i => i.WasExecuted),
-          WasSuccessful = items.All(i => i.WasSuccessful),
-        };
+            if (testResults == null)
+            {
+                throw new ArgumentNullException("testResults");
+            }
+
+            TestResult[] items = testResults.ToArray();
+
+            if (!items.Any())
+            {
+                return new TestResult();
+            }
+
+            if (items.Count() == 1)
+            {
+                return items.Single();
+            }
+
+            if (items.Any(i => i == TestResult.Failed()))
+            {
+                return TestResult.Failed();
+            }
+
+            if (items.Any(i => i == TestResult.Inconclusive() || i == TestResult.NotFound()))
+            {
+                return TestResult.Inconclusive();
+            }
+
+            return TestResult.Passed();
+        }
     }
-  }
 }
