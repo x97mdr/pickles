@@ -4,7 +4,7 @@ using PicklesDoc.Pickles.DocumentationBuilders.DHTML;
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.DHTML
 {
     [TestFixture]
-    public class WhenDoingGarbageIntegrationTests : BaseFixture
+    public class WhenDoingSomeIntegrationTests : BaseFixture
     {
         [Test]
         public void TestTheUnzipper_ShouldNotThrowException()

@@ -177,7 +177,7 @@
     <Compile Include="AssertExtensions.cs" />
     <Compile Include="BaseFixture.cs" />
     <Compile Include="DirectoryCrawlers\FolderDirectoryTreeNodeTests.cs" />
-    <Compile Include="DocumentationBuilders\DHTML\WhenDoingGarbageIntegrationTests.cs" />
+    <Compile Include="DocumentationBuilders\DHTML\WhenDoingSomeIntegrationTests.cs" />
     <Compile Include="DocumentationBuilders\HTML\AutomationLayer\CurrentScenarioContext.cs" />
     <Compile Include="DocumentationBuilders\HTML\FormattingAFeature.feature.cs">
       <AutoGen>True</AutoGen>
