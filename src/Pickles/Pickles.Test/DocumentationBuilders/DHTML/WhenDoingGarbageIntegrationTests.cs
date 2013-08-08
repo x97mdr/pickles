@@ -7,15 +7,13 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.DHTML
     public class WhenDoingGarbageIntegrationTests : BaseFixture
     {
         [Test]
-        [Ignore]
-        public void TestTheUnzipper()
+        public void TestTheUnzipper_ShouldNotThrowException()
         {
             var unzipper = new UnZipper(MockFileSystem);
             unzipper.UnZip(@"D:\features\Pickles.Examples\BaseDhtmlFiles.zip", @"d:\output", "BaseDhtmlFiles");
         }
 
         [Test]
-        [Ignore]
         public void TestTheResourceWriter()
         {
             var conf = new Configuration();
