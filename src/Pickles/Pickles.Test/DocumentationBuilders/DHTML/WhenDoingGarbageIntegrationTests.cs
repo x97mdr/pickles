@@ -25,11 +25,12 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.DHTML
         }
 
         [Test]
-        [Ignore]
         public void CanAddFunctionWrapperAroundJson()
         {
-            var jsonTweaker = new JsonTweaker(MockFileSystem);
             string filePath = @"d:\output\pickledFeatures.json";
+            MockFileSystem.AddFile(filePath, "\r\n[]\r\n");
+
+            var jsonTweaker = new JsonTweaker(MockFileSystem);
             jsonTweaker.AddJsonPWrapperTo(filePath);
 
             var expected = "jsonPWrapper (\r\n[]\r\n);";

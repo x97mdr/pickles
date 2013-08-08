@@ -16,15 +16,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
         {
             var existingContent = this.fileSystem.File.ReadAllText(filePath);
 
-            using (var s = new System.IO.StreamWriter(filePath))
-            {
-                s.WriteLine("jsonPWrapper (");
-                s.WriteLine(existingContent);
-                s.Write(");");
-
-                s.Flush();
-                s.Close();
-            }
+            this.fileSystem.File.WriteAllText(filePath, string.Format("jsonPWrapper ({0});", existingContent));
         }
 
         public void RenameFileTo(string oldFilePath, string newFilePath)
