@@ -26,7 +26,6 @@ namespace PicklesDoc.Pickles.Test
 
             result.WasExecuted.ShouldBeTrue();
             result.WasSuccessful.ShouldBeFalse();
-            result.WasNotFound.ShouldBeFalse();
         }
 
         [Test]
@@ -41,17 +40,14 @@ namespace PicklesDoc.Pickles.Test
 
             result.WasExecuted.ShouldBeTrue();
             result.WasSuccessful.ShouldBeTrue();
-            result.WasNotFound.ShouldBeFalse();
 
             TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "40", "50", "90" });
             exampleResult1.WasExecuted.ShouldBeTrue();
             exampleResult1.WasSuccessful.ShouldBeTrue();
-            exampleResult1.WasNotFound.ShouldBeFalse();
 
             TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "60", "70", "130" });
             exampleResult2.WasExecuted.ShouldBeTrue();
             exampleResult2.WasSuccessful.ShouldBeTrue();
-            exampleResult2.WasNotFound.ShouldBeFalse();
         }
 
         [Test]
@@ -66,7 +62,6 @@ namespace PicklesDoc.Pickles.Test
 
             result.WasExecuted.ShouldBeTrue();
             result.WasSuccessful.ShouldBeTrue();
-            result.WasNotFound.ShouldBeFalse();
         }
 
         [Test]
@@ -79,7 +74,6 @@ namespace PicklesDoc.Pickles.Test
 
             result.WasExecuted.ShouldBeTrue();
             result.WasSuccessful.ShouldBeFalse();
-            result.WasNotFound.ShouldBeFalse();
         }
 
         [Test]
@@ -92,7 +86,6 @@ namespace PicklesDoc.Pickles.Test
 
             result.WasExecuted.ShouldBeFalse();
             result.WasSuccessful.ShouldBeFalse();
-            result.WasNotFound.ShouldBeFalse();
         }
 
         [Test]
@@ -110,7 +103,6 @@ namespace PicklesDoc.Pickles.Test
 
             result.WasExecuted.ShouldBeFalse();
             result.WasSuccessful.ShouldBeFalse();
-            result.WasNotFound.ShouldBeTrue();
         }
 
         private XUnitResults ParseResultsFile()

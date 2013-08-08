@@ -111,7 +111,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
         {
             if (element == null)
             {
-                return TestResult.NotFound;
+                return TestResult.Inconclusive;
             }
             else if (IsAttributeSetToValue(element, "result", "Ignored"))
             {

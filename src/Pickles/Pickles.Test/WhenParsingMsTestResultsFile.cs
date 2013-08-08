@@ -86,7 +86,6 @@ namespace PicklesDoc.Pickles.Test
 
             result.WasExecuted.ShouldBeTrue();
             result.WasSuccessful.ShouldBeTrue();
-            result.WasNotFound.ShouldBeFalse();
         }
 
         [Test]
@@ -98,7 +97,6 @@ namespace PicklesDoc.Pickles.Test
 
             result.WasExecuted.ShouldBeTrue();
             result.WasSuccessful.ShouldBeFalse();
-            result.WasNotFound.ShouldBeFalse();
         }
 
         [Test]
@@ -111,7 +109,6 @@ namespace PicklesDoc.Pickles.Test
 
             result.WasExecuted.ShouldBeFalse();
             result.WasSuccessful.ShouldBeFalse();
-            result.WasNotFound.ShouldBeFalse();
         }
 
         [Test]
@@ -129,7 +126,6 @@ namespace PicklesDoc.Pickles.Test
 
             result.WasExecuted.ShouldBeFalse();
             result.WasSuccessful.ShouldBeFalse();
-            result.WasNotFound.ShouldBeFalse();
         }
 
         private MsTestResults ParseResultsFile()

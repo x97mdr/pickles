@@ -30,21 +30,16 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         private readonly bool wasSuccessful;
 
-        private readonly bool wasNotFound;
+        private static readonly TestResult passed = new TestResult(wasExecuted: true, wasSuccessful: true);
 
-        private static readonly TestResult passed = new TestResult(wasExecuted: true, wasSuccessful: true, wasNotFound: false);
+        private static readonly TestResult failed = new TestResult(wasExecuted: true, wasSuccessful: false);
 
-        private static readonly TestResult failed = new TestResult(wasExecuted: true, wasSuccessful: false, wasNotFound: false);
+        private static readonly TestResult inconclusive = new TestResult(wasExecuted: false, wasSuccessful: false);
 
-        private static readonly TestResult inconclusive = new TestResult(wasExecuted: false, wasSuccessful: false, wasNotFound: false);
-
-        private static readonly TestResult notFound = new TestResult (wasExecuted: false, wasSuccessful: false, wasNotFound: true);
-
-        private TestResult(bool wasExecuted, bool wasSuccessful, bool wasNotFound)
+        private TestResult(bool wasExecuted, bool wasSuccessful)
         {
             this.wasExecuted = wasExecuted;
             this.wasSuccessful = wasSuccessful;
-            this.wasNotFound = wasNotFound;
         }
 
         public bool WasExecuted
@@ -55,11 +50,6 @@ namespace PicklesDoc.Pickles.TestFrameworks
         public bool WasSuccessful
         {
             get { return wasSuccessful; }
-        }
-
-        public bool WasNotFound
-        {
-            get { return wasNotFound; }
         }
 
         public static TestResult Passed
@@ -77,14 +67,9 @@ namespace PicklesDoc.Pickles.TestFrameworks
             get { return inconclusive; }
         }
 
-        public static TestResult NotFound
-        {
-            get { return notFound; }
-        }
-
         public bool Equals(TestResult other)
         {
-            return this.WasExecuted.Equals(other.WasExecuted) && this.WasSuccessful.Equals(other.WasSuccessful) && this.WasNotFound.Equals(other.WasNotFound);
+            return this.WasExecuted.Equals(other.WasExecuted) && this.WasSuccessful.Equals(other.WasSuccessful);
         }
 
         public override bool Equals(object obj)
@@ -97,13 +82,12 @@ namespace PicklesDoc.Pickles.TestFrameworks
         {
             int hashCode = this.WasExecuted.GetHashCode();
             hashCode = (hashCode) ^ this.WasSuccessful.GetHashCode();
-            hashCode = (hashCode) ^ this.WasNotFound.GetHashCode();
             return hashCode;
         }
 
         public override string ToString()
         {
-            return string.Format("WasExecuted: {0}, WasSuccessful: {1}, WasNotFound: {2}", this.WasExecuted, this.WasSuccessful, this.WasNotFound);
+            return string.Format("WasExecuted: {0}, WasSuccessful: {1}", this.WasExecuted, this.WasSuccessful);
         }
 
         public static bool operator ==(TestResult left, TestResult right)
@@ -143,7 +127,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
                 return TestResult.Failed;
             }
 
-            if (items.Any(i => i == TestResult.Inconclusive || i == TestResult.NotFound))
+            if (items.Any(i => i == TestResult.Inconclusive))
             {
                 return TestResult.Inconclusive;
             }

@@ -80,7 +80,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
             XElement scenarioElement = this.GetScenarioElement(scenario);
             return scenarioElement != null 
                 ? this.GetResultFromElement(scenarioElement)
-                : TestResult.NotFound;
+                : TestResult.Inconclusive;
         }
 
         #endregion
