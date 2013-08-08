@@ -62,24 +62,24 @@ namespace PicklesDoc.Pickles.TestFrameworks
             get { return wasNotFound; }
         }
 
-        public static TestResult Passed()
+        public static TestResult Passed
         {
-            return passed;
+            get { return passed; }
         }
 
-        public static TestResult Failed()
+        public static TestResult Failed
         {
-            return failed;
+            get { return failed; }
         }
 
-        public static TestResult Inconclusive()
+        public static TestResult Inconclusive
         {
-            return inconclusive;
+            get { return inconclusive; }
         }
 
-        public static TestResult NotFound()
+        public static TestResult NotFound
         {
-            return notFound;
+            get { return notFound; }
         }
 
         public bool Equals(TestResult other)
@@ -138,17 +138,17 @@ namespace PicklesDoc.Pickles.TestFrameworks
                 return items.Single();
             }
 
-            if (items.Any(i => i == TestResult.Failed()))
+            if (items.Any(i => i == TestResult.Failed))
             {
-                return TestResult.Failed();
+                return TestResult.Failed;
             }
 
-            if (items.Any(i => i == TestResult.Inconclusive() || i == TestResult.NotFound()))
+            if (items.Any(i => i == TestResult.Inconclusive || i == TestResult.NotFound))
             {
-                return TestResult.Inconclusive();
+                return TestResult.Inconclusive;
             }
 
-            return TestResult.Passed();
+            return TestResult.Passed;
         }
     }
 }

@@ -117,7 +117,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var results = ParseResultsFile();
             var result = results.GetFeatureResult(InconclusiveFeature());
-            Assert.AreEqual(TestResult.Inconclusive(), result);
+            Assert.AreEqual(TestResult.Inconclusive, result);
         }
 
 
@@ -126,7 +126,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var results = ParseResultsFile();
             var result = results.GetFeatureResult(PassingFeature());
-            Assert.AreEqual(TestResult.Passed(), result);
+            Assert.AreEqual(TestResult.Passed, result);
         }
 
         [Test]
@@ -134,7 +134,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var results = ParseResultsFile();
             var result = results.GetFeatureResult(FailingFeature());
-            Assert.AreEqual(TestResult.Failed(), result);
+            Assert.AreEqual(TestResult.Failed, result);
         }
 
         private Feature FailingFeature()

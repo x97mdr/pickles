@@ -37,7 +37,7 @@ namespace PicklesDoc.Pickles.Test
 
             TestResult actual = testResults.Merge();
 
-            actual.ShouldEqual(TestResult.Inconclusive());
+            actual.ShouldEqual(TestResult.Inconclusive);
         }
 
         [Test]
@@ -45,42 +45,42 @@ namespace PicklesDoc.Pickles.Test
         {
             var testResults = new[]
           {
-            TestResult.Passed()
+            TestResult.Passed
           };
 
             TestResult actual = testResults.Merge();
 
-            actual.ShouldEqual(TestResult.Passed());
+            actual.ShouldEqual(TestResult.Passed);
         }
 
         [Test]
         public void Merge_MultiplePassedResults_ShouldReturnPassed()
         {
-            var testResults = new[] { TestResult.Passed(), TestResult.Passed() };
+            var testResults = new[] { TestResult.Passed, TestResult.Passed };
 
             TestResult actual = testResults.Merge();
 
-            actual.ShouldEqual(TestResult.Passed());
+            actual.ShouldEqual(TestResult.Passed);
         }
 
         [Test]
         public void Merge_MultiplePassedOneInconclusiveResults_ShouldReturnInconclusive()
         {
-            var testResults = new[] { TestResult.Passed(), TestResult.Passed(), TestResult.Inconclusive() };
+            var testResults = new[] { TestResult.Passed, TestResult.Passed, TestResult.Inconclusive };
 
             TestResult actual = testResults.Merge();
 
-            actual.ShouldEqual(TestResult.Inconclusive());
+            actual.ShouldEqual(TestResult.Inconclusive);
         }
 
         [Test]
         public void Merge_PassedInconclusiveAndFailedResults_ShouldReturnFailed()
         {
-            var testResults = new[] { TestResult.Passed(), TestResult.Inconclusive(), TestResult.Failed() };
+            var testResults = new[] { TestResult.Passed, TestResult.Inconclusive, TestResult.Failed };
 
             TestResult actual = testResults.Merge();
 
-            actual.ShouldEqual(TestResult.Failed());
+            actual.ShouldEqual(TestResult.Failed);
         }
     }
 }

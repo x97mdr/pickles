@@ -40,7 +40,7 @@ namespace PicklesDoc.Pickles.Test
             
             TestResult result = results.GetFeatureResult(InconclusiveFeature());
 
-            Assert.AreEqual(TestResult.Inconclusive(), result);
+            Assert.AreEqual(TestResult.Inconclusive, result);
         }
 
         [Test]
@@ -50,7 +50,7 @@ namespace PicklesDoc.Pickles.Test
 
             TestResult result = results.GetFeatureResult(FailingFeature());
 
-            Assert.AreEqual(TestResult.Failed(), result);
+            Assert.AreEqual(TestResult.Failed, result);
         }
 
 
@@ -61,7 +61,7 @@ namespace PicklesDoc.Pickles.Test
 
             TestResult result = results.GetFeatureResult(PassingFeature());
 
-            Assert.AreEqual(TestResult.Passed(), result);
+            Assert.AreEqual(TestResult.Passed, result);
         }
 
         [Test]

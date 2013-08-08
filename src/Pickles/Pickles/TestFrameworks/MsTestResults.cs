@@ -79,11 +79,11 @@ namespace PicklesDoc.Pickles.TestFrameworks
             switch (resultText.ToLowerInvariant())
             {
                 case "passed":
-                    return TestResult.Passed();
+                    return TestResult.Passed;
                 case "failed":
-                    return TestResult.Failed();
+                    return TestResult.Failed;
                 default:
-                    return TestResult.Inconclusive();
+                    return TestResult.Inconclusive;
             }
         }
 

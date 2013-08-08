@@ -80,7 +80,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
             XElement scenarioElement = this.GetScenarioElement(scenario);
             return scenarioElement != null 
                 ? this.GetResultFromElement(scenarioElement)
-                : TestResult.NotFound();
+                : TestResult.NotFound;
         }
 
         #endregion
@@ -142,14 +142,14 @@ namespace PicklesDoc.Pickles.TestFrameworks
             switch (resultAttribute.Value.ToLowerInvariant())
             {
                 case "pass":
-                    result = TestResult.Passed();
+                    result = TestResult.Passed;
                     break;
                 case "fail":
-                    result = TestResult.Failed();
+                    result = TestResult.Failed;
                     break;
                 case "skip":
                 default:
-                    result = TestResult.Inconclusive();
+                    result = TestResult.Inconclusive;
                     break;
             }
             return result;
@@ -160,15 +160,15 @@ namespace PicklesDoc.Pickles.TestFrameworks
             TestResult result;
             if (passedCount > 0 && failedCount == 0)
             {
-                result = TestResult.Passed();
+                result = TestResult.Passed;
             }
             else if (failedCount > 0)
             {
-                result = TestResult.Failed();
+                result = TestResult.Failed;
             }
             else
             {
-                result = TestResult.Inconclusive();
+                result = TestResult.Inconclusive;
             }
 
             return result;

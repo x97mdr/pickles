@@ -69,11 +69,11 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         private TestResult GetResultFromScenario(CucumberObjects.Element cucumberScenario)
         {
-            if (cucumberScenario == null) return TestResult.Inconclusive();
+            if (cucumberScenario == null) return TestResult.Inconclusive;
 
             bool wasSuccessful = CheckScenarioStatus(cucumberScenario);
 
-            return wasSuccessful ? TestResult.Passed() : TestResult.Failed();
+            return wasSuccessful ? TestResult.Passed : TestResult.Failed;
         }
 
         private static bool CheckScenarioStatus(CucumberObjects.Element cucumberScenario)
@@ -83,11 +83,11 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         private TestResult GetResultFromFeature(CucumberObjects.Feature cucumberFeature)
         {
-            if (cucumberFeature == null) return TestResult.Inconclusive();
+            if (cucumberFeature == null) return TestResult.Inconclusive;
 
             bool wasSuccessful = cucumberFeature.elements.All(CheckScenarioStatus);
 
-            return wasSuccessful ? TestResult.Passed() : TestResult.Failed();
+            return wasSuccessful ? TestResult.Passed : TestResult.Failed;
         }
 
     }

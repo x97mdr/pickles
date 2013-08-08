@@ -111,33 +111,33 @@ namespace PicklesDoc.Pickles.TestFrameworks
         {
             if (element == null)
             {
-                return TestResult.NotFound();
+                return TestResult.NotFound;
             }
             else if (IsAttributeSetToValue(element, "result", "Ignored"))
             {
-                return TestResult.Inconclusive();
+                return TestResult.Inconclusive;
             }
             else if (IsAttributeSetToValue(element, "result", "Inconclusive"))
             {
-                return TestResult.Inconclusive();
+                return TestResult.Inconclusive;
             }
             else if (IsAttributeSetToValue(element, "result", "Failure"))
             {
-                return TestResult.Failed();
+                return TestResult.Failed;
             }
             else if (IsAttributeSetToValue(element, "result", "Success"))
             {
-                return TestResult.Passed();
+                return TestResult.Passed;
             }
             else
             {
                 bool wasExecuted = IsAttributeSetToValue(element, "executed", "true");
 
-                if (!wasExecuted) return TestResult.Inconclusive();
+                if (!wasExecuted) return TestResult.Inconclusive;
 
                 bool wasSuccessful = IsAttributeSetToValue(element, "success", "true");
 
-                return wasSuccessful ? TestResult.Passed() : TestResult.Failed();
+                return wasSuccessful ? TestResult.Passed : TestResult.Failed;
             }
         }
 
