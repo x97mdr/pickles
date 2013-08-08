@@ -137,25 +137,19 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         private TestResult GetResultFromElement(XElement element)
         {
-            var result = new TestResult();
+            TestResult result;
             XAttribute resultAttribute = element.Attribute("result");
             switch (resultAttribute.Value.ToLowerInvariant())
             {
-                case "skip":
-                    result.WasExecuted = false;
-                    result.WasSuccessful = false;
-                    break;
                 case "pass":
-                    result.WasExecuted = true;
-                    result.WasSuccessful = true;
+                    result = TestResult.Passed();
                     break;
                 case "fail":
-                    result.WasExecuted = true;
-                    result.WasSuccessful = false;
+                    result = TestResult.Failed();
                     break;
+                case "skip":
                 default:
-                    result.WasExecuted = false;
-                    result.WasSuccessful = false;
+                    result = TestResult.Inconclusive();
                     break;
             }
             return result;

@@ -132,8 +132,12 @@ namespace PicklesDoc.Pickles.TestFrameworks
             else
             {
                 bool wasExecuted = IsAttributeSetToValue(element, "executed", "true");
+
+                if (!wasExecuted) return TestResult.Inconclusive();
+
                 bool wasSuccessful = IsAttributeSetToValue(element, "success", "true");
-                return new TestResult { WasExecuted = wasExecuted, WasSuccessful = wasSuccessful };
+
+                return wasSuccessful ? TestResult.Passed() : TestResult.Failed();
             }
         }
 

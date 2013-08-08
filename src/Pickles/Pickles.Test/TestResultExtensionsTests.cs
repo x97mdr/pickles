@@ -45,14 +45,12 @@ namespace PicklesDoc.Pickles.Test
         {
             var testResults = new[]
           {
-            new TestResult { WasExecuted = true, WasSuccessful = true, WasNotFound = true}
+            TestResult.Passed()
           };
 
             TestResult actual = testResults.Merge();
 
-            actual.WasExecuted.ShouldBeTrue();
-            actual.WasSuccessful.ShouldBeTrue();
-            actual.WasNotFound.ShouldBeTrue();
+            actual.ShouldEqual(TestResult.Passed());
         }
 
         [Test]

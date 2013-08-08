@@ -26,28 +26,60 @@ namespace PicklesDoc.Pickles.TestFrameworks
 {
     public struct TestResult
     {
-        public bool WasExecuted;
-        public bool WasSuccessful;
-        public bool WasNotFound;
+        private readonly bool wasExecuted;
+
+        private readonly bool wasSuccessful;
+
+        private readonly bool wasNotFound;
+
+        private static readonly TestResult passed = new TestResult(wasExecuted: true, wasSuccessful: true, wasNotFound: false);
+
+        private static readonly TestResult failed = new TestResult(wasExecuted: true, wasSuccessful: false, wasNotFound: false);
+
+        private static readonly TestResult inconclusive = new TestResult(wasExecuted: false, wasSuccessful: false, wasNotFound: false);
+
+        private static readonly TestResult notFound = new TestResult (wasExecuted: false, wasSuccessful: false, wasNotFound: true);
+
+        private TestResult(bool wasExecuted, bool wasSuccessful, bool wasNotFound)
+        {
+            this.wasExecuted = wasExecuted;
+            this.wasSuccessful = wasSuccessful;
+            this.wasNotFound = wasNotFound;
+        }
+
+        public bool WasExecuted
+        {
+            get { return wasExecuted; }
+        }
+
+        public bool WasSuccessful
+        {
+            get { return wasSuccessful; }
+        }
+
+        public bool WasNotFound
+        {
+            get { return wasNotFound; }
+        }
 
         public static TestResult Passed()
         {
-            return new TestResult { WasExecuted = true, WasSuccessful = true };
+            return passed;
         }
 
         public static TestResult Failed()
         {
-            return new TestResult { WasExecuted = true, WasSuccessful = false };
+            return failed;
         }
 
         public static TestResult Inconclusive()
         {
-            return new TestResult { WasExecuted = false, WasSuccessful = false };
+            return inconclusive;
         }
 
         public static TestResult NotFound()
         {
-            return new TestResult { WasExecuted = false, WasSuccessful = false, WasNotFound = true };
+            return notFound;
         }
 
         public bool Equals(TestResult other)
