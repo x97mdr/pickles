@@ -24,7 +24,7 @@ namespace PicklesDoc.Pickles.Test.Formatters
 
             var formatter = new HtmlTableOfContentsFormatter(null, RealFileSystem);
             this._toc = formatter.Format(features.ChildNodes[0].Data.OriginalLocationUrl, features,
-                                    RealFileSystem.DirectoryInfo.FromDirectoryName(ROOT_PATH));
+                                    MockFileSystem.DirectoryInfo.FromDirectoryName(ROOT_PATH));
         }
 
         [Test]
