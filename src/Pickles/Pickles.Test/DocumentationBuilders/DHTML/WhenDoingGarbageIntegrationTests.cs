@@ -36,12 +36,14 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.DHTML
         }
 
         [Test]
-        [Ignore]
         public void CanRenameJsonFile()
         {
-            var jsonTweaker = new JsonTweaker(MockFileSystem);
             string oldfilePath = @"d:\output\pickledFeatures.json";
             string newFilePath = @"d:\output\pickledFeatures.js";
+
+            MockFileSystem.AddFile(oldfilePath, "test data");
+
+            var jsonTweaker = new JsonTweaker(MockFileSystem);
             jsonTweaker.RenameFileTo(oldfilePath, newFilePath);
 
             Assert.IsTrue(MockFileSystem.File.Exists(newFilePath));
