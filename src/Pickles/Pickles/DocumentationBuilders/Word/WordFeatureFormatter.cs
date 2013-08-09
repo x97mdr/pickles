@@ -75,7 +75,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
             body.GenerateParagraph(feature.Name, "Heading1");
             this.wordDescriptionFormatter.Format(body, feature.Description);
-            this.wordBackgroundFormatter.Format(body, feature.Background);
+
+            if (feature.Background != null)
+            {
+                this.wordBackgroundFormatter.Format(body, feature.Background);
+            }
 
             foreach (IFeatureElement featureElement in feature.FeatureElements)
             {
