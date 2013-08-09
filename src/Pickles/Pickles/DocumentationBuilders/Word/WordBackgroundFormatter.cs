@@ -21,7 +21,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 		{
 			var headerParagraph   = new Paragraph(new ParagraphProperties(new ParagraphStyleId { Val = "Heading2" }));
 		    var backgroundKeyword = GetLocalizedBackgroundKeyword();
-			headerParagraph.Append(new Run(new RunProperties(new Bold()), new Text(backgroundKeyword));
+			headerParagraph.Append(new Run(new RunProperties(new Bold()), new Text(backgroundKeyword)));
 
 			var table = new Table();
 			table.Append(GenerateTableProperties());
@@ -29,12 +29,17 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 			var cell = new TableCell();
 			cell.Append(headerParagraph);
 
+		    foreach (var descriptionSentence in WordDescriptionFormatter.SplitDescription(background.Description))
+		    {
+		        cell.Append(CreateNormalParagraph(descriptionSentence));
+		    }
+
 			foreach (var step in background.Steps)
 			{
 				cell.Append(WordStepFormatter.GenerateStepParagraph(step));
 			}
 
-			cell.Append(CreateEmptyLine());
+			cell.Append(CreateNormalParagraph("")); // Is there a better way to generate a new empty line?
 			row.Append(cell);
 			table.Append(row);
 
@@ -66,11 +71,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 			return tableProperties1;
 		}
 
-		private static Paragraph CreateEmptyLine()
+		private static Paragraph CreateNormalParagraph(string text)
 		{
-			// Is there a better way to do this?
 			var emptyLine = new Paragraph(new ParagraphProperties(new ParagraphStyleId { Val = "Normal" }));
-			emptyLine.Append(new Run(new Text("")));
+			emptyLine.Append(new Run(new Text(text)));
 			return emptyLine;
 		}
 	}
