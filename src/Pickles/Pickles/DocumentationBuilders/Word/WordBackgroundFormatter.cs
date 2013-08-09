@@ -1,9 +1,6 @@
 ﻿
-using System.Collections.Generic;
 using DocumentFormat.OpenXml.Wordprocessing;
-using PicklesDoc.Pickles.Extensions;
 using PicklesDoc.Pickles.Parser;
-using PicklesDoc.Pickles.TestFrameworks;
 using Table = DocumentFormat.OpenXml.Wordprocessing.Table;
 using TableRow = DocumentFormat.OpenXml.Wordprocessing.TableRow;
 
@@ -11,11 +8,20 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 {
 	public class WordBackgroundFormatter
 	{
+        const string DefaultBackgroundKeyword = "Background";
+
+	    private readonly LanguageServices languageSevices;
+
+	    public WordBackgroundFormatter(Configuration configuration)
+	    {
+	        this.languageSevices = new LanguageServices(configuration);
+	    }
 
 		public void Format(Body body, Scenario background)
 		{
-			var headerParagraph = new Paragraph(new ParagraphProperties(new ParagraphStyleId { Val = "Heading2" }));
-			headerParagraph.Append(new Run(new RunProperties(new Bold()), new Text(background.Name)));
+			var headerParagraph   = new Paragraph(new ParagraphProperties(new ParagraphStyleId { Val = "Heading2" }));
+		    var backgroundKeyword = GetLocalizedBackgroundKeyword();
+			headerParagraph.Append(new Run(new RunProperties(new Bold()), new Text(backgroundKeyword));
 
 			var table = new Table();
 			table.Append(GenerateTableProperties());
@@ -35,7 +41,17 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 			body.Append(table);
 		}
 
-		private static TableProperties GenerateTableProperties()
+	    private string GetLocalizedBackgroundKeyword()
+	    {
+	        var keywords = languageSevices.GetLanguage().keywords("background");
+	        if (keywords != null && !keywords.isEmpty())
+	        {
+	            return keywords.get(0).ToString();
+	        }
+	        return DefaultBackgroundKeyword;
+	    }
+
+	    private static TableProperties GenerateTableProperties()
 		{
 			var tableProperties1 = new TableProperties();
 			var tableStyle1 = new TableStyle { Val = "TableGrid" };
