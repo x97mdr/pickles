@@ -20,7 +20,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
-using System.IO;
 using System.IO.Abstractions;
 using System.Linq;
 using System.Windows.Input;
@@ -48,6 +47,8 @@ namespace PicklesDoc.Pickles.UserInterface
         private readonly RelayCommand openOutputDirectory;
 
         private readonly IMainModelSerializer mainModelSerializer;
+
+        private readonly IFileSystem fileSystem;
 
         private string picklesVersion = typeof(Feature).Assembly.GetName().Version.ToString();
 
@@ -86,11 +87,11 @@ namespace PicklesDoc.Pickles.UserInterface
         private bool isDocumentationFormatValid;
 
         public MainWindowViewModel()
-            : this(new MainModelSerializer(DataDirectoryDeriver.DeriveDataDirectory(), new FileSystem()))
+            : this(new MainModelSerializer(DataDirectoryDeriver.DeriveDataDirectory(), new FileSystem()), new FileSystem())
         {
         }
 
-        public MainWindowViewModel(IMainModelSerializer mainModelSerializer)
+        public MainWindowViewModel(IMainModelSerializer mainModelSerializer, IFileSystem fileSystem)
         {
             this.documentationFormats = new MultiSelectableCollection<DocumentationFormat>(Enum.GetValues(typeof(DocumentationFormat)).Cast<DocumentationFormat>());
             this.documentationFormats.First().IsSelected = true;
@@ -111,6 +112,7 @@ namespace PicklesDoc.Pickles.UserInterface
             this.selectedLanguage = CultureInfo.GetCultureInfo("en");
 
             this.mainModelSerializer = mainModelSerializer;
+            this.fileSystem = fileSystem;
         }
 
         private void TestResultsFormatsOnCollectionChanged(object sender, EventArgs notifyCollectionChangedEventArgs)
@@ -401,7 +403,7 @@ namespace PicklesDoc.Pickles.UserInterface
             {
                 case "FeatureFolder":
                     {
-                        if (Directory.Exists(this.featureFolder))
+                        if (this.fileSystem.Directory.Exists(this.featureFolder))
                         {
                             this.IsFeatureDirectoryValid = true;
                         }
@@ -415,7 +417,7 @@ namespace PicklesDoc.Pickles.UserInterface
 
                 case "OutputFolder":
                     {
-                        if (Directory.Exists(this.outputFolder))
+                        if (this.fileSystem.Directory.Exists(this.outputFolder))
                         {
                             this.IsOutputDirectoryValid = true;
                         }
@@ -431,7 +433,7 @@ namespace PicklesDoc.Pickles.UserInterface
 
                 case "TestResultsFile":
                     {
-                        if (File.Exists(this.testResultsFile))
+                        if (this.fileSystem.File.Exists(this.testResultsFile))
                         {
                             this.IsTestResultsFileValid = true;
                         }

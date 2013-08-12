@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO; // this one needs a lot of work to move to System.IO.Abstractions
 using NGenerics.DataStructures.Trees;
 using NUnit.Framework;
 using Autofac;
@@ -15,19 +14,25 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
     {
         private const string ROOT_PATH = @"FakeFolderStructures";
         private const string OUTPUT_DIRECTORY = @"JSONFeatureOutput";
-        private readonly string filePath = Path.Combine(OUTPUT_DIRECTORY, JSONDocumentationBuilder.JsonFileName);
+
+        private readonly string filePath;
+
+        public when_formatting_a_folder_structure_with_features()
+        {
+            filePath = RealFileSystem.Path.Combine(OUTPUT_DIRECTORY, JSONDocumentationBuilder.JsonFileName);
+        }
 
         [TestFixtureSetUp]
         public void Setup()
         {
             GeneralTree<INode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
 
-            var outputDirectory = new DirectoryInfo(OUTPUT_DIRECTORY);
+            var outputDirectory = RealFileSystem.DirectoryInfo.FromDirectoryName(OUTPUT_DIRECTORY);
             if (!outputDirectory.Exists) outputDirectory.Create();
 
             var configuration = new Configuration
                                     {
-                                        OutputFolder = new DirectoryInfo(OUTPUT_DIRECTORY),
+                                        OutputFolder = RealFileSystem.DirectoryInfo.FromDirectoryName(OUTPUT_DIRECTORY),
                                         DocumentationFormat = DocumentationFormat.JSON
                                     };
 
@@ -40,9 +45,9 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         public void TearDown()
         {
             //Cleanup output folder
-            if (Directory.Exists(OUTPUT_DIRECTORY))
+            if (RealFileSystem.Directory.Exists(OUTPUT_DIRECTORY))
             {
-                Directory.Delete(OUTPUT_DIRECTORY, true);
+                RealFileSystem.Directory.Delete(OUTPUT_DIRECTORY, true);
             }
         }
 
@@ -50,13 +55,13 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         [Test]
         public void a_single_file_should_have_been_created()
         {
-            File.Exists(this.filePath).Should().Be.True();
+            RealFileSystem.File.Exists(this.filePath).Should().Be.True();
         }
 
         [Test]
         public void should_contain_the_features()
         {
-            string content = File.ReadAllText(this.filePath);
+            string content = RealFileSystem.File.ReadAllText(this.filePath);
             content.AssertJSONKeyValue("Name", "Addition");
         }
     }
