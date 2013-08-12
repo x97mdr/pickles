@@ -13,20 +13,20 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
         [Test]
         public void ThenCanMoveImageAsRelativePathToOutputLocation()
         {
-            var rootDirectory = MockFileSystem.Path.Combine(MockFileSystem.Directory.GetCurrentDirectory(), "MovingImagesTest");
+            var rootDirectory = RealFileSystem.Path.Combine(RealFileSystem.Directory.GetCurrentDirectory(), "MovingImagesTest");
             RealFileSystem.Directory.CreateDirectory(rootDirectory);
 
             try
             {
                 var configuration = Container.Resolve<Configuration>();
 
-                configuration.FeatureFolder = MockFileSystem.DirectoryInfo.FromDirectoryName(MockFileSystem.Path.Combine(rootDirectory, "Features"));
+                configuration.FeatureFolder = RealFileSystem.DirectoryInfo.FromDirectoryName(RealFileSystem.Path.Combine(rootDirectory, "Features"));
                 RealFileSystem.Directory.CreateDirectory(configuration.FeatureFolder.FullName);
 
-                configuration.OutputFolder = MockFileSystem.DirectoryInfo.FromDirectoryName(MockFileSystem.Path.Combine(rootDirectory, "Output"));
+                configuration.OutputFolder = RealFileSystem.DirectoryInfo.FromDirectoryName(RealFileSystem.Path.Combine(rootDirectory, "Output"));
                 RealFileSystem.Directory.CreateDirectory(configuration.OutputFolder.FullName);
 
-                var imageFilePath = MockFileSystem.Path.Combine(configuration.FeatureFolder.FullName, "test.jpg");
+                var imageFilePath = RealFileSystem.Path.Combine(configuration.FeatureFolder.FullName, "test.jpg");
                 Resources.test.Save(imageFilePath, ImageFormat.Jpeg);
 
                 var featureText = @"
@@ -38,7 +38,7 @@ Feature: Test Image Relocation
     ![Test Image](test.jpg)
 ";
 
-                var featureFilePath = MockFileSystem.Path.Combine(configuration.FeatureFolder.FullName, "test.feature");
+                var featureFilePath = RealFileSystem.Path.Combine(configuration.FeatureFolder.FullName, "test.feature");
                 RealFileSystem.File.WriteAllText(featureFilePath, featureText, System.Text.Encoding.UTF8);
 
                 var factory = Container.Resolve<FeatureNodeFactory>();
@@ -50,7 +50,7 @@ Feature: Test Image Relocation
                 var imageRelocator = Container.Resolve<HtmlImageRelocator>();
                 imageRelocator.Relocate(node, featureXml);
 
-                var outputImage = RealFileSystem.FileInfo.FromFileName(MockFileSystem.Path.Combine(configuration.OutputFolder.FullName, "test.jpg"));
+                var outputImage = RealFileSystem.FileInfo.FromFileName(RealFileSystem.Path.Combine(configuration.OutputFolder.FullName, "test.jpg"));
                 outputImage.Exists.ShouldBeTrue();
             }
             finally
