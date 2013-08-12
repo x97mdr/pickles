@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 using PicklesDoc.Pickles.Parser;
 using  CucumberObjects = PicklesDoc.Pickles.Parser.JsonResult;
+
+using StreamReader = System.IO.StreamReader;
 
 namespace PicklesDoc.Pickles.TestFrameworks
 {
@@ -25,7 +26,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
         private List<CucumberObjects.Feature> ReadResultsFile()
         {
             List<CucumberObjects.Feature> result;
-            using (Stream stream = this.configuration.TestResultsFile.OpenRead())
+            using (var stream = this.configuration.TestResultsFile.OpenRead())
             {
                 using (var reader = new StreamReader(stream))
                 {

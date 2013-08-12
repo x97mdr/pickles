@@ -14,11 +14,12 @@ http://www.microsoft.com/resources/sharedsource/licensingbasics/publiclicense.ms
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO; // this is a legitimate usage of System.IO
 using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
+
+using StringWriter = System.IO.StringWriter;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
 {

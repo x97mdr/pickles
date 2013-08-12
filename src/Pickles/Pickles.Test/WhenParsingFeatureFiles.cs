@@ -326,7 +326,7 @@ Feature: Test
     When it runs
     Then I should see that this thing happens";
 
-            var parser = new FeatureParser(new LanguageServices(new Configuration()));
+            var parser = Container.Resolve<FeatureParser>();
             Feature feature = parser.Parse(new StringReader(featureText));
 
             Assert.AreEqual("@feature-tag", feature.Tags[0]);

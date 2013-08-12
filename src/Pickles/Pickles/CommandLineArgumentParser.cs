@@ -20,10 +20,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO; // this is a legitimate usage of System.IO
 using System.IO.Abstractions;
 using System.Reflection;
 using NDesk.Options;
+
+using TextWriter = System.IO.TextWriter;
 
 namespace PicklesDoc.Pickles
 {

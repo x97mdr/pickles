@@ -19,9 +19,12 @@
 #endregion
 
 using System;
-using System.IO; // this is a legitimate usage of System.IO
+using System.IO.Abstractions;
 using PicklesDoc.Pickles.Parser;
 using gherkin.lexer;
+
+using StreamReader = System.IO.StreamReader;
+using TextReader = System.IO.TextReader;
 
 namespace PicklesDoc.Pickles
 {
@@ -29,9 +32,12 @@ namespace PicklesDoc.Pickles
     {
         private readonly LanguageServices languageService;
 
-        public FeatureParser(LanguageServices languageService)
+        private readonly IFileSystem fileSystem;
+
+        public FeatureParser(LanguageServices languageService, IFileSystem fileSystem)
         {
             this.languageService = languageService;
+            this.fileSystem = fileSystem;
         }
 
         public Feature Parse(string filename)
@@ -47,7 +53,7 @@ namespace PicklesDoc.Pickles
                 {
                     string message =
                         string.Format("There was an error parsing the feature file here: {0}{1}Errormessage was:'{2}'",
-                                      Path.GetFullPath(filename),
+                                      this.fileSystem.Path.GetFullPath(filename),
                                       Environment.NewLine,
                                       e.Message);
                     throw new FeatureParseException(message, e);

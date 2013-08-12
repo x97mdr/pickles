@@ -13,12 +13,17 @@ http://www.microsoft.com/resources/sharedsource/licensingbasics/publiclicense.ms
 
 using System;
 using System.Collections.Generic;
-using System.IO; // this is a legitimate usage of System.IO
 using System.IO.Abstractions;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using DocumentFormat.OpenXml.Packaging;
+
+using FileMode = System.IO.FileMode;
+using FileAccess = System.IO.FileAccess;
+using MemoryStream = System.IO.MemoryStream;
+using Stream = System.IO.Stream;
+using StreamReader = System.IO.StreamReader;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
 {

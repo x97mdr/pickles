@@ -21,9 +21,11 @@
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO; // this is a legitimate usage of System.IO
 using System.IO.Abstractions;
 using System.Reflection;
+
+using Stream = System.IO.Stream;
+using StreamReader = System.IO.StreamReader;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
