@@ -1,19 +1,17 @@
-﻿using System.Reflection;
-using NUnit.Framework;
-using Autofac;
+﻿using NUnit.Framework;
 using PicklesDoc.Pickles.Parser;
 using PicklesDoc.Pickles.TestFrameworks;
 using Should;
 
-using StreamReader = System.IO.StreamReader;
-using StreamWriter = System.IO.StreamWriter;
-
 namespace PicklesDoc.Pickles.Test
 {
     [TestFixture]
-    public class WhenParsingxUnitResultsFile : BaseFixture
+    public class WhenParsingxUnitResultsFile : WhenParsingTestResultFiles<XUnitResults>
     {
-        private const string RESULTS_FILE_NAME = "results-example-xunit.xml";
+        public WhenParsingxUnitResultsFile()
+            : base("results-example-xunit.xml")
+        {
+        }
 
         [Test]
         public void ThenCanReadFeatureResultSuccessfully()
@@ -103,22 +101,6 @@ namespace PicklesDoc.Pickles.Test
 
             result.WasExecuted.ShouldBeFalse();
             result.WasSuccessful.ShouldBeFalse();
-        }
-
-        private XUnitResults ParseResultsFile()
-        {
-            // Write out the embedded test results file
-            using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + RESULTS_FILE_NAME)))
-            using (var output = new StreamWriter(RESULTS_FILE_NAME))
-            {
-                output.Write(input.ReadToEnd());
-            }
-
-            var configuration = Container.Resolve<Configuration>();
-            configuration.TestResultsFile = RealFileSystem.FileInfo.FromFileName(RESULTS_FILE_NAME);
-
-            var results = Container.Resolve<XUnitResults>();
-            return results;
         }
     }
 }

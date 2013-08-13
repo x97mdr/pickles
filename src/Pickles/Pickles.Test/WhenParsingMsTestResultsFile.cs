@@ -1,23 +1,19 @@
 ﻿using System;
-using System.Reflection;
 using NUnit.Framework;
-using Autofac;
 using PicklesDoc.Pickles.Parser;
 using PicklesDoc.Pickles.TestFrameworks;
 using Should;
 
-using StreamReader = System.IO.StreamReader;
-using StreamWriter = System.IO.StreamWriter;
-
 namespace PicklesDoc.Pickles.Test
 {
     [TestFixture]
-    public class WhenParsingMsTestResultsFile : BaseFixture
+    public class WhenParsingMsTestResultsFile : WhenParsingTestResultFiles<MsTestResults>
     {
-        #region Setup/Teardown
-        private const string RESULTS_FILE_NAME = "results-example-mstest.trx";
-
-        #endregion
+        public WhenParsingMsTestResultsFile()
+            : base("results-example-mstest.trx")
+        {
+            
+        }
 
         [Test]
         public void ThenCanReadBackgroundResultSuccessfully()
@@ -128,41 +124,23 @@ namespace PicklesDoc.Pickles.Test
             result.WasSuccessful.ShouldBeFalse();
         }
 
-        private MsTestResults ParseResultsFile()
-        {
-            // Write out the embedded test results file
-            using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + RESULTS_FILE_NAME)))
-            using (var output = new StreamWriter(RESULTS_FILE_NAME))
-            {
-                output.Write(input.ReadToEnd());
-            }
-
-            var configuration = Container.Resolve<Configuration>();
-            configuration.TestResultsFile = RealFileSystem.FileInfo.FromFileName(RESULTS_FILE_NAME);
-
-            var results = Container.Resolve<MsTestResults>();
-            return results;
-        }
-
         private Feature AdditionFeature()
         {
-            return new Feature() { Name = "Addition" };
+            return new Feature { Name = "Addition" };
         }
 
         private Feature InconclusiveFeature()
         {
-            return new Feature() { Name = "Inconclusive" };
+            return new Feature { Name = "Inconclusive" };
         }
         private Feature FailingFeature()
         {
-            return new Feature() { Name = "Failing" };
+            return new Feature { Name = "Failing" };
         }
 
         private Feature PassingFeature()
         {
-            return new Feature() { Name = "Passing" };
+            return new Feature { Name = "Passing" };
         }
-
-
     }
 }

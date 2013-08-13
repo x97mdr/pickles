@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Reflection;
-using Autofac;
 using NUnit.Framework;
 using PicklesDoc.Pickles.Parser;
 using PicklesDoc.Pickles.TestFrameworks;
@@ -9,24 +7,17 @@ using Should;
 namespace PicklesDoc.Pickles.Test
 {
     [TestFixture]
-    class WhenParsingCucumberJsonResultsFile : BaseFixture
+    class WhenParsingCucumberJsonResultsFile : WhenParsingTestResultFiles<CucumberJsonResults>
     {
-        private const string RESULTS_FILE_NAME = "results-example-json.json";
+        public WhenParsingCucumberJsonResultsFile()
+            : base("results-example-json.json")
+        {
+        }
 
         [Test]
         public void ThenCanReadFeatureResultSuccesfully()
         {
-            // Write out the embedded test results file
-            using (var input = new System.IO.StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + RESULTS_FILE_NAME)))
-            using (var output = new System.IO.StreamWriter(RESULTS_FILE_NAME))
-            {
-                output.Write(input.ReadToEnd());
-            }
-
-            var configuration = Container.Resolve<Configuration>();
-            configuration.TestResultsFile = RealFileSystem.FileInfo.FromFileName(RESULTS_FILE_NAME);
-
-            var results = Container.Resolve<CucumberJsonResults>();
+            var results = ParseResultsFile();
 
             var feature = new Feature { Name = "Test Feature" };
             TestResult result = results.GetFeatureResult(feature);
@@ -38,17 +29,7 @@ namespace PicklesDoc.Pickles.Test
         [Test]
         public void ThenCanReadScenarioResultSuccessfully()
         {
-            // Write out the embedded test results file
-            using (var input = new System.IO.StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + RESULTS_FILE_NAME)))
-            using (var output = new System.IO.StreamWriter(RESULTS_FILE_NAME))
-            {
-                output.Write(input.ReadToEnd());
-            }
-
-            var configuration = Container.Resolve<Configuration>();
-            configuration.TestResultsFile = RealFileSystem.FileInfo.FromFileName(RESULTS_FILE_NAME);
-
-            var results = Container.Resolve<CucumberJsonResults>();
+            var results = ParseResultsFile();
 
             var feature = new Feature { Name = "Test Feature" };
 
