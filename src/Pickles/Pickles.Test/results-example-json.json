@@ -69,5 +69,19 @@
         ]
       }
     ]
+  },
+  {
+    "uri": "features/no_scenarios.feature",
+    "keyword": "Feature",
+    "id": "no-scenarios",
+    "name": "Feature Without Scenarios",
+    "line": 2,
+    "description": "",
+    "tags": [
+      {
+        "name": "@a",
+        "line": 1
+      }
+    ]
   }
 ]

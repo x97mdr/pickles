@@ -45,5 +45,16 @@ namespace PicklesDoc.Pickles.Test
             result2.WasExecuted.ShouldBeTrue();
             result2.WasSuccessful.ShouldBeFalse();
         }
+
+        [Test]
+        public void ThenCanReadFeatureWithoutScenariosSuccessfully_ShouldReturnInconclusive()
+        {
+            var results = ParseResultsFile();
+            var feature = new Feature { Name = "Feature Without Scenarios" };
+
+            TestResult result = results.GetFeatureResult(feature);
+
+            result.ShouldEqual(TestResult.Inconclusive);
+        }
     }
 }
