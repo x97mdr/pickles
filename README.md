@@ -24,6 +24,7 @@ Supported Test Runner Integrations
 - xUnit
 - MSTest
 - Cucumber JSON
+- SpecRun
 
 Contributing
 ------------
