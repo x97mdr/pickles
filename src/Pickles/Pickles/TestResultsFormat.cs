@@ -27,6 +27,7 @@ namespace PicklesDoc.Pickles
         NUnit,
         xUnit,
         MsTest,
-        CucumberJson
+        CucumberJson,
+        SpecRun
     }
 }

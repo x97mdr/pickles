@@ -35,6 +35,11 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
             var specRunFeature = this.FindSpecRunFeature(feature);
 
+            if (specRunFeature == null)
+            {
+              return TestResult.Inconclusive;
+            }
+
             TestResult result = specRunFeature.Scenarios.Select(specRunScenario => StringToTestResult(specRunScenario.Result)).Merge();
 
             return result;

@@ -75,6 +75,7 @@ namespace PicklesDoc.Pickles
                         case TestResultsFormat.xUnit: return c.Resolve<XUnitResults>();
                         case TestResultsFormat.MsTest: return c.Resolve<MsTestResults>();
                         case TestResultsFormat.CucumberJson: return c.Resolve<CucumberJsonResults>();
+                        case TestResultsFormat.SpecRun: return c.Resolve<SpecRunResults>();
                         default: return c.Resolve<NullTestResults>();
                     }
                 }).SingleInstance();
