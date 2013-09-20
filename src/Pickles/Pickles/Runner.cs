@@ -43,6 +43,12 @@ namespace PicklesDoc.Pickles
             var featureCrawler = container.Resolve<DirectoryTreeCrawler>();
             GeneralTree<INode> features = featureCrawler.Crawl(configuration.FeatureFolder);
 
+            if (features == null)
+            {
+              log.Warn("No features found at {0}", configuration.FeatureFolder);
+              return;
+            }
+
             ApplyTestResultsToFeatures(container, configuration, features);
 
             var documentationBuilder = container.Resolve<IDocumentationBuilder>();
