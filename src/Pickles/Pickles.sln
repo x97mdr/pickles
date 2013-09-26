@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pickles.PowerShell", "Pickl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pickles.UserInterface", "Pickles.UserInterface\Pickles.UserInterface.csproj", "{F3768CCA-00C2-4280-9F8D-4585B5E214B1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FED9F7C2-2800-43DD-B98B-9D50BBBFF91A}"
-EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Pickles.BaseDhtmlFiles", "Pickles.BaseDhtmlFiles\", "{1F17FEE9-0033-42CE-9E91-48D3B2CCD34A}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
@@ -37,6 +35,13 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Pickles.BaseDhtmlFiles", "P
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "52000"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{AD456273-4D13-4F29-962D-F10A53FA0993}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
 Global
