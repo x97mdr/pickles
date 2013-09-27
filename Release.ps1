@@ -2,7 +2,7 @@ git pull origin master
 
 start-process ".\tools\nant-0.85\binaries\nant.exe" "-buildfile:project.build pack" -Wait
 
-$version = "0.11.0"
+$version = "0.12.0"
 
 $out = .\src\Pickles\.nuget\nuget.exe pack .\src\Pickles\Pickles.MSBuild\Pickles.MSBuild.nuspec -Version $version
 Write-Host $out
