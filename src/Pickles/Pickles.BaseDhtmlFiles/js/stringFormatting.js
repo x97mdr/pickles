@@ -17,3 +17,21 @@ function removeBeginningHash(hashedString) {
         return hashedString;
     }
 }
+
+function renderMarkdownBlock(markdownText) {
+    if (markdownText != '') {
+        // More info: http://code.google.com/p/pagedown/wiki/PageDown
+        var converter = new Markdown.Converter();
+
+        setupMarkdownExtraWithBootstrapTableStyles(converter);
+
+        var transformed = '<p>' + converter.makeHtml(markdownText); + '</p>'
+        return transformed;
+    }
+    return markdownText;
+}
+
+function setupMarkdownExtraWithBootstrapTableStyles(converter) {
+    // More Info: https://github.com/jmcmanus/pagedown-extra
+    Markdown.Extra.init(converter, { table_class: "table table-bordered table-condensed table-striped" });
+}

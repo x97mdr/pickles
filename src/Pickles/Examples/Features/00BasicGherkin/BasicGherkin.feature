@@ -1,7 +1,7 @@
 ﻿Feature: Showing basic gherkin syntax
-	In order to see that gherkin is a very simple langauge
-	As a SpecFlow evangelist
-	I want to show that basic syntax
+	In order to see that gherkin is a very simple langauge  
+	As a SpecFlow evangelist  
+	I want to show that basic syntax  
 
 	![Test Image](test.jpg)
 
