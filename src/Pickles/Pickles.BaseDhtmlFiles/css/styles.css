@@ -7,8 +7,8 @@
     padding: 9px 0;
 }
 
-#featureDetails h5 {
-    margin-bottom: 20px
+#featureDetails .description {
+    font-size: larger;
 }
 
 #scenarios, .steps {
@@ -22,10 +22,6 @@
     border: 1px solid #D0D0D0;
     margin: 6px 0px 28px 0px;
     padding: 6px;
-}
-
-.scenario h4 {
-    margin: 5px;
 }
 
 li.step {

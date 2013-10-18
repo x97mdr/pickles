@@ -8,7 +8,7 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/print.css" rel="stylesheet" media="print" />
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -20,7 +20,7 @@
 <body>
 
     <script type="text/html" id="features-template">
-        <div style="padding: 5px" class="feature" data-bind="click: $root.showFeature.bind(Path)"><a data-bind="text: Name, click: $root.showFeature.bind(Path)" href="#"></a></div>
+        <div style="padding: 5px" class="feature" data-bind="click: $root.showFeature.bind(Path)"><a data-bind="    text: Name, click: $root.showFeature.bind(Path)" href="#"></a></div>
     </script>
 
     <script type="text/html" id="featuresByFolder-template">
@@ -43,8 +43,10 @@
 
     <script type="text/html" id="steps-template">
         <li class="step">
-            <span class="keyword" data-bind="text: NativeKeyword"></span><span data-bind="text:Name"></span>
-            <div data-bind="if: DocStringArgument != ''"><div data-bind="text: DocStringArgument" class="pre"></div></div>
+            <span class="keyword" data-bind="text: NativeKeyword"></span><span data-bind="    text: Name"></span>
+            <div data-bind="if: DocStringArgument != ''">
+                <div data-bind="text: DocStringArgument" class="pre"></div>
+            </div>
             <div data-bind="template: { name: 'table-template', data: $data }"></div>
         </li>
     </script>
@@ -103,13 +105,14 @@
                         <!-- /ko -->
                     </div>
                     <h1 data-bind="text: Name" class="canHighlight"></h1>
-                    <h5 data-bind="text: Description" class="pre"></h5>
+                    <div class="description" data-bind="html: renderMarkdownBlock(Description)"></div>                            
                 </div>
 
                 <div class="row-fluid" data-bind="with: Feature">
                     <div class="row-fluid" data-bind="if: Background.Steps">
                         <div class="scenario">
                             <h4>Background:</h4>
+                            <div class="description" data-bind="html: renderMarkdownBlock(Description)"></div>
                             <ul data-bind="template: { name: 'steps-template', foreach: Background.Steps }"></ul>
                         </div>
                     </div>
@@ -125,18 +128,20 @@
 
                         <div class="scenario">
                             <div data-bind="template: { name: 'testResults-template', data: Result }"></div>
-                        
+
                             <div>
                                 <h4 data-bind="text: Name" class="canHighlight"></h4>
+                                <div class="description" data-bind="html: renderMarkdownBlock(Description)"></div>                                
                             </div>
 
                             <div class="steps">
-
+                                
                                 <ul data-bind="template: { name: 'steps-template', foreach: Steps }"></ul>
 
                                 <ul data-bind="foreach: Examples">
                                     <li class="step">
                                         <div><strong>Examples:</strong> <span data-bind="text: Name"></span></div>
+                                        <div class="description" data-bind="html: renderMarkdownBlock(Description)"></div>
                                         <div data-bind="template: { name: 'table-template', data: $data }"></div>
                                     </li>
                                 </ul>
@@ -168,18 +173,20 @@
     <!-- Le javascript
             ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery-1.8.3.js" type="text/javascript"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/knockout-2.2.0.debug.js"></script>
-    <script src="js/knockout.mapping-latest.debug.js"></script>
-    <script src="js/underscore.js"></script>
-    <script src="js/jquery.highlight.js"></script>
-    <script src="js/featuresModel.js"></script>
-    <script src="js/logger.js"></script>
-    <script src="js/stringFormatting.js"></script>
-    <script src="js/heirarchyBuilder.js"></script>
-    <script src="js/typeaheadList.js"></script>
-    <script src="js/featureSearch.js"></script>
+    <script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="js/knockout-2.2.0.js" type="text/javascript"></script>
+    <script src="js/knockout.mapping-latest.js" type="text/javascript"></script>
+    <script src="js/underscore-min.js" type="text/javascript"></script>
+    <script src="js/jquery.highlight-4.closure.js"></script>
+    <script src="js/Markdown.Converter.js" type="text/javascript"></script>
+    <script src="js/Markdown.Extra.js" type="text/javascript"></script>    
+    <script src="js/featuresModel.js" type="text/javascript"></script>
+    <script src="js/logger.js" type="text/javascript"></script>
+    <script src="js/stringFormatting.js" type="text/javascript"></script>
+    <script src="js/heirarchyBuilder.js" type="text/javascript"></script>
+    <script src="js/typeaheadList.js" type="text/javascript"></script>
+    <script src="js/featureSearch.js" type="text/javascript"></script>
     <script type="text/javascript">
         function ViewModel(features) {
             var self = this;
