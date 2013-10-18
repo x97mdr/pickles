@@ -7,8 +7,8 @@
     padding: 9px 0;
 }
 
-#featureDetails h5 {
-    margin-bottom: 20px
+#featureDetails .description {
+    font-size: larger;
 }
 
 #scenarios, .steps {
