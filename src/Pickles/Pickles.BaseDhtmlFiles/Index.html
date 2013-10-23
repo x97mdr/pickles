@@ -20,7 +20,7 @@
 <body>
 
     <script type="text/html" id="features-template">
-        <div style="padding: 5px" class="feature" data-bind="click: $root.showFeature.bind(Path)"><a data-bind="    text: Name, click: $root.showFeature.bind(Path)" href="#"></a></div>
+        <div class="feature" data-bind="click: $root.showFeature.bind(Path)"><a data-bind="text: Name, click: $root.showFeature.bind(Path), css: { selected: $root.isSelected(Path) }" href="#"></a></div>
     </script>
 
     <script type="text/html" id="featuresByFolder-template">
@@ -88,76 +88,81 @@
 
     <div class="container-fluid" id="MainContainer">
         <div class="row-fluid">
-            <div class="span3" id="FolderNav">
-                <div>
-                    <div data-bind="template: { name: 'features-template', foreach: featuresByFolder().features }"></div>
-                    <div data-bind="template: { name: 'featuresByFolder-template', foreach: featuresByFolder().SubDirectories }"></div>
-                </div>
-            </div>
-
-            <div class="span9" data-bind="with: currentFeature">
-                <div data-bind="with: Feature" id="featureDetails">
-                    <div data-bind="template: { name: 'testResults-template', data: Result }"></div>
-                    <div data-bind="if: Tags.length > 0" class="canHighlight inline">
-                        <i class=" icon-tags"></i>
-                        <!-- ko foreach: Tags.sort() -->
-                        <span data-bind="text: $data" class="inline"></span>
-                        <!-- /ko -->
+            <div class="span12">
+                <div class="span3" id="FolderNav" data-bind="visible: navIsShown">
+                    <div id="HideIt" data-bind="click: hideNav"><i class="icon-chevron-left"></i></div>
+                    <div id="InnerNav">
+                        <div data-bind="template: { name: 'features-template', foreach: featuresByFolder().features }"></div>
+                        <div data-bind="template: { name: 'featuresByFolder-template', foreach: featuresByFolder().SubDirectories }"></div>
                     </div>
-                    <h1 data-bind="text: Name" class="canHighlight"></h1>
-                    <div class="description" data-bind="html: renderMarkdownBlock(Description)"></div>                            
                 </div>
 
-                <div class="row-fluid" data-bind="with: Feature">
-                    <div class="row-fluid" data-bind="if: Background.Steps">
-                        <div class="scenario">
-                            <h4>Background:</h4>
-                            <div class="description" data-bind="html: renderMarkdownBlock(Description)"></div>
-                            <ul data-bind="template: { name: 'steps-template', foreach: Background.Steps }"></ul>
-                        </div>
-                    </div>
-
-                    <div id="scenarios" data-bind="foreach: FeatureElements">
+                <div id="Content" class="span9" data-bind="with: currentFeature">
+                    <div id="ShowIt" data-bind="visible: $root.navIsHidden, click: $root.showNav"><i class="icon-chevron-right"></i></div>
+                    <div data-bind="with: Feature" id="featureDetails">
+                        <div data-bind="template: { name: 'testResults-template', data: Result }"></div>
                         <div data-bind="if: Tags.length > 0" class="canHighlight inline">
-                            <i class=" icon-tags"></i><em>
-                                <!-- ko foreach: Tags.sort() -->
-                                <span data-bind="text: $data" class="inline"></span>
-                                <!-- /ko -->
-                            </em>
+                            <i class=" icon-tags"></i>
+                            <!-- ko foreach: Tags.sort() -->
+                            <span data-bind="text: $data" class="inline"></span>
+                            <!-- /ko -->
+                        </div>
+                        <h1 data-bind="text: Name" class="canHighlight"></h1>
+                        <div class="description" data-bind="html: renderMarkdownBlock(Description)"></div>
+                    </div>
+
+                    <div class="row-fluid" data-bind="with: Feature">
+                        <div class="row-fluid" data-bind="if: Background.Steps">
+                            <div class="scenario">
+                                <h4>Background:</h4>
+                                <div class="description" data-bind="html: renderMarkdownBlock(Description)"></div>
+                                <ul data-bind="template: { name: 'steps-template', foreach: Background.Steps }"></ul>
+                            </div>
                         </div>
 
-                        <div class="scenario">
-                            <div data-bind="template: { name: 'testResults-template', data: Result }"></div>
-
-                            <div>
-                                <h4 data-bind="text: Name" class="canHighlight"></h4>
-                                <div class="description" data-bind="html: renderMarkdownBlock(Description)"></div>                                
+                        <div id="scenarios" data-bind="foreach: FeatureElements">
+                            <div data-bind="if: Tags.length > 0" class="canHighlight inline">
+                                <i class=" icon-tags"></i><em>
+                                    <!-- ko foreach: Tags.sort() -->
+                                    <span data-bind="text: $data" class="inline"></span>
+                                    <!-- /ko -->
+                                </em>
                             </div>
 
-                            <div class="steps">
-                                
-                                <ul data-bind="template: { name: 'steps-template', foreach: Steps }"></ul>
+                            <div class="scenario">
+                                <div data-bind="template: { name: 'testResults-template', data: Result }"></div>
 
-                                <ul data-bind="foreach: Examples">
-                                    <li class="step">
-                                        <div><strong>Examples:</strong> <span data-bind="text: Name"></span></div>
-                                        <div class="description" data-bind="html: renderMarkdownBlock(Description)"></div>
-                                        <div data-bind="template: { name: 'table-template', data: $data }"></div>
-                                    </li>
-                                </ul>
+                                <div>
+                                    <h4 data-bind="text: Name" class="canHighlight"></h4>
+                                    <div class="description" data-bind="html: renderMarkdownBlock(Description)"></div>
+                                </div>
+
+                                <div class="steps">
+
+                                    <ul data-bind="template: { name: 'steps-template', foreach: Steps }"></ul>
+
+                                    <ul data-bind="foreach: Examples">
+                                        <li class="step">
+                                            <div><strong>Examples:</strong> <span data-bind="text: Name"></span></div>
+                                            <div class="description" data-bind="html: renderMarkdownBlock(Description)"></div>
+                                            <div data-bind="template: { name: 'table-template', data: $data }"></div>
+                                        </li>
+                                    </ul>
+
+                                </div>
 
                             </div>
-
                         </div>
                     </div>
-                </div>
-                <!-- Enable to dump JSON to the screen -->
-                <!--<div class="row-fluid">
+                    <!-- Enable to dump JSON to the screen -->
+                    <!--<div class="row-fluid">
                     Current Features List JSON:
                     <pre data-bind="text: ko.toJSON($parent.featuresList())"></pre>
                 </div>-->
+                </div>
+                <!--/span-->
+
             </div>
-            <!--/span-->
         </div>
         <!--/row-->
 
@@ -180,7 +185,7 @@
     <script src="js/underscore-min.js" type="text/javascript"></script>
     <script src="js/jquery.highlight-4.closure.js"></script>
     <script src="js/Markdown.Converter.js" type="text/javascript"></script>
-    <script src="js/Markdown.Extra.js" type="text/javascript"></script>    
+    <script src="js/Markdown.Extra.js" type="text/javascript"></script>
     <script src="js/featuresModel.js" type="text/javascript"></script>
     <script src="js/logger.js" type="text/javascript"></script>
     <script src="js/stringFormatting.js" type="text/javascript"></script>
@@ -203,7 +208,7 @@
                     self.updateCurrentFeature(self.originalFeaturesList()[0]);
                 }
             };
-
+            
             self.whatToSearchFor = ko.observable("");
 
             self.clearSearch = function () {
@@ -243,6 +248,16 @@
                 window.scroll(0, 0);
                 highlightSearchString(self.whatToSearchFor());
             };
+
+            // Navigation functionality
+            self.navIsShown = ko.observable(true);
+            self.navIsHidden = ko.observable(false);
+            self.hideNav = function () { self.navIsShown(false); self.navIsHidden(true); };
+            self.showNav = function () { self.navIsShown(true); self.navIsHidden(false); };
+            self.isSelected = function (path) {
+                console.log(self.currentFeature().RelativeFolder + ' ' + path);
+                return self.currentFeature().RelativeFolder == path;
+            };
         };
 
         function highlightSearchString(searchString) {
@@ -264,6 +279,8 @@
                 source: searchItems
             });
         }
+
+        var navShown = true;
 
         $(document).ready(function () {
             function chromeSOPHack_LoadJsonPFileAndCreateDynamicScriptTag() {
@@ -288,6 +305,39 @@
             }
 
             setupSubmitSearchWhenEnterKeyPressed();
+
+            ko.bindingHandlers.showOrHideElement = {
+                update: function (element, valueAccessor) {
+                    // First get the latest data that we're bound to
+                    var value = valueAccessor();
+
+                    // Next, whether or not the supplied model property is observable, get its current value
+                    //ar valueUnwrapped = ko.unwrap(value);
+
+                    // Grab some more data from another binding property
+                    //var duration = allBindings.slideDuration || 400; // 400ms is default duration unless otherwise specified
+
+                    // Now manipulate the DOM element
+                    if (value == true)
+                        $(element).hide(); // Make the element visible
+                    else
+                        $(element).show();   // Make the element invisible
+                }
+            };
+            //$("#ShowIt").hide();
+
+            //$("#ShowIt").on("click", function () {
+            //    $("#FolderNav").show();
+            //    $("#ShowIt").hide();
+            //    $("#HideIt").show();
+            //    $("#Content").removeClass("span12").addClass("span9");
+            //});
+            //$("#HideIt").on("click", function () {
+            //    $("#FolderNav").hide();
+            //    $("#ShowIt").show();
+            //    $("#HideIt").hide();
+            //    $("#Content").removeClass("span9").addClass("span12");
+            //});
         });
     </script>
 </body>
