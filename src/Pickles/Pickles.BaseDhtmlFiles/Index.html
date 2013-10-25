@@ -255,7 +255,6 @@
             self.hideNav = function () { self.navIsShown(false); self.navIsHidden(true); };
             self.showNav = function () { self.navIsShown(true); self.navIsHidden(false); };
             self.isSelected = function (path) {
-                console.log(self.currentFeature().RelativeFolder + ' ' + path);
                 return self.currentFeature().RelativeFolder == path;
             };
         };
@@ -304,40 +303,7 @@
                 });
             }
 
-            setupSubmitSearchWhenEnterKeyPressed();
-
-            ko.bindingHandlers.showOrHideElement = {
-                update: function (element, valueAccessor) {
-                    // First get the latest data that we're bound to
-                    var value = valueAccessor();
-
-                    // Next, whether or not the supplied model property is observable, get its current value
-                    //ar valueUnwrapped = ko.unwrap(value);
-
-                    // Grab some more data from another binding property
-                    //var duration = allBindings.slideDuration || 400; // 400ms is default duration unless otherwise specified
-
-                    // Now manipulate the DOM element
-                    if (value == true)
-                        $(element).hide(); // Make the element visible
-                    else
-                        $(element).show();   // Make the element invisible
-                }
-            };
-            //$("#ShowIt").hide();
-
-            //$("#ShowIt").on("click", function () {
-            //    $("#FolderNav").show();
-            //    $("#ShowIt").hide();
-            //    $("#HideIt").show();
-            //    $("#Content").removeClass("span12").addClass("span9");
-            //});
-            //$("#HideIt").on("click", function () {
-            //    $("#FolderNav").hide();
-            //    $("#ShowIt").show();
-            //    $("#HideIt").hide();
-            //    $("#Content").removeClass("span9").addClass("span12");
-            //});
+            setupSubmitSearchWhenEnterKeyPressed();            
         });
     </script>
 </body>
