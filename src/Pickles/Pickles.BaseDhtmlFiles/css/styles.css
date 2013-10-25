@@ -57,13 +57,17 @@ li.step {
 }
 
 #FolderNav {
-    border: 1px lightgrey solid;
+    border-right: 1px lightgrey solid;
 }
 
 #FolderNav a:hover {
     background-color: #EEEEEE;
     color: #1A668C;
     text-decoration: none;
+}
+
+.feature {
+    padding: 5px;
 }
 
 .feature:hover {
@@ -73,13 +77,14 @@ li.step {
 }
 
 .canHighlight {
-    
 }
 
-.highlight { background-color: yellow; }
+.highlight {
+    background-color: yellow;
+}
 
 .inconclusive, .failed, .passed {
-  font-size: 300%;
+    font-size: 300%;
 }
 
 .pre {
@@ -89,4 +94,28 @@ li.step {
     overflow: auto;
     white-space: pre-wrap;
     font-style: italic;
+}
+
+.selected {
+    text-decoration: underline;
+}
+
+#Content {
+    margin: 0px 0px 0px 10px;
+}
+
+#HideIt {
+    float: right;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    cursor: pointer;
+}
+
+#ShowIt {
+    float: left;
+    position: absolute;
+    left: 0px;
+    top: 60px;
+    cursor: pointer;
 }
