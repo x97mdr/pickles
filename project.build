@@ -4,7 +4,8 @@
     
   <!-- set the major and minor version number here -->
   <property name="version.major" value="0" />
-  <property name="version.minor" value="13" />
+  <property name="version.minor" value="12" />
+  <property name="version.revision" value="1" />
   
   <!-- set build number from continuous integration tool -->
   <if test="${environment::variable-exists('BUILD_NUMBER')}">
@@ -28,7 +29,7 @@
     <property name="revision" value="0" />
   </ifnot>
   
-  <property name="version" value="${version.major}.${version.minor}.${build.number}.0" />
+  <property name="version" value="${version.major}.${version.minor}.${version.revision}.${build.number}" />
   <property name="msbuild.dir" value="C:\Windows\Microsoft.NET\Framework\v4.0.30319" />
   <property name="ilmerge.dir" value="${environment::get-variable('ProgramFiles')}\Microsoft\ILMerge" />
   <property name="nuget.dir" value="src\Pickles\.nuget" />
