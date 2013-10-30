@@ -1,12 +1,11 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8">
     <title>Features</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
+    
     <!-- Le styles -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
@@ -89,7 +88,7 @@
     <div class="container-fluid" id="MainContainer">
         <div class="row-fluid">
             <div class="span12">
-                <div class="span3" id="FolderNav" data-bind="visible: navIsShown">
+                <div class="span3" id="FolderNav" data-bind="visible: navIsShown, css: { span3 : navIsShown(), span0 : !navIsShown() }">
                     <div id="HideIt" data-bind="click: hideNav"><i class="icon-chevron-left"></i></div>
                     <div id="InnerNav">
                         <div data-bind="template: { name: 'features-template', foreach: featuresByFolder().features }"></div>
@@ -97,7 +96,7 @@
                     </div>
                 </div>
 
-                <div id="Content" class="span9" data-bind="with: currentFeature">
+                <div id="Content" data-bind="with: currentFeature, css: { span12 : navIsHidden(), span9 : !navIsHidden() }">
                     <div id="ShowIt" data-bind="visible: $root.navIsHidden, click: $root.showNav"><i class="icon-chevron-right"></i></div>
                     <div data-bind="with: Feature" id="featureDetails">
                         <div data-bind="template: { name: 'testResults-template', data: Result }"></div>
@@ -156,9 +155,9 @@
                     </div>
                     <!-- Enable to dump JSON to the screen -->
                     <!--<div class="row-fluid">
-                    Current Features List JSON:
-                    <pre data-bind="text: ko.toJSON($parent.featuresList())"></pre>
-                </div>-->
+                        Current Features List JSON:
+                        <pre data-bind="text: ko.toJSON($parent.featuresList())"></pre>
+                    </div>-->
                 </div>
                 <!--/span-->
 
@@ -174,7 +173,6 @@
 
     </div>
     <!--/.fluid-container-->
-
     <!-- Le javascript
             ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -208,7 +206,7 @@
                     self.updateCurrentFeature(self.originalFeaturesList()[0]);
                 }
             };
-            
+
             self.whatToSearchFor = ko.observable("");
 
             self.clearSearch = function () {
@@ -303,7 +301,7 @@
                 });
             }
 
-            setupSubmitSearchWhenEnterKeyPressed();            
+            setupSubmitSearchWhenEnterKeyPressed();
         });
     </script>
 </body>
