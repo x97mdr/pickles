@@ -30,7 +30,12 @@ function Step(data) {
 
 function TableArgument(headerRow, dataRows) {
     this.HeaderRow = headerRow || new Array();
-    this.DataRows =  dataRows ||new Array();
+    this.DataRows = dataRows || new Array();
+    this.dataIsShown = ko.observable(true);
+    this.toggleData = function () {
+        var currentDataIsShown = this.dataIsShown();
+        this.dataIsShown(!currentDataIsShown);
+    };
 }
 
 function Examples(data) {

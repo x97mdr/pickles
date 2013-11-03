@@ -55,13 +55,13 @@
             <div style="overflow-x: auto">
                 <table class="table table-bordered table-condensed table-striped">
 
-                    <thead>
+                    <thead data-bind="click:toggleData">
                         <tr data-bind="foreach: HeaderRow">
                             <th data-bind="text: $data"></th>
                         </tr>
                     </thead>
 
-                    <tbody data-bind="foreach: DataRows">
+                    <tbody data-bind="foreach: DataRows, visible:dataIsShown">
                         <tr data-bind="foreach: $data">
                             <td data-bind="text: $data"></td>
                         </tr>
