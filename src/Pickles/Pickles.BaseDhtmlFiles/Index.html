@@ -132,11 +132,12 @@
                                 <div data-bind="template: { name: 'testResults-template', data: Result }"></div>
 
                                 <div>
-                                    <h4 data-bind="text: Name" class="canHighlight"></h4>
-                                    <div class="description" data-bind="html: renderMarkdownBlock(Description)"></div>
+                                    <h4 data-bind="text: Name, click:toggleDetail" class="canHighlight"></h4>
+                                    <h2 data-bind="if:detailIsShown">detail</h2>
+                                    <div class="description" data-bind="visible:detailIsShown,html: renderMarkdownBlock(Description)"></div>
                                 </div>
 
-                                <div class="steps">
+                                <div class="steps" data-bind="visible:detailIsShown">
 
                                     <ul data-bind="template: { name: 'steps-template', foreach: Steps }"></ul>
 

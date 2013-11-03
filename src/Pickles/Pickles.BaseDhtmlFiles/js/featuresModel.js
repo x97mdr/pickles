@@ -19,6 +19,11 @@ function Scenario(data) {
     this.Result = data.Result == null ? null : new Result(data.Result);
     this.Tags = data.Tags || null;
     this.Examples = data.Examples == null ? null : $.map(data.Examples, function (ex) { return new Examples(ex); });
+    this.detailIsShown = ko.observable(true);
+    this.toggleDetail = function () {
+        var currentDetailIsShown = this.detailIsShown();
+        this.detailIsShown(!currentDetailIsShown);
+    };
 }
 
 function Step(data) {
