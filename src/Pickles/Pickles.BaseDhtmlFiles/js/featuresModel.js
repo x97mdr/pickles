@@ -6,27 +6,49 @@
 function Feature(data) {
     this.Name = data.Name || '';
     this.Description = data.Description || '';
-    this.FeatureElements = data.FeatureElements || new Array();
-    this.Result = data.Result || null;
+    this.FeatureElements = $.map(data.FeatureElements, function (scenario) { return new Scenario(scenario); }) || new Array();
+    this.Background = data.Background == null ? null : new Background(data.Background);
+    this.Result = data.Result == null ? null : new Result(data.Result);
     this.Tags = data.Tags || null;
 }
-function TableArgument() {
-    this.HeaderRow = new Array();
-    this.DataRows = new Array();
+
+function Scenario(data) {
+    this.Name = data.Name || '';
+    this.Description = data.Description || '';
+    this.Steps = $.map(data.Steps, function(step) { return new Step(step); }) || new Array();
+    this.Result = data.Result == null ? null : new Result(data.Result);
+    this.Tags = data.Tags || null;
+    this.Examples = data.Examples == null ? null : $.map(data.Examples, function (ex) { return new Examples(ex); });
 }
-function Examples() {
-    this.Name = '';
-    this.TableArgument = null;
-    this.DataRows = new Array();
+
+function Step(data) {
+    this.Name = data.Name || '';
+    this.Keyword = data.Keyword || '';
+    this.NativeKeyword = data.NativeKeyword || '';
+    this.TableArgument = data.TableArgument == null ? null : new TableArgument(data.TableArgument.HeaderRow, data.TableArgument.DataRows);
 }
-function Background() {
+
+function TableArgument(headerRow, dataRows) {
+    this.HeaderRow = headerRow || new Array();
+    this.DataRows =  dataRows ||new Array();
+}
+
+function Examples(data) {
+    this.Name = data.Name || '';
+    this.Description = data.Description || '';
+    this.TableArgument = data.TableArgument == null ? null : new TableArgument(data.TableArgument.HeaderRow, data.TableArgument.DataRows);
+}
+
+function Background(data) {
     this.Name = '';
     this.Description = '';
-    this.Steps = new Array();
+    this.Steps = $.map(data.Steps, function(step) { return new Step(step); }) || new Array();
+    this.Tags = data.Tags || null;
+    this.Result = data.Result == null ? null : new Result(data.Result);
 }
-function Result() {
-    this.WasExecuted = false;
-    this.WasSuccessful = false;
+function Result(data) {
+    this.WasExecuted = data.WasExecuted || false;
+    this.WasSuccessful = data.WasSuccessful || false;
 }
 // putting it here to define it so I can check if it exists - it is an optional value
 var DocStringArgument = '';

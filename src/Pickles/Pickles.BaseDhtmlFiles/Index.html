@@ -46,22 +46,22 @@
             <div data-bind="if: DocStringArgument != ''">
                 <div data-bind="text: DocStringArgument" class="pre"></div>
             </div>
-            <div data-bind="template: { name: 'table-template', data: $data }"></div>
+            <div data-bind="template: { name: 'table-template', data: $data.TableArgument }"></div>
         </li>
     </script>
 
     <script type="text/html" id="table-template">
-        <div data-bind="if: TableArgument.HeaderRow">
+        <div data-bind="if: $data">
             <div style="overflow-x: auto">
                 <table class="table table-bordered table-condensed table-striped">
 
                     <thead>
-                        <tr data-bind="foreach: TableArgument.HeaderRow">
+                        <tr data-bind="foreach: HeaderRow">
                             <th data-bind="text: $data"></th>
                         </tr>
                     </thead>
 
-                    <tbody data-bind="foreach: TableArgument.DataRows">
+                    <tbody data-bind="foreach: DataRows">
                         <tr data-bind="foreach: $data">
                             <td data-bind="text: $data"></td>
                         </tr>
@@ -111,7 +111,7 @@
                     </div>
 
                     <div class="row-fluid" data-bind="with: Feature">
-                        <div class="row-fluid" data-bind="if: Background.Steps">
+                        <div class="row-fluid" data-bind="if: Background">
                             <div class="scenario">
                                 <h4>Background:</h4>
                                 <div class="description" data-bind="html: renderMarkdownBlock(Description)"></div>
@@ -144,7 +144,7 @@
                                         <li class="step">
                                             <div><strong>Examples:</strong> <span data-bind="text: Name"></span></div>
                                             <div class="description" data-bind="html: renderMarkdownBlock(Description)"></div>
-                                            <div data-bind="template: { name: 'table-template', data: $data }"></div>
+                                            <div data-bind="template: { name: 'table-template', data: $data.TableArgument }"></div>
                                         </li>
                                     </ul>
 
