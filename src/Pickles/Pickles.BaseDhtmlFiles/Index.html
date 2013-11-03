@@ -194,6 +194,8 @@
         function ViewModel(features) {
             var self = this;
 
+            features = $.map(features, function(el, i) { return new FeatureParent(el); });
+
             self.originalFeaturesList = ko.observableArray(features);
             self.featuresByFolder = ko.observable(buildFullHierarchy(getFeaturesFromScenariosList(features)));
             self.currentFeature = ko.observable();

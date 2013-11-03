@@ -1,11 +1,14 @@
-﻿function FeatureParent(relativeFolder, feature) {
-    this.RelativeFolder = relativeFolder;
-    this.Feature = new Feature(feature.Name, feature.Description, feature.FeatureElements);
+﻿function FeatureParent(data) {
+    this.RelativeFolder = data.RelativeFolder;
+    this.Feature = new Feature(data.Feature);
 }
-function Feature() { 
-    this.Name = '';
-    this.Description = '';
-    this.FeatureElements = new Array();
+
+function Feature(data) {
+    this.Name = data.Name || '';
+    this.Description = data.Description || '';
+    this.FeatureElements = data.FeatureElements || new Array();
+    this.Result = data.Result || null;
+    this.Tags = data.Tags || null;
 }
 function TableArgument() {
     this.HeaderRow = new Array();
