@@ -9,10 +9,6 @@ function NavigationFeature(name, path) {
     this.Path = path;
 }
 
-Feature.prototype.getPathParts = function () {
-    return splitDirectoryPathIntoArrayOfFormattedFolders(this.Path);
-};
-
 function getFeaturesFromScenariosList(scenarios) {
     var features = new Array();
 

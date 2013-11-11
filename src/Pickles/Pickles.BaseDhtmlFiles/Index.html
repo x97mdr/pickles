@@ -55,13 +55,13 @@
             <div style="overflow-x: auto">
                 <table class="table table-bordered table-condensed table-striped">
 
-                    <thead data-bind="click:toggleData">
+                    <thead data-bind="click: $root.toggleDetail" class="clickable">
                         <tr data-bind="foreach: HeaderRow">
                             <th data-bind="text: $data"></th>
                         </tr>
                     </thead>
 
-                    <tbody data-bind="foreach: DataRows, visible:dataIsShown">
+                    <tbody data-bind="foreach: DataRows, visible:IsShown">
                         <tr data-bind="foreach: $data">
                             <td data-bind="text: $data"></td>
                         </tr>
@@ -106,7 +106,7 @@
                             <span data-bind="text: $data" class="inline"></span>
                             <!-- /ko -->
                         </div>
-                        <h1 data-bind="text: Name" class="canHighlight"></h1>
+                        <h1 data-bind="text: Name, click: $root.toggleDetails" class="canHighlight, clickable"></h1>
                         <div class="description" data-bind="html: renderMarkdownBlock(Description)"></div>
                     </div>
 
@@ -132,12 +132,11 @@
                                 <div data-bind="template: { name: 'testResults-template', data: Result }"></div>
 
                                 <div>
-                                    <h4 data-bind="text: Name, click:toggleDetail" class="canHighlight"></h4>
-                                    <h2 data-bind="if:detailIsShown">detail</h2>
-                                    <div class="description" data-bind="visible:detailIsShown,html: renderMarkdownBlock(Description)"></div>
+                                    <h4 data-bind="text: Name, click: $root.toggleDetail" class="canHighlight, clickable"></h4>
+                                    <div class="description" data-bind="visible:IsShown, html: renderMarkdownBlock(Description)"></div>
                                 </div>
 
-                                <div class="steps" data-bind="visible:detailIsShown">
+                                <div class="steps" data-bind="visible:IsShown">
 
                                     <ul data-bind="template: { name: 'steps-template', foreach: Steps }"></ul>
 
@@ -257,6 +256,16 @@
             self.showNav = function () { self.navIsShown(true); self.navIsHidden(false); };
             self.isSelected = function (path) {
                 return self.currentFeature().RelativeFolder == path;
+            };
+
+            // Hide / show detailed areas
+            self.toggleDetail = function (element) {
+                element.IsShown(!element.IsShown());
+            };
+            self.toggleDetails = function (feature) {
+                $.each(feature.FeatureElements, function (key, scenario) {
+                    scenario.IsShown(!scenario.IsShown());
+                });
             };
         };
 

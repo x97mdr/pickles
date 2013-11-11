@@ -19,11 +19,7 @@ function Scenario(data) {
     this.Result = data.Result == null ? null : new Result(data.Result);
     this.Tags = data.Tags || null;
     this.Examples = data.Examples == null ? null : $.map(data.Examples, function (ex) { return new Examples(ex); });
-    this.detailIsShown = ko.observable(true);
-    this.toggleDetail = function () {
-        var currentDetailIsShown = this.detailIsShown();
-        this.detailIsShown(!currentDetailIsShown);
-    };
+    this.IsShown = ko.observable(true);
 }
 
 function Step(data) {
@@ -36,11 +32,7 @@ function Step(data) {
 function TableArgument(headerRow, dataRows) {
     this.HeaderRow = headerRow || new Array();
     this.DataRows = dataRows || new Array();
-    this.dataIsShown = ko.observable(true);
-    this.toggleData = function () {
-        var currentDataIsShown = this.dataIsShown();
-        this.dataIsShown(!currentDataIsShown);
-    };
+    this.IsShown = ko.observable(true);
 }
 
 function Examples(data) {

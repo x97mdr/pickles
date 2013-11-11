@@ -4,7 +4,7 @@
     equal(addSpacesToCamelCasedString("ThisIsATestString."), "This Is A Test String.", "String ending with puncuation.");
 });
 
-test("Can pull of # from hashtag", function() {
+test("Can pull off # from hashtag", function() {
     equal(removeBeginningHash("#hash"), "hash");
     equal(removeBeginningHash("hash"), "hash");
     equal(removeBeginningHash(""), "");
@@ -49,9 +49,9 @@ test("Can get folder heirarchy from JSON", function () {
     equal(sampleJSONForHeirarchy.length, 3, "Sample JSON has 3 items");
     {
         var expectList = new Array();
-        expectList.push(new Feature('Clearing Screen', 'ClearingScreen.feature'));
-        expectList.push(new Feature('Nested Folder Example 1', '12NestedFolders\\ChildFolder\\ChildChildFolder\\NestedFolderExample.feature'));
-        expectList.push(new Feature('Nested Folder Example 2', '12NestedFolders\\ChildFolder\\NestedFolderExample2.feature'));
+        expectList.push(new NavigationFeature('Clearing Screen', 'ClearingScreen.feature'));
+        expectList.push(new NavigationFeature('Nested Folder Example 1', '12NestedFolders\\ChildFolder\\ChildChildFolder\\NestedFolderExample.feature'));
+        expectList.push(new NavigationFeature('Nested Folder Example 2', '12NestedFolders\\ChildFolder\\NestedFolderExample2.feature'));
         deepEqual(
             getFeaturesFromScenariosList(sampleJSONForHeirarchy),
             expectList,
@@ -67,33 +67,33 @@ test("Can get folder heirarchy from JSON", function () {
     }
     {
         var startingPaths = new Array();
-        startingPaths.push(new Feature('Root Feature #1', 'RootFeature.feature'));
-        startingPaths.push(new Feature('Root Feature #2', 'RootFeature2.feature'));
+        startingPaths.push(new NavigationFeature('Root Feature #1', 'RootFeature.feature'));
+        startingPaths.push(new NavigationFeature('Root Feature #2', 'RootFeature2.feature'));
         var expected = new Directory('');
-        expected.features.push(new Feature('Root Feature #1', 'RootFeature.feature'));
-        expected.features.push(new Feature('Root Feature #2', 'RootFeature2.feature'));
+        expected.features.push(new NavigationFeature('Root Feature #1', 'RootFeature.feature'));
+        expected.features.push(new NavigationFeature('Root Feature #2', 'RootFeature2.feature'));
         deepEqual(buildFullHierarchy(startingPaths), expected, "Convert array of paths to Folders / files - two features off the root.");
     }
     {
         var startingPaths = new Array();
-        startingPaths.push(new Feature('Nested Folder Example #1', '12NestedFolders\\NestedFolderExample1.feature'));
-        startingPaths.push(new Feature('Nested Folder Example #2', '12NestedFolders\\NestedFolderExample2.feature'));
+        startingPaths.push(new NavigationFeature('Nested Folder Example #1', '12NestedFolders\\NestedFolderExample1.feature'));
+        startingPaths.push(new NavigationFeature('Nested Folder Example #2', '12NestedFolders\\NestedFolderExample2.feature'));
         var expected = new Directory('');
         expected.SubDirectories.push(new Directory('12 Nested Folders'));
-        expected.SubDirectories[0].features.push(new Feature('Nested Folder Example #1', '12NestedFolders\\NestedFolderExample1.feature'));
-        expected.SubDirectories[0].features.push(new Feature('Nested Folder Example #2', '12NestedFolders\\NestedFolderExample2.feature'));
+        expected.SubDirectories[0].features.push(new NavigationFeature('Nested Folder Example #1', '12NestedFolders\\NestedFolderExample1.feature'));
+        expected.SubDirectories[0].features.push(new NavigationFeature('Nested Folder Example #2', '12NestedFolders\\NestedFolderExample2.feature'));
         deepEqual(buildFullHierarchy(startingPaths), expected, "Convert array of paths to Folders / files - two features under a folder.");
     }
     {
         // SCENARIO: End Goal!
         var startingPaths = getFeaturesFromScenariosList(sampleJSONForHeirarchy);
         var expectedDirStructure = new Directory("");
-        expectedDirStructure.features.push(new Feature('Clearing Screen', 'ClearingScreen.feature'));
+        expectedDirStructure.features.push(new NavigationFeature('Clearing Screen', 'ClearingScreen.feature'));
         expectedDirStructure.SubDirectories.push(new Directory('12 Nested Folders'));
         expectedDirStructure.SubDirectories[0].SubDirectories.push(new Directory('Child Folder'));
-        expectedDirStructure.SubDirectories[0].SubDirectories[0].features.push(new Feature('Nested Folder Example 2', '12NestedFolders\\ChildFolder\\NestedFolderExample2.feature'));
+        expectedDirStructure.SubDirectories[0].SubDirectories[0].features.push(new NavigationFeature('Nested Folder Example 2', '12NestedFolders\\ChildFolder\\NestedFolderExample2.feature'));
         expectedDirStructure.SubDirectories[0].SubDirectories[0].SubDirectories.push(new Directory('Child Child Folder'));
-        expectedDirStructure.SubDirectories[0].SubDirectories[0].SubDirectories[0].features.push(new Feature('Nested Folder Example 1', '12NestedFolders\\ChildFolder\\ChildChildFolder\\NestedFolderExample.feature'));
+        expectedDirStructure.SubDirectories[0].SubDirectories[0].SubDirectories[0].features.push(new NavigationFeature('Nested Folder Example 1', '12NestedFolders\\ChildFolder\\ChildChildFolder\\NestedFolderExample.feature'));
         deepEqual(buildFullHierarchy(startingPaths), expectedDirStructure, 'End Goal!');
     }
 });
