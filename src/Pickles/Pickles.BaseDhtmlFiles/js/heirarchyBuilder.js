@@ -4,22 +4,18 @@
     this.SubDirectories = new Array();
 }
 
-function Feature(name, path) {
+function NavigationFeature(name, path) {
     this.Name = name;
     this.Path = path;
 }
-
-Feature.prototype.getPathParts = function () {
-    return splitDirectoryPathIntoArrayOfFormattedFolders(this.Path);
-};
 
 function getFeaturesFromScenariosList(scenarios) {
     var features = new Array();
 
     $.each(scenarios, function (key, val) {
-        features.push(new Feature(val.Feature.Name, val.RelativeFolder));
+        features.push(new NavigationFeature(val.Feature.Name, val.RelativeFolder));
     });
-
+    
     return features;
 }
 

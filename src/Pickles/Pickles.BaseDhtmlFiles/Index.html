@@ -46,22 +46,22 @@
             <div data-bind="if: DocStringArgument != ''">
                 <div data-bind="text: DocStringArgument" class="pre"></div>
             </div>
-            <div data-bind="template: { name: 'table-template', data: $data }"></div>
+            <div data-bind="template: { name: 'table-template', data: $data.TableArgument }"></div>
         </li>
     </script>
 
     <script type="text/html" id="table-template">
-        <div data-bind="if: TableArgument.HeaderRow">
+        <div data-bind="if: $data">
             <div style="overflow-x: auto">
                 <table class="table table-bordered table-condensed table-striped">
 
-                    <thead>
-                        <tr data-bind="foreach: TableArgument.HeaderRow">
+                    <thead data-bind="click: $root.toggleDetail" class="clickable">
+                        <tr data-bind="foreach: HeaderRow">
                             <th data-bind="text: $data"></th>
                         </tr>
                     </thead>
 
-                    <tbody data-bind="foreach: TableArgument.DataRows">
+                    <tbody data-bind="foreach: DataRows, visible:IsShown">
                         <tr data-bind="foreach: $data">
                             <td data-bind="text: $data"></td>
                         </tr>
@@ -106,15 +106,15 @@
                             <span data-bind="text: $data" class="inline"></span>
                             <!-- /ko -->
                         </div>
-                        <h1 data-bind="text: Name" class="canHighlight"></h1>
+                        <h1 data-bind="text: Name, click: $root.toggleDetails" class="canHighlight, clickable"></h1>
                         <div class="description" data-bind="html: renderMarkdownBlock(Description)"></div>
                     </div>
 
                     <div class="row-fluid" data-bind="with: Feature">
-                        <div class="row-fluid" data-bind="if: Background.Steps">
+                        <div class="row-fluid" data-bind="if: Background">
                             <div class="scenario">
                                 <h4>Background:</h4>
-                                <div class="description" data-bind="html: renderMarkdownBlock(Background.Description)"></div>
+                                <div class="description" data-bind="html: renderMarkdownBlock(Description)"></div>
                                 <ul data-bind="template: { name: 'steps-template', foreach: Background.Steps }"></ul>
                             </div>
                         </div>
@@ -132,11 +132,11 @@
                                 <div data-bind="template: { name: 'testResults-template', data: Result }"></div>
 
                                 <div>
-                                    <h4 data-bind="text: Name" class="canHighlight"></h4>
-                                    <div class="description" data-bind="html: renderMarkdownBlock(Description)"></div>
+                                    <h4 data-bind="text: Name, click: $root.toggleDetail" class="canHighlight, clickable"></h4>
+                                    <div class="description" data-bind="visible:IsShown, html: renderMarkdownBlock(Description)"></div>
                                 </div>
 
-                                <div class="steps">
+                                <div class="steps" data-bind="visible:IsShown">
 
                                     <ul data-bind="template: { name: 'steps-template', foreach: Steps }"></ul>
 
@@ -144,7 +144,7 @@
                                         <li class="step">
                                             <div><strong>Examples:</strong> <span data-bind="text: Name"></span></div>
                                             <div class="description" data-bind="html: renderMarkdownBlock(Description)"></div>
-                                            <div data-bind="template: { name: 'table-template', data: $data }"></div>
+                                            <div data-bind="template: { name: 'table-template', data: $data.TableArgument }"></div>
                                         </li>
                                     </ul>
 
@@ -193,6 +193,8 @@
     <script type="text/javascript">
         function ViewModel(features) {
             var self = this;
+
+            features = $.map(features, function(el, i) { return new FeatureParent(el); });
 
             self.originalFeaturesList = ko.observableArray(features);
             self.featuresByFolder = ko.observable(buildFullHierarchy(getFeaturesFromScenariosList(features)));
@@ -254,6 +256,16 @@
             self.showNav = function () { self.navIsShown(true); self.navIsHidden(false); };
             self.isSelected = function (path) {
                 return self.currentFeature().RelativeFolder == path;
+            };
+
+            // Hide / show detailed areas
+            self.toggleDetail = function (element) {
+                element.IsShown(!element.IsShown());
+            };
+            self.toggleDetails = function (feature) {
+                $.each(feature.FeatureElements, function (key, scenario) {
+                    scenario.IsShown(!scenario.IsShown());
+                });
             };
         };
 
