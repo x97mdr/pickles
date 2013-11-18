@@ -151,24 +151,27 @@ namespace PicklesDoc.Pickles.TestFrameworks
         private XDocument ReadResultsFile()
         {
             XDocument document;
-            using (var stream = this.configuration.TestResultsFile.OpenText())
+            using (var stream = this.configuration.TestResultsFile.OpenRead())
             {
-                string content = stream.ReadToEnd();
+                using (var streamReader = new System.IO.StreamReader(stream))
+                {
+                    string content = streamReader.ReadToEnd();
 
-                int begin = content.IndexOf("<!-- Pickles Begin", StringComparison.Ordinal);
+                    int begin = content.IndexOf("<!-- Pickles Begin", StringComparison.Ordinal);
 
-                content = content.Substring(begin);
+                    content = content.Substring(begin);
 
-                content = content.Replace("<!-- Pickles Begin", string.Empty);
+                    content = content.Replace("<!-- Pickles Begin", string.Empty);
 
-                int end = content.IndexOf("Pickles End -->", System.StringComparison.Ordinal);
+                    int end = content.IndexOf("Pickles End -->", System.StringComparison.Ordinal);
 
-                content = content.Substring(0, end);
+                    content = content.Substring(0, end);
 
-                content = content.Replace("&lt;", "<").Replace("&gt;", ">");
+                    content = content.Replace("&lt;", "<").Replace("&gt;", ">");
 
-                var xmlReader = XmlReader.Create(new System.IO.StringReader(content));
-                document = XDocument.Load(xmlReader);
+                    var xmlReader = XmlReader.Create(new System.IO.StringReader(content));
+                    document = XDocument.Load(xmlReader);
+                }
             }
 
             return document;

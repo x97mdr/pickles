@@ -1,9 +1,9 @@
 ﻿using System;
+using System.IO.Abstractions.TestingHelpers;
 using System.Reflection;
 using Autofac;
 
 using StreamReader = System.IO.StreamReader;
-using StreamWriter = System.IO.StreamWriter;
 
 namespace PicklesDoc.Pickles.Test
 {
@@ -29,14 +29,11 @@ namespace PicklesDoc.Pickles.Test
             // Write out the embedded test results file
             using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFileName)))
             {
-                using (var output = new StreamWriter(resultsFileName))
-                {
-                    output.Write(input.ReadToEnd());
-                }
+                MockFileSystem.AddFile(resultsFileName, new MockFileData(input.ReadToEnd()));
             }
 
             var configuration = Container.Resolve<Configuration>();
-            configuration.TestResultsFile = RealFileSystem.FileInfo.FromFileName(resultsFileName);
+            configuration.TestResultsFile = MockFileSystem.FileInfo.FromFileName(resultsFileName);
         }
     }
 }
