@@ -52,6 +52,146 @@ jsonPWrapper ([
     }
   },
   {
+    "RelativeFolder": "15Pickles\\InteractiveDHTMLView.feature",
+    "Feature": {
+      "Name": "Interactive DHTML View",
+      "Description": "In order to increase stakeholder engagement with pickled specs\r\nAs a SpecFlow evangelist  \r\nI want to adjust the level of detail in the DHTML view to suit my audience\r\nSo that I do not overwhelm them.",
+      "FeatureElements": [
+        {
+          "Name": "Scenario with large data table",
+          "Description": "",
+          "Steps": [
+            {
+              "Keyword": "Given",
+              "NativeKeyword": "Given ",
+              "Name": "a feature with a large table of data:",
+              "TableArgument": {
+                "HeaderRow": [
+                  "heading",
+                  "page #"
+                ],
+                "DataRows": [
+                  [
+                    "Chapter 1",
+                    "1"
+                  ],
+                  [
+                    "Chapter 2",
+                    "5"
+                  ],
+                  [
+                    "Chapter 3",
+                    "10"
+                  ],
+                  [
+                    "Chapter 4",
+                    "15"
+                  ],
+                  [
+                    "Chapter 5",
+                    "20"
+                  ],
+                  [
+                    "Chapter 6",
+                    "25"
+                  ],
+                  [
+                    "Chapter 7",
+                    "30"
+                  ],
+                  [
+                    "Chapter 8",
+                    "35"
+                  ],
+                  [
+                    "Chapter 9",
+                    "40"
+                  ],
+                  [
+                    "Chapter 10",
+                    "45"
+                  ],
+                  [
+                    "Chapter 11",
+                    "50"
+                  ],
+                  [
+                    "Chapter 12",
+                    "55"
+                  ],
+                  [
+                    "Chapter 13",
+                    "60"
+                  ],
+                  [
+                    "Chapter 14",
+                    "65"
+                  ],
+                  [
+                    "Chapter 15",
+                    "70"
+                  ],
+                  [
+                    "Chapter 16",
+                    "75"
+                  ],
+                  [
+                    "Chapter 17",
+                    "80"
+                  ],
+                  [
+                    "Chapter 18",
+                    "85"
+                  ],
+                  [
+                    "Chapter 19",
+                    "90"
+                  ],
+                  [
+                    "Chapter 20",
+                    "95"
+                  ],
+                  [
+                    "Chapter 21",
+                    "100"
+                  ],
+                  [
+                    "Chapter 22",
+                    "105"
+                  ]
+                ]
+              }
+            },
+            {
+              "Keyword": "When",
+              "NativeKeyword": "When ",
+              "Name": "I click on the table heading"
+            },
+            {
+              "Keyword": "Then",
+              "NativeKeyword": "Then ",
+              "Name": "the table body should collapse"
+            }
+          ],
+          "Tags": [],
+          "Result": {
+            "WasExecuted": false,
+            "WasSuccessful": false
+          }
+        }
+      ],
+      "Result": {
+        "WasExecuted": false,
+        "WasSuccessful": false
+      },
+      "Tags": []
+    },
+    "Result": {
+      "WasExecuted": false,
+      "WasSuccessful": false
+    }
+  },
+  {
     "RelativeFolder": "14MarkdownExample\\MarkdownExamples.feature",
     "Feature": {
       "Name": "Sample Markdown Feature",
