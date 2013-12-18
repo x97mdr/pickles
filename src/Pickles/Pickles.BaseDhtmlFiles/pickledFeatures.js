@@ -260,6 +260,27 @@ jsonPWrapper ([
           }
         }
       ],
+      "Background": {
+        "Name": "",
+        "Description": "This is the *coolest* background",
+        "Steps": [
+          {
+            "Keyword": "Given",
+            "NativeKeyword": "Given ",
+            "Name": "I have initialized the Sum-variable to 0"
+          },
+          {
+            "Keyword": "When",
+            "NativeKeyword": "When ",
+            "Name": "I add 1 to the Sum-variable"
+          }
+        ],
+        "Tags": [],
+        "Result": {
+          "WasExecuted": false,
+          "WasSuccessful": false
+        }
+      },
       "Result": {
         "WasExecuted": false,
         "WasSuccessful": false
