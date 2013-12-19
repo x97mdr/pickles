@@ -158,5 +158,15 @@ namespace PicklesDoc.Pickles.Test
             result.WasExecuted.ShouldBeFalse();
             result.WasSuccessful.ShouldBeFalse();
         }
+
+        [Test]
+        public void ThenCanReadNotFoundFeatureCorrectly()
+        {
+            var results = ParseResultsFile();
+            var feature = new Feature {Name = "NotInTheFile"};
+            var result = results.GetFeatureResult(feature);
+            result.WasExecuted.ShouldBeFalse();
+            result.WasSuccessful.ShouldBeFalse();
+        }
     }
 }

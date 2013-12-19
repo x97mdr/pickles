@@ -50,6 +50,10 @@ namespace PicklesDoc.Pickles.TestFrameworks
         {
             var featureElement = this.GetFeatureElement(feature);
 
+            if (featureElement == null)
+            {
+                return TestResult.Inconclusive;
+            }
             var results = featureElement.Descendants("test-case")
                 .Select(GetResultFromElement);
 
