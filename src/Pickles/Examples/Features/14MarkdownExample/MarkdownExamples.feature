@@ -26,6 +26,12 @@
 
 	- - -
 
+	Background:
+		This is the *coolest* background
+
+		Given I have initialized the Sum-variable to 0
+		When I add 1 to the Sum-variable
+
 	Scenario: Sample Markdown Scenario Example
   
 		This is **important** text

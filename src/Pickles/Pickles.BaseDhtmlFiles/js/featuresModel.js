@@ -42,8 +42,8 @@ function Examples(data) {
 }
 
 function Background(data) {
-    this.Name = '';
-    this.Description = '';
+    this.Name = data.Name || '';
+    this.Description = data.Description || '';
     this.Steps = $.map(data.Steps, function(step) { return new Step(step); }) || new Array();
     this.Tags = data.Tags || null;
     this.Result = data.Result == null ? null : new Result(data.Result);
