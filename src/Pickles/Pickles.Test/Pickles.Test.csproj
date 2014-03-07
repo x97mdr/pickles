@@ -188,7 +188,6 @@
     <Compile Include="DocumentationBuilders\HTML\WhenFormattingMultilineStrings.cs" />
     <Compile Include="DocumentationBuilders\HTML\WhenFormattingScenarioOutlines.cs" />
     <Compile Include="DocumentationBuilders\HTML\WhenFormattingTables.cs" />
-    <Compile Include="DocumentationBuilders\HTML\WhenMovingImages.cs" />
     <Compile Include="Extensions\StringExtensionsTests.cs" />
     <Compile Include="Extensions\PathExtensionsTests.cs" />
     <Compile Include="DocumentationBuilders\Excel\WhenAddingADocumentStringToAWorksheet.cs" />
