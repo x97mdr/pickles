@@ -335,9 +335,7 @@
     <EmbeddedResource Include="results-example-mstest.trx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="Formatters\JSON\results-example-failing-and-pasing-mstest.trx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <EmbeddedResource Include="Formatters\JSON\results-example-failing-and-pasing-mstest.trx" />
     <EmbeddedResource Include="results-example-json.json" />
     <None Include="Settings.StyleCop" />
   </ItemGroup>
