@@ -31,7 +31,7 @@ Egenskap: Test egenskap
                                         Language = "sv"
                                     };
 
-            var parser = new FeatureParser(new LanguageServices(configuration), MockFileSystem);
+            var parser = new FeatureParser(new LanguageServices(configuration), FileSystem);
             Feature feature = parser.Parse(new StringReader(featureText));
 
             feature.ShouldNotBeNull();

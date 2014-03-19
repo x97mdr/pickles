@@ -21,7 +21,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
             const string ROOT_PATH = FileSystemPrefix + @"JSON\Features";
             const string testResultFilePath = FileSystemPrefix + @"JSON\results-example-failing-and-pasing-mstest.trx";
 
-            string filePath = MockFileSystem.Path.Combine(OUTPUT_DIRECTORY, JSONDocumentationBuilder.JsonFileName);
+            string filePath = FileSystem.Path.Combine(OUTPUT_DIRECTORY, JSONDocumentationBuilder.JsonFileName);
 
             AddFakeFolderAndFiles("JSON", new[] { "results-example-failing-and-pasing-mstest.trx" });
             AddFakeFolderAndFiles(
@@ -35,25 +35,25 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
                     });
 
             var resultFile = RetrieveContentOfFileFromResources(ResourcePrefix + "JSON.results-example-failing-and-pasing-mstest.trx");
-            MockFileSystem.AddFile(testResultFilePath, resultFile);
+            FileSystem.AddFile(testResultFilePath, resultFile);
 
             GeneralTree<INode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
 
-            var outputDirectory = MockFileSystem.DirectoryInfo.FromDirectoryName(OUTPUT_DIRECTORY);
+            var outputDirectory = FileSystem.DirectoryInfo.FromDirectoryName(OUTPUT_DIRECTORY);
             if (!outputDirectory.Exists) outputDirectory.Create();
 
             var configuration = new Configuration
                                 {
-                                    OutputFolder = MockFileSystem.DirectoryInfo.FromDirectoryName(OUTPUT_DIRECTORY),
+                                    OutputFolder = FileSystem.DirectoryInfo.FromDirectoryName(OUTPUT_DIRECTORY),
                                     DocumentationFormat = DocumentationFormat.JSON,
-                                    TestResultsFile = MockFileSystem.FileInfo.FromFileName(testResultFilePath),
+                                    TestResultsFile = FileSystem.FileInfo.FromFileName(testResultFilePath),
                                     TestResultsFormat = TestResultsFormat.MsTest
                                 };
 
             ITestResults testResults = new MsTestResults(configuration);
-            var jsonDocumentationBuilder = new JSONDocumentationBuilder(configuration, testResults, MockFileSystem);
+            var jsonDocumentationBuilder = new JSONDocumentationBuilder(configuration, testResults, FileSystem);
             jsonDocumentationBuilder.Build(features);
-            string content = MockFileSystem.File.ReadAllText(filePath);
+            string content = FileSystem.File.ReadAllText(filePath);
 
             return content;
         }

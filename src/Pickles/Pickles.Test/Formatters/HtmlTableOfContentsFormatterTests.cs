@@ -23,9 +23,9 @@ namespace PicklesDoc.Pickles.Test.Formatters
 
             GeneralTree<INode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
 
-            var formatter = new HtmlTableOfContentsFormatter(null, this.MockFileSystem);
+            var formatter = new HtmlTableOfContentsFormatter(null, this.FileSystem);
             this._toc = formatter.Format(features.ChildNodes[0].Data.OriginalLocationUrl, features,
-                                    MockFileSystem.DirectoryInfo.FromDirectoryName(ROOT_PATH));
+                                    FileSystem.DirectoryInfo.FromDirectoryName(ROOT_PATH));
         }
 
         [Test]

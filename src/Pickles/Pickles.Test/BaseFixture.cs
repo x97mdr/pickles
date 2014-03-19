@@ -33,7 +33,7 @@ namespace PicklesDoc.Pickles.Test
             }
         }
 
-        protected MockFileSystem MockFileSystem
+        protected MockFileSystem FileSystem
         {
             get { return (MockFileSystem)this.Container.Resolve<IFileSystem>(); }
         }
@@ -63,11 +63,11 @@ namespace PicklesDoc.Pickles.Test
           string directoryPath = FileSystemPrefix + directoryName + @"\";
           string resourceIdentifier = ResourcePrefix + directoryName.Replace(@"\", ".") + ".";
 
-          MockFileSystem.AddDirectory(directoryPath);
+          FileSystem.AddDirectory(directoryPath);
 
           foreach (var fileName in fileNames)
           {
-              MockFileSystem.AddFile(
+              FileSystem.AddFile(
                   directoryPath + fileName,
                   RetrieveContentOfFileFromResources(resourceIdentifier + fileName));
           }

@@ -36,12 +36,12 @@ namespace PicklesDoc.Pickles.Test
                     new StreamReader(
                         Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
             {
-              MockFileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
+              FileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
             }
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.MsTest;
-            configuration.TestResultsFile = MockFileSystem.FileInfo.FromFileName(resultsFilename);
+            configuration.TestResultsFile = FileSystem.FileInfo.FromFileName(resultsFilename);
 
             var item1 = Container.Resolve<ITestResults>();
             var item2 = Container.Resolve<ITestResults>();
@@ -62,12 +62,12 @@ namespace PicklesDoc.Pickles.Test
                     new StreamReader(
                         Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
             {
-              MockFileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
+              FileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
             }
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.NUnit;
-            configuration.TestResultsFile = MockFileSystem.FileInfo.FromFileName(resultsFilename);
+            configuration.TestResultsFile = FileSystem.FileInfo.FromFileName(resultsFilename);
 
             var item1 = Container.Resolve<ITestResults>();
             var item2 = Container.Resolve<ITestResults>();
@@ -88,12 +88,12 @@ namespace PicklesDoc.Pickles.Test
                   new StreamReader(
                       Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
           {
-            MockFileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
+            FileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
           }
 
           var configuration = Container.Resolve<Configuration>();
           configuration.TestResultsFormat = TestResultsFormat.xUnit;
-          configuration.TestResultsFile = MockFileSystem.FileInfo.FromFileName(resultsFilename);
+          configuration.TestResultsFile = FileSystem.FileInfo.FromFileName(resultsFilename);
 
           var item1 = Container.Resolve<ITestResults>();
           var item2 = Container.Resolve<ITestResults>();
@@ -114,12 +114,12 @@ namespace PicklesDoc.Pickles.Test
                   new StreamReader(
                       Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
           {
-            MockFileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
+            FileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
           }
 
           var configuration = Container.Resolve<Configuration>();
           configuration.TestResultsFormat = TestResultsFormat.CucumberJson;
-          configuration.TestResultsFile = MockFileSystem.FileInfo.FromFileName(resultsFilename);
+          configuration.TestResultsFile = FileSystem.FileInfo.FromFileName(resultsFilename);
 
           var item1 = Container.Resolve<ITestResults>();
           var item2 = Container.Resolve<ITestResults>();
@@ -140,12 +140,12 @@ namespace PicklesDoc.Pickles.Test
                   new StreamReader(
                       Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
           {
-            MockFileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
+            FileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
           }
 
           var configuration = Container.Resolve<Configuration>();
           configuration.TestResultsFormat = TestResultsFormat.SpecRun;
-          configuration.TestResultsFile = MockFileSystem.FileInfo.FromFileName(resultsFilename);
+          configuration.TestResultsFile = FileSystem.FileInfo.FromFileName(resultsFilename);
 
           var item1 = Container.Resolve<ITestResults>();
           var item2 = Container.Resolve<ITestResults>();
@@ -173,12 +173,12 @@ namespace PicklesDoc.Pickles.Test
             const string resultsFilename = "results-example-mstest.trx";
             using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
             {
-              MockFileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
+              FileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
             }
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.MsTest;
-            configuration.TestResultsFile = MockFileSystem.FileInfo.FromFileName(resultsFilename);
+            configuration.TestResultsFile = FileSystem.FileInfo.FromFileName(resultsFilename);
 
             var item = Container.Resolve<ITestResults>();
 
@@ -192,12 +192,12 @@ namespace PicklesDoc.Pickles.Test
             const string resultsFilename = "results-example-nunit.xml";
             using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
             {
-              MockFileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
+              FileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
             }
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.NUnit;
-            configuration.TestResultsFile = MockFileSystem.FileInfo.FromFileName(resultsFilename);
+            configuration.TestResultsFile = FileSystem.FileInfo.FromFileName(resultsFilename);
 
             var item = Container.Resolve<ITestResults>();
 
@@ -211,12 +211,12 @@ namespace PicklesDoc.Pickles.Test
           const string resultsFilename = "results-example-xunit.xml";
           using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
           {
-            MockFileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
+            FileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
           }
 
           var configuration = Container.Resolve<Configuration>();
           configuration.TestResultsFormat = TestResultsFormat.xUnit;
-          configuration.TestResultsFile = MockFileSystem.FileInfo.FromFileName(resultsFilename);
+          configuration.TestResultsFile = FileSystem.FileInfo.FromFileName(resultsFilename);
 
           var item = Container.Resolve<ITestResults>();
 
@@ -230,12 +230,12 @@ namespace PicklesDoc.Pickles.Test
           const string resultsFilename = "results-example-json.json";
           using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
           {
-            MockFileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
+            FileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
           }
 
           var configuration = Container.Resolve<Configuration>();
           configuration.TestResultsFormat = TestResultsFormat.CucumberJson;
-          configuration.TestResultsFile = MockFileSystem.FileInfo.FromFileName(resultsFilename);
+          configuration.TestResultsFile = FileSystem.FileInfo.FromFileName(resultsFilename);
 
           var item = Container.Resolve<ITestResults>();
 
@@ -249,12 +249,12 @@ namespace PicklesDoc.Pickles.Test
           const string resultsFilename = "results-example-specrun.html";
           using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
           {
-              MockFileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
+              FileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
           }
 
           var configuration = Container.Resolve<Configuration>();
           configuration.TestResultsFormat = TestResultsFormat.SpecRun;
-          configuration.TestResultsFile = MockFileSystem.FileInfo.FromFileName(resultsFilename);
+          configuration.TestResultsFile = FileSystem.FileInfo.FromFileName(resultsFilename);
 
           var item = Container.Resolve<ITestResults>();
 

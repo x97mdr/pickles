@@ -19,17 +19,17 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
 
             GeneralTree<INode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(FileSystemPrefix);
 
-            var outputDirectory = MockFileSystem.DirectoryInfo.FromDirectoryName(OUTPUT_DIRECTORY);
+            var outputDirectory = FileSystem.DirectoryInfo.FromDirectoryName(OUTPUT_DIRECTORY);
             if (!outputDirectory.Exists) outputDirectory.Create();
 
             var configuration = new Configuration
                                     {
-                                      OutputFolder = MockFileSystem.DirectoryInfo.FromDirectoryName(OUTPUT_DIRECTORY),
+                                      OutputFolder = FileSystem.DirectoryInfo.FromDirectoryName(OUTPUT_DIRECTORY),
                                         DocumentationFormat = DocumentationFormat.JSON
                                     };
 
 
-            var jsonDocumentationBuilder = new JSONDocumentationBuilder(configuration, null, MockFileSystem);
+            var jsonDocumentationBuilder = new JSONDocumentationBuilder(configuration, null, FileSystem);
             jsonDocumentationBuilder.Build(features);
         }
 
@@ -38,7 +38,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         {
             Setup();
 
-            string content = MockFileSystem.File.ReadAllText(this.MockFileSystem.Path.Combine(OUTPUT_DIRECTORY, JSONDocumentationBuilder.JsonFileName));
+            string content = FileSystem.File.ReadAllText(this.FileSystem.Path.Combine(OUTPUT_DIRECTORY, JSONDocumentationBuilder.JsonFileName));
             content.AssertJSONKeyValue("Name", "Addition");
         }
     }

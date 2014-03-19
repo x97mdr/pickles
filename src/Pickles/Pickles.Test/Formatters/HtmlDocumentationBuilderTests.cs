@@ -17,7 +17,7 @@ namespace PicklesDoc.Pickles.Test.Formatters
             AddFakeFolderStructures();
 
             var configuration = Container.Resolve<Configuration>();
-            configuration.OutputFolder = MockFileSystem.DirectoryInfo.FromDirectoryName(FileSystemPrefix);
+            configuration.OutputFolder = FileSystem.DirectoryInfo.FromDirectoryName(FileSystemPrefix);
             var features = Container.Resolve<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
             var builder = Container.Resolve<HtmlDocumentationBuilder>();
             
