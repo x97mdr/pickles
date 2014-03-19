@@ -22,7 +22,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         public void Setup()
         {
             this._testFeature = new Feature { Name = "Test" };
-            this._featureFileInfo = this.RealFileSystem.FileInfo.FromFileName(MockFileSystem.Path.Combine(ROOT_PATH, FEATURE_PATH));
+            this._featureFileInfo = this.MockFileSystem.FileInfo.FromFileName(MockFileSystem.Path.Combine(ROOT_PATH, FEATURE_PATH));
             this._featureDirectoryNode = new FeatureNode(this._featureFileInfo, RELATIVE_PATH, this._testFeature);
 
             this._featureWithMeta = new FeatureWithMetaInfo(this._featureDirectoryNode);

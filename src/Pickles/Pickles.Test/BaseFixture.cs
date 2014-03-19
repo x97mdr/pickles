@@ -33,11 +33,6 @@ namespace PicklesDoc.Pickles.Test
             }
         }
 
-        protected IFileSystem RealFileSystem
-        {
-          get { return this.MockFileSystem; }
-        }
-
         protected MockFileSystem MockFileSystem
         {
             get { return (MockFileSystem)this.Container.Resolve<IFileSystem>(); }
