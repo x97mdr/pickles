@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 
 using NGenerics.DataStructures.Trees;
 using NUnit.Framework;
@@ -19,12 +17,24 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
     {
         public string Setup()
         {
-            const string OUTPUT_DIRECTORY = @"JSONFeatureOutput";
-            const string ROOT_PATH = @"Formatters\JSON\Features";
-            const string testResultFilePath = @"Formatters\JSON\results-example-failing-and-pasing-mstest.trx";
+            const string OUTPUT_DIRECTORY = FileSystemPrefix + @"JSONFeatureOutput";
+            const string ROOT_PATH = FileSystemPrefix + @"JSON\Features";
+            const string testResultFilePath = FileSystemPrefix + @"JSON\results-example-failing-and-pasing-mstest.trx";
+
             string filePath = MockFileSystem.Path.Combine(OUTPUT_DIRECTORY, JSONDocumentationBuilder.JsonFileName);
 
-            var resultFile = RetrieveContentOfFileFromResources("PicklesDoc.Pickles.Test.Formatters.JSON.results-example-failing-and-pasing-mstest.trx");
+            AddFakeFolderAndFiles("JSON", new[] { "results-example-failing-and-pasing-mstest.trx" });
+            AddFakeFolderAndFiles(
+                @"JSON\Features",
+                new[]
+                    {
+                      "OneScenarioTransferingMoneyBetweenAccountsFailing.feature",
+                      "TransferBetweenAccounts_WithSuccess.feature",
+                      "TwoScenariosTransferingFundsOneFailingOneSuccess.feature",
+                      "TwoScenariosTransferingMoneyBetweenAccoutsWithSuccess.feature",
+                    });
+
+            var resultFile = RetrieveContentOfFileFromResources(ResourcePrefix + "JSON.results-example-failing-and-pasing-mstest.trx");
             MockFileSystem.AddFile(testResultFilePath, resultFile);
 
             GeneralTree<INode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
@@ -46,20 +56,6 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
             string content = MockFileSystem.File.ReadAllText(filePath);
 
             return content;
-        }
-
-        private static string RetrieveContentOfFileFromResources(string resourceName)
-        {
-            string resultFile;
-
-            Stream manifestResourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
-
-            using (var reader = new StreamReader(manifestResourceStream))
-            {
-                resultFile = reader.ReadToEnd();
-            }
-
-            return resultFile;
         }
 
         [Test]

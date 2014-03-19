@@ -11,12 +11,13 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
     [TestFixture]
     public class when_formatting_a_folder_structure_with_features : BaseFixture
     {
-        private const string OUTPUT_DIRECTORY = @"JSONFeatureOutput";
+        private const string OUTPUT_DIRECTORY = FileSystemPrefix + @"JSONFeatureOutput";
 
         public void Setup()
         {
-            const string ROOT_PATH = @"FakeFolderStructures";
-            GeneralTree<INode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
+            AddFakeFolderStructures();
+
+            GeneralTree<INode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(FileSystemPrefix);
 
             var outputDirectory = MockFileSystem.DirectoryInfo.FromDirectoryName(OUTPUT_DIRECTORY);
             if (!outputDirectory.Exists) outputDirectory.Create();
