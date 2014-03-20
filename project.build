@@ -69,7 +69,7 @@
   </target>
   
   <target name="test" depends="build">
-    <exec program="nunit-console.exe" basedir="src\Pickles\packages\NUnit.Runners.2.6.2\tools">
+    <exec program="nunit-console.exe" basedir="src\Pickles\packages\NUnit.Runners.2.6.3\tools">
       <arg value="/xml:${report.nunit.dir}\results.xml" />
       <arg value=".\src\Pickles\Pickles.Test\bin\Release\PicklesDoc.Pickles.Test.dll" />
     </exec>
