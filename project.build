@@ -230,4 +230,6 @@
         </fileset>
     </zip>
   </target>
+  
+  <target name="release" depends="zip,pack" />
 </project>
