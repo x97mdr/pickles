@@ -129,7 +129,7 @@
     </exec>
   </target>
   
-  <target name="pack" depends="build">
+  <target name="pack" depends="test">
     <exec program="nuget.exe" basedir="${nuget.dir}">
       <arg value="Pack"/>
       <arg value="-Version"/>
