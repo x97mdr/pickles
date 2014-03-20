@@ -13,7 +13,7 @@ namespace PicklesDoc.Pickles.Test.FeatureTree
         [Test]
         public void Constructor_EmptyFeature_ThrowsArgumentException()
         {
-            var exception = Assert.Throws<ArgumentNullException>(() => new TextFile("Text", parentFolder, null, MockFileSystem));
+            var exception = Assert.Throws<ArgumentNullException>(() => new TextFile("Text", parentFolder, null, FileSystem));
 
             exception.ParamName.ShouldEqual("content");
         }
@@ -23,7 +23,7 @@ namespace PicklesDoc.Pickles.Test.FeatureTree
         {
             string text = "# Text #";
 
-            var TextFile = new TextFile("filename.ext", parentFolder, text, MockFileSystem);
+            var TextFile = new TextFile("filename.ext", parentFolder, text, FileSystem);
 
             TextFile.Content.ShouldEqual(text);
         }
@@ -31,7 +31,7 @@ namespace PicklesDoc.Pickles.Test.FeatureTree
         [Test]
         public void TextFile_Implements_ITreeItem()
         {
-            var TextFile = new TextFile("filename.ext", parentFolder, "# Text #", MockFileSystem);
+            var TextFile = new TextFile("filename.ext", parentFolder, "# Text #", FileSystem);
 
             TextFile.ShouldImplement<ITreeItem>();
         }

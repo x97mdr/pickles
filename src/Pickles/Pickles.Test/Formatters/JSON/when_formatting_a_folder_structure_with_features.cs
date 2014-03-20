@@ -5,63 +5,40 @@ using Autofac;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.JSON;
 using PicklesDoc.Pickles.Test.Helpers;
-using Should.Fluent;
 
 namespace PicklesDoc.Pickles.Test.Formatters.JSON
 {
     [TestFixture]
     public class when_formatting_a_folder_structure_with_features : BaseFixture
     {
-        private const string ROOT_PATH = @"FakeFolderStructures";
-        private const string OUTPUT_DIRECTORY = @"JSONFeatureOutput";
+        private const string OUTPUT_DIRECTORY = FileSystemPrefix + @"JSONFeatureOutput";
 
-        private readonly string filePath;
-
-        public when_formatting_a_folder_structure_with_features()
-        {
-            filePath = RealFileSystem.Path.Combine(OUTPUT_DIRECTORY, JSONDocumentationBuilder.JsonFileName);
-        }
-
-        [TestFixtureSetUp]
         public void Setup()
         {
-            GeneralTree<INode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
+            AddFakeFolderStructures();
 
-            var outputDirectory = RealFileSystem.DirectoryInfo.FromDirectoryName(OUTPUT_DIRECTORY);
+            GeneralTree<INode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(FileSystemPrefix);
+
+            var outputDirectory = FileSystem.DirectoryInfo.FromDirectoryName(OUTPUT_DIRECTORY);
             if (!outputDirectory.Exists) outputDirectory.Create();
 
             var configuration = new Configuration
                                     {
-                                        OutputFolder = RealFileSystem.DirectoryInfo.FromDirectoryName(OUTPUT_DIRECTORY),
+                                      OutputFolder = FileSystem.DirectoryInfo.FromDirectoryName(OUTPUT_DIRECTORY),
                                         DocumentationFormat = DocumentationFormat.JSON
                                     };
 
 
-            var jsonDocumentationBuilder = new JSONDocumentationBuilder(configuration, null, RealFileSystem);
+            var jsonDocumentationBuilder = new JSONDocumentationBuilder(configuration, null, FileSystem);
             jsonDocumentationBuilder.Build(features);
-        }
-
-        [TestFixtureTearDown]
-        public void TearDown()
-        {
-            //Cleanup output folder
-            if (RealFileSystem.Directory.Exists(OUTPUT_DIRECTORY))
-            {
-                RealFileSystem.Directory.Delete(OUTPUT_DIRECTORY, true);
-            }
-        }
-
-
-        [Test]
-        public void a_single_file_should_have_been_created()
-        {
-            RealFileSystem.File.Exists(this.filePath).Should().Be.True();
         }
 
         [Test]
         public void should_contain_the_features()
         {
-            string content = RealFileSystem.File.ReadAllText(this.filePath);
+            Setup();
+
+            string content = FileSystem.File.ReadAllText(this.FileSystem.Path.Combine(OUTPUT_DIRECTORY, JSONDocumentationBuilder.JsonFileName));
             content.AssertJSONKeyValue("Name", "Addition");
         }
     }

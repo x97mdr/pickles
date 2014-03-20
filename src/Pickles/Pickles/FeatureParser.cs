@@ -23,7 +23,6 @@ using System.IO.Abstractions;
 using PicklesDoc.Pickles.Parser;
 using gherkin.lexer;
 
-using StreamReader = System.IO.StreamReader;
 using TextReader = System.IO.TextReader;
 
 namespace PicklesDoc.Pickles
@@ -43,7 +42,7 @@ namespace PicklesDoc.Pickles
         public Feature Parse(string filename)
         {
             Feature feature = null;
-            using (var reader = new StreamReader(filename))
+            using (var reader = this.fileSystem.FileInfo.FromFileName(filename).OpenText())
             {
                 try
                 {

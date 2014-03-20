@@ -22,7 +22,6 @@ using System;
 using System.Collections.Generic;
 using System.IO.Abstractions;
 using System.Reflection;
-using System.Text;
 using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
 using NLog;
@@ -110,9 +109,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
             return JsonConvert.SerializeObject(features, Formatting.Indented, settings);
         }
 
-        private static void CreateFile(string outputFolderName, string jsonToWrite)
+        private void CreateFile(string outputFolderName, string jsonToWrite)
         {
-            using (var writer = new System.IO.StreamWriter(outputFolderName, false, Encoding.UTF8))
+            using (var writer = this.fileSystem.File.CreateText(outputFolderName))
             {
                 writer.Write(jsonToWrite);
                 writer.Close();

@@ -12,7 +12,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
         [Test]
         public void Get_A_Relative_Path_When_Location_Is_Deeper_Than_Root()
         {
-            MockFileSystem fileSystem = MockFileSystem;
+            MockFileSystem fileSystem = FileSystem;
             fileSystem.AddFile(@"c:\test\deep\blah.feature", "Feature:"); // adding a file automatically adds all parent directories
 
             string actual = PathExtensions.MakeRelativePath(@"c:\test", @"c:\test\deep\blah.feature", fileSystem);
@@ -23,7 +23,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
         [Test]
         public void Get_A_Relative_Path_When_Location_Is_Deeper_Than_Root_Even_When_Root_Contains_End_Slash()
         {
-            MockFileSystem fileSystem = MockFileSystem;
+            MockFileSystem fileSystem = FileSystem;
             fileSystem.AddFile(@"c:\test\deep\blah.feature", "Feature:"); // adding a file automatically adds all parent directories
 
             string actual = PathExtensions.MakeRelativePath(@"c:\test\", @"c:\test\deep\blah.feature", fileSystem);

@@ -18,7 +18,7 @@ namespace PicklesDoc.Pickles.Test.Formatters
             var exception =
                 Assert.Throws<ArgumentNullException>(
                     () =>
-                    new HtmlContentFormatter(null, null, null));
+                    new HtmlContentFormatter(null, null));
 
             Assert.AreEqual("htmlFeatureFormatter", exception.ParamName);
         }
@@ -31,7 +31,6 @@ namespace PicklesDoc.Pickles.Test.Formatters
                     () =>
                     new HtmlContentFormatter(
                         Container.Resolve<HtmlFeatureFormatter>(),
-                        null,
                         null));
 
             Assert.AreEqual("htmlIndexFormatter", exception.ParamName);
@@ -41,12 +40,10 @@ namespace PicklesDoc.Pickles.Test.Formatters
         public void Format_ContentIsFeatureNode_UsesHtmlFeatureFormatterWithCorrectArgument()
         {
             var fakeHtmlFeatureFormatter = new Mock<IHtmlFeatureFormatter>();
-            var fakeHtmlImageRelocator = new Mock<HtmlImageRelocator>(null, null);
-            fakeHtmlImageRelocator.Setup(x => x.Relocate(It.IsAny<INode>(), It.IsAny<XElement>()));
-            var formatter = new HtmlContentFormatter(fakeHtmlFeatureFormatter.Object, Container.Resolve<HtmlIndexFormatter>(), fakeHtmlImageRelocator.Object);
+            var formatter = new HtmlContentFormatter(fakeHtmlFeatureFormatter.Object, Container.Resolve<HtmlIndexFormatter>());
 
             var featureNode = new FeatureNode(
-                MockFileSystem.FileInfo.FromFileName(@"c:\temp\test.feature"),
+                FileSystem.FileInfo.FromFileName(@"c:\temp\test.feature"),
                 ".",
                 new Feature());
 

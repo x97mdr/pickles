@@ -9,7 +9,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.DHTML
         [Test]
         public void TestTheUnzipper_ShouldNotThrowException()
         {
-            var unzipper = new UnZipper(MockFileSystem);
+            var unzipper = new UnZipper(FileSystem);
             unzipper.UnZip(@"D:\features\Pickles.Examples\BaseDhtmlFiles.zip", @"d:\output", "BaseDhtmlFiles");
         }
 
@@ -17,8 +17,8 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.DHTML
         public void TestTheResourceWriter()
         {
             var conf = new Configuration();
-            conf.OutputFolder = MockFileSystem.DirectoryInfo.FromDirectoryName(@"d:\output");
-            var resourceWriter = new DhtmlResourceProcessor(conf, new DhtmlResourceSet(conf, MockFileSystem), MockFileSystem);
+            conf.OutputFolder = FileSystem.DirectoryInfo.FromDirectoryName(@"d:\output");
+            var resourceWriter = new DhtmlResourceProcessor(conf, new DhtmlResourceSet(conf, FileSystem), FileSystem);
             resourceWriter.WriteZippedResources();
         }
 
@@ -26,13 +26,13 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.DHTML
         public void CanAddFunctionWrapperAroundJson()
         {
             string filePath = @"d:\output\pickledFeatures.json";
-            MockFileSystem.AddFile(filePath, "\r\n[]\r\n");
+            FileSystem.AddFile(filePath, "\r\n[]\r\n");
 
-            var jsonTweaker = new JsonTweaker(MockFileSystem);
+            var jsonTweaker = new JsonTweaker(FileSystem);
             jsonTweaker.AddJsonPWrapperTo(filePath);
 
             var expected = "jsonPWrapper (\r\n[]\r\n);";
-            Assert.AreEqual(expected, MockFileSystem.File.ReadAllText(filePath));
+            Assert.AreEqual(expected, FileSystem.File.ReadAllText(filePath));
         }
 
         [Test]
@@ -41,13 +41,13 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.DHTML
             string oldfilePath = @"d:\output\pickledFeatures.json";
             string newFilePath = @"d:\output\pickledFeatures.js";
 
-            MockFileSystem.AddFile(oldfilePath, "test data");
+            FileSystem.AddFile(oldfilePath, "test data");
 
-            var jsonTweaker = new JsonTweaker(MockFileSystem);
+            var jsonTweaker = new JsonTweaker(FileSystem);
             jsonTweaker.RenameFileTo(oldfilePath, newFilePath);
 
-            Assert.IsTrue(MockFileSystem.File.Exists(newFilePath));
-            Assert.IsFalse(MockFileSystem.File.Exists(oldfilePath));
+            Assert.IsTrue(FileSystem.File.Exists(newFilePath));
+            Assert.IsFalse(FileSystem.File.Exists(oldfilePath));
         }
     }
 }

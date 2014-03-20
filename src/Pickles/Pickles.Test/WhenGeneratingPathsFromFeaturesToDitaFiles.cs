@@ -15,8 +15,8 @@ namespace PicklesDoc.Pickles.Test
         public void ThenCanGeneratePathToDeepLevelFeatureFileSuccessfully()
         {
             var configuration = Container.Resolve<Configuration>();
-            configuration.FeatureFolder = MockFileSystem.DirectoryInfo.FromDirectoryName(@"c:\features");
-            var featureNode = new FeatureNode(MockFileSystem.FileInfo.FromFileName(@"c:\features\path\to\the_feature.feature"),
+            configuration.FeatureFolder = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\features");
+            var featureNode = new FeatureNode(FileSystem.FileInfo.FromFileName(@"c:\features\path\to\the_feature.feature"),
                                                            @"features\path\to\the_feature.feature",
                                                            new Feature {Name = "The Feature"});
 
@@ -30,8 +30,8 @@ namespace PicklesDoc.Pickles.Test
         public void ThenCanGeneratePathToTopLevelFeatureFileSuccessfully()
         {
             var configuration = Container.Resolve<Configuration>();
-            configuration.FeatureFolder = MockFileSystem.DirectoryInfo.FromDirectoryName(@"c:\features");
-            var featureNode = new FeatureNode(MockFileSystem.FileInfo.FromFileName(@"c:\features\the_feature.feature"),
+            configuration.FeatureFolder = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\features");
+            var featureNode = new FeatureNode(FileSystem.FileInfo.FromFileName(@"c:\features\the_feature.feature"),
                                                            @"features\the_feature.feature",
                                                            new Feature {Name = "The Feature"});
 

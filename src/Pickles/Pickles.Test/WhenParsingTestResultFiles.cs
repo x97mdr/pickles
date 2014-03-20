@@ -29,11 +29,11 @@ namespace PicklesDoc.Pickles.Test
             // Write out the embedded test results file
             using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFileName)))
             {
-                MockFileSystem.AddFile(resultsFileName, new MockFileData(input.ReadToEnd()));
+                FileSystem.AddFile(resultsFileName, new MockFileData(input.ReadToEnd()));
             }
 
             var configuration = Container.Resolve<Configuration>();
-            configuration.TestResultsFile = MockFileSystem.FileInfo.FromFileName(resultsFileName);
+            configuration.TestResultsFile = FileSystem.FileInfo.FromFileName(resultsFileName);
         }
     }
 }

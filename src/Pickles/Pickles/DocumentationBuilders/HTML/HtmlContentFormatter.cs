@@ -29,16 +29,14 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
     {
         private readonly IHtmlFeatureFormatter htmlFeatureFormatter;
         private readonly HtmlIndexFormatter htmlIndexFormatter;
-        private readonly HtmlImageRelocator htmlImageRelocator;
 
-        public HtmlContentFormatter(IHtmlFeatureFormatter htmlFeatureFormatter, HtmlIndexFormatter htmlIndexFormatter, HtmlImageRelocator htmlImageRelocator)
+        public HtmlContentFormatter(IHtmlFeatureFormatter htmlFeatureFormatter, HtmlIndexFormatter htmlIndexFormatter)
         {
             if (htmlFeatureFormatter == null) throw new ArgumentNullException("htmlFeatureFormatter");
             if (htmlIndexFormatter == null) throw new ArgumentNullException("htmlIndexFormatter");
 
             this.htmlFeatureFormatter = htmlFeatureFormatter;
             this.htmlIndexFormatter = htmlIndexFormatter;
-            this.htmlImageRelocator = htmlImageRelocator;
         }
 
         public XElement Format(INode contentNode, IEnumerable<INode> features)
@@ -47,7 +45,6 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             if (featureItemNode != null)
             {
                 var formattedContent = this.htmlFeatureFormatter.Format(featureItemNode.Feature);
-                this.htmlImageRelocator.Relocate(contentNode, formattedContent);
                 return formattedContent;
             }
 
@@ -60,7 +57,6 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             var markdownItemNode = contentNode as MarkdownNode;
             if (markdownItemNode != null)
             {
-                this.htmlImageRelocator.Relocate(contentNode, markdownItemNode.MarkdownContent);
                 return markdownItemNode.MarkdownContent;
             }
 
