@@ -32,7 +32,7 @@
   <property name="version" value="${version.major}.${version.minor}.${version.revision}.${build.number}" />
   <property name="msbuild.dir" value="C:\Windows\Microsoft.NET\Framework\v4.0.30319" />
   <property name="ilmerge.dir" value="${environment::get-variable('ProgramFiles')}\Microsoft\ILMerge" />
-  <property name="nuget.dir" value="src\Pickles\.nuget" />
+  <property name="nuget.dir" value="src\Pickles\packages\NuGet.CommandLine.2.8.0\tools" />
   <property name="framework.dir" value="${msbuild.dir}" />
   <property name="assemblies.dir" value="C:\dev\pickles\src\Pickles\Pickles.CommandLine\bin\Release" />
   <property name="assemblies.console.dir" value="src\Pickles\Pickles.CommandLine\bin\Release" />
@@ -41,6 +41,8 @@
   <property name="assemblies.powershell.dir" value="src\Pickles\Pickles.Powershell\bin\Release" />
   <property name="assemblies.gui.dir" value="src\Pickles\Pickles.UserInterface\bin\Release" />
   <property name="nuspec.powershell.dir" value="src\Pickles\Pickles.PowerShell\Pickles.nuspec" />
+  <property name="nuspec.msbuild.dir" value="src\Pickles\Pickles.MSBuild\Pickles.MSBuild.nuspec" />
+  <property name="nuspec.console.dir" value="src\Pickles\Pickles.CommandLine\Pickles.CommandLine.nuspec" />
   <property name="merged.dir" value="merged" />
   <property name="deploy.dir" value="deploy" />
   <property name="report.dir" value="reports" />
@@ -135,6 +137,22 @@
       <arg value="-OutputDirectory"/>
       <arg value="${deploy.dir}"/>
       <arg value="${nuspec.powershell.dir}"/>
+    </exec>
+    <exec program="nuget.exe" basedir="${nuget.dir}">
+      <arg value="Pack"/>
+      <arg value="-Version"/>
+      <arg value="${version}" />
+      <arg value="-OutputDirectory"/>
+      <arg value="${deploy.dir}"/>
+      <arg value="${nuspec.console.dir}"/>
+    </exec>
+    <exec program="nuget.exe" basedir="${nuget.dir}">
+      <arg value="Pack"/>
+      <arg value="-Version"/>
+      <arg value="${version}" />
+      <arg value="-OutputDirectory"/>
+      <arg value="${deploy.dir}"/>
+      <arg value="${nuspec.msbuild.dir}"/>
     </exec>
   </target>
   
