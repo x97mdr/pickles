@@ -3,7 +3,7 @@
   <metadata>
     <id>Pickles.CommandLine</id>
     <version>$version$</version>
-    <title>Pickles - The Open Source Living Documentation Generator</title>
+    <title>Command line version of Pickles - The Open Source Living Documentation Generator</title>
     <authors>PicklesDoc and contributors</authors>
     <owners>Jeffrey Cameron, Dirk Rombauts</owners>
     <projectUrl>http://www.picklesdoc.com/</projectUrl>
