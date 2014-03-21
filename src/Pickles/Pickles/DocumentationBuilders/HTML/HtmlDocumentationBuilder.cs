@@ -65,51 +65,48 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             this.htmlResourceWriter.WriteTo(this.configuration.OutputFolder.FullName);
 
 
-            var actionVisitor = new ActionVisitor<INode>(node =>
-                                                                          {
-                                                                              if (node.IsIndexMarkDownNode())
-                                                                              {
-                                                                                  return;
-                                                                              }
-
-                                                                              string nodePath =
-                                                                                  this.fileSystem.Path.Combine(
-                                                                                      this.configuration.OutputFolder.
-                                                                                          FullName,
-                                                                                      node.RelativePathFromRoot);
-                                                                              string htmlFilePath;
-
-                                                                              if (node.IsContent)
-                                                                              {
-                                                                                  htmlFilePath =
-                                                                                      nodePath.Replace(
-                                                                                          this.fileSystem.Path.GetExtension(nodePath),
-                                                                                          ".html");
-                                                                              }
-                                                                              else
-                                                                              {
-                                                                                  this.fileSystem.Directory.CreateDirectory(nodePath);
-
-                                                                                  htmlFilePath = this.fileSystem.Path.Combine(nodePath,
-                                                                                                              "index.html");
-                                                                              }
-
-                                                                              using (
-                                                                                  var writer =
-                                                                                      new System.IO.StreamWriter(htmlFilePath,
-                                                                                                       false,
-                                                                                                       Encoding.UTF8))
-                                                                              {
-                                                                                  XDocument document =
-                                                                                      this.htmlDocumentFormatter.Format(
-                                                                                          node, features,
-                                                                                          this.configuration.FeatureFolder);
-                                                                                  document.Save(writer);
-                                                                                  writer.Close();
-                                                                              }
-                                                                          });
+            var actionVisitor = new ActionVisitor<INode>(node => this.VisitNodes(features, node));
             if (features != null)
                 features.AcceptVisitor(actionVisitor);
+        }
+
+        private void VisitNodes(GeneralTree<INode> features, INode node)
+        {
+            if (node.IsIndexMarkDownNode())
+            {
+                return;
+            }
+
+            string nodePath = this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, node.RelativePathFromRoot);
+            string htmlFilePath;
+
+            if (node.NodeType == NodeType.Content)
+            {
+                htmlFilePath = nodePath.Replace(this.fileSystem.Path.GetExtension(nodePath), ".html");
+                this.WriteContentNode(features, node, htmlFilePath);
+           }
+            else if (node.NodeType == NodeType.Structure)
+            {
+                this.fileSystem.Directory.CreateDirectory(nodePath);
+
+                htmlFilePath = this.fileSystem.Path.Combine(nodePath, "index.html");
+                this.WriteContentNode(features, node, htmlFilePath);
+            }
+            else
+            {
+                // copy file from source to output
+                this.fileSystem.File.Copy(node.OriginalLocation.FullName, nodePath, overwrite: true);
+            }
+        }
+
+        private void WriteContentNode(GeneralTree<INode> features, INode node, string htmlFilePath)
+        {
+            using (var writer = new System.IO.StreamWriter(htmlFilePath, false, Encoding.UTF8))
+            {
+                XDocument document = this.htmlDocumentFormatter.Format(node, features, this.configuration.FeatureFolder);
+                document.Save(writer);
+                writer.Close();
+            }
         }
 
         #endregion

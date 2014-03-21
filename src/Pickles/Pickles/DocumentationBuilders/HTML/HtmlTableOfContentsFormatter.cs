@@ -46,7 +46,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
               foreach (var childNode in features.ChildNodes)
               {
-                  if (childNode.Data.IsContent)
+                  if (childNode.Data.NodeType == NodeType.Content)
                   {
                       if (childNode.Data.IsIndexMarkDownNode())
                       {
@@ -55,7 +55,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
                       ul.Add(this.AddNodeForFile(xmlns, file, childNode));
                   }
-                  else
+                  else if (childNode.Data.NodeType == NodeType.Structure)
                   {
                       ul.Add(this.AddNodeForDirectory(xmlns, file, childNode));
                   }

@@ -43,26 +43,30 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DITA
         private XElement BuildListItems(GeneralTree<INode> features)
         {
             XElement container;
-            if (features.Data.IsContent)
+            if (features.Data.NodeType == NodeType.Content)
             {
                 container = new XElement("topicref",
                                          new XAttribute("href",
                                                         this.ditaMapPathGenerator.GeneratePathToFeature(features.Data)));
             }
-            else
+            else if (features.Data.NodeType == NodeType.Structure)
             {
                 container = new XElement("topichead", new XAttribute("navtitle", features.Data.Name));
+            }
+            else
+            {
+                return null;
             }
 
             foreach (var childNode in features.ChildNodes)
             {
-                if (childNode.Data.IsContent)
+                if (features.Data.NodeType == NodeType.Content)
                 {
                     container.Add(new XElement("topicref",
                                                new XAttribute("href",
                                                               this.ditaMapPathGenerator.GeneratePathToFeature(childNode.Data))));
                 }
-                else
+                else if (features.Data.NodeType == NodeType.Structure)
                 {
                     container.Add(this.BuildListItems(childNode));
                 }

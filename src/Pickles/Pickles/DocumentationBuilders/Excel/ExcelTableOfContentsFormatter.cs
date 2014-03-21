@@ -51,7 +51,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
                     var featureWorksheet = FindFirstMatchingA1TitleUsingFeatureName(workbook, featureChildNode);
                     this.WriteFileCell(worksheet, ref row, column, featureWorksheet);
                 }
-                else if (!childNode.Data.IsContent)
+                else if (childNode.Data.NodeType == NodeType.Structure)
                 {
                     this.WriteDirectoryCell(worksheet, ref row, column, childNode.Data.Name);
                     this.BuildTableOfContents(workbook, worksheet, ref row, column + 1, childNode);
