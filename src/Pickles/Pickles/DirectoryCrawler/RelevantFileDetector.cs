@@ -25,6 +25,13 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
 {
     public class RelevantFileDetector
     {
+        private readonly ImageFileDetector imageFileDetector;
+
+        public RelevantFileDetector()
+        {
+            this.imageFileDetector = new ImageFileDetector();
+        }
+
         public bool IsFeatureFile(FileInfoBase file)
         {
             return file.Extension.Equals(".feature", StringComparison.InvariantCultureIgnoreCase);
@@ -51,7 +58,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
 
         public bool IsRelevant(FileInfoBase file)
         {
-            return this.IsFeatureFile(file) || this.IsMarkdownFile(file);
+            return this.IsFeatureFile(file) || this.IsMarkdownFile(file) || this.imageFileDetector.IsRelevant(file);
         }
     }
 }

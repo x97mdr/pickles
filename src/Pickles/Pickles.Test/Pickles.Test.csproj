@@ -173,6 +173,8 @@
     </Compile>
     <Compile Include="AssertExtensions.cs" />
     <Compile Include="BaseFixture.cs" />
+    <Compile Include="DirectoryCrawlers\ImageFileDetectorTests.cs" />
+    <Compile Include="DirectoryCrawlers\RelevantFileDetectorTests.cs" />
     <Compile Include="WhenParsingSpecRunTestResultsFile.cs" />
     <Compile Include="DirectoryCrawlers\FolderDirectoryTreeNodeTests.cs" />
     <Compile Include="DocumentationBuilders\DHTML\WhenDoingSomeIntegrationTests.cs" />
