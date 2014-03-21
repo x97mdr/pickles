@@ -80,15 +80,19 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             string nodePath = this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, node.RelativePathFromRoot);
             string htmlFilePath;
 
-            if (node.IsContent)
+            if (node.NodeType == NodeType.Content)
             {
                 htmlFilePath = nodePath.Replace(this.fileSystem.Path.GetExtension(nodePath), ".html");
             }
-            else
+            else if (node.NodeType == NodeType.Structure)
             {
                 this.fileSystem.Directory.CreateDirectory(nodePath);
 
                 htmlFilePath = this.fileSystem.Path.Combine(nodePath, "index.html");
+            }
+            else
+            {
+                return;
             }
 
             using (var writer = new System.IO.StreamWriter(htmlFilePath, false, Encoding.UTF8))

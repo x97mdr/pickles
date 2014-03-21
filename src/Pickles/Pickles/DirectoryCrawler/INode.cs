@@ -23,9 +23,27 @@ using System.IO.Abstractions;
 
 namespace PicklesDoc.Pickles.DirectoryCrawler
 {
+    public enum NodeType
+    {
+        /// <summary>
+        /// Content files like .feature or .md files.
+        /// </summary>
+        Content = 0,
+
+        /// <summary>
+        /// Image files like .png or .jpg
+        /// </summary>
+        Data = 1,
+
+        /// <summary>
+        /// Nodes that represent directories.
+        /// </summary>
+        Structure = 2
+    }
+
     public interface INode
     {
-        bool IsContent { get; }
+        NodeType NodeType { get; }
 
         string Name { get; }
 

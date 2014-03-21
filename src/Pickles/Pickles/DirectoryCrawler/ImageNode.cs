@@ -46,9 +46,9 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
             return this.GetRelativeUriTo(other, ".html");
         }
 
-        public bool IsContent
+        public NodeType NodeType
         {
-            get { return true; }
+            get { return NodeType.Data; }
         }
 
         public string Name
