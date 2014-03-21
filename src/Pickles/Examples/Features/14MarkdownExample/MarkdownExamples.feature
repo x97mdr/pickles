@@ -1,4 +1,4 @@
-﻿Feature: Sample Markdown Feature
+Feature: Sample Markdown Feature
 	Header 1
 	========
 
@@ -25,6 +25,8 @@
 	| Content Cell  | Content Cell  | 
 
 	- - -
+
+Including a picture: ![](./image.png)
 
 	Background:
 		This is the *coolest* background
