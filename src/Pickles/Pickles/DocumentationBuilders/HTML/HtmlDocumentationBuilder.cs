@@ -92,6 +92,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             }
             else
             {
+                // copy file from source to output
+                this.fileSystem.File.Copy(node.OriginalLocation.FullName, nodePath);
                 return;
             }
 
