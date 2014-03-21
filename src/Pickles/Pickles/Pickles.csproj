@@ -186,6 +186,7 @@
     <Compile Include="ConfigurationReporter.cs" />
     <Compile Include="DirectoryCrawler\FolderNode.cs" />
     <Compile Include="DirectoryCrawler\ImageFileDetector.cs" />
+    <Compile Include="DirectoryCrawler\ImageNode.cs" />
     <Compile Include="DocumentationBuilders\DHTML\DhtmlDocumentationBuilder.cs" />
     <Compile Include="DocumentationBuilders\DHTML\DhtmlResourceSet.cs" />
     <Compile Include="DocumentationBuilders\DHTML\DhtmlResourceProcessor.cs" />

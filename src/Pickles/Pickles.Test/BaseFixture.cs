@@ -52,7 +52,7 @@ namespace PicklesDoc.Pickles.Test
           AddFakeFolderAndFiles("AcceptanceTest", new[] { "AdvancedFeature.feature", "LevelOne.feature" });
           AddFakeFolderAndFiles("EmptyFolderTests", new string[0]);
 
-          AddFakeFolderAndFiles("FeatureCrawlerTests", new[] { "index.md", "LevelOne.feature" });
+          AddFakeFolderAndFiles("FeatureCrawlerTests", new[] { "index.md", "LevelOne.feature", "image.png" });
           AddFakeFolderAndFiles(@"FeatureCrawlerTests\SubLevelOne", new[] { "ignorethisfile.ignore", "LevelOneSublevelOne.feature", "LevelOneSublevelTwo.feature" });
           AddFakeFolderAndFiles(@"FeatureCrawlerTests\SubLevelOne\SubLevelTwo", new[] { "LevelOneSublevelOneSubLevelTwo.feature" });
           AddFakeFolderAndFiles(@"FeatureCrawlerTests\SubLevelOne\SubLevelTwo\IgnoreThisDirectory", new[] { "IgnoreThisFile.ignore" });

@@ -60,5 +60,10 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
         {
             return this.IsFeatureFile(file) || this.IsMarkdownFile(file) || this.imageFileDetector.IsRelevant(file);
         }
+
+        public bool IsImageFile(FileInfoBase file)
+        {
+            return this.imageFileDetector.IsRelevant(file);
+        }
     }
 }

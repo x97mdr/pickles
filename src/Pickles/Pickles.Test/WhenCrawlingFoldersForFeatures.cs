@@ -32,13 +32,19 @@ namespace PicklesDoc.Pickles.Test
             levelOneFeature.RelativePathFromRoot.ShouldEqual("LevelOne.feature");
             levelOneFeature.ShouldBeType<FeatureNode>();
 
-            INode subLevelOneDirectory = features.ChildNodes[2].Data;
+            INode image = features.ChildNodes[2].Data;
+            image.ShouldNotBeNull();
+            image.Name.ShouldEqual("image.png");
+            image.RelativePathFromRoot.ShouldEqual("image.png");
+            image.ShouldBeType<ImageNode>();
+
+            INode subLevelOneDirectory = features.ChildNodes[3].Data;
             subLevelOneDirectory.ShouldNotBeNull();
             subLevelOneDirectory.Name.ShouldEqual("Sub Level One");
             subLevelOneDirectory.RelativePathFromRoot.ShouldEqual(@"SubLevelOne\");
             subLevelOneDirectory.ShouldBeType<FolderNode>();
 
-            GeneralTree<INode> subLevelOneNode = features.ChildNodes[2];
+            GeneralTree<INode> subLevelOneNode = features.ChildNodes[3];
             subLevelOneNode.ChildNodes.Count.ShouldEqual(3);
 
             INode levelOneSublevelOneFeature = subLevelOneNode.ChildNodes[0].Data;

@@ -69,6 +69,10 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
                 XElement markdownContent = this.htmlMarkdownFormatter.Format(this.fileSystem.File.ReadAllText(file.FullName));
                 return new MarkdownNode(file, relativePathFromRoot, markdownContent);
             }
+            else if (this.relevantFileDetector.IsImageFile(file))
+            {
+                return new ImageNode(file, relativePathFromRoot);
+            }
 
             throw new InvalidOperationException("Cannot create an IItemNode-derived object for " + file.FullName);
         }
