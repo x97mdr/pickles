@@ -14,7 +14,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
 
             var node = new FolderNode(directoryInfo, "");
 
-            Assert.AreEqual(@"c:\temp\", node.OriginalLocation.FullName);
+            Assert.AreEqual(@"c:\temp", node.OriginalLocation.FullName);
         }
 
         [Test]

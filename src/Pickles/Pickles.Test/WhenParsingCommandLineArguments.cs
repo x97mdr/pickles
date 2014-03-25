@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO.Abstractions;
-using System.IO.Abstractions.TestingHelpers;
 using System.Reflection;
 using NUnit.Framework;
 using PicklesDoc.Pickles.Extensions;
@@ -35,7 +33,7 @@ namespace PicklesDoc.Pickles.Test
   -v, --version              
   -h, -?, --help";
 
-    private const string CurrentDirectory = @"C:\Foo\Bar\"; // this is the default current directory of MockFileSystem
+    private const string CurrentDirectory = @"C:\Foo\Bar"; // this is the default current directory of MockFileSystem
 
     private static readonly string expectedVersionString =
         string.Format(@"Pickles version {0}", Assembly.GetExecutingAssembly().GetName().Version);
@@ -122,8 +120,8 @@ namespace PicklesDoc.Pickles.Test
       bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
       shouldContinue.ShouldBeTrue();
-      Assert.AreEqual(@"c:\features\", configuration.FeatureFolder.FullName);
-      Assert.AreEqual(@"c:\features-output\", configuration.OutputFolder.FullName);
+      Assert.AreEqual(@"c:\features", configuration.FeatureFolder.FullName);
+      Assert.AreEqual(@"c:\features-output", configuration.OutputFolder.FullName);
     }
 
     [Test]
@@ -242,8 +240,8 @@ namespace PicklesDoc.Pickles.Test
       bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
       shouldContinue.ShouldBeTrue();
-      Assert.AreEqual(@"c:\features\", configuration.FeatureFolder.FullName);
-      Assert.AreEqual(@"c:\features-output\", configuration.OutputFolder.FullName);
+      Assert.AreEqual(@"c:\features", configuration.FeatureFolder.FullName);
+      Assert.AreEqual(@"c:\features-output", configuration.OutputFolder.FullName);
     }
 
     [Test]
