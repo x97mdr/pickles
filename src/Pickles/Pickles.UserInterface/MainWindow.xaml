@@ -12,7 +12,7 @@
   <Window.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Green.xaml" />
@@ -60,7 +60,7 @@
       <ColumnDefinition Width="130" />
     </Grid.ColumnDefinitions>
 
-    <mahapps:ProgressIndicator ProgressColour="{StaticResource AccentColorBrush}" Height="5" Visibility="Hidden" Grid.Row="0" Grid.ColumnSpan="5" x:Name="progressIndicator" x:FieldModifier="private"/>
+    <mahapps:MetroProgressBar IsIndeterminate="true"  Height="5" Visibility="Hidden" Grid.Row="0" Grid.ColumnSpan="5" x:Name="progressIndicator" x:FieldModifier="private"/>
 
     <Label Content="Feature Directory" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" />
     <TextBox Text="{Binding FeatureFolder}" Grid.Column="1" Grid.Row="1" mahapps:TextboxHelper.Watermark="Browse To The Location Of Your Feature Files" VerticalAlignment="Top" />
