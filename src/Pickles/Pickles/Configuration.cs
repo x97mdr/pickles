@@ -37,10 +37,12 @@ namespace PicklesDoc.Pickles
 
         public bool HasTestResults
         {
-            get { return this.TestResultsFile != null; }
+            get { return this.TestResultsFile != null || this.TestResultsFiles != null; }
         }
 
         public FileInfoBase TestResultsFile { get; set; }
+
+      public FileInfoBase[] TestResultsFiles { get; set; }
 
         public string SystemUnderTestName { get; set; }
 

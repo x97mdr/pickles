@@ -21,6 +21,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO.Abstractions;
+using System.Linq;
 using System.Reflection;
 using NDesk.Options;
 
@@ -108,7 +109,21 @@ namespace PicklesDoc.Pickles
             if (!string.IsNullOrEmpty(this.testResultsFormat))
                 configuration.TestResultsFormat =
                     (TestResultsFormat) Enum.Parse(typeof (TestResultsFormat), this.testResultsFormat, true);
-            if (!string.IsNullOrEmpty(this.testResultsFile)) configuration.TestResultsFile = this.fileSystem.FileInfo.FromFileName(this.testResultsFile);
+
+          if (!string.IsNullOrEmpty(this.testResultsFile))
+          {
+            if (this.testResultsFile.Contains(";"))
+            {
+              var files = this.testResultsFile.Split(';');
+
+              configuration.TestResultsFiles = files.Select(f => this.fileSystem.FileInfo.FromFileName(f)).ToArray();
+            }
+            else
+            {
+              configuration.TestResultsFile = this.fileSystem.FileInfo.FromFileName(this.testResultsFile);
+            }
+          }
+
             if (!string.IsNullOrEmpty(this.systemUnderTestName)) configuration.SystemUnderTestName = this.systemUnderTestName;
             if (!string.IsNullOrEmpty(this.systemUnderTestVersion))
                 configuration.SystemUnderTestVersion = this.systemUnderTestVersion;
