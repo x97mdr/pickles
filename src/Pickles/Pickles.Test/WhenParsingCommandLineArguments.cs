@@ -21,7 +21,8 @@ namespace PicklesDoc.Pickles.Test
                              the format of the linked test results 
                                (nunit|xunit)
       --lr, --link-results-file=VALUE
-                             the path to the linked test results file
+                             the path to the linked test results file (can be 
+                               a semicolon-separated list of files)
       --sn, --system-under-test-name=VALUE
                              a file containing the results of testing the 
                                features

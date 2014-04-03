@@ -40,7 +40,7 @@ namespace PicklesDoc.Pickles
         public const string HELP_LANGUAGE_FEATURE_FILES = "the language of the feature files";
         public const string HELP_DOCUMENTATION_FORMAT = "the format of the output documentation";
         public const string HELP_TEST_RESULTS_FORMAT = "the format of the linked test results (nunit|xunit)";
-        public const string HELP_TEST_RESULTS_FILE = "the path to the linked test results file";
+        public const string HELP_TEST_RESULTS_FILE = "the path to the linked test results file (can be a semicolon-separated list of files)";
 
         private readonly OptionSet options;
         private string documentationFormat;
