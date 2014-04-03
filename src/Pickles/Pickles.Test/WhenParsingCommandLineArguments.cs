@@ -155,6 +155,21 @@ namespace PicklesDoc.Pickles.Test
     }
 
     [Test]
+    public void ThenCanParseResultsFileAsSemicolonSeparatedListAndTestResultsFileContainsTheFirstElementOfTestResultsFiles()
+    {
+      var args = new[] { @"-link-results-file=c:\results1.xml;c:\results2.xml" };
+
+      var configuration = new Configuration();
+      var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
+      bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+
+      shouldContinue.ShouldBeTrue();
+      configuration.HasTestResults.ShouldBeTrue();
+      Assert.AreEqual(@"c:\results1.xml", configuration.TestResultsFile.FullName);
+      Assert.AreEqual(@"c:\results1.xml", configuration.TestResultsFiles[0].FullName);
+    }
+
+    [Test]
     public void ThenCanParseResultsFileWithShortFormSuccessfully()
     {
       var args = new[] { @"-lr=c:\results.xml" };

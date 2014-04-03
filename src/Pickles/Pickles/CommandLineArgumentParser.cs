@@ -112,19 +112,12 @@ namespace PicklesDoc.Pickles
 
           if (!string.IsNullOrEmpty(this.testResultsFile))
           {
-            if (this.testResultsFile.Contains(";"))
-            {
-              var files = this.testResultsFile.Split(';');
+            var files = this.testResultsFile.Split(';');
 
-              configuration.TestResultsFiles = files.Select(f => this.fileSystem.FileInfo.FromFileName(f)).ToArray();
-            }
-            else
-            {
-              configuration.TestResultsFile = this.fileSystem.FileInfo.FromFileName(this.testResultsFile);
-            }
+            configuration.TestResultsFiles = files.Select(f => this.fileSystem.FileInfo.FromFileName(f)).ToArray();
           }
 
-            if (!string.IsNullOrEmpty(this.systemUnderTestName)) configuration.SystemUnderTestName = this.systemUnderTestName;
+          if (!string.IsNullOrEmpty(this.systemUnderTestName)) configuration.SystemUnderTestName = this.systemUnderTestName;
             if (!string.IsNullOrEmpty(this.systemUnderTestVersion))
                 configuration.SystemUnderTestVersion = this.systemUnderTestVersion;
             if (!string.IsNullOrEmpty(this.language)) configuration.Language = this.language;

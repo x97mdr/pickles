@@ -35,7 +35,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML.AutomationLayer
     public void WhenIGenerateTheDocumentation()
     {
       var configuration = CurrentScenarioContext.Container.Resolve<Configuration>();
-      configuration.TestResultsFile = null;
+      configuration.TestResultsFiles = null;
       var htmlFeatureFormatter = CurrentScenarioContext.Container.Resolve<HtmlFeatureFormatter>();
 
       CurrentScenarioContext.Html = htmlFeatureFormatter.Format(CurrentScenarioContext.Feature);

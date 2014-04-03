@@ -15,7 +15,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
     public void ThenCanFormatDescriptionAsMarkdown()
     {
       var configuration = Container.Resolve<Configuration>();
-      configuration.TestResultsFile = null;
+      configuration.TestResultsFiles = null;
 
       var feature = new Feature
       {
@@ -72,7 +72,7 @@ I also enjoy ordering things
     public void ThenCanFormatMarkdownTableExtensions()
     {
       var configuration = Container.Resolve<Configuration>();
-      configuration.TestResultsFile = null;
+      configuration.TestResultsFiles = null;
 
       var feature = new Feature
       {
@@ -109,7 +109,7 @@ I want to see the descriptions written in markdown rendered with tables
     public void ThenCanFormatMarkdownTableExtensionsEvenIfTheyAreSomewhatMalstructured()
     {
       var configuration = Container.Resolve<Configuration>();
-      configuration.TestResultsFile = null;
+      configuration.TestResultsFiles = null;
 
       var feature = new Feature
       {

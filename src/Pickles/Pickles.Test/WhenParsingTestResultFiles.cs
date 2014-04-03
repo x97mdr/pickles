@@ -33,7 +33,7 @@ namespace PicklesDoc.Pickles.Test
             }
 
             var configuration = Container.Resolve<Configuration>();
-            configuration.TestResultsFile = FileSystem.FileInfo.FromFileName(resultsFileName);
+          configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(resultsFileName) };
         }
     }
 }

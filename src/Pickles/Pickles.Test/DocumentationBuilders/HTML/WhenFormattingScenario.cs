@@ -15,7 +15,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
         public void ThenCanRenderTags()
         {
             var configuration = Container.Resolve<Configuration>();
-            configuration.TestResultsFile = null;
+            configuration.TestResultsFiles = null;
 
             var scenario = new Scenario
                               {
@@ -49,7 +49,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
         public void NoTags()
         {
           var configuration = Container.Resolve<Configuration>();
-          configuration.TestResultsFile = null;
+          configuration.TestResultsFiles = null;
 
           var scenario = new Scenario
           {

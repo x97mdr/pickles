@@ -40,7 +40,12 @@ namespace PicklesDoc.Pickles
             get { return this.TestResultsFile != null || this.TestResultsFiles != null; }
         }
 
-        public FileInfoBase TestResultsFile { get; set; }
+        public FileInfoBase TestResultsFile {
+          get
+          {
+            return TestResultsFiles != null ? TestResultsFiles[0] : null;
+          }
+        }
 
       public FileInfoBase[] TestResultsFiles { get; set; }
 

@@ -41,7 +41,7 @@ namespace PicklesDoc.Pickles.Test
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.MsTest;
-            configuration.TestResultsFile = FileSystem.FileInfo.FromFileName(resultsFilename);
+            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(resultsFilename) };
 
             var item1 = Container.Resolve<ITestResults>();
             var item2 = Container.Resolve<ITestResults>();
@@ -67,7 +67,7 @@ namespace PicklesDoc.Pickles.Test
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.NUnit;
-            configuration.TestResultsFile = FileSystem.FileInfo.FromFileName(resultsFilename);
+            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(resultsFilename) };
 
             var item1 = Container.Resolve<ITestResults>();
             var item2 = Container.Resolve<ITestResults>();
@@ -93,7 +93,7 @@ namespace PicklesDoc.Pickles.Test
 
           var configuration = Container.Resolve<Configuration>();
           configuration.TestResultsFormat = TestResultsFormat.xUnit;
-          configuration.TestResultsFile = FileSystem.FileInfo.FromFileName(resultsFilename);
+          configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(resultsFilename) };
 
           var item1 = Container.Resolve<ITestResults>();
           var item2 = Container.Resolve<ITestResults>();
@@ -119,7 +119,7 @@ namespace PicklesDoc.Pickles.Test
 
           var configuration = Container.Resolve<Configuration>();
           configuration.TestResultsFormat = TestResultsFormat.CucumberJson;
-          configuration.TestResultsFile = FileSystem.FileInfo.FromFileName(resultsFilename);
+          configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(resultsFilename) };
 
           var item1 = Container.Resolve<ITestResults>();
           var item2 = Container.Resolve<ITestResults>();
@@ -145,7 +145,7 @@ namespace PicklesDoc.Pickles.Test
 
           var configuration = Container.Resolve<Configuration>();
           configuration.TestResultsFormat = TestResultsFormat.SpecRun;
-          configuration.TestResultsFile = FileSystem.FileInfo.FromFileName(resultsFilename);
+          configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(resultsFilename) };
 
           var item1 = Container.Resolve<ITestResults>();
           var item2 = Container.Resolve<ITestResults>();
@@ -178,7 +178,7 @@ namespace PicklesDoc.Pickles.Test
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.MsTest;
-            configuration.TestResultsFile = FileSystem.FileInfo.FromFileName(resultsFilename);
+            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(resultsFilename) };
 
             var item = Container.Resolve<ITestResults>();
 
@@ -197,7 +197,7 @@ namespace PicklesDoc.Pickles.Test
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.NUnit;
-            configuration.TestResultsFile = FileSystem.FileInfo.FromFileName(resultsFilename);
+            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(resultsFilename) };
 
             var item = Container.Resolve<ITestResults>();
 
@@ -216,7 +216,7 @@ namespace PicklesDoc.Pickles.Test
 
           var configuration = Container.Resolve<Configuration>();
           configuration.TestResultsFormat = TestResultsFormat.xUnit;
-          configuration.TestResultsFile = FileSystem.FileInfo.FromFileName(resultsFilename);
+          configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(resultsFilename) };
 
           var item = Container.Resolve<ITestResults>();
 
@@ -235,7 +235,7 @@ namespace PicklesDoc.Pickles.Test
 
           var configuration = Container.Resolve<Configuration>();
           configuration.TestResultsFormat = TestResultsFormat.CucumberJson;
-          configuration.TestResultsFile = FileSystem.FileInfo.FromFileName(resultsFilename);
+          configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(resultsFilename) };
 
           var item = Container.Resolve<ITestResults>();
 
@@ -254,7 +254,7 @@ namespace PicklesDoc.Pickles.Test
 
           var configuration = Container.Resolve<Configuration>();
           configuration.TestResultsFormat = TestResultsFormat.SpecRun;
-          configuration.TestResultsFile = FileSystem.FileInfo.FromFileName(resultsFilename);
+          configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(resultsFilename) };
 
           var item = Container.Resolve<ITestResults>();
 
