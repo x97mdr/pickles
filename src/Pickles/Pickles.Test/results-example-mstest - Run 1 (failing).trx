@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="b2c6fb7a-0f07-4dc7-bfc0-6a1f2a1facf0" name="astral@JERUSALEM 2013-08-03 14:04:38" runUser="Jerusalem\astral" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="b0f24e61-8c65-4ee7-ba59-d3bb2a992953">
+    <Deployment userDeploymentRoot="C:\Users\astral\Documents\GitHub\pickles-testresults\TestHarness\MsTest\bin\Debug" useDefaultDeploymentRoot="false" runDeploymentRoot="astral_JERUSALEM 2013-08-03 14_04_38" />
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-08-03T14:04:38.7357479+02:00" queuing="2013-08-03T14:04:39.3283592+02:00" start="2013-08-03T14:04:39.4607425+02:00" finish="2013-08-03T14:04:40.1836409+02:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="1" executed="1" passed="0" error="0" failed="2" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="FailingFeatureFailingScenario" storage="mstestharness.dll" id="18582dd5-09c7-ce67-9cb7-8e15a9cdffd0">
+      <Description>Failing Feature Failing Scenario</Description>
+      <Execution id="aee64d2f-a426-4164-9163-d6faed102467" />
+      <Properties>
+        <Property>
+          <Key>FeatureTitle</Key>
+          <Value>Failing</Value>
+        </Property>
+      </Properties>
+      <TestMethod codeBase="C:/Users/astral/Documents/GitHub/pickles-testresults/TestHarness/MsTest/bin/Debug/MsTestHarness.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Pickles.TestHarness.MsTest.MinimalFeatures.FailingFeature, MsTestHarness, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="FailingFeatureFailingScenario" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="18582dd5-09c7-ce67-9cb7-8e15a9cdffd0" executionId="aee64d2f-a426-4164-9163-d6faed102467" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="aee64d2f-a426-4164-9163-d6faed102467" testId="18582dd5-09c7-ce67-9cb7-8e15a9cdffd0" testName="FailingFeatureFailingScenario" computerName="JERUSALEM" duration="00:00:00.0026132" startTime="2013-08-03T14:04:40.0749409+02:00" endTime="2013-08-03T14:04:40.0809441+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="aee64d2f-a426-4164-9163-d6faed102467">
+      <Output>
+        <StdOut>Then failing step
+-&gt; error: Assert.Fail failed. by design</StdOut>
+        <ErrorInfo>
+          <Message>Assert.Fail failed. by design</Message>
+          <StackTrace>   w Pickles.TestHarness.MsTest.MinimalSteps.ThenFailingStep() w c:\Users\astral\Documents\GitHub\pickles-testresults\TestHarness\MsTest\Minimal Features\MinimalSteps.cs:wiersz 25
+   w lambda_method(Closure , IContextManager )
+   w TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration)
+   w TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+   w TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+   w TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+   w TechTalk.SpecFlow.TestRunner.CollectScenarioErrors()
+   w Pickles.TestHarness.MsTest.MinimalFeatures.FailingFeature.ScenarioCleanup() w c:\Users\astral\Documents\GitHub\pickles-testresults\TestHarness\MsTest\Minimal Features\Failing.feature.cs:wiersz 0
+   w Pickles.TestHarness.MsTest.MinimalFeatures.FailingFeature.FailingFeatureFailingScenario() w c:\Users\astral\Documents\GitHub\pickles-testresults\TestHarness\MsTest\Minimal Features\Failing.feature:wiersz 10
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

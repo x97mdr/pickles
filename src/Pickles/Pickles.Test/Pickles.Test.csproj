@@ -197,6 +197,7 @@
     <Compile Include="BaseFixture.cs" />
     <Compile Include="DirectoryCrawlers\ImageFileDetectorTests.cs" />
     <Compile Include="DirectoryCrawlers\RelevantFileDetectorTests.cs" />
+    <Compile Include="WhenParsingMultipleTestResultsFiles.cs" />
     <Compile Include="WhenParsingSpecRunTestResultsFile.cs" />
     <Compile Include="DirectoryCrawlers\FolderDirectoryTreeNodeTests.cs" />
     <Compile Include="DocumentationBuilders\DHTML\WhenDoingSomeIntegrationTests.cs" />
@@ -340,6 +341,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FakeFolderStructures\JSON\results-example-failing-and-pasing-mstest.trx" />
     <EmbeddedResource Include="results-example-json.json" />
+    <EmbeddedResource Include="results-example-mstest - Run 1 %28failing%29.trx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="results-example-mstest - Run 2 %28passing%29.trx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
