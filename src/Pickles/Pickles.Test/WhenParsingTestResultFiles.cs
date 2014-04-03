@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
+using System.Linq;
 using System.Reflection;
 using Autofac;
 
@@ -9,11 +11,11 @@ namespace PicklesDoc.Pickles.Test
 {
     public abstract class WhenParsingTestResultFiles<TResults> : BaseFixture
     {
-        private readonly string resultsFileName;
+        private readonly string[] resultsFileNames;
 
         protected WhenParsingTestResultFiles(string resultsFileName)
         {
-            this.resultsFileName = resultsFileName;
+            this.resultsFileNames = resultsFileName.Split(';');
         }
 
         protected TResults ParseResultsFile()
@@ -24,16 +26,20 @@ namespace PicklesDoc.Pickles.Test
             return results;
         }
 
-        private void AddTestResultsToConfiguration()
+        protected void AddTestResultsToConfiguration()
         {
-            // Write out the embedded test results file
-            using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFileName)))
-            {
-                FileSystem.AddFile(resultsFileName, new MockFileData(input.ReadToEnd()));
-            }
+          foreach (var fileName in resultsFileNames)
+          {
+              // Write out the embedded test results file
+              using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + fileName)))
+              {
+                  FileSystem.AddFile(fileName, new MockFileData(input.ReadToEnd()));
+              }
+          }
 
             var configuration = Container.Resolve<Configuration>();
-          configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(resultsFileName) };
+
+            configuration.TestResultsFiles = resultsFileNames.Select(f => FileSystem.FileInfo.FromFileName(f)).ToArray();
         }
     }
 }
