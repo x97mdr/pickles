@@ -37,7 +37,7 @@ namespace PicklesDoc.Pickles
 
         public bool HasTestResults
         {
-            get { return this.TestResultsFile != null || this.TestResultsFiles != null; }
+            get { return this.TestResultsFiles != null; }
         }
 
         public FileInfoBase TestResultsFile {
