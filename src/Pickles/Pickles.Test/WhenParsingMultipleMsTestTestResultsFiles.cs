@@ -7,9 +7,9 @@ using Should;
 namespace PicklesDoc.Pickles.Test
 {
     [TestFixture]
-    public class WhenParsingMultipleTestResultsFiles : WhenParsingTestResultFiles<MsTestResults>
+    public class WhenParsingMultipleMsTestTestResultsFiles : WhenParsingTestResultFiles<MsTestResults>
     {
-        public WhenParsingMultipleTestResultsFiles()
+        public WhenParsingMultipleMsTestTestResultsFiles()
             : base("results-example-mstest - Run 1 (failing).trx;results-example-mstest - Run 2 (passing).trx")
         {
         }
@@ -24,7 +24,7 @@ namespace PicklesDoc.Pickles.Test
             Assert.AreEqual(TestResult.Failed, result);
         }
 
-        //[Test]
+        [Test]
         public void ThenCanReadPassedScenarioResultSuccessfully()
         {
           var results = ParseResultsFile();

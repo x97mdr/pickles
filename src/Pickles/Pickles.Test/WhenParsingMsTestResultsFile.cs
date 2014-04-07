@@ -12,7 +12,6 @@ namespace PicklesDoc.Pickles.Test
         public WhenParsingMsTestResultsFile()
             : base("results-example-mstest.trx")
         {
-            
         }
 
         [Test]

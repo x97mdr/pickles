@@ -197,7 +197,7 @@
     <Compile Include="BaseFixture.cs" />
     <Compile Include="DirectoryCrawlers\ImageFileDetectorTests.cs" />
     <Compile Include="DirectoryCrawlers\RelevantFileDetectorTests.cs" />
-    <Compile Include="WhenParsingMultipleTestResultsFiles.cs" />
+    <Compile Include="WhenParsingMultipleMsTestTestResultsFiles.cs" />
     <Compile Include="WhenParsingMultipleTestResultsTests.cs" />
     <Compile Include="WhenParsingSpecRunTestResultsFile.cs" />
     <Compile Include="DirectoryCrawlers\FolderDirectoryTreeNodeTests.cs" />
