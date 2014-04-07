@@ -326,6 +326,7 @@
     <Compile Include="TestFrameworks\CucumberJsonResults.cs" />
     <Compile Include="TestFrameworks\ITestResults.cs" />
     <Compile Include="TestFrameworks\MsTestResults.cs" />
+    <Compile Include="TestFrameworks\MultipleTestResults.cs" />
     <Compile Include="TestFrameworks\NullTestResults.cs" />
     <Compile Include="TestFrameworks\NUnitExampleSignatureBuilder.cs" />
     <Compile Include="TestFrameworks\NUnitResults.cs" />
