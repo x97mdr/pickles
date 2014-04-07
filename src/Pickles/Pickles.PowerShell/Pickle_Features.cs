@@ -88,7 +88,7 @@ namespace PicklesDoc.Pickles.PowerShell
             }
             if (!string.IsNullOrEmpty(this.TestResultsFile))
             {
-                configuration.TestResultsFile = fileSystem.FileInfo.FromFileName(this.TestResultsFile);
+                configuration.TestResultsFiles = new[] { fileSystem.FileInfo.FromFileName(this.TestResultsFile) };
             }
             configuration.SystemUnderTestName = this.SystemUnderTestName;
             configuration.SystemUnderTestVersion = this.SystemUnderTestVersion;
