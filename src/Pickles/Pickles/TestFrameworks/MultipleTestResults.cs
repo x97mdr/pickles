@@ -39,12 +39,16 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
     public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
     {
-      throw new NotImplementedException();
+      var results = testResults.Select(tr => tr.GetScenarioOutlineResult(scenarioOutline)).ToArray();
+
+      return EvaluateTestResults(results);
     }
 
     public TestResult GetScenarioResult(Scenario scenario)
     {
-      throw new NotImplementedException();
+      var results = testResults.Select(tr => tr.GetScenarioResult(scenario)).ToArray();
+
+      return EvaluateTestResults(results);
     }
   }
 }

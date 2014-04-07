@@ -88,5 +88,109 @@ namespace PicklesDoc.Pickles.Test
 
       result.ShouldEqual(TestResult.Inconclusive);
     }
+
+    [Test]
+    public void GetScenarioOutlineResult_OnePassingOneInconclusive_ReturnsPassed()
+    {
+      var scenarioOutline = new ScenarioOutline();
+
+      var testResults1 = SetupStubForGetScenarioOutlineResult(TestResult.Passed);
+      var testResults2 = SetupStubForGetScenarioOutlineResult(TestResult.Inconclusive);
+
+      ITestResults multipleTestResults = CreateMultipleTestResults(testResults1.Object, testResults2.Object);
+
+      var result = multipleTestResults.GetScenarioOutlineResult(scenarioOutline);
+
+      result.ShouldEqual(TestResult.Passed);
+    }
+
+    private static Mock<ITestResults> SetupStubForGetScenarioOutlineResult(TestResult resultOfGetFeatureResult)
+    {
+      var testResults1 = new Mock<ITestResults>();
+      testResults1.Setup(ti => ti.GetScenarioOutlineResult(It.IsAny<ScenarioOutline>())).Returns(resultOfGetFeatureResult);
+      return testResults1;
+    }
+
+    [Test]
+    public void GetScenarioOutlineResult_OnePassingOneFailing_ReturnsFailed()
+    {
+      var scenarioOutline = new ScenarioOutline();
+
+      var testResults1 = SetupStubForGetScenarioOutlineResult(TestResult.Passed);
+      var testResults2 = SetupStubForGetScenarioOutlineResult(TestResult.Failed);
+
+      ITestResults multipleTestResults = CreateMultipleTestResults(testResults1.Object, testResults2.Object);
+
+      var result = multipleTestResults.GetScenarioOutlineResult(scenarioOutline);
+
+      result.ShouldEqual(TestResult.Failed);
+    }
+
+    [Test]
+    public void GetScenarioOutlineResult_TwoInconclusive_ReturnsInconclusive()
+    {
+      var scenarioOutline = new ScenarioOutline();
+
+      var testResults1 = SetupStubForGetScenarioOutlineResult(TestResult.Inconclusive);
+      var testResults2 = SetupStubForGetScenarioOutlineResult(TestResult.Inconclusive);
+
+      ITestResults multipleTestResults = CreateMultipleTestResults(testResults1.Object, testResults2.Object);
+
+      var result = multipleTestResults.GetScenarioOutlineResult(scenarioOutline);
+
+      result.ShouldEqual(TestResult.Inconclusive);
+    }
+
+    [Test]
+    public void GetScenarioResult_OnePassingOneInconclusive_ReturnsPassed()
+    {
+      var scenario = new Scenario();
+
+      var testResults1 = SetupStubForGetScenarioResult(TestResult.Passed);
+      var testResults2 = SetupStubForGetScenarioResult(TestResult.Inconclusive);
+
+      ITestResults multipleTestResults = CreateMultipleTestResults(testResults1.Object, testResults2.Object);
+
+      var result = multipleTestResults.GetScenarioResult(scenario);
+
+      result.ShouldEqual(TestResult.Passed);
+    }
+
+    private static Mock<ITestResults> SetupStubForGetScenarioResult(TestResult resultOfGetFeatureResult)
+    {
+      var testResults1 = new Mock<ITestResults>();
+      testResults1.Setup(ti => ti.GetScenarioResult(It.IsAny<Scenario>())).Returns(resultOfGetFeatureResult);
+      return testResults1;
+    }
+
+    [Test]
+    public void GetScenarioResult_OnePassingOneFailing_ReturnsFailed()
+    {
+      var scenario = new Scenario();
+
+      var testResults1 = SetupStubForGetScenarioResult(TestResult.Passed);
+      var testResults2 = SetupStubForGetScenarioResult(TestResult.Failed);
+
+      ITestResults multipleTestResults = CreateMultipleTestResults(testResults1.Object, testResults2.Object);
+
+      var result = multipleTestResults.GetScenarioResult(scenario);
+
+      result.ShouldEqual(TestResult.Failed);
+    }
+
+    [Test]
+    public void GetScenarioResult_TwoInconclusive_ReturnsInconclusive()
+    {
+      var scenario = new Scenario();
+
+      var testResults1 = SetupStubForGetScenarioResult(TestResult.Inconclusive);
+      var testResults2 = SetupStubForGetScenarioResult(TestResult.Inconclusive);
+
+      ITestResults multipleTestResults = CreateMultipleTestResults(testResults1.Object, testResults2.Object);
+
+      var result = multipleTestResults.GetScenarioResult(scenario);
+
+      result.ShouldEqual(TestResult.Inconclusive);
+    }
   }
 }
