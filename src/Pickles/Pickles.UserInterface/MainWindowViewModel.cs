@@ -452,7 +452,7 @@ namespace PicklesDoc.Pickles.UserInterface
 
                 case "TestResultsFile":
                     {
-                        if (this.fileSystem.File.Exists(this.testResultsFile))
+                        if (this.testResultsFile.Split(';').All(trf => this.fileSystem.File.Exists(trf)))
                         {
                             this.IsTestResultsFileValid = true;
                         }
@@ -548,7 +548,7 @@ namespace PicklesDoc.Pickles.UserInterface
                 
                 configuration.SystemUnderTestName = this.projectName;
                 configuration.SystemUnderTestVersion = this.projectVersion;
-                configuration.TestResultsFiles = this.IncludeTests ? new[]{ fileSystem.FileInfo.FromFileName(this.testResultsFile)} : null;
+                configuration.TestResultsFiles = this.IncludeTests ? this.testResultsFile.Split(';').Select(trf => fileSystem.FileInfo.FromFileName(trf)).ToArray() : null;
                 configuration.TestResultsFormat = this.testResultsFormats.Selected;
                 configuration.Language = this.selectedLanguage != null ? this.selectedLanguage.TwoLetterISOLanguageName : CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
 
@@ -561,8 +561,9 @@ namespace PicklesDoc.Pickles.UserInterface
         private void DoBrowseForTestResultsFile()
         {
             var dlg = new Ookii.Dialogs.Wpf.VistaOpenFileDialog();
+            dlg.Multiselect = true;
             var result = dlg.ShowDialog();
-            if (result == true) this.TestResultsFile = dlg.FileName;
+            if (result == true) this.TestResultsFile = string.Join(";", dlg.FileNames);
         }
 
         private void DoBrowseForFeature()
