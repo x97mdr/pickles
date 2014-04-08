@@ -337,6 +337,7 @@
     <Compile Include="TestFrameworks\TestResult.cs" />
     <Compile Include="TestFrameworks\xUnitExampleSignatureBuilder.cs" />
     <Compile Include="TestFrameworks\XUnitResults.cs" />
+    <Compile Include="TestFrameworks\XUnitSingleResults.cs" />
     <Compile Include="TestResultsFormat.cs" />
     <Compile Include="FeatureTree\TextFile.cs" />
     <Compile Include="Parser\ExampleBuilder.cs" />
