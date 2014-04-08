@@ -324,6 +324,7 @@
     </Compile>
     <Compile Include="Runner.cs" />
     <Compile Include="TestFrameworks\CucumberJsonResults.cs" />
+    <Compile Include="TestFrameworks\CucumberJsonSingleResults.cs" />
     <Compile Include="TestFrameworks\ITestResults.cs" />
     <Compile Include="TestFrameworks\MsTestResults.cs" />
     <Compile Include="TestFrameworks\MultipleTestResults.cs" />
