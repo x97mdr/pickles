@@ -14,14 +14,6 @@ namespace PicklesDoc.Pickles.TestFrameworks
     private static readonly XNamespace ns = @"http://microsoft.com/schemas/VisualStudio/TeamTest/2010";
     private readonly XDocument resultsDocument;
 
-    public SingleMsTestResults(Configuration configuration)
-    {
-      if (configuration.HasTestResults)
-      {
-        this.resultsDocument = this.ReadResultsFile(configuration.TestResultsFile);
-      }
-    }
-
     public SingleMsTestResults(FileInfoBase testResultsFile)
     {
       this.resultsDocument = this.ReadResultsFile(testResultsFile);
