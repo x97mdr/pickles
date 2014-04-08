@@ -332,6 +332,7 @@
     <Compile Include="TestFrameworks\NUnitExampleSignatureBuilder.cs" />
     <Compile Include="TestFrameworks\NUnitResults.cs" />
     <Compile Include="TestFrameworks\MsTestSingleResults.cs" />
+    <Compile Include="TestFrameworks\NUnitSingleResults.cs" />
     <Compile Include="TestFrameworks\SpecRunResults.cs" />
     <Compile Include="TestFrameworks\TestResult.cs" />
     <Compile Include="TestFrameworks\xUnitExampleSignatureBuilder.cs" />

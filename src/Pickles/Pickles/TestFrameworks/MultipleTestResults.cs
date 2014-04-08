@@ -18,7 +18,15 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
     protected MultipleTestResults(Configuration configuration)
     {
-      testResults = this.GetSingleTestResults(configuration);
+      this.testResults = this.GetSingleTestResults(configuration);
+    }
+
+    protected IEnumerable<ITestResults> TestResults
+    {
+      get
+      {
+        return this.testResults;
+      }
     }
 
     private IEnumerable<ITestResults> GetSingleTestResults(Configuration configuration)
@@ -41,12 +49,12 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
     public TestResult GetFeatureResult(Feature feature)
     {
-      var results = testResults.Select(tr => tr.GetFeatureResult(feature)).ToArray();
+      var results = this.TestResults.Select(tr => tr.GetFeatureResult(feature)).ToArray();
 
       return EvaluateTestResults(results);
     }
 
-    private static TestResult EvaluateTestResults(TestResult[] results)
+    protected static TestResult EvaluateTestResults(TestResult[] results)
     {
       if (results.Any(r => r == TestResult.Failed))
       {
@@ -63,14 +71,14 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
     public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
     {
-      var results = testResults.Select(tr => tr.GetScenarioOutlineResult(scenarioOutline)).ToArray();
+      var results = this.TestResults.Select(tr => tr.GetScenarioOutlineResult(scenarioOutline)).ToArray();
 
       return EvaluateTestResults(results);
     }
 
     public TestResult GetScenarioResult(Scenario scenario)
     {
-      var results = testResults.Select(tr => tr.GetScenarioResult(scenario)).ToArray();
+      var results = this.TestResults.Select(tr => tr.GetScenarioResult(scenario)).ToArray();
 
       return EvaluateTestResults(results);
     }
