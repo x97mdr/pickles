@@ -1,19 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Abstractions;
 using System.Linq;
 
 using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.TestFrameworks
 {
-  public class MultipleTestResults : ITestResults
+  public abstract class MultipleTestResults : ITestResults
   {
     private readonly IEnumerable<ITestResults> testResults;
 
-    public MultipleTestResults(IEnumerable<ITestResults> testResults)
+    protected MultipleTestResults(IEnumerable<ITestResults> testResults)
     {
       this.testResults = testResults;
     }
+
+    protected MultipleTestResults(Configuration configuration)
+    {
+      testResults = this.GetSingleTestResults(configuration);
+    }
+
+    private IEnumerable<ITestResults> GetSingleTestResults(Configuration configuration)
+    {
+      ITestResults[] results;
+
+      if (configuration.HasTestResults)
+      {
+        results = configuration.TestResultsFiles.Select(ConstructSingleTestResult).ToArray();
+      }
+      else
+      {
+        results = new ITestResults[0];
+      }
+
+      return results;
+    }
+
+    protected abstract ITestResults ConstructSingleTestResult(FileInfoBase fileInfo);
 
     public TestResult GetFeatureResult(Feature feature)
     {

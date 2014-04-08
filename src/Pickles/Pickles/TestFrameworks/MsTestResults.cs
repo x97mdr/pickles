@@ -19,32 +19,20 @@
 #endregion
 
 using System;
-using System.Linq;
+using System.IO.Abstractions;
 
 namespace PicklesDoc.Pickles.TestFrameworks
 {
   public class MsTestResults : MultipleTestResults
   {
     public MsTestResults(Configuration configuration)
-      : base(GetSingleMsTestResults(configuration))
+      : base(configuration)
     {
-      GetSingleMsTestResults(configuration);
     }
 
-    private static SingleMsTestResults[] GetSingleMsTestResults(Configuration configuration)
+    protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
     {
-      SingleMsTestResults[] testResults;
-
-      if (configuration.HasTestResults)
-      {
-        testResults = configuration.TestResultsFiles.Select(trf => new SingleMsTestResults(trf)).ToArray();
-      }
-      else
-      {
-        testResults = new SingleMsTestResults[0];
-      }
-
-      return testResults;
+      return new SingleMsTestResults(fileInfo);
     }
   }
 }

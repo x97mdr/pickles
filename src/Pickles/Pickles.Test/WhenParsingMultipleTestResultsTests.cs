@@ -18,6 +18,9 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.IO.Abstractions;
+
 using Moq;
 
 using NUnit.Framework;
@@ -49,7 +52,21 @@ namespace PicklesDoc.Pickles.Test
 
     private static MultipleTestResults CreateMultipleTestResults(ITestResults testResults1, ITestResults testResults2)
     {
-      return new MultipleTestResults(new[] { testResults1, testResults2 });
+      return new TestableMultipleTestResults(new[] { testResults1, testResults2 });
+    }
+
+    private class TestableMultipleTestResults : MultipleTestResults
+    {
+      public TestableMultipleTestResults(IEnumerable<ITestResults> testResults)
+        : base(testResults)
+      {
+      }
+
+      protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
+      {
+        // not needed since we use the other constructor
+        throw new System.NotSupportedException();
+      }
     }
 
     private static Mock<ITestResults> SetupStubForGetFeatureResult(Feature feature, TestResult resultOfGetFeatureResult)
