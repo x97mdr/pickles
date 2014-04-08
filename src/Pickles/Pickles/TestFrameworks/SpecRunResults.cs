@@ -1,180 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml;
-using System.Xml.Linq;
+﻿#region License
 
-using Gherkin = PicklesDoc.Pickles.Parser;
-using SpecRun = PicklesDoc.Pickles.Parser.SpecRun;
+/*
+    Copyright [2011] [Jeffrey Cameron]
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+*/
+
+#endregion
+
+using System;
+using System.IO.Abstractions;
 
 namespace PicklesDoc.Pickles.TestFrameworks
 {
-    public class SpecRunResults : ITestResults
+  public class SpecRunResults : MultipleTestResults
+  {
+    public SpecRunResults(Configuration configuration)
+      : base(configuration)
     {
-
-        private readonly Configuration configuration;
-        private readonly List<SpecRun.Feature> specRunFeatures;
-
-        public SpecRunResults(Configuration configuration)
-        {
-            this.configuration = configuration;
-            if (this.configuration.HasTestResults)
-            {
-                var resultsDocument = this.ReadResultsFile();
-
-                this.specRunFeatures = resultsDocument.Descendants("feature").Select(SpecRun.Factory.ToSpecRunFeature).ToList();
-            }
-        }
-
-        public TestResult GetFeatureResult(Gherkin.Feature feature)
-        {
-            if (this.specRunFeatures == null)
-            {
-                return TestResult.Inconclusive;
-            }
-
-            var specRunFeature = this.FindSpecRunFeature(feature);
-
-            if (specRunFeature == null)
-            {
-              return TestResult.Inconclusive;
-            }
-
-            TestResult result = specRunFeature.Scenarios.Select(specRunScenario => StringToTestResult(specRunScenario.Result)).Merge();
-
-            return result;
-        }
-
-        public TestResult GetScenarioOutlineResult(Gherkin.ScenarioOutline scenarioOutline)
-        {
-            if (this.specRunFeatures == null)
-            {
-                return TestResult.Inconclusive;
-            }
-
-            var specRunFeature = this.FindSpecRunFeature(scenarioOutline.Feature);
-
-            if (specRunFeature == null)
-            {
-                return TestResult.Inconclusive;
-            }
-
-            SpecRun.Scenario[] specRunScenarios = FindSpecRunScenarios(scenarioOutline, specRunFeature);
-
-            if (specRunScenarios.Length == 0)
-            {
-                return TestResult.Inconclusive;
-            }
-
-            TestResult result = StringsToTestResult(specRunScenarios.Select(srs => srs.Result));
-
-            return result;
-        }
-
-        public TestResult GetScenarioResult(Gherkin.Scenario scenario)
-        {
-            if (this.specRunFeatures == null)
-            {
-                return TestResult.Inconclusive;
-            }
-
-            var specRunFeature = this.FindSpecRunFeature(scenario.Feature);
-
-            if (specRunFeature == null)
-            {
-                return TestResult.Inconclusive;
-            }
-
-            var specRunScenario = FindSpecRunScenario(scenario, specRunFeature);
-
-            if (specRunScenario == null)
-            {
-                return TestResult.Inconclusive;
-            }
-
-            return StringToTestResult(specRunScenario.Result);
-        }
-
-        private static TestResult StringsToTestResult(IEnumerable<string> results)
-        {
-            if (results == null)
-            {
-                return TestResult.Inconclusive;
-            }
-
-            return results.Select(StringToTestResult).Merge();
-        }
-
-        private static TestResult StringToTestResult(string result)
-        {
-            if (result == null)
-            {
-                return TestResult.Inconclusive;
-            }
-
-            switch (result.ToLowerInvariant())
-            {
-                case "passed":
-                {
-                    return TestResult.Passed;
-                }
-
-                case "failed":
-                {
-                    return TestResult.Failed;
-                }
-
-                default:
-                {
-                    return TestResult.Inconclusive;
-                }
-            }
-        }
-
-        private static SpecRun.Scenario[] FindSpecRunScenarios(Gherkin.ScenarioOutline scenarioOutline, SpecRun.Feature specRunFeature)
-        {
-            return specRunFeature.Scenarios.Where(d => d.Title.StartsWith(scenarioOutline.Name + ", ")).ToArray();
-        }
-
-        private static SpecRun.Scenario FindSpecRunScenario(Gherkin.Scenario scenario, SpecRun.Feature specRunFeature)
-        {
-            SpecRun.Scenario result = specRunFeature.Scenarios.FirstOrDefault(d => d.Title.Equals(scenario.Name));
-
-            return result;
-        }
-
-        private SpecRun.Feature FindSpecRunFeature(Gherkin.Feature feature)
-        {
-            return this.specRunFeatures.FirstOrDefault(specRunFeature => specRunFeature.Title == feature.Name);
-        }
-
-        private XDocument ReadResultsFile()
-        {
-            XDocument document;
-            using (var stream = this.configuration.TestResultsFile.OpenRead())
-            {
-                using (var streamReader = new System.IO.StreamReader(stream))
-                {
-                    string content = streamReader.ReadToEnd();
-
-                    int begin = content.IndexOf("<!-- Pickles Begin", StringComparison.Ordinal);
-
-                    content = content.Substring(begin);
-
-                    content = content.Replace("<!-- Pickles Begin", string.Empty);
-
-                    int end = content.IndexOf("Pickles End -->", System.StringComparison.Ordinal);
-
-                    content = content.Substring(0, end);
-
-                    content = content.Replace("&lt;", "<").Replace("&gt;", ">");
-
-                    var xmlReader = XmlReader.Create(new System.IO.StringReader(content));
-                    document = XDocument.Load(xmlReader);
-                }
-            }
-
-            return document;
-        }
     }
+
+    protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
+    {
+      return new SpecRunSingleResults(fileInfo);
+    }
+  }
 }

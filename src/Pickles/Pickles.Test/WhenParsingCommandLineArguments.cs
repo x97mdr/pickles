@@ -21,7 +21,8 @@ namespace PicklesDoc.Pickles.Test
                              the format of the linked test results 
                                (nunit|xunit)
       --lr, --link-results-file=VALUE
-                             the path to the linked test results file
+                             the path to the linked test results file (can be 
+                               a semicolon-separated list of files)
       --sn, --system-under-test-name=VALUE
                              a file containing the results of testing the 
                                features
@@ -136,6 +137,36 @@ namespace PicklesDoc.Pickles.Test
       shouldContinue.ShouldBeTrue();
       configuration.HasTestResults.ShouldBeTrue();
       Assert.AreEqual(@"c:\results.xml", configuration.TestResultsFile.FullName);
+    }
+
+    [Test]
+    public void ThenCanParseResultsFileAsSemicolonSeparatedList()
+    {
+      var args = new[] { @"-link-results-file=c:\results1.xml;c:\results2.xml" };
+
+      var configuration = new Configuration();
+      var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
+      bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+
+      shouldContinue.ShouldBeTrue();
+      configuration.HasTestResults.ShouldBeTrue();
+      Assert.AreEqual(@"c:\results1.xml", configuration.TestResultsFiles[0].FullName);
+      Assert.AreEqual(@"c:\results2.xml", configuration.TestResultsFiles[1].FullName);
+    }
+
+    [Test]
+    public void ThenCanParseResultsFileAsSemicolonSeparatedListAndTestResultsFileContainsTheFirstElementOfTestResultsFiles()
+    {
+      var args = new[] { @"-link-results-file=c:\results1.xml;c:\results2.xml" };
+
+      var configuration = new Configuration();
+      var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
+      bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+
+      shouldContinue.ShouldBeTrue();
+      configuration.HasTestResults.ShouldBeTrue();
+      Assert.AreEqual(@"c:\results1.xml", configuration.TestResultsFile.FullName);
+      Assert.AreEqual(@"c:\results1.xml", configuration.TestResultsFiles[0].FullName);
     }
 
     [Test]

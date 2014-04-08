@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using System;
+
+using NUnit.Framework;
 using PicklesDoc.Pickles.Parser;
 using PicklesDoc.Pickles.TestFrameworks;
 using Should;
@@ -101,6 +103,19 @@ namespace PicklesDoc.Pickles.Test
 
             result.WasExecuted.ShouldBeFalse();
             result.WasSuccessful.ShouldBeFalse();
+        }
+
+        [Test]
+        public void WithoutExampleSignatureBuilderThrowsInvalidOperationException()
+        {
+          var results = ParseResultsFile();
+          results.SetExampleSignatureBuilder(null);
+
+          var feature = new Feature { Name = "Addition" };
+
+          var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers", Feature = feature };
+
+          Assert.Throws<InvalidOperationException>(() => results.GetExampleResult(scenarioOutline, new[] { "40", "50", "90" }));
         }
     }
 }

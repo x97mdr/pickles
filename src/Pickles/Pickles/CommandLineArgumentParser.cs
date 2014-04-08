@@ -21,6 +21,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO.Abstractions;
+using System.Linq;
 using System.Reflection;
 using NDesk.Options;
 
@@ -40,7 +41,7 @@ namespace PicklesDoc.Pickles
         public const string HELP_LANGUAGE_FEATURE_FILES = "the language of the feature files";
         public const string HELP_DOCUMENTATION_FORMAT = "the format of the output documentation";
         public const string HELP_TEST_RESULTS_FORMAT = "the format of the linked test results (nunit|xunit)";
-        public const string HELP_TEST_RESULTS_FILE = "the path to the linked test results file";
+        public const string HELP_TEST_RESULTS_FILE = "the path to the linked test results file (can be a semicolon-separated list of files)";
 
         private readonly OptionSet options;
         private string documentationFormat;
@@ -108,8 +109,15 @@ namespace PicklesDoc.Pickles
             if (!string.IsNullOrEmpty(this.testResultsFormat))
                 configuration.TestResultsFormat =
                     (TestResultsFormat) Enum.Parse(typeof (TestResultsFormat), this.testResultsFormat, true);
-            if (!string.IsNullOrEmpty(this.testResultsFile)) configuration.TestResultsFile = this.fileSystem.FileInfo.FromFileName(this.testResultsFile);
-            if (!string.IsNullOrEmpty(this.systemUnderTestName)) configuration.SystemUnderTestName = this.systemUnderTestName;
+
+          if (!string.IsNullOrEmpty(this.testResultsFile))
+          {
+            var files = this.testResultsFile.Split(';');
+
+            configuration.TestResultsFiles = files.Select(f => this.fileSystem.FileInfo.FromFileName(f)).ToArray();
+          }
+
+          if (!string.IsNullOrEmpty(this.systemUnderTestName)) configuration.SystemUnderTestName = this.systemUnderTestName;
             if (!string.IsNullOrEmpty(this.systemUnderTestVersion))
                 configuration.SystemUnderTestVersion = this.systemUnderTestVersion;
             if (!string.IsNullOrEmpty(this.language)) configuration.Language = this.language;

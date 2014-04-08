@@ -70,7 +70,7 @@ namespace PicklesDoc.Pickles.NAnt
             if (!string.IsNullOrEmpty(this.ResultsFormat))
                 configuration.TestResultsFormat =
                     (TestResultsFormat) Enum.Parse(typeof (TestResultsFormat), this.ResultsFormat, true);
-            if (!string.IsNullOrEmpty(this.ResultsFile)) configuration.TestResultsFile = fileSystem.FileInfo.FromFileName(this.ResultsFile);
+            if (!string.IsNullOrEmpty(this.ResultsFile)) configuration.TestResultsFiles = new[] { fileSystem.FileInfo.FromFileName(this.ResultsFile) };
             if (!string.IsNullOrEmpty(this.SystemUnderTestName)) configuration.SystemUnderTestName = this.SystemUnderTestName;
             if (!string.IsNullOrEmpty(this.SystemUnderTestVersion))
                 configuration.SystemUnderTestVersion = this.SystemUnderTestVersion;

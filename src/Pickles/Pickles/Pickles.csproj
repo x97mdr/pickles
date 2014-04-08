@@ -324,15 +324,21 @@
     </Compile>
     <Compile Include="Runner.cs" />
     <Compile Include="TestFrameworks\CucumberJsonResults.cs" />
+    <Compile Include="TestFrameworks\CucumberJsonSingleResults.cs" />
     <Compile Include="TestFrameworks\ITestResults.cs" />
     <Compile Include="TestFrameworks\MsTestResults.cs" />
+    <Compile Include="TestFrameworks\MultipleTestResults.cs" />
     <Compile Include="TestFrameworks\NullTestResults.cs" />
     <Compile Include="TestFrameworks\NUnitExampleSignatureBuilder.cs" />
     <Compile Include="TestFrameworks\NUnitResults.cs" />
+    <Compile Include="TestFrameworks\MsTestSingleResults.cs" />
+    <Compile Include="TestFrameworks\NUnitSingleResults.cs" />
     <Compile Include="TestFrameworks\SpecRunResults.cs" />
+    <Compile Include="TestFrameworks\SpecRunSingleResults.cs" />
     <Compile Include="TestFrameworks\TestResult.cs" />
     <Compile Include="TestFrameworks\xUnitExampleSignatureBuilder.cs" />
     <Compile Include="TestFrameworks\XUnitResults.cs" />
+    <Compile Include="TestFrameworks\XUnitSingleResults.cs" />
     <Compile Include="TestResultsFormat.cs" />
     <Compile Include="FeatureTree\TextFile.cs" />
     <Compile Include="Parser\ExampleBuilder.cs" />

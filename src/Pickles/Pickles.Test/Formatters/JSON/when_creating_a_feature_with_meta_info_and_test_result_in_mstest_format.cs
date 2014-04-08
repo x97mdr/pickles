@@ -46,7 +46,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
                                 {
                                     OutputFolder = FileSystem.DirectoryInfo.FromDirectoryName(OUTPUT_DIRECTORY),
                                     DocumentationFormat = DocumentationFormat.JSON,
-                                    TestResultsFile = FileSystem.FileInfo.FromFileName(testResultFilePath),
+                                    TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(testResultFilePath) },
                                     TestResultsFormat = TestResultsFormat.MsTest
                                 };
 
