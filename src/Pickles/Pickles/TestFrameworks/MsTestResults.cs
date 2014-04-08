@@ -32,7 +32,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
     protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
     {
-      return new SingleMsTestResults(fileInfo);
+      return new MsTestSingleResults(fileInfo);
     }
   }
 }

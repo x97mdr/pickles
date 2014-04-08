@@ -9,12 +9,12 @@ using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.TestFrameworks
 {
-  public class SingleMsTestResults : ITestResults
+  public class MsTestSingleResults : ITestResults
   {
     private static readonly XNamespace ns = @"http://microsoft.com/schemas/VisualStudio/TeamTest/2010";
     private readonly XDocument resultsDocument;
 
-    public SingleMsTestResults(FileInfoBase testResultsFile)
+    public MsTestSingleResults(FileInfoBase testResultsFile)
     {
       this.resultsDocument = this.ReadResultsFile(testResultsFile);
     }
