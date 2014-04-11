@@ -4,7 +4,7 @@
     
   <!-- set the major and minor version number here -->
   <property name="version.major" value="0" />
-  <property name="version.minor" value="14" />
+  <property name="version.minor" value="15" />
   <property name="version.revision" value="0" />
   
   <!-- set build number from continuous integration tool -->
