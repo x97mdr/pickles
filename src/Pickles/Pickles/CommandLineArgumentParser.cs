@@ -23,6 +23,9 @@ using System.Collections.Generic;
 using System.IO.Abstractions;
 using System.Linq;
 using System.Reflection;
+
+using java.io;
+
 using NDesk.Options;
 
 using TextWriter = System.IO.TextWriter;
@@ -112,7 +115,7 @@ namespace PicklesDoc.Pickles
 
           if (!string.IsNullOrEmpty(this.testResultsFile))
           {
-            var files = this.testResultsFile.Split(';');
+            var files = this.testResultsFile.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
 
             configuration.TestResultsFiles = files.Select(f => this.fileSystem.FileInfo.FromFileName(f)).ToArray();
           }

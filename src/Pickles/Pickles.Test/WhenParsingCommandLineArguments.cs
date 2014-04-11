@@ -170,6 +170,36 @@ namespace PicklesDoc.Pickles.Test
     }
 
     [Test]
+    public void ThenCanParseResultsFileAsSemicolonSeparatedListThatStartsWithASemicolon()
+    {
+      var args = new[] { @"-link-results-file=;c:\results1.xml" };
+
+      var configuration = new Configuration();
+      var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
+      bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+
+      shouldContinue.ShouldBeTrue();
+      configuration.HasTestResults.ShouldBeTrue();
+      Assert.AreEqual(1, configuration.TestResultsFiles.Length);
+      Assert.AreEqual(@"c:\results1.xml", configuration.TestResultsFiles[0].FullName);
+    }
+
+    [Test]
+    public void ThenCanParseResultsFileAsSemicolonSeparatedListThatEndsWithASemicolon()
+    {
+      var args = new[] { @"-link-results-file=c:\results1.xml;" };
+
+      var configuration = new Configuration();
+      var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
+      bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+
+      shouldContinue.ShouldBeTrue();
+      configuration.HasTestResults.ShouldBeTrue();
+      Assert.AreEqual(1, configuration.TestResultsFiles.Length);
+      Assert.AreEqual(@"c:\results1.xml", configuration.TestResultsFiles[0].FullName);
+    }
+
+    [Test]
     public void ThenCanParseResultsFileWithShortFormSuccessfully()
     {
       var args = new[] { @"-lr=c:\results.xml" };
