@@ -28,6 +28,8 @@ namespace PicklesDoc.Pickles.TestFrameworks
 {
   public class NUnitResults : MultipleTestResults
   {
+    private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
+
     public NUnitResults(Configuration configuration, NUnitExampleSignatureBuilder exampleSignatureBuilder)
       : base(configuration)
     {
@@ -44,7 +46,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
     protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
     {
-      return new NUnitSingleResults(fileInfo);
+      return new NUnitSingleResults(DocumentLoader.Load(fileInfo));
     }
 
     public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] arguments)

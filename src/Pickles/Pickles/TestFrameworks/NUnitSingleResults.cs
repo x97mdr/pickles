@@ -1,5 +1,4 @@
 using System;
-using System.IO.Abstractions;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
@@ -14,9 +13,9 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
     private readonly XDocument resultsDocument;
 
-    public NUnitSingleResults(FileInfoBase testResultsFile)
+    public NUnitSingleResults(XDocument resultsDocument)
     {
-      this.resultsDocument = new XDocumentLoader().Load(testResultsFile);
+      this.resultsDocument = resultsDocument;
     }
 
     #region ITestResults Members
