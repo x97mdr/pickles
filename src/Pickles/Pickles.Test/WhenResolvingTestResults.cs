@@ -7,7 +7,6 @@ using PicklesDoc.Pickles.TestFrameworks;
 using Should;
 
 using StreamReader = System.IO.StreamReader;
-using StreamWriter = System.IO.StreamWriter;
 
 namespace PicklesDoc.Pickles.Test
 {
