@@ -20,7 +20,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO.Abstractions;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
@@ -34,9 +33,9 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         private readonly XDocument resultsDocument;
 
-        public XUnitSingleResults(FileInfoBase testResultsFile)
+        public XUnitSingleResults(XDocument resultsDocument)
         {
-          this.resultsDocument = new XDocumentLoader().Load(testResultsFile);
+          this.resultsDocument = resultsDocument;
         }
 
       #region ITestResults Members
