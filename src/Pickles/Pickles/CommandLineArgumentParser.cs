@@ -24,8 +24,6 @@ using System.IO.Abstractions;
 using System.Linq;
 using System.Reflection;
 
-using java.io;
-
 using NDesk.Options;
 
 using TextWriter = System.IO.TextWriter;
