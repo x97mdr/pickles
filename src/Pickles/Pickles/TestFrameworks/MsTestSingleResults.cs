@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO.Abstractions;
 using System.Linq;
-using System.Xml;
 using System.Xml.Linq;
 
 using PicklesDoc.Pickles.Parser;
@@ -16,19 +15,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
     public MsTestSingleResults(FileInfoBase testResultsFile)
     {
-      this.resultsDocument = this.ReadResultsFile(testResultsFile);
-    }
-
-    private XDocument ReadResultsFile(FileInfoBase testResultsFile)
-    {
-      XDocument document;
-      using (var stream = testResultsFile.OpenRead())
-      {
-        var xmlReader = XmlReader.Create(stream);
-        document = XDocument.Load(xmlReader);
-        stream.Close();
-      }
-      return document;
+      this.resultsDocument = new XDocumentLoader().Load(testResultsFile);
     }
 
     private Guid GetScenarioExecutionId(Scenario queriedScenario)

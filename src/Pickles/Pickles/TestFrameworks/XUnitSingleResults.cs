@@ -23,7 +23,6 @@ using System.Collections.Generic;
 using System.IO.Abstractions;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Xml;
 using System.Xml.Linq;
 using PicklesDoc.Pickles.Parser;
 
@@ -37,7 +36,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         public XUnitSingleResults(FileInfoBase testResultsFile)
         {
-            this.resultsDocument = this.ReadResultsFile(testResultsFile);
+          this.resultsDocument = new XDocumentLoader().Load(testResultsFile);
         }
 
       #region ITestResults Members
@@ -80,19 +79,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         #endregion
 
-        private XDocument ReadResultsFile(FileInfoBase testResultFile)
-        {
-            XDocument document;
-            using (var stream = testResultFile.OpenRead())
-            {
-                XmlReader xmlReader = XmlReader.Create(stream);
-                document = XDocument.Load(xmlReader);
-                stream.Close();
-            }
-            return document;
-        }
-
-        private XElement GetFeatureElement(Feature feature)
+      private XElement GetFeatureElement(Feature feature)
         {
             IEnumerable<XElement> featureQuery =
                 from clazz in this.resultsDocument.Root.Descendants("class")

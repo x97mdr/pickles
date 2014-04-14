@@ -331,6 +331,7 @@
     <Compile Include="TestFrameworks\SpecRunResults.cs" />
     <Compile Include="TestFrameworks\SpecRunSingleResults.cs" />
     <Compile Include="TestFrameworks\TestResult.cs" />
+    <Compile Include="TestFrameworks\XDocumentLoader.cs" />
     <Compile Include="TestFrameworks\xUnitExampleSignatureBuilder.cs" />
     <Compile Include="TestFrameworks\XUnitResults.cs" />
     <Compile Include="TestFrameworks\XUnitSingleResults.cs" />
