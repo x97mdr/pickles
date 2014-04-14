@@ -80,19 +80,19 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         private XElement FormatExamples(ScenarioOutline scenarioOutline)
         {
-			var exampleDiv = new XElement(this.xmlns + "div");
-			
-			foreach (var example in scenarioOutline.Examples)
-			{
-	            exampleDiv.Add(new XElement(this.xmlns + "div",
-	                                new XAttribute("class", "examples"),
-	                                new XElement(this.xmlns + "h3", "Examples: " + example.Name),
-	                                this.htmlDescriptionFormatter.Format(example.Description),
-	                                (example.TableArgument == null) ? null : this.htmlTableFormatter.Format(example.TableArgument)
-	                ));
-			}
-			
-			return exampleDiv;
+      var exampleDiv = new XElement(this.xmlns + "div");
+      
+      foreach (var example in scenarioOutline.Examples)
+      {
+              exampleDiv.Add(new XElement(this.xmlns + "div",
+                                  new XAttribute("class", "examples"),
+                                  new XElement(this.xmlns + "h3", "Examples: " + example.Name),
+                                  this.htmlDescriptionFormatter.Format(example.Description),
+                                  (example.TableArgument == null) ? null : this.htmlTableFormatter.Format(example.TableArgument)
+                  ));
+      }
+      
+      return exampleDiv;
         }
 
         public XElement Format(ScenarioOutline scenarioOutline, int id)
@@ -103,8 +103,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                                 this.FormatHeading(scenarioOutline),
                                 this.FormatSteps(scenarioOutline),
                                 (scenarioOutline.Examples == null || !scenarioOutline.Examples.Any()) 
-			                    	? null 
-			                    	: this.FormatExamples(scenarioOutline)
+                            ? null 
+                            : this.FormatExamples(scenarioOutline)
                 );
         }
 
