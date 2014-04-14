@@ -21,13 +21,20 @@
 using System;
 using System.IO.Abstractions;
 
+using PicklesDoc.Pickles.Parser;
+
 namespace PicklesDoc.Pickles.TestFrameworks
 {
   public class SpecRunResults : MultipleTestResults
   {
     public SpecRunResults(Configuration configuration)
-      : base(configuration)
+      : base(false, configuration)
     {
+    }
+
+    public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+    {
+      throw new NotSupportedException();
     }
 
     protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)

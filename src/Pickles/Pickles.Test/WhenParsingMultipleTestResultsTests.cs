@@ -18,6 +18,7 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.IO.Abstractions;
 
@@ -58,14 +59,19 @@ namespace PicklesDoc.Pickles.Test
     private class TestableMultipleTestResults : MultipleTestResults
     {
       public TestableMultipleTestResults(IEnumerable<ITestResults> testResults)
-        : base(testResults)
+        : base(false, testResults)
       {
+      }
+
+      public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+      {
+        throw new NotSupportedException();
       }
 
       protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
       {
         // not needed since we use the other constructor
-        throw new System.NotSupportedException();
+        throw new NotSupportedException();
       }
     }
 

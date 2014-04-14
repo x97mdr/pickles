@@ -28,5 +28,8 @@ namespace PicklesDoc.Pickles.TestFrameworks
         TestResult GetFeatureResult(Feature feature);
         TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline);
         TestResult GetScenarioResult(Scenario scenario);
+        TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues);
+
+        bool SupportsExampleResults { get; }
     }
 }

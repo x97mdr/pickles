@@ -155,7 +155,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
             return result;
         }
 
-        public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] row)
+        public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
         {
             IEnumerable<XElement> exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
 
@@ -169,13 +169,21 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
             foreach (XElement exampleElement in exampleElements)
             {
-              Regex signature = signatureBuilder.Build(scenarioOutline, row);
+              Regex signature = signatureBuilder.Build(scenarioOutline, exampleValues);
                 if (signature.IsMatch(exampleElement.Attribute("name").Value.ToLowerInvariant()))
                 {
                     return this.GetResultFromElement(exampleElement);
                 }
             }
             return result;
+        }
+
+        public bool SupportsExampleResults
+        {
+            get
+            {
+                return true;
+            }
         }
     }
 }

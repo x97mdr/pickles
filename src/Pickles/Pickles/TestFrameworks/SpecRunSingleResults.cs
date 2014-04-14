@@ -90,7 +90,21 @@ namespace PicklesDoc.Pickles.TestFrameworks
             return StringToTestResult(specRunScenario.Result);
         }
 
-        private static TestResult StringsToTestResult(IEnumerable<string> results)
+      public TestResult GetExampleResult(Gherkin.ScenarioOutline scenario, string[] exampleValues)
+      {
+        throw new NotSupportedException();
+      }
+
+
+      public bool SupportsExampleResults
+      {
+        get
+        {
+          return false;
+        }
+      }
+
+      private static TestResult StringsToTestResult(IEnumerable<string> results)
         {
             if (results == null)
             {

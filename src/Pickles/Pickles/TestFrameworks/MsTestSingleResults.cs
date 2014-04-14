@@ -60,9 +60,18 @@ namespace PicklesDoc.Pickles.TestFrameworks
       return new Guid(unitTestResult.Attribute("executionId").Value);
     }
 
-    #region ITestResults Members
+    public TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+    {
+      throw new NotSupportedException();
+    }
 
-    #endregion
+    public bool SupportsExampleResults
+    {
+      get
+      {
+        return false;
+      }
+    }
 
     #region Linq Helpers
 

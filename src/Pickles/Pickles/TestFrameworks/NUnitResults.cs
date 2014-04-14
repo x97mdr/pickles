@@ -31,7 +31,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
     private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
 
     public NUnitResults(Configuration configuration, NUnitExampleSignatureBuilder exampleSignatureBuilder)
-      : base(configuration)
+      : base(true, configuration)
     {
       this.SetExampleSignatureBuilder(exampleSignatureBuilder);
     }
@@ -49,7 +49,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
       return new NUnitSingleResults(DocumentLoader.Load(fileInfo));
     }
 
-    public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] arguments)
+    public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] arguments)
     {
       var results = TestResults.OfType<NUnitSingleResults>().Select(tr => tr.GetExampleResult(scenarioOutline, arguments)).ToArray();
 

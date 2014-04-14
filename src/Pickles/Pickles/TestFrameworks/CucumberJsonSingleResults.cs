@@ -59,6 +59,19 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
     }
 
+    public TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+    {
+      throw new NotSupportedException();
+    }
+
+    public bool SupportsExampleResults
+    {
+      get
+      {
+        return false;
+      }
+    }
+
     #endregion
 
     private Feature GetFeatureElement(Parser.Feature feature)
