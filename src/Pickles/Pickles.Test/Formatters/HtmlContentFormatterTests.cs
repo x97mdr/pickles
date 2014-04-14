@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Xml.Linq;
-using Autofac;
+//using Autofac;
 using Moq;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DirectoryCrawler;
@@ -29,8 +28,7 @@ namespace PicklesDoc.Pickles.Test.Formatters
             var exception =
                 Assert.Throws<ArgumentNullException>(
                     () =>
-                    new HtmlContentFormatter(
-                        Container.Resolve<HtmlFeatureFormatter>(),
+                    new HtmlContentFormatter(new Mock<IHtmlFeatureFormatter>().Object, 
                         null));
 
             Assert.AreEqual("htmlIndexFormatter", exception.ParamName);
@@ -40,7 +38,7 @@ namespace PicklesDoc.Pickles.Test.Formatters
         public void Format_ContentIsFeatureNode_UsesHtmlFeatureFormatterWithCorrectArgument()
         {
             var fakeHtmlFeatureFormatter = new Mock<IHtmlFeatureFormatter>();
-            var formatter = new HtmlContentFormatter(fakeHtmlFeatureFormatter.Object, Container.Resolve<HtmlIndexFormatter>());
+            var formatter = new HtmlContentFormatter(fakeHtmlFeatureFormatter.Object, new HtmlIndexFormatter());
 
             var featureNode = new FeatureNode(
                 FileSystem.FileInfo.FromFileName(@"c:\temp\test.feature"),
