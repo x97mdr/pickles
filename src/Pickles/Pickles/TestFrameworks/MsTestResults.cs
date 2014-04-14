@@ -25,6 +25,8 @@ namespace PicklesDoc.Pickles.TestFrameworks
 {
   public class MsTestResults : MultipleTestResults
   {
+    private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
+
     public MsTestResults(Configuration configuration)
       : base(configuration)
     {
@@ -32,7 +34,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
     protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
     {
-      return new MsTestSingleResults(fileInfo);
+      return new MsTestSingleResults(DocumentLoader.Load(fileInfo));
     }
   }
 }

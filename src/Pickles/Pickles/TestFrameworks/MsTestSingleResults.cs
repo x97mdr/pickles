@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO.Abstractions;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -13,9 +12,9 @@ namespace PicklesDoc.Pickles.TestFrameworks
     private static readonly XNamespace ns = @"http://microsoft.com/schemas/VisualStudio/TeamTest/2010";
     private readonly XDocument resultsDocument;
 
-    public MsTestSingleResults(FileInfoBase testResultsFile)
+    public MsTestSingleResults(XDocument resultsDocument)
     {
-      this.resultsDocument = new XDocumentLoader().Load(testResultsFile);
+      this.resultsDocument = resultsDocument;
     }
 
     private Guid GetScenarioExecutionId(Scenario queriedScenario)
