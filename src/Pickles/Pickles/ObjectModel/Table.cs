@@ -21,7 +21,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace PicklesDoc.Pickles.Parser
+namespace PicklesDoc.Pickles.ObjectModel
 {
     public class Table
     {

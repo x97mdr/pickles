@@ -22,6 +22,8 @@ using System;
 using System.Collections.Generic;
 using gherkin;
 
+using PicklesDoc.Pickles.ObjectModel;
+
 namespace PicklesDoc.Pickles.Parser
 {
     internal class StepBuilder

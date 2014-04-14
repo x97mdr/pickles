@@ -4,6 +4,7 @@ using System.Xml.Linq;
 using Autofac;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 using Should;
 

@@ -4,6 +4,7 @@ using Moq;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.Test.Formatters

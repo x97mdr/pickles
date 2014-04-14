@@ -21,6 +21,8 @@
 using System;
 using System.Collections.Generic;
 
+using PicklesDoc.Pickles.ObjectModel;
+
 namespace PicklesDoc.Pickles.Parser
 {
 	public class ExampleBuilder

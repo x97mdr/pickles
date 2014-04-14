@@ -20,7 +20,7 @@
 
 using System;
 using DocumentFormat.OpenXml.Wordprocessing;
-using Table = PicklesDoc.Pickles.Parser.Table;
+using Table = PicklesDoc.Pickles.ObjectModel.Table;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 {
@@ -52,7 +52,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             }
             wordTable.Append(headerRow);
 
-            foreach (Parser.TableRow row in table.DataRows)
+            foreach (ObjectModel.TableRow row in table.DataRows)
             {
                 var wordRow = new TableRow();
 

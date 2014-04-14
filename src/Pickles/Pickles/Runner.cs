@@ -26,6 +26,7 @@ using NGenerics.Patterns.Visitor;
 using NLog;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders;
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 using PicklesDoc.Pickles.TestFrameworks;
 

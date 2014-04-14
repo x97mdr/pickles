@@ -3,6 +3,7 @@ using ClosedXML.Excel;
 using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.Excel;
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 using Should;
 

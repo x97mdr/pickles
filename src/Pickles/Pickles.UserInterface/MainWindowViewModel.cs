@@ -24,6 +24,8 @@ using System.IO.Abstractions;
 using System.Linq;
 using System.Windows.Input;
 using Autofac;
+
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 using PicklesDoc.Pickles.UserInterface.Mvvm;
 using PicklesDoc.Pickles.UserInterface.Settings;

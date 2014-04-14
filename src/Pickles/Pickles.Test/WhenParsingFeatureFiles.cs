@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using NUnit.Framework;
 using Autofac;
+
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 using System;
 
