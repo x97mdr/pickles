@@ -293,12 +293,12 @@
     <Compile Include="Parser\JsonResult\Step.cs" />
     <Compile Include="Parser\JsonResult\Tag.cs" />
     <Compile Include="Parser\PicklesParser.cs" />
-    <Compile Include="Parser\ScenarioBuilder.cs" />
-    <Compile Include="Parser\ScenarioOutlineBuilder.cs" />
+    <Compile Include="Parser\Builders\ScenarioBuilder.cs" />
+    <Compile Include="Parser\Builders\ScenarioOutlineBuilder.cs" />
     <Compile Include="Parser\SpecRun\Factory.cs" />
     <Compile Include="Parser\SpecRun\Feature.cs" />
     <Compile Include="Parser\SpecRun\Scenario.cs" />
-    <Compile Include="Parser\StepBuilder.cs" />
+    <Compile Include="Parser\Builders\StepBuilder.cs" />
     <Compile Include="ObjectModel\Table.cs" />
     <Compile Include="ObjectModel\Feature.cs" />
     <Compile Include="ObjectModel\Keyword.cs" />
@@ -307,7 +307,7 @@
     <Compile Include="ObjectModel\Scenario.cs" />
     <Compile Include="ObjectModel\ScenarioOutline.cs" />
     <Compile Include="ObjectModel\Step.cs" />
-    <Compile Include="Parser\TableBuilder.cs" />
+    <Compile Include="Parser\Builders\TableBuilder.cs" />
     <Compile Include="ObjectModel\TableRow.cs" />
     <Compile Include="PicklesModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -336,7 +336,7 @@
     <Compile Include="TestFrameworks\XUnitResults.cs" />
     <Compile Include="TestFrameworks\XUnitSingleResults.cs" />
     <Compile Include="TestResultsFormat.cs" />
-    <Compile Include="Parser\ExampleBuilder.cs" />
+    <Compile Include="Parser\Builders\ExampleBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
