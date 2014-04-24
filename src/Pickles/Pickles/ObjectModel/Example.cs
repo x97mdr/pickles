@@ -20,6 +20,8 @@
 
 using System;
 
+using PicklesDoc.Pickles.TestFrameworks;
+
 namespace PicklesDoc.Pickles.ObjectModel
 {
     public class Example
@@ -27,5 +29,6 @@ namespace PicklesDoc.Pickles.ObjectModel
         public string Name { get; set; }
         public string Description { get; set; }
         public Table TableArgument { get; set; }
+        public TestResult Result { get; set; }
     }
 }
