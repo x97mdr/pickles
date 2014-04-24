@@ -147,5 +147,17 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
           return null;
         }
+
+        public XElement Format(ScenarioOutline scenarioOutline, params string[] exampleValues)
+        {
+          if (this.configuration.HasTestResults && this.results.SupportsExampleResults)
+          {
+            TestResult exampleResult = this.results.GetExampleResult(scenarioOutline, exampleValues);
+
+            return this.BuildImageElement(exampleResult);
+          }
+
+          return null;
+        }
     }
 }
