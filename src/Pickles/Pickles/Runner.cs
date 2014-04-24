@@ -90,7 +90,7 @@ namespace PicklesDoc.Pickles
         {
             foreach (var scenario in featureTreeNode.Feature.FeatureElements)
             {
-                scenario.Result = scenario.GetType().Name == "Scenario"
+                scenario.Result = scenario is Scenario
                                       ? testResults.GetScenarioResult(scenario as Scenario)
                                       : testResults.GetScenarioOutlineResult(scenario as ScenarioOutline);
             }
