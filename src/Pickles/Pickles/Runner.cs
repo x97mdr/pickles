@@ -19,6 +19,7 @@
 #endregion
 
 using System;
+using System.Linq;
 using System.Reflection;
 using Autofac;
 using NGenerics.DataStructures.Trees;
@@ -102,7 +103,17 @@ namespace PicklesDoc.Pickles
 
               if (scenarioOutline != null)
               {
-                featureElement.Result = testResults.GetScenarioOutlineResult(scenarioOutline);
+                if (testResults.SupportsExampleResults)
+                {
+                  foreach (var example in scenarioOutline.Examples.SelectMany(e => e.TableArgument.DataRows))
+                  {
+                    example.Result = testResults.GetExampleResult(scenarioOutline, example.ToArray());
+                  }
+                }
+                else
+                {
+                  featureElement.Result = testResults.GetScenarioOutlineResult(scenarioOutline);
+                }
                 continue;
               }
             }
