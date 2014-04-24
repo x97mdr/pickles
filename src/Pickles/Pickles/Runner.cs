@@ -88,11 +88,23 @@ namespace PicklesDoc.Pickles
 
         private static void SetResultsForIndividualScenariosUnderFeature(FeatureNode featureTreeNode, ITestResults testResults)
         {
-            foreach (var scenario in featureTreeNode.Feature.FeatureElements)
+            foreach (var featureElement in featureTreeNode.Feature.FeatureElements)
             {
-                scenario.Result = scenario is Scenario
-                                      ? testResults.GetScenarioResult(scenario as Scenario)
-                                      : testResults.GetScenarioOutlineResult(scenario as ScenarioOutline);
+              var scenario = featureElement as Scenario;
+
+              if (scenario != null)
+              {
+                featureElement.Result = testResults.GetScenarioResult(scenario);
+                continue;
+              }
+
+              var scenarioOutline = featureElement as ScenarioOutline;
+
+              if (scenarioOutline != null)
+              {
+                testResults.GetScenarioOutlineResult(scenarioOutline);
+                continue;
+              }
             }
         }
 
