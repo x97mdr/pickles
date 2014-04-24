@@ -21,6 +21,8 @@
 using System;
 using System.Collections.Generic;
 
+using PicklesDoc.Pickles.TestFrameworks;
+
 namespace PicklesDoc.Pickles.ObjectModel
 {
     public class TableRow : List<string>
@@ -33,5 +35,7 @@ namespace PicklesDoc.Pickles.ObjectModel
         {
             AddRange(cells);
         }
+
+      public TestResult Result { get; set; }
     }
 }
