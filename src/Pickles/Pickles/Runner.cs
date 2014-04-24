@@ -109,6 +109,9 @@ namespace PicklesDoc.Pickles
                   {
                     example.Result = testResults.GetExampleResult(scenarioOutline, example.ToArray());
                   }
+
+                  scenarioOutline.Result =
+                    scenarioOutline.Examples.SelectMany(e => e.TableArgument.DataRows).Select(row => row.Result).Merge();
                 }
                 else
                 {
