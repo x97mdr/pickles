@@ -102,7 +102,7 @@ namespace PicklesDoc.Pickles
 
               if (scenarioOutline != null)
               {
-                testResults.GetScenarioOutlineResult(scenarioOutline);
+                featureElement.Result = testResults.GetScenarioOutlineResult(scenarioOutline);
                 continue;
               }
             }
