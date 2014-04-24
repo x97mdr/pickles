@@ -23,7 +23,7 @@ using System.Linq;
 using System.Xml.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
+using PicklesDoc.Pickles.TestFrameworks;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
@@ -34,17 +34,20 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
         private readonly HtmlStepFormatter htmlStepFormatter;
         private readonly HtmlTableFormatter htmlTableFormatter;
         private readonly XNamespace xmlns;
+        private readonly ITestResults testResults;
 
         public HtmlScenarioOutlineFormatter(
             HtmlStepFormatter htmlStepFormatter,
             HtmlDescriptionFormatter htmlDescriptionFormatter,
             HtmlTableFormatter htmlTableFormatter,
-            HtmlImageResultFormatter htmlImageResultFormatter)
+            HtmlImageResultFormatter htmlImageResultFormatter,
+            ITestResults testResults)
         {
             this.htmlStepFormatter = htmlStepFormatter;
             this.htmlDescriptionFormatter = htmlDescriptionFormatter;
             this.htmlTableFormatter = htmlTableFormatter;
             this.htmlImageResultFormatter = htmlImageResultFormatter;
+            this.testResults = testResults;
             this.xmlns = HtmlNamespace.Xhtml;
         }
 
@@ -90,7 +93,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                                   new XAttribute("class", "examples"),
                                   new XElement(this.xmlns + "h3", "Examples: " + example.Name),
                                   this.htmlDescriptionFormatter.Format(example.Description),
-                                  (example.TableArgument == null) ? null : this.htmlTableFormatter.Format(example.TableArgument)
+                                  (example.TableArgument == null) ? null : this.htmlTableFormatter.Format(example.TableArgument, scenarioOutline, testResults.SupportsExampleResults)
                   ));
       }
       

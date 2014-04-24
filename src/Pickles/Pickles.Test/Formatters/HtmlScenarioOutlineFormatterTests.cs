@@ -5,7 +5,6 @@ using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.Test.Formatters
 {
@@ -17,10 +16,12 @@ namespace PicklesDoc.Pickles.Test.Formatters
         [SetUp]
         public void Setup()
         {
-            this.formatter = new HtmlScenarioOutlineFormatter(Container.Resolve<HtmlStepFormatter>(),
-                                                         Container.Resolve<HtmlDescriptionFormatter>(),
-                                                         Container.Resolve<HtmlTableFormatter>(),
-                                                         Container.Resolve<HtmlImageResultFormatter>());
+          this.formatter = new HtmlScenarioOutlineFormatter(
+            Container.Resolve<HtmlStepFormatter>(),
+            Container.Resolve<HtmlDescriptionFormatter>(),
+            Container.Resolve<HtmlTableFormatter>(),
+            Container.Resolve<HtmlImageResultFormatter>(),
+            Container.Resolve<Configuration>());
         }
 
         #endregion
@@ -29,8 +30,8 @@ namespace PicklesDoc.Pickles.Test.Formatters
 
         private static ScenarioOutline BuildMinimalScenarioOutline()
         {
-			var examples = new List<Example>();
-			examples.Add(new Example
+      var examples = new List<Example>();
+      examples.Add(new Example
                                                     {
                                                         Description = "My Example Description",
                                                         TableArgument = new Table
