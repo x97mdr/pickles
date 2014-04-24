@@ -23,7 +23,7 @@ using System.Collections.Generic;
 
 using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.Parser
+namespace PicklesDoc.Pickles.Parser.Builders
 {
     internal class ScenarioBuilder
     {

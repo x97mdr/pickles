@@ -24,7 +24,7 @@ using System.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.Parser
+namespace PicklesDoc.Pickles.Parser.Builders
 {
     internal class TableBuilder
     {
