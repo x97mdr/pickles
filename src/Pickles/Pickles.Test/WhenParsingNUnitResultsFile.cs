@@ -253,5 +253,37 @@ namespace PicklesDoc.Pickles.Test
           TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "fail_1" });
           exampleResult3.ShouldEqual(TestResult.Failed);
         }
+
+        [Test]
+        public void ThenCanReadIndividualResultsFromScenarioOutline_MultipleExampleSections_ShouldBeTestResultFailed()
+        {
+          var results = ParseResultsFile();
+          results.SetExampleSignatureBuilder(new NUnitExampleSignatureBuilder());
+
+          var feature = new Feature { Name = "Scenario Outlines" };
+
+          var scenarioOutline = new ScenarioOutline { Name = "And we can go totally bonkers with multiple example sections.", Feature = feature };
+
+          TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+          exampleResultOutline.ShouldEqual(TestResult.Failed);
+
+          TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
+          exampleResult1.ShouldEqual(TestResult.Passed);
+
+          TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
+          exampleResult2.ShouldEqual(TestResult.Passed);
+
+          TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_1" });
+          exampleResult3.ShouldEqual(TestResult.Inconclusive);
+
+          TestResult exampleResult4 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_2" });
+          exampleResult4.ShouldEqual(TestResult.Inconclusive);
+
+          TestResult exampleResult5 = results.GetExampleResult(scenarioOutline, new[] { "fail_1" });
+          exampleResult5.ShouldEqual(TestResult.Failed);
+
+          TestResult exampleResult6 = results.GetExampleResult(scenarioOutline, new[] { "fail_2" });
+          exampleResult6.ShouldEqual(TestResult.Failed);
+        }
     }
 }
