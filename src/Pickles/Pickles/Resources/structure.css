@@ -285,3 +285,7 @@ i.passed {
   margin-top: 0;
   color: gray;
 }
+
+table i.inconclusive, table i.failed, table i.passed {
+  margin-top: 0.2em;
+}
