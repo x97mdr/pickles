@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
+
+using Moq;
+
 using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.ObjectModel;
+using PicklesDoc.Pickles.TestFrameworks;
 
 namespace PicklesDoc.Pickles.Test.Formatters
 {
@@ -16,12 +20,16 @@ namespace PicklesDoc.Pickles.Test.Formatters
         [SetUp]
         public void Setup()
         {
+          var fakeTestResults = new Mock<ITestResults>();
+          fakeTestResults.Setup(ftr => ftr.SupportsExampleResults).Returns(false);
+
+
           this.formatter = new HtmlScenarioOutlineFormatter(
             Container.Resolve<HtmlStepFormatter>(),
             Container.Resolve<HtmlDescriptionFormatter>(),
             Container.Resolve<HtmlTableFormatter>(),
             Container.Resolve<HtmlImageResultFormatter>(),
-            Container.Resolve<Configuration>());
+            fakeTestResults.Object);
         }
 
         #endregion
