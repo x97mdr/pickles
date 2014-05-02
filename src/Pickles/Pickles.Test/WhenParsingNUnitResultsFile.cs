@@ -184,5 +184,28 @@ namespace PicklesDoc.Pickles.Test
             result.WasExecuted.ShouldBeFalse();
             result.WasSuccessful.ShouldBeFalse();
         }
+
+      [Test]
+      public void ThenCanReadIndividualResultsFromScenarioOutline_AllPass_ShouldBeTestResultPassed()
+      {
+        var results = ParseResultsFile();
+        results.SetExampleSignatureBuilder(new NUnitExampleSignatureBuilder());
+
+        var feature = new Feature { Name = "Scenario Outlines" };
+
+        var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline where all scenarios pass", Feature = feature };
+
+        TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+        exampleResultOutline.ShouldEqual(TestResult.Passed);
+
+        TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
+        exampleResult1.ShouldEqual(TestResult.Passed);
+
+        TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
+        exampleResult2.ShouldEqual(TestResult.Passed);
+
+        TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "pass_3" });
+        exampleResult3.ShouldEqual(TestResult.Passed);
+      }
     }
 }
