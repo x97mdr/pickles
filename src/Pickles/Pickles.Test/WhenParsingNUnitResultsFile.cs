@@ -3,7 +3,6 @@
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 using PicklesDoc.Pickles.TestFrameworks;
 using Should;
 
@@ -146,17 +145,17 @@ namespace PicklesDoc.Pickles.Test
 
         private Feature FailingFeature()
         {
-            return new Feature() {Name = "Failing"};
+            return new Feature {Name = "Failing"};
         }
 
         private Feature InconclusiveFeature()
         {
-            return new Feature() { Name = "Inconclusive" };
+            return new Feature { Name = "Inconclusive" };
         }
 
         private Feature PassingFeature()
         {
-            return new Feature() { Name = "Passing" };
+            return new Feature { Name = "Passing" };
         }
 
         [Test]
