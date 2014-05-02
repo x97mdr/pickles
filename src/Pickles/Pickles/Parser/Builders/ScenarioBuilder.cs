@@ -21,7 +21,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace PicklesDoc.Pickles.Parser
+using PicklesDoc.Pickles.ObjectModel;
+
+namespace PicklesDoc.Pickles.Parser.Builders
 {
     internal class ScenarioBuilder
     {

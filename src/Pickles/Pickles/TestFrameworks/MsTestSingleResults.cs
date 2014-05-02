@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.IO.Abstractions;
 using System.Linq;
-using System.Xml;
 using System.Xml.Linq;
 
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.TestFrameworks
@@ -14,21 +13,9 @@ namespace PicklesDoc.Pickles.TestFrameworks
     private static readonly XNamespace ns = @"http://microsoft.com/schemas/VisualStudio/TeamTest/2010";
     private readonly XDocument resultsDocument;
 
-    public MsTestSingleResults(FileInfoBase testResultsFile)
+    public MsTestSingleResults(XDocument resultsDocument)
     {
-      this.resultsDocument = this.ReadResultsFile(testResultsFile);
-    }
-
-    private XDocument ReadResultsFile(FileInfoBase testResultsFile)
-    {
-      XDocument document;
-      using (var stream = testResultsFile.OpenRead())
-      {
-        var xmlReader = XmlReader.Create(stream);
-        document = XDocument.Load(xmlReader);
-        stream.Close();
-      }
-      return document;
+      this.resultsDocument = resultsDocument;
     }
 
     private Guid GetScenarioExecutionId(Scenario queriedScenario)
@@ -74,9 +61,18 @@ namespace PicklesDoc.Pickles.TestFrameworks
       return new Guid(unitTestResult.Attribute("executionId").Value);
     }
 
-    #region ITestResults Members
+    public TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+    {
+      throw new NotSupportedException();
+    }
 
-    #endregion
+    public bool SupportsExampleResults
+    {
+      get
+      {
+        return false;
+      }
+    }
 
     #region Linq Helpers
 

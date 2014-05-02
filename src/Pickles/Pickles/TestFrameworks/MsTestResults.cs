@@ -21,18 +21,28 @@
 using System;
 using System.IO.Abstractions;
 
+using PicklesDoc.Pickles.ObjectModel;
+using PicklesDoc.Pickles.Parser;
+
 namespace PicklesDoc.Pickles.TestFrameworks
 {
   public class MsTestResults : MultipleTestResults
   {
+    private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
+
     public MsTestResults(Configuration configuration)
-      : base(configuration)
+      : base(false, configuration)
     {
+    }
+
+    public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+    {
+      throw new NotSupportedException();
     }
 
     protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
     {
-      return new MsTestSingleResults(fileInfo);
+      return new MsTestSingleResults(DocumentLoader.Load(fileInfo));
     }
   }
 }

@@ -2,6 +2,7 @@
 using System.Xml;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 using Should;
 using TechTalk.SpecFlow;

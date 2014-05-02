@@ -1,7 +1,8 @@
 ﻿using System;
 
 using NUnit.Framework;
-using PicklesDoc.Pickles.Parser;
+
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks;
 using Should;
 
@@ -144,17 +145,17 @@ namespace PicklesDoc.Pickles.Test
 
         private Feature FailingFeature()
         {
-            return new Feature() {Name = "Failing"};
+            return new Feature {Name = "Failing"};
         }
 
         private Feature InconclusiveFeature()
         {
-            return new Feature() { Name = "Inconclusive" };
+            return new Feature { Name = "Inconclusive" };
         }
 
         private Feature PassingFeature()
         {
-            return new Feature() { Name = "Passing" };
+            return new Feature { Name = "Passing" };
         }
 
         [Test]
@@ -182,6 +183,107 @@ namespace PicklesDoc.Pickles.Test
             var result = results.GetFeatureResult(feature);
             result.WasExecuted.ShouldBeFalse();
             result.WasSuccessful.ShouldBeFalse();
+        }
+
+        [Test]
+        public void ThenCanReadIndividualResultsFromScenarioOutline_AllPass_ShouldBeTestResultPassed()
+        {
+          var results = ParseResultsFile();
+          results.SetExampleSignatureBuilder(new NUnitExampleSignatureBuilder());
+
+          var feature = new Feature { Name = "Scenario Outlines" };
+
+          var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline where all scenarios pass", Feature = feature };
+
+          TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+          exampleResultOutline.ShouldEqual(TestResult.Passed);
+
+          TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
+          exampleResult1.ShouldEqual(TestResult.Passed);
+
+          TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
+          exampleResult2.ShouldEqual(TestResult.Passed);
+
+          TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "pass_3" });
+          exampleResult3.ShouldEqual(TestResult.Passed);
+        }
+
+        [Test]
+        public void ThenCanReadIndividualResultsFromScenarioOutline_OneInconclusive_ShouldBeTestResultInconclusive()
+        {
+          var results = ParseResultsFile();
+          results.SetExampleSignatureBuilder(new NUnitExampleSignatureBuilder());
+
+          var feature = new Feature { Name = "Scenario Outlines" };
+
+          var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline where one scenario is inconclusive", Feature = feature };
+
+          TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+          exampleResultOutline.ShouldEqual(TestResult.Inconclusive);
+
+          TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
+          exampleResult1.ShouldEqual(TestResult.Passed);
+
+          TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
+          exampleResult2.ShouldEqual(TestResult.Passed);
+
+          TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_1" });
+          exampleResult3.ShouldEqual(TestResult.Inconclusive);
+        }
+
+        [Test]
+        public void ThenCanReadIndividualResultsFromScenarioOutline_OneFailed_ShouldBeTestResultFailed()
+        {
+          var results = ParseResultsFile();
+          results.SetExampleSignatureBuilder(new NUnitExampleSignatureBuilder());
+
+          var feature = new Feature { Name = "Scenario Outlines" };
+
+          var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline where one scenario fails", Feature = feature };
+
+          TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+          exampleResultOutline.ShouldEqual(TestResult.Failed);
+
+          TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
+          exampleResult1.ShouldEqual(TestResult.Passed);
+
+          TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
+          exampleResult2.ShouldEqual(TestResult.Passed);
+
+          TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "fail_1" });
+          exampleResult3.ShouldEqual(TestResult.Failed);
+        }
+
+        [Test]
+        public void ThenCanReadIndividualResultsFromScenarioOutline_MultipleExampleSections_ShouldBeTestResultFailed()
+        {
+          var results = ParseResultsFile();
+          results.SetExampleSignatureBuilder(new NUnitExampleSignatureBuilder());
+
+          var feature = new Feature { Name = "Scenario Outlines" };
+
+          var scenarioOutline = new ScenarioOutline { Name = "And we can go totally bonkers with multiple example sections.", Feature = feature };
+
+          TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+          exampleResultOutline.ShouldEqual(TestResult.Failed);
+
+          TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
+          exampleResult1.ShouldEqual(TestResult.Passed);
+
+          TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
+          exampleResult2.ShouldEqual(TestResult.Passed);
+
+          TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_1" });
+          exampleResult3.ShouldEqual(TestResult.Inconclusive);
+
+          TestResult exampleResult4 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_2" });
+          exampleResult4.ShouldEqual(TestResult.Inconclusive);
+
+          TestResult exampleResult5 = results.GetExampleResult(scenarioOutline, new[] { "fail_1" });
+          exampleResult5.ShouldEqual(TestResult.Failed);
+
+          TestResult exampleResult6 = results.GetExampleResult(scenarioOutline, new[] { "fail_2" });
+          exampleResult6.ShouldEqual(TestResult.Failed);
         }
     }
 }

@@ -1,19 +1,16 @@
 ﻿using System;
-using System.IO.Abstractions.TestingHelpers;
-using System.Reflection;
 using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.TestFrameworks;
 using Should;
-
-using StreamReader = System.IO.StreamReader;
-using StreamWriter = System.IO.StreamWriter;
 
 namespace PicklesDoc.Pickles.Test
 {
     [TestFixture]
     public class WhenResolvingTestResults : BaseFixture
     {
+        private const string TestResultsResourcePrefix = "PicklesDoc.Pickles.Test.";
+
         [Test]
         public void ThenCanResolveAsSingletonWhenNoTestResultsSelected()
         {
@@ -28,20 +25,13 @@ namespace PicklesDoc.Pickles.Test
         }
 
         [Test]
-        public void ThenCanResolveAsSingletonWhenTestResultsAreMSTest()
+        public void ThenCanResolveAsSingletonWhenTestResultsAreMsTest()
         {
-            const string resultsFilename = "results-example-mstest.trx";
-            using (
-                var input =
-                    new StreamReader(
-                        Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
-            {
-              FileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
-            }
+            FileSystem.AddFile("results-example-mstest.trx", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "results-example-mstest.trx"));
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.MsTest;
-            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(resultsFilename) };
+            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName("results-example-mstest.trx") };
 
             var item1 = Container.Resolve<ITestResults>();
             var item2 = Container.Resolve<ITestResults>();
@@ -56,18 +46,11 @@ namespace PicklesDoc.Pickles.Test
         [Test]
         public void ThenCanResolveAsSingletonWhenTestResultsAreNUnit()
         {
-            const string resultsFilename = "results-example-nunit.xml";
-            using (
-                var input =
-                    new StreamReader(
-                        Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
-            {
-              FileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
-            }
+            FileSystem.AddFile("results-example-nunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "results-example-nunit.xml"));
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.NUnit;
-            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(resultsFilename) };
+            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName("results-example-nunit.xml") };
 
             var item1 = Container.Resolve<ITestResults>();
             var item2 = Container.Resolve<ITestResults>();
@@ -82,79 +65,58 @@ namespace PicklesDoc.Pickles.Test
         [Test]
         public void ThenCanResolveAsSingletonWhenTestResultsArexUnit()
         {
-          const string resultsFilename = "results-example-xunit.xml";
-          using (
-              var input =
-                  new StreamReader(
-                      Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
-          {
-            FileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
-          }
+            FileSystem.AddFile("results-example-xunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "results-example-xunit.xml"));
 
-          var configuration = Container.Resolve<Configuration>();
-          configuration.TestResultsFormat = TestResultsFormat.xUnit;
-          configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(resultsFilename) };
+            var configuration = Container.Resolve<Configuration>();
+            configuration.TestResultsFormat = TestResultsFormat.xUnit;
+            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName("results-example-xunit.xml") };
 
-          var item1 = Container.Resolve<ITestResults>();
-          var item2 = Container.Resolve<ITestResults>();
+            var item1 = Container.Resolve<ITestResults>();
+            var item2 = Container.Resolve<ITestResults>();
 
-          item1.ShouldNotBeNull();
-          item1.ShouldBeType<XUnitResults>();
-          item2.ShouldNotBeNull();
-          item2.ShouldBeType<XUnitResults>();
-          item1.ShouldBeSameAs(item2);
+            item1.ShouldNotBeNull();
+            item1.ShouldBeType<XUnitResults>();
+            item2.ShouldNotBeNull();
+            item2.ShouldBeType<XUnitResults>();
+            item1.ShouldBeSameAs(item2);
         }
 
         [Test]
         public void ThenCanResolveAsSingletonWhenTestResultsAreCucumberJson()
         {
-          const string resultsFilename = "results-example-json.json";
-          using (
-              var input =
-                  new StreamReader(
-                      Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
-          {
-            FileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
-          }
+            FileSystem.AddFile("results-example-json.json", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "results-example-json.json"));
 
-          var configuration = Container.Resolve<Configuration>();
-          configuration.TestResultsFormat = TestResultsFormat.CucumberJson;
-          configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(resultsFilename) };
+            var configuration = Container.Resolve<Configuration>();
+            configuration.TestResultsFormat = TestResultsFormat.CucumberJson;
+            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName("results-example-json.json") };
 
-          var item1 = Container.Resolve<ITestResults>();
-          var item2 = Container.Resolve<ITestResults>();
+            var item1 = Container.Resolve<ITestResults>();
+            var item2 = Container.Resolve<ITestResults>();
 
-          item1.ShouldNotBeNull();
-          item1.ShouldBeType<CucumberJsonResults>();
-          item2.ShouldNotBeNull();
-          item2.ShouldBeType<CucumberJsonResults>();
-          item1.ShouldBeSameAs(item2);
+            item1.ShouldNotBeNull();
+            item1.ShouldBeType<CucumberJsonResults>();
+            item2.ShouldNotBeNull();
+            item2.ShouldBeType<CucumberJsonResults>();
+            item1.ShouldBeSameAs(item2);
         }
 
         [Test]
         public void ThenCanResolveAsSingletonWhenTestResultsAreSpecrun()
         {
-          const string resultsFilename = "results-example-specrun.html";
-          using (
-              var input =
-                  new StreamReader(
-                      Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
-          {
-            FileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
-          }
+            FileSystem.AddFile("results-example-specrun.html", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "results-example-specrun.html"));
 
-          var configuration = Container.Resolve<Configuration>();
-          configuration.TestResultsFormat = TestResultsFormat.SpecRun;
-          configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(resultsFilename) };
+            var configuration = Container.Resolve<Configuration>();
+            configuration.TestResultsFormat = TestResultsFormat.SpecRun;
+            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName("results-example-specrun.html") };
 
-          var item1 = Container.Resolve<ITestResults>();
-          var item2 = Container.Resolve<ITestResults>();
+            var item1 = Container.Resolve<ITestResults>();
+            var item2 = Container.Resolve<ITestResults>();
 
-          item1.ShouldNotBeNull();
-          item1.ShouldBeType<SpecRunResults>();
-          item2.ShouldNotBeNull();
-          item2.ShouldBeType<SpecRunResults>();
-          item1.ShouldBeSameAs(item2);
+            item1.ShouldNotBeNull();
+            item1.ShouldBeType<SpecRunResults>();
+            item2.ShouldNotBeNull();
+            item2.ShouldBeType<SpecRunResults>();
+            item1.ShouldBeSameAs(item2);
         }
 
         [Test]
@@ -168,17 +130,13 @@ namespace PicklesDoc.Pickles.Test
 
 
         [Test]
-        public void ThenCanResolveWhenTestResultsAreMSTest()
+        public void ThenCanResolveWhenTestResultsAreMsTest()
         {
-            const string resultsFilename = "results-example-mstest.trx";
-            using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
-            {
-              FileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
-            }
+            FileSystem.AddFile("results-example-mstest.trx", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "results-example-mstest.trx"));
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.MsTest;
-            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(resultsFilename) };
+            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName("results-example-mstest.trx") };
 
             var item = Container.Resolve<ITestResults>();
 
@@ -189,15 +147,11 @@ namespace PicklesDoc.Pickles.Test
         [Test]
         public void ThenCanResolveWhenTestResultsAreNUnit()
         {
-            const string resultsFilename = "results-example-nunit.xml";
-            using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
-            {
-              FileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
-            }
+           FileSystem.AddFile("results-example-nunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "results-example-nunit.xml"));
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.NUnit;
-            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(resultsFilename) };
+            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName("results-example-nunit.xml") };
 
             var item = Container.Resolve<ITestResults>();
 
@@ -208,58 +162,46 @@ namespace PicklesDoc.Pickles.Test
         [Test]
         public void ThenCanResolveWhenTestResultsArexUnit()
         {
-          const string resultsFilename = "results-example-xunit.xml";
-          using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
-          {
-            FileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
-          }
+            FileSystem.AddFile("results-example-xunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "results-example-xunit.xml"));
 
-          var configuration = Container.Resolve<Configuration>();
-          configuration.TestResultsFormat = TestResultsFormat.xUnit;
-          configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(resultsFilename) };
+            var configuration = Container.Resolve<Configuration>();
+            configuration.TestResultsFormat = TestResultsFormat.xUnit;
+            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName("results-example-xunit.xml") };
 
-          var item = Container.Resolve<ITestResults>();
+            var item = Container.Resolve<ITestResults>();
 
-          Assert.NotNull(item);
-          Assert.IsInstanceOf<XUnitResults>(item);
+            Assert.NotNull(item);
+            Assert.IsInstanceOf<XUnitResults>(item);
         }
 
         [Test]
         public void ThenCanResolveWhenTestResultsAreCucumberJson()
         {
-          const string resultsFilename = "results-example-json.json";
-          using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
-          {
-            FileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
-          }
+            FileSystem.AddFile("results-example-json.json", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "results-example-json.json"));
 
-          var configuration = Container.Resolve<Configuration>();
-          configuration.TestResultsFormat = TestResultsFormat.CucumberJson;
-          configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(resultsFilename) };
+            var configuration = Container.Resolve<Configuration>();
+            configuration.TestResultsFormat = TestResultsFormat.CucumberJson;
+            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName("results-example-json.json") };
 
-          var item = Container.Resolve<ITestResults>();
+            var item = Container.Resolve<ITestResults>();
 
-          Assert.NotNull(item);
-          Assert.IsInstanceOf<CucumberJsonResults>(item);
+            Assert.NotNull(item);
+            Assert.IsInstanceOf<CucumberJsonResults>(item);
         }
 
         [Test]
         public void ThenCanResolveWhenTestResultsAreSpecrun()
         {
-          const string resultsFilename = "results-example-specrun.html";
-          using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + resultsFilename)))
-          {
-              FileSystem.AddFile(resultsFilename, new MockFileData(input.ReadToEnd()));
-          }
+            FileSystem.AddFile("results-example-specrun.html", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "results-example-specrun.html"));
 
-          var configuration = Container.Resolve<Configuration>();
-          configuration.TestResultsFormat = TestResultsFormat.SpecRun;
-          configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(resultsFilename) };
+            var configuration = Container.Resolve<Configuration>();
+            configuration.TestResultsFormat = TestResultsFormat.SpecRun;
+            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName("results-example-specrun.html") };
 
-          var item = Container.Resolve<ITestResults>();
+            var item = Container.Resolve<ITestResults>();
 
-          Assert.NotNull(item);
-          Assert.IsInstanceOf<SpecRunResults>(item);
+            Assert.NotNull(item);
+            Assert.IsInstanceOf<SpecRunResults>(item);
         }
     }
 }

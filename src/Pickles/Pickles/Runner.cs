@@ -19,6 +19,7 @@
 #endregion
 
 using System;
+using System.Linq;
 using System.Reflection;
 using Autofac;
 using NGenerics.DataStructures.Trees;
@@ -26,6 +27,7 @@ using NGenerics.Patterns.Visitor;
 using NLog;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders;
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 using PicklesDoc.Pickles.TestFrameworks;
 
@@ -87,11 +89,36 @@ namespace PicklesDoc.Pickles
 
         private static void SetResultsForIndividualScenariosUnderFeature(FeatureNode featureTreeNode, ITestResults testResults)
         {
-            foreach (var scenario in featureTreeNode.Feature.FeatureElements)
+            foreach (var featureElement in featureTreeNode.Feature.FeatureElements)
             {
-                scenario.Result = scenario.GetType().Name == "Scenario"
-                                      ? testResults.GetScenarioResult(scenario as Scenario)
-                                      : testResults.GetScenarioOutlineResult(scenario as ScenarioOutline);
+              var scenario = featureElement as Scenario;
+
+              if (scenario != null)
+              {
+                featureElement.Result = testResults.GetScenarioResult(scenario);
+                continue;
+              }
+
+              var scenarioOutline = featureElement as ScenarioOutline;
+
+              if (scenarioOutline != null)
+              {
+                if (testResults.SupportsExampleResults)
+                {
+                  foreach (var example in scenarioOutline.Examples.SelectMany(e => e.TableArgument.DataRows))
+                  {
+                    example.Result = testResults.GetExampleResult(scenarioOutline, example.ToArray());
+                  }
+
+                  scenarioOutline.Result =
+                    scenarioOutline.Examples.SelectMany(e => e.TableArgument.DataRows).Select(row => row.Result).Merge();
+                }
+                else
+                {
+                  featureElement.Result = testResults.GetScenarioOutlineResult(scenarioOutline);
+                }
+                continue;
+              }
             }
         }
 

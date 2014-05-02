@@ -20,14 +20,14 @@
 
 using System;
 
-namespace PicklesDoc.Pickles.Parser
+namespace PicklesDoc.Pickles.ObjectModel
 {
-    public class Step
+    public enum Keyword
     {
-        public Keyword Keyword { get; set; }
-        public string NativeKeyword { get; set; }
-        public string Name { get; set; }
-        public Table TableArgument { get; set; }
-        public string DocStringArgument { get; set; }
+        Given,
+        When,
+        Then,
+        And,
+        But
     }
 }

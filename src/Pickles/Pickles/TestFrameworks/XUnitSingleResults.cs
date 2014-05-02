@@ -20,11 +20,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO.Abstractions;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Xml;
 using System.Xml.Linq;
+
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.TestFrameworks
@@ -35,9 +35,9 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         private readonly XDocument resultsDocument;
 
-        public XUnitSingleResults(FileInfoBase testResultsFile)
+        public XUnitSingleResults(XDocument resultsDocument)
         {
-            this.resultsDocument = this.ReadResultsFile(testResultsFile);
+          this.resultsDocument = resultsDocument;
         }
 
       #region ITestResults Members
@@ -80,19 +80,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         #endregion
 
-        private XDocument ReadResultsFile(FileInfoBase testResultFile)
-        {
-            XDocument document;
-            using (var stream = testResultFile.OpenRead())
-            {
-                XmlReader xmlReader = XmlReader.Create(stream);
-                document = XDocument.Load(xmlReader);
-                stream.Close();
-            }
-            return document;
-        }
-
-        private XElement GetFeatureElement(Feature feature)
+      private XElement GetFeatureElement(Feature feature)
         {
             IEnumerable<XElement> featureQuery =
                 from clazz in this.resultsDocument.Root.Descendants("class")
@@ -169,7 +157,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
             return result;
         }
 
-        public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] row)
+        public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
         {
             IEnumerable<XElement> exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
 
@@ -183,13 +171,21 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
             foreach (XElement exampleElement in exampleElements)
             {
-              Regex signature = signatureBuilder.Build(scenarioOutline, row);
+              Regex signature = signatureBuilder.Build(scenarioOutline, exampleValues);
                 if (signature.IsMatch(exampleElement.Attribute("name").Value.ToLowerInvariant()))
                 {
                     return this.GetResultFromElement(exampleElement);
                 }
             }
             return result;
+        }
+
+        public bool SupportsExampleResults
+        {
+            get
+            {
+                return true;
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Linq;
 
 using Newtonsoft.Json;
 
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 
 using Feature = PicklesDoc.Pickles.Parser.JsonResult.Feature;
@@ -36,7 +37,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
     #region ITestResults Members
 
-    public TestResult GetFeatureResult(Parser.Feature feature)
+    public TestResult GetFeatureResult(ObjectModel.Feature feature)
     {
       var cucumberFeature = this.GetFeatureElement(feature);
       return this.GetResultFromFeature(cucumberFeature);
@@ -59,9 +60,22 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
     }
 
+    public TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+    {
+      throw new NotSupportedException();
+    }
+
+    public bool SupportsExampleResults
+    {
+      get
+      {
+        return false;
+      }
+    }
+
     #endregion
 
-    private Feature GetFeatureElement(Parser.Feature feature)
+    private Feature GetFeatureElement(ObjectModel.Feature feature)
     {
       return this.resultsDocument.FirstOrDefault(x => x.name == feature.Name);
     }

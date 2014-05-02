@@ -21,14 +21,17 @@
 using System.IO.Abstractions;
 using System.Linq;
 
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.TestFrameworks
 {
   public class XUnitResults : MultipleTestResults
   {
+    private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
+
     public XUnitResults(Configuration configuration, xUnitExampleSignatureBuilder exampleSignatureBuilder)
-      : base(configuration)
+      : base(true, configuration)
     {
       this.SetExampleSignatureBuilder(exampleSignatureBuilder);
     }
@@ -43,10 +46,10 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
     protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
     {
-      return new XUnitSingleResults(fileInfo);
+      return new XUnitSingleResults(DocumentLoader.Load(fileInfo));
     }
 
-    public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] arguments)
+    public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] arguments)
     {
       var results = TestResults.OfType<XUnitSingleResults>().Select(tr => tr.GetExampleResult(scenarioOutline, arguments)).ToArray();
 

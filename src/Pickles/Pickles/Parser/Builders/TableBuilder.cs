@@ -22,7 +22,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PicklesDoc.Pickles.Parser
+using PicklesDoc.Pickles.ObjectModel;
+
+namespace PicklesDoc.Pickles.Parser.Builders
 {
     internal class TableBuilder
     {

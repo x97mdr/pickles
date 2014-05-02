@@ -21,6 +21,8 @@
 using System;
 using System.Text;
 using System.Xml.Linq;
+
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 using PicklesDoc.Pickles.TestFrameworks;
 
@@ -141,6 +143,18 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             TestResult scenarioResult = this.results.GetScenarioOutlineResult(scenarioOutline);
 
             return this.BuildImageElement(scenarioResult);
+          }
+
+          return null;
+        }
+
+        public XElement Format(ScenarioOutline scenarioOutline, params string[] exampleValues)
+        {
+          if (this.configuration.HasTestResults && this.results.SupportsExampleResults)
+          {
+            TestResult exampleResult = this.results.GetExampleResult(scenarioOutline, exampleValues);
+
+            return this.BuildImageElement(exampleResult);
           }
 
           return null;

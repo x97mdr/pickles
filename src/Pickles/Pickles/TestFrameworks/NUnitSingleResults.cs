@@ -1,10 +1,9 @@
 using System;
-using System.IO.Abstractions;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Xml;
 using System.Xml.Linq;
 
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.TestFrameworks
@@ -15,9 +14,9 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
     private readonly XDocument resultsDocument;
 
-    public NUnitSingleResults(FileInfoBase testResultsFile)
+    public NUnitSingleResults(XDocument resultsDocument)
     {
-      this.resultsDocument = this.ReadResultsFile(testResultsFile);
+      this.resultsDocument = resultsDocument;
     }
 
     #region ITestResults Members
@@ -50,6 +49,14 @@ namespace PicklesDoc.Pickles.TestFrameworks
       return this.GetResultFromElement(scenarioElement);
     }
 
+    public bool SupportsExampleResults
+    {
+      get
+      {
+        return true;
+      }
+    }
+
     public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
     {
       XElement featureElement = this.GetFeatureElement(scenarioOutline.Feature);
@@ -61,22 +68,16 @@ namespace PicklesDoc.Pickles.TestFrameworks
           .Where(x => x.Attribute("description") != null)
           .FirstOrDefault(x => x.Attribute("description").Value == scenarioOutline.Name);
       }
+
+      if (scenarioOutlineElement != null)
+      {
+        return scenarioOutlineElement.Descendants("test-case").Select(GetResultFromElement).Merge();
+      }
+
       return this.GetResultFromElement(scenarioOutlineElement);
     }
 
     #endregion
-
-    private XDocument ReadResultsFile(FileInfoBase testResultsFile)
-    {
-      XDocument document;
-      using (var stream = testResultsFile.OpenRead())
-      {
-        XmlReader xmlReader = XmlReader.Create(stream);
-        document = XDocument.Load(xmlReader);
-        stream.Close();
-      }
-      return document;
-    }
 
     private XElement GetFeatureElement(Feature feature)
     {
@@ -130,7 +131,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
                : false;
     }
 
-    public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] row)
+    public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
     {
       XElement featureElement = this.GetFeatureElement(scenarioOutline.Feature);
       XElement examplesElement = null;
@@ -143,7 +144,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
           throw new InvalidOperationException("You need to set the ExampleSignatureBuilder before using GetExampleResult.");
         }
 
-        Regex exampleSignature = signatureBuilder.Build(scenarioOutline, row);
+        Regex exampleSignature = signatureBuilder.Build(scenarioOutline, exampleValues);
         examplesElement = featureElement
           .Descendants("test-suite")
           .Where(x => x.Attribute("description") != null)

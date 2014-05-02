@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Xml.Linq;
 using Autofac;
+
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 using TechTalk.SpecFlow;
 

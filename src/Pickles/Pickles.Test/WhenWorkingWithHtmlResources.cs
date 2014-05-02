@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using NUnit.Framework;
-using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using Should;
 
@@ -13,10 +12,8 @@ namespace PicklesDoc.Pickles.Test
         [Test]
         public void ThenCanDetectAllImagesSuccessfully()
         {
-            var configuration = Container.Resolve<Configuration>();
-            configuration.OutputFolder = configuration.OutputFolder = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\");
+            var htmlResources = this.CreateHtmlResourceSet();
 
-            var htmlResources = Container.Resolve<HtmlResourceSet>();
             HtmlResource[] images = htmlResources.Images.ToArray();
 
             images.Length.ShouldEqual(3);
@@ -25,13 +22,18 @@ namespace PicklesDoc.Pickles.Test
             images.Any(image => image.File == "inconclusive.png").ShouldBeTrue();
         }
 
+        private HtmlResourceSet CreateHtmlResourceSet()
+        {
+            var configuration = new Configuration { OutputFolder = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\") };
+            var htmlResources = new HtmlResourceSet(configuration, FileSystem);
+            return htmlResources;
+        }
+
         [Test]
         public void ThenCanDetectAllResourcesSuccessfully()
         {
-            var configuration = Container.Resolve<Configuration>();
-            configuration.OutputFolder = configuration.OutputFolder = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\");
-
-            var htmlResources = Container.Resolve<HtmlResourceSet>();
+            var htmlResources = this.CreateHtmlResourceSet();
+          
             HtmlResource[] resources = htmlResources.All.ToArray();
 
             resources.Length.ShouldEqual(9);
@@ -49,10 +51,8 @@ namespace PicklesDoc.Pickles.Test
         [Test]
         public void ThenCanDetectAllScriptsSuccessfully()
         {
-            var configuration = Container.Resolve<Configuration>();
-            configuration.OutputFolder = configuration.OutputFolder = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\");
+            var htmlResources = this.CreateHtmlResourceSet();
 
-            var htmlResources = Container.Resolve<HtmlResourceSet>();
             HtmlResource[] scripts = htmlResources.Scripts.ToArray();
 
             scripts.Length.ShouldEqual(2);
@@ -63,10 +63,8 @@ namespace PicklesDoc.Pickles.Test
         [Test]
         public void ThenCanDetectAllStylesheetsSuccessfully()
         {
-            var configuration = Container.Resolve<Configuration>();
-            configuration.OutputFolder = configuration.OutputFolder = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\");
+            var htmlResources = this.CreateHtmlResourceSet();
 
-            var htmlResources = Container.Resolve<HtmlResourceSet>();
             HtmlResource[] stylesheets = htmlResources.Stylesheets.ToArray();
 
             stylesheets.Length.ShouldEqual(6);

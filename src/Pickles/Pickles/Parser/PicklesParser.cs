@@ -25,6 +25,9 @@ using gherkin;
 using gherkin.lexer;
 using java.util;
 
+using PicklesDoc.Pickles.ObjectModel;
+using PicklesDoc.Pickles.Parser.Builders;
+
 namespace PicklesDoc.Pickles.Parser
 {
     public class PicklesParser : Listener

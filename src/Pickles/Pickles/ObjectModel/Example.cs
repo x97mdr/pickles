@@ -18,28 +18,14 @@
 
 #endregion
 
-using System.Collections.Generic;
-using PicklesDoc.Pickles.TestFrameworks;
+using System;
 
-namespace PicklesDoc.Pickles.Parser
+namespace PicklesDoc.Pickles.ObjectModel
 {
-    public class Scenario : IFeatureElement
+    public class Example
     {
-        public Scenario()
-        {
-            this.Steps = new List<Step>();
-            this.Tags = new List<string>();
-        }
-
-        #region IFeatureElement Members
-
         public string Name { get; set; }
         public string Description { get; set; }
-        public List<Step> Steps { get; set; }
-        public List<string> Tags { get; set; }
-        public TestResult Result { get; set; }
-        public Feature Feature { get; set; }
-
-        #endregion
+        public Table TableArgument { get; set; }
     }
 }
