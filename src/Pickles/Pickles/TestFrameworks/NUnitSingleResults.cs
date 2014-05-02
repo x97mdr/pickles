@@ -68,6 +68,12 @@ namespace PicklesDoc.Pickles.TestFrameworks
           .Where(x => x.Attribute("description") != null)
           .FirstOrDefault(x => x.Attribute("description").Value == scenarioOutline.Name);
       }
+
+      if (scenarioOutlineElement != null)
+      {
+        return scenarioOutlineElement.Descendants("test-case").Select(GetResultFromElement).Merge();
+      }
+
       return this.GetResultFromElement(scenarioOutlineElement);
     }
 
