@@ -4,7 +4,7 @@
     
   <!-- set the major and minor version number here -->
   <property name="version.major" value="0" />
-  <property name="version.minor" value="15" />
+  <property name="version.minor" value="16" />
   <property name="version.revision" value="0" />
   
   <!-- set build number from continuous integration tool -->
@@ -30,7 +30,7 @@
   </ifnot>
   
   <property name="version" value="${version.major}.${version.minor}.${version.revision}.${build.number}" />
-  <property name="msbuild.dir" value="C:\Windows\Microsoft.NET\Framework\v4.0.30319" />
+  <property name="msbuild.dir" value="${environment::get-variable('ProgramFiles(x86)')}\MSBuild\12.0\Bin" />
   <property name="ilmerge.dir" value="${environment::get-variable('ProgramFiles')}\Microsoft\ILMerge" />
   <property name="nuget.dir" value="src\Pickles\packages\NuGet.CommandLine.2.8.0\tools" />
   <property name="framework.dir" value="${msbuild.dir}" />
