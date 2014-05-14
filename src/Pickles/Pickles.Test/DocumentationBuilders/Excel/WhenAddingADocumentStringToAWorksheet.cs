@@ -1,7 +1,6 @@
 ﻿using System;
 using ClosedXML.Excel;
 using NUnit.Framework;
-using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.Excel;
 using Should;
 
@@ -13,7 +12,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
         [Test]
         public void ThenDocumentStringAddedSuccessfully()
         {
-            var excelDocumentStringFormatter = Container.Resolve<ExcelDocumentStringFormatter>();
+            var excelDocumentStringFormatter = new ExcelDocumentStringFormatter();
             string documentString = @"This is an example
 document string for use
 in testing";

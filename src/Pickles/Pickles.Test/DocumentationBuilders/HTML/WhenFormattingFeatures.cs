@@ -4,6 +4,7 @@ using System.Xml.Linq;
 using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
@@ -14,9 +15,6 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
     [Test]
     public void ThenCanFormatDescriptionAsMarkdown()
     {
-      var configuration = Container.Resolve<Configuration>();
-      configuration.TestResultsFiles = null;
-
       var feature = new Feature
       {
         Name = "A feature",
@@ -71,9 +69,6 @@ I also enjoy ordering things
     [Test]
     public void ThenCanFormatMarkdownTableExtensions()
     {
-      var configuration = Container.Resolve<Configuration>();
-      configuration.TestResultsFiles = null;
-
       var feature = new Feature
       {
         Name = "A feature",
@@ -108,9 +103,6 @@ I want to see the descriptions written in markdown rendered with tables
     [Test]
     public void ThenCanFormatMarkdownTableExtensionsEvenIfTheyAreSomewhatMalstructured()
     {
-      var configuration = Container.Resolve<Configuration>();
-      configuration.TestResultsFiles = null;
-
       var feature = new Feature
       {
         Name = "A feature",

@@ -173,7 +173,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net35\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net35\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NGenerics, Version=1.4.1.0, Culture=neutral, PublicKeyToken=e4b41be133ea7faf, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -185,9 +185,9 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.IO.Abstractions, Version=1.4.0.83, Culture=neutral, PublicKeyToken=d480b5b72fb413da, processorArchitecture=MSIL">
+    <Reference Include="System.IO.Abstractions, Version=1.4.0.86, Culture=neutral, PublicKeyToken=d480b5b72fb413da, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\System.IO.Abstractions.1.4.0.83\lib\net35\System.IO.Abstractions.dll</HintPath>
+      <HintPath>..\packages\System.IO.Abstractions.1.4.0.86\lib\net35\System.IO.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -280,17 +280,12 @@
     <Compile Include="Extensions\TreeNodeExtensions.cs" />
     <Compile Include="Extensions\UriExtensions.cs" />
     <Compile Include="FeatureParseException.cs" />
-    <Compile Include="FeatureTree\FeatureFile.cs" />
-    <Compile Include="FeatureTree\FileBase.cs" />
-    <Compile Include="FeatureTree\Folder.cs" />
-    <Compile Include="FeatureTree\ITreeItem.cs" />
-    <Compile Include="FeatureTree\TreeItemHelper.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="LanguageServices.cs" />
     <Compile Include="MarkdownProvider.cs" />
-    <Compile Include="Parser\Example.cs" />
+    <Compile Include="ObjectModel\Example.cs" />
     <Compile Include="Parser\FeatureElementState.cs" />
-    <Compile Include="Parser\IFeatureElement.cs" />
+    <Compile Include="ObjectModel\IFeatureElement.cs" />
     <Compile Include="Parser\JsonResult\Element.cs" />
     <Compile Include="Parser\JsonResult\Feature.cs" />
     <Compile Include="Parser\JsonResult\Match.cs" />
@@ -298,22 +293,22 @@
     <Compile Include="Parser\JsonResult\Step.cs" />
     <Compile Include="Parser\JsonResult\Tag.cs" />
     <Compile Include="Parser\PicklesParser.cs" />
-    <Compile Include="Parser\ScenarioBuilder.cs" />
-    <Compile Include="Parser\ScenarioOutlineBuilder.cs" />
+    <Compile Include="Parser\Builders\ScenarioBuilder.cs" />
+    <Compile Include="Parser\Builders\ScenarioOutlineBuilder.cs" />
     <Compile Include="Parser\SpecRun\Factory.cs" />
     <Compile Include="Parser\SpecRun\Feature.cs" />
     <Compile Include="Parser\SpecRun\Scenario.cs" />
-    <Compile Include="Parser\StepBuilder.cs" />
-    <Compile Include="Parser\Table.cs" />
-    <Compile Include="Parser\Feature.cs" />
-    <Compile Include="Parser\Keyword.cs" />
+    <Compile Include="Parser\Builders\StepBuilder.cs" />
+    <Compile Include="ObjectModel\Table.cs" />
+    <Compile Include="ObjectModel\Feature.cs" />
+    <Compile Include="ObjectModel\Keyword.cs" />
     <Compile Include="DirectoryCrawler\DirectoryTreeCrawler.cs" />
     <Compile Include="FeatureParser.cs" />
-    <Compile Include="Parser\Scenario.cs" />
-    <Compile Include="Parser\ScenarioOutline.cs" />
-    <Compile Include="Parser\Step.cs" />
-    <Compile Include="Parser\TableBuilder.cs" />
-    <Compile Include="Parser\TableRow.cs" />
+    <Compile Include="ObjectModel\Scenario.cs" />
+    <Compile Include="ObjectModel\ScenarioOutline.cs" />
+    <Compile Include="ObjectModel\Step.cs" />
+    <Compile Include="Parser\Builders\TableBuilder.cs" />
+    <Compile Include="ObjectModel\TableRow.cs" />
     <Compile Include="PicklesModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DirectoryCrawler\RelevantFileDetector.cs" />
@@ -336,16 +331,15 @@
     <Compile Include="TestFrameworks\SpecRunResults.cs" />
     <Compile Include="TestFrameworks\SpecRunSingleResults.cs" />
     <Compile Include="TestFrameworks\TestResult.cs" />
+    <Compile Include="TestFrameworks\XDocumentLoader.cs" />
     <Compile Include="TestFrameworks\xUnitExampleSignatureBuilder.cs" />
     <Compile Include="TestFrameworks\XUnitResults.cs" />
     <Compile Include="TestFrameworks\XUnitSingleResults.cs" />
     <Compile Include="TestResultsFormat.cs" />
-    <Compile Include="FeatureTree\TextFile.cs" />
-    <Compile Include="Parser\ExampleBuilder.cs" />
+    <Compile Include="Parser\Builders\ExampleBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="FeatureTree\ClassDiagram.cd" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

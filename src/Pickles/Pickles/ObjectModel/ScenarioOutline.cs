@@ -18,18 +18,22 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
+
 using PicklesDoc.Pickles.TestFrameworks;
 
-namespace PicklesDoc.Pickles.Parser
+namespace PicklesDoc.Pickles.ObjectModel
 {
-    public class Scenario : IFeatureElement
+    public class ScenarioOutline : IFeatureElement
     {
-        public Scenario()
+        public ScenarioOutline()
         {
             this.Steps = new List<Step>();
             this.Tags = new List<string>();
         }
+
+        public List<Example> Examples { get; set; }
 
         #region IFeatureElement Members
 

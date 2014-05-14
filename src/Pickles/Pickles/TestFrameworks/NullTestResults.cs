@@ -19,6 +19,8 @@
 #endregion
 
 using System;
+
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.TestFrameworks
@@ -44,9 +46,18 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         #endregion
 
-        public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] row)
+        public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
         {
             return new TestResult();
+        }
+
+
+        public bool SupportsExampleResults
+        {
+          get
+          {
+            return false;
+          }
         }
     }
 }

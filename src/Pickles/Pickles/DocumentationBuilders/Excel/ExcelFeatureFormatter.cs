@@ -22,6 +22,8 @@ using System;
 using System.Reflection;
 using ClosedXML.Excel;
 using NLog;
+
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 using PicklesDoc.Pickles.TestFrameworks;
 

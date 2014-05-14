@@ -5,6 +5,8 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 
+using PicklesDoc.Pickles.ObjectModel;
+
 using Gherkin = PicklesDoc.Pickles.Parser;
 using SpecRun = PicklesDoc.Pickles.Parser.SpecRun;
 
@@ -21,7 +23,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
             this.specRunFeatures = resultsDocument.Descendants("feature").Select(SpecRun.Factory.ToSpecRunFeature).ToList();
         }
 
-        public TestResult GetFeatureResult(Gherkin.Feature feature)
+        public TestResult GetFeatureResult(Feature feature)
           {
               if (this.specRunFeatures == null)
               {
@@ -40,7 +42,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
               return result;
           }
 
-        public TestResult GetScenarioOutlineResult(Gherkin.ScenarioOutline scenarioOutline)
+        public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
         {
             if (this.specRunFeatures == null)
             {
@@ -66,7 +68,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
             return result;
         }
 
-        public TestResult GetScenarioResult(Gherkin.Scenario scenario)
+        public TestResult GetScenarioResult(Scenario scenario)
         {
             if (this.specRunFeatures == null)
             {
@@ -90,7 +92,21 @@ namespace PicklesDoc.Pickles.TestFrameworks
             return StringToTestResult(specRunScenario.Result);
         }
 
-        private static TestResult StringsToTestResult(IEnumerable<string> results)
+      public TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+      {
+        throw new NotSupportedException();
+      }
+
+
+      public bool SupportsExampleResults
+      {
+        get
+        {
+          return false;
+        }
+      }
+
+      private static TestResult StringsToTestResult(IEnumerable<string> results)
         {
             if (results == null)
             {
@@ -126,19 +142,19 @@ namespace PicklesDoc.Pickles.TestFrameworks
             }
         }
 
-        private static SpecRun.Scenario[] FindSpecRunScenarios(Gherkin.ScenarioOutline scenarioOutline, SpecRun.Feature specRunFeature)
+        private static SpecRun.Scenario[] FindSpecRunScenarios(ScenarioOutline scenarioOutline, SpecRun.Feature specRunFeature)
         {
             return specRunFeature.Scenarios.Where(d => d.Title.StartsWith(scenarioOutline.Name + ", ")).ToArray();
         }
 
-        private static SpecRun.Scenario FindSpecRunScenario(Gherkin.Scenario scenario, SpecRun.Feature specRunFeature)
+        private static SpecRun.Scenario FindSpecRunScenario(Scenario scenario, SpecRun.Feature specRunFeature)
         {
             SpecRun.Scenario result = specRunFeature.Scenarios.FirstOrDefault(d => d.Title.Equals(scenario.Name));
 
             return result;
         }
 
-        private SpecRun.Feature FindSpecRunFeature(Gherkin.Feature feature)
+        private SpecRun.Feature FindSpecRunFeature(Feature feature)
         {
             return this.specRunFeatures.FirstOrDefault(specRunFeature => specRunFeature.Title == feature.Name);
         }

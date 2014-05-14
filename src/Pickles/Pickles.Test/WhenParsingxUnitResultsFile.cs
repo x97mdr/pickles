@@ -1,6 +1,8 @@
 ﻿using System;
 
 using NUnit.Framework;
+
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 using PicklesDoc.Pickles.TestFrameworks;
 using Should;

@@ -19,15 +19,23 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 
-namespace PicklesDoc.Pickles.Parser
+using PicklesDoc.Pickles.TestFrameworks;
+
+namespace PicklesDoc.Pickles.ObjectModel
 {
-    public class Step
+    public class TableRow : List<string>
     {
-        public Keyword Keyword { get; set; }
-        public string NativeKeyword { get; set; }
-        public string Name { get; set; }
-        public Table TableArgument { get; set; }
-        public string DocStringArgument { get; set; }
+        public TableRow()
+        {
+        }
+
+        public TableRow(params string[] cells)
+        {
+            AddRange(cells);
+        }
+
+      public TestResult Result { get; set; }
     }
 }

@@ -24,6 +24,7 @@ using System.Xml.Linq;
 using NGenerics.DataStructures.Trees;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.Extensions;
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.HTML

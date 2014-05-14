@@ -23,6 +23,7 @@ using System.IO.Abstractions;
 using System.Xml.Linq;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.Extensions;
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.DirectoryCrawler

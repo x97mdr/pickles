@@ -1,5 +1,7 @@
 ﻿
 using DocumentFormat.OpenXml.Wordprocessing;
+
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 using Table = DocumentFormat.OpenXml.Wordprocessing.Table;
 using TableRow = DocumentFormat.OpenXml.Wordprocessing.TableRow;

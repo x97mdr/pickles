@@ -21,17 +21,27 @@
 using System;
 using System.Collections.Generic;
 
-namespace PicklesDoc.Pickles.Parser
+using PicklesDoc.Pickles.TestFrameworks;
+
+namespace PicklesDoc.Pickles.ObjectModel
 {
-    public class TableRow : List<string>
+    public class Scenario : IFeatureElement
     {
-        public TableRow()
+        public Scenario()
         {
+            this.Steps = new List<Step>();
+            this.Tags = new List<string>();
         }
 
-        public TableRow(params string[] cells)
-        {
-            AddRange(cells);
-        }
+        #region IFeatureElement Members
+
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public List<Step> Steps { get; set; }
+        public List<string> Tags { get; set; }
+        public TestResult Result { get; set; }
+        public Feature Feature { get; set; }
+
+        #endregion
     }
 }

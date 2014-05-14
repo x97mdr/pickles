@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Autofac;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Parser;
 using PicklesDoc.Pickles.Test.Extensions;
 

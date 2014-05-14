@@ -19,25 +19,15 @@
 #endregion
 
 using System;
-using System.IO.Abstractions;
 
-namespace PicklesDoc.Pickles.FeatureTree
+namespace PicklesDoc.Pickles.ObjectModel
 {
-    public class TextFile : FileBase
+    public enum Keyword
     {
-        private readonly string mContent;
-
-        public TextFile(string fileName, Folder folder, string content, IFileSystem fileSystem)
-            : base(fileName, folder, fileSystem)
-        {
-            if (content == null) throw new ArgumentNullException("content");
-
-            this.mContent = content;
-        }
-
-        public string Content
-        {
-            get { return this.mContent; }
-        }
+        Given,
+        When,
+        Then,
+        And,
+        But
     }
 }

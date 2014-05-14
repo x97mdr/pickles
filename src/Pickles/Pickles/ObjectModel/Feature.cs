@@ -18,10 +18,12 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
+
 using PicklesDoc.Pickles.TestFrameworks;
 
-namespace PicklesDoc.Pickles.Parser
+namespace PicklesDoc.Pickles.ObjectModel
 {
     public class Feature
     {

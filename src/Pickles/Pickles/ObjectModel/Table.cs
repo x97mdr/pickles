@@ -21,23 +21,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace PicklesDoc.Pickles.FeatureTree
+namespace PicklesDoc.Pickles.ObjectModel
 {
-    internal static class TreeItemHelper
+    public class Table
     {
-        internal static List<ITreeItem> CreateHierarchy(ITreeItem treeItem)
-        {
-            var hierarchy = new List<ITreeItem>();
-
-            ITreeItem temp = treeItem;
-
-            while (temp != null)
-            {
-                hierarchy.Add(temp);
-                temp = temp.Parent;
-            }
-
-            return hierarchy;
-        }
+        public TableRow HeaderRow { get; set; }
+        public List<TableRow> DataRows { get; set; }
     }
 }

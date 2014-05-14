@@ -21,22 +21,37 @@
 using System;
 using System.Linq;
 using System.Xml.Linq;
-using PicklesDoc.Pickles.Parser;
+
+using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlTableFormatter
     {
         private readonly XNamespace xmlns;
+        private readonly HtmlImageResultFormatter htmlImageResultFormatter;
 
-        public HtmlTableFormatter()
+        public HtmlTableFormatter(HtmlImageResultFormatter htmlImageResultFormatter)
         {
-            this.xmlns = HtmlNamespace.Xhtml;
+          this.htmlImageResultFormatter = htmlImageResultFormatter;
+          this.xmlns = HtmlNamespace.Xhtml;
         }
 
         public XElement Format(Table table)
         {
+            return Format(table, null, false);
+        }
+        
+        public XElement Format(Table table, ScenarioOutline scenarioOutline, bool includeResults)
+        {
             if (table == null) return null;
+
+            var headerCells = table.HeaderRow.ToArray();
+
+            if (includeResults)
+            {
+                headerCells = headerCells.Concat(new[] { " " }).ToArray();
+            }
 
             return new XElement(this.xmlns + "div",
                                 new XAttribute("class", "table_container"),
@@ -44,20 +59,38 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                                              new XAttribute("class", "datatable"),
                                              new XElement(this.xmlns + "thead",
                                                           new XElement(this.xmlns + "tr",
-                                                                       table.HeaderRow.Select(
+                                                                       headerCells.Select(
                                                                            cell => new XElement(this.xmlns + "th", cell))
                                                               )
                                                  ),
                                              new XElement(this.xmlns + "tbody",
-                                                          table.DataRows.Select(row => new XElement(this.xmlns + "tr",
-                                                                                                    row.Select(
-                                                                                                        cell =>
-                                                                                                        new XElement(
-                                                                                                            this.xmlns + "td",
-                                                                                                            cell)))
-                                                              )
+                                                          table.DataRows.Select(row => this.FormatRow(row, scenarioOutline, includeResults))
                                                  )
                                     ));
         }
+
+      private XElement FormatRow(TableRow row, ScenarioOutline scenarioOutline, bool includeResults)
+      {
+        var formattedCells = row.Select(
+          cell =>
+          new XElement(
+            this.xmlns + "td",
+            cell)).ToList();
+
+        if (includeResults && scenarioOutline != null)
+        {
+          formattedCells.Add(
+            new XElement(this.xmlns + "td", this.htmlImageResultFormatter.Format(scenarioOutline, row.ToArray())));
+        }
+
+        var result = new XElement(this.xmlns + "tr");
+
+        foreach (var cell in formattedCells)
+        {
+          result.Add(cell);
+        }
+
+        return result;
+      }
     }
 }
