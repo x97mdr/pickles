@@ -19,7 +19,7 @@
 <body>
 
     <script type="text/html" id="features-template">
-        <div class="feature" data-bind="click: $root.showFeature.bind(Path)"><a data-bind="text: Name, click: $root.showFeature.bind(Path), css: { selected: $root.isSelected(Path) }" href="#"></a></div>
+        <div class="feature" data-bind="click: $root.showFeature.bind(Path)"><a data-bind="text: Name, click: $root.showFeature.bind(Path), css: { selected: $root.isSelected(Path) }" href="#"></a><span data-bind="template: { name: 'testResults-template', data: Result }"></span></div>
     </script>
 
     <script type="text/html" id="featuresByFolder-template">
@@ -155,8 +155,13 @@
                     </div>
                     <!-- Enable to dump JSON to the screen -->
                     <!--<div class="row-fluid">
-                        Current Features List JSON:
-                        <pre data-bind="text: ko.toJSON($parent.featuresList())"></pre>
+                        Current originalFeaturesList JSON:
+                        <pre data-bind="text: ko.toJSON($parent.originalFeaturesList())"></pre>
+                    </div>
+                    <br /><br />
+                    <div class="row-fluid">
+                        Current featuresByFolder List JSON:
+                        <pre data-bind="text: ko.toJSON($parent.featuresByFolder())"></pre>
                     </div>-->
                 </div>
                 <!--/span-->
