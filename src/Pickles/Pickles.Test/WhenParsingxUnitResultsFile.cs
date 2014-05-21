@@ -220,5 +220,22 @@ namespace PicklesDoc.Pickles.Test
           TestResult exampleResult6 = results.GetExampleResult(scenarioOutline, new[] { "fail_2" });
           exampleResult6.ShouldEqual(TestResult.Failed);
         }
+
+        [Test]
+        public void ThenCanReadResultsWithBackslashes()
+        {
+          var results = ParseResultsFile();
+          results.SetExampleSignatureBuilder(new xUnitExampleSignatureBuilder());
+
+          var feature = new Feature { Name = "Scenario Outlines" };
+
+          var scenarioOutline = new ScenarioOutline { Name = "Deal correctly with backslashes in the examples", Feature = feature };
+
+          TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+          exampleResultOutline.ShouldEqual(TestResult.Passed);
+
+          TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { @"c:\Temp\" });
+          exampleResult1.ShouldEqual(TestResult.Passed);
+        }
     }
   }
