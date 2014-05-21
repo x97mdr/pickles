@@ -151,7 +151,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
           .FirstOrDefault(x => x.Attribute("description").Value == scenarioOutline.Name)
           .Descendants("test-case")
           .Where(x => x.Attribute("name") != null)
-          .FirstOrDefault(x => exampleSignature.IsMatch(x.Attribute("name").Value.ToLowerInvariant()));
+          .FirstOrDefault(x => exampleSignature.IsMatch(x.Attribute("name").Value.ToLowerInvariant().Replace(@"\", "")));
       }
       return this.GetResultFromElement(examplesElement);
     }
