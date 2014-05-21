@@ -172,7 +172,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
             foreach (XElement exampleElement in exampleElements)
             {
               Regex signature = signatureBuilder.Build(scenarioOutline, exampleValues);
-                if (signature.IsMatch(exampleElement.Attribute("name").Value.ToLowerInvariant()))
+                if (signature.IsMatch(exampleElement.Attribute("name").Value.ToLowerInvariant().Replace(@"\", "")))
                 {
                     return this.GetResultFromElement(exampleElement);
                 }
