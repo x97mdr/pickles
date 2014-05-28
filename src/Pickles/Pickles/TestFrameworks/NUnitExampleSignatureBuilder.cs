@@ -23,7 +23,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.TestFrameworks
 {
@@ -36,7 +35,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
             foreach (string value in row)
             {
-                stringBuilder.AppendFormat("\"{0}\",", value);
+              stringBuilder.AppendFormat("\"{0}\",", value.ToLowerInvariant().Replace(@"\", @""));
             }
 
             stringBuilder.Remove(stringBuilder.Length - 1, 1);
