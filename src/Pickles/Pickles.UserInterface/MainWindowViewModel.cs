@@ -454,7 +454,7 @@ namespace PicklesDoc.Pickles.UserInterface
 
                 case "TestResultsFile":
                     {
-                        if (this.testResultsFile.Split(';').All(trf => this.fileSystem.File.Exists(trf)))
+                        if (this.testResultsFile == null || this.testResultsFile.Split(';').All(trf => this.fileSystem.File.Exists(trf)))
                         {
                             this.IsTestResultsFileValid = true;
                         }
