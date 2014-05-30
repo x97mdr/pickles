@@ -63,7 +63,7 @@
     </Reference>
     <Reference Include="IKVM.OpenJDK.Core">
       <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Core.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Jdbc">
       <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Jdbc.dll</HintPath>
@@ -91,7 +91,7 @@
     </Reference>
     <Reference Include="IKVM.OpenJDK.Security">
       <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Security.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.SwingAWT">
       <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.SwingAWT.dll</HintPath>
@@ -99,7 +99,7 @@
     </Reference>
     <Reference Include="IKVM.OpenJDK.Text">
       <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Text.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Tools">
       <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Tools.dll</HintPath>
@@ -107,7 +107,7 @@
     </Reference>
     <Reference Include="IKVM.OpenJDK.Util">
       <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Util.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.XML.API">
       <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.XML.API.dll</HintPath>
@@ -143,7 +143,7 @@
     </Reference>
     <Reference Include="IKVM.Runtime">
       <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.Runtime.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="IKVM.Runtime.JNI">
       <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.Runtime.JNI.dll</HintPath>
