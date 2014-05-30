@@ -231,5 +231,5 @@
     </zip>
   </target>
   
-  <target name="release" depends="zip,pack" />
+  <target name="release" depends="zip" />
 </project>
