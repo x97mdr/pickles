@@ -4,12 +4,13 @@ using System.Linq;
 using System.Xml.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.TestFrameworks
 {
   public class MsTestSingleResults : ITestResults
   {
+    private const string Failed = "failed";
+
     private static readonly XNamespace ns = @"http://microsoft.com/schemas/VisualStudio/TeamTest/2010";
     private readonly XDocument resultsDocument;
 
@@ -44,7 +45,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
       {
         case "passed":
           return TestResult.Passed;
-        case "failed":
+        case Failed:
           return TestResult.Failed;
         default:
           return TestResult.Inconclusive;
@@ -53,12 +54,14 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
     private static string ResultOutcomeOf(XElement scenarioResult)
     {
-      return scenarioResult.Attribute("outcome").Value;
+      var outcomeAttribute = scenarioResult.Attribute("outcome");
+      return outcomeAttribute != null ? outcomeAttribute.Value : Failed;
     }
 
     private static Guid ResultExecutionIdOf(XElement unitTestResult)
     {
-      return new Guid(unitTestResult.Attribute("executionId").Value);
+      var executionIdAttribute = unitTestResult.Attribute("executionId");
+      return executionIdAttribute != null ? new Guid(executionIdAttribute.Value) : Guid.Empty;
     }
 
     public TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
