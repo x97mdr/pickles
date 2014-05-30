@@ -51,7 +51,6 @@ _ReSharper*/
 ~$*
 
 #NuGet
-packages/
 
 #build artifacts
 deploy/
