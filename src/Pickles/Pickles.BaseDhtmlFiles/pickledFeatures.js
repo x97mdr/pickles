@@ -195,7 +195,7 @@ jsonPWrapper ([
     "RelativeFolder": "14MarkdownExample\\MarkdownExamples.feature",
     "Feature": {
       "Name": "Sample Markdown Feature",
-      "Description": "Header 1\r\n========\r\n\r\nHeader 2\r\n--------\r\n\r\nThis is a *significant* word\r\n\r\n1. Ordered #1\r\n2. Ordered #2\r\n3. Ordered #3\r\n\r\n- Unordered #1 \r\n- Unordered #2\r\n- Unordered #3 \t\r\n\r\nHorizontal Rule:  \r\n- - -\r\n\r\nTable example:  \r\n| First Header  | Second Header |\r\n| ------------- | ------------- |\r\n| Content Cell  | Content Cell  |\r\n| Content Cell  | Content Cell  | \r\n\r\n- - -",
+      "Description": "Header 1\r\n========\r\n\r\nHeader 2\r\n--------\r\n\r\nThis is a *significant* word\r\n\r\n1. Ordered #1\r\n2. Ordered #2\r\n3. Ordered #3\r\n\r\n- Unordered #1 \r\n- Unordered #2\r\n- Unordered #3 \t\r\n\r\nHorizontal Rule:  \r\n- - -\r\n\r\nTable example:  \r\n| First Header  | Second Header |\r\n| ------------- | ------------- |\r\n| Content Cell  | Content Cell  |\r\n| Content Cell  | Content Cell  | \r\n\r\n- - -\r\n\r\nIncluding a picture: ![](./image.png)",
       "FeatureElements": [
         {
           "Name": "Sample Markdown Scenario Example",
@@ -1742,168 +1742,52 @@ jsonPWrapper ([
   {
     "RelativeFolder": "02TagsAndHooks\\TagDemo.feature",
     "Feature": {
-      "Name": "Tag demonstrator",
-      "Description": "In order to show the capabilities of tags in SpecFlow\r\nAs a SpecFlow evanglist\r\nI want to write scenarios that has tags and show their usage in code",
+      "Name": "TagDemo",
+      "Description": "In order to avoid silly mistakes\nAs a math idiot\nI want to be told the sum of two numbers",
       "FeatureElements": [
         {
-          "Name": "Ignored scenario",
+          "Name": "Add two numbers",
           "Description": "",
           "Steps": [
             {
               "Keyword": "Given",
               "NativeKeyword": "Given ",
-              "Name": "that my scenario has the @ignore tag"
-            },
-            {
-              "Keyword": "When",
-              "NativeKeyword": "When ",
-              "Name": "I run the scenario"
-            },
-            {
-              "Keyword": "Then",
-              "NativeKeyword": "Then ",
-              "Name": "the scenario is ignored"
+              "Name": "I have entered 50 into the calculator"
             },
             {
               "Keyword": "And",
               "NativeKeyword": "And ",
-              "Name": "the missing step definitions are not reported"
-            }
-          ],
-          "Tags": [
-            "@ignore"
-          ],
-          "Result": {
-            "WasExecuted": false,
-            "WasSuccessful": false
-          }
-        },
-        {
-          "Name": "A scenario without tags",
-          "Description": "",
-          "Steps": [
-            {
-              "Keyword": "Given",
-              "NativeKeyword": "Given ",
-              "Name": "that my scenario has 0 tags"
+              "Name": "I have entered 70 into the calculator"
             },
             {
               "Keyword": "When",
               "NativeKeyword": "When ",
-              "Name": "I run the scenario"
+              "Name": "I press add"
             },
             {
               "Keyword": "Then",
               "NativeKeyword": "Then ",
-              "Name": "before scenario hook with '' is run"
-            }
-          ],
-          "Tags": [],
-          "Result": {
-            "WasExecuted": false,
-            "WasSuccessful": false
-          }
-        },
-        {
-          "Name": "A scenario with 1 tag",
-          "Description": "",
-          "Steps": [
-            {
-              "Keyword": "Given",
-              "NativeKeyword": "Given ",
-              "Name": "that my scenario has 1 tags"
-            },
-            {
-              "Keyword": "When",
-              "NativeKeyword": "When ",
-              "Name": "I run the scenario"
-            },
-            {
-              "Keyword": "Then",
-              "NativeKeyword": "Then ",
-              "Name": "before scenario hook with 'testTag1' is run"
+              "Name": "the result should be 120 on the screen"
             }
           ],
           "Tags": [
-            "@testTag1"
+            "@mytag"
           ],
           "Result": {
-            "WasExecuted": false,
-            "WasSuccessful": false
-          }
-        },
-        {
-          "Name": "A scenario with 3 tags",
-          "Description": "",
-          "Steps": [
-            {
-              "Keyword": "Given",
-              "NativeKeyword": "Given ",
-              "Name": "that my scenario has 3 tags"
-            },
-            {
-              "Keyword": "When",
-              "NativeKeyword": "When ",
-              "Name": "I run the scenario"
-            },
-            {
-              "Keyword": "Then",
-              "NativeKeyword": "Then ",
-              "Name": "before scenario hook with 'testTag1, testTag2, testTag3' is run"
-            }
-          ],
-          "Tags": [
-            "@testTag1",
-            "@testTag2",
-            "@testTag3"
-          ],
-          "Result": {
-            "WasExecuted": false,
-            "WasSuccessful": false
-          }
-        },
-        {
-          "Name": "A scenario with 2 tags",
-          "Description": "",
-          "Steps": [
-            {
-              "Keyword": "Given",
-              "NativeKeyword": "Given ",
-              "Name": "that my scenario has 2 tags"
-            },
-            {
-              "Keyword": "When",
-              "NativeKeyword": "When ",
-              "Name": "I run the scenario"
-            },
-            {
-              "Keyword": "Then",
-              "NativeKeyword": "Then ",
-              "Name": "before scenario hook with 'testTag1, testTag3' is run"
-            }
-          ],
-          "Tags": [
-            "@testTag1",
-            "@testTag3"
-          ],
-          "Result": {
-            "WasExecuted": false,
-            "WasSuccessful": false
+            "WasExecuted": true,
+            "WasSuccessful": true
           }
         }
       ],
       "Result": {
-        "WasExecuted": false,
-        "WasSuccessful": false
+        "WasExecuted": true,
+        "WasSuccessful": true
       },
-      "Tags": [
-        "@allAboutTags",
-        "@important"
-      ]
+      "Tags": []
     },
     "Result": {
-      "WasExecuted": false,
-      "WasSuccessful": false
+      "WasExecuted": true,
+      "WasSuccessful": true
     }
   },
   {
@@ -1929,8 +1813,8 @@ jsonPWrapper ([
           ],
           "Tags": [],
           "Result": {
-            "WasExecuted": false,
-            "WasSuccessful": false
+            "WasExecuted": true,
+            "WasSuccessful": true
           }
         },
         {
@@ -1950,8 +1834,8 @@ jsonPWrapper ([
           ],
           "Tags": [],
           "Result": {
-            "WasExecuted": false,
-            "WasSuccessful": false
+            "WasExecuted": true,
+            "WasSuccessful": true
           }
         },
         {
@@ -1971,8 +1855,8 @@ jsonPWrapper ([
           ],
           "Tags": [],
           "Result": {
-            "WasExecuted": false,
-            "WasSuccessful": false
+            "WasExecuted": true,
+            "WasSuccessful": true
           }
         },
         {
@@ -1992,8 +1876,8 @@ jsonPWrapper ([
           ],
           "Tags": [],
           "Result": {
-            "WasExecuted": false,
-            "WasSuccessful": false
+            "WasExecuted": true,
+            "WasSuccessful": true
           }
         },
         {
@@ -2013,20 +1897,20 @@ jsonPWrapper ([
           ],
           "Tags": [],
           "Result": {
-            "WasExecuted": false,
-            "WasSuccessful": false
+            "WasExecuted": true,
+            "WasSuccessful": true
           }
         }
       ],
       "Result": {
-        "WasExecuted": false,
-        "WasSuccessful": false
+        "WasExecuted": true,
+        "WasSuccessful": true
       },
       "Tags": []
     },
     "Result": {
-      "WasExecuted": false,
-      "WasSuccessful": false
+      "WasExecuted": true,
+      "WasSuccessful": true
     }
   },
   {
@@ -2057,20 +1941,20 @@ jsonPWrapper ([
           ],
           "Tags": [],
           "Result": {
-            "WasExecuted": false,
-            "WasSuccessful": false
+            "WasExecuted": true,
+            "WasSuccessful": true
           }
         }
       ],
       "Result": {
-        "WasExecuted": false,
-        "WasSuccessful": false
+        "WasExecuted": true,
+        "WasSuccessful": true
       },
       "Tags": []
     },
     "Result": {
-      "WasExecuted": false,
-      "WasSuccessful": false
+      "WasExecuted": true,
+      "WasSuccessful": true
     }
   },
   {
@@ -2101,8 +1985,8 @@ jsonPWrapper ([
           ],
           "Tags": [],
           "Result": {
-            "WasExecuted": false,
-            "WasSuccessful": false
+            "WasExecuted": true,
+            "WasSuccessful": true
           }
         },
         {
@@ -2142,19 +2026,19 @@ jsonPWrapper ([
           ],
           "Tags": [],
           "Result": {
-            "WasExecuted": false,
+            "WasExecuted": true,
             "WasSuccessful": false
           }
         }
       ],
       "Result": {
-        "WasExecuted": false,
+        "WasExecuted": true,
         "WasSuccessful": false
       },
       "Tags": []
     },
     "Result": {
-      "WasExecuted": false,
+      "WasExecuted": true,
       "WasSuccessful": false
     }
   },

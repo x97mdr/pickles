@@ -17,19 +17,94 @@ var sampleJSONForHeirarchy = [
             "Name": "Clearing Screen",
             "Description": "In order to restart a new set of calculations\r\nAs a math idiot\r\nI want to be able to clear the screen",
             "FeatureElements": [
+              {
+                  "Name": "Clear the screen",
+                  "Description": "",
+                  "Steps": [
+                    {
+                        "Keyword": "Given",
+                        "NativeKeyword": "Given ",
+                        "Name": "I have entered 50 into the calculator"
+                    },
+                    {
+                        "Keyword": "And",
+                        "NativeKeyword": "And ",
+                        "Name": "I have entered 70 into the calculator"
+                    },
+                    {
+                        "Keyword": "When",
+                        "NativeKeyword": "When ",
+                        "Name": "I press C"
+                    },
+                    {
+                        "Keyword": "Then",
+                        "NativeKeyword": "Then ",
+                        "Name": "the screen should be empty"
+                    }
+                  ],
+                  "Tags": [
+                    "@workflow",
+                    "@slow"
+                  ],
+                  "Result": {
+                      "WasExecuted": false,
+                      "WasSuccessful": false
+                  }
+              }
             ],
+            "Result": {
+                "WasExecuted": true,
+                "WasSuccessful": false
+            },
             "Tags": []
         }
     },
     {
-        "RelativeFolder": "12NestedFolders\\ChildFolder\\ChildChildFolder\\NestedFolderExample.feature",
-        "Feature": {
-            "Name": "Nested Folder Example 1",
-            "Description": "In order to test nested folder output\r\nAs a silly contributer\r\nI want to create an example of something several folders deep",
-            "FeatureElements": [
-            ],
-            "Tags": []
-        }
+       "RelativeFolder": "12NestedFolders\\ChildFolder\\ChildChildFolder\\NestedFolderExample.feature",
+       "Feature": {
+           "Name": "Nested Folder Example 1",
+           "Description": "In order to test nested folder output\r\nAs a silly contributer\r\nI want to create an example of something several folders deep",
+           "FeatureElements": [
+             {
+                 "Name": "Nested - Add two numbers",
+                 "Description": "",
+                 "Steps": [
+                   {
+                       "Keyword": "Given",
+                       "NativeKeyword": "Given ",
+                       "Name": "I have entered 50 into the calculator"
+                   },
+                   {
+                       "Keyword": "And",
+                       "NativeKeyword": "And ",
+                       "Name": "I have entered 70 into the calculator"
+                   },
+                   {
+                       "Keyword": "When",
+                       "NativeKeyword": "When ",
+                       "Name": "I press add"
+                   },
+                   {
+                       "Keyword": "Then",
+                       "NativeKeyword": "Then ",
+                       "Name": "the result should be 120 on the screen"
+                   }
+                 ],
+                 "Tags": [
+                   "@nestedFolders"
+                 ],
+                 "Result": {
+                     "WasExecuted": false,
+                     "WasSuccessful": false
+                 }
+             }
+           ],
+           "Result": {
+               "WasExecuted": true,
+               "WasSuccessful": true
+           },
+           "Tags": []
+       }
     },
     {
         "RelativeFolder": "12NestedFolders\\ChildFolder\\NestedFolderExample2.feature",
@@ -37,7 +112,44 @@ var sampleJSONForHeirarchy = [
             "Name": "Nested Folder Example 2",
             "Description": "In order to test nested folder output\r\nAs a silly contributer\r\nI want to create an example of something several folders deep",
             "FeatureElements": [
+              {
+                  "Name": "Nested - Add two numbers",
+                  "Description": "",
+                  "Steps": [
+                    {
+                        "Keyword": "Given",
+                        "NativeKeyword": "Given ",
+                        "Name": "I have entered 50 into the calculator"
+                    },
+                    {
+                        "Keyword": "And",
+                        "NativeKeyword": "And ",
+                        "Name": "I have entered 70 into the calculator"
+                    },
+                    {
+                        "Keyword": "When",
+                        "NativeKeyword": "When ",
+                        "Name": "I press add"
+                    },
+                    {
+                        "Keyword": "Then",
+                        "NativeKeyword": "Then ",
+                        "Name": "the result should be 120 on the screen"
+                    }
+                  ],
+                  "Tags": [
+                    "@nestedFolders"
+                  ],
+                  "Result": {
+                      "WasExecuted": false,
+                      "WasSuccessful": false
+                  }
+              }
             ],
+            "Result": {
+                "WasExecuted": false,
+                "WasSuccessful": false
+            },
             "Tags": []
         }
     }
@@ -48,12 +160,13 @@ test("Can get folder heirarchy from JSON", function () {
     ok(sampleJSONForHeirarchy != null, "Sample JSON object isn't null");
     equal(sampleJSONForHeirarchy.length, 3, "Sample JSON has 3 items");
     {
+        var features = $.map(sampleJSONForHeirarchy, function (el, i) { return new FeatureParent(el); });
         var expectList = new Array();
-        expectList.push(new NavigationFeature('Clearing Screen', 'ClearingScreen.feature'));
-        expectList.push(new NavigationFeature('Nested Folder Example 1', '12NestedFolders\\ChildFolder\\ChildChildFolder\\NestedFolderExample.feature'));
-        expectList.push(new NavigationFeature('Nested Folder Example 2', '12NestedFolders\\ChildFolder\\NestedFolderExample2.feature'));
+        expectList.push(new NavigationFeature('Clearing Screen', 'ClearingScreen.feature', new Result({ WasExecuted: true, WasSuccessful: false })));
+        expectList.push(new NavigationFeature('Nested Folder Example 1', '12NestedFolders\\ChildFolder\\ChildChildFolder\\NestedFolderExample.feature', new Result({ WasExecuted: true, WasSuccessful: true })));
+        expectList.push(new NavigationFeature('Nested Folder Example 2', '12NestedFolders\\ChildFolder\\NestedFolderExample2.feature', new Result({ WasExecuted: false, WasSuccessful: false })));
         deepEqual(
-            getFeaturesFromScenariosList(sampleJSONForHeirarchy),
+            getFeaturesFromScenariosList(features),
             expectList,
             "Get Features From Scenarios List - Happy path");
     }
@@ -86,14 +199,15 @@ test("Can get folder heirarchy from JSON", function () {
     }
     {
         // SCENARIO: End Goal!
-        var startingPaths = getFeaturesFromScenariosList(sampleJSONForHeirarchy);
+        var features = $.map(sampleJSONForHeirarchy, function (el, i) { return new FeatureParent(el); });
+        var startingPaths = getFeaturesFromScenariosList(features);
         var expectedDirStructure = new Directory("");
-        expectedDirStructure.features.push(new NavigationFeature('Clearing Screen', 'ClearingScreen.feature'));
+        expectedDirStructure.features.push(new NavigationFeature('Clearing Screen', 'ClearingScreen.feature', new Result({ WasExecuted: true, WasSuccessful: false })));
         expectedDirStructure.SubDirectories.push(new Directory('12 Nested Folders'));
         expectedDirStructure.SubDirectories[0].SubDirectories.push(new Directory('Child Folder'));
-        expectedDirStructure.SubDirectories[0].SubDirectories[0].features.push(new NavigationFeature('Nested Folder Example 2', '12NestedFolders\\ChildFolder\\NestedFolderExample2.feature'));
+        expectedDirStructure.SubDirectories[0].SubDirectories[0].features.push(new NavigationFeature('Nested Folder Example 2', '12NestedFolders\\ChildFolder\\NestedFolderExample2.feature', new Result({ WasExecuted: false, WasSuccessful: false })));
         expectedDirStructure.SubDirectories[0].SubDirectories[0].SubDirectories.push(new Directory('Child Child Folder'));
-        expectedDirStructure.SubDirectories[0].SubDirectories[0].SubDirectories[0].features.push(new NavigationFeature('Nested Folder Example 1', '12NestedFolders\\ChildFolder\\ChildChildFolder\\NestedFolderExample.feature'));
+        expectedDirStructure.SubDirectories[0].SubDirectories[0].SubDirectories[0].features.push(new NavigationFeature('Nested Folder Example 1', '12NestedFolders\\ChildFolder\\ChildChildFolder\\NestedFolderExample.feature', new Result({ WasExecuted: true, WasSuccessful: true })));
         deepEqual(buildFullHierarchy(startingPaths), expectedDirStructure, 'End Goal!');
     }
 });
@@ -377,13 +491,16 @@ test("Can search for tags and feature/scenarios names", function () {
         "Feature level level tag search - across multiple features");
     deepEqual(getFeaturesMatching('@doesnotexist', sampleJSONForSearch), [],
         "Neither a tag or feature in list.");
+
 });
 
-test("Can find feature by RelativeFolder", function() {
+test("Can find feature by RelativeFolder", function () {
+
     deepEqual(findFeatureByRelativeFolder('Workflow\\ClearingScreen.feature', sampleJSONForSearch), sampleJSONForSearch[0],
         "Feature exists");
     deepEqual(findFeatureByRelativeFolder('Workflow\\ClearingScreen2.feature', sampleJSONForSearch), null,
         "Feature does not exist");
+
 });
 
 

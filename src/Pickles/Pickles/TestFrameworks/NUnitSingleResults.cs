@@ -4,7 +4,6 @@ using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.TestFrameworks
 {
@@ -148,10 +147,10 @@ namespace PicklesDoc.Pickles.TestFrameworks
         examplesElement = featureElement
           .Descendants("test-suite")
           .Where(x => x.Attribute("description") != null)
-          .FirstOrDefault(x => x.Attribute("description").Value == scenarioOutline.Name)
+          .FirstOrDefault(x => x.Attribute("description").Value.Equals(scenarioOutline.Name, StringComparison.OrdinalIgnoreCase))
           .Descendants("test-case")
           .Where(x => x.Attribute("name") != null)
-          .FirstOrDefault(x => exampleSignature.IsMatch(x.Attribute("name").Value.ToLowerInvariant()));
+          .FirstOrDefault(x => exampleSignature.IsMatch(x.Attribute("name").Value.ToLowerInvariant().Replace(@"\", "")));
       }
       return this.GetResultFromElement(examplesElement);
     }

@@ -25,7 +25,6 @@ using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.TestFrameworks
 {
@@ -172,7 +171,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
             foreach (XElement exampleElement in exampleElements)
             {
               Regex signature = signatureBuilder.Build(scenarioOutline, exampleValues);
-                if (signature.IsMatch(exampleElement.Attribute("name").Value.ToLowerInvariant()))
+                if (signature.IsMatch(exampleElement.Attribute("name").Value.ToLowerInvariant().Replace(@"\", "")))
                 {
                     return this.GetResultFromElement(exampleElement);
                 }
