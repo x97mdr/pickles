@@ -129,38 +129,12 @@
     </exec>
   </target>
   
-  <target name="pack" depends="test">
-    <exec program="nuget.exe" basedir="${nuget.dir}">
-      <arg value="Pack"/>
-      <arg value="-Version"/>
-      <arg value="${version}" />
-      <arg value="-OutputDirectory"/>
-      <arg value="${deploy.dir}"/>
-      <arg value="${nuspec.powershell.dir}"/>
-    </exec>
-    <exec program="nuget.exe" basedir="${nuget.dir}">
-      <arg value="Pack"/>
-      <arg value="-Version"/>
-      <arg value="${version}" />
-      <arg value="-OutputDirectory"/>
-      <arg value="${deploy.dir}"/>
-      <arg value="${nuspec.console.dir}"/>
-    </exec>
-    <exec program="nuget.exe" basedir="${nuget.dir}">
-      <arg value="Pack"/>
-      <arg value="-Version"/>
-      <arg value="${version}" />
-      <arg value="-OutputDirectory"/>
-      <arg value="${deploy.dir}"/>
-      <arg value="${nuspec.msbuild.dir}"/>
-    </exec>
-  </target>
-  
   <target name="zip" depends="test">
     <zip zipfile="${deploy.dir}\pickles-${version}.zip">
         <fileset basedir="${assemblies.console.dir}" prefix="pickles-${version}\exe">
             <include name="**/*" />
 			<exclude name="**/*.xml" />
+			<exclude name="**/*.pdb" />
 			<exclude name="**/IKVM.AWT.WinForms.dll" />
 			<exclude name="**/IKVM.OpenJDK.Beans.dll" />
 			<exclude name="**/IKVM.OpenJDK.Jdbc.dll" />
@@ -175,6 +149,7 @@
         <fileset basedir="${assemblies.msbuild.dir}" prefix="pickles-${version}\msbuild">
             <include name="**/*" />
 			<exclude name="**/*.xml" />
+			<exclude name="**/*.pdb" />
 			<exclude name="**/IKVM.AWT.WinForms.dll" />
 			<exclude name="**/IKVM.OpenJDK.Beans.dll" />
 			<exclude name="**/IKVM.OpenJDK.Jdbc.dll" />
@@ -189,6 +164,7 @@
         <fileset basedir="${assemblies.nant.dir}" prefix="pickles-${version}\nant">
             <include name="**/*" />
 			<exclude name="**/*.xml" />
+			<exclude name="**/*.pdb" />
 			<exclude name="**/IKVM.AWT.WinForms.dll" />
 			<exclude name="**/IKVM.OpenJDK.Beans.dll" />
 			<exclude name="**/IKVM.OpenJDK.Jdbc.dll" />
@@ -203,6 +179,7 @@
         <fileset basedir="${assemblies.powershell.dir}" prefix="pickles-${version}\powershell">
             <include name="**/*" />
 			<exclude name="**/*.xml" />
+			<exclude name="**/*.pdb" />
 			<exclude name="**/IKVM.AWT.WinForms.dll" />
 			<exclude name="**/IKVM.OpenJDK.Beans.dll" />
 			<exclude name="**/IKVM.OpenJDK.Jdbc.dll" />
@@ -217,6 +194,7 @@
         <fileset basedir="${assemblies.gui.dir}" prefix="pickles-${version}\gui">
             <include name="**/*" />
 			<exclude name="**/*.xml" />
+			<exclude name="**/*.pdb" />
 			<exclude name="**/IKVM.AWT.WinForms.dll" />
 			<exclude name="**/IKVM.OpenJDK.Beans.dll" />
 			<exclude name="**/IKVM.OpenJDK.Jdbc.dll" />
