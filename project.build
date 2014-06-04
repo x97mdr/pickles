@@ -31,7 +31,6 @@
   
   <property name="version" value="${version.major}.${version.minor}.${version.revision}.${build.number}" />
   <property name="msbuild.dir" value="${environment::get-variable('ProgramFiles(x86)')}\MSBuild\12.0\Bin" />
-  <property name="nuget.dir" value="src\Pickles\packages\NuGet.CommandLine.2.8.0\tools" />
   <property name="framework.dir" value="${msbuild.dir}" />
   <property name="assemblies.dir" value="C:\dev\pickles\src\Pickles\Pickles.CommandLine\bin\Release" />
   <property name="assemblies.console.dir" value="src\Pickles\Pickles.CommandLine\bin\Release" />
