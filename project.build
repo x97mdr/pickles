@@ -5,7 +5,7 @@
   <!-- set the major and minor version number here -->
   <property name="version.major" value="0" />
   <property name="version.minor" value="17" />
-  <property name="version.revision" value="3" />
+  <property name="version.revision" value="4" />
   
   <!-- set build number from continuous integration tool -->
   <if test="${environment::variable-exists('BUILD_NUMBER')}">
@@ -31,8 +31,6 @@
   
   <property name="version" value="${version.major}.${version.minor}.${version.revision}.${build.number}" />
   <property name="msbuild.dir" value="${environment::get-variable('ProgramFiles(x86)')}\MSBuild\12.0\Bin" />
-  <property name="ilmerge.dir" value="${environment::get-variable('ProgramFiles')}\Microsoft\ILMerge" />
-  <property name="nuget.dir" value="src\Pickles\packages\NuGet.CommandLine.2.8.0\tools" />
   <property name="framework.dir" value="${msbuild.dir}" />
   <property name="assemblies.dir" value="C:\dev\pickles\src\Pickles\Pickles.CommandLine\bin\Release" />
   <property name="assemblies.console.dir" value="src\Pickles\Pickles.CommandLine\bin\Release" />
@@ -43,14 +41,12 @@
   <property name="nuspec.powershell.dir" value="src\Pickles\Pickles.PowerShell\Pickles.nuspec" />
   <property name="nuspec.msbuild.dir" value="src\Pickles\Pickles.MSBuild\Pickles.MSBuild.nuspec" />
   <property name="nuspec.console.dir" value="src\Pickles\Pickles.CommandLine\Pickles.CommandLine.nuspec" />
-  <property name="merged.dir" value="merged" />
   <property name="deploy.dir" value="deploy" />
   <property name="report.dir" value="reports" />
   <property name="report.nunit.dir" value="${report.dir}\nunit" />
 
   <target name="init">
     <mkdir dir="${deploy.dir}" />
-    <mkdir dir="${merged.dir}" />
     <mkdir dir="${report.nunit.dir}" />
   </target>
   
@@ -77,90 +73,12 @@
     </exec>
   </target>
   
-  <target name="merge" depends="build">
-    <delete>
-      <fileset>
-        <include name="${merged.dir}\merge.*.log" />
-      </fileset>
-    </delete>
-    
-    <exec program="ilmerge.exe" basedir="${ilmerge.dir}">
-      <arg value="/out=${merged.dir}\Pickles.exe"/>
-      <arg value="/target=exe"/>
-      <arg value="/ndebug"/>
-      <arg value="/wildcards"/>
-      <arg value="/allowDup"/>
-      <arg value="/log:${merged.dir}\merge.exe.log" />
-      <arg value="${assemblies.console.dir}\Pickles.exe"/>
-      <arg value="${assemblies.console.dir}\*.dll"/>
-    </exec>
-    
-    <exec program="ilmerge.exe" basedir="${ilmerge.dir}">
-      <arg value="/out=${merged.dir}\PicklesDoc.Pickles.MSBuild.Tasks.dll"/>
-      <arg value="/target=dll"/>
-      <arg value="/ndebug"/>
-      <arg value="/wildcards"/>
-      <arg value="/allowDup"/>
-      <arg value="/log:${merged.dir}\merge.msbuild.log" />
-      <arg value="${assemblies.msbuild.dir}\PicklesDoc.Pickles.MSBuild.Tasks.dll"/>
-      <arg value="${assemblies.msbuild.dir}\*.dll"/>
-    </exec>
-
-    <exec program="ilmerge.exe" basedir="${ilmerge.dir}">
-      <arg value="/out=${merged.dir}\PicklesDoc.Pickles.NAnt.Tasks.dll"/>
-      <arg value="/target=dll"/>
-      <arg value="/ndebug"/>
-      <arg value="/wildcards"/>
-      <arg value="/allowDup"/>
-      <arg value="/log:${merged.dir}\merge.nant.log" />
-      <arg value="${assemblies.nant.dir}\PicklesDoc.Pickles.NAnt.Tasks.dll"/>
-      <arg value="${assemblies.nant.dir}\*.dll"/>
-    </exec>
-    
-    <exec program="ilmerge.exe" basedir="${ilmerge.dir}">
-      <arg value="/out=${merged.dir}\PicklesDoc.Pickles.PowerShell.dll"/>
-      <arg value="/target=dll"/>
-      <arg value="/ndebug"/>
-      <arg value="/wildcards"/>
-      <arg value="/allowDup"/>
-      <arg value="/log:${merged.dir}\merge.powershell.log" />
-      <arg value="${assemblies.powershell.dir}\PicklesDoc.Pickles.Powershell.dll"/>
-      <arg value="${assemblies.powershell.dir}\*.dll"/>
-    </exec>
-  </target>
-  
-  <target name="pack" depends="test">
-    <exec program="nuget.exe" basedir="${nuget.dir}">
-      <arg value="Pack"/>
-      <arg value="-Version"/>
-      <arg value="${version}" />
-      <arg value="-OutputDirectory"/>
-      <arg value="${deploy.dir}"/>
-      <arg value="${nuspec.powershell.dir}"/>
-    </exec>
-    <exec program="nuget.exe" basedir="${nuget.dir}">
-      <arg value="Pack"/>
-      <arg value="-Version"/>
-      <arg value="${version}" />
-      <arg value="-OutputDirectory"/>
-      <arg value="${deploy.dir}"/>
-      <arg value="${nuspec.console.dir}"/>
-    </exec>
-    <exec program="nuget.exe" basedir="${nuget.dir}">
-      <arg value="Pack"/>
-      <arg value="-Version"/>
-      <arg value="${version}" />
-      <arg value="-OutputDirectory"/>
-      <arg value="${deploy.dir}"/>
-      <arg value="${nuspec.msbuild.dir}"/>
-    </exec>
-  </target>
-  
   <target name="zip" depends="test">
     <zip zipfile="${deploy.dir}\pickles-${version}.zip">
         <fileset basedir="${assemblies.console.dir}" prefix="pickles-${version}\exe">
             <include name="**/*" />
 			<exclude name="**/*.xml" />
+			<exclude name="**/*.pdb" />
 			<exclude name="**/IKVM.AWT.WinForms.dll" />
 			<exclude name="**/IKVM.OpenJDK.Beans.dll" />
 			<exclude name="**/IKVM.OpenJDK.Jdbc.dll" />
@@ -175,6 +93,7 @@
         <fileset basedir="${assemblies.msbuild.dir}" prefix="pickles-${version}\msbuild">
             <include name="**/*" />
 			<exclude name="**/*.xml" />
+			<exclude name="**/*.pdb" />
 			<exclude name="**/IKVM.AWT.WinForms.dll" />
 			<exclude name="**/IKVM.OpenJDK.Beans.dll" />
 			<exclude name="**/IKVM.OpenJDK.Jdbc.dll" />
@@ -189,6 +108,7 @@
         <fileset basedir="${assemblies.nant.dir}" prefix="pickles-${version}\nant">
             <include name="**/*" />
 			<exclude name="**/*.xml" />
+			<exclude name="**/*.pdb" />
 			<exclude name="**/IKVM.AWT.WinForms.dll" />
 			<exclude name="**/IKVM.OpenJDK.Beans.dll" />
 			<exclude name="**/IKVM.OpenJDK.Jdbc.dll" />
@@ -203,6 +123,7 @@
         <fileset basedir="${assemblies.powershell.dir}" prefix="pickles-${version}\powershell">
             <include name="**/*" />
 			<exclude name="**/*.xml" />
+			<exclude name="**/*.pdb" />
 			<exclude name="**/IKVM.AWT.WinForms.dll" />
 			<exclude name="**/IKVM.OpenJDK.Beans.dll" />
 			<exclude name="**/IKVM.OpenJDK.Jdbc.dll" />
@@ -217,6 +138,7 @@
         <fileset basedir="${assemblies.gui.dir}" prefix="pickles-${version}\gui">
             <include name="**/*" />
 			<exclude name="**/*.xml" />
+			<exclude name="**/*.pdb" />
 			<exclude name="**/IKVM.AWT.WinForms.dll" />
 			<exclude name="**/IKVM.OpenJDK.Beans.dll" />
 			<exclude name="**/IKVM.OpenJDK.Jdbc.dll" />
