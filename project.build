@@ -31,7 +31,6 @@
   
   <property name="version" value="${version.major}.${version.minor}.${version.revision}.${build.number}" />
   <property name="msbuild.dir" value="${environment::get-variable('ProgramFiles(x86)')}\MSBuild\12.0\Bin" />
-  <property name="ilmerge.dir" value="${environment::get-variable('ProgramFiles')}\Microsoft\ILMerge" />
   <property name="nuget.dir" value="src\Pickles\packages\NuGet.CommandLine.2.8.0\tools" />
   <property name="framework.dir" value="${msbuild.dir}" />
   <property name="assemblies.dir" value="C:\dev\pickles\src\Pickles\Pickles.CommandLine\bin\Release" />
@@ -43,14 +42,12 @@
   <property name="nuspec.powershell.dir" value="src\Pickles\Pickles.PowerShell\Pickles.nuspec" />
   <property name="nuspec.msbuild.dir" value="src\Pickles\Pickles.MSBuild\Pickles.MSBuild.nuspec" />
   <property name="nuspec.console.dir" value="src\Pickles\Pickles.CommandLine\Pickles.CommandLine.nuspec" />
-  <property name="merged.dir" value="merged" />
   <property name="deploy.dir" value="deploy" />
   <property name="report.dir" value="reports" />
   <property name="report.nunit.dir" value="${report.dir}\nunit" />
 
   <target name="init">
     <mkdir dir="${deploy.dir}" />
-    <mkdir dir="${merged.dir}" />
     <mkdir dir="${report.nunit.dir}" />
   </target>
   
@@ -74,58 +71,6 @@
     <exec program="nunit-console.exe" basedir="src\Pickles\packages\NUnit.Runners.2.6.3\tools">
       <arg value="/xml:${report.nunit.dir}\results.xml" />
       <arg value=".\src\Pickles\Pickles.Test\bin\Release\PicklesDoc.Pickles.Test.dll" />
-    </exec>
-  </target>
-  
-  <target name="merge" depends="build">
-    <delete>
-      <fileset>
-        <include name="${merged.dir}\merge.*.log" />
-      </fileset>
-    </delete>
-    
-    <exec program="ilmerge.exe" basedir="${ilmerge.dir}">
-      <arg value="/out=${merged.dir}\Pickles.exe"/>
-      <arg value="/target=exe"/>
-      <arg value="/ndebug"/>
-      <arg value="/wildcards"/>
-      <arg value="/allowDup"/>
-      <arg value="/log:${merged.dir}\merge.exe.log" />
-      <arg value="${assemblies.console.dir}\Pickles.exe"/>
-      <arg value="${assemblies.console.dir}\*.dll"/>
-    </exec>
-    
-    <exec program="ilmerge.exe" basedir="${ilmerge.dir}">
-      <arg value="/out=${merged.dir}\PicklesDoc.Pickles.MSBuild.Tasks.dll"/>
-      <arg value="/target=dll"/>
-      <arg value="/ndebug"/>
-      <arg value="/wildcards"/>
-      <arg value="/allowDup"/>
-      <arg value="/log:${merged.dir}\merge.msbuild.log" />
-      <arg value="${assemblies.msbuild.dir}\PicklesDoc.Pickles.MSBuild.Tasks.dll"/>
-      <arg value="${assemblies.msbuild.dir}\*.dll"/>
-    </exec>
-
-    <exec program="ilmerge.exe" basedir="${ilmerge.dir}">
-      <arg value="/out=${merged.dir}\PicklesDoc.Pickles.NAnt.Tasks.dll"/>
-      <arg value="/target=dll"/>
-      <arg value="/ndebug"/>
-      <arg value="/wildcards"/>
-      <arg value="/allowDup"/>
-      <arg value="/log:${merged.dir}\merge.nant.log" />
-      <arg value="${assemblies.nant.dir}\PicklesDoc.Pickles.NAnt.Tasks.dll"/>
-      <arg value="${assemblies.nant.dir}\*.dll"/>
-    </exec>
-    
-    <exec program="ilmerge.exe" basedir="${ilmerge.dir}">
-      <arg value="/out=${merged.dir}\PicklesDoc.Pickles.PowerShell.dll"/>
-      <arg value="/target=dll"/>
-      <arg value="/ndebug"/>
-      <arg value="/wildcards"/>
-      <arg value="/allowDup"/>
-      <arg value="/log:${merged.dir}\merge.powershell.log" />
-      <arg value="${assemblies.powershell.dir}\PicklesDoc.Pickles.Powershell.dll"/>
-      <arg value="${assemblies.powershell.dir}\*.dll"/>
     </exec>
   </target>
   
