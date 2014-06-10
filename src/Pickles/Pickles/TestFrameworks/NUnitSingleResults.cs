@@ -144,15 +144,33 @@ namespace PicklesDoc.Pickles.TestFrameworks
         }
 
         Regex exampleSignature = signatureBuilder.Build(scenarioOutline, exampleValues);
-        examplesElement = featureElement
+        
+        var parameterizedTestElement = featureElement
           .Descendants("test-suite")
-          .Where(x => x.Attribute("description") != null)
-          .FirstOrDefault(x => x.Attribute("description").Value.Equals(scenarioOutline.Name, StringComparison.OrdinalIgnoreCase))
-          .Descendants("test-case")
-          .Where(x => x.Attribute("name") != null)
-          .FirstOrDefault(x => exampleSignature.IsMatch(x.Attribute("name").Value.ToLowerInvariant().Replace(@"\", "")));
+          .FirstOrDefault(x => IsMatchingParameterizedTestElement(x, scenarioOutline));
+
+        if (parameterizedTestElement != null)
+        {
+            examplesElement = parameterizedTestElement.Descendants("test-case")
+                .FirstOrDefault(x => IsMatchingTestCase(x, exampleSignature));
+        }
       }
       return this.GetResultFromElement(examplesElement);
+    }
+
+    private static bool IsMatchingTestCase(XElement x, Regex exampleSignature)
+    {
+      var name = x.Attribute("name");
+      return name != null && exampleSignature.IsMatch(name.Value.ToLowerInvariant().Replace(@"\", ""));
+    }
+
+    private static bool IsMatchingParameterizedTestElement(XElement element, ScenarioOutline scenarioOutline)
+    {
+      var description = element.Attribute("description");
+
+      return description != null &&
+             description.Value.Equals(scenarioOutline.Name, StringComparison.OrdinalIgnoreCase) &&
+             element.Descendants("test-case").Any();
     }
   }
 }

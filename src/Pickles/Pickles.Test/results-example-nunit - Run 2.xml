@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Users\tom.davis\Documents\Visual Studio 2013\Projects\FeatureWithMultipleResultsFiles\FeatureWithMultipleResultsFiles\bin\Debug\FeatureWithMultipleResultsFiles.dll" total="2" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-06-06" time="11:46:34">
+  <environment nunit-version="2.6.0.12051" clr-version="2.0.50727.5477" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Users\tom.davis\Documents\Visual Studio 2013\Projects\FeatureWithMultipleResultsFiles\FeatureWithMultipleResultsFiles\bin\FeatureWithMultipleResultsFiles" machine-name="NVMBSNB-1265" user="tom.davis" user-domain="GENERAL" />
+  <culture-info current-culture="en-GB" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="C:\Users\tom.davis\Documents\Visual Studio 2013\Projects\FeatureWithMultipleResultsFiles\FeatureWithMultipleResultsFiles\bin\Debug\FeatureWithMultipleResultsFiles.dll" executed="True" result="Success" success="True" time="0.341" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="FeatureWithMultipleResultsFiles" executed="True" result="Success" success="True" time="0.336" asserts="0">
+        <results>
+          <test-suite type="TestFixture" name="FeatureWithMultipleResultsFilesFeature" description="FeatureWithMultipleResultsFiles" executed="True" result="Success" success="True" time="0.336" asserts="0">
+            <results>
+              <test-suite type="ParameterizedTest" name="SomeScenarioOutline" description="Some scenario outline" executed="True" result="Success" success="True" time="0.132" asserts="0">
+                <results>
+                  <test-case name="PicklesBug.PicklesBugFeature.SomeScenarioOutline(&quot;False&quot;,null)" executed="True" result="Success" success="True" time="0.123" asserts="0" />
+                  <test-case name="PicklesBug.PicklesBugFeature.SomeScenarioOutline(&quot;True&quot;,null)" executed="True" result="Success" success="True" time="0.002" asserts="0" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

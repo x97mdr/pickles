@@ -203,6 +203,7 @@
     <Compile Include="DirectoryCrawlers\ImageFileDetectorTests.cs" />
     <Compile Include="DirectoryCrawlers\RelevantFileDetectorTests.cs" />
     <Compile Include="WhenParsingMultipleMsTestTestResultsFiles.cs" />
+    <Compile Include="WhenParsingMultipleNUnitResultsFilesForASingleFeature.cs" />
     <Compile Include="WhenParsingMultipleTestResultsTests.cs" />
     <Compile Include="WhenParsingSpecRunTestResultsFile.cs" />
     <Compile Include="DirectoryCrawlers\FolderDirectoryTreeNodeTests.cs" />
@@ -278,6 +279,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="results-example-nunit - Run 1.xml" />
+    <EmbeddedResource Include="results-example-nunit - Run 2.xml" />
     <EmbeddedResource Include="results-example-specrun.html" />
     <None Include="DocumentationBuilders\HTML\FormattingAFeature.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
