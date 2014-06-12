@@ -334,7 +334,6 @@
     <EmbeddedResource Include="Resources\fonts\fontawesome-webfont.ttf" />
     <EmbeddedResource Include="Resources\fonts\fontawesome-webfont.woff" />
     <EmbeddedResource Include="Resources\fonts\FontAwesome.ttf" />
-    <None Include="Resources\Pickles.BaseDhtmlFiles.zip" />
     <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
