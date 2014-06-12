@@ -49,6 +49,16 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
       }
     }
 
+    protected void WriteTextFile(string folder, string filename)
+    {
+      string path = this.fileSystem.Path.Combine(folder, filename);
+
+      using (var reader = GetResourceStreamReader(this.namespaceOfResources + filename))
+      {
+        this.fileSystem.File.WriteAllText(path, reader.ReadToEnd());
+      }
+    }
+
     private static StreamReader GetResourceStreamReader(string nameOfResource)
     {
       return new StreamReader(GetResourceStream(nameOfResource));

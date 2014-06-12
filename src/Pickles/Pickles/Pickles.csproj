@@ -194,10 +194,8 @@
     <Compile Include="DirectoryCrawler\ImageFileDetector.cs" />
     <Compile Include="DirectoryCrawler\ImageNode.cs" />
     <Compile Include="DocumentationBuilders\DHTML\DhtmlDocumentationBuilder.cs" />
-    <Compile Include="DocumentationBuilders\DHTML\DhtmlResourceSet.cs" />
-    <Compile Include="DocumentationBuilders\DHTML\DhtmlResourceProcessor.cs" />
+    <Compile Include="DocumentationBuilders\DHTML\DhtmlResourceWriter.cs" />
     <Compile Include="DocumentationBuilders\DHTML\JsonTweaker.cs" />
-    <Compile Include="DocumentationBuilders\DHTML\UnZipper.cs" />
     <Compile Include="DocumentationBuilders\DITA\DitaDocumentationBuilder.cs" />
     <Compile Include="DocumentationBuilders\DITA\DitaFeatureFormatter.cs" />
     <Compile Include="DocumentationBuilders\DITA\DitaMapBuilder.cs" />
@@ -338,29 +336,29 @@
     <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Html\global.css" />
-    <EmbeddedResource Include="Resources\Html\master.css" />
-    <EmbeddedResource Include="Resources\Html\reset.css" />
-    <EmbeddedResource Include="Resources\Html\structure.css" />
+    <EmbeddedResource Include="Resources\Html\css\global.css" />
+    <EmbeddedResource Include="Resources\Html\css\master.css" />
+    <EmbeddedResource Include="Resources\Html\css\reset.css" />
+    <EmbeddedResource Include="Resources\Html\css\structure.css" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Html\images\failure.png" />
-    <EmbeddedResource Include="Resources\Html\images\success.png" />
+    <EmbeddedResource Include="Resources\Html\img\failure.png" />
+    <EmbeddedResource Include="Resources\Html\img\success.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Html\scripts\jquery.js" />
+    <EmbeddedResource Include="Resources\Html\js\jquery.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Html\print.css" />
+    <EmbeddedResource Include="Resources\Html\css\print.css" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Html\scripts\scripts.js" />
+    <EmbeddedResource Include="Resources\Html\js\scripts.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Html\images\inconclusive.png" />
+    <EmbeddedResource Include="Resources\Html\img\inconclusive.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Html\font-awesome.css" />
+    <EmbeddedResource Include="Resources\Html\css\font-awesome.css" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Html\fonts\fontawesome-webfont.svg" />
@@ -381,9 +379,9 @@
     <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\img\glyphicons-halflings.png">
       <Link>Resources\Dhtml\img\glyphicons-halflings.png</Link>
     </EmbeddedResource>
-    <Content Include="..\Pickles.BaseDhtmlFiles\Index.html">
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\Index.html">
       <Link>Resources\Dhtml\Index.html</Link>
-    </Content>
+    </EmbeddedResource>
     <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\bootstrap.min.js">
       <Link>Resources\Dhtml\js\bootstrap.min.js</Link>
     </EmbeddedResource>
@@ -429,9 +427,9 @@
     <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\underscore-min.js">
       <Link>Resources\Dhtml\js\underscore-min.js</Link>
     </EmbeddedResource>
-    <Content Include="..\Pickles.BaseDhtmlFiles\pickledFeatures.js">
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\pickledFeatures.js">
       <Link>Resources\Dhtml\pickledFeatures.js</Link>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
