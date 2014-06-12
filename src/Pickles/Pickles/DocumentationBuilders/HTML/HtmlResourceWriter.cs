@@ -19,89 +19,16 @@
 #endregion
 
 using System;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO.Abstractions;
-using System.Reflection;
-
-using Stream = System.IO.Stream;
-using StreamReader = System.IO.StreamReader;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
-    public class HtmlResourceWriter
+  public class HtmlResourceWriter : ResourceWriter
     {
-        private readonly IFileSystem fileSystem;
-
         public HtmlResourceWriter(IFileSystem fileSystem)
+          : base(fileSystem, "PicklesDoc.Pickles.Resources.Html.")
         {
-            this.fileSystem = fileSystem;
         }
-
-        private static void CopyStream(Stream input, Stream output)
-        {
-            byte[] buffer = new byte[32768];
-            while (true)
-            {
-                int read = input.Read(buffer, 0, buffer.Length);
-                if (read <= 0)
-                    return;
-                output.Write(buffer, 0, read);
-            }
-        }
-
-        private void WriteStyleSheet(string folder, string filename)
-        {
-            string path = this.fileSystem.Path.Combine(folder, filename);
-            using (
-                var reader =
-                    new StreamReader(
-                        Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Resources.Html." + filename)))
-            {
-                this.fileSystem.File.WriteAllText(path, reader.ReadToEnd());
-            }
-        }
-
-        private void WriteImage(string folder, string filename)
-        {
-            string path = this.fileSystem.Path.Combine(folder, filename);
-            using (
-                Image image =
-                    Image.FromStream(
-                        Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Resources.Html.images." + filename))
-                )
-            {
-                using (var stream = this.fileSystem.File.Create(path))
-                {
-                    image.Save(stream, ImageFormat.Png);
-                }
-            }
-        }
-
-      private void WriteScript(string folder, string filename)
-      {
-        string path = this.fileSystem.Path.Combine(folder, filename);
-        using (
-            var reader =
-                new StreamReader(
-                    Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Resources.Html.scripts." +
-                                                                              filename)))
-        {
-            this.fileSystem.File.WriteAllText(path, reader.ReadToEnd());
-        }
-      }
-
-      private void WriteFont(string folder, string filename)
-      {
-          Assembly assembly = Assembly.GetExecutingAssembly();
-          using (var input = assembly.GetManifestResourceStream("PicklesDoc.Pickles.Resources.Html.fonts." + filename))
-          {
-              using (var output = this.fileSystem.File.Create(this.fileSystem.Path.Combine(folder, filename)))
-              {
-                  CopyStream(input, output);
-              }
-          }
-      }
 
         public void WriteTo(string folder)
         {
