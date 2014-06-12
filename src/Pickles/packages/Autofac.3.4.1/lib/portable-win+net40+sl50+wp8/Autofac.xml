@@ -1576,6 +1576,15 @@
             <param name="serviceKey">Key of the service.</param>
             <param name="serviceType">Type of the service.</param>
         </member>
+        <member name="M:Autofac.Core.KeyedService.Equals(Autofac.Core.KeyedService)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.
+            </returns>
+        </member>
         <member name="M:Autofac.Core.KeyedService.Equals(System.Object)">
             <summary>
             Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.
@@ -4241,6 +4250,15 @@
             Initializes a new instance of the <see cref="T:Autofac.Core.TypedService"/> class.
             </summary>
             <param name="serviceType">Type of the service.</param>
+        </member>
+        <member name="M:Autofac.Core.TypedService.Equals(Autofac.Core.TypedService)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.
+            </returns>
         </member>
         <member name="M:Autofac.Core.TypedService.Equals(System.Object)">
             <summary>
