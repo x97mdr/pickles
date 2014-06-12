@@ -330,39 +330,39 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\fonts\fontawesome-webfont.eot" />
-    <EmbeddedResource Include="Resources\fonts\fontawesome-webfont.ttf" />
-    <EmbeddedResource Include="Resources\fonts\fontawesome-webfont.woff" />
-    <EmbeddedResource Include="Resources\fonts\FontAwesome.ttf" />
+    <EmbeddedResource Include="Resources\Html\fonts\fontawesome-webfont.eot" />
+    <EmbeddedResource Include="Resources\Html\fonts\fontawesome-webfont.ttf" />
+    <EmbeddedResource Include="Resources\Html\fonts\fontawesome-webfont.woff" />
+    <EmbeddedResource Include="Resources\Html\fonts\FontAwesome.ttf" />
     <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\global.css" />
-    <EmbeddedResource Include="Resources\master.css" />
-    <EmbeddedResource Include="Resources\reset.css" />
-    <EmbeddedResource Include="Resources\structure.css" />
+    <EmbeddedResource Include="Resources\Html\global.css" />
+    <EmbeddedResource Include="Resources\Html\master.css" />
+    <EmbeddedResource Include="Resources\Html\reset.css" />
+    <EmbeddedResource Include="Resources\Html\structure.css" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\images\failure.png" />
-    <EmbeddedResource Include="Resources\images\success.png" />
+    <EmbeddedResource Include="Resources\Html\images\failure.png" />
+    <EmbeddedResource Include="Resources\Html\images\success.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\scripts\jquery.js" />
+    <EmbeddedResource Include="Resources\Html\scripts\jquery.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\print.css" />
+    <EmbeddedResource Include="Resources\Html\print.css" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\scripts\scripts.js" />
+    <EmbeddedResource Include="Resources\Html\scripts\scripts.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\images\inconclusive.png" />
+    <EmbeddedResource Include="Resources\Html\images\inconclusive.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\font-awesome.css" />
+    <EmbeddedResource Include="Resources\Html\font-awesome.css" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\fonts\fontawesome-webfont.svg" />
+    <EmbeddedResource Include="Resources\Html\fonts\fontawesome-webfont.svg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\css\bootstrap.min.css">
