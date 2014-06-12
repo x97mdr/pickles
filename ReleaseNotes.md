@@ -1,5 +1,15 @@
 # Pickles Release Notes
 
+## vNext - TDB
+
+### New Feature(s)
+
+- **Potential Breaking Change**: the folder structure of the dependencies of the static HTML version was changed. If you override the .css files, you will need to update your workflow to account for that.
+
+### Bug(s) Fixed
+
+- Fixed issue where multiple results files for a single feature causes exceptions when processing scenario outline examples ([#123](https://github.com/picklesdoc/pickles/pull/123))
+
 ## v0.17.4 - 2013-06-04
 
 ### Bug(s) Fixed
