@@ -56,7 +56,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             using (
                 var reader =
                     new StreamReader(
-                        Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Resources." + filename)))
+                        Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Resources.Html." + filename)))
             {
                 this.fileSystem.File.WriteAllText(path, reader.ReadToEnd());
             }
@@ -68,7 +68,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             using (
                 Image image =
                     Image.FromStream(
-                        Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Resources.images." + filename))
+                        Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Resources.Html.images." + filename))
                 )
             {
                 using (var stream = this.fileSystem.File.Create(path))
@@ -84,7 +84,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
         using (
             var reader =
                 new StreamReader(
-                    Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Resources.scripts." +
+                    Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Resources.Html.scripts." +
                                                                               filename)))
         {
             this.fileSystem.File.WriteAllText(path, reader.ReadToEnd());
@@ -94,7 +94,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
       private void WriteFont(string folder, string filename)
       {
           Assembly assembly = Assembly.GetExecutingAssembly();
-          using (var input = assembly.GetManifestResourceStream("PicklesDoc.Pickles.Resources.fonts." + filename))
+          using (var input = assembly.GetManifestResourceStream("PicklesDoc.Pickles.Resources.Html.fonts." + filename))
           {
               using (var output = this.fileSystem.File.Create(this.fileSystem.Path.Combine(folder, filename)))
               {

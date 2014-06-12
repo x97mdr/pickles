@@ -70,7 +70,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             {
                 string[] resources = Assembly.GetExecutingAssembly().GetManifestResourceNames();
 
-                foreach (string resource in resources.Where(resource => resource.EndsWith(".css")))
+                foreach (string resource in resources.Where(resource => resource.EndsWith(".css") && resource.Contains(".Html.")))
                 {
                     string fileName = this.GetNameFromResourceName(resource);
                     yield return new HtmlResource
@@ -88,7 +88,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             {
                 string[] resources = Assembly.GetExecutingAssembly().GetManifestResourceNames();
 
-                foreach (string resource in resources.Where(resource => resource.EndsWith(".png")))
+                foreach (string resource in resources.Where(resource => resource.EndsWith(".png") && resource.Contains(".Html.")))
                 {
                     string fileName = this.GetNameFromResourceName(resource);
                     yield return new HtmlResource
@@ -106,7 +106,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             {
                 string[] resources = Assembly.GetExecutingAssembly().GetManifestResourceNames();
 
-                foreach (string resource in resources.Where(resource => resource.EndsWith(".js")))
+                foreach (string resource in resources.Where(resource => resource.EndsWith(".js") && resource.Contains(".Html.")))
                 {
                     string fileName = this.GetNameFromResourceName(resource);
                     yield return new HtmlResource
@@ -127,11 +127,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         private string GetNameFromResourceName(string resourceName)
         {
-          if (resourceName.StartsWith("PicklesDoc.Pickles.Resources.images"))
-            return resourceName.Replace("PicklesDoc.Pickles.Resources.images.", string.Empty);
-          else if (resourceName.StartsWith("PicklesDoc.Pickles.Resources.scripts"))
-            return resourceName.Replace("PicklesDoc.Pickles.Resources.scripts.", string.Empty);
-          else return resourceName.Replace("PicklesDoc.Pickles.Resources.", string.Empty);
+          if (resourceName.StartsWith("PicklesDoc.Pickles.Resources.Html.images"))
+            return resourceName.Replace("PicklesDoc.Pickles.Resources.Html.images.", string.Empty);
+          else if (resourceName.StartsWith("PicklesDoc.Pickles.Resources.Html.scripts"))
+            return resourceName.Replace("PicklesDoc.Pickles.Resources.Html.scripts.", string.Empty);
+          else return resourceName.Replace("PicklesDoc.Pickles.Resources.Html.", string.Empty);
         }
     }
 }
