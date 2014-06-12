@@ -39,19 +39,19 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             this.WriteStyleSheet(folder, "print.css");
             this.WriteStyleSheet(folder, "font-awesome.css");
 
-            string imagesFolder = this.fileSystem.Path.Combine(folder, "images");
-            if (!this.fileSystem.Directory.Exists(imagesFolder)) this.fileSystem.Directory.CreateDirectory(imagesFolder);
+            string imagesFolder = this.FileSystem.Path.Combine(folder, "images");
+            if (!this.FileSystem.Directory.Exists(imagesFolder)) this.FileSystem.Directory.CreateDirectory(imagesFolder);
             this.WriteImage(imagesFolder, "success.png");
             this.WriteImage(imagesFolder, "failure.png");
             this.WriteImage(imagesFolder, "inconclusive.png");
 
-            string scriptsFolder = this.fileSystem.Path.Combine(folder, "scripts");
-            if (!this.fileSystem.Directory.Exists(scriptsFolder)) this.fileSystem.Directory.CreateDirectory(scriptsFolder);
+            string scriptsFolder = this.FileSystem.Path.Combine(folder, "scripts");
+            if (!this.FileSystem.Directory.Exists(scriptsFolder)) this.FileSystem.Directory.CreateDirectory(scriptsFolder);
             this.WriteScript(scriptsFolder, "jquery.js");
             this.WriteScript(scriptsFolder, "scripts.js");
 
-            string fontsFolder = this.fileSystem.Path.Combine(folder, "fonts");
-            if (!this.fileSystem.Directory.Exists(fontsFolder)) this.fileSystem.Directory.CreateDirectory(fontsFolder);
+            string fontsFolder = this.FileSystem.Path.Combine(folder, "fonts");
+            if (!this.FileSystem.Directory.Exists(fontsFolder)) this.FileSystem.Directory.CreateDirectory(fontsFolder);
             this.WriteFont(fontsFolder, "FontAwesome.ttf");
             this.WriteFont(fontsFolder, "fontawesome-webfont.eot");
             this.WriteFont(fontsFolder, "fontawesome-webfont.svg");

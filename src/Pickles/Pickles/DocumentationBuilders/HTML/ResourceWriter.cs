@@ -9,7 +9,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
   public class ResourceWriter
   {
-    protected IFileSystem fileSystem;
+    private readonly IFileSystem fileSystem;
 
     private readonly string namespaceOfResources;
 
@@ -17,6 +17,14 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
     {
       this.fileSystem = fileSystem;
       this.namespaceOfResources = namespaceOfResources;
+    }
+
+    protected IFileSystem FileSystem
+    {
+      get
+      {
+        return this.fileSystem;
+      }
     }
 
     private static void CopyStream(Stream input, Stream output)
@@ -34,23 +42,28 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
     protected void WriteStyleSheet(string folder, string filename)
     {
       string path = this.fileSystem.Path.Combine(folder, filename);
-      using (
-        var reader =
-          new StreamReader(
-            Assembly.GetExecutingAssembly().GetManifestResourceStream(this.namespaceOfResources + filename)))
+
+      using (var reader = GetResourceStreamReader(this.namespaceOfResources + filename))
       {
         this.fileSystem.File.WriteAllText(path, reader.ReadToEnd());
       }
     }
 
+    private static StreamReader GetResourceStreamReader(string nameOfResource)
+    {
+      return new StreamReader(GetResourceStream(nameOfResource));
+    }
+
+    private static Stream GetResourceStream(string nameOfResource)
+    {
+      return Assembly.GetExecutingAssembly().GetManifestResourceStream(nameOfResource);
+    }
+
     protected void WriteImage(string folder, string filename)
     {
       string path = this.fileSystem.Path.Combine(folder, filename);
-      using (
-        Image image =
-          Image.FromStream(
-            Assembly.GetExecutingAssembly().GetManifestResourceStream(this.namespaceOfResources + "images." + filename))
-        )
+
+      using (Image image = Image.FromStream(GetResourceStream(this.namespaceOfResources + "images." + filename)))
       {
         using (var stream = this.fileSystem.File.Create(path))
         {
@@ -62,10 +75,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
     protected void WriteScript(string folder, string filename)
     {
       string path = this.fileSystem.Path.Combine(folder, filename);
-      using (
-        var reader =
-          new StreamReader(
-            Assembly.GetExecutingAssembly().GetManifestResourceStream(this.namespaceOfResources + "scripts." + filename)))
+
+      using (var reader = GetResourceStreamReader(this.namespaceOfResources + "scripts." + filename))
       {
         this.fileSystem.File.WriteAllText(path, reader.ReadToEnd());
       }
@@ -73,8 +84,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
     protected void WriteFont(string folder, string filename)
     {
-      Assembly assembly = Assembly.GetExecutingAssembly();
-      using (var input = assembly.GetManifestResourceStream(this.namespaceOfResources + "fonts." + filename))
+      using (var input = GetResourceStream(this.namespaceOfResources + "fonts." + filename))
       {
         using (var output = this.fileSystem.File.Create(this.fileSystem.Path.Combine(folder, filename)))
         {
