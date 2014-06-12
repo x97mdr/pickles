@@ -365,6 +365,74 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\fonts\fontawesome-webfont.svg" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\css\bootstrap.min.css">
+      <Link>Resources\Dhtml\css\bootstrap.min.css</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\css\print.css">
+      <Link>Resources\Dhtml\css\print.css</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\css\styles.css">
+      <Link>Resources\Dhtml\css\styles.css</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\img\glyphicons-halflings-white.png">
+      <Link>Resources\Dhtml\img\glyphicons-halflings-white.png</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\img\glyphicons-halflings.png">
+      <Link>Resources\Dhtml\img\glyphicons-halflings.png</Link>
+    </EmbeddedResource>
+    <Content Include="..\Pickles.BaseDhtmlFiles\Index.html">
+      <Link>Resources\Dhtml\Index.html</Link>
+    </Content>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\bootstrap.min.js">
+      <Link>Resources\Dhtml\js\bootstrap.min.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\featureSearch.js">
+      <Link>Resources\Dhtml\js\featureSearch.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\featuresModel.js">
+      <Link>Resources\Dhtml\js\featuresModel.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\heirarchyBuilder.js">
+      <Link>Resources\Dhtml\js\heirarchyBuilder.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\html5.js">
+      <Link>Resources\Dhtml\js\html5.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\jquery-1.8.3.min.js">
+      <Link>Resources\Dhtml\js\jquery-1.8.3.min.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\jquery.highlight-4.closure.js">
+      <Link>Resources\Dhtml\js\jquery.highlight-4.closure.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\knockout-2.2.0.js">
+      <Link>Resources\Dhtml\js\knockout-2.2.0.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\knockout.mapping-latest.js">
+      <Link>Resources\Dhtml\js\knockout.mapping-latest.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\logger.js">
+      <Link>Resources\Dhtml\js\logger.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\Markdown.Converter.js">
+      <Link>Resources\Dhtml\js\Markdown.Converter.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\Markdown.Extra.js">
+      <Link>Resources\Dhtml\js\Markdown.Extra.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\stringFormatting.js">
+      <Link>Resources\Dhtml\js\stringFormatting.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\typeaheadList.js">
+      <Link>Resources\Dhtml\js\typeaheadList.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\underscore-min.js">
+      <Link>Resources\Dhtml\js\underscore-min.js</Link>
+    </EmbeddedResource>
+    <Content Include="..\Pickles.BaseDhtmlFiles\pickledFeatures.js">
+      <Link>Resources\Dhtml\pickledFeatures.js</Link>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
