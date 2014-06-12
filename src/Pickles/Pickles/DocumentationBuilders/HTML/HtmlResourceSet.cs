@@ -21,22 +21,22 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         public Uri MasterStylesheet
         {
-            get { return this.configuration.OutputFolder.ToFileUriCombined("master.css", this.fileSystem); }
+            get { return this.configuration.OutputFolder.ToFileUriCombined("css/master.css", this.fileSystem); }
         }
 
         public Uri PrintStylesheet
         {
-            get { return this.configuration.OutputFolder.ToFileUriCombined("print.css", this.fileSystem); }
+            get { return this.configuration.OutputFolder.ToFileUriCombined("css/print.css", this.fileSystem); }
         }
 
         public Uri jQueryScript
         {
-            get { return this.configuration.OutputFolder.ToFileUriCombined("scripts/jquery.js", this.fileSystem); }
+            get { return this.configuration.OutputFolder.ToFileUriCombined("js/jquery.js", this.fileSystem); }
         }
 
         public Uri AdditionalScripts
         {
-            get { return this.configuration.OutputFolder.ToFileUriCombined("scripts/scripts.js", this.fileSystem); }
+            get { return this.configuration.OutputFolder.ToFileUriCombined("js/scripts.js", this.fileSystem); }
         }
 
         public Uri SuccessImage
@@ -46,12 +46,12 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         public string ImagesFolder
         {
-            get { return this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, "images"); }
+            get { return this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, "img"); }
         }
 
         public string ScriptsFolder
         {
-            get { return this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, "scripts"); }
+          get { return this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, "js"); }
         }
 
         public Uri FailureImage
@@ -127,11 +127,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         private string GetNameFromResourceName(string resourceName)
         {
-          if (resourceName.StartsWith("PicklesDoc.Pickles.Resources.Html.images"))
-            return resourceName.Replace("PicklesDoc.Pickles.Resources.Html.images.", string.Empty);
-          else if (resourceName.StartsWith("PicklesDoc.Pickles.Resources.Html.scripts"))
-            return resourceName.Replace("PicklesDoc.Pickles.Resources.Html.scripts.", string.Empty);
-          else return resourceName.Replace("PicklesDoc.Pickles.Resources.Html.", string.Empty);
+          if (resourceName.StartsWith("PicklesDoc.Pickles.Resources.Html.img"))
+            return resourceName.Replace("PicklesDoc.Pickles.Resources.Html.img.", string.Empty);
+          else if (resourceName.StartsWith("PicklesDoc.Pickles.Resources.Html.js"))
+            return resourceName.Replace("PicklesDoc.Pickles.Resources.Html.js.", string.Empty);
+          else return resourceName.Replace("PicklesDoc.Pickles.Resources.Html.css.", string.Empty);
         }
     }
 }

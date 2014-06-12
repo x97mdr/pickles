@@ -43,7 +43,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
     {
       string path = this.fileSystem.Path.Combine(folder, filename);
 
-      using (var reader = GetResourceStreamReader(this.namespaceOfResources + filename))
+      using (var reader = GetResourceStreamReader(this.namespaceOfResources + "css." + filename))
       {
         this.fileSystem.File.WriteAllText(path, reader.ReadToEnd());
       }
@@ -63,7 +63,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
     {
       string path = this.fileSystem.Path.Combine(folder, filename);
 
-      using (Image image = Image.FromStream(GetResourceStream(this.namespaceOfResources + "images." + filename)))
+      using (Image image = Image.FromStream(GetResourceStream(this.namespaceOfResources + "img." + filename)))
       {
         using (var stream = this.fileSystem.File.Create(path))
         {
@@ -76,7 +76,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
     {
       string path = this.fileSystem.Path.Combine(folder, filename);
 
-      using (var reader = GetResourceStreamReader(this.namespaceOfResources + "scripts." + filename))
+      using (var reader = GetResourceStreamReader(this.namespaceOfResources + "js." + filename))
       {
         this.fileSystem.File.WriteAllText(path, reader.ReadToEnd());
       }

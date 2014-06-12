@@ -23,7 +23,7 @@ using System.IO.Abstractions;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
-  public class HtmlResourceWriter : ResourceWriter
+    public class HtmlResourceWriter : ResourceWriter
     {
         public HtmlResourceWriter(IFileSystem fileSystem)
           : base(fileSystem, "PicklesDoc.Pickles.Resources.Html.")
@@ -32,6 +32,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         public void WriteTo(string folder)
         {
+            string cssFolder = this.FileSystem.Path.Combine(folder, "css");
+            this.EnsureFolder(cssFolder);
             this.WriteStyleSheet(folder, "master.css");
             this.WriteStyleSheet(folder, "reset.css");
             this.WriteStyleSheet(folder, "global.css");
@@ -39,24 +41,32 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             this.WriteStyleSheet(folder, "print.css");
             this.WriteStyleSheet(folder, "font-awesome.css");
 
-            string imagesFolder = this.FileSystem.Path.Combine(folder, "images");
-            if (!this.FileSystem.Directory.Exists(imagesFolder)) this.FileSystem.Directory.CreateDirectory(imagesFolder);
+            string imagesFolder = this.FileSystem.Path.Combine(folder, "img");
+            this.EnsureFolder(imagesFolder);
             this.WriteImage(imagesFolder, "success.png");
             this.WriteImage(imagesFolder, "failure.png");
             this.WriteImage(imagesFolder, "inconclusive.png");
 
-            string scriptsFolder = this.FileSystem.Path.Combine(folder, "scripts");
-            if (!this.FileSystem.Directory.Exists(scriptsFolder)) this.FileSystem.Directory.CreateDirectory(scriptsFolder);
+            string scriptsFolder = this.FileSystem.Path.Combine(folder, "js");
+            this.EnsureFolder(scriptsFolder);
             this.WriteScript(scriptsFolder, "jquery.js");
             this.WriteScript(scriptsFolder, "scripts.js");
 
             string fontsFolder = this.FileSystem.Path.Combine(folder, "fonts");
-            if (!this.FileSystem.Directory.Exists(fontsFolder)) this.FileSystem.Directory.CreateDirectory(fontsFolder);
+            this.EnsureFolder(fontsFolder);
             this.WriteFont(fontsFolder, "FontAwesome.ttf");
             this.WriteFont(fontsFolder, "fontawesome-webfont.eot");
             this.WriteFont(fontsFolder, "fontawesome-webfont.svg");
             this.WriteFont(fontsFolder, "fontawesome-webfont.ttf");
             this.WriteFont(fontsFolder, "fontawesome-webfont.woff");
+        }
+
+        private void EnsureFolder(string cssFolder)
+        {
+          if (!this.FileSystem.Directory.Exists(cssFolder))
+          {
+            this.FileSystem.Directory.CreateDirectory(cssFolder);
+          }
         }
     }
 }
