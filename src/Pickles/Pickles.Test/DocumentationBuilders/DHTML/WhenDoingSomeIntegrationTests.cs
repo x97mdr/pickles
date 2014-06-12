@@ -7,19 +7,12 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.DHTML
     public class WhenDoingSomeIntegrationTests : BaseFixture
     {
         [Test]
-        public void TestTheUnzipper_ShouldNotThrowException()
-        {
-            var unzipper = new UnZipper(FileSystem);
-            unzipper.UnZip(@"D:\features\Pickles.Examples\BaseDhtmlFiles.zip", @"d:\output", "BaseDhtmlFiles");
-        }
-
-        [Test]
         public void TestTheResourceWriter()
         {
             var conf = new Configuration();
             conf.OutputFolder = FileSystem.DirectoryInfo.FromDirectoryName(@"d:\output");
-            var resourceWriter = new DhtmlResourceProcessor(conf, new DhtmlResourceSet(conf, FileSystem), FileSystem);
-            resourceWriter.WriteZippedResources();
+            var resourceWriter = new DhtmlResourceWriter(FileSystem);
+            resourceWriter.WriteTo(conf.OutputFolder.FullName);
         }
 
         [Test]

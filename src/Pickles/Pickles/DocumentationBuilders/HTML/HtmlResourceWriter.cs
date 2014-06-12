@@ -19,92 +19,21 @@
 #endregion
 
 using System;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO.Abstractions;
-using System.Reflection;
-
-using Stream = System.IO.Stream;
-using StreamReader = System.IO.StreamReader;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
-    public class HtmlResourceWriter
+    public class HtmlResourceWriter : ResourceWriter
     {
-        private readonly IFileSystem fileSystem;
-
         public HtmlResourceWriter(IFileSystem fileSystem)
+          : base(fileSystem, "PicklesDoc.Pickles.Resources.Html.")
         {
-            this.fileSystem = fileSystem;
         }
-
-        private static void CopyStream(Stream input, Stream output)
-        {
-            byte[] buffer = new byte[32768];
-            while (true)
-            {
-                int read = input.Read(buffer, 0, buffer.Length);
-                if (read <= 0)
-                    return;
-                output.Write(buffer, 0, read);
-            }
-        }
-
-        private void WriteStyleSheet(string folder, string filename)
-        {
-            string path = this.fileSystem.Path.Combine(folder, filename);
-            using (
-                var reader =
-                    new StreamReader(
-                        Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Resources." + filename)))
-            {
-                this.fileSystem.File.WriteAllText(path, reader.ReadToEnd());
-            }
-        }
-
-        private void WriteImage(string folder, string filename)
-        {
-            string path = this.fileSystem.Path.Combine(folder, filename);
-            using (
-                Image image =
-                    Image.FromStream(
-                        Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Resources.images." + filename))
-                )
-            {
-                using (var stream = this.fileSystem.File.Create(path))
-                {
-                    image.Save(stream, ImageFormat.Png);
-                }
-            }
-        }
-
-      private void WriteScript(string folder, string filename)
-      {
-        string path = this.fileSystem.Path.Combine(folder, filename);
-        using (
-            var reader =
-                new StreamReader(
-                    Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Resources.scripts." +
-                                                                              filename)))
-        {
-            this.fileSystem.File.WriteAllText(path, reader.ReadToEnd());
-        }
-      }
-
-      private void WriteFont(string folder, string filename)
-      {
-          Assembly assembly = Assembly.GetExecutingAssembly();
-          using (var input = assembly.GetManifestResourceStream("PicklesDoc.Pickles.Resources.fonts." + filename))
-          {
-              using (var output = this.fileSystem.File.Create(this.fileSystem.Path.Combine(folder, filename)))
-              {
-                  CopyStream(input, output);
-              }
-          }
-      }
 
         public void WriteTo(string folder)
         {
+            string cssFolder = this.FileSystem.Path.Combine(folder, "css");
+            this.EnsureFolder(cssFolder);
             this.WriteStyleSheet(folder, "master.css");
             this.WriteStyleSheet(folder, "reset.css");
             this.WriteStyleSheet(folder, "global.css");
@@ -112,24 +41,32 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             this.WriteStyleSheet(folder, "print.css");
             this.WriteStyleSheet(folder, "font-awesome.css");
 
-            string imagesFolder = this.fileSystem.Path.Combine(folder, "images");
-            if (!this.fileSystem.Directory.Exists(imagesFolder)) this.fileSystem.Directory.CreateDirectory(imagesFolder);
+            string imagesFolder = this.FileSystem.Path.Combine(folder, "img");
+            this.EnsureFolder(imagesFolder);
             this.WriteImage(imagesFolder, "success.png");
             this.WriteImage(imagesFolder, "failure.png");
             this.WriteImage(imagesFolder, "inconclusive.png");
 
-            string scriptsFolder = this.fileSystem.Path.Combine(folder, "scripts");
-            if (!this.fileSystem.Directory.Exists(scriptsFolder)) this.fileSystem.Directory.CreateDirectory(scriptsFolder);
+            string scriptsFolder = this.FileSystem.Path.Combine(folder, "js");
+            this.EnsureFolder(scriptsFolder);
             this.WriteScript(scriptsFolder, "jquery.js");
             this.WriteScript(scriptsFolder, "scripts.js");
 
-            string fontsFolder = this.fileSystem.Path.Combine(folder, "fonts");
-            if (!this.fileSystem.Directory.Exists(fontsFolder)) this.fileSystem.Directory.CreateDirectory(fontsFolder);
+            string fontsFolder = this.FileSystem.Path.Combine(folder, "fonts");
+            this.EnsureFolder(fontsFolder);
             this.WriteFont(fontsFolder, "FontAwesome.ttf");
             this.WriteFont(fontsFolder, "fontawesome-webfont.eot");
             this.WriteFont(fontsFolder, "fontawesome-webfont.svg");
             this.WriteFont(fontsFolder, "fontawesome-webfont.ttf");
             this.WriteFont(fontsFolder, "fontawesome-webfont.woff");
+        }
+
+        private void EnsureFolder(string cssFolder)
+        {
+          if (!this.FileSystem.Directory.Exists(cssFolder))
+          {
+            this.FileSystem.Directory.CreateDirectory(cssFolder);
+          }
         }
     }
 }
