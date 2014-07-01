@@ -202,10 +202,10 @@
     <Compile Include="BaseFixture.cs" />
     <Compile Include="DirectoryCrawlers\ImageFileDetectorTests.cs" />
     <Compile Include="DirectoryCrawlers\RelevantFileDetectorTests.cs" />
-    <Compile Include="WhenParsingMultipleMsTestTestResultsFiles.cs" />
-    <Compile Include="WhenParsingMultipleNUnitResultsFilesForASingleFeature.cs" />
-    <Compile Include="WhenParsingMultipleTestResultsTests.cs" />
-    <Compile Include="WhenParsingSpecRunTestResultsFile.cs" />
+    <Compile Include="TestFrameworks\WhenParsingMultipleMsTestTestResultsFiles.cs" />
+    <Compile Include="TestFrameworks\WhenParsingMultipleNUnitResultsFilesForASingleFeature.cs" />
+    <Compile Include="TestFrameworks\WhenParsingMultipleTestResultsTests.cs" />
+    <Compile Include="TestFrameworks\WhenParsingSpecRunTestResultsFile.cs" />
     <Compile Include="DirectoryCrawlers\FolderDirectoryTreeNodeTests.cs" />
     <Compile Include="DocumentationBuilders\DHTML\WhenDoingSomeIntegrationTests.cs" />
     <Compile Include="DocumentationBuilders\HTML\AutomationLayer\CurrentScenarioContext.cs" />
@@ -244,8 +244,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="TestResultExtensionsTests.cs" />
-    <Compile Include="WhenParsingCucumberJsonResultsFile.cs" />
-    <Compile Include="WhenParsingMsTestResultsFile.cs" />
+    <Compile Include="TestFrameworks\WhenParsingCucumberJsonResultsFile.cs" />
+    <Compile Include="TestFrameworks\WhenParsingMsTestResultsFile.cs" />
     <Compile Include="Formatters\JSON\when_creating_a_feature_with_meta_info.cs" />
     <Compile Include="Formatters\JSON\when_formatting_a_folder_structure_with_features.cs" />
     <Compile Include="Helpers\XElementExentions.cs" />
@@ -256,8 +256,8 @@
     <Compile Include="ParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WhenDeterminingRelevantFilesToConsider.cs" />
-    <Compile Include="WhenDeterminingTheSignatureOfAnNUnitExampleRow.cs" />
-    <Compile Include="WhenDeterminingTheSignatureOfAnXUnitExampleRow.cs" />
+    <Compile Include="TestFrameworks\WhenDeterminingTheSignatureOfAnNUnitExampleRow.cs" />
+    <Compile Include="TestFrameworks\WhenDeterminingTheSignatureOfAnXUnitExampleRow.cs" />
     <Compile Include="DocumentationBuilders\HTML\WhenFormattingFeatures.cs" />
     <Compile Include="DocumentationBuilders\HTML\WhenFormattingStep.cs" />
     <Compile Include="WhenFormattingWikiWords.cs" />
@@ -265,11 +265,11 @@
     <Compile Include="WhenParsingCommandLineArguments.cs" />
     <Compile Include="WhenParsingFeatureFiles.cs" />
     <Compile Include="WhenParsingLocalizedFeatureFiles.cs" />
-    <Compile Include="WhenParsingNUnitResultsFile.cs" />
-    <Compile Include="WhenParsingTestResultFiles.cs" />
-    <Compile Include="WhenParsingxUnitResultsFile.cs" />
+    <Compile Include="TestFrameworks\WhenParsingNUnitResultsFile.cs" />
+    <Compile Include="TestFrameworks\WhenParsingTestResultFiles.cs" />
+    <Compile Include="TestFrameworks\WhenParsingxUnitResultsFile.cs" />
     <Compile Include="WhenResolvingADocumentationBuilder.cs" />
-    <Compile Include="WhenResolvingTestResults.cs" />
+    <Compile Include="TestFrameworks\WhenResolvingTestResults.cs" />
     <Compile Include="WhenWorkingWithHtmlResources.cs" />
   </ItemGroup>
   <ItemGroup>
