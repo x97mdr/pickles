@@ -4,9 +4,10 @@ using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks;
+
 using Should;
 
-namespace PicklesDoc.Pickles.Test
+namespace PicklesDoc.Pickles.Test.TestFrameworks
 {
     [TestFixture]
     public class WhenParsingNUnitResultsFile : WhenParsingTestResultFiles<NUnitResults>
@@ -122,7 +123,7 @@ namespace PicklesDoc.Pickles.Test
         public void ThenCanReadInconclusiveFeatureResultSuccessfully()
         {
             var results = ParseResultsFile();
-            var result = results.GetFeatureResult(InconclusiveFeature());
+            var result = results.GetFeatureResult(this.InconclusiveFeature());
             Assert.AreEqual(TestResult.Inconclusive, result);
         }
 
@@ -131,7 +132,7 @@ namespace PicklesDoc.Pickles.Test
         public void ThenCanReadPassedFeatureResultSuccessfully()
         {
             var results = ParseResultsFile();
-            var result = results.GetFeatureResult(PassingFeature());
+            var result = results.GetFeatureResult(this.PassingFeature());
             Assert.AreEqual(TestResult.Passed, result);
         }
 
@@ -139,7 +140,7 @@ namespace PicklesDoc.Pickles.Test
         public void ThenCanReadFailedFeatureResultSuccessfully()
         {
             var results = ParseResultsFile();
-            var result = results.GetFeatureResult(FailingFeature());
+            var result = results.GetFeatureResult(this.FailingFeature());
             Assert.AreEqual(TestResult.Failed, result);
         }
 

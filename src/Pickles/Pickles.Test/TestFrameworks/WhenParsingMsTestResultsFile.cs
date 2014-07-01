@@ -1,12 +1,13 @@
 ﻿using System;
+
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 using PicklesDoc.Pickles.TestFrameworks;
+
 using Should;
 
-namespace PicklesDoc.Pickles.Test
+namespace PicklesDoc.Pickles.Test.TestFrameworks
 {
     [TestFixture]
     public class WhenParsingMsTestResultsFile : WhenParsingTestResultFiles<MsTestResults>
@@ -19,8 +20,8 @@ namespace PicklesDoc.Pickles.Test
         [Test]
         public void ThenCanReadBackgroundResultSuccessfully()
         {
-            var background = new Scenario {Name = "Background", Feature = AdditionFeature()};
-            var feature = AdditionFeature();
+            var background = new Scenario {Name = "Background", Feature = this.AdditionFeature()};
+            var feature = this.AdditionFeature();
             feature.AddBackground(background);
             var results = ParseResultsFile();
 
@@ -35,7 +36,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var results = ParseResultsFile();
             
-            TestResult result = results.GetFeatureResult(InconclusiveFeature());
+            TestResult result = results.GetFeatureResult(this.InconclusiveFeature());
 
             Assert.AreEqual(TestResult.Inconclusive, result);
         }
@@ -45,7 +46,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var results = ParseResultsFile();
 
-            TestResult result = results.GetFeatureResult(FailingFeature());
+            TestResult result = results.GetFeatureResult(this.FailingFeature());
 
             Assert.AreEqual(TestResult.Failed, result);
         }
@@ -56,7 +57,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var results = ParseResultsFile();
 
-            TestResult result = results.GetFeatureResult(PassingFeature());
+            TestResult result = results.GetFeatureResult(this.PassingFeature());
 
             Assert.AreEqual(TestResult.Passed, result);
         }
@@ -65,7 +66,7 @@ namespace PicklesDoc.Pickles.Test
         public void ThenCanReadScenarioOutlineResultSuccessfully()
         {
             var results = ParseResultsFile();
-            var scenarioOutline = new ScenarioOutline {Name = "Adding several numbers", Feature = AdditionFeature()};
+            var scenarioOutline = new ScenarioOutline {Name = "Adding several numbers", Feature = this.AdditionFeature()};
             
             TestResult result = results.GetScenarioOutlineResult(scenarioOutline);
 
@@ -77,7 +78,7 @@ namespace PicklesDoc.Pickles.Test
         public void ThenCanReadSuccessfulScenarioResultSuccessfully()
         {
             var results = ParseResultsFile();
-            var passedScenario = new Scenario { Name = "Add two numbers", Feature = AdditionFeature() };
+            var passedScenario = new Scenario { Name = "Add two numbers", Feature = this.AdditionFeature() };
 
             TestResult result = results.GetScenarioResult(passedScenario);
 
@@ -89,7 +90,7 @@ namespace PicklesDoc.Pickles.Test
         public void ThenCanReadFailedScenarioResultSuccessfully()
         {
             var results = ParseResultsFile();
-            var scenario = new Scenario { Name = "Fail to add two numbers", Feature = AdditionFeature() };
+            var scenario = new Scenario { Name = "Fail to add two numbers", Feature = this.AdditionFeature() };
             TestResult result = results.GetScenarioResult(scenario);
 
             result.WasExecuted.ShouldBeTrue();
@@ -100,7 +101,7 @@ namespace PicklesDoc.Pickles.Test
         public void ThenCanReadIgnoredScenarioResultSuccessfully()
         {
             var results = ParseResultsFile();
-            var ignoredScenario = new Scenario { Name = "Ignored adding two numbers", Feature = AdditionFeature() };
+            var ignoredScenario = new Scenario { Name = "Ignored adding two numbers", Feature = this.AdditionFeature() };
             
             var result = results.GetScenarioResult(ignoredScenario);
 
@@ -116,7 +117,7 @@ namespace PicklesDoc.Pickles.Test
             var inconclusiveScenario = new Scenario
             {
                 Name = "Not automated adding two numbers",
-                Feature = AdditionFeature()
+                Feature = this.AdditionFeature()
             };
 
             var result = results.GetScenarioResult(inconclusiveScenario);

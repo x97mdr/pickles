@@ -1,12 +1,12 @@
 ﻿using System;
+using System.IO;
 using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
 using System.Reflection;
+
 using Autofac;
 
-using StreamReader = System.IO.StreamReader;
-
-namespace PicklesDoc.Pickles.Test
+namespace PicklesDoc.Pickles.Test.TestFrameworks
 {
     public abstract class WhenParsingTestResultFiles<TResults> : BaseFixture
     {
@@ -27,7 +27,7 @@ namespace PicklesDoc.Pickles.Test
 
         protected void AddTestResultsToConfiguration()
         {
-          foreach (var fileName in resultsFileNames)
+          foreach (var fileName in this.resultsFileNames)
           {
               // Write out the embedded test results file
               using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + fileName)))
@@ -38,7 +38,7 @@ namespace PicklesDoc.Pickles.Test
 
             var configuration = Container.Resolve<Configuration>();
 
-            configuration.TestResultsFiles = resultsFileNames.Select(f => FileSystem.FileInfo.FromFileName(f)).ToArray();
+            configuration.TestResultsFiles = this.resultsFileNames.Select(f => FileSystem.FileInfo.FromFileName(f)).ToArray();
         }
     }
 }
