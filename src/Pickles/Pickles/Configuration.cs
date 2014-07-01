@@ -21,11 +21,15 @@
 using System;
 using System.Collections.Generic;
 using System.IO.Abstractions;
+using System.Reflection;
+
+using NLog;
 
 namespace PicklesDoc.Pickles
 {
     public class Configuration
     {
+        private static readonly Logger log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
         private readonly List<FileInfoBase> testResultsFiles;
 
         public Configuration()
@@ -86,6 +90,10 @@ namespace PicklesDoc.Pickles
             if (fileInfoBase.Exists)
             {
                 this.testResultsFiles.Add(fileInfoBase);
+            }
+            else
+            {
+                log.Error("A test result file could not be found, it will be skipped: {0}", fileInfoBase.FullName);
             }
         }
     }
