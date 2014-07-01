@@ -279,9 +279,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="results-example-nunit - Run 1.xml" />
-    <EmbeddedResource Include="results-example-nunit - Run 2.xml" />
-    <EmbeddedResource Include="results-example-specrun.html" />
+    <EmbeddedResource Include="TestFrameworks\results-example-nunit - Run 1.xml" />
+    <EmbeddedResource Include="TestFrameworks\results-example-nunit - Run 2.xml" />
+    <EmbeddedResource Include="TestFrameworks\results-example-specrun.html" />
     <None Include="DocumentationBuilders\HTML\FormattingAFeature.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>FormattingAFeature.feature.cs</LastGenOutput>
@@ -300,7 +300,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="results-example-xunit.xml">
+    <EmbeddedResource Include="TestFrameworks\results-example-xunit.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="HtmlFormatterTestFiles\MultilineString.feature">
@@ -338,21 +338,21 @@
       <LastGenOutput>TwoScenariosTransferingMoneyBetweenAccoutsWithSuccess.feature.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
-    <EmbeddedResource Include="results-example-mstest.trx">
+    <EmbeddedResource Include="TestFrameworks\results-example-mstest.trx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FakeFolderStructures\JSON\results-example-failing-and-pasing-mstest.trx" />
-    <EmbeddedResource Include="results-example-json.json" />
-    <EmbeddedResource Include="results-example-mstest - Run 1 %28failing%29.trx">
+    <EmbeddedResource Include="TestFrameworks\results-example-json.json" />
+    <EmbeddedResource Include="TestFrameworks\results-example-mstest - Run 1 %28failing%29.trx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="results-example-mstest - Run 2 %28passing%29.trx">
+    <EmbeddedResource Include="TestFrameworks\results-example-mstest - Run 2 %28passing%29.trx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="results-example-nunit.xml">
+    <EmbeddedResource Include="TestFrameworks\results-example-nunit.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
