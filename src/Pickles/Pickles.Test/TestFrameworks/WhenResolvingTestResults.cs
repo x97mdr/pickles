@@ -13,7 +13,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
     [TestFixture]
     public class WhenResolvingTestResults : BaseFixture
     {
-        private const string TestResultsResourcePrefix = "PicklesDoc.Pickles.Test.";
+        private const string TestResultsResourcePrefix = "PicklesDoc.Pickles.Test.TestFrameworks.";
 
         [Test]
         public void ThenCanResolveAsSingletonWhenNoTestResultsSelected()

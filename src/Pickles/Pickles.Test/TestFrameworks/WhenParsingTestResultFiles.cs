@@ -30,7 +30,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
           foreach (var fileName in this.resultsFileNames)
           {
               // Write out the embedded test results file
-              using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test." + fileName)))
+              using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test.TestFrameworks." + fileName)))
               {
                   FileSystem.AddFile(fileName, new MockFileData(input.ReadToEnd()));
               }
