@@ -115,7 +115,7 @@ namespace PicklesDoc.Pickles
           {
             var files = this.testResultsFile.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
 
-            configuration.TestResultsFiles = files.Select(f => this.fileSystem.FileInfo.FromFileName(f)).ToArray();
+            configuration.AddTestResultFiles(files.Select(f => this.fileSystem.FileInfo.FromFileName(f)));
           }
 
           if (!string.IsNullOrEmpty(this.systemUnderTestName)) configuration.SystemUnderTestName = this.systemUnderTestName;

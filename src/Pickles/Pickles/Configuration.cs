@@ -19,12 +19,20 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.IO.Abstractions;
 
 namespace PicklesDoc.Pickles
 {
     public class Configuration
     {
+        private readonly List<FileInfoBase> testResultsFiles;
+
+        public Configuration()
+        {
+            this.testResultsFiles = new List<FileInfoBase>();
+        }
+
         public DirectoryInfoBase FeatureFolder { get; set; }
 
         public DirectoryInfoBase OutputFolder { get; set; }
@@ -37,20 +45,48 @@ namespace PicklesDoc.Pickles
 
         public bool HasTestResults
         {
-            get { return this.TestResultsFiles != null; }
+            get { return this.TestResultsFiles != null && testResultsFiles.Count > 0; }
         }
 
-        public FileInfoBase TestResultsFile {
-          get
-          {
-            return TestResultsFiles != null ? TestResultsFiles[0] : null;
-          }
+        public FileInfoBase TestResultsFile
+        {
+            get
+            {
+                return testResultsFiles[0];
+            }
         }
 
-      public FileInfoBase[] TestResultsFiles { get; set; }
+        public IEnumerable<FileInfoBase> TestResultsFiles
+        {
+            get
+            {
+                return this.testResultsFiles;
+            }
+        }
 
         public string SystemUnderTestName { get; set; }
 
         public string SystemUnderTestVersion { get; set; }
+
+        public void AddTestResultFile(FileInfoBase fileInfoBase)
+        {
+            this.AddTestResultFileIfItExists(fileInfoBase);
+        }
+
+        public void AddTestResultFiles(IEnumerable<FileInfoBase> fileInfoBases)
+        {
+            foreach (var fileInfoBase in fileInfoBases ?? new FileInfoBase[0])
+            {
+                this.AddTestResultFileIfItExists(fileInfoBase);
+          }
+        }
+
+        private void AddTestResultFileIfItExists(FileInfoBase fileInfoBase)
+        {
+            if (fileInfoBase.Exists)
+            {
+                this.testResultsFiles.Add(fileInfoBase);
+            }
+        }
     }
 }

@@ -550,7 +550,7 @@ namespace PicklesDoc.Pickles.UserInterface
                 
                 configuration.SystemUnderTestName = this.projectName;
                 configuration.SystemUnderTestVersion = this.projectVersion;
-                configuration.TestResultsFiles = this.IncludeTests ? this.testResultsFile.Split(';').Select(trf => fileSystem.FileInfo.FromFileName(trf)).ToArray() : null;
+                configuration.AddTestResultFiles(this.IncludeTests ? this.testResultsFile.Split(';').Select(trf => fileSystem.FileInfo.FromFileName(trf)).ToArray() : null);
                 configuration.TestResultsFormat = this.testResultsFormats.Selected;
                 configuration.Language = this.selectedLanguage != null ? this.selectedLanguage.TwoLetterISOLanguageName : CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
 

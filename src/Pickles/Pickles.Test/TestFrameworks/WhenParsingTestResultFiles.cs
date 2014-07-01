@@ -38,7 +38,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
             var configuration = Container.Resolve<Configuration>();
 
-            configuration.TestResultsFiles = this.resultsFileNames.Select(f => FileSystem.FileInfo.FromFileName(f)).ToArray();
+            configuration.AddTestResultFiles(this.resultsFileNames.Select(f => FileSystem.FileInfo.FromFileName(f)));
         }
     }
 }
