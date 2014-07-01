@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
 using PicklesDoc.Pickles.Extensions;
@@ -128,6 +129,7 @@ namespace PicklesDoc.Pickles.Test
     [Test]
     public void ThenCanParseResultsFileWithLongFormSuccessfully()
     {
+      FileSystem.AddFile(@"c:\results.xml", "<xml />");
       var args = new[] { @"-link-results-file=c:\results.xml" };
 
       var configuration = new Configuration();
@@ -142,6 +144,8 @@ namespace PicklesDoc.Pickles.Test
     [Test]
     public void ThenCanParseResultsFileAsSemicolonSeparatedList()
     {
+      FileSystem.AddFile(@"c:\results1.xml", "<xml />");
+      FileSystem.AddFile(@"c:\results2.xml", "<xml />");
       var args = new[] { @"-link-results-file=c:\results1.xml;c:\results2.xml" };
 
       var configuration = new Configuration();
@@ -150,13 +154,15 @@ namespace PicklesDoc.Pickles.Test
 
       shouldContinue.ShouldBeTrue();
       configuration.HasTestResults.ShouldBeTrue();
-      Assert.AreEqual(@"c:\results1.xml", configuration.TestResultsFiles[0].FullName);
-      Assert.AreEqual(@"c:\results2.xml", configuration.TestResultsFiles[1].FullName);
+      Assert.AreEqual(@"c:\results1.xml", configuration.TestResultsFiles.First().FullName);
+      Assert.AreEqual(@"c:\results2.xml", configuration.TestResultsFiles.Skip(1).First().FullName);
     }
 
     [Test]
     public void ThenCanParseResultsFileAsSemicolonSeparatedListAndTestResultsFileContainsTheFirstElementOfTestResultsFiles()
     {
+      FileSystem.AddFile(@"c:\results1.xml", "<xml />");
+      FileSystem.AddFile(@"c:\results2.xml", "<xml />");
       var args = new[] { @"-link-results-file=c:\results1.xml;c:\results2.xml" };
 
       var configuration = new Configuration();
@@ -166,12 +172,13 @@ namespace PicklesDoc.Pickles.Test
       shouldContinue.ShouldBeTrue();
       configuration.HasTestResults.ShouldBeTrue();
       Assert.AreEqual(@"c:\results1.xml", configuration.TestResultsFile.FullName);
-      Assert.AreEqual(@"c:\results1.xml", configuration.TestResultsFiles[0].FullName);
+      Assert.AreEqual(@"c:\results1.xml", configuration.TestResultsFiles.First().FullName);
     }
 
     [Test]
     public void ThenCanParseResultsFileAsSemicolonSeparatedListThatStartsWithASemicolon()
     {
+      FileSystem.AddFile(@"c:\results1.xml", "<xml />");
       var args = new[] { @"-link-results-file=;c:\results1.xml" };
 
       var configuration = new Configuration();
@@ -180,13 +187,14 @@ namespace PicklesDoc.Pickles.Test
 
       shouldContinue.ShouldBeTrue();
       configuration.HasTestResults.ShouldBeTrue();
-      Assert.AreEqual(1, configuration.TestResultsFiles.Length);
-      Assert.AreEqual(@"c:\results1.xml", configuration.TestResultsFiles[0].FullName);
+      Assert.AreEqual(1, configuration.TestResultsFiles.Count());
+      Assert.AreEqual(@"c:\results1.xml", configuration.TestResultsFiles.First().FullName);
     }
 
     [Test]
     public void ThenCanParseResultsFileAsSemicolonSeparatedListThatEndsWithASemicolon()
     {
+      FileSystem.AddFile(@"c:\results1.xml", "<xml />");
       var args = new[] { @"-link-results-file=c:\results1.xml;" };
 
       var configuration = new Configuration();
@@ -195,13 +203,14 @@ namespace PicklesDoc.Pickles.Test
 
       shouldContinue.ShouldBeTrue();
       configuration.HasTestResults.ShouldBeTrue();
-      Assert.AreEqual(1, configuration.TestResultsFiles.Length);
-      Assert.AreEqual(@"c:\results1.xml", configuration.TestResultsFiles[0].FullName);
+      Assert.AreEqual(1, configuration.TestResultsFiles.Count());
+      Assert.AreEqual(@"c:\results1.xml", configuration.TestResultsFiles.First().FullName);
     }
 
     [Test]
     public void ThenCanParseResultsFileWithShortFormSuccessfully()
     {
+      FileSystem.AddFile(@"c:\results.xml", "<xml />");
       var args = new[] { @"-lr=c:\results.xml" };
 
       var configuration = new Configuration();
@@ -399,6 +408,20 @@ namespace PicklesDoc.Pickles.Test
 
       shouldContinue.ShouldBeTrue();
       Assert.AreEqual(TestResultsFormat.SpecRun, configuration.TestResultsFormat);
+    }
+
+    [Test]
+    public void ThenCanFilterOutNonExistingTestResultFiles()
+    {
+      var args = new[] { @"-link-results-file=c:\DoesNotExist.xml;" };
+
+      var configuration = new Configuration();
+      var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
+      bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+
+      shouldContinue.ShouldBeTrue();
+      configuration.HasTestResults.ShouldBeFalse();
+      Assert.AreEqual(0, configuration.TestResultsFiles.Count());
     }
   }
 }

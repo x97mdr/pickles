@@ -1,42 +1,44 @@
 ﻿using System;
+
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 using PicklesDoc.Pickles.TestFrameworks;
+
 using Should;
 
-namespace PicklesDoc.Pickles.Test
+namespace PicklesDoc.Pickles.Test.TestFrameworks
 {
     [TestFixture]
-    public class WhenParsingSpecRunTestResultsFile : WhenParsingTestResultFiles<SpecRunResults>
+    public class WhenParsingMsTestResultsFile : WhenParsingTestResultFiles<MsTestResults>
     {
-        public WhenParsingSpecRunTestResultsFile()
-            : base("results-example-specrun.html")
+        public WhenParsingMsTestResultsFile()
+            : base("results-example-mstest.trx")
         {
         }
 
         [Test]
         public void ThenCanReadBackgroundResultSuccessfully()
         {
-            var background = new Scenario { Name = "Background", Feature = this.AdditionFeature() };
+            var background = new Scenario {Name = "Background", Feature = this.AdditionFeature()};
             var feature = this.AdditionFeature();
             feature.AddBackground(background);
             var results = ParseResultsFile();
 
             TestResult result = results.GetScenarioResult(background);
 
-            result.ShouldEqual(TestResult.Inconclusive);
+            result.WasExecuted.ShouldBeFalse();
+            result.WasSuccessful.ShouldBeFalse();
         }
 
         [Test]
         public void ThenCanReadInconclusiveFeatureResultSuccessfully()
         {
             var results = ParseResultsFile();
-
+            
             TestResult result = results.GetFeatureResult(this.InconclusiveFeature());
 
-            result.ShouldEqual(TestResult.Inconclusive);
+            Assert.AreEqual(TestResult.Inconclusive, result);
         }
 
         [Test]
@@ -46,8 +48,9 @@ namespace PicklesDoc.Pickles.Test
 
             TestResult result = results.GetFeatureResult(this.FailingFeature());
 
-            result.ShouldEqual(TestResult.Failed);
+            Assert.AreEqual(TestResult.Failed, result);
         }
+
 
         [Test]
         public void ThenCanReadPassedFeatureResultSuccessfully()
@@ -56,18 +59,19 @@ namespace PicklesDoc.Pickles.Test
 
             TestResult result = results.GetFeatureResult(this.PassingFeature());
 
-            result.ShouldEqual(TestResult.Passed);
+            Assert.AreEqual(TestResult.Passed, result);
         }
 
         [Test]
         public void ThenCanReadScenarioOutlineResultSuccessfully()
         {
             var results = ParseResultsFile();
-            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers", Feature = this.AdditionFeature() };
+            var scenarioOutline = new ScenarioOutline {Name = "Adding several numbers", Feature = this.AdditionFeature()};
             
             TestResult result = results.GetScenarioOutlineResult(scenarioOutline);
 
-            result.ShouldEqual(TestResult.Passed);
+            result.WasExecuted.ShouldBeTrue();
+            result.WasSuccessful.ShouldBeTrue();
         }
 
         [Test]
@@ -78,7 +82,8 @@ namespace PicklesDoc.Pickles.Test
 
             TestResult result = results.GetScenarioResult(passedScenario);
 
-            result.ShouldEqual(TestResult.Passed);
+            result.WasExecuted.ShouldBeTrue();
+            result.WasSuccessful.ShouldBeTrue();
         }
 
         [Test]
@@ -88,7 +93,8 @@ namespace PicklesDoc.Pickles.Test
             var scenario = new Scenario { Name = "Fail to add two numbers", Feature = this.AdditionFeature() };
             TestResult result = results.GetScenarioResult(scenario);
 
-            result.ShouldEqual(TestResult.Failed);
+            result.WasExecuted.ShouldBeTrue();
+            result.WasSuccessful.ShouldBeFalse();
         }
 
         [Test]
@@ -99,7 +105,8 @@ namespace PicklesDoc.Pickles.Test
             
             var result = results.GetScenarioResult(ignoredScenario);
 
-            result.ShouldEqual(TestResult.Inconclusive);
+            result.WasExecuted.ShouldBeFalse();
+            result.WasSuccessful.ShouldBeFalse();
         }
 
         [Test]
@@ -115,7 +122,8 @@ namespace PicklesDoc.Pickles.Test
 
             var result = results.GetScenarioResult(inconclusiveScenario);
 
-            result.ShouldEqual(TestResult.Inconclusive);
+            result.WasExecuted.ShouldBeFalse();
+            result.WasSuccessful.ShouldBeFalse();
         }
 
         private Feature AdditionFeature()
@@ -127,7 +135,6 @@ namespace PicklesDoc.Pickles.Test
         {
             return new Feature { Name = "Inconclusive" };
         }
-
         private Feature FailingFeature()
         {
             return new Feature { Name = "Failing" };

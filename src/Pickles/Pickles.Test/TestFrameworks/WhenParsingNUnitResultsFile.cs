@@ -3,17 +3,17 @@
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 using PicklesDoc.Pickles.TestFrameworks;
+
 using Should;
 
-namespace PicklesDoc.Pickles.Test
+namespace PicklesDoc.Pickles.Test.TestFrameworks
 {
     [TestFixture]
-    public class WhenParsingxUnitResultsFile : WhenParsingTestResultFiles<XUnitResults>
+    public class WhenParsingNUnitResultsFile : WhenParsingTestResultFiles<NUnitResults>
     {
-        public WhenParsingxUnitResultsFile()
-            : base("results-example-xunit.xml")
+        public WhenParsingNUnitResultsFile()
+            : base("results-example-nunit.xml")
         {
         }
 
@@ -50,6 +50,19 @@ namespace PicklesDoc.Pickles.Test
             TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "60", "70", "130" });
             exampleResult2.WasExecuted.ShouldBeTrue();
             exampleResult2.WasSuccessful.ShouldBeTrue();
+        }
+
+        [Test]
+        public void WithoutExampleSignatureBuilderThrowsInvalidOperationException()
+        {
+            var results = ParseResultsFile();
+            results.SetExampleSignatureBuilder(null);
+
+            var feature = new Feature { Name = "Addition" };
+
+            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers", Feature = feature };
+
+            Assert.Throws<InvalidOperationException>(() => results.GetExampleResult(scenarioOutline, new[] { "40", "50", "90" }));
         }
 
         [Test]
@@ -91,6 +104,62 @@ namespace PicklesDoc.Pickles.Test
         }
 
         [Test]
+        public void ThenCanReadInconclusiveScenarioResultSuccessfully()
+        {
+            var results = ParseResultsFile();
+            var feature = new Feature { Name = "Addition" };
+            var inconclusiveScenario = new Scenario
+            {
+                Name = "Not automated adding two numbers",
+                Feature = feature
+            };
+            var result = results.GetScenarioResult(inconclusiveScenario);
+
+            result.WasExecuted.ShouldBeFalse();
+            result.WasSuccessful.ShouldBeFalse();
+        }
+
+        [Test]
+        public void ThenCanReadInconclusiveFeatureResultSuccessfully()
+        {
+            var results = ParseResultsFile();
+            var result = results.GetFeatureResult(this.InconclusiveFeature());
+            Assert.AreEqual(TestResult.Inconclusive, result);
+        }
+
+
+        [Test]
+        public void ThenCanReadPassedFeatureResultSuccessfully()
+        {
+            var results = ParseResultsFile();
+            var result = results.GetFeatureResult(this.PassingFeature());
+            Assert.AreEqual(TestResult.Passed, result);
+        }
+
+        [Test]
+        public void ThenCanReadFailedFeatureResultSuccessfully()
+        {
+            var results = ParseResultsFile();
+            var result = results.GetFeatureResult(this.FailingFeature());
+            Assert.AreEqual(TestResult.Failed, result);
+        }
+
+        private Feature FailingFeature()
+        {
+            return new Feature {Name = "Failing"};
+        }
+
+        private Feature InconclusiveFeature()
+        {
+            return new Feature { Name = "Inconclusive" };
+        }
+
+        private Feature PassingFeature()
+        {
+            return new Feature { Name = "Passing" };
+        }
+
+        [Test]
         public void ThenCanReadNotFoundScenarioCorrectly()
         {
             var results = ParseResultsFile();
@@ -108,23 +177,20 @@ namespace PicklesDoc.Pickles.Test
         }
 
         [Test]
-        public void WithoutExampleSignatureBuilderThrowsInvalidOperationException()
+        public void ThenCanReadNotFoundFeatureCorrectly()
         {
-          var results = ParseResultsFile();
-          results.SetExampleSignatureBuilder(null);
-
-          var feature = new Feature { Name = "Addition" };
-
-          var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers", Feature = feature };
-
-          Assert.Throws<InvalidOperationException>(() => results.GetExampleResult(scenarioOutline, new[] { "40", "50", "90" }));
+            var results = ParseResultsFile();
+            var feature = new Feature {Name = "NotInTheFile"};
+            var result = results.GetFeatureResult(feature);
+            result.WasExecuted.ShouldBeFalse();
+            result.WasSuccessful.ShouldBeFalse();
         }
 
         [Test]
         public void ThenCanReadIndividualResultsFromScenarioOutline_AllPass_ShouldBeTestResultPassed()
         {
           var results = ParseResultsFile();
-          results.SetExampleSignatureBuilder(new xUnitExampleSignatureBuilder());
+          results.SetExampleSignatureBuilder(new NUnitExampleSignatureBuilder());
 
           var feature = new Feature { Name = "Scenario Outlines" };
 
@@ -144,17 +210,17 @@ namespace PicklesDoc.Pickles.Test
         }
 
         [Test]
-        public void ThenCanReadIndividualResultsFromScenarioOutline_OneFailed_ShouldBeTestResultFailed_xUnitDoesNotSupportInconclusive()
+        public void ThenCanReadIndividualResultsFromScenarioOutline_OneInconclusive_ShouldBeTestResultInconclusive()
         {
           var results = ParseResultsFile();
-          results.SetExampleSignatureBuilder(new xUnitExampleSignatureBuilder());
+          results.SetExampleSignatureBuilder(new NUnitExampleSignatureBuilder());
 
           var feature = new Feature { Name = "Scenario Outlines" };
 
           var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline where one scenario is inconclusive", Feature = feature };
 
           TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
-          exampleResultOutline.ShouldEqual(TestResult.Failed);
+          exampleResultOutline.ShouldEqual(TestResult.Inconclusive);
 
           TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
           exampleResult1.ShouldEqual(TestResult.Passed);
@@ -163,14 +229,14 @@ namespace PicklesDoc.Pickles.Test
           exampleResult2.ShouldEqual(TestResult.Passed);
 
           TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_1" });
-          exampleResult3.ShouldEqual(TestResult.Failed);
+          exampleResult3.ShouldEqual(TestResult.Inconclusive);
         }
 
         [Test]
         public void ThenCanReadIndividualResultsFromScenarioOutline_OneFailed_ShouldBeTestResultFailed()
         {
           var results = ParseResultsFile();
-          results.SetExampleSignatureBuilder(new xUnitExampleSignatureBuilder());
+          results.SetExampleSignatureBuilder(new NUnitExampleSignatureBuilder());
 
           var feature = new Feature { Name = "Scenario Outlines" };
 
@@ -193,7 +259,7 @@ namespace PicklesDoc.Pickles.Test
         public void ThenCanReadIndividualResultsFromScenarioOutline_MultipleExampleSections_ShouldBeTestResultFailed()
         {
           var results = ParseResultsFile();
-          results.SetExampleSignatureBuilder(new xUnitExampleSignatureBuilder());
+          results.SetExampleSignatureBuilder(new NUnitExampleSignatureBuilder());
 
           var feature = new Feature { Name = "Scenario Outlines" };
 
@@ -209,10 +275,10 @@ namespace PicklesDoc.Pickles.Test
           exampleResult2.ShouldEqual(TestResult.Passed);
 
           TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_1" });
-          exampleResult3.ShouldEqual(TestResult.Failed);
+          exampleResult3.ShouldEqual(TestResult.Inconclusive);
 
           TestResult exampleResult4 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_2" });
-          exampleResult4.ShouldEqual(TestResult.Failed);
+          exampleResult4.ShouldEqual(TestResult.Inconclusive);
 
           TestResult exampleResult5 = results.GetExampleResult(scenarioOutline, new[] { "fail_1" });
           exampleResult5.ShouldEqual(TestResult.Failed);
@@ -221,21 +287,21 @@ namespace PicklesDoc.Pickles.Test
           exampleResult6.ShouldEqual(TestResult.Failed);
         }
 
-        [Test]
-        public void ThenCanReadResultsWithBackslashes()
-        {
-          var results = ParseResultsFile();
-          results.SetExampleSignatureBuilder(new xUnitExampleSignatureBuilder());
+      [Test]
+      public void ThenCanReadResultsWithBackslashes()
+      {
+        var results = ParseResultsFile();
+        results.SetExampleSignatureBuilder(new NUnitExampleSignatureBuilder());
 
-          var feature = new Feature { Name = "Scenario Outlines" };
+        var feature = new Feature { Name = "Scenario Outlines" };
 
-          var scenarioOutline = new ScenarioOutline { Name = "Deal correctly with backslashes in the examples", Feature = feature };
+        var scenarioOutline = new ScenarioOutline { Name = "Deal correctly with backslashes in the examples", Feature = feature };
 
-          TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
-          exampleResultOutline.ShouldEqual(TestResult.Passed);
+        TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+        exampleResultOutline.ShouldEqual(TestResult.Passed);
 
-          TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { @"c:\Temp\" });
-          exampleResult1.ShouldEqual(TestResult.Passed);
-        }
+        TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { @"c:\Temp\" });
+        exampleResult1.ShouldEqual(TestResult.Passed);
+      }
     }
-  }
+}

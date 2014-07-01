@@ -1,15 +1,19 @@
 ﻿using System;
-using NUnit.Framework;
+
 using Autofac;
+
+using NUnit.Framework;
+
 using PicklesDoc.Pickles.TestFrameworks;
+
 using Should;
 
-namespace PicklesDoc.Pickles.Test
+namespace PicklesDoc.Pickles.Test.TestFrameworks
 {
     [TestFixture]
     public class WhenResolvingTestResults : BaseFixture
     {
-        private const string TestResultsResourcePrefix = "PicklesDoc.Pickles.Test.";
+        private const string TestResultsResourcePrefix = "PicklesDoc.Pickles.Test.TestFrameworks.";
 
         [Test]
         public void ThenCanResolveAsSingletonWhenNoTestResultsSelected()
@@ -31,7 +35,7 @@ namespace PicklesDoc.Pickles.Test
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.MsTest;
-            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName("results-example-mstest.trx") };
+            configuration.AddTestResultFiles(new[] { FileSystem.FileInfo.FromFileName("results-example-mstest.trx") });
 
             var item1 = Container.Resolve<ITestResults>();
             var item2 = Container.Resolve<ITestResults>();
@@ -50,7 +54,7 @@ namespace PicklesDoc.Pickles.Test
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.NUnit;
-            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName("results-example-nunit.xml") };
+            configuration.AddTestResultFile(FileSystem.FileInfo.FromFileName("results-example-nunit.xml"));
 
             var item1 = Container.Resolve<ITestResults>();
             var item2 = Container.Resolve<ITestResults>();
@@ -69,7 +73,7 @@ namespace PicklesDoc.Pickles.Test
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.xUnit;
-            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName("results-example-xunit.xml") };
+            configuration.AddTestResultFile(FileSystem.FileInfo.FromFileName("results-example-xunit.xml"));
 
             var item1 = Container.Resolve<ITestResults>();
             var item2 = Container.Resolve<ITestResults>();
@@ -88,7 +92,7 @@ namespace PicklesDoc.Pickles.Test
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.CucumberJson;
-            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName("results-example-json.json") };
+            configuration.AddTestResultFile(FileSystem.FileInfo.FromFileName("results-example-json.json"));
 
             var item1 = Container.Resolve<ITestResults>();
             var item2 = Container.Resolve<ITestResults>();
@@ -107,7 +111,7 @@ namespace PicklesDoc.Pickles.Test
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.SpecRun;
-            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName("results-example-specrun.html") };
+            configuration.AddTestResultFile(FileSystem.FileInfo.FromFileName("results-example-specrun.html"));
 
             var item1 = Container.Resolve<ITestResults>();
             var item2 = Container.Resolve<ITestResults>();
@@ -136,7 +140,7 @@ namespace PicklesDoc.Pickles.Test
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.MsTest;
-            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName("results-example-mstest.trx") };
+            configuration.AddTestResultFile(FileSystem.FileInfo.FromFileName("results-example-mstest.trx"));
 
             var item = Container.Resolve<ITestResults>();
 
@@ -151,7 +155,7 @@ namespace PicklesDoc.Pickles.Test
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.NUnit;
-            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName("results-example-nunit.xml") };
+            configuration.AddTestResultFile(FileSystem.FileInfo.FromFileName("results-example-nunit.xml"));
 
             var item = Container.Resolve<ITestResults>();
 
@@ -166,7 +170,7 @@ namespace PicklesDoc.Pickles.Test
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.xUnit;
-            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName("results-example-xunit.xml") };
+            configuration.AddTestResultFile(FileSystem.FileInfo.FromFileName("results-example-xunit.xml"));
 
             var item = Container.Resolve<ITestResults>();
 
@@ -181,7 +185,7 @@ namespace PicklesDoc.Pickles.Test
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.CucumberJson;
-            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName("results-example-json.json") };
+            configuration.AddTestResultFile(FileSystem.FileInfo.FromFileName("results-example-json.json"));
 
             var item = Container.Resolve<ITestResults>();
 
@@ -196,7 +200,7 @@ namespace PicklesDoc.Pickles.Test
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.SpecRun;
-            configuration.TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName("results-example-specrun.html") };
+            configuration.AddTestResultFile(FileSystem.FileInfo.FromFileName("results-example-specrun.html"));
 
             var item = Container.Resolve<ITestResults>();
 

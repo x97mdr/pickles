@@ -1,43 +1,43 @@
 ﻿using System;
+
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 using PicklesDoc.Pickles.TestFrameworks;
+
 using Should;
 
-namespace PicklesDoc.Pickles.Test
+namespace PicklesDoc.Pickles.Test.TestFrameworks
 {
     [TestFixture]
-    public class WhenParsingMsTestResultsFile : WhenParsingTestResultFiles<MsTestResults>
+    public class WhenParsingSpecRunTestResultsFile : WhenParsingTestResultFiles<SpecRunResults>
     {
-        public WhenParsingMsTestResultsFile()
-            : base("results-example-mstest.trx")
+        public WhenParsingSpecRunTestResultsFile()
+            : base("results-example-specrun.html")
         {
         }
 
         [Test]
         public void ThenCanReadBackgroundResultSuccessfully()
         {
-            var background = new Scenario {Name = "Background", Feature = AdditionFeature()};
-            var feature = AdditionFeature();
+            var background = new Scenario { Name = "Background", Feature = this.AdditionFeature() };
+            var feature = this.AdditionFeature();
             feature.AddBackground(background);
             var results = ParseResultsFile();
 
             TestResult result = results.GetScenarioResult(background);
 
-            result.WasExecuted.ShouldBeFalse();
-            result.WasSuccessful.ShouldBeFalse();
+            result.ShouldEqual(TestResult.Inconclusive);
         }
 
         [Test]
         public void ThenCanReadInconclusiveFeatureResultSuccessfully()
         {
             var results = ParseResultsFile();
-            
-            TestResult result = results.GetFeatureResult(InconclusiveFeature());
 
-            Assert.AreEqual(TestResult.Inconclusive, result);
+            TestResult result = results.GetFeatureResult(this.InconclusiveFeature());
+
+            result.ShouldEqual(TestResult.Inconclusive);
         }
 
         [Test]
@@ -45,67 +45,62 @@ namespace PicklesDoc.Pickles.Test
         {
             var results = ParseResultsFile();
 
-            TestResult result = results.GetFeatureResult(FailingFeature());
+            TestResult result = results.GetFeatureResult(this.FailingFeature());
 
-            Assert.AreEqual(TestResult.Failed, result);
+            result.ShouldEqual(TestResult.Failed);
         }
-
 
         [Test]
         public void ThenCanReadPassedFeatureResultSuccessfully()
         {
             var results = ParseResultsFile();
 
-            TestResult result = results.GetFeatureResult(PassingFeature());
+            TestResult result = results.GetFeatureResult(this.PassingFeature());
 
-            Assert.AreEqual(TestResult.Passed, result);
+            result.ShouldEqual(TestResult.Passed);
         }
 
         [Test]
         public void ThenCanReadScenarioOutlineResultSuccessfully()
         {
             var results = ParseResultsFile();
-            var scenarioOutline = new ScenarioOutline {Name = "Adding several numbers", Feature = AdditionFeature()};
+            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers", Feature = this.AdditionFeature() };
             
             TestResult result = results.GetScenarioOutlineResult(scenarioOutline);
 
-            result.WasExecuted.ShouldBeTrue();
-            result.WasSuccessful.ShouldBeTrue();
+            result.ShouldEqual(TestResult.Passed);
         }
 
         [Test]
         public void ThenCanReadSuccessfulScenarioResultSuccessfully()
         {
             var results = ParseResultsFile();
-            var passedScenario = new Scenario { Name = "Add two numbers", Feature = AdditionFeature() };
+            var passedScenario = new Scenario { Name = "Add two numbers", Feature = this.AdditionFeature() };
 
             TestResult result = results.GetScenarioResult(passedScenario);
 
-            result.WasExecuted.ShouldBeTrue();
-            result.WasSuccessful.ShouldBeTrue();
+            result.ShouldEqual(TestResult.Passed);
         }
 
         [Test]
         public void ThenCanReadFailedScenarioResultSuccessfully()
         {
             var results = ParseResultsFile();
-            var scenario = new Scenario { Name = "Fail to add two numbers", Feature = AdditionFeature() };
+            var scenario = new Scenario { Name = "Fail to add two numbers", Feature = this.AdditionFeature() };
             TestResult result = results.GetScenarioResult(scenario);
 
-            result.WasExecuted.ShouldBeTrue();
-            result.WasSuccessful.ShouldBeFalse();
+            result.ShouldEqual(TestResult.Failed);
         }
 
         [Test]
         public void ThenCanReadIgnoredScenarioResultSuccessfully()
         {
             var results = ParseResultsFile();
-            var ignoredScenario = new Scenario { Name = "Ignored adding two numbers", Feature = AdditionFeature() };
+            var ignoredScenario = new Scenario { Name = "Ignored adding two numbers", Feature = this.AdditionFeature() };
             
             var result = results.GetScenarioResult(ignoredScenario);
 
-            result.WasExecuted.ShouldBeFalse();
-            result.WasSuccessful.ShouldBeFalse();
+            result.ShouldEqual(TestResult.Inconclusive);
         }
 
         [Test]
@@ -116,13 +111,12 @@ namespace PicklesDoc.Pickles.Test
             var inconclusiveScenario = new Scenario
             {
                 Name = "Not automated adding two numbers",
-                Feature = AdditionFeature()
+                Feature = this.AdditionFeature()
             };
 
             var result = results.GetScenarioResult(inconclusiveScenario);
 
-            result.WasExecuted.ShouldBeFalse();
-            result.WasSuccessful.ShouldBeFalse();
+            result.ShouldEqual(TestResult.Inconclusive);
         }
 
         private Feature AdditionFeature()
@@ -134,6 +128,7 @@ namespace PicklesDoc.Pickles.Test
         {
             return new Feature { Name = "Inconclusive" };
         }
+
         private Feature FailingFeature()
         {
             return new Feature { Name = "Failing" };
