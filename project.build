@@ -29,7 +29,7 @@
     <property name="revision" value="0" />
   </ifnot>
   
-  <property name="version" value="${version.major}.${version.minor}.${version.revision}.${build.number}" />
+  <property name="version" value="${version.major}.${version.minor}.${version.revision}" />
   <property name="msbuild.dir" value="${environment::get-variable('ProgramFiles(x86)')}\MSBuild\12.0\Bin" />
   <property name="framework.dir" value="${msbuild.dir}" />
   <property name="assemblies.dir" value="C:\dev\pickles\src\Pickles\Pickles.CommandLine\bin\Release" />
@@ -52,7 +52,7 @@
   
   <target name="set" depends="init">
     <exec program="tools\AssemblyInfoUtil.exe">
-      <arg value="-setver:${version}" />
+      <arg value="-setver:${version}.0" />
       <arg value="src\Pickles\VersionInfo.cs" />
     </exec>
   </target>
