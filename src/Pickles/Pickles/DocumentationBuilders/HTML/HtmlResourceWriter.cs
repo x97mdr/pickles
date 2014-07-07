@@ -34,12 +34,12 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
         {
             string cssFolder = this.FileSystem.Path.Combine(folder, "css");
             this.EnsureFolder(cssFolder);
-            this.WriteStyleSheet(folder, "master.css");
-            this.WriteStyleSheet(folder, "reset.css");
-            this.WriteStyleSheet(folder, "global.css");
-            this.WriteStyleSheet(folder, "structure.css");
-            this.WriteStyleSheet(folder, "print.css");
-            this.WriteStyleSheet(folder, "font-awesome.css");
+            this.WriteStyleSheet(cssFolder, "master.css");
+            this.WriteStyleSheet(cssFolder, "reset.css");
+            this.WriteStyleSheet(cssFolder, "global.css");
+            this.WriteStyleSheet(cssFolder, "structure.css");
+            this.WriteStyleSheet(cssFolder, "print.css");
+            this.WriteStyleSheet(cssFolder, "font-awesome.css");
 
             string imagesFolder = this.FileSystem.Path.Combine(folder, "img");
             this.EnsureFolder(imagesFolder);
