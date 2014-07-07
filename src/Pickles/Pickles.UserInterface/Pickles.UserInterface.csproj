@@ -47,9 +47,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MahApps.Metro.0.13.1.0\lib\net40\MahApps.Metro.dll</HintPath>
     </Reference>
-    <Reference Include="NLog, Version=3.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NLog.3.0.0.0\lib\net40\NLog.dll</HintPath>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.3.1.0.0\lib\net40\NLog.dll</HintPath>
     </Reference>
     <Reference Include="NlogViewer, Version=0.5.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -164,8 +163,7 @@
       <Using xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Namespace="System" />
       <Using xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Namespace="System.IO" />
       <Using xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Namespace="System.Xml.Linq" />
-      <Code xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Type="Fragment" Language="cs">
-<![CDATA[
+      <Code xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Type="Fragment" Language="cs"><![CDATA[
 var config = XElement.Load(Config.ItemSpec).Elements("Costura").FirstOrDefault();
 
 if (config == null) return true;
@@ -184,8 +182,8 @@ var filesToCleanup = Files.Select(f => f.ItemSpec).Where(f => !excludedAssemblie
 
 foreach (var item in filesToCleanup)
   File.Delete(item);
-]]>
-      </Code></Task>
+]]></Code>
+    </Task>
   </UsingTask>
   <Target Name="CleanReferenceCopyLocalPaths" AfterTargets="AfterBuild;NonWinFodyTarget">
     <CosturaCleanup Config="FodyWeavers.xml" Files="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')" />
