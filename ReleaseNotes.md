@@ -9,6 +9,7 @@
 ### Bug(s) Fixed
 
 - Fixed issue where multiple results files for a single feature causes exceptions when processing scenario outline examples ([#123](https://github.com/picklesdoc/pickles/pull/123))
+- Fixed issue where pickles would crash when a specified test results file does not exist ([#126](https://github.com/picklesdoc/pickles/issues/126))
 
 ## v0.17.4 - 2013-06-04
 
