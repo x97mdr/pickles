@@ -1,7 +1,13 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
+
+using Autofac;
+
 using NUnit.Framework;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
+using PicklesDoc.Pickles.ObjectModel;
+
 using Should;
 
 namespace PicklesDoc.Pickles.Test
@@ -74,6 +80,25 @@ namespace PicklesDoc.Pickles.Test
             stylesheets.Any(stylesheet => stylesheet.File == "structure.css").ShouldBeTrue();
             stylesheets.Any(stylesheet => stylesheet.File == "print.css").ShouldBeTrue();
             stylesheets.Any(resource => resource.File == "font-awesome.css").ShouldBeTrue();
+        }
+
+        [Test]
+        public void ThenSavesCssFilesToCorrectLocation()
+        {
+            FileSystem.AddDirectory(@"c:\output\");
+            var htmlResourceWriter = new HtmlResourceWriter(FileSystem);
+
+            htmlResourceWriter.WriteTo(@"c:\output\");
+
+            var filesOnFileSystem = FileSystem.AllFiles.AsEnumerable<string>().ToArray();
+
+            filesOnFileSystem.ShouldContain(@"c:\output\css\master.css");
+            filesOnFileSystem.ShouldContain(@"c:\output\css\reset.css");
+            filesOnFileSystem.ShouldContain(@"c:\output\css\global.css");
+            filesOnFileSystem.ShouldContain(@"c:\output\css\global.css");
+            filesOnFileSystem.ShouldContain(@"c:\output\css\structure.css");
+            filesOnFileSystem.ShouldContain(@"c:\output\css\print.css");
+            filesOnFileSystem.ShouldContain(@"c:\output\css\font-awesome.css");
         }
     }
 }

@@ -42,13 +42,14 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
             var outputDirectory = FileSystem.DirectoryInfo.FromDirectoryName(OUTPUT_DIRECTORY);
             if (!outputDirectory.Exists) outputDirectory.Create();
 
-            var configuration = new Configuration
-                                {
+            var configuration = new Configuration() {
                                     OutputFolder = FileSystem.DirectoryInfo.FromDirectoryName(OUTPUT_DIRECTORY),
                                     DocumentationFormat = DocumentationFormat.JSON,
-                                    TestResultsFiles = new[] { FileSystem.FileInfo.FromFileName(testResultFilePath) },
-                                    TestResultsFormat = TestResultsFormat.MsTest
+                                    TestResultsFormat = TestResultsFormat.MsTest,
+                                    SystemUnderTestName = "SUT Name",
+                                    SystemUnderTestVersion = "SUT Version"
                                 };
+            configuration.AddTestResultFile(FileSystem.FileInfo.FromFileName(testResultFilePath));
 
             ITestResults testResults = new MsTestResults(configuration);
             var jsonDocumentationBuilder = new JSONDocumentationBuilder(configuration, testResults, FileSystem);
@@ -67,14 +68,27 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         }
 
         [Test]
+        public void it_should_contain_the_sut_info_in_the_json_document()
+        {
+            string content = this.Setup();
+
+            var jsonObj = JObject.Parse(content);
+
+            var configuration = jsonObj["Configuration"];
+
+            Assert.That(configuration["SutName"].ToString(), Is.EqualTo("SUT Name"));
+            Assert.That(configuration["SutVersion"].ToString(), Is.EqualTo("SUT Version"));
+        }
+
+        [Test]
         public void it_should_indicate_WasSuccessful_is_true()
         {
             string content = this.Setup();
 
-            JArray jsonArray = JArray.Parse(content);
+            var jsonObj = JObject.Parse(content);
 
 
-            IEnumerable<JToken> featureJsonElement = from feat in jsonArray
+            IEnumerable<JToken> featureJsonElement = from feat in jsonObj["Features"]
                                                      where
                                                          feat["Feature"]["Name"].Value<string>().Equals(
                                                              "Two more scenarios transfering funds between accounts")
@@ -88,10 +102,10 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         {
             string content = this.Setup();
 
-            JArray jsonArray = JArray.Parse(content);
+            var jsonObj = JObject.Parse(content);
 
 
-            IEnumerable<JToken> featureJsonElement = from feat in jsonArray
+            IEnumerable<JToken> featureJsonElement = from feat in jsonObj["Features"]
                                                      where
                                                          feat["Feature"]["Name"].Value<string>().Equals(
                                                              "Transfer funds between accounts")
@@ -105,10 +119,10 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         {
             string content = this.Setup();
 
-            JArray jsonArray = JArray.Parse(content);
+            var jsonObj = JObject.Parse(content);
 
 
-            IEnumerable<JToken> featureJsonElement = from feat in jsonArray
+            IEnumerable<JToken> featureJsonElement = from feat in jsonObj["Features"]
                                                      where
                                                          feat["Feature"]["Name"].Value<string>().Equals(
                                                              "Transfer funds between accounts onc scenario and FAILING")
@@ -123,10 +137,10 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         {
             string content = this.Setup();
 
-            JArray jsonArray = JArray.Parse(content);
+            var jsonObj = JObject.Parse(content);
 
 
-            IEnumerable<JToken> featureJsonElement = from feat in jsonArray
+            IEnumerable<JToken> featureJsonElement = from feat in jsonObj["Features"]
                                                      where
                                                          feat["Feature"]["Name"].Value<string>().Equals(
                                                              "Two more scenarios transfering funds between accounts - one failng and one succeding")
@@ -141,9 +155,9 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         {
             string content = this.Setup();
 
-            JArray jsonArray = JArray.Parse(content);
+            var jsonObj = JObject.Parse(content);
 
-            Assert.IsNotEmpty(jsonArray[0]["Result"]["WasSuccessful"].ToString());
+            Assert.IsNotEmpty(jsonObj["Features"][0]["Result"]["WasSuccessful"].ToString());
         }
 
 
@@ -152,9 +166,9 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         {
             string content = this.Setup();
 
-            JArray jsonArray = JArray.Parse(content);
+            var jsonObj = JObject.Parse(content);
 
-            Assert.IsNotEmpty(jsonArray[0]["Result"]["WasSuccessful"].ToString());
+            Assert.IsNotEmpty(jsonObj["Features"][0]["Result"]["WasSuccessful"].ToString());
         }
     }
 }

@@ -53,23 +53,14 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
                 log.Info("Writing DHTML files to {0}", this.configuration.OutputFolder.FullName);
             }
 
-            var resource = new DhtmlResourceSet(configuration, this.fileSystem);
-
-            log.Info("DeployZippedDhtmlResourcesForExtraction");
-            DeployZippedDhtmlResourcesForExtraction(resource);
-
-            log.Info("UnzipDhtmlResources");
-            UnzipDhtmlResources(resource);
+            log.Info("WriteResources");
+            this.WriteResources();
             
             log.Info("UtilizeJsonBuilderToDumpJsonFeatureFileNextToDthmlResources");
             UtilizeJsonBuilderToDumpJsonFeatureFileNextToDthmlResources(features);
 
             log.Info("Tweak Json file");
             TweakJsonFile();
-
-            log.Info("CleanupZippedDhtmlResources");
-            CleanupZippedDhtmlResources(resource);
-
         }
 
         private void UtilizeJsonBuilderToDumpJsonFeatureFileNextToDthmlResources(GeneralTree<INode> features)
@@ -78,22 +69,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
             jsonBuilder.Build(features);
         }
 
-        private void UnzipDhtmlResources(DhtmlResourceSet dhtmlResourceSet)
+        private void WriteResources()
         {
-            var unzipper = new UnZipper(this.fileSystem);
-            unzipper.UnZip(dhtmlResourceSet.ZippedResources.LocalPath, configuration.OutputFolder.FullName, "Pickles.BaseDhtmlFiles");
-        }
-
-        private void CleanupZippedDhtmlResources(DhtmlResourceSet dhtmlResourceSet)
-        {
-            var resourceProcessor = new DhtmlResourceProcessor(configuration, dhtmlResourceSet, this.fileSystem);
-            resourceProcessor.CleanupZippedResources();
-        }
-
-        private void DeployZippedDhtmlResourcesForExtraction(DhtmlResourceSet dhtmlResourceSet)
-        {
-            var resourceProcessor = new DhtmlResourceProcessor(configuration, dhtmlResourceSet, this.fileSystem);
-            resourceProcessor.WriteZippedResources();
+            var dhtmlResourceWriter = new DhtmlResourceWriter(fileSystem);
+            dhtmlResourceWriter.WriteTo(configuration.OutputFolder.FullName);
         }
 
         private void TweakJsonFile()

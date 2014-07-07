@@ -164,8 +164,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NGenerics.1.4.1.0\lib\net35\NGenerics.dll</HintPath>
     </Reference>
-    <Reference Include="NLog">
-      <HintPath>..\packages\NLog.2.1.0\lib\net35\NLog.dll</HintPath>
+    <Reference Include="NLog, Version=3.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NLog.3.1.0.0\lib\net35\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -194,10 +195,8 @@
     <Compile Include="DirectoryCrawler\ImageFileDetector.cs" />
     <Compile Include="DirectoryCrawler\ImageNode.cs" />
     <Compile Include="DocumentationBuilders\DHTML\DhtmlDocumentationBuilder.cs" />
-    <Compile Include="DocumentationBuilders\DHTML\DhtmlResourceSet.cs" />
-    <Compile Include="DocumentationBuilders\DHTML\DhtmlResourceProcessor.cs" />
+    <Compile Include="DocumentationBuilders\DHTML\DhtmlResourceWriter.cs" />
     <Compile Include="DocumentationBuilders\DHTML\JsonTweaker.cs" />
-    <Compile Include="DocumentationBuilders\DHTML\UnZipper.cs" />
     <Compile Include="DocumentationBuilders\DITA\DitaDocumentationBuilder.cs" />
     <Compile Include="DocumentationBuilders\DITA\DitaFeatureFormatter.cs" />
     <Compile Include="DocumentationBuilders\DITA\DitaMapBuilder.cs" />
@@ -236,6 +235,7 @@
     <Compile Include="DocumentationBuilders\HTML\HtmlTableFormatter.cs" />
     <Compile Include="DocumentationBuilders\HTML\HtmlTableOfContentsFormatter.cs" />
     <Compile Include="DocumentationBuilders\HTML\IHtmlFeatureFormatter.cs" />
+    <Compile Include="DocumentationBuilders\HTML\ResourceWriter.cs" />
     <Compile Include="DocumentationBuilders\IDocumentationBuilder.cs" />
     <Compile Include="DocumentationBuilders\JSON\FeatureWithMetaInfo.cs" />
     <Compile Include="DocumentationBuilders\JSON\JSONDocumentationBuilder.cs" />
@@ -330,40 +330,107 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\fonts\fontawesome-webfont.eot" />
-    <EmbeddedResource Include="Resources\fonts\fontawesome-webfont.ttf" />
-    <EmbeddedResource Include="Resources\fonts\fontawesome-webfont.woff" />
-    <EmbeddedResource Include="Resources\fonts\FontAwesome.ttf" />
-    <None Include="Resources\Pickles.BaseDhtmlFiles.zip" />
+    <EmbeddedResource Include="Resources\Html\fonts\fontawesome-webfont.eot" />
+    <EmbeddedResource Include="Resources\Html\fonts\fontawesome-webfont.ttf" />
+    <EmbeddedResource Include="Resources\Html\fonts\fontawesome-webfont.woff" />
+    <EmbeddedResource Include="Resources\Html\fonts\FontAwesome.ttf" />
     <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\global.css" />
-    <EmbeddedResource Include="Resources\master.css" />
-    <EmbeddedResource Include="Resources\reset.css" />
-    <EmbeddedResource Include="Resources\structure.css" />
+    <EmbeddedResource Include="Resources\Html\css\global.css" />
+    <EmbeddedResource Include="Resources\Html\css\master.css" />
+    <EmbeddedResource Include="Resources\Html\css\reset.css" />
+    <EmbeddedResource Include="Resources\Html\css\structure.css" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\images\failure.png" />
-    <EmbeddedResource Include="Resources\images\success.png" />
+    <EmbeddedResource Include="Resources\Html\img\failure.png" />
+    <EmbeddedResource Include="Resources\Html\img\success.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\scripts\jquery.js" />
+    <EmbeddedResource Include="Resources\Html\js\jquery.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\print.css" />
+    <EmbeddedResource Include="Resources\Html\css\print.css" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\scripts\scripts.js" />
+    <EmbeddedResource Include="Resources\Html\js\scripts.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\images\inconclusive.png" />
+    <EmbeddedResource Include="Resources\Html\img\inconclusive.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\font-awesome.css" />
+    <EmbeddedResource Include="Resources\Html\css\font-awesome.css" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\fonts\fontawesome-webfont.svg" />
+    <EmbeddedResource Include="Resources\Html\fonts\fontawesome-webfont.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\css\bootstrap.min.css">
+      <Link>Resources\Dhtml\css\bootstrap.min.css</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\css\print.css">
+      <Link>Resources\Dhtml\css\print.css</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\css\styles.css">
+      <Link>Resources\Dhtml\css\styles.css</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\img\glyphicons-halflings-white.png">
+      <Link>Resources\Dhtml\img\glyphicons-halflings-white.png</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\img\glyphicons-halflings.png">
+      <Link>Resources\Dhtml\img\glyphicons-halflings.png</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\Index.html">
+      <Link>Resources\Dhtml\Index.html</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\bootstrap.min.js">
+      <Link>Resources\Dhtml\js\bootstrap.min.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\featureSearch.js">
+      <Link>Resources\Dhtml\js\featureSearch.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\featuresModel.js">
+      <Link>Resources\Dhtml\js\featuresModel.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\heirarchyBuilder.js">
+      <Link>Resources\Dhtml\js\heirarchyBuilder.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\html5.js">
+      <Link>Resources\Dhtml\js\html5.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\jquery-1.8.3.min.js">
+      <Link>Resources\Dhtml\js\jquery-1.8.3.min.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\jquery.highlight-4.closure.js">
+      <Link>Resources\Dhtml\js\jquery.highlight-4.closure.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\knockout-2.2.0.js">
+      <Link>Resources\Dhtml\js\knockout-2.2.0.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\knockout.mapping-latest.js">
+      <Link>Resources\Dhtml\js\knockout.mapping-latest.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\logger.js">
+      <Link>Resources\Dhtml\js\logger.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\Markdown.Converter.js">
+      <Link>Resources\Dhtml\js\Markdown.Converter.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\Markdown.Extra.js">
+      <Link>Resources\Dhtml\js\Markdown.Extra.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\stringFormatting.js">
+      <Link>Resources\Dhtml\js\stringFormatting.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\typeaheadList.js">
+      <Link>Resources\Dhtml\js\typeaheadList.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\underscore-min.js">
+      <Link>Resources\Dhtml\js\underscore-min.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\pickledFeatures.js">
+      <Link>Resources\Dhtml\pickledFeatures.js</Link>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

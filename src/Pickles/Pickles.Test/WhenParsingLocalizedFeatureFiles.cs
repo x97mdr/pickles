@@ -28,8 +28,7 @@ Egenskap: Test egenskap
         När den körs
         Så skall jag se att det inträffat";
 
-            var configuration = new Configuration
-                                    {
+            var configuration = new Configuration() {
                                         Language = "sv"
                                     };
 

@@ -22,8 +22,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
             var outputDirectory = FileSystem.DirectoryInfo.FromDirectoryName(OUTPUT_DIRECTORY);
             if (!outputDirectory.Exists) outputDirectory.Create();
 
-            var configuration = new Configuration
-                                    {
+            var configuration = new Configuration() {
                                       OutputFolder = FileSystem.DirectoryInfo.FromDirectoryName(OUTPUT_DIRECTORY),
                                         DocumentationFormat = DocumentationFormat.JSON
                                     };
