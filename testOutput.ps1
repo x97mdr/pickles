@@ -1,10 +1,12 @@
 $version = $args[0]
 $formats = @("Html", "Dhtml", "Word", "Excel", "Dita")
+$PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
+
 foreach ($format in $formats)
 {
     # Setup variables
-    $FeatureDirectory = ".\src\Pickles\Examples"
-    $OutputDirectory = ".\Output\" + $format
+    $FeatureDirectory = $PSScriptRoot + "\src\Pickles\Examples"
+    $OutputDirectory = $PSScriptRoot + "\Output\" + $format
     $DocumentationFormat = $format
     $SystemUnderTestName = "Pickles"
     $SystemUnderTestVersion = $version
