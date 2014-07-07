@@ -1,6 +1,6 @@
 # Pickles Release Notes
 
-## vNext - TDB
+## v0.18.0 - 2013-07-07
 
 ### New Feature(s)
 
