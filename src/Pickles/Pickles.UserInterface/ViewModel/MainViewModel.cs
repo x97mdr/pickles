@@ -517,7 +517,6 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
         var container = builder.Build();
 
         var configuration = container.Resolve<Configuration>();
-        var fileSystem = container.Resolve<IFileSystem>();
 
         configuration.FeatureFolder = fileSystem.DirectoryInfo.FromDirectoryName(this.featureFolder);
 
