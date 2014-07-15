@@ -2,7 +2,6 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                      xmlns:mahapps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-                     xmlns:Mvvm="clr-namespace:PicklesDoc.Pickles.UserInterface.Mvvm"
                      xmlns:nlogViewer="clr-namespace:NlogViewer;assembly=NlogViewer"
                      Title="Pickles" Height="600" Width="800" Loaded="MetroWindow_Loaded" Closed="MetroWindow_Closed"  DataContextChanged="MainWindow_OnDataContextChanged"
                      DataContext="{Binding Main, Source={StaticResource Locator}}">
@@ -20,7 +19,6 @@
           <Color x:Key="AccentDarkColor">#CC2F8200</Color>
 
           <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
-          <Mvvm:BooleanToInvisibilityConverter x:Key="booleanToInvisibilityConverter" />
 
         </ResourceDictionary>
 

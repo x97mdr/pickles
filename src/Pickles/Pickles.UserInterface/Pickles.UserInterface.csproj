@@ -94,7 +94,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Mvvm\BooleanToInvisibilityConverter.cs" />
     <Compile Include="Mvvm\NotifySelectionChangedCollection.cs" />
     <Compile Include="Settings\DataDirectoryDeriver.cs" />
     <Compile Include="Settings\IMainModelSerializer.cs" />
