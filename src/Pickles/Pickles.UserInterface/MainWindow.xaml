@@ -3,9 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                      xmlns:mahapps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                      xmlns:Mvvm="clr-namespace:PicklesDoc.Pickles.UserInterface.Mvvm"
-                     xmlns:local="clr-namespace:PicklesDoc.Pickles.UserInterface"
                      xmlns:nlogViewer="clr-namespace:NlogViewer;assembly=NlogViewer"
-                     Title="Pickles" Height="600" Width="800" Loaded="MetroWindow_Loaded" Closed="MetroWindow_Closed"  DataContextChanged="MainWindow_OnDataContextChanged">
+                     Title="Pickles" Height="600" Width="800" Loaded="MetroWindow_Loaded" Closed="MetroWindow_Closed"  DataContextChanged="MainWindow_OnDataContextChanged"
+                     DataContext="{Binding Main, Source={StaticResource Locator}}">
   <Window.TaskbarItemInfo>
     <TaskbarItemInfo x:Name="taskBarItemInfo" />
   </Window.TaskbarItemInfo>
@@ -29,9 +29,6 @@
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </Window.Resources>
-  <Window.DataContext>
-    <local:MainWindowViewModel />
-  </Window.DataContext>
   <mahapps:MetroWindow.WindowCommands>
     <mahapps:WindowCommands>
       <Button Content="open output folder" Command="{Binding Path=OpenOutputDirectory}" />
