@@ -120,7 +120,6 @@
     </Compile>
     <Compile Include="Mvvm\EventHandlerExtensions.cs" />
     <Compile Include="Mvvm\NotifyPropertyChanged.cs" />
-    <Compile Include="Mvvm\RelayCommand.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
