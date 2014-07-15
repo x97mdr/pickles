@@ -89,12 +89,6 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
 
     private bool isDocumentationFormatValid;
 
-    [PreferredConstructor]
-    public MainViewModel()
-      : this(new MainModelSerializer(DataDirectoryDeriver.DeriveDataDirectory(), new FileSystem()), new FileSystem())
-    {
-    }
-
     public MainViewModel(IMainModelSerializer mainModelSerializer, IFileSystem fileSystem)
     {
       this.documentationFormats = new MultiSelectableCollection<DocumentationFormat>(Enum.GetValues(typeof(DocumentationFormat)).Cast<DocumentationFormat>());
@@ -512,7 +506,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
       {
         var builder = new ContainerBuilder();
         builder.RegisterAssemblyTypes(typeof(Runner).Assembly);
-        builder.Register<FileSystem>(_ => new FileSystem()).As<IFileSystem>().SingleInstance();
+        builder.Register<IFileSystem>(_ => this.fileSystem).SingleInstance();
         builder.RegisterModule<PicklesModule>();
         var container = builder.Build();
 

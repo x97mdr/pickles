@@ -12,9 +12,12 @@
   See http://www.galasoft.ch/mvvm
 */
 
-using GalaSoft.MvvmLight;
+using System.IO.Abstractions;
+
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+
+using PicklesDoc.Pickles.UserInterface.Settings;
 
 namespace PicklesDoc.Pickles.UserInterface.ViewModel
 {
@@ -29,7 +32,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
         /// </summary>
         public ViewModelLocator()
         {
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+          ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             ////if (ViewModelBase.IsInDesignModeStatic)
             ////{
@@ -42,8 +45,12 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
 
-            SimpleIoc.Default.Register<MainViewModel>();
+          var fileSystem = new FileSystem();
+          SimpleIoc.Default.Register<IFileSystem>(() => fileSystem);
+          SimpleIoc.Default.Register<IMainModelSerializer>(() => new MainModelSerializer(DataDirectoryDeriver.DeriveDataDirectory(), fileSystem));
+          SimpleIoc.Default.Register<MainViewModel>();
         }
+
 
         public MainViewModel Main
         {
