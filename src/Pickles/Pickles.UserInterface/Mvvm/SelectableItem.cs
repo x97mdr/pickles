@@ -1,8 +1,10 @@
 using System;
 
+using GalaSoft.MvvmLight;
+
 namespace PicklesDoc.Pickles.UserInterface.Mvvm
 {
-  public class SelectableItem<T> : NotifyPropertyChanged
+  public class SelectableItem<T> : ObservableObject
   {
     private readonly T item;
 
