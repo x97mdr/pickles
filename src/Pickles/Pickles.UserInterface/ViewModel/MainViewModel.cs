@@ -111,7 +111,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
       this.generateCommand = new RelayCommand(this.DoGenerate, this.CanGenerate);
       this.openOutputDirectory = new RelayCommand(this.DoOpenOutputDirectory, this.CanOpenOutputDirectory);
 
-      this.PropertyChanged += this.MainWindowViewModel_PropertyChanged;
+      this.PropertyChanged += this.MainWindowViewModelPropertyChanged;
       this.neutralCultures = CultureInfo.GetCultures(CultureTypes.NeutralCultures);
       this.selectedLanguage = CultureInfo.GetCultureInfo("en");
 
@@ -400,7 +400,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
       this.CreateDirectoryForEachOutputFormat = mainModel.CreateDirectoryForEachOutputFormat;
     }
 
-    private void MainWindowViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    private void MainWindowViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
       switch (e.PropertyName)
       {
