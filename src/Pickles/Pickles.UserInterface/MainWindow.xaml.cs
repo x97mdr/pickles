@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Shell;
 
+using PicklesDoc.Pickles.UserInterface.ViewModel;
+
 namespace PicklesDoc.Pickles.UserInterface
 {
     /// <summary>
@@ -15,9 +17,9 @@ namespace PicklesDoc.Pickles.UserInterface
             this.InitializeComponent();
         }
 
-        private MainWindowViewModel ViewModel
+        private MainViewModel ViewModel
         {
-            get { return this.DataContext as MainWindowViewModel; }
+          get { return this.DataContext as MainViewModel; }
         }
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
@@ -32,14 +34,14 @@ namespace PicklesDoc.Pickles.UserInterface
 
         private void MainWindow_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-          var oldVm = e.NewValue as MainWindowViewModel;
+          var oldVm = e.NewValue as MainViewModel;
 
           if (oldVm != null)
           {
             oldVm.PropertyChanged -= this.ViewModelOnPropertyChanged;
           }
 
-          var newVm = e.NewValue as MainWindowViewModel;
+          var newVm = e.NewValue as MainViewModel;
 
           if (newVm != null)
           {
