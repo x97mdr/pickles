@@ -134,8 +134,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
       get { return this.picklesVersion; }
       set
       {
-        this.picklesVersion = value;
-        RaisePropertyChanged(() => this.PicklesVersion);
+        Set(() => this.PicklesVersion, ref this.picklesVersion, value);
       }
     }
 
@@ -144,8 +143,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
       get { return this.featureFolder; }
       set
       {
-        this.featureFolder = value;
-        RaisePropertyChanged(() => this.FeatureFolder);
+        Set(() => this.FeatureFolder, ref this.featureFolder, value);
       }
     }
 
@@ -154,8 +152,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
       get { return this.outputFolder; }
       set
       {
-        this.outputFolder = value;
-        RaisePropertyChanged(() => this.OutputFolder);
+        Set(() => this.OutputFolder, ref this.outputFolder, value);
       }
     }
 
@@ -169,8 +166,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
       get { return this.projectName; }
       set
       {
-        this.projectName = value;
-        RaisePropertyChanged(() => this.ProjectName);
+        Set(() => this.ProjectName, ref this.projectName, value);
       }
     }
 
@@ -179,8 +175,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
       get { return this.projectVersion; }
       set
       {
-        this.projectVersion = value;
-        RaisePropertyChanged(() => this.ProjectVersion);
+        Set(() => this.ProjectVersion, ref this.projectVersion, value);
       }
     }
 
@@ -189,8 +184,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
       get { return this.testResultsFile; }
       set
       {
-        this.testResultsFile = value;
-        RaisePropertyChanged(() => this.TestResultsFile);
+        Set(() => this.TestResultsFile, ref this.testResultsFile, value);
       }
     }
 
@@ -204,8 +198,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
       get { return this.selectedLanguage; }
       set
       {
-        this.selectedLanguage = value;
-        RaisePropertyChanged(() => this.SelectedLanguage);
+        Set(() => this.SelectedLanguage, ref this.selectedLanguage, value);
       }
     }
 
@@ -219,8 +212,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
       get { return this.includeTests; }
       set
       {
-        this.includeTests = value;
-        RaisePropertyChanged(() => this.IncludeTests);
+        Set(() => this.IncludeTests, ref this.includeTests, value);
       }
     }
 
@@ -254,8 +246,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
       get { return this.isRunning; }
       set
       {
-        this.isRunning = value;
-        this.RaisePropertyChanged(() => this.IsRunning);
+        Set(() => this.IsRunning, ref this.isRunning, value);
       }
     }
 
@@ -268,8 +259,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
 
       set
       {
-        this.isFeatureDirectoryValid = value;
-        this.RaisePropertyChanged(() => this.IsFeatureDirectoryValid);
+        Set(() => this.IsFeatureDirectoryValid, ref this.isFeatureDirectoryValid, value);
       }
     }
 
@@ -282,8 +272,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
 
       set
       {
-        this.isDocumentationFormatValid = value;
-        this.RaisePropertyChanged(() => this.IsDocumentationFormatValid);
+        Set(() => this.IsDocumentationFormatValid, ref this.isDocumentationFormatValid, value);
       }
     }
 
@@ -292,8 +281,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
       get { return this.isOutputDirectoryValid; }
       set
       {
-        this.isOutputDirectoryValid = value;
-        this.RaisePropertyChanged(() => this.IsOutputDirectoryValid);
+        Set(() => this.IsOutputDirectoryValid, ref this.isOutputDirectoryValid, value);
       }
     }
 
@@ -302,8 +290,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
       get { return this.isProjectNameValid; }
       set
       {
-        this.isProjectNameValid = value;
-        this.RaisePropertyChanged(() => this.IsProjectNameValid);
+        Set(() => this.IsProjectNameValid, ref this.isProjectNameValid, value);
       }
     }
 
@@ -312,8 +299,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
       get { return this.isProjectVersionValid; }
       set
       {
-        this.isProjectVersionValid = value;
-        this.RaisePropertyChanged(() => this.IsProjectVersionValid);
+        Set(() => this.IsProjectVersionValid, ref this.isProjectVersionValid, value);
       }
     }
 
@@ -322,8 +308,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
       get { return this.isTestResultsFileValid; }
       set
       {
-        this.isTestResultsFileValid = value;
-        this.RaisePropertyChanged(() => this.IsTestResultsFileValid);
+        Set(() => this.IsTestResultsFileValid, ref this.isTestResultsFileValid, value);
       }
     }
 
@@ -332,8 +317,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
       get { return this.isTestResultsFormatValid; }
       set
       {
-        this.isTestResultsFormatValid = value;
-        this.RaisePropertyChanged(() => this.IsTestResultsFormatValid);
+        Set(() => this.IsTestResultsFormatValid, ref this.isTestResultsFormatValid, value);
       }
     }
 
@@ -342,8 +326,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
       get { return this.isLanguageValid; }
       set
       {
-        this.isLanguageValid = value;
-        this.RaisePropertyChanged(() => this.IsLanguageValid);
+        Set(() => this.IsLanguageValid, ref this.isLanguageValid, value);
       }
     }
 
@@ -356,8 +339,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
 
       set
       {
-        this.createDirectoryForEachOutputFormat = value;
-        this.RaisePropertyChanged(() => this.CreateDirectoryForEachOutputFormat);
+        Set(() => this.CreateDirectoryForEachOutputFormat, ref this.createDirectoryForEachOutputFormat, value);
       }
     }
 
