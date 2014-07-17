@@ -12,33 +12,24 @@ let testDir  = "./test/"
 let deployDir = "./deploy/"
 
 // version info
-let version = "0.2"  // or retrieve from CI server
-let commitHash = Git.Information.getCurrentSHA1(".")
+let version = "0.18.0"  // or retrieve from CI server
  
 
 // Targets
 Target "Clean" (fun _ ->
-    CleanDirs [buildDir; cmdDir; testDir; deployDir]
+    CleanDirs [cmdDir; buildDir; testDir; deployDir]
 )
 
 Target "AssemblyInfo" (fun _ ->
-    CreateCSharpAssemblyInfo "./src/app/Calculator/Properties/AssemblyInfo.cs"
-        [Attribute.Title "Calculator Command line tool"
-         Attribute.Description "Sample project for FAKE - F# MAKE"
-         Attribute.Guid "A539B42C-CB9F-4a23-8E57-AF4E7CEE5BAA"
-         Attribute.Product "Calculator"
+    CreateCSharpAssemblyInfo "./src/Pickles/VersionInfo.cs"
+        [Attribute.Product "Pickles"
+         Attribute.Company "Pickles"
+         Attribute.Copyright "Copyright (c) Jeffrey Cameron 2010-2012, PicklesDoc 2012-2013"
+         Attribute.Trademark ""
+         Attribute.Culture ""
+         Attribute.ComVisible false
          Attribute.Version version
-         Attribute.FileVersion version
-         Attribute.Metadata("githash", commitHash)]
-
-    CreateCSharpAssemblyInfo "./src/app/CalculatorLib/Properties/AssemblyInfo.cs"
-        [Attribute.Title "Calculator library"
-         Attribute.Description "Sample project for FAKE - F# MAKE"
-         Attribute.Guid "EE5621DB-B86B-44eb-987F-9C94BCC98441"
-         Attribute.Product "Calculator"
-         Attribute.Version version
-         Attribute.FileVersion version
-         Attribute.Metadata("githash", commitHash)]
+         Attribute.FileVersion version]
 )
 
 Target "BuildApp" (fun _ ->
@@ -86,7 +77,7 @@ Target "Default" (fun _ ->
 
 // Dependencies
 "Clean"
-  //==> "AssemblyInfo"
+  ==> "AssemblyInfo"
   ==> "BuildCmd"
   //==> "FxCop"
 //  ==> "Test"
