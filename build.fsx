@@ -8,6 +8,10 @@ open Fake.AssemblyInfoFile
 // Properties
 let buildDir = "./build/"
 let cmdDir = "./build/cmd/"
+let msBuildDir = "./build/msbuild/"
+let nantDir = "./build/nant/"
+let powerShellDir = "./build/powershell/"
+let guiDir = "./build/gui/"
 let testDir  = "./test/"
 let deployDir = "./deploy/"
 
@@ -17,7 +21,7 @@ let version = "0.18.0"  // or retrieve from CI server
 
 // Targets
 Target "Clean" (fun _ ->
-    CleanDirs [cmdDir; buildDir; testDir; deployDir]
+    CleanDirs [cmdDir; msBuildDir; nantDir; powerShellDir; guiDir; buildDir; testDir; deployDir]
 )
 
 Target "AssemblyInfo" (fun _ ->
@@ -41,6 +45,30 @@ Target "BuildApp" (fun _ ->
 Target "BuildCmd" (fun _ ->
     !! "src/Pickles/Pickles.CommandLine/Pickles.CommandLine.csproj"
       |> MSBuildRelease cmdDir "Build"
+      |> Log "AppBuild-Output: "
+)
+
+Target "BuildMsBuild" (fun _ ->
+    !! "src/Pickles/Pickles.MsBuild/Pickles.MsBuild.csproj"
+      |> MSBuildRelease msBuildDir "Build"
+      |> Log "AppBuild-Output: "
+)
+
+Target "BuildNAnt" (fun _ ->
+    !! "src/Pickles/Pickles.NAnt/Pickles.NAnt.csproj"
+      |> MSBuildRelease nantDir "Build"
+      |> Log "AppBuild-Output: "
+)
+
+Target "BuildPowerShell" (fun _ ->
+    !! "src/Pickles/Pickles.PowerShell/Pickles.PowerShell.csproj"
+      |> MSBuildRelease powerShellDir "Build"
+      |> Log "AppBuild-Output: "
+)
+
+Target "BuildGui" (fun _ ->
+    !! "src/Pickles/Pickles.UserInterface/Pickles.UserInterface.csproj"
+      |> MSBuildRelease guiDir "Build"
       |> Log "AppBuild-Output: "
 )
 
@@ -79,6 +107,10 @@ Target "Default" (fun _ ->
 "Clean"
   ==> "AssemblyInfo"
   ==> "BuildCmd"
+  ==> "BuildMsBuild"
+  ==> "BuildNAnt"
+  ==> "BuildPowerShell"
+  ==> "BuildGui"
   //==> "FxCop"
 //  ==> "Test"
   //==> "Zip"
