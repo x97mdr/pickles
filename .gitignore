@@ -70,3 +70,7 @@ src/Pickles/Pickles.1.2.dotCover
 src/Pickles/TestResults/
 src/Pickles/PrecompiledWeb/
 .merge_file_*
+
+
+# FAKE stuff
+packages/FAKE/
