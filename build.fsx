@@ -78,7 +78,7 @@ Target "Test" (fun _ ->
 Target "Zip" (fun _ ->
     !! (buildDir + "/**/*.*")
         -- "*.zip"
-        |> Zip buildDir (deployDir + "Calculator." + version + ".zip")
+        |> Zip buildDir (deployDir + "Pickles-" + version + ".zip")
 )
 
 Target "FxCop" (fun () ->  
@@ -107,7 +107,7 @@ Target "Default" (fun _ ->
   ==> "BuildGui"
   //==> "FxCop"
   ==> "Test"
-  //==> "Zip"
+  ==> "Zip"
   ==> "Default"
 
 
