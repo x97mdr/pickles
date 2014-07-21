@@ -81,18 +81,6 @@ Target "Zip" (fun _ ->
         |> Zip buildDir (deployDir + "Pickles-" + version + ".zip")
 )
 
-Target "FxCop" (fun () ->  
-    !! (buildDir + @"\**\*.dll") 
-    ++ (buildDir + @"\**\*.exe") 
-    |> FxCop 
-        (fun p -> 
-            {p with 
-              // override default parameters
-              ReportFileName = testDir + "FXCopResults.xml"
-              FailOnError = FxCopErrorLevel.Error
-              ToolPath = "tools/fxcop/FxCopCmd.exe"})
-)
-
 Target "Default" (fun _ ->
     trace "Hello World from FAKE"
 )
@@ -105,7 +93,6 @@ Target "Default" (fun _ ->
   ==> "BuildNAnt"
   ==> "BuildPowerShell"
   ==> "BuildGui"
-  //==> "FxCop"
   ==> "Test"
   ==> "Zip"
   ==> "Default"
