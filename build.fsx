@@ -36,12 +36,6 @@ Target "AssemblyInfo" (fun _ ->
          Attribute.FileVersion version]
 )
 
-Target "BuildApp" (fun _ ->
-    !! "src/Pickles/**/*.csproj"
-      |> MSBuildRelease buildDir "Build"
-      |> Log "AppBuild-Output: "
-)
-
 Target "BuildCmd" (fun _ ->
     !! "src/Pickles/Pickles.CommandLine/Pickles.CommandLine.csproj"
       |> MSBuildRelease cmdDir "Build"
@@ -73,7 +67,7 @@ Target "BuildGui" (fun _ ->
 )
 
 Target "Test" (fun _ ->
-    !! (testDir + "/NUnit.Test.*.dll")
+    !! ("src/Pickles/Pickles.Test/bin/Debug/PicklesDoc.Pickles.Test.dll")
       |> NUnit (fun p ->
           {p with
              DisableShadowCopy = true;
@@ -112,7 +106,7 @@ Target "Default" (fun _ ->
   ==> "BuildPowerShell"
   ==> "BuildGui"
   //==> "FxCop"
-//  ==> "Test"
+  ==> "Test"
   //==> "Zip"
   ==> "Default"
 
