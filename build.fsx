@@ -66,8 +66,14 @@ Target "BuildGui" (fun _ ->
       |> Log "AppBuild-Output: "
 )
 
+Target "BuildTest" (fun _ ->
+    !! "src/Pickles/Pickles.Test/Pickles.Test.csproj"
+      |> MSBuildRelease testDir "Build"
+      |> Log "AppBuild-Output: "
+)
+
 Target "Test" (fun _ ->
-    !! ("src/Pickles/Pickles.Test/bin/Debug/PicklesDoc.Pickles.Test.dll")
+    !! (testDir + "PicklesDoc.Pickles.Test.dll")
       |> NUnit (fun p ->
           {p with
              DisableShadowCopy = true;
@@ -93,6 +99,7 @@ Target "Default" (fun _ ->
   ==> "BuildNAnt"
   ==> "BuildPowerShell"
   ==> "BuildGui"
+  ==> "BuildTest"
   ==> "Test"
   ==> "Zip"
   ==> "Default"
