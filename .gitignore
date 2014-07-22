@@ -56,6 +56,7 @@ _ReSharper*/
 deploy/
 reports/
 merged/
+test/
 Documentation-*/
 
 #nCrunch files
