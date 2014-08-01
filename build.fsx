@@ -28,7 +28,7 @@ Target "AssemblyInfo" (fun _ ->
     CreateCSharpAssemblyInfo "./src/Pickles/VersionInfo.cs"
         [Attribute.Product "Pickles"
          Attribute.Company "Pickles"
-         Attribute.Copyright "Copyright (c) Jeffrey Cameron 2010-2012, PicklesDoc 2012-2013"
+         Attribute.Copyright "Copyright (c) Jeffrey Cameron 2010-2012, PicklesDoc 2012-present"
          Attribute.Trademark ""
          Attribute.Culture ""
          Attribute.ComVisible false
