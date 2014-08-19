@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyProductAttribute("Pickles")]
 [assembly: AssemblyCompanyAttribute("Pickles")]
-[assembly: AssemblyCopyrightAttribute("Copyright (c) Jeffrey Cameron 2010-2012, PicklesDoc 2012-2013")]
+[assembly: AssemblyCopyrightAttribute("Copyright (c) Jeffrey Cameron 2010-2012, PicklesDoc 2012-present")]
 [assembly: AssemblyTrademarkAttribute("")]
 [assembly: AssemblyCultureAttribute("")]
 [assembly: ComVisibleAttribute(false)]
