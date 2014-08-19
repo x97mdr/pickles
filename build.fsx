@@ -72,15 +72,6 @@ Target "BuildTest" (fun _ ->
       |> Log "AppBuild-Output: "
 )
 
-Target "Test" (fun _ ->
-    !! (testDir + "PicklesDoc.Pickles.Test.dll")
-      |> NUnit (fun p ->
-          {p with
-             DisableShadowCopy = true;
-             OutputFile = testDir + "TestResults.xml" })
-)
-
-
 Target "Zip" (fun _ ->
     !! (buildDir + "/**/*.*")
         -- "*.zip"
@@ -100,7 +91,6 @@ Target "Default" (fun _ ->
   ==> "BuildPowerShell"
   ==> "BuildGui"
   ==> "BuildTest"
-  ==> "Test"
   ==> "Zip"
   ==> "Default"
 
