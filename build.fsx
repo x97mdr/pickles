@@ -79,7 +79,7 @@ Target "Zip" (fun _ ->
 )
 
 Target "Default" (fun _ ->
-    trace "Hello World from FAKE"
+    trace ("Starting build of Pickles version " + version)
 )
 
 // Dependencies
