@@ -1,6 +1,12 @@
 # Pickles Release Notes
 
-## v0.18.0 - 2013-07-07
+## v0.18.1 - 2014-09-01
+
+### Bug(s) Fixed
+
+- Fixed issue where multiline arguments of gherkin steps would not be rendered in the DHtml verion ([#134](https://github.com/picklesdoc/pickles/issues/134))
+
+## v0.18.0 - 2014-07-07
 
 ### New Feature(s)
 
@@ -11,19 +17,19 @@
 - Fixed issue where multiple results files for a single feature causes exceptions when processing scenario outline examples ([#123](https://github.com/picklesdoc/pickles/pull/123))
 - Fixed issue where pickles would crash when a specified test results file does not exist ([#126](https://github.com/picklesdoc/pickles/issues/126))
 
-## v0.17.4 - 2013-06-04
+## v0.17.4 - 2014-06-04
 
 ### Bug(s) Fixed
 
 - Description blocks are rendered as code elements in DHtml version ([#118](https://github.com/picklesdoc/pickles/issues/118))
 
-## v0.17.3 - 2013-05-28
+## v0.17.3 - 2014-05-28
 
 ### Bug(s) Fixed
 
 - PowerShell version works again
 
-## v0.17.2 - 2013-05-28
+## v0.17.2 - 2014-05-28
 
 Some things went wrong during the publication of versions 0.17.0 and 0.17.1. Therefore 0.17.2 is the first published 0.17.x version.
 
@@ -36,7 +42,7 @@ Some things went wrong during the publication of versions 0.17.0 and 0.17.1. The
 - Crash because of nunit result (#108)
 - Avoid crash on start of GUI (#112)
 
-## v0.16.0 - 2013-05-15
+## v0.16.0 - 2014-05-15
 
 ### New Feature(s)
 
@@ -46,13 +52,13 @@ Some things went wrong during the publication of versions 0.17.0 and 0.17.1. The
 
 - Features don't render correctly when there are less than 4 spaces ([#106](https://github.com/picklesdoc/pickles/pull/106))
 
-## v0.15.0 - 2013-04-11
+## v0.15.0 - 2014-04-11
 
 ### New Feature(s)
 
 - Allow multiple result files ([#83](https://github.com/picklesdoc/pickles/issues/83)): it is now possible to use multiple test result files. This will come in handy if you need to partition your test runs. Simple use a semicolon-separated list of file paths instead of the single file path as an argument
 
-## v0.14.0 - 2013-03-27
+## v0.14.0 - 2014-03-27
 
 ### New Feature(s)
 
