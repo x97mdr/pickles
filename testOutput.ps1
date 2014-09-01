@@ -1,5 +1,5 @@
 $version = $args[0]
-$formats = @("Html", "Dhtml", "Word", "Excel", "Dita")
+$formats = @("Html", "Dhtml", "Word", "Excel", "Dita", "JSON")
 $PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
 
 foreach ($format in $formats)

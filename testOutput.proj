@@ -19,6 +19,9 @@
 		<OutputFormat Include="Dita">
 			<Name>Dita</Name>
 		</OutputFormat>
+		<OutputFormat Include="JSON">
+			<Name>JSON</Name>
+		</OutputFormat>
 	</ItemGroup>
 	<UsingTask AssemblyFile=".\deploy\pickles-$(Version)\msbuild\PicklesDoc.Pickles.MSBuild.Tasks.dll" TaskName="Pickles" />
 	<Target Name="document">
