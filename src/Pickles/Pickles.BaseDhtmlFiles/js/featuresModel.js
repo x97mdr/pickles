@@ -26,6 +26,7 @@ function Step(data) {
     this.Name = data.Name || '';
     this.Keyword = data.Keyword || '';
     this.NativeKeyword = data.NativeKeyword || '';
+    this.DocStringArgument = data.DocStringArgument || '';
     this.TableArgument = data.TableArgument == null ? null : new TableArgument(data.TableArgument.HeaderRow, data.TableArgument.DataRows);
 }
 
@@ -52,8 +53,6 @@ function Result(data) {
     this.WasExecuted = data.WasExecuted || false;
     this.WasSuccessful = data.WasSuccessful || false;
 }
-// putting it here to define it so I can check if it exists - it is an optional value
-var DocStringArgument = '';
 
 /* JSON Sample
         {
