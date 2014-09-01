@@ -2,10 +2,9 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                      xmlns:mahapps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-                     xmlns:Mvvm="clr-namespace:PicklesDoc.Pickles.UserInterface.Mvvm"
-                     xmlns:local="clr-namespace:PicklesDoc.Pickles.UserInterface"
                      xmlns:nlogViewer="clr-namespace:NlogViewer;assembly=NlogViewer"
-                     Title="Pickles" Height="600" Width="800" Loaded="MetroWindow_Loaded" Closed="MetroWindow_Closed"  DataContextChanged="MainWindow_OnDataContextChanged">
+                     Title="Pickles" Height="600" Width="800" Loaded="MetroWindow_Loaded" Closed="MetroWindow_Closed"  DataContextChanged="MainWindow_OnDataContextChanged"
+                     DataContext="{Binding Main, Source={StaticResource Locator}}">
   <Window.TaskbarItemInfo>
     <TaskbarItemInfo x:Name="taskBarItemInfo" />
   </Window.TaskbarItemInfo>
@@ -17,10 +16,9 @@
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Green.xaml" />
         <ResourceDictionary>
-          <Color x:Key="AccentDarkColor">#CC2F8200</Color>
+          <Color x:Key="HighlightDarkColor">#CC2F8200</Color>
 
           <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
-          <Mvvm:BooleanToInvisibilityConverter x:Key="booleanToInvisibilityConverter" />
 
         </ResourceDictionary>
 
@@ -29,9 +27,6 @@
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </Window.Resources>
-  <Window.DataContext>
-    <local:MainWindowViewModel />
-  </Window.DataContext>
   <mahapps:MetroWindow.WindowCommands>
     <mahapps:WindowCommands>
       <Button Content="open output folder" Command="{Binding Path=OpenOutputDirectory}" />

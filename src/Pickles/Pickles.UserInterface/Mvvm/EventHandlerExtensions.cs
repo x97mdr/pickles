@@ -16,9 +16,6 @@
 // #endregion
 
 using System;
-using System.ComponentModel;
-using System.Linq.Expressions;
-using System.Reflection;
 
 namespace PicklesDoc.Pickles.UserInterface.Mvvm
 {
@@ -29,30 +26,6 @@ namespace PicklesDoc.Pickles.UserInterface.Mvvm
       if (handler != null)
       {
         handler(sender, e);
-      }
-    }
-
-    public static void Raise<TValue>(
-      this PropertyChangedEventHandler handler, object sender, Expression<Func<TValue>> selector)
-    {
-      if (handler != null)
-      {
-        handler(sender, new PropertyChangedEventArgs(GetProperty(selector).Name));
-      }
-    }
-
-    internal static PropertyInfo GetProperty(Expression expression)
-    {
-      if (expression is LambdaExpression)
-      {
-        expression = ((LambdaExpression)expression).Body;
-      }
-      switch (expression.NodeType)
-      {
-        case ExpressionType.MemberAccess:
-          return (PropertyInfo)((MemberExpression)expression).Member;
-        default:
-          throw new InvalidOperationException("Expression does not contain a property.");
       }
     }
   }
