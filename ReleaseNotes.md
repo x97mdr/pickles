@@ -1,5 +1,11 @@
 # Pickles Release Notes
 
+## v0.18.1 - 2014-09-01
+
+### Bug(s) Fixed
+
+- Fixed issue where multiline arguments of gherkin steps would not be rendered in the DHtml verion ([#134](https://github.com/picklesdoc/pickles/issues/134))
+
 ## v0.18.0 - 2014-07-07
 
 ### New Feature(s)
