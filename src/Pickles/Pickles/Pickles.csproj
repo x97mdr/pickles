@@ -329,10 +329,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Html\fonts\fontawesome-webfont.eot" />
-    <EmbeddedResource Include="Resources\Html\fonts\fontawesome-webfont.ttf" />
-    <EmbeddedResource Include="Resources\Html\fonts\fontawesome-webfont.woff" />
-    <EmbeddedResource Include="Resources\Html\fonts\FontAwesome.ttf" />
+    <EmbeddedResource Include="Resources\Html\css\fonts\fontawesome-webfont.eot" />
+    <EmbeddedResource Include="Resources\Html\css\fonts\fontawesome-webfont.ttf" />
+    <EmbeddedResource Include="Resources\Html\css\fonts\fontawesome-webfont.woff" />
+    <EmbeddedResource Include="Resources\Html\css\fonts\FontAwesome.ttf" />
     <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
@@ -361,7 +361,7 @@
     <EmbeddedResource Include="Resources\Html\css\font-awesome.css" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Html\fonts\fontawesome-webfont.svg" />
+    <EmbeddedResource Include="Resources\Html\css\fonts\fontawesome-webfont.svg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\css\bootstrap.min.css">

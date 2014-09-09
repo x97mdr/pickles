@@ -94,7 +94,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
     protected void WriteFont(string folder, string filename)
     {
-      using (var input = GetResourceStream(this.namespaceOfResources + "fonts." + filename))
+      using (var input = GetResourceStream(this.namespaceOfResources + "css.fonts." + filename))
       {
         using (var output = this.fileSystem.File.Create(this.fileSystem.Path.Combine(folder, filename)))
         {
