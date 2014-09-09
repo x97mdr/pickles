@@ -52,7 +52,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             this.WriteScript(scriptsFolder, "jquery.js");
             this.WriteScript(scriptsFolder, "scripts.js");
 
-            string fontsFolder = this.FileSystem.Path.Combine(folder, "fonts");
+            string fontsFolder = this.FileSystem.Path.Combine(cssFolder, "fonts");
             this.EnsureFolder(fontsFolder);
             this.WriteFont(fontsFolder, "FontAwesome.ttf");
             this.WriteFont(fontsFolder, "fontawesome-webfont.eot");
