@@ -39,6 +39,11 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
 
         public bool IsMarkdownFile(FileInfoBase file)
         {
+            if (file.Name.EndsWith("csproj.FileListAbsolute.txt"))
+            {
+              return false;
+            }
+
             switch (file.Extension.ToLowerInvariant())
             {
                 case ".markdown":
