@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Xml.Linq;
+using NFluent;
+using NUnit.Framework;
 using PicklesDoc.Pickles.Test.Extensions;
-using Should;
 
 namespace PicklesDoc.Pickles.Test
 {
@@ -11,29 +12,33 @@ namespace PicklesDoc.Pickles.Test
         public static void ShouldHaveAttribute(this XElement element, string name, string value)
         {
             XAttribute xAttribute = element.Attributes().FirstOrDefault(attribute => attribute.Name.LocalName == name);
-            xAttribute.ShouldNotBeNull();
-            xAttribute.Value.ShouldEqual(value);
+            Check.That(xAttribute).IsNotNull();
+            // ReSharper disable once PossibleNullReferenceException
+            Check.That(xAttribute.Value).IsEqualTo(value);
         }
 
         public static void ShouldHaveElement(this XElement element, string name)
         {
-            element.HasElement(name).ShouldBeTrue();
+            Check.That(element.HasElement(name)).IsTrue();
         }
 
         public static void ShouldBeInInNamespace(this XElement element, string _namespace)
         {
-            element.Name.NamespaceName.ShouldEqual(_namespace);
+            Check.That(element.Name.NamespaceName).IsEqualTo(_namespace);
         }
 
         public static void ShouldBeNamed(this XElement element, string name)
         {
-            element.Name.LocalName.ShouldEqual(name);
+            Check.That(element.Name.LocalName).IsEqualTo(name);
         }
 
         public static void ShouldDeepEquals(this XElement element, XElement other)
         {
-            const string format = "Expected:\r\n{0}\r\nActual:\r\n{1}\r\n";
-            XNode.DeepEquals(element, other).ShouldBeTrue(string.Format(format, element, other));
+          Assert.IsTrue(
+              XNode.DeepEquals(element, other),
+              "Expected:\r\n{0}\r\nActual:\r\n{1}\r\n",
+              element,
+              other);
         }
     }
 }
