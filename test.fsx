@@ -1,9 +1,7 @@
 // include Fake lib
 #r @"packages\FAKE\tools\FakeLib.dll"
 open Fake
-open Fake.AssemblyInfoFile
 
-//RestorePackages()
 
 // Properties
 let testDir  = "./test/"

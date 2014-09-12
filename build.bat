@@ -8,3 +8,4 @@ cd ".\src\Pickles\packages\NuGet.CommandLine.2.8.2\tools\"
 cd ..\..\..\..\..
 
 "packages\FAKE\tools\Fake.exe" build.fsx
+"packages\FAKE\tools\Fake.exe" nuget.fsx

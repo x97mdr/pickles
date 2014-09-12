@@ -3,8 +3,6 @@
 open Fake
 open Fake.AssemblyInfoFile
 
-//RestorePackages()
-
 // Properties
 let buildDir = "./build/"
 let cmdDir = "./build/exe/"
