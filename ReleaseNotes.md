@@ -1,5 +1,14 @@
 # Pickles Release Notes
 
+## v0.18.2 - 2014-09-12
+
+### Bug(s) Fixed
+
+- Fixed issue where the Html version didn't render the pass/fail icons ([#139](https://github.com/picklesdoc/pickles/issues/139))
+- Fixed issue where the Html version generated an unexpected entry for a file in obj/Debug ([#140](https://github.com/picklesdoc/pickles/issues/140))
+- Removed dependencies from the Nuget packages ([#142](https://github.com/picklesdoc/pickles/issues/142))
+- The nuget packages Pickles.CommandLine and Pickles.MSBuild contain the files twice ([#144](https://github.com/picklesdoc/pickles/issues/144))
+
 ## v0.18.1 - 2014-09-01
 
 ### Bug(s) Fixed
