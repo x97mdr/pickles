@@ -1,15 +1,10 @@
 // include Fake lib
 #r @"packages\FAKE\tools\FakeLib.dll"
 open Fake
-open Fake.AssemblyInfoFile
 
-//RestorePackages()
 
 // Properties
 let testDir  = "./test/"
-
-// version info
-let version = "0.18.0"  // or retrieve from CI server
 
 Target "Test" (fun _ ->
     !! (testDir + "PicklesDoc.Pickles.Test.dll")

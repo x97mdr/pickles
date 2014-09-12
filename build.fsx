@@ -3,8 +3,6 @@
 open Fake
 open Fake.AssemblyInfoFile
 
-//RestorePackages()
-
 // Properties
 let buildDir = "./build/"
 let cmdDir = "./build/exe/"
@@ -16,7 +14,7 @@ let testDir  = "./test/"
 let deployDir = "./deploy/"
 
 // version info
-let version = "0.18.1"  // or retrieve from CI server
+let version = environVar "version" // or retrieve from CI server
  
 
 // Targets
