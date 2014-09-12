@@ -1,11 +1,10 @@
 ﻿using System;
 using ClosedXML.Excel;
+using NFluent;
 using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.Excel;
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
-using Should;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
 {
@@ -24,7 +23,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
                 name = excelSheetNameGenerator.GenerateSheetName(wb, feature);
             }
 
-            name.ShouldEqual("ASHORTFEATURENAME");
+            Check.That(name).IsEqualTo("ASHORTFEATURENAME");
         }
 
         [Test]
@@ -43,7 +42,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
                 name2 = excelSheetNameGenerator.GenerateSheetName(wb, feature2);
             }
 
-            name2.ShouldEqual("THISISAREALLYREALLYLONGFEATU(1)");
+            Check.That(name2).IsEqualTo("THISISAREALLYREALLYLONGFEATU(1)");
         }
 
         [Test]
@@ -66,7 +65,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
                 name3 = excelSheetNameGenerator.GenerateSheetName(wb, feature3);
             }
 
-            name3.ShouldEqual("THISISAREALLYREALLYLONGFEATU(2)");
+            Check.That(name3).IsEqualTo("THISISAREALLYREALLYLONGFEATU(2)");
         }
 
         [Test]
@@ -81,7 +80,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
                 name = excelSheetNameGenerator.GenerateSheetName(wb, feature);
             }
 
-            name.ShouldEqual("THISISAREALLYREALLYLONGFEATUREN");
+            Check.That(name).IsEqualTo("THISISAREALLYREALLYLONGFEATUREN");
         }
 
         [Test]
@@ -96,7 +95,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
                 name = excelSheetNameGenerator.GenerateSheetName(wb, feature);
             }
 
-            name.ShouldEqual("THISHADINVALIDCHARACTERS");
+            Check.That(name).IsEqualTo("THISHADINVALIDCHARACTERS");
         }
     }
 }
