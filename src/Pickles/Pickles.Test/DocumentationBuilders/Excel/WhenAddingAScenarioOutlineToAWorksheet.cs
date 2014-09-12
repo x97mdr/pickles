@@ -22,8 +22,8 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
             exampleTable.DataRows =
                 new List<TableRow>(new[] {new TableRow("1", "2", "3", "4"), new TableRow("5", "6", "7", "8")});
             var example = new Example {Name = "Examples", Description = string.Empty, TableArgument = exampleTable};
-			var examples = new List<Example>();
-			examples.Add(example);
+      var examples = new List<Example>();
+      examples.Add(example);
             var scenarioOutline = new ScenarioOutline
                                       {
                                           Name = "Test Feature",
@@ -66,8 +66,8 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
             exampleTable.DataRows =
                 new List<TableRow>(new[] {new TableRow("1", "2", "3", "4"), new TableRow("5", "6", "7", "8")});
             var example = new Example {Name = "Examples", Description = string.Empty, TableArgument = exampleTable};
-			var examples = new List<Example>();
-			examples.Add(example);
+      var examples = new List<Example>();
+      examples.Add(example);
             var scenarioOutline = new ScenarioOutline
                                       {
                                           Name = "Test Feature",
