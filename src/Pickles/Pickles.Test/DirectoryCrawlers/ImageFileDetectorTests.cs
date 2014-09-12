@@ -20,12 +20,10 @@
 
 using System;
 using System.IO.Abstractions.TestingHelpers;
-
+using NFluent;
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.DirectoryCrawler;
-
-using Should;
 
 namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
 {
@@ -39,7 +37,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
 
             bool isRelevant = fileDetector.IsRelevant(null);
 
-            isRelevant.ShouldBeFalse();
+            Check.That(isRelevant).IsFalse();
         }
 
         private static ImageFileDetector CreateImageFileDetector()
@@ -60,7 +58,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
 
             bool isRelevant = fileDetector.IsRelevant(file);
 
-            isRelevant.ShouldBeTrue();
+            Check.That(isRelevant).IsTrue();
         }
 
         [Test]
@@ -73,7 +71,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
 
             bool isRelevant = fileDetector.IsRelevant(file);
 
-            isRelevant.ShouldBeFalse();
+            Check.That(isRelevant).IsFalse();
         }
 
         [Test]
@@ -86,8 +84,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
 
             bool isRelevant = fileDetector.IsRelevant(file);
 
-            isRelevant.ShouldBeTrue();
-
+            Check.That(isRelevant).IsTrue();
         }
     }
 }
