@@ -26,6 +26,8 @@ namespace PicklesDoc.Pickles.Test
             relevantFileDetector.IsRelevant(FileSystem.FileInfo.FromFileName("test.pdf")).ShouldBeFalse();
             relevantFileDetector.IsRelevant(FileSystem.FileInfo.FromFileName("test.doc")).ShouldBeFalse();
             relevantFileDetector.IsRelevant(FileSystem.FileInfo.FromFileName("test.docx")).ShouldBeFalse();
+            relevantFileDetector.IsRelevant(FileSystem.FileInfo.FromFileName("test.docx")).ShouldBeFalse();
+            relevantFileDetector.IsRelevant(FileSystem.FileInfo.FromFileName("myproject.csproj.FileListAbsolute.txt")).ShouldBeFalse();
         }
     }
 }

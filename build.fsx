@@ -3,8 +3,6 @@
 open Fake
 open Fake.AssemblyInfoFile
 
-//RestorePackages()
-
 // Properties
 let buildDir = "./build/"
 let cmdDir = "./build/exe/"
@@ -16,7 +14,7 @@ let testDir  = "./test/"
 let deployDir = "./deploy/"
 
 // version info
-let version = "0.18.1"  // or retrieve from CI server
+let version = environVar "version" // or retrieve from CI server
  
 
 // Targets
@@ -72,15 +70,6 @@ Target "BuildTest" (fun _ ->
       |> Log "AppBuild-Output: "
 )
 
-Target "Test" (fun _ ->
-    !! (testDir + "PicklesDoc.Pickles.Test.dll")
-      |> NUnit (fun p ->
-          {p with
-             DisableShadowCopy = true;
-             OutputFile = testDir + "TestResults.xml" })
-)
-
-
 Target "Zip" (fun _ ->
     !! (buildDir + "/**/*.*")
         -- "*.zip"
@@ -88,7 +77,7 @@ Target "Zip" (fun _ ->
 )
 
 Target "Default" (fun _ ->
-    trace "Hello World from FAKE"
+    trace ("Starting build of Pickles version " + version)
 )
 
 // Dependencies
@@ -100,7 +89,6 @@ Target "Default" (fun _ ->
   ==> "BuildPowerShell"
   ==> "BuildGui"
   ==> "BuildTest"
-  ==> "Test"
   ==> "Zip"
   ==> "Default"
 
