@@ -10,7 +10,7 @@ let powerShellDir = "./build/powershell/"
 let packagingDir = "./packaging/"
 
 // version info
-let version = "0.18.1"  // or retrieve from CI server
+let version = environVar "version" // or retrieve from CI server
 
 // Targets
 Target "Clean" (fun _ ->

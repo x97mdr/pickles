@@ -6,9 +6,6 @@ open Fake
 // Properties
 let testDir  = "./test/"
 
-// version info
-let version = "0.18.1"  // or retrieve from CI server
-
 Target "Test" (fun _ ->
     !! (testDir + "PicklesDoc.Pickles.Test.dll")
       |> NUnit (fun p ->
