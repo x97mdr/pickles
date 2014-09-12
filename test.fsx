@@ -9,7 +9,7 @@ open Fake.AssemblyInfoFile
 let testDir  = "./test/"
 
 // version info
-let version = "0.18.0"  // or retrieve from CI server
+let version = "0.18.1"  // or retrieve from CI server
 
 Target "Test" (fun _ ->
     !! (testDir + "PicklesDoc.Pickles.Test.dll")
