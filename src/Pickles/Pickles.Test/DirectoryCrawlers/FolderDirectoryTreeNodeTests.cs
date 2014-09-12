@@ -1,4 +1,5 @@
 ﻿using System;
+using NFluent;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DirectoryCrawler;
 
@@ -14,7 +15,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
 
             var node = new FolderNode(directoryInfo, "");
 
-            Assert.AreEqual(@"c:\temp", node.OriginalLocation.FullName);
+            Check.That(node.OriginalLocation.FullName).IsEqualTo(@"c:\temp");
         }
 
         [Test]
@@ -24,7 +25,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
 
             var node = new FolderNode(directoryInfo, "");
 
-            Assert.AreEqual(@"file:///c:/temp/", node.OriginalLocationUrl.ToString());
+            Check.That(node.OriginalLocationUrl.ToString()).IsEqualTo(@"file:///c:/temp/");
         }
 
         [Test]
@@ -34,7 +35,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
 
             var node = new FolderNode(directoryInfo, "../");
 
-            Assert.AreEqual(@"../", node.RelativePathFromRoot);
+            Check.That(node.RelativePathFromRoot).IsEqualTo(@"../");
         }
 
         [Test]
@@ -46,7 +47,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
 
             string relative = node.GetRelativeUriTo(new Uri(@"file:///c:/temp/child/"));
 
-            Assert.AreEqual("../", relative);
+            Check.That(relative).IsEqualTo("../");
         }
 
         [Test]
@@ -58,7 +59,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
 
             string relative = node.GetRelativeUriTo(new Uri(@"file:///c:/temp/test2.html"));
 
-            Assert.AreEqual("", relative);
+            Check.That(relative).IsEqualTo("");
         }
 
         [Test]
@@ -70,7 +71,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
 
             string relative = node.GetRelativeUriTo(new Uri(@"file:///c:/temp2/test2.html"));
 
-            Assert.AreEqual("../temp/", relative);
+            Check.That(relative).IsEqualTo("../temp/");
         }
 
         [Test]
@@ -82,7 +83,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
 
             string relative = node.GetRelativeUriTo(new Uri(@"file:///c:/temp/"));
 
-            Assert.AreEqual("child/", relative);
+            Check.That(relative).IsEqualTo("child/");
         }
 
         [Test]
@@ -94,7 +95,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
 
             string relative = node.GetRelativeUriTo(new Uri(@"file:///c:/temp/"));
 
-            Assert.AreEqual("test1.html", relative);
+            Check.That(relative).IsEqualTo("test1.html");
         }
 
         [Test]
@@ -106,7 +107,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
 
             string relative = node.GetRelativeUriTo(new Uri(@"file:///c:/temp/test2.html"));
 
-            Assert.AreEqual("test1.html", relative);
+            Check.That(relative).IsEqualTo("test1.html");
         }
 
         [Test]
@@ -124,7 +125,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
 
             string relative = node.GetRelativeUriTo(other);
 
-            Assert.AreEqual("DistributionOfRights/", relative);
+            Check.That(relative).IsEqualTo("DistributionOfRights/");
         }
     }
 }
