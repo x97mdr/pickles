@@ -1,11 +1,10 @@
 ﻿using System;
 using ClosedXML.Excel;
+using NFluent;
 using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.Excel;
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
-using Should;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
 {
@@ -28,8 +27,8 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
                 IXLWorksheet worksheet = workbook.AddWorksheet("SHEET1");
                 excelFeatureFormatter.Format(worksheet, feature);
 
-                worksheet.Cell("A1").Value.ShouldEqual(feature.Name);
-                worksheet.Cell("B2").Value.ShouldEqual(feature.Description);
+                Check.That(worksheet.Cell("A1").Value).IsEqualTo(feature.Name);
+                Check.That(worksheet.Cell("B2").Value).IsEqualTo(feature.Description);
             }
         }
     }
