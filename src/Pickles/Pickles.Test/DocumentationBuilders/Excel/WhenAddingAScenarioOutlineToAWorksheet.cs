@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using ClosedXML.Excel;
+using NFluent;
 using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.Excel;
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
-using Should;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
 {
@@ -38,22 +37,22 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
                 int row = 3;
                 excelScenarioFormatter.Format(worksheet, scenarioOutline, ref row);
 
-                worksheet.Cell("B3").Value.ShouldEqual(scenarioOutline.Name);
-                worksheet.Cell("C4").Value.ShouldEqual(scenarioOutline.Description);
-                worksheet.Cell("B6").Value.ShouldEqual("Examples");
-                worksheet.Cell("D7").Value.ShouldEqual("Var1");
-                worksheet.Cell("E7").Value.ShouldEqual("Var2");
-                worksheet.Cell("F7").Value.ShouldEqual("Var3");
-                worksheet.Cell("G7").Value.ShouldEqual("Var4");
-                worksheet.Cell("D8").Value.ShouldEqual(1.0);
-                worksheet.Cell("E8").Value.ShouldEqual(2.0);
-                worksheet.Cell("F8").Value.ShouldEqual(3.0);
-                worksheet.Cell("G8").Value.ShouldEqual(4.0);
-                worksheet.Cell("D9").Value.ShouldEqual(5.0);
-                worksheet.Cell("E9").Value.ShouldEqual(6.0);
-                worksheet.Cell("F9").Value.ShouldEqual(7.0);
-                worksheet.Cell("G9").Value.ShouldEqual(8.0);
-                row.ShouldEqual(10);
+                Check.That(worksheet.Cell("B3").Value).IsEqualTo(scenarioOutline.Name);
+                Check.That(worksheet.Cell("C4").Value).IsEqualTo(scenarioOutline.Description);
+                Check.That(worksheet.Cell("B6").Value).IsEqualTo("Examples");
+                Check.That(worksheet.Cell("D7").Value).IsEqualTo("Var1");
+                Check.That(worksheet.Cell("E7").Value).IsEqualTo("Var2");
+                Check.That(worksheet.Cell("F7").Value).IsEqualTo("Var3");
+                Check.That(worksheet.Cell("G7").Value).IsEqualTo("Var4");
+                Check.That(worksheet.Cell("D8").Value).IsEqualTo(1.0);
+                Check.That(worksheet.Cell("E8").Value).IsEqualTo(2.0);
+                Check.That(worksheet.Cell("F8").Value).IsEqualTo(3.0);
+                Check.That(worksheet.Cell("G8").Value).IsEqualTo(4.0);
+                Check.That(worksheet.Cell("D9").Value).IsEqualTo(5.0);
+                Check.That(worksheet.Cell("E9").Value).IsEqualTo(6.0);
+                Check.That(worksheet.Cell("F9").Value).IsEqualTo(7.0);
+                Check.That(worksheet.Cell("G9").Value).IsEqualTo(8.0);
+                Check.That(row).IsEqualTo(10);
             }
         }
 
@@ -86,22 +85,22 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
                 int row = 3;
                 excelScenarioFormatter.Format(worksheet, scenarioOutline, ref row);
 
-                worksheet.Cell("B3").Value.ShouldEqual(scenarioOutline.Name);
-                worksheet.Cell("C4").Value.ShouldEqual(scenarioOutline.Description);
-                worksheet.Cell("B9").Value.ShouldEqual("Examples");
-                worksheet.Cell("D10").Value.ShouldEqual("Var1");
-                worksheet.Cell("E10").Value.ShouldEqual("Var2");
-                worksheet.Cell("F10").Value.ShouldEqual("Var3");
-                worksheet.Cell("G10").Value.ShouldEqual("Var4");
-                worksheet.Cell("D11").Value.ShouldEqual(1.0);
-                worksheet.Cell("E11").Value.ShouldEqual(2.0);
-                worksheet.Cell("F11").Value.ShouldEqual(3.0);
-                worksheet.Cell("G11").Value.ShouldEqual(4.0);
-                worksheet.Cell("D12").Value.ShouldEqual(5.0);
-                worksheet.Cell("E12").Value.ShouldEqual(6.0);
-                worksheet.Cell("F12").Value.ShouldEqual(7.0);
-                worksheet.Cell("G12").Value.ShouldEqual(8.0);
-                row.ShouldEqual(13);
+                Check.That(worksheet.Cell("B3").Value).IsEqualTo(scenarioOutline.Name);
+                Check.That(worksheet.Cell("C4").Value).IsEqualTo(scenarioOutline.Description);
+                Check.That(worksheet.Cell("B9").Value).IsEqualTo("Examples");
+                Check.That(worksheet.Cell("D10").Value).IsEqualTo("Var1");
+                Check.That(worksheet.Cell("E10").Value).IsEqualTo("Var2");
+                Check.That(worksheet.Cell("F10").Value).IsEqualTo("Var3");
+                Check.That(worksheet.Cell("G10").Value).IsEqualTo("Var4");
+                Check.That(worksheet.Cell("D11").Value).IsEqualTo(1.0);
+                Check.That(worksheet.Cell("E11").Value).IsEqualTo(2.0);
+                Check.That(worksheet.Cell("F11").Value).IsEqualTo(3.0);
+                Check.That(worksheet.Cell("G11").Value).IsEqualTo(4.0);
+                Check.That(worksheet.Cell("D12").Value).IsEqualTo(5.0);
+                Check.That(worksheet.Cell("E12").Value).IsEqualTo(6.0);
+                Check.That(worksheet.Cell("F12").Value).IsEqualTo(7.0);
+                Check.That(worksheet.Cell("G12").Value).IsEqualTo(8.0);
+                Check.That(row).IsEqualTo(13);
             }
         }
     }
