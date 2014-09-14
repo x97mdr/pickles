@@ -28,7 +28,7 @@
                 <span class="icon-chevron-right"></span>
                 <span data-bind="text: Name" style="padding: 5px"></span>
             </div>
-            <div style="margin-left: 15px">
+            <div class="feature-folder-contents" style="margin-left: 15px">
                 <div data-bind="template: { name: 'features-template', foreach: features }"></div>
                 <div data-bind="template: { name: 'featuresByFolder-template', foreach: SubDirectories }"></div>
             </div>
@@ -333,13 +333,16 @@
         });
         
         function toggleShowingFolderFeatures(element, event) {
-            var icon = $(event.target).prev('span');
+            var icon = $($(event.target).parent().children('span')[0]);
+            var folderContents = $($(event.target).parent().next('div'));
             if (icon.hasClass("icon-chevron-right")) {
                 icon.removeClass("icon-chevron-right");
                 icon.addClass("icon-chevron-down");
+                folderContents.hide();
             } else {
                 icon.addClass("icon-chevron-right");
                 icon.removeClass("icon-chevron-down");
+                folderContents.show();
             }
         };
     </script>
