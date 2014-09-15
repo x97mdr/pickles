@@ -3,7 +3,7 @@ using NGenerics.DataStructures.Trees;
 using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.DirectoryCrawler;
-using Should;
+using NFluent;
 
 namespace PicklesDoc.Pickles.Test
 {
@@ -18,61 +18,61 @@ namespace PicklesDoc.Pickles.Test
             string rootPath = FileSystemPrefix + @"FeatureCrawlerTests";
             GeneralTree<INode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(rootPath);
 
-            Assert.NotNull(features);
+            Check.That(features).IsNotNull();
 
             INode indexMd = features.ChildNodes[0].Data;
-            indexMd.ShouldNotBeNull();
-            indexMd.Name.ShouldEqual("This is an index written in Markdown");
-            indexMd.RelativePathFromRoot.ShouldEqual("index.md");
-            indexMd.ShouldBeType<MarkdownNode>();
+            Check.That(indexMd).IsNotNull();
+            Check.That(indexMd.Name).IsEqualTo("This is an index written in Markdown");
+            Check.That(indexMd.RelativePathFromRoot).IsEqualTo("index.md");
+            Check.That(indexMd.GetType()).IsEqualTo(typeof(MarkdownNode));
 
             INode levelOneFeature = features.ChildNodes[1].Data;
-            levelOneFeature.ShouldNotBeNull();
-            levelOneFeature.Name.ShouldEqual("Addition");
-            levelOneFeature.RelativePathFromRoot.ShouldEqual("LevelOne.feature");
-            levelOneFeature.ShouldBeType<FeatureNode>();
+            Check.That(levelOneFeature).IsNotNull();
+            Check.That(levelOneFeature.Name).IsEqualTo("Addition");
+            Check.That(levelOneFeature.RelativePathFromRoot).IsEqualTo("LevelOne.feature");
+            Check.That(levelOneFeature.GetType()).IsEqualTo(typeof(FeatureNode));
 
             INode image = features.ChildNodes[2].Data;
-            image.ShouldNotBeNull();
-            image.Name.ShouldEqual("image.png");
-            image.RelativePathFromRoot.ShouldEqual("image.png");
-            image.ShouldBeType<ImageNode>();
+            Check.That(image).IsNotNull();
+            Check.That(image.Name).IsEqualTo("image.png");
+            Check.That(image.RelativePathFromRoot).IsEqualTo("image.png");
+            Check.That(image.GetType()).IsEqualTo(typeof(ImageNode));
 
             INode subLevelOneDirectory = features.ChildNodes[3].Data;
-            subLevelOneDirectory.ShouldNotBeNull();
-            subLevelOneDirectory.Name.ShouldEqual("Sub Level One");
-            subLevelOneDirectory.RelativePathFromRoot.ShouldEqual(@"SubLevelOne\");
-            subLevelOneDirectory.ShouldBeType<FolderNode>();
+            Check.That(subLevelOneDirectory).IsNotNull();
+            Check.That(subLevelOneDirectory.Name).IsEqualTo("Sub Level One");
+            Check.That(subLevelOneDirectory.RelativePathFromRoot).IsEqualTo(@"SubLevelOne\");
+            Check.That(subLevelOneDirectory.GetType()).IsEqualTo(typeof(FolderNode));
 
             GeneralTree<INode> subLevelOneNode = features.ChildNodes[3];
-            subLevelOneNode.ChildNodes.Count.ShouldEqual(3);
+            Check.That(subLevelOneNode.ChildNodes.Count).IsEqualTo(3);
 
             INode levelOneSublevelOneFeature = subLevelOneNode.ChildNodes[0].Data;
-            levelOneSublevelOneFeature.ShouldNotBeNull();
-            levelOneSublevelOneFeature.Name.ShouldEqual("Addition");
-            levelOneSublevelOneFeature.RelativePathFromRoot.ShouldEqual(@"SubLevelOne\LevelOneSublevelOne.feature");
-            levelOneSublevelOneFeature.ShouldBeType<FeatureNode>();
+            Check.That(levelOneSublevelOneFeature).IsNotNull();
+            Check.That(levelOneSublevelOneFeature.Name).IsEqualTo("Addition");
+            Check.That(levelOneSublevelOneFeature.RelativePathFromRoot).IsEqualTo(@"SubLevelOne\LevelOneSublevelOne.feature");
+            Check.That(levelOneSublevelOneFeature.GetType()).IsEqualTo(typeof(FeatureNode));
 
             INode levelOneSublevelTwoFeature = subLevelOneNode.ChildNodes[1].Data;
-            levelOneSublevelTwoFeature.ShouldNotBeNull();
-            levelOneSublevelTwoFeature.Name.ShouldEqual("Addition");
-            levelOneSublevelTwoFeature.RelativePathFromRoot.ShouldEqual(@"SubLevelOne\LevelOneSublevelTwo.feature");
-            levelOneSublevelTwoFeature.ShouldBeType<FeatureNode>();
+            Check.That(levelOneSublevelTwoFeature).IsNotNull();
+            Check.That(levelOneSublevelTwoFeature.Name).IsEqualTo("Addition");
+            Check.That(levelOneSublevelTwoFeature.RelativePathFromRoot).IsEqualTo(@"SubLevelOne\LevelOneSublevelTwo.feature");
+            Check.That(levelOneSublevelTwoFeature.GetType()).IsEqualTo(typeof(FeatureNode));
 
             GeneralTree<INode> subLevelTwoNode = subLevelOneNode.ChildNodes[2];
-            subLevelTwoNode.ChildNodes.Count.ShouldEqual(1);
+            Check.That(subLevelTwoNode.ChildNodes.Count).IsEqualTo(1);
 
             INode subLevelTwoDirectory = subLevelOneNode.ChildNodes[2].Data;
-            subLevelTwoDirectory.ShouldNotBeNull();
-            subLevelTwoDirectory.Name.ShouldEqual("Sub Level Two");
-            subLevelTwoDirectory.RelativePathFromRoot.ShouldEqual(@"SubLevelOne\SubLevelTwo\");
-            subLevelTwoDirectory.ShouldBeType<FolderNode>();
+            Check.That(subLevelTwoDirectory).IsNotNull();
+            Check.That(subLevelTwoDirectory.Name).IsEqualTo("Sub Level Two");
+            Check.That(subLevelTwoDirectory.RelativePathFromRoot).IsEqualTo(@"SubLevelOne\SubLevelTwo\");
+            Check.That(subLevelTwoDirectory.GetType()).IsEqualTo(typeof(FolderNode));
 
             INode levelOneSublevelOneSubLevelTwoDirectory = subLevelOneNode.ChildNodes[2].ChildNodes[0].Data;
-            levelOneSublevelOneSubLevelTwoDirectory.ShouldNotBeNull();
-            levelOneSublevelOneSubLevelTwoDirectory.Name.ShouldEqual("Addition");
-            levelOneSublevelOneSubLevelTwoDirectory.RelativePathFromRoot.ShouldEqual(@"SubLevelOne\SubLevelTwo\LevelOneSublevelOneSubLevelTwo.feature");
-            levelOneSublevelOneSubLevelTwoDirectory.ShouldBeType<FeatureNode>();
+            Check.That(levelOneSublevelOneSubLevelTwoDirectory).IsNotNull();
+            Check.That(levelOneSublevelOneSubLevelTwoDirectory.Name).IsEqualTo("Addition");
+            Check.That(levelOneSublevelOneSubLevelTwoDirectory.RelativePathFromRoot).IsEqualTo(@"SubLevelOne\SubLevelTwo\LevelOneSublevelOneSubLevelTwo.feature");
+            Check.That(levelOneSublevelOneSubLevelTwoDirectory.GetType()).IsEqualTo(typeof(FeatureNode));
         }
     }
 }
