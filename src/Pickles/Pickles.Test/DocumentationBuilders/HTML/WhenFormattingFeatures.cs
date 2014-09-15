@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Xml.Linq;
+using NFluent;
 using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 {
@@ -52,7 +52,7 @@ I also enjoy ordering things
       Assert.NotNull(description);
       description.ShouldBeNamed("div");
       description.ShouldBeInInNamespace("http://www.w3.org/1999/xhtml");
-      description.ShouldHaveAttribute("class", "description");
+      Check.That(description).HasAttribute("class", "description");
       Assert.AreEqual(9, description.Elements().Count());
 
       description.Elements().ElementAt(0).ShouldBeNamed("p");
@@ -92,7 +92,7 @@ I want to see the descriptions written in markdown rendered with tables
       Assert.NotNull(description);
       description.ShouldBeNamed("div");
       description.ShouldBeInInNamespace("http://www.w3.org/1999/xhtml");
-      description.ShouldHaveAttribute("class", "description");
+      Check.That(description).HasAttribute("class", "description");
 
       XElement table = description.Descendants().FirstOrDefault(el => el.Name.LocalName == "table");
 
@@ -126,7 +126,7 @@ I want to see the descriptions written in markdown rendered with tables
       Assert.NotNull(description);
       description.ShouldBeNamed("div");
       description.ShouldBeInInNamespace("http://www.w3.org/1999/xhtml");
-      description.ShouldHaveAttribute("class", "description");
+      Check.That(description).HasAttribute("class", "description");
 
       XElement table = description.Descendants().FirstOrDefault(el => el.Name.LocalName == "table");
 
