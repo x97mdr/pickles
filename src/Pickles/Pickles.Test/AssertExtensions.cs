@@ -61,13 +61,16 @@ namespace PicklesDoc.Pickles.Test
           Check.That(element.Name.LocalName).IsEqualTo(name);
         }
 
-        public static void ShouldDeepEquals(this XElement element, XElement other)
+        public static void IsDeeplyEqualTo(this ICheck<XElement> check, XElement actual)
         {
-          Assert.IsTrue(
-              XNode.DeepEquals(element, other),
-              "Expected:\r\n{0}\r\nActual:\r\n{1}\r\n",
-              element,
-              other);
+          var element = ExtensibilityHelper.ExtractChecker(check).Value;
+
+          if (!XNode.DeepEquals(element, actual))
+          {
+            var fluentMessage = FluentMessage.BuildMessage("The {0} is not equal to the given one (using deep comparison)").For("XML element").On(element.ToString()).And.WithGivenValue(actual.ToString());
+
+            throw new FluentCheckException(fluentMessage.ToString());
+          }
         }
     }
 }

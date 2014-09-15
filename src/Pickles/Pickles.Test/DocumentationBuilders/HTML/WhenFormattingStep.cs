@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
+using NFluent;
 using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 {
@@ -13,12 +13,6 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
     public class WhenFormattingStep : BaseFixture
     {
         private const string EXPECTED_GIVEN_HTML = "Given ";
-
-        private static void AssertDeepEqualNodes(XElement expected, XElement actual)
-        {
-            const string format = "Expected:\r\n{0}\r\nActual:\r\n{1}\r\n";
-            Assert.IsTrue(XNode.DeepEquals(expected, actual), string.Format(format, expected, actual));
-        }
 
         [Test]
         public void Multiline_strings_are_formatted_as_list_items_with_pre_elements_formatted_as_code_internal()
@@ -53,7 +47,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
                                             )
                 );
 
-            expected.ShouldDeepEquals(actual);
+            Check.That(expected).IsDeeplyEqualTo(actual);
         }
 
 
@@ -80,7 +74,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
                                         "a simple step"
                 );
 
-            expected.ShouldDeepEquals(actual);
+            Check.That(expected).IsDeeplyEqualTo(actual);
         }
 
         [Test]
@@ -108,7 +102,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
                 new XElement(xmlns + "span", new XAttribute("class", "keyword"), "Givet "),
                 "ett enkelt steg");
 
-            expected.ShouldDeepEquals(actual);
+            Check.That(expected).IsDeeplyEqualTo(actual);
         }
 
         [Test]
@@ -162,7 +156,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
                                             )
                 );
 
-            expected.ShouldDeepEquals(actual);
+            Check.That(expected).IsDeeplyEqualTo(actual);
         }
     }
 }
