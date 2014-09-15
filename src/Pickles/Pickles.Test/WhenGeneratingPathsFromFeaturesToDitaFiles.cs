@@ -4,8 +4,7 @@ using NUnit.Framework;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.DITA;
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
-using Should;
+using NFluent;
 
 namespace PicklesDoc.Pickles.Test
 {
@@ -24,7 +23,7 @@ namespace PicklesDoc.Pickles.Test
             var ditaMapPathGenerator = Container.Resolve<DitaMapPathGenerator>();
 
             Uri existingUri = ditaMapPathGenerator.GeneratePathToFeature(featureNode);
-            existingUri.OriginalString.ShouldEqual(@"path/to/the_feature.dita");
+            Check.That(existingUri.OriginalString).IsEqualTo(@"path/to/the_feature.dita");
         }
 
         [Test]
@@ -39,7 +38,7 @@ namespace PicklesDoc.Pickles.Test
             var ditaMapPathGenerator = Container.Resolve<DitaMapPathGenerator>();
 
             Uri existingUri = ditaMapPathGenerator.GeneratePathToFeature(featureNode);
-            existingUri.OriginalString.ShouldEqual(@"the_feature.dita");
+            Check.That(existingUri.OriginalString).IsEqualTo(@"the_feature.dita");
         }
     }
 }
