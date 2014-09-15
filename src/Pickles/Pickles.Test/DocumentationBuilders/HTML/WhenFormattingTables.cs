@@ -31,12 +31,12 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
             var output = htmlTableFormatter.Format(table);
 
             Check.That(output).IsNotNull();
-            output.ShouldHaveAttribute("class", "table_container");
-            output.ShouldHaveElement("table");
+            Check.That(output).HasAttribute("class", "table_container");
+            Check.That(output).HasElement("table");
 
             var tableElement = output.Element(XName.Get("table", HtmlNamespace.Xhtml.NamespaceName));
-            tableElement.ShouldHaveElement("thead");
-            tableElement.ShouldHaveElement("tbody");
+            Check.That(tableElement).HasElement("thead");
+            Check.That(tableElement).HasElement("tbody");
         }
 
         [Test]
