@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Xml.Linq;
+using NFluent;
 using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
@@ -31,7 +32,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
             Assert.NotNull(header);
             header.ShouldBeNamed("div");
             header.ShouldBeInInNamespace("http://www.w3.org/1999/xhtml");
-            header.ShouldHaveAttribute("class", "scenario-heading");
+            Check.That(header).HasAttribute("class", "scenario-heading");
             Assert.AreEqual(3, header.Elements().Count());
 
             header.Elements().ElementAt(0).ShouldBeNamed("h2");
@@ -64,7 +65,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
           Assert.NotNull(header);
           header.ShouldBeNamed("div");
           header.ShouldBeInInNamespace("http://www.w3.org/1999/xhtml");
-          header.ShouldHaveAttribute("class", "scenario-heading");
+          Check.That(header).HasAttribute("class", "scenario-heading");
           Assert.AreEqual(2, header.Elements().Count());
 
           header.Elements().ElementAt(0).ShouldBeNamed("h2");

@@ -17,7 +17,7 @@ namespace PicklesDoc.Pickles.Test
             ShouldHaveAttribute(actual, name, value);
         }
 
-        public static void ShouldHaveAttribute(this XElement element, string name, string value)
+        private static void ShouldHaveAttribute(this XElement element, string name, string value)
         {
             XAttribute xAttribute = element.Attributes().FirstOrDefault(attribute => attribute.Name.LocalName == name);
             Check.That(xAttribute).IsNotNull();
