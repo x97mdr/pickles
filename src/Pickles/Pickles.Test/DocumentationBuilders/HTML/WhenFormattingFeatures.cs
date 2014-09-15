@@ -50,20 +50,20 @@ I also enjoy ordering things
       XElement description = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
 
       Assert.NotNull(description);
-      description.ShouldBeNamed("div");
+      Check.That(description).IsNamed("div");
       Check.That(description).IsInNamespace("http://www.w3.org/1999/xhtml");
       Check.That(description).HasAttribute("class", "description");
       Assert.AreEqual(9, description.Elements().Count());
 
-      description.Elements().ElementAt(0).ShouldBeNamed("p");
-      description.Elements().ElementAt(1).ShouldBeNamed("h1");
-      description.Elements().ElementAt(2).ShouldBeNamed("p");
-      description.Elements().ElementAt(3).ShouldBeNamed("h2");
-      description.Elements().ElementAt(4).ShouldBeNamed("blockquote");
-      description.Elements().ElementAt(5).ShouldBeNamed("p");
-      description.Elements().ElementAt(6).ShouldBeNamed("ul");
-      description.Elements().ElementAt(7).ShouldBeNamed("p");
-      description.Elements().ElementAt(8).ShouldBeNamed("ol");
+      Check.That(description.Elements().ElementAt(0)).IsNamed("p");
+      Check.That(description.Elements().ElementAt(1)).IsNamed("h1");
+      Check.That(description.Elements().ElementAt(2)).IsNamed("p");
+      Check.That(description.Elements().ElementAt(3)).IsNamed("h2");
+      Check.That(description.Elements().ElementAt(4)).IsNamed("blockquote");
+      Check.That(description.Elements().ElementAt(5)).IsNamed("p");
+      Check.That(description.Elements().ElementAt(6)).IsNamed("ul");
+      Check.That(description.Elements().ElementAt(7)).IsNamed("p");
+      Check.That(description.Elements().ElementAt(8)).IsNamed("ol");
     }
 
     [Test]
@@ -90,7 +90,7 @@ I want to see the descriptions written in markdown rendered with tables
       XElement description = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
 
       Assert.NotNull(description);
-      description.ShouldBeNamed("div");
+      Check.That(description).IsNamed("div");
       Check.That(description).IsInNamespace("http://www.w3.org/1999/xhtml");
       Check.That(description).HasAttribute("class", "description");
 
@@ -124,7 +124,7 @@ I want to see the descriptions written in markdown rendered with tables
       XElement description = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
 
       Assert.NotNull(description);
-      description.ShouldBeNamed("div");
+      Check.That(description).IsNamed("div");
       Check.That(description).IsInNamespace("http://www.w3.org/1999/xhtml");
       Check.That(description).HasAttribute("class", "description");
 

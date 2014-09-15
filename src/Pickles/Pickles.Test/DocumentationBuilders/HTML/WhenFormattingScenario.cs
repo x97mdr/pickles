@@ -30,14 +30,14 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
             XElement header = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
 
             Assert.NotNull(header);
-            header.ShouldBeNamed("div");
+            Check.That(header).IsNamed("div");
             Check.That(header).IsInNamespace("http://www.w3.org/1999/xhtml");
             Check.That(header).HasAttribute("class", "scenario-heading");
             Assert.AreEqual(3, header.Elements().Count());
 
-            header.Elements().ElementAt(0).ShouldBeNamed("h2");
-            header.Elements().ElementAt(1).ShouldBeNamed("p");
-            header.Elements().ElementAt(2).ShouldBeNamed("div");
+            Check.That(header.Elements().ElementAt(0)).IsNamed("h2");
+            Check.That(header.Elements().ElementAt(1)).IsNamed("p");
+            Check.That(header.Elements().ElementAt(2)).IsNamed("div");
 
             var tagsParagraph = header.Elements().ElementAt(1);
 
@@ -63,13 +63,13 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
           XElement header = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
 
           Assert.NotNull(header);
-          header.ShouldBeNamed("div");
+          Check.That(header).IsNamed("div");
           Check.That(header).IsInNamespace("http://www.w3.org/1999/xhtml");
           Check.That(header).HasAttribute("class", "scenario-heading");
           Assert.AreEqual(2, header.Elements().Count());
 
-          header.Elements().ElementAt(0).ShouldBeNamed("h2");
-          header.Elements().ElementAt(1).ShouldBeNamed("div");
+          Check.That(header.Elements().ElementAt(0)).IsNamed("h2");
+          Check.That(header.Elements().ElementAt(1)).IsNamed("div");
         }
 
         [Test]
@@ -99,9 +99,9 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 
           Assert.AreEqual(3, header.Elements().Count());
 
-          header.Elements().ElementAt(0).ShouldBeNamed("h2");
-          header.Elements().ElementAt(1).ShouldBeNamed("p");
-          header.Elements().ElementAt(2).ShouldBeNamed("div");
+          Check.That(header.Elements().ElementAt(0)).IsNamed("h2");
+          Check.That(header.Elements().ElementAt(1)).IsNamed("p");
+          Check.That(header.Elements().ElementAt(2)).IsNamed("div");
 
           var tagsParagraph = header.Elements().ElementAt(1);
 
@@ -137,9 +137,9 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 
           Assert.AreEqual(3, header.Elements().Count());
 
-          header.Elements().ElementAt(0).ShouldBeNamed("h2");
-          header.Elements().ElementAt(1).ShouldBeNamed("p");
-          header.Elements().ElementAt(2).ShouldBeNamed("div");
+          Check.That(header.Elements().ElementAt(0)).IsNamed("h2");
+          Check.That(header.Elements().ElementAt(1)).IsNamed("p");
+          Check.That(header.Elements().ElementAt(2)).IsNamed("div");
 
           var tagsParagraph = header.Elements().ElementAt(1);
 
