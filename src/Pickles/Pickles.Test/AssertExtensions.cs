@@ -32,7 +32,7 @@ namespace PicklesDoc.Pickles.Test
           ShouldHaveElement(actual, name);
         }
 
-        public static void ShouldHaveElement(this XElement element, string name)
+        private static void ShouldHaveElement(this XElement element, string name)
         {
             Check.That(element.HasElement(name)).IsTrue();
         }
