@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Xml.Linq;
-using Should;
+using NFluent;
 
 namespace PicklesDoc.Pickles.Test.Extensions
 {
@@ -25,42 +25,42 @@ namespace PicklesDoc.Pickles.Test.Extensions
 
         public static void ShouldContainGherkinTable(this XElement item)
         {
-            item.RecursiveSearch(element => element.HasAttribute("class", "table_container")).ShouldBeTrue();
+            Check.That(item.RecursiveSearch(element => element.HasAttribute("class", "table_container"))).IsTrue();
         }
 
         public static void ShouldNotContainGherkinTable(this XElement item)
         {
-            item.RecursiveSearch(element => element.HasAttribute("class", "table_container")).ShouldBeFalse();
+            Check.That(item.RecursiveSearch(element => element.HasAttribute("class", "table_container"))).IsFalse();
         }
 
         public static void ShouldContainGherkinDocString(this XElement item)
         {
-            item.RecursiveSearch(element => element.HasAttribute("class", "pre")).ShouldBeTrue();
+            Check.That(item.RecursiveSearch(element => element.HasAttribute("class", "pre"))).IsTrue();
         }
 
         public static void ShouldNotContainGherkinDocString(this XElement item)
         {
-            item.RecursiveSearch(element => element.HasAttribute("class", "pre")).ShouldBeFalse();
+            Check.That(item.RecursiveSearch(element => element.HasAttribute("class", "pre"))).IsFalse();
         }
 
         public static void ShouldContainGherkinSteps(this XElement item)
         {
-            item.RecursiveSearch(element => element.HasAttribute("class", "step")).ShouldBeTrue();
+            Check.That(item.RecursiveSearch(element => element.HasAttribute("class", "step"))).IsTrue();
         }
 
         public static void ShouldNotContainGherkinSteps(this XElement item)
         {
-            item.RecursiveSearch(element => element.HasAttribute("class", "step")).ShouldBeFalse();
+            Check.That(item.RecursiveSearch(element => element.HasAttribute("class", "step"))).IsFalse();
         }
 
         public static void ShouldContainGherkinScenario(this XElement item)
         {
-            item.RecursiveSearch(element => element.HasAttribute("class", "scenario")).ShouldBeTrue();
+            Check.That(item.RecursiveSearch(element => element.HasAttribute("class", "scenario"))).IsTrue();
         }
 
         public static void ShouldNotContainGherkinScenario(this XElement item)
         {
-            item.RecursiveSearch(element => element.HasAttribute("class", "scenario")).ShouldBeFalse();
+            Check.That(item.RecursiveSearch(element => element.HasAttribute("class", "scenario"))).IsFalse();
         }
     }
 }
