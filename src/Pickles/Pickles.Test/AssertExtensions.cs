@@ -37,9 +37,9 @@ namespace PicklesDoc.Pickles.Test
             Check.That(element.HasElement(name)).IsTrue();
         }
 
-        public static void IsInNamespace(this ICheck<XElement> element, string nameOfNamespace)
+        public static void IsInNamespace(this ICheck<XElement> check, string nameOfNamespace)
         {
-          var actual = ExtensibilityHelper.ExtractChecker(element).Value;
+          var actual = ExtensibilityHelper.ExtractChecker(check).Value;
 
           ShouldBeInNamespace(actual, nameOfNamespace);
         }
@@ -51,7 +51,7 @@ namespace PicklesDoc.Pickles.Test
 
         public static void ShouldBeNamed(this XElement element, string name)
         {
-            Check.That(element.Name.LocalName).IsEqualTo(name);
+          Check.That(element.Name.LocalName).IsEqualTo(name);
         }
 
         public static void ShouldDeepEquals(this XElement element, XElement other)
