@@ -5,8 +5,7 @@ using Autofac;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
-using Should;
+using NFluent;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 {
@@ -31,7 +30,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 
             var output = htmlTableFormatter.Format(table);
 
-            output.ShouldNotBeNull();
+            Check.That(output).IsNotNull();
             output.ShouldHaveAttribute("class", "table_container");
             output.ShouldHaveElement("table");
 
@@ -46,7 +45,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
             var htmlTableFormatter = Container.Resolve<HtmlTableFormatter>();
             var output = htmlTableFormatter.Format(null);
 
-            output.ShouldBeNull();
+            Check.That(output).IsNull();
         }
 
     }
