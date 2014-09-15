@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Autofac;
+using NFluent;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.ObjectModel;
@@ -25,10 +26,10 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
                                                 new TableRow("5", "6", "7", "8")
                                             })
             };
-			
-			var example = new Example { Name = "Some examples", Description = "An example", TableArgument = table };
-			var examples = new List<Example>();
-			examples.Add(example);
+      
+      var example = new Example { Name = "Some examples", Description = "An example", TableArgument = table };
+      var examples = new List<Example>();
+      examples.Add(example);
 
             var scenarioOutline = new ScenarioOutline
             {
@@ -40,8 +41,8 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
             var htmlScenarioOutlineFormatter = Container.Resolve<HtmlScenarioOutlineFormatter>();
             var output = htmlScenarioOutlineFormatter.Format(scenarioOutline, 0);
 
-            output.ShouldContainGherkinScenario();
-            output.ShouldContainGherkinTable();
+            Check.That(output).ContainsGherkinScenario();
+            Check.That(output).ContainsGherkinTable();
         }
 
         [Test]
@@ -58,9 +59,9 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
                                             })
             };
 
-			var example = new Example { Name = "Some examples", Description = "An example", TableArgument = table };
-			var examples = new List<Example>();
-			examples.Add(example);
+      var example = new Example { Name = "Some examples", Description = "An example", TableArgument = table };
+      var examples = new List<Example>();
+      examples.Add(example);
 
             var scenarioOutline = new ScenarioOutline
             {
@@ -71,8 +72,8 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
             var htmlScenarioOutlineFormatter = Container.Resolve<HtmlScenarioOutlineFormatter>();
             var output = htmlScenarioOutlineFormatter.Format(scenarioOutline, 0);
 
-            output.ShouldContainGherkinScenario();
-            output.ShouldContainGherkinTable();
+            Check.That(output).ContainsGherkinScenario();
+            Check.That(output).ContainsGherkinTable();
         }
 
         [Test]
@@ -90,10 +91,10 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
             };
 
             var example = new Example { Name = "Some examples", Description = "An example", TableArgument = table };
-			var examples = new List<Example>();
-			examples.Add(example);
+      var examples = new List<Example>();
+      examples.Add(example);
 
-			var scenarioOutline = new ScenarioOutline
+      var scenarioOutline = new ScenarioOutline
             {
                 Name = "Testing a scenario outline",
                 Examples = examples
@@ -102,8 +103,8 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
             var htmlScenarioOutlineFormatter = Container.Resolve<HtmlScenarioOutlineFormatter>();
             var output = htmlScenarioOutlineFormatter.Format(scenarioOutline, 0);
 
-            output.ShouldContainGherkinScenario();
-            output.ShouldContainGherkinTable();
+            Check.That(output).ContainsGherkinScenario();
+            Check.That(output).ContainsGherkinTable();
         }
 
         [Test]
@@ -119,18 +120,18 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
             var htmlScenarioOutlineFormatter = Container.Resolve<HtmlScenarioOutlineFormatter>();
             var output = htmlScenarioOutlineFormatter.Format(scenarioOutline, 0);
 
-            output.ShouldContainGherkinScenario();
-            output.ShouldNotContainGherkinTable();
+            Check.That(output).ContainsGherkinScenario();
+            Check.That(output).Not.ContainsGherkinTable();
         }
 
         [Test]
         public void ThenCanFormatScenarioOutlineWithMissingTableFromExampleCorrectly()
         {
             var example = new Example { Name = "Some examples", Description = "An example" };
-			var examples = new List<Example>();
-			examples.Add(example);
+      var examples = new List<Example>();
+      examples.Add(example);
 
-			var scenarioOutline = new ScenarioOutline
+      var scenarioOutline = new ScenarioOutline
             {
                 Name = "Testing a scenario outline",
                 Description = "We need to make sure that scenario outlines work properly",
@@ -140,8 +141,8 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
             var htmlScenarioOutlineFormatter = Container.Resolve<HtmlScenarioOutlineFormatter>();
             var output = htmlScenarioOutlineFormatter.Format(scenarioOutline, 0);
 
-            output.ShouldContainGherkinScenario();
-            output.ShouldNotContainGherkinTable();
+            Check.That(output).ContainsGherkinScenario();
+            Check.That(output).Not.ContainsGherkinTable();
         }
     }
 }

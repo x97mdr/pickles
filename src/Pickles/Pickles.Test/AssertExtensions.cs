@@ -3,7 +3,6 @@ using System.Linq;
 using System.Xml.Linq;
 using NFluent;
 using NFluent.Extensibility;
-using PicklesDoc.Pickles.Test.Extensions;
 
 namespace PicklesDoc.Pickles.Test
 {
@@ -20,11 +19,11 @@ namespace PicklesDoc.Pickles.Test
         }
 
         public static void HasElement(this ICheck<XElement> check, string name)
-          {
-            var actual = ExtensibilityHelper.ExtractChecker(check).Value;
+        {
+          var actual = ExtensibilityHelper.ExtractChecker(check).Value;
 
-            Check.That(actual.HasElement(name)).IsTrue();
-          }
+          Check.That(actual.HasElement(name)).IsTrue();
+        }
 
         public static void IsInNamespace(this ICheck<XElement> check, string nameOfNamespace)
         {
@@ -50,6 +49,11 @@ namespace PicklesDoc.Pickles.Test
 
             throw new FluentCheckException(fluentMessage.ToString());
           }
+        }
+
+        private static bool HasElement(this XElement element, string name)
+        {
+          return element.Elements().Any(e => e.Name.LocalName == name);
         }
     }
 }

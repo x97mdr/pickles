@@ -2,65 +2,53 @@
 using System.Linq;
 using System.Xml.Linq;
 using NFluent;
+using NFluent.Extensibility;
 
 namespace PicklesDoc.Pickles.Test.Extensions
 {
     public static class XElementExtensions
     {
-        public static bool HasAttribute(this XElement element, string name, string value)
+        private static bool HasAttribute(this XElement element, string name, string value)
         {
             return element.Attribute(name) != null && element.Attribute(name).Value == value;
         }
 
-        public static bool HasElement(this XElement element, string name)
-        {
-            return element.Elements().Any(e => e.Name.LocalName == name);
-        }
-
-        public static bool RecursiveSearch(this XElement element, Predicate<XElement> searchCriteria)
+        private static bool RecursiveSearch(this XElement element, Predicate<XElement> searchCriteria)
         {
             var meetsCriteria = searchCriteria(element);
             return meetsCriteria || element.Elements().Any(child => child.RecursiveSearch(searchCriteria));
         }
 
-        public static void ShouldContainGherkinTable(this XElement item)
+        public static ICheckLink<ICheck<XElement>> ContainsGherkinTable(this ICheck<XElement> check)
         {
-            Check.That(item.RecursiveSearch(element => element.HasAttribute("class", "table_container"))).IsTrue();
+          var checker = ExtensibilityHelper.ExtractChecker(check);
+
+          return checker.ExecuteCheck(
+            () =>
+            {
+              if (!checker.Value.RecursiveSearch(element => element.HasAttribute("class", "table_container")))
+              {
+                var errorMessage = FluentMessage.BuildMessage("The {0} does not contain a gherkin table (marked by the presence of a class attribute with value 'table_container')").For("XML element").On(checker.Value).ToString();
+                throw new FluentCheckException(errorMessage);
+              }
+            },
+            FluentMessage.BuildMessage("The {0} contains a gherkin table (marked by the presence of a class attribute with value 'table_container'), whereas it must not.").For("XML element").On(checker.Value).ToString());
         }
 
-        public static void ShouldNotContainGherkinTable(this XElement item)
+        public static ICheckLink<ICheck<XElement>> ContainsGherkinScenario(this ICheck<XElement> check)
         {
-            Check.That(item.RecursiveSearch(element => element.HasAttribute("class", "table_container"))).IsFalse();
-        }
+          var checker = ExtensibilityHelper.ExtractChecker(check);
 
-        public static void ShouldContainGherkinDocString(this XElement item)
-        {
-            Check.That(item.RecursiveSearch(element => element.HasAttribute("class", "pre"))).IsTrue();
-        }
-
-        public static void ShouldNotContainGherkinDocString(this XElement item)
-        {
-            Check.That(item.RecursiveSearch(element => element.HasAttribute("class", "pre"))).IsFalse();
-        }
-
-        public static void ShouldContainGherkinSteps(this XElement item)
-        {
-            Check.That(item.RecursiveSearch(element => element.HasAttribute("class", "step"))).IsTrue();
-        }
-
-        public static void ShouldNotContainGherkinSteps(this XElement item)
-        {
-            Check.That(item.RecursiveSearch(element => element.HasAttribute("class", "step"))).IsFalse();
-        }
-
-        public static void ShouldContainGherkinScenario(this XElement item)
-        {
-            Check.That(item.RecursiveSearch(element => element.HasAttribute("class", "scenario"))).IsTrue();
-        }
-
-        public static void ShouldNotContainGherkinScenario(this XElement item)
-        {
-            Check.That(item.RecursiveSearch(element => element.HasAttribute("class", "scenario"))).IsFalse();
+          return checker.ExecuteCheck(
+            () =>
+            {
+              if (!checker.Value.RecursiveSearch(element => element.HasAttribute("class", "scenario")))
+              {
+                var errorMessage = FluentMessage.BuildMessage("The {0} does not contain a gherkin scenario (marked by the presence of a class attribute with value 'scenario')").For("XML element").On(checker.Value).ToString();
+                throw new FluentCheckException(errorMessage);
+              }
+            },
+            FluentMessage.BuildMessage("The {0} contains a gherkin scenario (marked by the presence of a class attribute with value 'scenario'), whereas it must not.").For("XML element").On(checker.Value).ToString());
         }
     }
 }
