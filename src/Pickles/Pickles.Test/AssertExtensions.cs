@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Xml.Linq;
 using NFluent;
+using NFluent.Extensibility;
 using NUnit.Framework;
 using PicklesDoc.Pickles.Test.Extensions;
 
@@ -9,12 +10,26 @@ namespace PicklesDoc.Pickles.Test
 {
     public static class AssertExtensions
     {
+        public static void HasAttribute(this ICheck<XElement> check, string name, string value)
+        {
+            var actual = ExtensibilityHelper.ExtractChecker(check).Value;
+
+            ShouldHaveAttribute(actual, name, value);
+        }
+
         public static void ShouldHaveAttribute(this XElement element, string name, string value)
         {
             XAttribute xAttribute = element.Attributes().FirstOrDefault(attribute => attribute.Name.LocalName == name);
             Check.That(xAttribute).IsNotNull();
             // ReSharper disable once PossibleNullReferenceException
             Check.That(xAttribute.Value).IsEqualTo(value);
+        }
+
+        public static void HasElement(this ICheck<XElement> check, string name)
+        {
+          var actual = ExtensibilityHelper.ExtractChecker(check).Value;
+
+          ShouldHaveElement(actual, name);
         }
 
         public static void ShouldHaveElement(this XElement element, string name)
