@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml.Linq;
+using NFluent;
 using NUnit.Framework;
 using PicklesDoc.Pickles.Extensions;
 
@@ -24,7 +25,7 @@ namespace PicklesDoc.Pickles.Test
 
             foreach (XElement node in tree1.DescendantsAndSelf())
             {
-                node.ShouldBeInInNamespace(newNamespace.NamespaceName);
+                Check.That(node).IsInNamespace(newNamespace.NamespaceName);
             }
         }
     }

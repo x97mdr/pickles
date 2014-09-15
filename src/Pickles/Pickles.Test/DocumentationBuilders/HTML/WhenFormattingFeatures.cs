@@ -51,7 +51,7 @@ I also enjoy ordering things
 
       Assert.NotNull(description);
       description.ShouldBeNamed("div");
-      description.ShouldBeInInNamespace("http://www.w3.org/1999/xhtml");
+      Check.That(description).IsInNamespace("http://www.w3.org/1999/xhtml");
       Check.That(description).HasAttribute("class", "description");
       Assert.AreEqual(9, description.Elements().Count());
 
@@ -91,7 +91,7 @@ I want to see the descriptions written in markdown rendered with tables
 
       Assert.NotNull(description);
       description.ShouldBeNamed("div");
-      description.ShouldBeInInNamespace("http://www.w3.org/1999/xhtml");
+      Check.That(description).IsInNamespace("http://www.w3.org/1999/xhtml");
       Check.That(description).HasAttribute("class", "description");
 
       XElement table = description.Descendants().FirstOrDefault(el => el.Name.LocalName == "table");
@@ -125,7 +125,7 @@ I want to see the descriptions written in markdown rendered with tables
 
       Assert.NotNull(description);
       description.ShouldBeNamed("div");
-      description.ShouldBeInInNamespace("http://www.w3.org/1999/xhtml");
+      Check.That(description).IsInNamespace("http://www.w3.org/1999/xhtml");
       Check.That(description).HasAttribute("class", "description");
 
       XElement table = description.Descendants().FirstOrDefault(el => el.Name.LocalName == "table");

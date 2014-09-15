@@ -37,9 +37,16 @@ namespace PicklesDoc.Pickles.Test
             Check.That(element.HasElement(name)).IsTrue();
         }
 
-        public static void ShouldBeInInNamespace(this XElement element, string _namespace)
+        public static void IsInNamespace(this ICheck<XElement> element, string nameOfNamespace)
         {
-            Check.That(element.Name.NamespaceName).IsEqualTo(_namespace);
+          var actual = ExtensibilityHelper.ExtractChecker(element).Value;
+
+          ShouldBeInNamespace(actual, nameOfNamespace);
+        }
+
+        private static void ShouldBeInNamespace(this XElement element, string nameOfNamespace)
+        {
+            Check.That(element.Name.NamespaceName).IsEqualTo(nameOfNamespace);
         }
 
         public static void ShouldBeNamed(this XElement element, string name)

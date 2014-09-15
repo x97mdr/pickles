@@ -31,7 +31,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 
             Assert.NotNull(header);
             header.ShouldBeNamed("div");
-            header.ShouldBeInInNamespace("http://www.w3.org/1999/xhtml");
+            Check.That(header).IsInNamespace("http://www.w3.org/1999/xhtml");
             Check.That(header).HasAttribute("class", "scenario-heading");
             Assert.AreEqual(3, header.Elements().Count());
 
@@ -64,7 +64,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 
           Assert.NotNull(header);
           header.ShouldBeNamed("div");
-          header.ShouldBeInInNamespace("http://www.w3.org/1999/xhtml");
+          Check.That(header).IsInNamespace("http://www.w3.org/1999/xhtml");
           Check.That(header).HasAttribute("class", "scenario-heading");
           Assert.AreEqual(2, header.Elements().Count());
 
