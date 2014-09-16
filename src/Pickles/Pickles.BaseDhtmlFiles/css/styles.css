@@ -11,6 +11,12 @@
     font-size: larger;
 }
 
+.feature-folder-header {
+    font-size: small;
+    font-weight: bolder;
+    margin-top: 5px;
+}
+
 #scenarios, .steps {
     list-style-type: none;
     margin: 0;
