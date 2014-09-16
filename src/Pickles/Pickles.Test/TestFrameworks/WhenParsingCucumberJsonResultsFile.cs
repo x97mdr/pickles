@@ -5,7 +5,7 @@ using NUnit.Framework;
 using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks;
 
-using Should;
+using NFluent;
 
 namespace PicklesDoc.Pickles.Test.TestFrameworks
 {
@@ -25,8 +25,8 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
             var feature = new Feature { Name = "Test Feature" };
             TestResult result = results.GetFeatureResult(feature);
 
-            result.WasExecuted.ShouldBeTrue();
-            result.WasSuccessful.ShouldBeFalse();
+            Check.That(result.WasExecuted).IsTrue();
+            Check.That(result.WasSuccessful).IsFalse();
         }
 
         [Test]
@@ -39,14 +39,14 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
             var scenario1 = new Scenario { Name = "Passing", Feature = feature };
             TestResult result1 = results.GetScenarioResult(scenario1);
 
-            result1.WasExecuted.ShouldBeTrue();
-            result1.WasSuccessful.ShouldBeTrue();
+            Check.That(result1.WasExecuted).IsTrue();
+            Check.That(result1.WasSuccessful).IsTrue();
 
             var scenario2 = new Scenario { Name = "Failing", Feature = feature };
             TestResult result2 = results.GetScenarioResult(scenario2);
 
-            result2.WasExecuted.ShouldBeTrue();
-            result2.WasSuccessful.ShouldBeFalse();
+            Check.That(result2.WasExecuted).IsTrue();
+            Check.That(result2.WasSuccessful).IsFalse();
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
             TestResult result = results.GetFeatureResult(feature);
 
-            result.ShouldEqual(TestResult.Inconclusive);
+            Check.That(result).IsEqualTo(TestResult.Inconclusive);
         }
     }
 }
