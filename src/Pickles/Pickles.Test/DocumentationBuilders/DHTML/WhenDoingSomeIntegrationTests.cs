@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using NFluent;
+using NUnit.Framework;
 using PicklesDoc.Pickles.DocumentationBuilders.DHTML;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.DHTML
@@ -25,7 +26,9 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.DHTML
             jsonTweaker.AddJsonPWrapperTo(filePath);
 
             var expected = "jsonPWrapper (\r\n[]\r\n);";
-            Assert.AreEqual(expected, FileSystem.File.ReadAllText(filePath));
+            var actual = FileSystem.File.ReadAllText(filePath);
+
+            Check.That(actual).IsEqualTo(expected);
         }
 
         [Test]
@@ -39,8 +42,10 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.DHTML
             var jsonTweaker = new JsonTweaker(FileSystem);
             jsonTweaker.RenameFileTo(oldfilePath, newFilePath);
 
-            Assert.IsTrue(FileSystem.File.Exists(newFilePath));
-            Assert.IsFalse(FileSystem.File.Exists(oldfilePath));
+            var doesNewPathExist = FileSystem.File.Exists(newFilePath);
+            Check.That(doesNewPathExist).IsTrue();
+            var doesOldPathExist = FileSystem.File.Exists(oldfilePath);
+            Check.That(doesOldPathExist).IsFalse();
         }
     }
 }
