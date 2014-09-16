@@ -1,5 +1,5 @@
 ﻿using System;
-using Should.Fluent;
+using NFluent;
 
 namespace PicklesDoc.Pickles.Test.Helpers
 {
@@ -10,17 +10,17 @@ namespace PicklesDoc.Pickles.Test.Helpers
 
         public static void AssertJSONKeyValue(this string json, string key, string value)
         {
-            json.Should().Contain(string.Format(KEY_VALUE_TEMPLATE, key, value));
+            Check.That(json).Contains(string.Format(KEY_VALUE_TEMPLATE, key, value));
         }
 
         public static void AssertJSONArrayValue(this string json, string key, string value)
         {
-            json.Should().Contain(string.Format(ARRAY_TEMPLATE, key, value));
+            Check.That(json).Contains(string.Format(ARRAY_TEMPLATE, key, value));
         }
 
         public static void AssertJsonContainsKey(this string json, string key)
         {
-            json.Should().Contain(key);
+            Check.That(json).Contains(key);
         }
     }
 }
