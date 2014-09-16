@@ -42,9 +42,9 @@ namespace PicklesDoc.Pickles.Test
             var item2 = Container.Resolve<IDocumentationBuilder>();
 
             Check.That(item1).IsNotNull();
-            Check.That(item1.GetType()).IsEqualTo(typeof (HtmlDocumentationBuilder));
+            Check.That(item1).IsInstanceOf<HtmlDocumentationBuilder>();
             Check.That(item2).IsNotNull();
-            Check.That(item2.GetType()).IsEqualTo(typeof(HtmlDocumentationBuilder));
+            Check.That(item2).IsInstanceOf<HtmlDocumentationBuilder>();
             Check.That(item1).IsSameReferenceThan(item2);
         }
 
@@ -57,7 +57,7 @@ namespace PicklesDoc.Pickles.Test
             var item = Container.Resolve<IDocumentationBuilder>();
 
             Check.That(item).IsNotNull();
-            Check.That(item.GetType()).IsEqualTo(typeof(WordDocumentationBuilder));
+            Check.That(item).IsInstanceOf<WordDocumentationBuilder>();
         }
 
         [Test]
@@ -70,9 +70,9 @@ namespace PicklesDoc.Pickles.Test
             var item2 = Container.Resolve<IDocumentationBuilder>();
 
             Check.That(item1).IsNotNull();
-            Check.That(item1.GetType()).IsEqualTo(typeof(WordDocumentationBuilder));
+            Check.That(item1).IsInstanceOf<WordDocumentationBuilder>();
             Check.That(item2).IsNotNull();
-            Check.That(item2.GetType()).IsEqualTo(typeof(WordDocumentationBuilder));
+            Check.That(item2).IsInstanceOf<WordDocumentationBuilder>();
             Check.That(item1).IsSameReferenceThan(item2);
         }
 
@@ -85,7 +85,7 @@ namespace PicklesDoc.Pickles.Test
             var item = Container.Resolve<IDocumentationBuilder>();
 
             Check.That(item).IsNotNull();
-            Check.That(item.GetType()).IsEqualTo(typeof(DitaDocumentationBuilder));
+            Check.That(item).IsInstanceOf<DitaDocumentationBuilder>();
         }
 
         [Test]
@@ -98,9 +98,9 @@ namespace PicklesDoc.Pickles.Test
             var item2 = Container.Resolve<IDocumentationBuilder>();
 
             Check.That(item1).IsNotNull();
-            Check.That(item1.GetType()).IsEqualTo(typeof(DitaDocumentationBuilder));
+            Check.That(item1).IsInstanceOf<DitaDocumentationBuilder>();
             Check.That(item2).IsNotNull();
-            Check.That(item2.GetType()).IsEqualTo(typeof(DitaDocumentationBuilder));
+            Check.That(item2).IsInstanceOf<DitaDocumentationBuilder>();
             Check.That(item1).IsSameReferenceThan(item2);
         }
 
@@ -113,7 +113,7 @@ namespace PicklesDoc.Pickles.Test
             var item = Container.Resolve<IDocumentationBuilder>();
 
             Check.That(item).IsNotNull();
-            Check.That(item.GetType()).IsEqualTo(typeof(ExcelDocumentationBuilder));
+            Check.That(item).IsInstanceOf<ExcelDocumentationBuilder>();
         }
 
         [Test]
@@ -126,9 +126,9 @@ namespace PicklesDoc.Pickles.Test
             var item2 = Container.Resolve<IDocumentationBuilder>();
 
             Check.That(item1).IsNotNull();
-            Check.That(item1.GetType()).IsEqualTo(typeof(ExcelDocumentationBuilder));
+            Check.That(item1).IsInstanceOf<ExcelDocumentationBuilder>();
             Check.That(item2).IsNotNull();
-            Check.That(item2.GetType()).IsEqualTo(typeof(ExcelDocumentationBuilder));
+            Check.That(item2).IsInstanceOf<ExcelDocumentationBuilder>();
             Check.That(item1).IsSameReferenceThan(item2);
         }
     }
