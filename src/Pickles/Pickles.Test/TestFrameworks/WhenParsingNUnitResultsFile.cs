@@ -62,7 +62,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
             var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers", Feature = feature };
 
-            Assert.Throws<InvalidOperationException>(() => results.GetExampleResult(scenarioOutline, new[] { "40", "50", "90" }));
+            Check.ThatCode(() => results.GetExampleResult(scenarioOutline, new[] { "40", "50", "90" })).Throws<InvalidOperationException>();
         }
 
         [Test]
@@ -124,7 +124,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
         {
             var results = ParseResultsFile();
             var result = results.GetFeatureResult(this.InconclusiveFeature());
-            Assert.AreEqual(TestResult.Inconclusive, result);
+            Check.That(result).IsEqualTo(TestResult.Inconclusive);
         }
 
 
@@ -133,7 +133,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
         {
             var results = ParseResultsFile();
             var result = results.GetFeatureResult(this.PassingFeature());
-            Assert.AreEqual(TestResult.Passed, result);
+            Check.That(result).IsEqualTo(TestResult.Passed);
         }
 
         [Test]
@@ -141,7 +141,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
         {
             var results = ParseResultsFile();
             var result = results.GetFeatureResult(this.FailingFeature());
-            Assert.AreEqual(TestResult.Failed, result);
+            Check.That(result).IsEqualTo(TestResult.Failed);
         }
 
         private Feature FailingFeature()
