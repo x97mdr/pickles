@@ -5,7 +5,7 @@ using NUnit.Framework;
 using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks;
 
-using Should;
+using NFluent;
 
 namespace PicklesDoc.Pickles.Test.TestFrameworks
 {
@@ -40,8 +40,8 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
           var result = results.GetScenarioResult(scenario);
 
-          result.WasExecuted.ShouldBeTrue();
-          result.WasSuccessful.ShouldBeTrue();
+          Check.That(result.WasExecuted).IsTrue();
+          Check.That(result.WasSuccessful).IsTrue();
         }
 
         [Test]
@@ -57,8 +57,8 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
           var result = results.GetScenarioResult(scenario);
 
-          result.WasExecuted.ShouldBeTrue();
-          result.WasSuccessful.ShouldBeFalse();
+          Check.That(result.WasExecuted).IsTrue();
+          Check.That(result.WasSuccessful).IsFalse();
         }
     }
 }
