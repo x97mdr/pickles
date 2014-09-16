@@ -1,9 +1,9 @@
 ﻿using System.Linq;
+using NFluent;
 using NUnit.Framework;
 using Autofac;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 using System;
 
 using StringReader = System.IO.StringReader;
@@ -39,68 +39,67 @@ Feature: Test
             var parser = Container.Resolve<FeatureParser>();
             Feature feature = parser.Parse(new StringReader(featureText));
 
-            Assert.AreNotEqual(null, feature);
-            Assert.AreEqual("Test", feature.Name);
-            Assert.AreEqual(@"  In order to do something
+            Check.That(feature).IsNotNull();
+            Check.That(feature.Name).IsEqualTo("Test");
+            Check.That(feature.Description).IsEqualTo(@"  In order to do something
   As a user
-  I want to run this scenario",
-                            feature.Description);
-            Assert.AreEqual(2, feature.FeatureElements.Count);
-            Assert.AreEqual(0, feature.Tags.Count);
+  I want to run this scenario");
+            Check.That(feature.FeatureElements.Count).IsEqualTo(2);
+            Check.That(feature.Tags).IsEmpty();
 
             IFeatureElement scenario = feature.FeatureElements[0];
-            Assert.AreEqual("A scenario", scenario.Name);
-            Assert.AreEqual(string.Empty, scenario.Description);
-            Assert.AreEqual(3, scenario.Steps.Count);
-            Assert.AreEqual(0, scenario.Tags.Count);
+            Check.That(scenario.Name).IsEqualTo("A scenario");
+            Check.That(scenario.Description).IsEqualTo("");
+            Check.That(scenario.Steps.Count).IsEqualTo(3);
+            Check.That(scenario.Tags).IsEmpty();
 
             Step givenStep = scenario.Steps[0];
-            Assert.AreEqual(Keyword.Given, givenStep.Keyword);
-            Assert.AreEqual("some feature", givenStep.Name);
-            Assert.AreEqual(null, givenStep.DocStringArgument);
-            Assert.AreEqual(null, givenStep.TableArgument);
+            Check.That(givenStep.Keyword).IsEqualTo(Keyword.Given);
+            Check.That(givenStep.Name).IsEqualTo("some feature");
+            Check.That(givenStep.DocStringArgument).IsNull();
+            Check.That(givenStep.TableArgument).IsNull();
 
             Step whenStep = scenario.Steps[1];
-            Assert.AreEqual(Keyword.When, whenStep.Keyword);
-            Assert.AreEqual("it runs", whenStep.Name);
-            Assert.AreEqual(null, whenStep.DocStringArgument);
-            Assert.AreEqual(null, whenStep.TableArgument);
+            Check.That(whenStep.Keyword).IsEqualTo(Keyword.When);
+            Check.That(whenStep.Name).IsEqualTo("it runs");
+            Check.That(whenStep.DocStringArgument).IsNull();
+            Check.That(whenStep.TableArgument).IsNull();
 
             Step thenStep = scenario.Steps[2];
-            Assert.AreEqual(Keyword.Then, thenStep.Keyword);
-            Assert.AreEqual("I should see that this thing happens", thenStep.Name);
-            Assert.AreEqual(null, thenStep.DocStringArgument);
-            Assert.AreEqual(null, thenStep.TableArgument);
+            Check.That(thenStep.Keyword).IsEqualTo(Keyword.Then);
+            Check.That(thenStep.Name).IsEqualTo("I should see that this thing happens");
+            Check.That(thenStep.DocStringArgument).IsNull();
+            Check.That(thenStep.TableArgument).IsNull();
 
             IFeatureElement scenario2 = feature.FeatureElements[1];
-            Assert.AreEqual("Another scenario", scenario2.Name);
-            Assert.AreEqual(string.Empty, scenario2.Description);
-            Assert.AreEqual(4, scenario2.Steps.Count);
-            Assert.AreEqual(0, scenario2.Tags.Count);
+            Check.That(scenario2.Name).IsEqualTo("Another scenario");
+            Check.That(scenario2.Description).IsEqualTo(string.Empty);
+            Check.That(scenario2.Steps.Count).IsEqualTo(4);
+            Check.That(scenario2.Tags).IsEmpty();
 
             Step givenStep2 = scenario2.Steps[0];
-            Assert.AreEqual(Keyword.Given, givenStep2.Keyword);
-            Assert.AreEqual("some other feature", givenStep2.Name);
-            Assert.AreEqual(null, givenStep2.DocStringArgument);
-            Assert.AreEqual(null, givenStep2.TableArgument);
+            Check.That(givenStep2.Keyword).IsEqualTo(Keyword.Given);
+            Check.That(givenStep2.Name).IsEqualTo("some other feature");
+            Check.That(givenStep2.DocStringArgument).IsNull();
+            Check.That(givenStep2.TableArgument).IsNull();
 
             Step whenStep2 = scenario2.Steps[1];
-            Assert.AreEqual(Keyword.When, whenStep2.Keyword);
-            Assert.AreEqual("it runs", whenStep2.Name);
-            Assert.AreEqual(null, whenStep2.DocStringArgument);
-            Assert.AreEqual(null, whenStep2.TableArgument);
+            Check.That(whenStep2.Keyword).IsEqualTo(Keyword.When);
+            Check.That(whenStep2.Name).IsEqualTo("it runs");
+            Check.That(whenStep2.DocStringArgument).IsNull();
+            Check.That(whenStep2.TableArgument).IsNull();
 
             Step thenStep2 = scenario2.Steps[2];
-            Assert.AreEqual(Keyword.Then, thenStep2.Keyword);
-            Assert.AreEqual("I should see that this other thing happens", thenStep2.Name);
-            Assert.AreEqual(null, thenStep2.DocStringArgument);
-            Assert.AreEqual(null, thenStep2.TableArgument);
+            Check.That(thenStep2.Keyword).IsEqualTo(Keyword.Then);
+            Check.That(thenStep2.Name).IsEqualTo("I should see that this other thing happens");
+            Check.That(thenStep2.DocStringArgument).IsNull();
+            Check.That(thenStep2.TableArgument).IsNull();
 
             Step thenStep3 = scenario2.Steps[3];
-            Assert.AreEqual(Keyword.And, thenStep3.Keyword);
-            Assert.AreEqual("something else", thenStep3.Name);
-            Assert.AreEqual(null, thenStep3.DocStringArgument);
-            Assert.AreEqual(null, thenStep3.TableArgument);
+            Check.That(thenStep3.Keyword).IsEqualTo(Keyword.And);
+            Check.That(thenStep3.Name).IsEqualTo("something else");
+            Check.That(thenStep3.DocStringArgument).IsNull();
+            Check.That(thenStep3.TableArgument).IsNull();
         }
 
         [Test]
@@ -121,38 +120,37 @@ Feature: Test
             var parser = Container.Resolve<FeatureParser>();
             Feature feature = parser.Parse(new StringReader(featureText));
 
-            Assert.AreNotEqual(null, feature);
-            Assert.AreEqual("Test", feature.Name);
-            Assert.AreEqual(@"  In order to do something
+            Check.That(feature).IsNotNull();
+            Check.That(feature.Name).IsEqualTo("Test");
+            Check.That(feature.Description).IsEqualTo(@"  In order to do something
   As a user
-  I want to run this scenario",
-                            feature.Description);
-            Assert.AreEqual(1, feature.FeatureElements.Count);
-            Assert.AreEqual(0, feature.Tags.Count);
+  I want to run this scenario");
+            Check.That(feature.FeatureElements.Count).IsEqualTo(1);
+            Check.That(feature.Tags).IsEmpty();
 
             IFeatureElement scenario = feature.FeatureElements.First();
-            Assert.AreEqual("A scenario", scenario.Name);
-            Assert.AreEqual(string.Empty, scenario.Description);
-            Assert.AreEqual(3, scenario.Steps.Count);
-            Assert.AreEqual(0, scenario.Tags.Count);
+            Check.That(scenario.Name).IsEqualTo("A scenario");
+            Check.That(scenario.Description).IsEqualTo(string.Empty);
+            Check.That(scenario.Steps.Count).IsEqualTo(3);
+            Check.That(scenario.Tags).IsEmpty();
 
             Step givenStep = scenario.Steps[0];
-            Assert.AreEqual(Keyword.Given, givenStep.Keyword);
-            Assert.AreEqual("some feature", givenStep.Name);
-            Assert.AreEqual(null, givenStep.DocStringArgument);
-            Assert.AreEqual(null, givenStep.TableArgument);
+            Check.That(givenStep.Keyword).IsEqualTo(Keyword.Given);
+            Check.That(givenStep.Name).IsEqualTo("some feature");
+            Check.That(givenStep.DocStringArgument).IsNull();
+            Check.That(givenStep.TableArgument).IsNull();
 
             Step whenStep = scenario.Steps[1];
-            Assert.AreEqual(Keyword.When, whenStep.Keyword);
-            Assert.AreEqual("it runs", whenStep.Name);
-            Assert.AreEqual(null, whenStep.DocStringArgument);
-            Assert.AreEqual(null, whenStep.TableArgument);
+            Check.That(whenStep.Keyword).IsEqualTo(Keyword.When);
+            Check.That(whenStep.Name).IsEqualTo("it runs");
+            Check.That(whenStep.DocStringArgument).IsNull();
+            Check.That(whenStep.TableArgument).IsNull();
 
             Step thenStep = scenario.Steps[2];
-            Assert.AreEqual(Keyword.Then, thenStep.Keyword);
-            Assert.AreEqual("I should see that this thing happens", thenStep.Name);
-            Assert.AreEqual(null, thenStep.DocStringArgument);
-            Assert.AreEqual(null, thenStep.TableArgument);
+            Check.That(thenStep.Keyword).IsEqualTo(Keyword.Then);
+            Check.That(thenStep.Name).IsEqualTo("I should see that this thing happens");
+            Check.That(thenStep.DocStringArgument).IsNull();
+            Check.That(thenStep.TableArgument).IsNull();
         }
 
         [Test]
@@ -178,38 +176,38 @@ Feature: Test
             Feature feature = parser.Parse(new StringReader(featureText));
 
             var scenarioOutline = feature.FeatureElements[0] as ScenarioOutline;
-            Assert.AreNotEqual(null, scenarioOutline);
-            Assert.AreEqual("A scenario outline", scenarioOutline.Name);
-            Assert.AreEqual(string.Empty, scenarioOutline.Description);
-            Assert.AreEqual(3, scenarioOutline.Steps.Count);
+            Check.That(scenarioOutline).IsNotNull();
+            Check.That(scenarioOutline.Name).IsEqualTo("A scenario outline");
+            Check.That(scenarioOutline.Description).IsEqualTo(string.Empty);
+            Check.That(scenarioOutline.Steps.Count).IsEqualTo(3);
 
             Step givenStep = scenarioOutline.Steps[0];
-            Assert.AreEqual(Keyword.Given, givenStep.Keyword);
-            Assert.AreEqual("some feature with <keyword1>", givenStep.Name);
-            Assert.AreEqual(null, givenStep.DocStringArgument);
-            Assert.AreEqual(null, givenStep.TableArgument);
+            Check.That(givenStep.Keyword).IsEqualTo(Keyword.Given);
+            Check.That(givenStep.Name).IsEqualTo("some feature with <keyword1>");
+            Check.That(givenStep.DocStringArgument).IsNull();
+            Check.That(givenStep.TableArgument).IsNull();
 
             Step whenStep = scenarioOutline.Steps[1];
-            Assert.AreEqual(Keyword.When, whenStep.Keyword);
-            Assert.AreEqual("it runs", whenStep.Name);
-            Assert.AreEqual(null, whenStep.DocStringArgument);
-            Assert.AreEqual(null, whenStep.TableArgument);
+            Check.That(whenStep.Keyword).IsEqualTo(Keyword.When);
+            Check.That(whenStep.Name).IsEqualTo("it runs");
+            Check.That(whenStep.DocStringArgument).IsNull();
+            Check.That(whenStep.TableArgument).IsNull();
 
             Step thenStep = scenarioOutline.Steps[2];
-            Assert.AreEqual(Keyword.Then, thenStep.Keyword);
-            Assert.AreEqual("I should see <keyword2>", thenStep.Name);
-            Assert.AreEqual(null, thenStep.DocStringArgument);
-            Assert.AreEqual(null, thenStep.TableArgument);
+            Check.That(thenStep.Keyword).IsEqualTo(Keyword.Then);
+            Check.That(thenStep.Name).IsEqualTo("I should see <keyword2>");
+            Check.That(thenStep.DocStringArgument).IsNull();
+            Check.That(thenStep.TableArgument).IsNull();
 
             var examples = scenarioOutline.Examples;
-            Assert.AreEqual(true, String.IsNullOrEmpty(examples.First().Name));
-            Assert.AreEqual(true, String.IsNullOrEmpty(examples.First().Description));
+            Check.That(examples.First().Name).IsNullOrEmpty();
+            Check.That(examples.First().Description).IsNullOrEmpty();
 
             Table table = examples.First().TableArgument;
-            Assert.AreEqual("keyword1", table.HeaderRow[0]);
-            Assert.AreEqual("keyword2", table.HeaderRow[1]);
-            Assert.AreEqual("this", table.DataRows[0][0]);
-            Assert.AreEqual("that", table.DataRows[0][1]);
+            Check.That(table.HeaderRow[0]).IsEqualTo("keyword1");
+            Check.That(table.HeaderRow[1]).IsEqualTo("keyword2");
+            Check.That(table.DataRows[0][0]).IsEqualTo("this");
+            Check.That(table.DataRows[0][1]).IsEqualTo("that");
         }
 
         [Test]
@@ -234,23 +232,23 @@ Feature: Test
             var parser = Container.Resolve<FeatureParser>();
             Feature feature = parser.Parse(new StringReader(featureText));
 
-            Assert.AreNotEqual(null, feature.Background);
-            Assert.AreEqual("Some background for the scenarios", feature.Background.Name);
-            Assert.AreEqual(string.Empty, feature.Background.Description);
-            Assert.AreEqual(2, feature.Background.Steps.Count);
-            Assert.AreEqual(0, feature.Background.Tags.Count);
+            Check.That(feature.Background).IsNotNull();
+            Check.That(feature.Background.Name).IsEqualTo("Some background for the scenarios");
+            Check.That(feature.Background.Description).IsEqualTo(string.Empty);
+            Check.That(feature.Background.Steps.Count).IsEqualTo(2);
+            Check.That(feature.Background.Tags).IsEmpty();
 
             Step givenStep1 = feature.Background.Steps[0];
-            Assert.AreEqual(Keyword.Given, givenStep1.Keyword);
-            Assert.AreEqual("some prior context", givenStep1.Name);
-            Assert.AreEqual(null, givenStep1.DocStringArgument);
-            Assert.AreEqual(null, givenStep1.TableArgument);
+            Check.That(givenStep1.Keyword).IsEqualTo(Keyword.Given);
+            Check.That(givenStep1.Name).IsEqualTo("some prior context");
+            Check.That(givenStep1.DocStringArgument).IsNull();
+            Check.That(givenStep1.TableArgument).IsNull();
 
             Step givenStep2 = feature.Background.Steps[1];
-            Assert.AreEqual(Keyword.And, givenStep2.Keyword);
-            Assert.AreEqual("yet more prior context", givenStep2.Name);
-            Assert.AreEqual(null, givenStep2.DocStringArgument);
-            Assert.AreEqual(null, givenStep2.TableArgument);
+            Check.That(givenStep2.Keyword).IsEqualTo(Keyword.And);
+            Check.That(givenStep2.Name).IsEqualTo("yet more prior context");
+            Check.That(givenStep2.DocStringArgument).IsNull();
+            Check.That(givenStep2.TableArgument).IsNull();
         }
 
         [Test]
@@ -279,9 +277,8 @@ it can be many lines long
             var parser = Container.Resolve<FeatureParser>();
             Feature feature = parser.Parse(new StringReader(featureText));
 
-            Assert.AreEqual(@"This is a document string
-it can be many lines long",
-                            feature.FeatureElements[0].Steps[0].DocStringArgument);
+            Check.That(feature.FeatureElements[0].Steps[0].DocStringArgument).IsEqualTo(@"This is a document string
+it can be many lines long");
         }
 
         [Test]
@@ -305,10 +302,10 @@ Feature: Test
             Feature feature = parser.Parse(new StringReader(featureText));
 
             Table table = feature.FeatureElements[0].Steps[0].TableArgument;
-            Assert.AreEqual("Column1", table.HeaderRow[0]);
-            Assert.AreEqual("Column2", table.HeaderRow[1]);
-            Assert.AreEqual("Value 1", table.DataRows[0][0]);
-            Assert.AreEqual("Value 2", table.DataRows[0][1]);
+            Check.That(table.HeaderRow[0]).IsEqualTo("Column1");
+            Check.That(table.HeaderRow[1]).IsEqualTo("Column2");
+            Check.That(table.DataRows[0][0]).IsEqualTo("Value 1");
+            Check.That(table.DataRows[0][1]).IsEqualTo("Value 2");
         }
 
         [Test]
@@ -331,9 +328,9 @@ Feature: Test
             var parser = Container.Resolve<FeatureParser>();
             Feature feature = parser.Parse(new StringReader(featureText));
 
-            Assert.AreEqual("@feature-tag", feature.Tags[0]);
-            Assert.AreEqual("@scenario-tag-1", feature.FeatureElements[0].Tags[0]);
-            Assert.AreEqual("@scenario-tag-2", feature.FeatureElements[0].Tags[1]);
+            Check.That(feature.Tags[0]).IsEqualTo("@feature-tag");
+            Check.That(feature.FeatureElements[0].Tags[0]).IsEqualTo("@scenario-tag-1");
+            Check.That(feature.FeatureElements[0].Tags[1]).IsEqualTo("@scenario-tag-2");
         }
     }
 }
