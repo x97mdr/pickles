@@ -24,7 +24,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
             TestResult result = results.GetFeatureResult(new Feature { Name = "Failing" });
 
-            Assert.AreEqual(TestResult.Failed, result);
+            Check.That(result).IsEqualTo(TestResult.Failed);
         }
 
         [Test]
