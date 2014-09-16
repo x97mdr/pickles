@@ -117,7 +117,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
           var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers", Feature = feature };
 
-          Assert.Throws<InvalidOperationException>(() => results.GetExampleResult(scenarioOutline, new[] { "40", "50", "90" }));
+          Check.ThatCode(() => results.GetExampleResult(scenarioOutline, new[] { "40", "50", "90" })).Throws<InvalidOperationException>();
         }
 
         [Test]
