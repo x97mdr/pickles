@@ -13,7 +13,7 @@ namespace PicklesDoc.Pickles.Test
   [TestFixture]
   public class WhenParsingCommandLineArguments : BaseFixture
   {
-    private const string expectedHelpString = @"  -f, --feature-directory=VALUE
+    private const string ExpectedHelpString = @"  -f, --feature-directory=VALUE
                              directory to start scanning recursively for 
                                features
   -o, --output-directory=VALUE
@@ -37,7 +37,7 @@ namespace PicklesDoc.Pickles.Test
 
     private const string CurrentDirectory = @"C:\Foo\Bar"; // this is the default current directory of MockFileSystem
 
-    private static readonly string expectedVersionString =
+    private static readonly string ExpectedVersionString =
         string.Format(@"Pickles version {0}", Assembly.GetExecutingAssembly().GetName().Version);
 
     [Test]
@@ -77,9 +77,14 @@ namespace PicklesDoc.Pickles.Test
       bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
 
 
-      StringAssert.Contains(expectedHelpString.ComparisonNormalize(),
-                            writer.GetStringBuilder().ToString().ComparisonNormalize());
+      var actual = RetrieveString(writer);
+      Check.That(actual).Contains(ExpectedHelpString.ComparisonNormalize());
       Check.That(shouldContinue).IsFalse();
+    }
+
+    private static string RetrieveString(StringWriter writer)
+    {
+      return writer.GetStringBuilder().ToString().ComparisonNormalize();
     }
 
     [Test]
@@ -92,8 +97,8 @@ namespace PicklesDoc.Pickles.Test
       var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
       bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
 
-      StringAssert.Contains(expectedHelpString.ComparisonNormalize(),
-                            writer.GetStringBuilder().ToString().ComparisonNormalize());
+      var actual = RetrieveString(writer);
+      Check.That(actual).Contains(ExpectedHelpString.ComparisonNormalize());
       Check.That(shouldContinue).IsFalse();
     }
 
@@ -107,8 +112,8 @@ namespace PicklesDoc.Pickles.Test
       var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
       bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
 
-      StringAssert.Contains(expectedHelpString.ComparisonNormalize(),
-                            writer.GetStringBuilder().ToString().ComparisonNormalize());
+      var actual = RetrieveString(writer);
+      Check.That(actual).Contains(ExpectedHelpString.ComparisonNormalize());
       Check.That(shouldContinue).IsFalse();
     }
 
@@ -122,8 +127,8 @@ namespace PicklesDoc.Pickles.Test
       bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
       Check.That(shouldContinue).IsTrue();
-      Assert.AreEqual(@"c:\features", configuration.FeatureFolder.FullName);
-      Assert.AreEqual(@"c:\features-output", configuration.OutputFolder.FullName);
+      Check.That(configuration.FeatureFolder.FullName).IsEqualTo(@"c:\features");
+      Check.That(configuration.OutputFolder.FullName).IsEqualTo(@"c:\features-output");
     }
 
     [Test]
@@ -138,7 +143,7 @@ namespace PicklesDoc.Pickles.Test
 
       Check.That(shouldContinue).IsTrue();
       Check.That(configuration.HasTestResults).IsTrue();
-      Assert.AreEqual(@"c:\results.xml", configuration.TestResultsFile.FullName);
+      Check.That(configuration.TestResultsFile.FullName).IsEqualTo(@"c:\results.xml");
     }
 
     [Test]
@@ -154,8 +159,8 @@ namespace PicklesDoc.Pickles.Test
 
       Check.That(shouldContinue).IsTrue();
       Check.That(configuration.HasTestResults).IsTrue();
-      Assert.AreEqual(@"c:\results1.xml", configuration.TestResultsFiles.First().FullName);
-      Assert.AreEqual(@"c:\results2.xml", configuration.TestResultsFiles.Skip(1).First().FullName);
+      Check.That(configuration.TestResultsFiles.First().FullName).IsEqualTo(@"c:\results1.xml");
+      Check.That(configuration.TestResultsFiles.Skip(1).First().FullName).IsEqualTo(@"c:\results2.xml");
     }
 
     [Test]
@@ -171,8 +176,8 @@ namespace PicklesDoc.Pickles.Test
 
       Check.That(shouldContinue).IsTrue();
       Check.That(configuration.HasTestResults).IsTrue();
-      Assert.AreEqual(@"c:\results1.xml", configuration.TestResultsFile.FullName);
-      Assert.AreEqual(@"c:\results1.xml", configuration.TestResultsFiles.First().FullName);
+      Check.That(configuration.TestResultsFile.FullName).IsEqualTo(@"c:\results1.xml");
+      Check.That(configuration.TestResultsFiles.First().FullName).IsEqualTo(@"c:\results1.xml");
     }
 
     [Test]
@@ -187,8 +192,8 @@ namespace PicklesDoc.Pickles.Test
 
       Check.That(shouldContinue).IsTrue();
       Check.That(configuration.HasTestResults).IsTrue();
-      Assert.AreEqual(1, configuration.TestResultsFiles.Count());
-      Assert.AreEqual(@"c:\results1.xml", configuration.TestResultsFiles.First().FullName);
+      Check.That(configuration.TestResultsFiles.Count()).IsEqualTo(1);
+      Check.That(configuration.TestResultsFiles.First().FullName).IsEqualTo(@"c:\results1.xml");
     }
 
     [Test]
@@ -203,8 +208,8 @@ namespace PicklesDoc.Pickles.Test
 
       Check.That(shouldContinue).IsTrue();
       Check.That(configuration.HasTestResults).IsTrue();
-      Assert.AreEqual(1, configuration.TestResultsFiles.Count());
-      Assert.AreEqual(@"c:\results1.xml", configuration.TestResultsFiles.First().FullName);
+      Check.That(configuration.TestResultsFiles.Count()).IsEqualTo(1);
+      Check.That(configuration.TestResultsFiles.First().FullName).IsEqualTo(@"c:\results1.xml");
     }
 
     [Test]
@@ -219,7 +224,7 @@ namespace PicklesDoc.Pickles.Test
 
       Check.That(shouldContinue).IsTrue();
       Check.That(configuration.HasTestResults).IsTrue();
-      Assert.AreEqual(@"c:\results.xml", configuration.TestResultsFile.FullName);
+      Check.That(configuration.TestResultsFile.FullName).IsEqualTo(@"c:\results.xml");
     }
 
     [Test]
@@ -232,7 +237,7 @@ namespace PicklesDoc.Pickles.Test
       bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
       Check.That(shouldContinue).IsTrue();
-      Assert.AreEqual(TestResultsFormat.MsTest, configuration.TestResultsFormat);
+      Check.That(configuration.TestResultsFormat).IsEqualTo(TestResultsFormat.MsTest);
     }
 
     [Test]
@@ -245,7 +250,7 @@ namespace PicklesDoc.Pickles.Test
       bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
       Check.That(shouldContinue).IsTrue();
-      Assert.AreEqual(TestResultsFormat.MsTest, configuration.TestResultsFormat);
+      Check.That(configuration.TestResultsFormat).IsEqualTo(TestResultsFormat.MsTest);
     }
 
     [Test]
@@ -258,7 +263,7 @@ namespace PicklesDoc.Pickles.Test
       bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
       Check.That(shouldContinue).IsTrue();
-      Assert.AreEqual(TestResultsFormat.NUnit, configuration.TestResultsFormat);
+      Check.That(configuration.TestResultsFormat).IsEqualTo(TestResultsFormat.NUnit);
     }
 
     [Test]
@@ -271,7 +276,7 @@ namespace PicklesDoc.Pickles.Test
       bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
       Check.That(shouldContinue).IsTrue();
-      Assert.AreEqual(TestResultsFormat.NUnit, configuration.TestResultsFormat);
+      Check.That(configuration.TestResultsFormat).IsEqualTo(TestResultsFormat.NUnit);
     }
 
     [Test]
@@ -284,7 +289,7 @@ namespace PicklesDoc.Pickles.Test
       bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
       Check.That(shouldContinue).IsTrue();
-      Assert.AreEqual(TestResultsFormat.xUnit, configuration.TestResultsFormat);
+      Check.That(configuration.TestResultsFormat).IsEqualTo(TestResultsFormat.xUnit);
     }
 
     [Test]
@@ -297,7 +302,7 @@ namespace PicklesDoc.Pickles.Test
       bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
       Check.That(shouldContinue).IsTrue();
-      Assert.AreEqual(TestResultsFormat.xUnit, configuration.TestResultsFormat);
+      Check.That(configuration.TestResultsFormat).IsEqualTo(TestResultsFormat.xUnit);
     }
 
     [Test]
@@ -310,8 +315,8 @@ namespace PicklesDoc.Pickles.Test
       bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
       Check.That(shouldContinue).IsTrue();
-      Assert.AreEqual(@"c:\features", configuration.FeatureFolder.FullName);
-      Assert.AreEqual(@"c:\features-output", configuration.OutputFolder.FullName);
+      Check.That(configuration.FeatureFolder.FullName).IsEqualTo(@"c:\features");
+      Check.That(configuration.OutputFolder.FullName).IsEqualTo(@"c:\features-output");
     }
 
     [Test]
@@ -324,8 +329,8 @@ namespace PicklesDoc.Pickles.Test
       var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
       bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
 
-      StringAssert.IsMatch(expectedVersionString.ComparisonNormalize(),
-                           writer.GetStringBuilder().ToString().ComparisonNormalize());
+      var actual = RetrieveString(writer);
+      Check.That(actual).Contains(ExpectedVersionString.ComparisonNormalize());
       Check.That(shouldContinue).IsFalse();
     }
 
@@ -339,8 +344,8 @@ namespace PicklesDoc.Pickles.Test
       var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
       bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
 
-      StringAssert.IsMatch(expectedVersionString.ComparisonNormalize(),
-                           writer.GetStringBuilder().ToString().ComparisonNormalize());
+      var actual = RetrieveString(writer);
+      Check.That(actual).Contains(ExpectedVersionString.ComparisonNormalize());
       Check.That(shouldContinue).IsFalse();
     }
 
@@ -354,8 +359,8 @@ namespace PicklesDoc.Pickles.Test
       var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
       commandLineArgumentParser.Parse(args, configuration, writer);
 
-      Assert.AreEqual(CurrentDirectory, configuration.FeatureFolder.FullName);
-      Assert.AreEqual(CurrentDirectory, configuration.OutputFolder.FullName);
+      Check.That(configuration.FeatureFolder.FullName).IsEqualTo(CurrentDirectory);
+      Check.That(configuration.OutputFolder.FullName).IsEqualTo(CurrentDirectory);
     }
 
     [Test]
@@ -368,7 +373,7 @@ namespace PicklesDoc.Pickles.Test
       bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
       Check.That(shouldContinue).IsTrue();
-      Assert.AreEqual(TestResultsFormat.CucumberJson, configuration.TestResultsFormat);
+      Check.That(configuration.TestResultsFormat).IsEqualTo(TestResultsFormat.CucumberJson);
     }
 
     [Test]
@@ -381,7 +386,7 @@ namespace PicklesDoc.Pickles.Test
       bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
       Check.That(shouldContinue).IsTrue();
-      Assert.AreEqual(TestResultsFormat.CucumberJson, configuration.TestResultsFormat);
+      Check.That(configuration.TestResultsFormat).IsEqualTo(TestResultsFormat.CucumberJson);
     }
 
     [Test]
@@ -394,7 +399,7 @@ namespace PicklesDoc.Pickles.Test
       bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
       Check.That(shouldContinue).IsTrue();
-      Assert.AreEqual(TestResultsFormat.SpecRun, configuration.TestResultsFormat);
+      Check.That(configuration.TestResultsFormat).IsEqualTo(TestResultsFormat.SpecRun);
     }
 
     [Test]
@@ -407,7 +412,7 @@ namespace PicklesDoc.Pickles.Test
       bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
       Check.That(shouldContinue).IsTrue();
-      Assert.AreEqual(TestResultsFormat.SpecRun, configuration.TestResultsFormat);
+      Check.That(configuration.TestResultsFormat).IsEqualTo(TestResultsFormat.SpecRun);
     }
 
     [Test]
@@ -421,7 +426,7 @@ namespace PicklesDoc.Pickles.Test
 
       Check.That(shouldContinue).IsTrue();
       Check.That(configuration.HasTestResults).IsFalse();
-      Assert.AreEqual(0, configuration.TestResultsFiles.Count());
+      Check.That(configuration.TestResultsFiles).IsEmpty();
     }
   }
 }
