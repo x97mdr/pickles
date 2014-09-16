@@ -5,7 +5,7 @@ using NUnit.Framework;
 using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks;
 
-using Should;
+using NFluent;
 
 namespace PicklesDoc.Pickles.Test.TestFrameworks
 {
@@ -27,7 +27,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
             TestResult result = results.GetScenarioResult(background);
 
-            result.ShouldEqual(TestResult.Inconclusive);
+            Check.That(result).IsEqualTo(TestResult.Inconclusive);
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
             TestResult result = results.GetFeatureResult(this.InconclusiveFeature());
 
-            result.ShouldEqual(TestResult.Inconclusive);
+            Check.That(result).IsEqualTo(TestResult.Inconclusive);
         }
 
         [Test]
@@ -47,7 +47,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
             TestResult result = results.GetFeatureResult(this.FailingFeature());
 
-            result.ShouldEqual(TestResult.Failed);
+            Check.That(result).IsEqualTo(TestResult.Failed);
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
             TestResult result = results.GetFeatureResult(this.PassingFeature());
 
-            result.ShouldEqual(TestResult.Passed);
+            Check.That(result).IsEqualTo(TestResult.Passed);
         }
 
         [Test]
@@ -68,7 +68,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
             
             TestResult result = results.GetScenarioOutlineResult(scenarioOutline);
 
-            result.ShouldEqual(TestResult.Passed);
+            Check.That(result).IsEqualTo(TestResult.Passed);
         }
 
         [Test]
@@ -79,7 +79,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
             TestResult result = results.GetScenarioResult(passedScenario);
 
-            result.ShouldEqual(TestResult.Passed);
+            Check.That(result).IsEqualTo(TestResult.Passed);
         }
 
         [Test]
@@ -89,7 +89,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
             var scenario = new Scenario { Name = "Fail to add two numbers", Feature = this.AdditionFeature() };
             TestResult result = results.GetScenarioResult(scenario);
 
-            result.ShouldEqual(TestResult.Failed);
+            Check.That(result).IsEqualTo(TestResult.Failed);
         }
 
         [Test]
@@ -100,7 +100,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
             
             var result = results.GetScenarioResult(ignoredScenario);
 
-            result.ShouldEqual(TestResult.Inconclusive);
+            Check.That(result).IsEqualTo(TestResult.Inconclusive);
         }
 
         [Test]
@@ -116,7 +116,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
             var result = results.GetScenarioResult(inconclusiveScenario);
 
-            result.ShouldEqual(TestResult.Inconclusive);
+            Check.That(result).IsEqualTo(TestResult.Inconclusive);
         }
 
         private Feature AdditionFeature()
