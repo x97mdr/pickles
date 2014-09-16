@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml.Linq;
+using NFluent;
 using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
@@ -28,7 +29,7 @@ namespace PicklesDoc.Pickles.Test
 
             string expected = XDocument.Parse(xhtmlText).ToString(SaveOptions.DisableFormatting);
 
-            StringAssert.AreEqualIgnoringCase(expected, actual);
+            Check.That(actual).IsEqualIgnoringCase(expected);
         }
     }
 }
