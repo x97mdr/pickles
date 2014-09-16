@@ -29,7 +29,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
             XElement featureElement = htmlFeatureFormatter.Format(scenario, 1);
             XElement header = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
 
-            Assert.NotNull(header);
+            Check.That(header).IsNotNull();
             Check.That(header).IsNamed("div");
             Check.That(header).IsInNamespace("http://www.w3.org/1999/xhtml");
             Check.That(header).HasAttribute("class", "scenario-heading");
@@ -41,9 +41,8 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 
             var tagsParagraph = header.Elements().ElementAt(1);
 
-            Assert.AreEqual(
-              @"<p class=""tags"" xmlns=""http://www.w3.org/1999/xhtml"">Tags: <span>tag1</span>, <span>tag2</span></p>",
-              tagsParagraph.ToString());
+            Check.That(tagsParagraph.ToString()).IsEqualTo(
+              @"<p class=""tags"" xmlns=""http://www.w3.org/1999/xhtml"">Tags: <span>tag1</span>, <span>tag2</span></p>");
         }
 
         [Test]
@@ -62,11 +61,11 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
           XElement featureElement = htmlFeatureFormatter.Format(scenario, 1);
           XElement header = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
 
-          Assert.NotNull(header);
+          Check.That(header).IsNotNull();
           Check.That(header).IsNamed("div");
           Check.That(header).IsInNamespace("http://www.w3.org/1999/xhtml");
           Check.That(header).HasAttribute("class", "scenario-heading");
-          Assert.AreEqual(2, header.Elements().Count());
+          Check.That(header.Elements().Count()).IsEqualTo(2);
 
           Check.That(header.Elements().ElementAt(0)).IsNamed("h2");
           Check.That(header.Elements().ElementAt(1)).IsNamed("div");
@@ -97,7 +96,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 
           var header = featureElement.Descendants().First(n => n.Attributes().Any(a => a.Name == "class" && a.Value == "scenario-heading"));
 
-          Assert.AreEqual(3, header.Elements().Count());
+          Check.That(header.Elements().Count()).IsEqualTo(3);
 
           Check.That(header.Elements().ElementAt(0)).IsNamed("h2");
           Check.That(header.Elements().ElementAt(1)).IsNamed("p");
@@ -105,9 +104,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 
           var tagsParagraph = header.Elements().ElementAt(1);
 
-          Assert.AreEqual(
-            @"<p class=""tags"" xmlns=""http://www.w3.org/1999/xhtml"">Tags: <span>featureTag1</span>, <span>featureTag2</span>, <span>scenarioTag1</span>, <span>scenarioTag2</span></p>",
-            tagsParagraph.ToString());
+          Check.That(tagsParagraph.ToString()).IsEqualTo(@"<p class=""tags"" xmlns=""http://www.w3.org/1999/xhtml"">Tags: <span>featureTag1</span>, <span>featureTag2</span>, <span>scenarioTag1</span>, <span>scenarioTag2</span></p>");
         }
 
         [Test]
@@ -135,7 +132,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 
           var header = featureElement.Descendants().First(n => n.Attributes().Any(a => a.Name == "class" && a.Value == "scenario-heading"));
 
-          Assert.AreEqual(3, header.Elements().Count());
+          Check.That(header.Elements().Count()).IsEqualTo(3);
 
           Check.That(header.Elements().ElementAt(0)).IsNamed("h2");
           Check.That(header.Elements().ElementAt(1)).IsNamed("p");
@@ -143,9 +140,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 
           var tagsParagraph = header.Elements().ElementAt(1);
 
-          Assert.AreEqual(
-            @"<p class=""tags"" xmlns=""http://www.w3.org/1999/xhtml"">Tags: <span>a</span>, <span>b</span>, <span>c</span>, <span>d</span></p>",
-            tagsParagraph.ToString());
+          Check.That(tagsParagraph.ToString()).IsEqualTo(@"<p class=""tags"" xmlns=""http://www.w3.org/1999/xhtml"">Tags: <span>a</span>, <span>b</span>, <span>c</span>, <span>d</span></p>");
         }
     }
 }
