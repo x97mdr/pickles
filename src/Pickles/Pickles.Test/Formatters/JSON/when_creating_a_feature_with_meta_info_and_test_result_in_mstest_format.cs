@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using NFluent;
 using NGenerics.DataStructures.Trees;
 using NUnit.Framework;
 using Newtonsoft.Json.Linq;
@@ -76,8 +76,8 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
 
             var configuration = jsonObj["Configuration"];
 
-            Assert.That(configuration["SutName"].ToString(), Is.EqualTo("SUT Name"));
-            Assert.That(configuration["SutVersion"].ToString(), Is.EqualTo("SUT Version"));
+            Check.That(configuration["SutName"].ToString()).IsEqualTo("SUT Name");
+            Check.That(configuration["SutVersion"].ToString()).IsEqualTo("SUT Version");
         }
 
         [Test]
@@ -94,7 +94,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
                                                              "Two more scenarios transfering funds between accounts")
                                                      select feat;
 
-            Assert.IsTrue(featureJsonElement.ElementAt(0)["Result"]["WasSuccessful"].Value<bool>());
+            Check.That(featureJsonElement.ElementAt(0)["Result"]["WasSuccessful"].Value<bool>()).IsTrue();
         }
 
         [Test]
@@ -111,7 +111,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
                                                              "Transfer funds between accounts")
                                                      select feat;
 
-            Assert.IsTrue(featureJsonElement.ElementAt(0)["Result"]["WasSuccessful"].Value<bool>());
+            Check.That(featureJsonElement.ElementAt(0)["Result"]["WasSuccessful"].Value<bool>()).IsTrue();
         }
 
         [Test]
@@ -128,7 +128,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
                                                              "Transfer funds between accounts onc scenario and FAILING")
                                                      select feat;
 
-            Assert.IsFalse(featureJsonElement.ElementAt(0)["Result"]["WasSuccessful"].Value<bool>());
+            Check.That(featureJsonElement.ElementAt(0)["Result"]["WasSuccessful"].Value<bool>()).IsFalse();
         }
 
 
@@ -146,7 +146,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
                                                              "Two more scenarios transfering funds between accounts - one failng and one succeding")
                                                      select feat;
 
-            Assert.IsFalse(featureJsonElement.ElementAt(0)["Result"]["WasSuccessful"].Value<bool>());
+            Check.That(featureJsonElement.ElementAt(0)["Result"]["WasSuccessful"].Value<bool>()).IsFalse();
         }
 
 
@@ -157,7 +157,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
 
             var jsonObj = JObject.Parse(content);
 
-            Assert.IsNotEmpty(jsonObj["Features"][0]["Result"]["WasSuccessful"].ToString());
+            Check.That(jsonObj["Features"][0]["Result"]["WasSuccessful"].ToString()).IsNotEmpty();
         }
 
 
@@ -168,7 +168,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
 
             var jsonObj = JObject.Parse(content);
 
-            Assert.IsNotEmpty(jsonObj["Features"][0]["Result"]["WasSuccessful"].ToString());
+            Check.That(jsonObj["Features"][0]["Result"]["WasSuccessful"].ToString()).IsNotEmpty();
         }
     }
 }

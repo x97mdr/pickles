@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
+using NFluent;
 using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
@@ -52,7 +53,7 @@ namespace PicklesDoc.Pickles.Test.Formatters
 
             XAttribute idAttribute = li.Attribute("id");
 
-            Assert.IsNull(idAttribute);
+            Check.That(idAttribute).IsNull();
         }
     }
 }

@@ -2,7 +2,7 @@
 using Autofac;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
-using Should;
+using NFluent;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 {
@@ -20,7 +20,7 @@ gherkin-style spec";
             var multilineStringFormatter = Container.Resolve<HtmlMultilineStringFormatter>();
             var output = multilineStringFormatter.Format(multilineString);
 
-            output.ShouldNotBeNull();
+            Check.That(output).IsNotNull();
         }
 
         [Test]
@@ -29,7 +29,7 @@ gherkin-style spec";
             var multilineStringFormatter = Container.Resolve<HtmlMultilineStringFormatter>();
             var output = multilineStringFormatter.Format(null);
 
-            output.ShouldBeNull();
+            Check.That(output).IsNull();
         }
     }
 }

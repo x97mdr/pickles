@@ -25,7 +25,7 @@ using NUnit.Framework;
 using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks;
 
-using Should;
+using NFluent;
 
 namespace PicklesDoc.Pickles.Test.TestFrameworks
 {
@@ -46,8 +46,8 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
             var feature = new Feature { Name = "FeatureWithMultipleResultsFiles" };
             TestResult result = results.GetFeatureResult(feature);
 
-            result.WasExecuted.ShouldBeTrue();
-            result.WasSuccessful.ShouldBeTrue();
+            Check.That(result.WasExecuted).IsTrue();
+            Check.That(result.WasSuccessful).IsTrue();
         }
 
         [Test]
@@ -60,16 +60,16 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
             
             TestResult result = results.GetScenarioOutlineResult(scenarioOutline);
 
-            result.WasExecuted.ShouldBeTrue();
-            result.WasSuccessful.ShouldBeTrue();
+            Check.That(result.WasExecuted).IsTrue();
+            Check.That(result.WasSuccessful).IsTrue();
 
             TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "false" });
-            exampleResult1.WasExecuted.ShouldBeTrue();
-            exampleResult1.WasSuccessful.ShouldBeTrue();
+            Check.That(exampleResult1.WasExecuted).IsTrue();
+            Check.That(exampleResult1.WasSuccessful).IsTrue();
 
             TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "true" });
-            exampleResult2.WasExecuted.ShouldBeTrue();
-            exampleResult2.WasSuccessful.ShouldBeTrue();
+            Check.That(exampleResult2.WasExecuted).IsTrue();
+            Check.That(exampleResult2.WasSuccessful).IsTrue();
         }
         
     }

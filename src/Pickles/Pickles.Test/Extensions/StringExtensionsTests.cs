@@ -1,4 +1,5 @@
 ﻿using System;
+using NFluent;
 using NUnit.Framework;
 using PicklesDoc.Pickles.Extensions;
 
@@ -14,7 +15,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
 
             bool result = s.IsNullOrWhiteSpace();
 
-            Assert.IsFalse(result);
+            Check.That(result).IsFalse();
         }
 
         [Test]
@@ -24,7 +25,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
 
             bool result = s.IsNullOrWhiteSpace();
 
-            Assert.IsTrue(result);
+            Check.That(result).IsTrue();
         }
 
         [Test]
@@ -32,11 +33,9 @@ namespace PicklesDoc.Pickles.Test.Extensions
         {
             string s = null;
 
-            // ReSharper disable ExpressionIsAlwaysNull
             bool result = s.IsNullOrWhiteSpace();
-            // ReSharper restore ExpressionIsAlwaysNull
 
-            Assert.IsTrue(result);
+            Check.That(result).IsTrue();
         }
 
         [Test]
@@ -46,7 +45,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
 
             bool result = s.IsNullOrWhiteSpace();
 
-            Assert.IsTrue(result);
+            Check.That(result).IsTrue();
         }
     }
 }

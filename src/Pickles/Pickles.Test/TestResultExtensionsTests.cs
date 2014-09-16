@@ -16,7 +16,7 @@
 using System;
 using NUnit.Framework;
 using PicklesDoc.Pickles.TestFrameworks;
-using Should;
+using NFluent;
 
 namespace PicklesDoc.Pickles.Test
 {
@@ -37,7 +37,7 @@ namespace PicklesDoc.Pickles.Test
 
             TestResult actual = testResults.Merge();
 
-            actual.ShouldEqual(TestResult.Inconclusive);
+            Check.That(actual).Equals(TestResult.Inconclusive);
         }
 
         [Test]
@@ -50,7 +50,7 @@ namespace PicklesDoc.Pickles.Test
 
             TestResult actual = testResults.Merge();
 
-            actual.ShouldEqual(TestResult.Passed);
+            Check.That(actual).Equals(TestResult.Passed);
         }
 
         [Test]
@@ -60,7 +60,7 @@ namespace PicklesDoc.Pickles.Test
 
             TestResult actual = testResults.Merge();
 
-            actual.ShouldEqual(TestResult.Passed);
+            Check.That(actual).Equals(TestResult.Passed);
         }
 
         [Test]
@@ -70,7 +70,7 @@ namespace PicklesDoc.Pickles.Test
 
             TestResult actual = testResults.Merge();
 
-            actual.ShouldEqual(TestResult.Inconclusive);
+            Check.That(actual).Equals(TestResult.Inconclusive);
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace PicklesDoc.Pickles.Test
 
             TestResult actual = testResults.Merge();
 
-            actual.ShouldEqual(TestResult.Failed);
+            Check.That(actual).Equals(TestResult.Failed);
         }
     }
 }

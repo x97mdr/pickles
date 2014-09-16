@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using ClosedXML.Excel;
+using NFluent;
 using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.Excel;
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
-using Should;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
 {
@@ -28,19 +27,19 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
                 int row = 6;
                 excelTableFormatter.Format(worksheet, table, ref row);
 
-                worksheet.Cell("D6").Value.ShouldEqual("Var1");
-                worksheet.Cell("E6").Value.ShouldEqual("Var2");
-                worksheet.Cell("F6").Value.ShouldEqual("Var3");
-                worksheet.Cell("G6").Value.ShouldEqual("Var4");
-                worksheet.Cell("D7").Value.ShouldEqual(1.0);
-                worksheet.Cell("E7").Value.ShouldEqual(2.0);
-                worksheet.Cell("F7").Value.ShouldEqual(3.0);
-                worksheet.Cell("G7").Value.ShouldEqual(4.0);
-                worksheet.Cell("D8").Value.ShouldEqual(5.0);
-                worksheet.Cell("E8").Value.ShouldEqual(6.0);
-                worksheet.Cell("F8").Value.ShouldEqual(7.0);
-                worksheet.Cell("G8").Value.ShouldEqual(8.0);
-                row.ShouldEqual(9);
+                Check.That(worksheet.Cell("D6").Value).IsEqualTo("Var1");
+                Check.That(worksheet.Cell("E6").Value).IsEqualTo("Var2");
+                Check.That(worksheet.Cell("F6").Value).IsEqualTo("Var3");
+                Check.That(worksheet.Cell("G6").Value).IsEqualTo("Var4");
+                Check.That(worksheet.Cell("D7").Value).IsEqualTo(1.0);
+                Check.That(worksheet.Cell("E7").Value).IsEqualTo(2.0);
+                Check.That(worksheet.Cell("F7").Value).IsEqualTo(3.0);
+                Check.That(worksheet.Cell("G7").Value).IsEqualTo(4.0);
+                Check.That(worksheet.Cell("D8").Value).IsEqualTo(5.0);
+                Check.That(worksheet.Cell("E8").Value).IsEqualTo(6.0);
+                Check.That(worksheet.Cell("F8").Value).IsEqualTo(7.0);
+                Check.That(worksheet.Cell("G8").Value).IsEqualTo(8.0);
+                Check.That(row).IsEqualTo(9);
             }
         }
     }

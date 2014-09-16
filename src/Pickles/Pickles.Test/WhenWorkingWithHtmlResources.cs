@@ -1,14 +1,8 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
-
-using Autofac;
-
 using NUnit.Framework;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
-using PicklesDoc.Pickles.ObjectModel;
-
-using Should;
+using NFluent;
 
 namespace PicklesDoc.Pickles.Test
 {
@@ -22,10 +16,10 @@ namespace PicklesDoc.Pickles.Test
 
             HtmlResource[] images = htmlResources.Images.ToArray();
 
-            images.Length.ShouldEqual(3);
-            images.Any(image => image.File == "success.png").ShouldBeTrue();
-            images.Any(image => image.File == "failure.png").ShouldBeTrue();
-            images.Any(image => image.File == "inconclusive.png").ShouldBeTrue();
+            Check.That(images.Length).IsEqualTo(3);
+            Check.That(images.Select(image => image.File == "success.png")).Not.IsEmpty();
+            Check.That(images.Select(image => image.File == "failure.png")).Not.IsEmpty();
+            Check.That(images.Select(image => image.File == "inconclusive.png")).Not.IsEmpty();
         }
 
         private HtmlResourceSet CreateHtmlResourceSet()
@@ -42,16 +36,16 @@ namespace PicklesDoc.Pickles.Test
           
             HtmlResource[] resources = htmlResources.All.ToArray();
 
-            resources.Length.ShouldEqual(9);
-            resources.Any(resource => resource.File == "success.png").ShouldBeTrue();
-            resources.Any(resource => resource.File == "failure.png").ShouldBeTrue();
-            resources.Any(resource => resource.File == "inconclusive.png").ShouldBeTrue();
-            resources.Any(resource => resource.File == "global.css").ShouldBeTrue();
-            resources.Any(resource => resource.File == "master.css").ShouldBeTrue();
-            resources.Any(resource => resource.File == "reset.css").ShouldBeTrue();
-            resources.Any(resource => resource.File == "structure.css").ShouldBeTrue();
-            resources.Any(resource => resource.File == "print.css").ShouldBeTrue();
-            resources.Any(resource => resource.File == "font-awesome.css").ShouldBeTrue();
+            Check.That(resources.Length).IsEqualTo(9);
+            Check.That(resources.Select(resource => resource.File == "success.png")).Not.IsEmpty();
+            Check.That(resources.Select(resource => resource.File == "failure.png")).Not.IsEmpty();
+            Check.That(resources.Select(resource => resource.File == "inconclusive.png")).Not.IsEmpty();
+            Check.That(resources.Select(resource => resource.File == "global.css")).Not.IsEmpty();
+            Check.That(resources.Select(resource => resource.File == "master.css")).Not.IsEmpty();
+            Check.That(resources.Select(resource => resource.File == "reset.css")).Not.IsEmpty();
+            Check.That(resources.Select(resource => resource.File == "structure.css")).Not.IsEmpty();
+            Check.That(resources.Select(resource => resource.File == "print.css")).Not.IsEmpty();
+            Check.That(resources.Select(resource => resource.File == "font-awesome.css")).Not.IsEmpty();
         }
 
         [Test]
@@ -61,9 +55,9 @@ namespace PicklesDoc.Pickles.Test
 
             HtmlResource[] scripts = htmlResources.Scripts.ToArray();
 
-            scripts.Length.ShouldEqual(2);
-            scripts.Any(script => script.File == "jquery.js").ShouldBeTrue();
-            scripts.Any(script => script.File == "scripts.js").ShouldBeTrue();
+            Check.That(scripts.Length).IsEqualTo(2);
+            Check.That(scripts.Select(script => script.File == "jquery.js")).Not.IsEmpty();
+            Check.That(scripts.Select(script => script.File == "scripts.js")).Not.IsEmpty();
         }
 
         [Test]
@@ -73,13 +67,13 @@ namespace PicklesDoc.Pickles.Test
 
             HtmlResource[] stylesheets = htmlResources.Stylesheets.ToArray();
 
-            stylesheets.Length.ShouldEqual(6);
-            stylesheets.Any(stylesheet => stylesheet.File == "global.css").ShouldBeTrue();
-            stylesheets.Any(stylesheet => stylesheet.File == "master.css").ShouldBeTrue();
-            stylesheets.Any(stylesheet => stylesheet.File == "reset.css").ShouldBeTrue();
-            stylesheets.Any(stylesheet => stylesheet.File == "structure.css").ShouldBeTrue();
-            stylesheets.Any(stylesheet => stylesheet.File == "print.css").ShouldBeTrue();
-            stylesheets.Any(resource => resource.File == "font-awesome.css").ShouldBeTrue();
+            Check.That(stylesheets.Length).IsEqualTo(6);
+            Check.That(stylesheets.Select(stylesheet => stylesheet.File == "global.css")).Not.IsEmpty();
+            Check.That(stylesheets.Select(stylesheet => stylesheet.File == "master.css")).Not.IsEmpty();
+            Check.That(stylesheets.Select(stylesheet => stylesheet.File == "reset.css")).Not.IsEmpty();
+            Check.That(stylesheets.Select(stylesheet => stylesheet.File == "structure.css")).Not.IsEmpty();
+            Check.That(stylesheets.Select(stylesheet => stylesheet.File == "print.css")).Not.IsEmpty();
+            Check.That(stylesheets.Select(resource => resource.File == "font-awesome.css")).Not.IsEmpty();
         }
 
         [Test]
@@ -92,13 +86,13 @@ namespace PicklesDoc.Pickles.Test
 
             var filesOnFileSystem = FileSystem.AllFiles.AsEnumerable<string>().ToArray();
 
-            filesOnFileSystem.ShouldContain(@"c:\output\css\master.css");
-            filesOnFileSystem.ShouldContain(@"c:\output\css\reset.css");
-            filesOnFileSystem.ShouldContain(@"c:\output\css\global.css");
-            filesOnFileSystem.ShouldContain(@"c:\output\css\global.css");
-            filesOnFileSystem.ShouldContain(@"c:\output\css\structure.css");
-            filesOnFileSystem.ShouldContain(@"c:\output\css\print.css");
-            filesOnFileSystem.ShouldContain(@"c:\output\css\font-awesome.css");
+            Check.That(filesOnFileSystem).Contains(@"c:\output\css\master.css");
+            Check.That(filesOnFileSystem).Contains(@"c:\output\css\reset.css");
+            Check.That(filesOnFileSystem).Contains(@"c:\output\css\global.css");
+            Check.That(filesOnFileSystem).Contains(@"c:\output\css\global.css");
+            Check.That(filesOnFileSystem).Contains(@"c:\output\css\structure.css");
+            Check.That(filesOnFileSystem).Contains(@"c:\output\css\print.css");
+            Check.That(filesOnFileSystem).Contains(@"c:\output\css\font-awesome.css");
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using NFluent;
 using NGenerics.DataStructures.Trees;
 using NUnit.Framework;
 using Autofac;
@@ -35,16 +36,16 @@ namespace PicklesDoc.Pickles.Test.Formatters
 
             XElement ul = this._toc.FindFirstDescendantWithName("ul");
             XElement ul2 = ul.FindFirstDescendantWithName("ul");
-            Assert.AreEqual(true, ul2.HasElements);
+            Check.That(ul2.HasElements).IsTrue();
 
             // Assert that a feature file is appropriately set deeper down in the TOC
             XElement li2 = ul2.FindFirstDescendantWithName("li");
-            Assert.NotNull(li2);
+            Check.That(li2).IsNotNull();
 
             XElement anchorInLI2 = li2.Elements().First();
-            Assert.AreEqual(true, anchorInLI2.HasAttributes);
-            Assert.AreEqual("SubLevelOne/LevelOneSublevelOne.html", anchorInLI2.Attribute("href").Value);
-            Assert.AreEqual("Addition", anchorInLI2.Value);
+            Check.That(anchorInLI2.HasAttributes).IsTrue();
+            Check.That(anchorInLI2.Attribute("href").Value).IsEqualTo("SubLevelOne/LevelOneSublevelOne.html");
+            Check.That(anchorInLI2.Value).IsEqualTo("Addition");
         }
 
         [Test]
@@ -56,7 +57,7 @@ namespace PicklesDoc.Pickles.Test.Formatters
                   this._toc.Descendants().SingleOrDefault(
                       d => d.Attributes().Any(a => a.Name.LocalName == "id" && a.Value == "root"));
 
-            Assert.IsNotNull(home);
+            Check.That(home).IsNotNull();
         }
 
         [Test]
@@ -68,7 +69,7 @@ namespace PicklesDoc.Pickles.Test.Formatters
                   this._toc.Descendants().Where(e => e.Name.LocalName == "span").SingleOrDefault(
                       e => e.Attributes().Any(a => a.Name.LocalName == "class" && a.Value == "current"));
 
-            Assert.IsNotNull(span);
+            Check.That(span).IsNotNull();
         }
 
         [Test]
@@ -83,9 +84,9 @@ namespace PicklesDoc.Pickles.Test.Formatters
                       d.Attributes().Any(a => a.Name.LocalName == "class" && a.Value == "directory"));
             XElement link = directory.Descendants().First();
 
-            Assert.AreEqual("a", link.Name.LocalName);
+            Check.That(link.Name.LocalName).IsEqualTo("a");
             XAttribute href = link.Attributes().Single(a => a.Name.LocalName == "href");
-            Assert.AreEqual("SubLevelOne/index.html", href.Value);
+            Check.That(href.Value).IsEqualTo("SubLevelOne/index.html");
         }
 
         [Test]
@@ -98,7 +99,7 @@ namespace PicklesDoc.Pickles.Test.Formatters
             int numberOfChildren = childrenOfUl.Count();
             int numberOfLiChildren = childrenOfUl.Count(e => e.Name.LocalName == "li");
 
-            Assert.AreEqual(numberOfChildren, numberOfLiChildren);
+            Check.That(numberOfLiChildren).IsEqualTo(numberOfChildren);
         }
 
         [Test]
@@ -109,17 +110,16 @@ namespace PicklesDoc.Pickles.Test.Formatters
             XElement ul = this._toc.FindFirstDescendantWithName("ul");
 
             // Assert that the first feature is appropriately set in the TOC
-            Assert.NotNull(ul);
-            Assert.AreEqual(true, ul.HasElements);
+            Check.That(ul).IsNotNull();
+            Check.That(ul.HasElements).IsTrue();
 
-            XElement li1 =
-                ul.Descendants().Where(d => d.Name.LocalName == "li").FirstOrDefault();
-            Assert.NotNull(li1);
+            XElement li1 = ul.Descendants().FirstOrDefault(d => d.Name.LocalName == "li");
+            Check.That(li1).IsNotNull();
 
             XElement anchorInLI1 = li1.Elements().First();
-            Assert.AreEqual(true, anchorInLI1.HasAttributes);
-            Assert.AreEqual("current", anchorInLI1.Attribute("class").Value);
-            Assert.AreEqual("Home", anchorInLI1.Value);
+            Check.That(anchorInLI1.HasAttributes).IsTrue();
+            Check.That(anchorInLI1.Attribute("class").Value).IsEqualTo("current");
+            Check.That(anchorInLI1.Value).IsEqualTo("Home");
         }
 
         [Test]
@@ -127,8 +127,8 @@ namespace PicklesDoc.Pickles.Test.Formatters
         {
             Setup();
 
-            Assert.NotNull(this._toc);
-            Assert.AreEqual("toc", this._toc.Attributes("id").First().Value);
+            Check.That(this._toc).IsNotNull();
+            Check.That(this._toc.Attributes("id").First().Value).IsEqualTo("toc");
         }
     }
 }

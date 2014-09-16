@@ -1,11 +1,10 @@
 ﻿using System;
 using System.IO.Abstractions;
+using NFluent;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.JSON;
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
-using Should.Fluent;
 
 namespace PicklesDoc.Pickles.Test.Formatters.JSON
 {
@@ -34,8 +33,8 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         {
             this.Setup();
 
-            this._featureWithMeta.Feature.Should().Not.Be.Null();
-            this._featureWithMeta.Feature.Name.Should().Equal("Test");
+            Check.That(this._featureWithMeta.Feature).IsNotNull();
+            Check.That(this._featureWithMeta.Feature.Name).IsEqualTo("Test");
         }
 
         [Test]
@@ -43,7 +42,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         {
             this.Setup();
 
-            this._featureWithMeta.RelativeFolder.Should().Equal(RELATIVE_PATH);
+            Check.That(this._featureWithMeta.RelativeFolder).IsEqualTo(RELATIVE_PATH);
         }
     }
 }
