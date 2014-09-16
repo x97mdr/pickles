@@ -2306,6 +2306,6 @@ jsonPWrapper ({
     "Configuration": {
         "SutName": "SUT Name",
         "SutVersion": "SUT Version",
-        "PickledOn": "6 June 2014 12:00:00"
+        "GeneratedOn": "6 June 2014 12:00:00"
     }
 });
