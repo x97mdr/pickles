@@ -5,7 +5,7 @@ using NUnit.Framework;
 using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks;
 
-using Should;
+using NFluent;
 
 namespace PicklesDoc.Pickles.Test.TestFrameworks
 {
@@ -27,8 +27,8 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
             TestResult result = results.GetScenarioResult(background);
 
-            result.WasExecuted.ShouldBeFalse();
-            result.WasSuccessful.ShouldBeFalse();
+            Check.That(result.WasExecuted).IsFalse();
+            Check.That(result.WasSuccessful).IsFalse();
         }
 
         [Test]
@@ -70,8 +70,8 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
             
             TestResult result = results.GetScenarioOutlineResult(scenarioOutline);
 
-            result.WasExecuted.ShouldBeTrue();
-            result.WasSuccessful.ShouldBeTrue();
+            Check.That(result.WasExecuted).IsTrue();
+            Check.That(result.WasSuccessful).IsTrue();
         }
 
         [Test]
@@ -82,8 +82,8 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
             TestResult result = results.GetScenarioResult(passedScenario);
 
-            result.WasExecuted.ShouldBeTrue();
-            result.WasSuccessful.ShouldBeTrue();
+            Check.That(result.WasExecuted).IsTrue();
+            Check.That(result.WasSuccessful).IsTrue();
         }
 
         [Test]
@@ -93,8 +93,8 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
             var scenario = new Scenario { Name = "Fail to add two numbers", Feature = this.AdditionFeature() };
             TestResult result = results.GetScenarioResult(scenario);
 
-            result.WasExecuted.ShouldBeTrue();
-            result.WasSuccessful.ShouldBeFalse();
+            Check.That(result.WasExecuted).IsTrue();
+            Check.That(result.WasSuccessful).IsFalse();
         }
 
         [Test]
@@ -105,8 +105,8 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
             
             var result = results.GetScenarioResult(ignoredScenario);
 
-            result.WasExecuted.ShouldBeFalse();
-            result.WasSuccessful.ShouldBeFalse();
+            Check.That(result.WasExecuted).IsFalse();
+            Check.That(result.WasSuccessful).IsFalse();
         }
 
         [Test]
@@ -122,8 +122,8 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
             var result = results.GetScenarioResult(inconclusiveScenario);
 
-            result.WasExecuted.ShouldBeFalse();
-            result.WasSuccessful.ShouldBeFalse();
+            Check.That(result.WasExecuted).IsFalse();
+            Check.That(result.WasSuccessful).IsFalse();
         }
 
         private Feature AdditionFeature()
