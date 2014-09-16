@@ -55,8 +55,8 @@ Egenskap: Test egenskap
             Check.That(givenStep.TableArgument).IsNull();
 
             Step whenStep = scenario.Steps[1];
-            Assert.AreEqual(Keyword.When, whenStep.Keyword);
-            Assert.AreEqual("den körs", whenStep.Name);
+            Check.That(whenStep.Keyword).IsEqualTo(Keyword.When);
+            Check.That(whenStep.Name).IsEqualTo("den körs");
             Check.That(whenStep.DocStringArgument).IsNull();
             Check.That(whenStep.TableArgument).IsNull();
 
