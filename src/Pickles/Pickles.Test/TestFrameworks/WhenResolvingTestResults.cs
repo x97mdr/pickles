@@ -128,8 +128,8 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
         {
             var item = Container.Resolve<ITestResults>();
 
-            Assert.NotNull(item);
-            Assert.IsInstanceOf<NullTestResults>(item);
+            Check.That(item).IsNotNull();
+            Check.That(item).IsInstanceOf<NullTestResults>();
         }
 
 
@@ -144,8 +144,8 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
             var item = Container.Resolve<ITestResults>();
 
-            Assert.NotNull(item);
-            Assert.IsInstanceOf<MsTestResults>(item);
+            Check.That(item).IsNotNull();
+            Check.That(item).IsInstanceOf<MsTestResults>();
         }
 
         [Test]
@@ -159,8 +159,8 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
             var item = Container.Resolve<ITestResults>();
 
-            Assert.NotNull(item);
-            Assert.IsInstanceOf<NUnitResults>(item);
+            Check.That(item).IsNotNull();
+            Check.That(item).IsInstanceOf<NUnitResults>();
         }
 
         [Test]
@@ -174,8 +174,8 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
             var item = Container.Resolve<ITestResults>();
 
-            Assert.NotNull(item);
-            Assert.IsInstanceOf<XUnitResults>(item);
+            Check.That(item).IsNotNull();
+            Check.That(item).IsInstanceOf<XUnitResults>();
         }
 
         [Test]
@@ -189,8 +189,8 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
             var item = Container.Resolve<ITestResults>();
 
-            Assert.NotNull(item);
-            Assert.IsInstanceOf<CucumberJsonResults>(item);
+            Check.That(item).IsNotNull();
+            Check.That(item).IsInstanceOf<CucumberJsonResults>();
         }
 
         [Test]
@@ -204,8 +204,8 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
             var item = Container.Resolve<ITestResults>();
 
-            Assert.NotNull(item);
-            Assert.IsInstanceOf<SpecRunResults>(item);
+            Check.That(item).IsNotNull();
+            Check.That(item).IsInstanceOf<SpecRunResults>();
         }
     }
 }
