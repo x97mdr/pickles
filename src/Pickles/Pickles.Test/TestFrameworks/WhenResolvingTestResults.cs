@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 using PicklesDoc.Pickles.TestFrameworks;
 
-using Should;
+using NFluent;
 
 namespace PicklesDoc.Pickles.Test.TestFrameworks
 {
@@ -21,11 +21,11 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
             var item1 = Container.Resolve<ITestResults>();
             var item2 = Container.Resolve<ITestResults>();
 
-            item1.ShouldNotBeNull();
-            item1.ShouldBeType<NullTestResults>();
-            item2.ShouldNotBeNull();
-            item2.ShouldBeType<NullTestResults>();
-            item1.ShouldBeSameAs(item2);
+            Check.That(item1).IsNotNull();
+            Check.That(item1).IsInstanceOf<NullTestResults>();
+            Check.That(item2).IsNotNull();
+            Check.That(item2).IsInstanceOf<NullTestResults>();
+            Check.That(item1).IsSameReferenceThan(item2);
         }
 
         [Test]
@@ -40,11 +40,11 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
             var item1 = Container.Resolve<ITestResults>();
             var item2 = Container.Resolve<ITestResults>();
 
-            item1.ShouldNotBeNull();
-            item1.ShouldBeType<MsTestResults>();
-            item2.ShouldNotBeNull();
-            item2.ShouldBeType<MsTestResults>();
-            item1.ShouldBeSameAs(item2);
+            Check.That(item1).IsNotNull();
+            Check.That(item1).IsInstanceOf<MsTestResults>();
+            Check.That(item2).IsNotNull();
+            Check.That(item2).IsInstanceOf<MsTestResults>();
+            Check.That(item1).IsSameReferenceThan(item2);
         }
 
         [Test]
@@ -59,11 +59,11 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
             var item1 = Container.Resolve<ITestResults>();
             var item2 = Container.Resolve<ITestResults>();
 
-            item1.ShouldNotBeNull();
-            item1.ShouldBeType<NUnitResults>();
-            item2.ShouldNotBeNull();
-            item2.ShouldBeType<NUnitResults>();
-            item1.ShouldBeSameAs(item2);
+            Check.That(item1).IsNotNull();
+            Check.That(item1).IsInstanceOf<NUnitResults>();
+            Check.That(item2).IsNotNull();
+            Check.That(item2).IsInstanceOf<NUnitResults>();
+            Check.That(item1).IsSameReferenceThan(item2);
         }
 
         [Test]
@@ -78,11 +78,11 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
             var item1 = Container.Resolve<ITestResults>();
             var item2 = Container.Resolve<ITestResults>();
 
-            item1.ShouldNotBeNull();
-            item1.ShouldBeType<XUnitResults>();
-            item2.ShouldNotBeNull();
-            item2.ShouldBeType<XUnitResults>();
-            item1.ShouldBeSameAs(item2);
+            Check.That(item1).IsNotNull();
+            Check.That(item1).IsInstanceOf<XUnitResults>();
+            Check.That(item2).IsNotNull();
+            Check.That(item2).IsInstanceOf<XUnitResults>();
+            Check.That(item1).IsSameReferenceThan(item2);
         }
 
         [Test]
@@ -97,11 +97,11 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
             var item1 = Container.Resolve<ITestResults>();
             var item2 = Container.Resolve<ITestResults>();
 
-            item1.ShouldNotBeNull();
-            item1.ShouldBeType<CucumberJsonResults>();
-            item2.ShouldNotBeNull();
-            item2.ShouldBeType<CucumberJsonResults>();
-            item1.ShouldBeSameAs(item2);
+            Check.That(item1).IsNotNull();
+            Check.That(item1).IsInstanceOf<CucumberJsonResults>();
+            Check.That(item2).IsNotNull();
+            Check.That(item2).IsInstanceOf<CucumberJsonResults>();
+            Check.That(item1).IsSameReferenceThan(item2);
         }
 
         [Test]
@@ -116,11 +116,11 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
             var item1 = Container.Resolve<ITestResults>();
             var item2 = Container.Resolve<ITestResults>();
 
-            item1.ShouldNotBeNull();
-            item1.ShouldBeType<SpecRunResults>();
-            item2.ShouldNotBeNull();
-            item2.ShouldBeType<SpecRunResults>();
-            item1.ShouldBeSameAs(item2);
+            Check.That(item1).IsNotNull();
+            Check.That(item1).IsInstanceOf<SpecRunResults>();
+            Check.That(item2).IsNotNull();
+            Check.That(item2).IsInstanceOf<SpecRunResults>();
+            Check.That(item1).IsSameReferenceThan(item2);
         }
 
         [Test]
