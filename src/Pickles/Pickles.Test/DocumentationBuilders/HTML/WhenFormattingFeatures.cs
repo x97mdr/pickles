@@ -49,11 +49,11 @@ I also enjoy ordering things
       XElement featureElement = htmlFeatureFormatter.Format(feature);
       XElement description = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
 
-      Assert.NotNull(description);
+      Check.That(description).IsNotNull();
       Check.That(description).IsNamed("div");
       Check.That(description).IsInNamespace("http://www.w3.org/1999/xhtml");
       Check.That(description).HasAttribute("class", "description");
-      Assert.AreEqual(9, description.Elements().Count());
+      Check.That(description.Elements().Count()).IsEqualTo(9);
 
       Check.That(description.Elements().ElementAt(0)).IsNamed("p");
       Check.That(description.Elements().ElementAt(1)).IsNamed("h1");
@@ -89,15 +89,14 @@ I want to see the descriptions written in markdown rendered with tables
       XElement featureElement = htmlFeatureFormatter.Format(feature);
       XElement description = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
 
-      Assert.NotNull(description);
+      Check.That(description).IsNotNull();
       Check.That(description).IsNamed("div");
       Check.That(description).IsInNamespace("http://www.w3.org/1999/xhtml");
       Check.That(description).HasAttribute("class", "description");
 
       XElement table = description.Descendants().FirstOrDefault(el => el.Name.LocalName == "table");
 
-      Assert.IsNotNull(table);
-
+      Check.That(table).IsNotNull();
     }
 
     [Test]
@@ -123,15 +122,14 @@ I want to see the descriptions written in markdown rendered with tables
       XElement featureElement = htmlFeatureFormatter.Format(feature);
       XElement description = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
 
-      Assert.NotNull(description);
+      Check.That(description).IsNotNull();
       Check.That(description).IsNamed("div");
       Check.That(description).IsInNamespace("http://www.w3.org/1999/xhtml");
       Check.That(description).HasAttribute("class", "description");
 
       XElement table = description.Descendants().FirstOrDefault(el => el.Name.LocalName == "table");
 
-      Assert.IsNotNull(table);
-
+      Check.That(table).IsNotNull();
     }
   }
 }
