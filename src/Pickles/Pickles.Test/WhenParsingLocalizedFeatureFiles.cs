@@ -3,8 +3,7 @@ using System.Linq;
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
-using Should;
+using NFluent;
 
 using StringReader = System.IO.StringReader;
 
@@ -35,37 +34,37 @@ Egenskap: Test egenskap
             var parser = new FeatureParser(new LanguageServices(configuration), FileSystem);
             Feature feature = parser.Parse(new StringReader(featureText));
 
-            feature.ShouldNotBeNull();
-            feature.Name.ShouldEqual("Test egenskap");
-            feature.Description.ShouldEqual(@"  Som svensk användare
+            Check.That(feature).IsNotNull();
+            Check.That(feature.Name).IsEqualTo("Test egenskap");
+            Check.That(feature.Description).IsEqualTo(@"  Som svensk användare
   Vill jag skriva mina krav på svenska
   Så att beställaren kan förstå dem");
-            feature.FeatureElements.Count.ShouldEqual(1);
-            feature.Tags.Count.ShouldEqual(0);
+            Check.That(feature.FeatureElements.Count).IsEqualTo(1);
+            Check.That(feature.Tags.Count).IsEqualTo(0);
 
             IFeatureElement scenario = feature.FeatureElements.First();
-            scenario.Name.ShouldEqual("Ett scenario");
-            scenario.Description.ShouldEqual(string.Empty);
-            scenario.Steps.Count.ShouldEqual(3);
-            scenario.Tags.Count.ShouldEqual(0);
+            Check.That(scenario.Name).IsEqualTo("Ett scenario");
+            Check.That(scenario.Description).IsEqualTo(string.Empty);
+            Check.That(scenario.Steps.Count).IsEqualTo(3);
+            Check.That(scenario.Tags.Count).IsEqualTo(0);
 
             Step givenStep = scenario.Steps[0];
-            givenStep.Keyword.ShouldEqual(Keyword.Given);
-            givenStep.Name.ShouldEqual("en egenskap");
-            givenStep.DocStringArgument.ShouldBeNull();
-            givenStep.TableArgument.ShouldBeNull();
+            Check.That(givenStep.Keyword).IsEqualTo(Keyword.Given);
+            Check.That(givenStep.Name).IsEqualTo("en egenskap");
+            Check.That(givenStep.DocStringArgument).IsNull();
+            Check.That(givenStep.TableArgument).IsNull();
 
             Step whenStep = scenario.Steps[1];
             Assert.AreEqual(Keyword.When, whenStep.Keyword);
             Assert.AreEqual("den körs", whenStep.Name);
-            whenStep.DocStringArgument.ShouldBeNull();
-            whenStep.TableArgument.ShouldBeNull();
+            Check.That(whenStep.DocStringArgument).IsNull();
+            Check.That(whenStep.TableArgument).IsNull();
 
             Step thenStep = scenario.Steps[2];
-            thenStep.Keyword.ShouldEqual(Keyword.Then);
-            thenStep.Name.ShouldEqual("skall jag se att det inträffat");
-            thenStep.DocStringArgument.ShouldBeNull();
-            thenStep.TableArgument.ShouldBeNull();
+            Check.That(thenStep.Keyword).IsEqualTo(Keyword.Then);
+            Check.That(thenStep.Name).IsEqualTo("skall jag se att det inträffat");
+            Check.That(thenStep.DocStringArgument).IsNull();
+            Check.That(thenStep.TableArgument).IsNull();
         }
     }
 }
