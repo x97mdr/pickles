@@ -33,7 +33,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
             Check.That(header).IsNamed("div");
             Check.That(header).IsInNamespace("http://www.w3.org/1999/xhtml");
             Check.That(header).HasAttribute("class", "scenario-heading");
-            Assert.AreEqual(3, header.Elements().Count());
+            Check.That(header.Elements().Count()).IsEqualTo(3);
 
             Check.That(header.Elements().ElementAt(0)).IsNamed("h2");
             Check.That(header.Elements().ElementAt(1)).IsNamed("p");
