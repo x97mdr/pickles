@@ -24,25 +24,25 @@ namespace PicklesDoc.Pickles.Test
             Check.That(indexMd).IsNotNull();
             Check.That(indexMd.Name).IsEqualTo("This is an index written in Markdown");
             Check.That(indexMd.RelativePathFromRoot).IsEqualTo("index.md");
-            Check.That(indexMd.GetType()).IsEqualTo(typeof(MarkdownNode));
+            Check.That(indexMd).IsInstanceOf<MarkdownNode>();
 
             INode levelOneFeature = features.ChildNodes[1].Data;
             Check.That(levelOneFeature).IsNotNull();
             Check.That(levelOneFeature.Name).IsEqualTo("Addition");
             Check.That(levelOneFeature.RelativePathFromRoot).IsEqualTo("LevelOne.feature");
-            Check.That(levelOneFeature.GetType()).IsEqualTo(typeof(FeatureNode));
+            Check.That(levelOneFeature).IsInstanceOf<FeatureNode>();
 
             INode image = features.ChildNodes[2].Data;
             Check.That(image).IsNotNull();
             Check.That(image.Name).IsEqualTo("image.png");
             Check.That(image.RelativePathFromRoot).IsEqualTo("image.png");
-            Check.That(image.GetType()).IsEqualTo(typeof(ImageNode));
+            Check.That(image).IsInstanceOf<ImageNode>();
 
             INode subLevelOneDirectory = features.ChildNodes[3].Data;
             Check.That(subLevelOneDirectory).IsNotNull();
             Check.That(subLevelOneDirectory.Name).IsEqualTo("Sub Level One");
             Check.That(subLevelOneDirectory.RelativePathFromRoot).IsEqualTo(@"SubLevelOne\");
-            Check.That(subLevelOneDirectory.GetType()).IsEqualTo(typeof(FolderNode));
+            Check.That(subLevelOneDirectory).IsInstanceOf<FolderNode>();
 
             GeneralTree<INode> subLevelOneNode = features.ChildNodes[3];
             Check.That(subLevelOneNode.ChildNodes.Count).IsEqualTo(3);
@@ -51,13 +51,13 @@ namespace PicklesDoc.Pickles.Test
             Check.That(levelOneSublevelOneFeature).IsNotNull();
             Check.That(levelOneSublevelOneFeature.Name).IsEqualTo("Addition");
             Check.That(levelOneSublevelOneFeature.RelativePathFromRoot).IsEqualTo(@"SubLevelOne\LevelOneSublevelOne.feature");
-            Check.That(levelOneSublevelOneFeature.GetType()).IsEqualTo(typeof(FeatureNode));
+            Check.That(levelOneSublevelOneFeature).IsInstanceOf<FeatureNode>();
 
             INode levelOneSublevelTwoFeature = subLevelOneNode.ChildNodes[1].Data;
             Check.That(levelOneSublevelTwoFeature).IsNotNull();
             Check.That(levelOneSublevelTwoFeature.Name).IsEqualTo("Addition");
             Check.That(levelOneSublevelTwoFeature.RelativePathFromRoot).IsEqualTo(@"SubLevelOne\LevelOneSublevelTwo.feature");
-            Check.That(levelOneSublevelTwoFeature.GetType()).IsEqualTo(typeof(FeatureNode));
+            Check.That(levelOneSublevelTwoFeature).IsInstanceOf<FeatureNode>();
 
             GeneralTree<INode> subLevelTwoNode = subLevelOneNode.ChildNodes[2];
             Check.That(subLevelTwoNode.ChildNodes.Count).IsEqualTo(1);
@@ -66,13 +66,13 @@ namespace PicklesDoc.Pickles.Test
             Check.That(subLevelTwoDirectory).IsNotNull();
             Check.That(subLevelTwoDirectory.Name).IsEqualTo("Sub Level Two");
             Check.That(subLevelTwoDirectory.RelativePathFromRoot).IsEqualTo(@"SubLevelOne\SubLevelTwo\");
-            Check.That(subLevelTwoDirectory.GetType()).IsEqualTo(typeof(FolderNode));
+            Check.That(subLevelTwoDirectory).IsInstanceOf<FolderNode>();
 
             INode levelOneSublevelOneSubLevelTwoDirectory = subLevelOneNode.ChildNodes[2].ChildNodes[0].Data;
             Check.That(levelOneSublevelOneSubLevelTwoDirectory).IsNotNull();
             Check.That(levelOneSublevelOneSubLevelTwoDirectory.Name).IsEqualTo("Addition");
             Check.That(levelOneSublevelOneSubLevelTwoDirectory.RelativePathFromRoot).IsEqualTo(@"SubLevelOne\SubLevelTwo\LevelOneSublevelOneSubLevelTwo.feature");
-            Check.That(levelOneSublevelOneSubLevelTwoDirectory.GetType()).IsEqualTo(typeof(FeatureNode));
+            Check.That(levelOneSublevelOneSubLevelTwoDirectory).IsInstanceOf<FeatureNode>();
         }
     }
 }
