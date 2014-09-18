@@ -75,3 +75,6 @@ src/Pickles/PrecompiledWeb/
 
 # FAKE stuff
 packages/FAKE/
+
+# Fody
+!src/Pickles/packages/Fody*/build/*
