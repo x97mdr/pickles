@@ -24,7 +24,7 @@ namespace PicklesDoc.Pickles.Test
                 {
                     var builder = new ContainerBuilder();
                     builder.RegisterAssemblyTypes(typeof(Runner).Assembly);
-                    builder.Register<MockFileSystem>(_ => new MockFileSystem()).As<IFileSystem>().SingleInstance();
+                    builder.Register<MockFileSystem>(_ => CreateMockFileSystem()).As<IFileSystem>().SingleInstance();
                     builder.RegisterModule<PicklesModule>();
                     this.container = builder.Build();
                 }
@@ -33,7 +33,14 @@ namespace PicklesDoc.Pickles.Test
             }
         }
 
-        protected MockFileSystem FileSystem
+      private static MockFileSystem CreateMockFileSystem()
+      {
+        var mockFileSystem = new MockFileSystem();
+        mockFileSystem.Directory.SetCurrentDirectory(Assembly.GetExecutingAssembly().Location);
+        return mockFileSystem;
+      }
+
+      protected MockFileSystem FileSystem
         {
             get { return (MockFileSystem)this.Container.Resolve<IFileSystem>(); }
         }

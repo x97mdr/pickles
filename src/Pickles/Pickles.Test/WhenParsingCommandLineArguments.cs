@@ -35,8 +35,6 @@ namespace PicklesDoc.Pickles.Test
   -v, --version              
   -h, -?, --help";
 
-    private const string CurrentDirectory = @"C:\Users\drombauts\AppData\Local\Temp"; // this is the default current directory of MockFileSystem
-
     private static readonly string ExpectedVersionString =
         string.Format(@"Pickles version {0}", Assembly.GetExecutingAssembly().GetName().Version);
 
@@ -359,8 +357,10 @@ namespace PicklesDoc.Pickles.Test
       var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
       commandLineArgumentParser.Parse(args, configuration, writer);
 
-      Check.That(configuration.FeatureFolder.FullName).IsEqualTo(CurrentDirectory);
-      Check.That(configuration.OutputFolder.FullName).IsEqualTo(CurrentDirectory);
+      string currentDirectory = Assembly.GetExecutingAssembly().Location;
+
+      Check.That(configuration.FeatureFolder.FullName).IsEqualTo(currentDirectory);
+      Check.That(configuration.OutputFolder.FullName).IsEqualTo(currentDirectory);
     }
 
     [Test]
