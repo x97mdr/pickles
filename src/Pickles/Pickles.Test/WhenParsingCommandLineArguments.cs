@@ -35,7 +35,7 @@ namespace PicklesDoc.Pickles.Test
   -v, --version              
   -h, -?, --help";
 
-    private const string CurrentDirectory = @"C:\Foo\Bar"; // this is the default current directory of MockFileSystem
+    private const string CurrentDirectory = @"C:\Users\drombauts\AppData\Local\Temp"; // this is the default current directory of MockFileSystem
 
     private static readonly string ExpectedVersionString =
         string.Format(@"Pickles version {0}", Assembly.GetExecutingAssembly().GetName().Version);
