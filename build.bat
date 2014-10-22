@@ -1,7 +1,7 @@
 @echo off
 cls
 
-cd ".\src\Pickles\packages\NuGet.CommandLine.2.8.2\tools\"
+cd ".\src\Pickles\packages\NuGet.CommandLine.2.8.3\tools\"
 
 ".\NuGet.exe" "Install" "FAKE" "-OutputDirectory" "..\..\..\..\..\packages" "-ExcludeVersion"
 
