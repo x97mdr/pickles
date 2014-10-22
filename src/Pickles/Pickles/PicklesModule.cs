@@ -23,7 +23,6 @@ using Autofac;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders;
 using PicklesDoc.Pickles.DocumentationBuilders.DHTML;
-using PicklesDoc.Pickles.DocumentationBuilders.DITA;
 using PicklesDoc.Pickles.DocumentationBuilders.Excel;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.DocumentationBuilders.JSON;
@@ -44,7 +43,6 @@ namespace PicklesDoc.Pickles
 
             builder.RegisterType<HtmlDocumentationBuilder>().SingleInstance();
             builder.RegisterType<WordDocumentationBuilder>().SingleInstance();
-            builder.RegisterType<DitaDocumentationBuilder>().SingleInstance();
             builder.RegisterType<JSONDocumentationBuilder>().SingleInstance();
             builder.RegisterType<ExcelDocumentationBuilder>().SingleInstance();
             builder.RegisterType<DhtmlDocumentationBuilder>().SingleInstance();
@@ -56,7 +54,6 @@ namespace PicklesDoc.Pickles
                 {
                     case DocumentationFormat.Html: return c.Resolve<HtmlDocumentationBuilder>();
                     case DocumentationFormat.Word: return c.Resolve<WordDocumentationBuilder>();
-                    case DocumentationFormat.Dita: return c.Resolve<DitaDocumentationBuilder>();
                     case DocumentationFormat.JSON: return c.Resolve<JSONDocumentationBuilder>();
                     case DocumentationFormat.Excel: return c.Resolve<ExcelDocumentationBuilder>();
                     case DocumentationFormat.DHtml: return c.Resolve<DhtmlDocumentationBuilder>();

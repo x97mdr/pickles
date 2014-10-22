@@ -23,7 +23,6 @@ using NFluent;
 using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders;
-using PicklesDoc.Pickles.DocumentationBuilders.DITA;
 using PicklesDoc.Pickles.DocumentationBuilders.Excel;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.DocumentationBuilders.Word;
@@ -73,34 +72,6 @@ namespace PicklesDoc.Pickles.Test
             Check.That(item1).IsInstanceOf<WordDocumentationBuilder>();
             Check.That(item2).IsNotNull();
             Check.That(item2).IsInstanceOf<WordDocumentationBuilder>();
-            Check.That(item1).IsSameReferenceThan(item2);
-        }
-
-        [Test]
-        public void ThenCanResolveIDocumentationBuilderAsDitaDocumentationBuilderIfTheUserSelectsDitaOutput()
-        {
-            var configuration = Container.Resolve<Configuration>();
-            configuration.DocumentationFormat = DocumentationFormat.Dita;
-
-            var item = Container.Resolve<IDocumentationBuilder>();
-
-            Check.That(item).IsNotNull();
-            Check.That(item).IsInstanceOf<DitaDocumentationBuilder>();
-        }
-
-        [Test]
-        public void ThenCanResolveIDocumentationBuilderAsDitaDocumentationBuilderAsSingletonIfTheUserSelectsDitaOutput()
-        {
-            var configuration = Container.Resolve<Configuration>();
-            configuration.DocumentationFormat = DocumentationFormat.Dita;
-
-            var item1 = Container.Resolve<IDocumentationBuilder>();
-            var item2 = Container.Resolve<IDocumentationBuilder>();
-
-            Check.That(item1).IsNotNull();
-            Check.That(item1).IsInstanceOf<DitaDocumentationBuilder>();
-            Check.That(item2).IsNotNull();
-            Check.That(item2).IsInstanceOf<DitaDocumentationBuilder>();
             Check.That(item1).IsSameReferenceThan(item2);
         }
 

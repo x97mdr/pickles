@@ -31,9 +31,6 @@ namespace PicklesDoc.Pickles
         [Description("Microsoft Word OpenXML (.docx)")]
         Word,
 
-        [Description("Darwin Information Typing Architecture (DITA)")]
-        Dita,
-
         [Description("Javascript Object Notation (JSON)")]
         JSON,
 
