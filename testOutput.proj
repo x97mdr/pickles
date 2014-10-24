@@ -16,9 +16,6 @@
 		<OutputFormat Include="Excel">
 			<Name>Excel</Name>
 		</OutputFormat>
-		<OutputFormat Include="Dita">
-			<Name>Dita</Name>
-		</OutputFormat>
 		<OutputFormat Include="JSON">
 			<Name>JSON</Name>
 		</OutputFormat>
