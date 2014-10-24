@@ -197,14 +197,6 @@
     <Compile Include="DocumentationBuilders\DHTML\DhtmlDocumentationBuilder.cs" />
     <Compile Include="DocumentationBuilders\DHTML\DhtmlResourceWriter.cs" />
     <Compile Include="DocumentationBuilders\DHTML\JsonTweaker.cs" />
-    <Compile Include="DocumentationBuilders\DITA\DitaDocumentationBuilder.cs" />
-    <Compile Include="DocumentationBuilders\DITA\DitaFeatureFormatter.cs" />
-    <Compile Include="DocumentationBuilders\DITA\DitaMapBuilder.cs" />
-    <Compile Include="DocumentationBuilders\DITA\DitaMapPathGenerator.cs" />
-    <Compile Include="DocumentationBuilders\DITA\DitaScenarioFormatter.cs" />
-    <Compile Include="DocumentationBuilders\DITA\DitaScenarioOutlineFormatter.cs" />
-    <Compile Include="DocumentationBuilders\DITA\DitaStepFormatter.cs" />
-    <Compile Include="DocumentationBuilders\DITA\DitaTableFormatter.cs" />
     <Compile Include="DocumentationBuilders\Excel\ExcelDocumentationBuilder.cs" />
     <Compile Include="DocumentationBuilders\Excel\ExcelDocumentStringFormatter.cs" />
     <Compile Include="DocumentationBuilders\Excel\ExcelFeatureFormatter.cs" />

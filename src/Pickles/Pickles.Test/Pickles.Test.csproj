@@ -256,7 +256,6 @@
     <Compile Include="DocumentationBuilders\HTML\WhenFormattingFeatures.cs" />
     <Compile Include="DocumentationBuilders\HTML\WhenFormattingStep.cs" />
     <Compile Include="WhenFormattingWikiWords.cs" />
-    <Compile Include="WhenGeneratingPathsFromFeaturesToDitaFiles.cs" />
     <Compile Include="WhenParsingCommandLineArguments.cs" />
     <Compile Include="WhenParsingFeatureFiles.cs" />
     <Compile Include="WhenParsingLocalizedFeatureFiles.cs" />
