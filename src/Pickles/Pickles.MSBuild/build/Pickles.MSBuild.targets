@@ -1,0 +1,21 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<UsingTask AssemblyFile="$(MSBuildThisFileDirectory)..\tools\PicklesDoc.Pickles.MSBuild.Tasks.dll" TaskName="Pickles" />
+	<Target Name="DocumentationGeneration" AfterTargets="Build" Condition=" '$(Pickles_Generate)' == 'True' ">
+		<PropertyGroup>
+			<Pickles_DocumentationDirectory Condition=" '$(Pickles_DocumentationDirectory)' == '' ">$(MSBuildProjectDirectory)\pickles-site</Pickles_DocumentationDirectory>
+			<Pickles_FeatureDirectory Condition=" '$(Pickles_FeatureDirectory)' == '' ">$(MSBuildProjectDirectory)\Features</Pickles_FeatureDirectory>
+		</PropertyGroup>	
+
+		<RemoveDir Directories="$(Pickles_DocumentationDirectory)" />
+		<MakeDir Directories="$(Pickles_DocumentationDirectory)" />
+
+		<Pickles 
+			FeatureDirectory="$(Pickles_FeatureDirectory)" 
+			OutputDirectory="$(Pickles_DocumentationDirectory)" 
+			ResultsFormat="$(Pickles_ResultsFormat)"
+			ResultsFile="$(Pickles_ResultsFile)"
+			SystemUnderTestName="$(Pickles_SystemUnderTestName)"
+			SystemUnderTestVersion="$(Pickles_SystemUnderTestVersion)"			
+			DocumentationFormat="$(Pickles_DocumentationFormat)" />
+	</Target>
+</Project>

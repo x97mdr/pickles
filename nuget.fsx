@@ -33,7 +33,7 @@ Target "CreatePackageCommandLine" (fun _ ->
 
 Target "CreatePackageMsBuild" (fun _ ->
     // Copy all the package files into a package folder
-    CopyFiles packagingDir [msBuildDir + "PicklesDoc.Pickles.MSBuild.Tasks.dll"; ]
+    CopyFiles packagingDir [msBuildDir + "PicklesDoc.Pickles.MSBuild.Tasks.dll"; msBuildDir + "build/Pickles.MSBuild.targets";]
 
     NuGet (fun p -> 
         {p with

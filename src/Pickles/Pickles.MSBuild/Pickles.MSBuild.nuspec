@@ -16,5 +16,6 @@
   </metadata>
   <files>
     <file src="PicklesDoc.Pickles.MSBuild.Tasks.dll" target="tools" />
+    <file src="Pickles.MSBuild.targets" target="build" />
   </files>
 </package>
