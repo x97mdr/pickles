@@ -25,10 +25,10 @@
     <script type="text/html" id="featuresByFolder-template">
         <div class="features-folder">
             <div class="feature-folder-header" data-bind="click: toggleShowingFolderFeatures">
-                <span class="icon-chevron-right"></span>
+                <span class="icon-chevron-down"></span>
                 <span data-bind="text: Name" style="padding: 5px"></span>
             </div>
-            <div class="feature-folder-contents" style="margin-left: 15px">
+            <div class="feature-folder-contents" style="margin-left: 15px;display:none">
                 <div data-bind="template: { name: 'features-template', foreach: features }"></div>
                 <div data-bind="template: { name: 'featuresByFolder-template', foreach: SubDirectories }"></div>
             </div>
