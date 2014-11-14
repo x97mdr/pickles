@@ -19,6 +19,7 @@
 #endregion
 
 using System;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
 using PicklesDoc.Pickles.Extensions;
@@ -42,7 +43,17 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             if (String.IsNullOrEmpty(descriptionText)) return null;
 
             string markdownResult = "<div>" + this.markdown.Transform(descriptionText) + "</div>";
-            XElement descriptionElements = XElement.Parse(markdownResult);
+
+            var regex = new Regex(@"<p>(.*?)<\/p>", RegexOptions.Singleline);
+            var markdownResultWithNewlinesFormatted = regex
+                .Replace(
+                    markdownResult,
+                    m => m.Value
+                        .Replace(
+                            m.Groups[1].Value,
+                            m.Groups[1].Value.Replace("\r\n", "\n").Replace("\n", "<br />\n")));
+
+            XElement descriptionElements = XElement.Parse(markdownResultWithNewlinesFormatted);
             descriptionElements.SetAttributeValue("class", "description");
 
             descriptionElements.MoveToNamespace(this.xmlns);
