@@ -119,14 +119,14 @@
                             <!-- /ko -->
                         </div>
                         <h1 data-bind="text: Name, click: $root.toggleDetails" class="canHighlight, clickable"></h1>
-                        <div class="description" data-bind="html: renderMarkdownBlock(Description.replace(/\n/g,'<br />'))"></div>
+                        <div class="description" data-bind="html: renderMarkdownBlock(Description)"></div>
                     </div>
 
                     <div class="row-fluid" data-bind="with: Feature">
                         <div class="row-fluid" data-bind="if: Background">
                             <div class="scenario">
                                 <h4>Background:</h4>
-                                <div class="description" data-bind="html: renderMarkdownBlock(Background.Description.replace(/\n/g,'<br />'))"></div>
+                                <div class="description" data-bind="html: renderMarkdownBlock(Background.Description)"></div>
                                 <ul data-bind="template: { name: 'steps-template', foreach: Background.Steps }"></ul>
                             </div>
                         </div>
