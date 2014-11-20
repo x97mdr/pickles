@@ -35,14 +35,14 @@ Scenario: Description should be Formatted as Markdown
        <div id="feature">
          <h1>a feature</h1>
          <div class="description">
-           <p>In order to see the description as nice HTML<br />
-       As a Pickles user<br />
+           <p>In order to see the description as nice HTML
+       As a Pickles user
        I want to see the descriptions written in markdown rendered as HTML</p>
            <h1>Introduction</h1>
            <p>This feature should have some markdown elements that get displayed properly</p>
            <h2>Context</h2>
            <blockquote>
-             <p>I really like blockquotes to describe<br />
+             <p>I really like blockquotes to describe
        to describe text</p>
            </blockquote>
            <p>I also enjoy using lists as well, here are the reasons</p>
@@ -80,8 +80,8 @@ Scenario: Markdown Tables should be Formatted as HTML Tables
        <div id="feature">
          <h1>a feature</h1>
          <div class="description">
-           <p>In order to see the description as nice HTML<br />
-       As a Pickles user<br />
+           <p>In order to see the description as nice HTML
+       As a Pickles user
        I want to see the descriptions written in markdown rendered with tables</p>
            <table>
              <thead>
@@ -130,8 +130,8 @@ Scenario: Somewhat malformed Markdown Tables should be formatted as HTML Tables 
         <div id="feature">
           <h1>a feature</h1>
           <div class="description">
-            <p>In order to see the description as nice HTML<br />
-        As a Pickles user<br />
+            <p>In order to see the description as nice HTML
+        As a Pickles user
         I want to see the descriptions written in markdown rendered with tables</p>
             <table>
               <thead>
@@ -155,31 +155,6 @@ Scenario: Somewhat malformed Markdown Tables should be formatted as HTML Tables 
                 </tr>
               </tbody>
             </table>
-          </div>
-          <ul id="scenarios" />
-        </div>
-        """
-
-Scenario: Line endings in the description should be preserved in generated HTML
-    
-  Given I have this feature description
-        """
-        In order to see the description as nice HTML
-        As a Pickles user
-        I want to preserve the line endings in my description
-        
-        so the HTML reads the same as the feature file
-        """
-  When I generate the documentation
-  Then the result should be
-        """
-        <div id="feature">
-          <h1>a feature</h1>
-          <div class="description">
-            <p>In order to see the description as nice HTML<br />
-        As a Pickles user<br />
-        I want to preserve the line endings in my description</p>
-            <p>so the HTML reads the same as the feature file</p>
           </div>
           <ul id="scenarios" />
         </div>
