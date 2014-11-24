@@ -70,15 +70,22 @@ Target "BuildTest" (fun _ ->
       |> Log "AppBuild-Output: "
 )
 
+let createZip (packageType : string) = 
+    !! (buildDir + "/" + packageType + "/*.*") -- "*.zip"
+        |> Zip (buildDir + packageType) (deployDir + "Pickles-" + packageType + "-" + version + ".zip")
+
 Target "Zip" (fun _ ->
-    !! (buildDir + "/**/*.*")
-        -- "*.zip"
-        |> Zip buildDir (deployDir + "Pickles-" + version + ".zip")
+    createZip "exe"
+    createZip "gui"
+    createZip "msbuild"
+    createZip "nant"
+    createZip "powershell"
 )
 
 Target "Default" (fun _ ->
     trace ("Starting build of Pickles version " + version)
 )
+
 
 // Dependencies
 "Clean"
@@ -95,3 +102,4 @@ Target "Default" (fun _ ->
 
 // start build
 RunTargetOrDefault "Default"
+
