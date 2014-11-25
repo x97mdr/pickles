@@ -2,7 +2,7 @@
 using System.IO.Abstractions.TestingHelpers;
 using NUnit.Framework;
 using PicklesDoc.Pickles.Extensions;
-using Should;
+using NFluent;
 
 namespace PicklesDoc.Pickles.Test.Extensions
 {
@@ -17,7 +17,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
 
             string actual = PathExtensions.MakeRelativePath(@"c:\test", @"c:\test\deep\blah.feature", fileSystem);
 
-            actual.ShouldEqual(@"deep\blah.feature");
+            Check.That(actual).IsEqualTo(@"deep\blah.feature");
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
 
             string actual = PathExtensions.MakeRelativePath(@"c:\test\", @"c:\test\deep\blah.feature", fileSystem);
 
-            actual.ShouldEqual(@"deep\blah.feature");
+            Check.That(actual).IsEqualTo(@"deep\blah.feature");
         }
     }
 }

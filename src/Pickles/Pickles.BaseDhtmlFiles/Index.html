@@ -17,16 +17,23 @@
 </head>
 
 <body>
-
+    <div id="progress" style="width:100%;height:100%;position: absolute;left:0;top:0;background:#ffffff;z-index:100">
+        <span style="position: absolute;left:50%;top:50%;font-weight:bold">Loading...</span>
+    </div>
     <script type="text/html" id="features-template">
         <div class="feature" data-bind="click: $root.showFeature.bind(Path)"><a data-bind="text: Name, click: $root.showFeature.bind(Path), css: { selected: $root.isSelected(Path) }" href="#"></a><span data-bind="template: { name: 'testResults-template', data: Result }"></span></div>
     </script>
 
     <script type="text/html" id="featuresByFolder-template">
-        <div data-bind="text: Name" style="padding: 5px"></div>
-        <div style="margin-left: 15px">
-            <div data-bind="template: { name: 'features-template', foreach: features }"></div>
-            <div data-bind="template: { name: 'featuresByFolder-template', foreach: SubDirectories }"></div>
+        <div class="features-folder">
+            <div class="feature-folder-header" data-bind="click: toggleShowingFolderFeatures">
+                <span class="icon-chevron-down"></span>
+                <span data-bind="text: Name" style="padding: 5px"></span>
+            </div>
+            <div class="feature-folder-contents" style="margin-left: 15px;display:none">
+                <div data-bind="template: { name: 'features-template', foreach: features }"></div>
+                <div data-bind="template: { name: 'featuresByFolder-template', foreach: SubDirectories }"></div>
+            </div>
         </div>
     </script>
 
@@ -96,7 +103,7 @@
                         <div id="SutInfo">
                             <div data-bind="if: configuration().SutName, text: configuration().SutName"></div>
                             <div data-bind="if: configuration().SutVersion, text: configuration().SutVersion"></div>
-                            <div>Pickled On: <span data-bind="text: configuration().PickledOn"></span></div>
+                            <div>Generated on: <span data-bind="text: configuration().GeneratedOn"></span></div>
                         </div>
                     </div>
                 </div>
@@ -298,6 +305,8 @@
             $('#TypeAheadSearchBox').typeahead({
                 source: searchItems
             });
+
+            $('#progress').hide();
         }
 
         var navShown = true;
@@ -326,6 +335,20 @@
 
             setupSubmitSearchWhenEnterKeyPressed();
         });
+        
+        function toggleShowingFolderFeatures(element, event) {
+            var icon = $($(event.target).parent().children('span')[0]);
+            var folderContents = $($(event.target).parent().next('div'));
+            if (icon.hasClass("icon-chevron-right")) {
+                icon.removeClass("icon-chevron-right");
+                icon.addClass("icon-chevron-down");
+                folderContents.hide();
+            } else {
+                icon.addClass("icon-chevron-right");
+                icon.removeClass("icon-chevron-down");
+                folderContents.show();
+            }
+        };
     </script>
 </body>
 </html>

@@ -29,7 +29,7 @@ using NUnit.Framework;
 using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks;
 
-using Should;
+using NFluent;
 
 namespace PicklesDoc.Pickles.Test.TestFrameworks
 {
@@ -48,7 +48,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
       var result = multipleTestResults.GetFeatureResult(feature);
 
-      result.ShouldEqual(TestResult.Passed);
+      Check.That(result).IsEqualTo(TestResult.Passed);
     }
 
     private static MultipleTestResults CreateMultipleTestResults(ITestResults testResults1, ITestResults testResults2)
@@ -94,7 +94,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
       var result = multipleTestResults.GetFeatureResult(feature);
 
-      result.ShouldEqual(TestResult.Failed);
+      Check.That(result).IsEqualTo(TestResult.Failed);
     }
 
     [Test]
@@ -109,7 +109,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
       var result = multipleTestResults.GetFeatureResult(feature);
 
-      result.ShouldEqual(TestResult.Inconclusive);
+      Check.That(result).IsEqualTo(TestResult.Inconclusive);
     }
 
     [Test]
@@ -124,7 +124,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
       var result = multipleTestResults.GetScenarioOutlineResult(scenarioOutline);
 
-      result.ShouldEqual(TestResult.Passed);
+      Check.That(result).IsEqualTo(TestResult.Passed);
     }
 
     private static Mock<ITestResults> SetupStubForGetScenarioOutlineResult(TestResult resultOfGetFeatureResult)
@@ -146,7 +146,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
       var result = multipleTestResults.GetScenarioOutlineResult(scenarioOutline);
 
-      result.ShouldEqual(TestResult.Failed);
+      Check.That(result).IsEqualTo(TestResult.Failed);
     }
 
     [Test]
@@ -161,7 +161,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
       var result = multipleTestResults.GetScenarioOutlineResult(scenarioOutline);
 
-      result.ShouldEqual(TestResult.Inconclusive);
+      Check.That(result).IsEqualTo(TestResult.Inconclusive);
     }
 
     [Test]
@@ -176,7 +176,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
       var result = multipleTestResults.GetScenarioResult(scenario);
 
-      result.ShouldEqual(TestResult.Passed);
+      Check.That(result).IsEqualTo(TestResult.Passed);
     }
 
     private static Mock<ITestResults> SetupStubForGetScenarioResult(TestResult resultOfGetFeatureResult)
@@ -198,7 +198,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
       var result = multipleTestResults.GetScenarioResult(scenario);
 
-      result.ShouldEqual(TestResult.Failed);
+      Check.That(result).IsEqualTo(TestResult.Failed);
     }
 
     [Test]
@@ -213,7 +213,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
       var result = multipleTestResults.GetScenarioResult(scenario);
 
-      result.ShouldEqual(TestResult.Inconclusive);
+      Check.That(result).IsEqualTo(TestResult.Inconclusive);
     }
   }
 }

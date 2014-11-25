@@ -3,8 +3,7 @@ using System.Xml;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
-using Should;
+using NFluent;
 using TechTalk.SpecFlow;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML.AutomationLayer
@@ -50,7 +49,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML.AutomationLayer
       actual = FormatXml(actual);
       multilineText = FormatXml(multilineText);
 
-      actual.ShouldEqual(multilineText);
+      Check.That(actual).IsEqualTo(multilineText);
     }
 
 

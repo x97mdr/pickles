@@ -1,11 +1,10 @@
 ﻿using System;
-//using Autofac;
 using Moq;
+using NFluent;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.Test.Formatters
 {
@@ -15,24 +14,17 @@ namespace PicklesDoc.Pickles.Test.Formatters
         [Test]
         public void Constructor_NullHtmlFeatureFormatter_ThrowsArgumentNullException()
         {
-            var exception =
-                Assert.Throws<ArgumentNullException>(
-                    () =>
-                    new HtmlContentFormatter(null, null));
-
-            Assert.AreEqual("htmlFeatureFormatter", exception.ParamName);
+          Check.ThatCode(() => new HtmlContentFormatter(null, null))
+            .Throws<ArgumentNullException>()
+            .WithProperty("ParamName", "htmlFeatureFormatter");
         }
 
         [Test]
         public void Constructor_NullHtmlIndexFormatter_ThrowsArgumentNullException()
         {
-            var exception =
-                Assert.Throws<ArgumentNullException>(
-                    () =>
-                    new HtmlContentFormatter(new Mock<IHtmlFeatureFormatter>().Object, 
-                        null));
-
-            Assert.AreEqual("htmlIndexFormatter", exception.ParamName);
+          Check.ThatCode(() => new HtmlContentFormatter(new Mock<IHtmlFeatureFormatter>().Object, null))
+            .Throws<ArgumentNullException>()
+            .WithProperty("ParamName", "htmlIndexFormatter");
         }
 
         [Test]

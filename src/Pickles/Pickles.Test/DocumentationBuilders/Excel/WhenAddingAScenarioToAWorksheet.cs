@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using ClosedXML.Excel;
+using NFluent;
 using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.Excel;
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
-using Should;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
 {
@@ -30,9 +29,9 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
                 int row = 3;
                 excelScenarioFormatter.Format(worksheet, scenario, ref row);
 
-                worksheet.Cell("B3").Value.ShouldEqual(scenario.Name);
-                worksheet.Cell("C4").Value.ShouldEqual(scenario.Description);
-                row.ShouldEqual(5);
+                Check.That(worksheet.Cell("B3").Value).IsEqualTo(scenario.Name);
+                Check.That(worksheet.Cell("C4").Value).IsEqualTo(scenario.Description);
+                Check.That(row).IsEqualTo(5);
             }
         }
 
@@ -57,9 +56,9 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
                 int row = 3;
                 excelScenarioFormatter.Format(worksheet, scenario, ref row);
 
-                worksheet.Cell("B3").Value.ShouldEqual(scenario.Name);
-                worksheet.Cell("C4").Value.ShouldEqual(scenario.Description);
-                row.ShouldEqual(8);
+                Check.That(worksheet.Cell("B3").Value).IsEqualTo(scenario.Name);
+                Check.That(worksheet.Cell("C4").Value).IsEqualTo(scenario.Description);
+                Check.That(row).IsEqualTo(8);
             }
         }
     }

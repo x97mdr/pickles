@@ -42,7 +42,7 @@ _ReSharper*/
 
 
 #Project files
-[Bb]uild/
+[Bb]uild/*
 
 #Subversion files
 .svn
@@ -75,3 +75,6 @@ src/Pickles/PrecompiledWeb/
 
 # FAKE stuff
 packages/FAKE/
+
+# Fody
+!src/Pickles/packages/Fody*/build/*

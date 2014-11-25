@@ -19,14 +19,13 @@
 #endregion
 
 using System;
+using NFluent;
 using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders;
-using PicklesDoc.Pickles.DocumentationBuilders.DITA;
 using PicklesDoc.Pickles.DocumentationBuilders.Excel;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.DocumentationBuilders.Word;
-using Should;
 
 namespace PicklesDoc.Pickles.Test
 {
@@ -41,11 +40,11 @@ namespace PicklesDoc.Pickles.Test
             var item1 = Container.Resolve<IDocumentationBuilder>();
             var item2 = Container.Resolve<IDocumentationBuilder>();
 
-            item1.ShouldNotBeNull();
-            item1.ShouldBeType<HtmlDocumentationBuilder>();
-            item2.ShouldNotBeNull();
-            item2.ShouldBeType<HtmlDocumentationBuilder>();
-            item1.ShouldBeSameAs(item2);
+            Check.That(item1).IsNotNull();
+            Check.That(item1).IsInstanceOf<HtmlDocumentationBuilder>();
+            Check.That(item2).IsNotNull();
+            Check.That(item2).IsInstanceOf<HtmlDocumentationBuilder>();
+            Check.That(item1).IsSameReferenceThan(item2);
         }
 
         [Test]
@@ -56,8 +55,8 @@ namespace PicklesDoc.Pickles.Test
 
             var item = Container.Resolve<IDocumentationBuilder>();
 
-            item.ShouldNotBeNull();
-            item.ShouldBeType<WordDocumentationBuilder>();
+            Check.That(item).IsNotNull();
+            Check.That(item).IsInstanceOf<WordDocumentationBuilder>();
         }
 
         [Test]
@@ -69,39 +68,11 @@ namespace PicklesDoc.Pickles.Test
             var item1 = Container.Resolve<IDocumentationBuilder>();
             var item2 = Container.Resolve<IDocumentationBuilder>();
 
-            item1.ShouldNotBeNull();
-            item1.ShouldBeType<WordDocumentationBuilder>();
-            item2.ShouldNotBeNull();
-            item2.ShouldBeType<WordDocumentationBuilder>();
-            item1.ShouldBeSameAs(item2);
-        }
-
-        [Test]
-        public void ThenCanResolveIDocumentationBuilderAsDitaDocumentationBuilderIfTheUserSelectsDitaOutput()
-        {
-            var configuration = Container.Resolve<Configuration>();
-            configuration.DocumentationFormat = DocumentationFormat.Dita;
-
-            var item = Container.Resolve<IDocumentationBuilder>();
-
-            item.ShouldNotBeNull();
-            item.ShouldBeType<DitaDocumentationBuilder>();
-        }
-
-        [Test]
-        public void ThenCanResolveIDocumentationBuilderAsDitaDocumentationBuilderAsSingletonIfTheUserSelectsDitaOutput()
-        {
-            var configuration = Container.Resolve<Configuration>();
-            configuration.DocumentationFormat = DocumentationFormat.Dita;
-
-            var item1 = Container.Resolve<IDocumentationBuilder>();
-            var item2 = Container.Resolve<IDocumentationBuilder>();
-
-            item1.ShouldNotBeNull();
-            item1.ShouldBeType<DitaDocumentationBuilder>();
-            item2.ShouldNotBeNull();
-            item2.ShouldBeType<DitaDocumentationBuilder>();
-            item1.ShouldBeSameAs(item2);
+            Check.That(item1).IsNotNull();
+            Check.That(item1).IsInstanceOf<WordDocumentationBuilder>();
+            Check.That(item2).IsNotNull();
+            Check.That(item2).IsInstanceOf<WordDocumentationBuilder>();
+            Check.That(item1).IsSameReferenceThan(item2);
         }
 
         [Test]
@@ -112,8 +83,8 @@ namespace PicklesDoc.Pickles.Test
 
             var item = Container.Resolve<IDocumentationBuilder>();
 
-            item.ShouldNotBeNull();
-            item.ShouldBeType<ExcelDocumentationBuilder>();
+            Check.That(item).IsNotNull();
+            Check.That(item).IsInstanceOf<ExcelDocumentationBuilder>();
         }
 
         [Test]
@@ -125,11 +96,11 @@ namespace PicklesDoc.Pickles.Test
             var item1 = Container.Resolve<IDocumentationBuilder>();
             var item2 = Container.Resolve<IDocumentationBuilder>();
 
-            item1.ShouldNotBeNull();
-            item1.ShouldBeType<ExcelDocumentationBuilder>();
-            item2.ShouldNotBeNull();
-            item2.ShouldBeType<ExcelDocumentationBuilder>();
-            item1.ShouldBeSameAs(item2);
+            Check.That(item1).IsNotNull();
+            Check.That(item1).IsInstanceOf<ExcelDocumentationBuilder>();
+            Check.That(item2).IsNotNull();
+            Check.That(item2).IsInstanceOf<ExcelDocumentationBuilder>();
+            Check.That(item1).IsSameReferenceThan(item2);
         }
     }
 }

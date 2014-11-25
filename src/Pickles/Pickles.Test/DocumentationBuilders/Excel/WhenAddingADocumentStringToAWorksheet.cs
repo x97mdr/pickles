@@ -1,8 +1,8 @@
 ﻿using System;
 using ClosedXML.Excel;
+using NFluent;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DocumentationBuilders.Excel;
-using Should;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
 {
@@ -23,10 +23,10 @@ in testing";
                 int row = 7;
                 excelDocumentStringFormatter.Format(worksheet, documentString, ref row);
 
-                worksheet.Cell("D7").Value.ShouldEqual("This is an example");
-                worksheet.Cell("D8").Value.ShouldEqual("document string for use");
-                worksheet.Cell("D9").Value.ShouldEqual("in testing");
-                row.ShouldEqual(10);
+                Check.That(worksheet.Cell("D7").Value).IsEqualTo("This is an example");
+                Check.That(worksheet.Cell("D8").Value).IsEqualTo("document string for use");
+                Check.That(worksheet.Cell("D9").Value).IsEqualTo("in testing");
+                Check.That(row).IsEqualTo(10);
             }
         }
     }

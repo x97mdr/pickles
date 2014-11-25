@@ -1,11 +1,10 @@
 ﻿using System;
 using ClosedXML.Excel;
+using NFluent;
 using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.Excel;
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
-using Should;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
 {
@@ -24,8 +23,8 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
                 int row = 5;
                 excelStepFormatter.Format(worksheet, step, ref row);
 
-                worksheet.Cell("C5").Value.ShouldEqual(step.NativeKeyword);
-                worksheet.Cell("D5").Value.ShouldEqual(step.Name);
+                Check.That(worksheet.Cell("C5").Value).IsEqualTo(step.NativeKeyword);
+                Check.That(worksheet.Cell("D5").Value).IsEqualTo(step.Name);
             }
         }
     }

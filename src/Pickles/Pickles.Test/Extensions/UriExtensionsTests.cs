@@ -1,4 +1,5 @@
 ﻿using System;
+using NFluent;
 using NUnit.Framework;
 using PicklesDoc.Pickles.Extensions;
 
@@ -14,7 +15,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
 
             Uri uri = info.ToFileUriCombined("test.txt", FileSystem);
 
-            Assert.AreEqual("file:///c:/temp/test.txt", uri.ToString());
+            Check.That(uri.ToString()).IsEqualTo("file:///c:/temp/test.txt");
         }
 
         [Test]
@@ -22,7 +23,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
         {
             Uri uri = @"c:\temp\test.txt".ToFileUri();
 
-            Assert.AreEqual("file:///c:/temp/test.txt", uri.ToString());
+            Check.That(uri.ToString()).IsEqualTo("file:///c:/temp/test.txt");
         }
 
         [Test]
@@ -30,7 +31,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
         {
             Uri uri = @"c:\temp\".ToFolderUri();
 
-            Assert.AreEqual("file:///c:/temp/", uri.ToString());
+            Check.That(uri.ToString()).IsEqualTo("file:///c:/temp/");
         }
 
         [Test]
@@ -38,7 +39,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
         {
             Uri uri = @"c:\temp".ToFolderUri();
 
-            Assert.AreEqual("file:///c:/temp/", uri.ToString());
+            Check.That(uri.ToString()).IsEqualTo("file:///c:/temp/");
         }
 
         [Test]
@@ -48,7 +49,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
 
             Uri uri = directoryInfo.ToUri();
 
-            Assert.AreEqual("file:///c:/temp/", uri.ToString());
+            Check.That(uri.ToString()).IsEqualTo("file:///c:/temp/");
         }
 
         [Test]
@@ -58,7 +59,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
 
             Uri uri = directoryInfo.ToUri();
 
-            Assert.AreEqual("file:///c:/temp/", uri.ToString());
+            Check.That(uri.ToString()).IsEqualTo("file:///c:/temp/");
         }
 
         [Test]
@@ -68,7 +69,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
 
             Uri uri = fileInfo.ToUri();
 
-            Assert.AreEqual("file:///c:/temp/test.txt", uri.ToString());
+            Check.That(uri.ToString()).IsEqualTo("file:///c:/temp/test.txt");
         }
 
         [Test]
@@ -78,7 +79,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
 
             Uri uri = fsi.ToUri();
 
-            Assert.AreEqual("file:///c:/temp/", uri.ToString());
+            Check.That(uri.ToString()).IsEqualTo("file:///c:/temp/");
         }
 
         [Test]
@@ -88,7 +89,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
 
             Uri uri = fsi.ToUri();
 
-            Assert.AreEqual("file:///c:/temp/test.txt", uri.ToString());
+            Check.That(uri.ToString()).IsEqualTo("file:///c:/temp/test.txt");
         }
     }
 }

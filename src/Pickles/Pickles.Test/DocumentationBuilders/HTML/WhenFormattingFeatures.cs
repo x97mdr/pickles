@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Xml.Linq;
+using NFluent;
 using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 {
@@ -49,21 +49,21 @@ I also enjoy ordering things
       XElement featureElement = htmlFeatureFormatter.Format(feature);
       XElement description = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
 
-      Assert.NotNull(description);
-      description.ShouldBeNamed("div");
-      description.ShouldBeInInNamespace("http://www.w3.org/1999/xhtml");
-      description.ShouldHaveAttribute("class", "description");
-      Assert.AreEqual(9, description.Elements().Count());
+      Check.That(description).IsNotNull();
+      Check.That(description).IsNamed("div");
+      Check.That(description).IsInNamespace("http://www.w3.org/1999/xhtml");
+      Check.That(description).HasAttribute("class", "description");
+      Check.That(description.Elements().Count()).IsEqualTo(9);
 
-      description.Elements().ElementAt(0).ShouldBeNamed("p");
-      description.Elements().ElementAt(1).ShouldBeNamed("h1");
-      description.Elements().ElementAt(2).ShouldBeNamed("p");
-      description.Elements().ElementAt(3).ShouldBeNamed("h2");
-      description.Elements().ElementAt(4).ShouldBeNamed("blockquote");
-      description.Elements().ElementAt(5).ShouldBeNamed("p");
-      description.Elements().ElementAt(6).ShouldBeNamed("ul");
-      description.Elements().ElementAt(7).ShouldBeNamed("p");
-      description.Elements().ElementAt(8).ShouldBeNamed("ol");
+      Check.That(description.Elements().ElementAt(0)).IsNamed("p");
+      Check.That(description.Elements().ElementAt(1)).IsNamed("h1");
+      Check.That(description.Elements().ElementAt(2)).IsNamed("p");
+      Check.That(description.Elements().ElementAt(3)).IsNamed("h2");
+      Check.That(description.Elements().ElementAt(4)).IsNamed("blockquote");
+      Check.That(description.Elements().ElementAt(5)).IsNamed("p");
+      Check.That(description.Elements().ElementAt(6)).IsNamed("ul");
+      Check.That(description.Elements().ElementAt(7)).IsNamed("p");
+      Check.That(description.Elements().ElementAt(8)).IsNamed("ol");
     }
 
     [Test]
@@ -89,15 +89,14 @@ I want to see the descriptions written in markdown rendered with tables
       XElement featureElement = htmlFeatureFormatter.Format(feature);
       XElement description = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
 
-      Assert.NotNull(description);
-      description.ShouldBeNamed("div");
-      description.ShouldBeInInNamespace("http://www.w3.org/1999/xhtml");
-      description.ShouldHaveAttribute("class", "description");
+      Check.That(description).IsNotNull();
+      Check.That(description).IsNamed("div");
+      Check.That(description).IsInNamespace("http://www.w3.org/1999/xhtml");
+      Check.That(description).HasAttribute("class", "description");
 
       XElement table = description.Descendants().FirstOrDefault(el => el.Name.LocalName == "table");
 
-      Assert.IsNotNull(table);
-
+      Check.That(table).IsNotNull();
     }
 
     [Test]
@@ -123,15 +122,14 @@ I want to see the descriptions written in markdown rendered with tables
       XElement featureElement = htmlFeatureFormatter.Format(feature);
       XElement description = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
 
-      Assert.NotNull(description);
-      description.ShouldBeNamed("div");
-      description.ShouldBeInInNamespace("http://www.w3.org/1999/xhtml");
-      description.ShouldHaveAttribute("class", "description");
+      Check.That(description).IsNotNull();
+      Check.That(description).IsNamed("div");
+      Check.That(description).IsInNamespace("http://www.w3.org/1999/xhtml");
+      Check.That(description).HasAttribute("class", "description");
 
       XElement table = description.Descendants().FirstOrDefault(el => el.Name.LocalName == "table");
 
-      Assert.IsNotNull(table);
-
+      Check.That(table).IsNotNull();
     }
   }
 }

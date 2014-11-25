@@ -106,7 +106,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
                 {
                     SutName = this.configuration.SystemUnderTestName, 
                     SutVersion = this.configuration.SystemUnderTestVersion,
-                    PickledOn = DateTime.Now.ToString("d MMMM yyyy HH:mm:ss")
+                    GeneratedOn = DateTime.Now.ToString("d MMMM yyyy HH:mm:ss")
                 }
             };
             
