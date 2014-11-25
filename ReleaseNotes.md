@@ -1,5 +1,24 @@
 # Pickles Release Notes
 
+## v0.19.0 - 2014-11-25
+
+### Breaking Change
+
+- DITA support has been discontinued. ([#153](https://github.com/picklesdoc/pickles/pull/153))
+
+### New Features
+
+- Each runner has its own download package
+- Several improvements to the DHTML version
+  - A progress indicator when loading features for the first time
+  - Add a toggle to show/hide folder contents (top level folders are collapsed by default)
+- The Nuget package for the MSBuild runner adds an msbuild target file - see [MSBuild Task](http://www.picklesdoc.com/#!Pages/MSBuildTask.md) for documentation ([#157](https://github.com/picklesdoc/pickles/pull/157))
+- The text "pickled on" was replaced with "generated on".
+
+### For developers
+
+We are now using a new assert library: [NFluent](http://n-fluent.net/).
+
 ## v0.18.2 - 2014-09-12
 
 ### Bug(s) Fixed
