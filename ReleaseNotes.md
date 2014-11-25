@@ -8,6 +8,7 @@
 
 ### New Features
 
+- Each runner has its own download package
 - Several improvements to the DHTML version
   - A progress indicator when loading features for the first time
   - Add a toggle to show/hide folder contents (top level folders are collapsed by default)
