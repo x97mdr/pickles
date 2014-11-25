@@ -12,6 +12,11 @@
   - A progress indicator when loading features for the first time
   - Add a toggle to show/hide folder contents (top level folders are collapsed by default)
 - The Nuget package for the MSBuild runner adds an msbuild target file - see [MSBuild Task](http://www.picklesdoc.com/#!Pages/MSBuildTask.md) for documentation ([#157](https://github.com/picklesdoc/pickles/pull/157))
+- The text "pickled on" was replaced with "generated on".
+
+### For developers
+
+We are now using a new assert library: [NFluent](http://n-fluent.net/).
 
 ## v0.18.2 - 2014-09-12
 
