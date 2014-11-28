@@ -7,7 +7,26 @@
 		<authors>PicklesDoc and contributors</authors>
 		<owners>Jeffrey Cameron, Dirk Rombauts</owners>
 		<summary>A documentation generator for features written in the Gherkin language</summary>
-		<description>Pickles is an open source living documentation generator that works on feature files written in the Gherkin language, popularized in tools like Cucumber and SpecFlow. Pickles can be incorporated into your build process to produce living documenation in a format that is more accessible to your clients. Gherkin language files are written in plain text and stored in your source folder. This can make them inaccessible to clients who may not know how to work with source control or who are not interested in seeing all of the source code, just the features.</description>
+		<description>**Pickles** is an open source **living documentation** generator that works on feature files written in the *Gherkin* language, popularized in tools like *Cucumber* and *SpecFlow*.
+
+*Pickles* can be incorporated into your build process to produce living documenation in a format that is more accessible to your clients. *Gherkin* language files are written in plain text and stored in your source folder. This can make them inaccessible to clients who may not know how to work with source control or who are not interested in seeing all of the source code, just the features.
+
+*Pickles* can produce output in different formats:
+
+- Static HTML: a set of HTML files with minimal JavaScript
+- Dynamic HTML: a JavaScript-rich single page app with integrated search
+- Word: Microsoft Word
+- Excel: Microsoft Excel
+- JSON: a custom JSON format
+
+Optionally, *Pickles* can **integrate test results**, so that your stakeholders know which scenarios pass validation. *Pickles* supports these test formats:
+
+- NUnit
+- MSTest
+- XUnit
+- SpecRun
+- Cucumber JSON
+ </description>
 		<projectUrl>http://www.picklesdoc.com/</projectUrl>
 		<tags>SpecificationByExample BDD SpecFlow Gherkin Cucumber SpecByEx LivingDocumentation Documentation </tags>
 		<copyright></copyright>
@@ -17,8 +36,6 @@
 	</metadata>
 	<files>
 		<file src="pickles.exe" target="tools" />
-		<file src="chocolateyInstall.ps1" target="tools" />
-		<file src="version.ps1" target="tools" />
 	</files>
 </package>
 
