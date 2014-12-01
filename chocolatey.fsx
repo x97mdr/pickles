@@ -4,6 +4,7 @@ open Fake
 
 // Properties
 let cmdDir = "./build/exe/"
+let guiDir = "./build/gui/"
 let deployDir  = "./deploy/chocolatey/"
 let packagingDir = "./packaging/"
 let chocoDir = "./chocolatey/"
@@ -14,6 +15,7 @@ let version = environVar "version" // or retrieve from CI server
 Target "Clean" (fun _ ->
     CleanDirs [deployDir; packagingDir]
 )
+
 
 Target "CreatePackage CMD" (fun _ ->
     CopyFiles packagingDir [cmdDir + "Pickles.exe"; cmdDir + "NLog.config"]
@@ -28,6 +30,19 @@ Target "CreatePackage CMD" (fun _ ->
 )
 
 
+Target "CreatePackage GUI" (fun _ ->
+    CopyFiles packagingDir [guiDir + "picklesui.exe"; guiDir + "NLog.config"; guiDir + "PicklesUI.exe.config"]
+    WriteFile (packagingDir + "version.ps1") [("$version = \"" + version + "\"")]
+    NuGet (fun p ->
+        {p with
+            OutputPath = deployDir
+            WorkingDir = packagingDir
+            Version = version
+            Publish = false })
+            (chocoDir + "picklesui.nuspec")
+)
+
+
 Target "Default" (fun _ ->
     trace ("Starting build of Pickles version " + version)
     DeleteDir packagingDir
@@ -37,6 +52,7 @@ Target "Default" (fun _ ->
 // Dependencies
 "Clean"
   ==> "CreatePackage CMD"
+  ==> "CreatePackage GUI"
   ==> "Default"
 
 
