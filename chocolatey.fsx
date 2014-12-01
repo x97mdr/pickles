@@ -33,6 +33,7 @@ Target "CreatePackage CMD" (fun _ ->
 Target "CreatePackage GUI" (fun _ ->
     CopyFiles packagingDir [guiDir + "picklesui.exe"; guiDir + "NLog.config"; guiDir + "PicklesUI.exe.config"]
     WriteFile (packagingDir + "version.ps1") [("$version = \"" + version + "\"")]
+    WriteFile (packagingDir + "picklesui.exe.gui") [("")]
     NuGet (fun p ->
         {p with
             OutputPath = deployDir

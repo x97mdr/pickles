@@ -36,6 +36,7 @@ Optionally, *Pickles* can **integrate test results**, so that your stakeholders 
     </metadata>
     <files>
         <file src="picklesui.exe" target="tools" />
+        <file src="picklesui.exe.gui" target="tools" />
         <file src="NLog.config" target="tools" />
         <file src="PicklesUI.exe.config" target="tools" />
     </files>
