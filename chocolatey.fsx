@@ -15,7 +15,7 @@ Target "Clean" (fun _ ->
     CleanDirs [deployDir; packagingDir]
 )
 
-Target "CreatePackage" (fun _ ->
+Target "CreatePackage CMD" (fun _ ->
     CopyFiles packagingDir [cmdDir + "Pickles.exe"; cmdDir + "NLog.config"]
     WriteFile (packagingDir + "version.ps1") [("$version = \"" + version + "\"")]
     NuGet (fun p ->
@@ -36,7 +36,7 @@ Target "Default" (fun _ ->
 
 // Dependencies
 "Clean"
-  ==> "CreatePackage"
+  ==> "CreatePackage CMD"
   ==> "Default"
 
 
