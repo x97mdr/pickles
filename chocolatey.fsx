@@ -16,14 +16,14 @@ Target "Clean" (fun _ ->
 )
 
 Target "CreatePackage" (fun _ ->
-    CopyFiles packagingDir [chocoDir + "chocolateyInstall.ps1"; cmdDir + "Pickles.exe"; cmdDir + "NLog.config"]
+    CopyFiles packagingDir [cmdDir + "Pickles.exe"; cmdDir + "NLog.config"]
     WriteFile (packagingDir + "version.ps1") [("$version = \"" + version + "\"")]
-    NuGet (fun p -> 
+    NuGet (fun p ->
         {p with
             OutputPath = deployDir
             WorkingDir = packagingDir
             Version = version
-            Publish = false }) 
+            Publish = false })
             (chocoDir + "Pickles.nuspec")
 )
 
