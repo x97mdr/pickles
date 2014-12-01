@@ -29,7 +29,7 @@ Optionally, *Pickles* can **integrate test results**, so that your stakeholders 
  </description>
         <projectUrl>http://www.picklesdoc.com/</projectUrl>
         <tags>SpecificationByExample BDD SpecFlow Gherkin Cucumber SpecByEx LivingDocumentation Documentation </tags>
-        <copyright></copyright>
+        <copyright>Copyright © 2010-2012 Jeffrey Cameron, Copyright © 2013-present PicklesDoc and contributors</copyright>
         <licenseUrl>http://apache.org/licenses/LICENSE-2.0.html</licenseUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <iconUrl>https://cdn.rawgit.com/picklesdoc/pickles/master/pickles.jpeg</iconUrl>
