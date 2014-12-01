@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pickles", "Pickles\Pickles.csproj", "{38BAD6E0-78AB-4AC3-91A8-BF72AF5EE394}"
 EndProject
@@ -43,6 +43,21 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{34E7297F-30A1-4AB6-99A7-16142AD71991}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuspecs", "nuspecs", "{E1DDC21E-D21E-4B2C-8561-17F630EC8F36}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{52414CCC-E080-4FBF-AA3B-7E0117AE3673}"
+	ProjectSection(SolutionItems) = preProject
+		Pickles.CommandLine\Pickles.CommandLine.nuspec = Pickles.CommandLine\Pickles.CommandLine.nuspec
+		Pickles.MSBuild\Pickles.MSBuild.nuspec = Pickles.MSBuild\Pickles.MSBuild.nuspec
+		Pickles.PowerShell\Pickles.nuspec = Pickles.PowerShell\Pickles.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "chocolatey", "chocolatey", "{632BD477-03C9-4CC6-8840-6723DE75652E}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\chocolatey\pickles.nuspec = ..\..\chocolatey\pickles.nuspec
+		..\..\chocolatey\picklesui.nuspec = ..\..\chocolatey\picklesui.nuspec
 	EndProjectSection
 EndProject
 Global
@@ -93,6 +108,8 @@ Global
 		{A4EBBB5F-A18D-46D2-9ADE-2B90BD48CEC8} = {4E977674-6919-4F15-A6E3-37BFAC18C7E5}
 		{AD9F6DD1-5C76-45C9-9FF9-DAE37DB7B2D4} = {4E977674-6919-4F15-A6E3-37BFAC18C7E5}
 		{F3768CCA-00C2-4280-9F8D-4585B5E214B1} = {4E977674-6919-4F15-A6E3-37BFAC18C7E5}
+		{52414CCC-E080-4FBF-AA3B-7E0117AE3673} = {E1DDC21E-D21E-4B2C-8561-17F630EC8F36}
+		{632BD477-03C9-4CC6-8840-6723DE75652E} = {E1DDC21E-D21E-4B2C-8561-17F630EC8F36}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Pickles.CommandLine\Pickles.CommandLine.csproj
