@@ -86,10 +86,10 @@ namespace PicklesDoc.Pickles.MSBuild
             }
             catch (Exception e)
             {
-                Log.LogWarningFromException(e, false);
+                Log.LogErrorFromException(e, false);
+                return false;
             }
 
-            // HACK - since this is merely producing documentation we do not want it to cause a build to fail if something goes wrong
             return true;
         }
     }
