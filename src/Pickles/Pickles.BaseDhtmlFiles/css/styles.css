@@ -131,6 +131,16 @@ li.step {
     border-top: 1px lightgrey solid;
 }
 
-.clickable {    
+.clickable {
     cursor: pointer;
+}
+
+.table {
+    width: 0;
+    max-width: 90%;
+}
+
+.table-condensed th,
+.table-condensed td {
+    padding: 5px 8px;
 }
