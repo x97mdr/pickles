@@ -86,7 +86,7 @@ namespace PicklesDoc.Pickles.MSBuild
             }
             catch (Exception e)
             {
-                Log.LogWarningFromException(e, false);
+                Log.LogErrorFromException(e, false);
                 return false;
             }
 
