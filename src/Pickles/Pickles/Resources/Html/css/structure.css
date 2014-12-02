@@ -172,12 +172,12 @@ div.description ul {
     border-collapse: collapse;
     empty-cells: show;
     margin: 0 1em 0 1em;
-    width: 90%;
+    max-width: 90%;
 }
 
 #feature th, td {
     border: 1px solid black;
-    padding: 3px;
+    padding: 5px 8px;
 }
 
 #feature td {

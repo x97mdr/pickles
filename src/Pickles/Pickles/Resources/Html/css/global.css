@@ -1,5 +1,5 @@
 /***** Global Settings *****/
- 
+
 html, body {
     border: 0;
     margin: 0;
@@ -7,7 +7,7 @@ html, body {
 }
 
 body { font: 100%/1.25 Arial, Helvetica, sans-serif; }
- 
+
 /***** Headings *****/
 
 h1, h2, h3, h4, h5, h6 {
@@ -32,7 +32,7 @@ h3 {
     font-size: 1em;
     font-weight: bold;
 }
- 
+
 /***** Common Formatting *****/
 
 p, ul, ol {
@@ -78,14 +78,14 @@ strong {
 em {
     font-style: oblique;
 }
- 
+
 /***** Links *****/
 
 a,
 a:link,
 a:visited,
 a:hover { text-decoration: underline; }
- 
+
 /***** Forms *****/
 
 form {
@@ -102,7 +102,7 @@ textarea {
 }
 
 label { cursor: pointer; }
- 
+
 /***** Tables *****/
 
 table {
@@ -111,15 +111,13 @@ table {
     padding: 0;
 }
 
-table tr td { padding: 2px; }
- 
 /***** Wrapper *****/
 
 #wrap {
     margin: 0 auto;
     width: 960px;
 }
- 
+
 /***** Global Classes *****/
 
 .clear { clear: both; }
