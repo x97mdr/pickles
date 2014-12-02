@@ -30,7 +30,7 @@ namespace PicklesDoc.Pickles.CommandLine
     {
       private static readonly Logger log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
 
-        private static void Main(string[] args)
+        private static int Main(string[] args)
         {
             var builder = new ContainerBuilder();
             builder.RegisterAssemblyTypes(typeof(Runner).Assembly);
@@ -53,13 +53,23 @@ namespace PicklesDoc.Pickles.CommandLine
                 }
 
                 var runner = container.Resolve<Runner>();
-                runner.Run(container);
 
-                if (log.IsInfoEnabled)
+                try
                 {
-                    log.Info("Pickles completed successfully");
+                    runner.Run(container);
+
+                    if (log.IsInfoEnabled)
+                    {
+                        log.Info("Pickles completed successfully");
+                    }
+                }
+                catch
+                {
+                    return 1;
                 }
             }
+
+            return 0;
         }
     }
 }
