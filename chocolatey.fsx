@@ -4,6 +4,7 @@ open Fake
 
 // Properties
 let cmdDir = "./build/exe/"
+let guiDir = "./build/gui/"
 let deployDir  = "./deploy/chocolatey/"
 let packagingDir = "./packaging/"
 let chocoDir = "./chocolatey/"
@@ -15,16 +16,31 @@ Target "Clean" (fun _ ->
     CleanDirs [deployDir; packagingDir]
 )
 
-Target "CreatePackage" (fun _ ->
-    CopyFiles packagingDir [chocoDir + "chocolateyInstall.ps1"; cmdDir + "Pickles.exe"; cmdDir + "NLog.config"]
+
+Target "CreatePackage CMD" (fun _ ->
+    CopyFiles packagingDir [cmdDir + "Pickles.exe"; cmdDir + "NLog.config"]
     WriteFile (packagingDir + "version.ps1") [("$version = \"" + version + "\"")]
-    NuGet (fun p -> 
+    NuGet (fun p ->
         {p with
             OutputPath = deployDir
             WorkingDir = packagingDir
             Version = version
-            Publish = false }) 
+            Publish = false })
             (chocoDir + "Pickles.nuspec")
+)
+
+
+Target "CreatePackage GUI" (fun _ ->
+    CopyFiles packagingDir [guiDir + "picklesui.exe"; guiDir + "NLog.config"; guiDir + "PicklesUI.exe.config"]
+    WriteFile (packagingDir + "version.ps1") [("$version = \"" + version + "\"")]
+    WriteFile (packagingDir + "picklesui.exe.gui") [("")]
+    NuGet (fun p ->
+        {p with
+            OutputPath = deployDir
+            WorkingDir = packagingDir
+            Version = version
+            Publish = false })
+            (chocoDir + "picklesui.nuspec")
 )
 
 
@@ -36,7 +52,8 @@ Target "Default" (fun _ ->
 
 // Dependencies
 "Clean"
-  ==> "CreatePackage"
+  ==> "CreatePackage CMD"
+  ==> "CreatePackage GUI"
   ==> "Default"
 
 
