@@ -28,12 +28,12 @@
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </Window.Resources>
-  <mahapps:MetroWindow.WindowCommands>
-    <mahapps:WindowCommands>
-      <Button Content="open output folder" Command="{Binding Path=OpenOutputDirectory}" />
-    </mahapps:WindowCommands>
-  </mahapps:MetroWindow.WindowCommands>
-  <Grid Margin="0,0,0,20">
+    <mahapps:MetroWindow.RightWindowCommands>
+        <mahapps:WindowCommands>
+            <Button Content="open output folder" Command="{Binding Path=OpenOutputDirectory}" />
+        </mahapps:WindowCommands>
+    </mahapps:MetroWindow.RightWindowCommands>
+    <Grid Margin="0,0,0,20">
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto"/>
@@ -59,12 +59,12 @@
     <mahapps:MetroProgressBar IsIndeterminate="true"  Height="5" Visibility="Hidden" Grid.Row="0" Grid.ColumnSpan="5" x:Name="progressIndicator" x:FieldModifier="private"/>
 
     <Label Content="Feature Directory" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" />
-    <TextBox Text="{Binding FeatureFolder}" Grid.Column="1" Grid.Row="1" mahapps:TextboxHelper.Watermark="Browse To The Location Of Your Feature Files" VerticalAlignment="Top" />
+    <TextBox Text="{Binding FeatureFolder}" Grid.Column="1" Grid.Row="1" mahapps:TextBoxHelper.Watermark="Browse To The Location Of Your Feature Files" VerticalAlignment="Top" />
     <Button Command="{Binding BrowseForFeatureFolder}" Content="Browse ..." Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" />
     <CheckBox Template="{StaticResource ResourceKey=myCheckBox}" Grid.Column="3" Grid.Row="1" IsChecked="{Binding Path=IsFeatureDirectoryValid}" VerticalAlignment="Top" />
 
     <Label Content="Output Directory" Grid.Column="0" Grid.Row="2" VerticalAlignment="Top" />
-    <TextBox Text="{Binding OutputFolder}" Grid.Column="1" Grid.Row="2" mahapps:TextboxHelper.Watermark="Browse To The Location Of The Living Documentation" VerticalAlignment="Top" />
+        <TextBox Text="{Binding OutputFolder}" Grid.Column="1" Grid.Row="2" mahapps:TextBoxHelper.Watermark="Browse To The Location Of The Living Documentation" VerticalAlignment="Top" />
     <Button Command="{Binding BrowseForOutputFolder}" Content="Browse ..." Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" Width="62" VerticalAlignment="Top" />
     <CheckBox Template="{StaticResource ResourceKey=myCheckBox}" Grid.Column="3" Grid.Row="2" IsChecked="{Binding Path=IsOutputDirectoryValid}" VerticalAlignment="Top"/>
 
@@ -85,18 +85,18 @@
     </ListBox>
 
     <Label Content="Project Name" Grid.Column="0" Grid.Row="4" VerticalAlignment="Top" />
-    <TextBox Text="{Binding ProjectName}" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" mahapps:TextboxHelper.Watermark="Enter The Name Of Your Project Here" VerticalAlignment="Top" />
+        <TextBox Text="{Binding ProjectName}" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" mahapps:TextBoxHelper.Watermark="Enter The Name Of Your Project Here" VerticalAlignment="Top" />
     <CheckBox Template="{StaticResource ResourceKey=myCheckBox}" Grid.Column="3" Grid.Row="4" IsChecked="{Binding Path=IsProjectNameValid}" VerticalAlignment="Top"/>
 
     <Label Content="Project Version" Grid.Column="0" Grid.Row="5" VerticalAlignment="Top" />
-    <TextBox Text="{Binding ProjectVersion}" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" mahapps:TextboxHelper.Watermark="Enter The Version Of Your Project Here" VerticalAlignment="Top" />
+        <TextBox Text="{Binding ProjectVersion}" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" mahapps:TextBoxHelper.Watermark="Enter The Version Of Your Project Here" VerticalAlignment="Top" />
     <CheckBox Template="{StaticResource ResourceKey=myCheckBox}" Grid.Column="3" Grid.Row="5" IsChecked="{Binding Path=IsProjectVersionValid}" VerticalAlignment="Top"/>
 
     <Label Content="Include Test Results" Grid.Column="0" Grid.Row="7" Visibility="Hidden" />
     <mahapps:ToggleSwitch Header="Include Test Results" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" IsChecked="{Binding Path=IncludeTests, Mode=TwoWay}" Margin="0,0,0,5" />
 
     <Label Content="Test Results File" Grid.Column="0" Grid.Row="7" VerticalAlignment="Top" />
-    <TextBox Text="{Binding TestResultsFile}" Grid.Column="1" Grid.Row="7" IsEnabled="{Binding Path=IncludeTests}" mahapps:TextboxHelper.Watermark="Browse To The Location Of Your Test Results File" VerticalAlignment="Top" />
+        <TextBox Text="{Binding TestResultsFile}" Grid.Column="1" Grid.Row="7" IsEnabled="{Binding Path=IncludeTests}" mahapps:TextBoxHelper.Watermark="Browse To The Location Of Your Test Results File" VerticalAlignment="Top" />
     <Button Command="{Binding BrowseForTestResultsFile}" Content="Browse" Grid.Row="7" Grid.Column="2" IsEnabled="{Binding Path=IncludeTests}" VerticalAlignment="Top" />
     <CheckBox Template="{StaticResource ResourceKey=myCheckBox}" Grid.Column="3" Grid.Row="7" IsChecked="{Binding Path=IsTestResultsFileValid}" Visibility="{Binding Path=IncludeTests, Converter={StaticResource ResourceKey=booleanToVisibilityConverter}}"/>
 
