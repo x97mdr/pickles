@@ -4,7 +4,8 @@
                      xmlns:mahapps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                      xmlns:nlogViewer="clr-namespace:NlogViewer;assembly=NlogViewer"
                      Title="Pickles" Height="600" Width="800" Loaded="MetroWindow_Loaded" Closed="MetroWindow_Closed"  DataContextChanged="MainWindow_OnDataContextChanged"
-                     DataContext="{Binding Main, Source={StaticResource Locator}}">
+                     DataContext="{Binding Main, Source={StaticResource Locator}}"
+                     Icon="Pickles.ico">
   <Window.TaskbarItemInfo>
     <TaskbarItemInfo x:Name="taskBarItemInfo" />
   </Window.TaskbarItemInfo>
