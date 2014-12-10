@@ -1,5 +1,17 @@
 # Pickles Release Notes
 
+## v0.20.0 - 2014-12-10
+
+### Breaking Change
+
+- The msbuild runner will now break the build when an error occurs. This reflects our belief that the Living Documentation is a first class output of the software development process.
+
+### New Features
+
+- The command line and powershell runners now return an error code of 0 when everything went fine, and 1 if there was an error.
+- The HTML and DHTML output versions no longer horizontally spread tables.
+- The GUI version has an icon  
+
 ## v0.19.0 - 2014-11-25
 
 ### Breaking Change
