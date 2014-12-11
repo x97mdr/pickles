@@ -15,21 +15,27 @@
       </Canvas>
     </Viewbox>
     <ControlTemplate.Triggers>
-      <Trigger Property="IsChecked" Value="True">
-        <Setter TargetName="path"
+            <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="path"
                             Property="Data"
                             Value="F1 M 15,21L 22,28L 32.9999,14.0001L 35.9999,17.0001L 22,34L 12.0001,24L 15,21 Z " />
-        <Setter TargetName="path" Property="Fill" Value="{DynamicResource ResourceKey=AccentColorBrush}" />
-        <Setter TargetName="path" Property="Width" Value="48" />
-        <Setter TargetName="path" Property="Height" Value="40" />
-        <Setter TargetName="path" Property="Canvas.Left" Value="0" />
+                <Setter TargetName="path" Property="Fill" Value="{DynamicResource ResourceKey=AccentColorBrush}" />
+                <Setter TargetName="path" Property="Width" Value="48" />
+                <Setter TargetName="path" Property="Height" Value="40" />
+                <Setter TargetName="path" Property="Canvas.Left" Value="0" />
 
-      </Trigger>
+            </Trigger>
 
-      <Trigger Property="IsMouseOver" Value="True">
-        <Setter TargetName="path" Property="Fill" Value="{DynamicResource ResourceKey=HighlightDarkColorBrush}" />
-      </Trigger>
+            <Trigger Property="IsChecked" Value="False">
+                <Setter TargetName="path"
+                            Property="Data"
+                            Value="F1 M 17,14L 24,21L 30.9999,14.0001L 33.9999,17.0001L 27,24L 33.9999,31L 31,34L 24,27L 17,34L 14,31L 21,24L 14,17L 17,14 Z " />
+                <Setter TargetName="path" Property="Fill" Value="{DynamicResource ResourceKey=AccentColorBrush}" />
+                <Setter TargetName="path" Property="Width" Value="40" />
+                <Setter TargetName="path" Property="Height" Value="40" />
+                <Setter TargetName="path" Property="Canvas.Left" Value="4" />
 
+            </Trigger>
     </ControlTemplate.Triggers>
   </ControlTemplate>
 </ResourceDictionary>
