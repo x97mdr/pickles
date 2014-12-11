@@ -1,1 +1,1 @@
-FOR %%A IN (exe gui msbuild nant powershell) DO (powershell.exe -nologo -noprofile -command "& { Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('.\deploy\Pickles-%%A-%1.zip', '.\deploy\pickles-%1\%%A'); }")
+FOR %%A IN (exe gui msbuild powershell) DO (powershell.exe -nologo -noprofile -command "& { Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('.\deploy\Pickles-%%A-%1.zip', '.\deploy\pickles-%1\%%A'); }")
