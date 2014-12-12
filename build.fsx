@@ -7,7 +7,6 @@ open Fake.AssemblyInfoFile
 let buildDir = "./build/"
 let cmdDir = "./build/exe/"
 let msBuildDir = "./build/msbuild/"
-let nantDir = "./build/nant/"
 let powerShellDir = "./build/powershell/"
 let guiDir = "./build/gui/"
 let testDir  = "./test/"
@@ -15,11 +14,11 @@ let deployDir = "./deploy/"
 
 // version info
 let version = environVar "version" // or retrieve from CI server
- 
+
 
 // Targets
 Target "Clean" (fun _ ->
-    CleanDirs [cmdDir; msBuildDir; nantDir; powerShellDir; guiDir; buildDir; testDir; deployDir]
+    CleanDirs [cmdDir; msBuildDir; powerShellDir; guiDir; buildDir; testDir; deployDir]
 )
 
 Target "AssemblyInfo" (fun _ ->
@@ -46,12 +45,6 @@ Target "BuildMsBuild" (fun _ ->
       |> Log "AppBuild-Output: "
 )
 
-Target "BuildNAnt" (fun _ ->
-    !! "src/Pickles/Pickles.NAnt/Pickles.NAnt.csproj"
-      |> MSBuildRelease nantDir "Build"
-      |> Log "AppBuild-Output: "
-)
-
 Target "BuildPowerShell" (fun _ ->
     !! "src/Pickles/Pickles.PowerShell/Pickles.PowerShell.csproj"
       |> MSBuildRelease powerShellDir "Build"
@@ -70,7 +63,7 @@ Target "BuildTest" (fun _ ->
       |> Log "AppBuild-Output: "
 )
 
-let createZip (packageType : string) = 
+let createZip (packageType : string) =
     !! (buildDir + "/" + packageType + "/*.*") -- "*.zip"
         |> Zip (buildDir + packageType) (deployDir + "Pickles-" + packageType + "-" + version + ".zip")
 
@@ -78,7 +71,6 @@ Target "Zip" (fun _ ->
     createZip "exe"
     createZip "gui"
     createZip "msbuild"
-    createZip "nant"
     createZip "powershell"
 )
 
@@ -92,7 +84,6 @@ Target "Default" (fun _ ->
   ==> "AssemblyInfo"
   ==> "BuildCmd"
   ==> "BuildMsBuild"
-  ==> "BuildNAnt"
   ==> "BuildPowerShell"
   ==> "BuildGui"
   ==> "BuildTest"
