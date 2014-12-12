@@ -1,10 +1,10 @@
 @echo off
-set "picklesVersion=0.20.0"
+set "picklesVersion=1.0.0"
 
 cls
 
 
-cd ".\src\Pickles\packages\NuGet.CommandLine.2.8.3\tools\"
+cd ".\src\Pickles\packages\NuGet.CommandLine.*\tools\"
 
 ".\NuGet.exe" "Install" "FAKE" "-OutputDirectory" "..\..\..\..\..\packages" "-ExcludeVersion"
 

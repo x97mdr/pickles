@@ -1,5 +1,15 @@
 # Pickles Release Notes
 
+## v1.0.0 - 2014-12-15
+
+### Breaking Change
+
+- Support for the nAnt runner has been discontinued. nAnt users can migrate by using nAnt's capabilities to call the command line runner of Pickles. ([#179](https://github.com/picklesdoc/pickles/pull/179))
+
+### Bug Fix
+
+- The checkmark/cross icon in the GUI client did not always show the cross icon when appropriate, and its state could be changed by the user. ([#177](https://github.com/picklesdoc/pickles/pull/177))
+
 ## v0.20.0 - 2014-12-10
 
 ### Breaking Change
