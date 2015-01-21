@@ -17,7 +17,6 @@ Supported Output Formats
 - JSON
 - Word
 - Excel
-- DITA
 
 If there are other formats you would like to see then why don't you post on the [newsgroup we have for pickles development][1]
 
