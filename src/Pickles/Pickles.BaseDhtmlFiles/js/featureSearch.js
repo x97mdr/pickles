@@ -27,7 +27,7 @@ function matchesFeatureName(searchString, feature) {
 }
 
 function matchesFeatureTag(searchString, feature) {
-    var foundMatch = false    
+    var foundMatch = false;    
     $.each(feature.Feature.Tags, function (key, scenarioTag) {
         var lowerCasedTag = scenarioTag.toLowerCase();
         if (lowerCasedTag.indexOf(searchString) > -1) {
