@@ -27,8 +27,14 @@ function matchesFeatureName(searchString, feature) {
 }
 
 function matchesFeatureTag(searchString, feature) {
-    var featureTags = feature.Feature.Tags;
-    return (_.indexOf(featureTags, searchString) > -1);
+    var foundMatch = false    
+    $.each(feature.Feature.Tags, function (key, scenarioTag) {
+        var lowerCasedTag = scenarioTag.toLowerCase();
+        if (lowerCasedTag.indexOf(searchString) > -1) {
+            foundMatch = true;
+        }
+    });
+    return foundMatch;
 }
 
 function matchesScenarioName(searchString, feature) {
