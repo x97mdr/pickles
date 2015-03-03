@@ -31,8 +31,8 @@ namespace Specs.ScenarioOutline
         }
 
 
-        [When(@"I preform add")]
-        public void WhenIPressAdd()
+        [When(@"I perform add")]
+        public void WhenIPerformAdd()
         {
             ScenarioContext.Current.Set(TalLista.Sum(), SUM_KEY);
         }
