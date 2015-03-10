@@ -1,8 +1,5 @@
-﻿
-using DocumentFormat.OpenXml.Wordprocessing;
-
+﻿using DocumentFormat.OpenXml.Wordprocessing;
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 using Table = DocumentFormat.OpenXml.Wordprocessing.Table;
 using TableRow = DocumentFormat.OpenXml.Wordprocessing.TableRow;
 
@@ -12,14 +9,16 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 	{
         const string DefaultBackgroundKeyword = "Background";
 
-	    private readonly LanguageServices languageSevices;
+        private readonly LanguageServices languageSevices;
+        private readonly WordTableFormatter wordTableFormatter;
 
-	    public WordBackgroundFormatter(Configuration configuration)
+	    public WordBackgroundFormatter(Configuration configuration, WordTableFormatter wordTableFormatter)
 	    {
+	        this.wordTableFormatter = wordTableFormatter;
 	        this.languageSevices = new LanguageServices(configuration);
 	    }
 
-		public void Format(Body body, Scenario background)
+	    public void Format(Body body, Scenario background)
 		{
 			var headerParagraph   = new Paragraph(new ParagraphProperties(new ParagraphStyleId { Val = "Heading2" }));
 		    var backgroundKeyword = GetLocalizedBackgroundKeyword();
@@ -38,7 +37,12 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
 			foreach (var step in background.Steps)
 			{
-				cell.Append(WordStepFormatter.GenerateStepParagraph(step));
+                cell.Append(WordStepFormatter.GenerateStepParagraph(step));
+
+                if (step.TableArgument != null)
+                {
+                    cell.Append(this.wordTableFormatter.CreateWordTableFromPicklesTable(step.TableArgument));
+                }
 			}
 
 			cell.Append(CreateNormalParagraph("")); // Is there a better way to generate a new empty line?

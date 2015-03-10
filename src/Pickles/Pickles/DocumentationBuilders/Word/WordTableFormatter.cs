@@ -18,7 +18,6 @@
 
 #endregion
 
-using System;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Table = PicklesDoc.Pickles.ObjectModel.Table;
 
@@ -40,6 +39,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
         }
 
         public void Format(Body body, Table table)
+        {
+            body.Append(this.CreateWordTableFromPicklesTable(table));
+        }
+
+        public DocumentFormat.OpenXml.Wordprocessing.Table CreateWordTableFromPicklesTable(Table table)
         {
             var wordTable = new DocumentFormat.OpenXml.Wordprocessing.Table();
             wordTable.Append(GenerateTableProperties());
@@ -65,8 +69,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
                 wordTable.Append(wordRow);
             }
-
-            body.Append(wordTable);
+            return wordTable;
         }
     }
 }
