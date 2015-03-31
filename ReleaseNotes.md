@@ -1,5 +1,12 @@
 # Pickles Release Notes
 
+## v1.0.1 - 2015-03-31
+
+### Bugs Fixed
+
+- In the DHtml version, feature wide tags with capitals can not be filtered on ([#194](https://github.com/picklesdoc/pickles/issues/194))
+- Tables in background for Word & Excel  ([#191](https://github.com/picklesdoc/pickles/issues/191))
+
 ## v1.0.0 - 2014-12-15
 
 ### Breaking Change
