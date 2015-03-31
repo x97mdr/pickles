@@ -18,81 +18,86 @@
 
 #endregion
 
-using System;
-using System.Reflection;
 using ClosedXML.Excel;
 using NLog;
-
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 using PicklesDoc.Pickles.TestFrameworks;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 {
-  public class ExcelFeatureFormatter
-  {
-    private static readonly Logger log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
-
-    private readonly ExcelScenarioFormatter excelScenarioFormatter;
-    private readonly ExcelScenarioOutlineFormatter excelScenarioOutlineFormatter;
-    private readonly Configuration configuration;
-    private readonly ITestResults testResults;
-
-    public ExcelFeatureFormatter(ExcelScenarioFormatter excelScenarioFormatter,
-                                 ExcelScenarioOutlineFormatter excelScenarioOutlineFormatter,
-                                 Configuration configuration,
-                                 ITestResults testResults)
+    public class ExcelFeatureFormatter
     {
-      this.excelScenarioFormatter = excelScenarioFormatter;
-      this.excelScenarioOutlineFormatter = excelScenarioOutlineFormatter;
-      this.configuration = configuration;
-      this.testResults = testResults;
-    }
+        private static readonly Logger log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
 
-    public void Format(IXLWorksheet worksheet, Feature feature)
-    {
-      worksheet.Cell("A1").Style.Font.SetBold();
-      worksheet.Cell("A1").Value = feature.Name;
+        private readonly ExcelScenarioFormatter excelScenarioFormatter;
+        private readonly ExcelScenarioOutlineFormatter excelScenarioOutlineFormatter;
+        private readonly Configuration configuration;
+        private readonly ITestResults testResults;
 
-      if (feature.Description.Length <= short.MaxValue)
-      {
-        worksheet.Cell("B2").Value = feature.Description;
-      }
-      else
-      {
-        var description = feature.Description.Substring(0, short.MaxValue);
-        log.Warn("The description of feature {0} was truncated because of cell size limitations in Excel.", feature.Name);
-        worksheet.Cell("B2").Value = description;
-      }
-
-      worksheet.Cell("B2").Style.Alignment.WrapText = false;
-
-      var results = this.testResults.GetFeatureResult(feature);
-
-      if (this.configuration.HasTestResults && results.WasExecuted)
-      {
-        worksheet.Cell("A1").Style.Fill.SetBackgroundColor(results.WasSuccessful
-                                                               ? XLColor.AppleGreen
-                                                               : XLColor.CandyAppleRed);
-      }
-
-      int row = 4;
-      foreach (IFeatureElement featureElement in feature.FeatureElements)
-      {
-        var scenario = featureElement as Scenario;
-        if (scenario != null)
+        public ExcelFeatureFormatter(ExcelScenarioFormatter excelScenarioFormatter,
+                                     ExcelScenarioOutlineFormatter excelScenarioOutlineFormatter,
+                                     Configuration configuration,
+                                     ITestResults testResults)
         {
-          this.excelScenarioFormatter.Format(worksheet, scenario, ref row);
+            this.excelScenarioFormatter = excelScenarioFormatter;
+            this.excelScenarioOutlineFormatter = excelScenarioOutlineFormatter;
+            this.configuration = configuration;
+            this.testResults = testResults;
         }
 
-        var scenarioOutline = featureElement as ScenarioOutline;
-        if (scenarioOutline != null)
+        public void Format(IXLWorksheet worksheet, Feature feature)
         {
-          this.excelScenarioOutlineFormatter.Format(worksheet, scenarioOutline, ref row);
-        }
+            worksheet.Cell("A1").Style.Font.SetBold();
+            worksheet.Cell("A1").Value = feature.Name;
 
-        row++;
-      }
+            if (feature.Description.Length <= short.MaxValue)
+            {
+                worksheet.Cell("B2").Value = feature.Description;
+            }
+            else
+            {
+                var description = feature.Description.Substring(0, short.MaxValue);
+                log.Warn("The description of feature {0} was truncated because of cell size limitations in Excel.", feature.Name);
+                worksheet.Cell("B2").Value = description;
+            }
+
+            worksheet.Cell("B2").Style.Alignment.WrapText = false;
+
+            var results = this.testResults.GetFeatureResult(feature);
+
+            if (this.configuration.HasTestResults && results.WasExecuted)
+            {
+                worksheet.Cell("A1").Style.Fill.SetBackgroundColor(results.WasSuccessful
+                                                                       ? XLColor.AppleGreen
+                                                                       : XLColor.CandyAppleRed);
+            }
+
+            var featureElementsToRender = new List<IFeatureElement>();
+            if (feature.Background != null)
+            {
+                featureElementsToRender.Add(feature.Background);
+            }
+            featureElementsToRender.AddRange(feature.FeatureElements);
+
+            var row = 4;
+            foreach (var featureElement in featureElementsToRender)
+            {
+                var scenario = featureElement as Scenario;
+                if (scenario != null)
+                {
+                    this.excelScenarioFormatter.Format(worksheet, scenario, ref row);
+                }
+
+                var scenarioOutline = featureElement as ScenarioOutline;
+                if (scenarioOutline != null)
+                {
+                    this.excelScenarioOutlineFormatter.Format(worksheet, scenarioOutline, ref row);
+                }
+
+                row++;
+            }
+        }
     }
-  }
 }
