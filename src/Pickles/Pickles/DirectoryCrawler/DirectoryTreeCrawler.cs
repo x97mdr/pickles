@@ -110,7 +110,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
                 {
                     node = this.featureNodeFactory.Create(rootNode.OriginalLocation, file);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     if (Log.IsWarnEnabled)
                     {
@@ -119,6 +119,11 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
                         // https://github.com/picklesdoc/pickles/issues/199
                         var fullName = file.Name + " in directory " + file.DirectoryName;
                         Log.Warn("The file {0} will be ignored because it could not be read in properly", fullName);
+                    }
+
+                    if (Log.IsDebugEnabled)
+                    {
+                        Log.Debug(ex, "Exception received");
                     }
                 }
 
