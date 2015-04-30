@@ -228,7 +228,13 @@ li.scenario, div.scenario {
  * Feature - Formatting the step keywords
  *************************************************************************/
 
-.keyword { font-weight: bold; }
+.keyword {
+    font-weight: bold;
+    float: left;
+    width: 44px;
+    text-align: right;
+    margin-right: 5px;
+}
 
 /*************************************************************************
  * Footer
