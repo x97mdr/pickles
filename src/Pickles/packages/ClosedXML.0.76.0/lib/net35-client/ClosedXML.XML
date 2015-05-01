@@ -1390,6 +1390,13 @@
             Gets an object to manage this worksheet's Excel tables
             </summary>
         </member>
+        <member name="T:ClosedXML.Excel.Misc.XLReentrantEnumerableSet`1">
+            <summary>
+            This is most definitely NOT thread-safe, but it is reentrant (e.g. you can insert and remove
+            items during enumeration)
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
         <member name="M:ClosedXML.Excel.IXLNamedRange.Add(ClosedXML.Excel.XLWorkbook,System.String)">
             <summary>
             Adds the specified range to this named range.
@@ -2927,7 +2934,7 @@
         </member>
         <member name="M:ClosedXML.Excel.XLHelper.GetColumnNumberFromLetter(System.String)">
             <summary>
-            	Gets the column number of a given column letter.
+            Gets the column number of a given column letter.
             </summary>
             <param name="columnLetter"> The column letter to translate into a column number. </param>
         </member>
@@ -2935,7 +2942,7 @@
             <summary>
             	Gets the column letter of a given column number.
             </summary>
-            <param name="column"> The column number to translate into a column letter. </param>
+            <param name="columnNumber"> The column number to translate into a column letter. </param>
         </member>
     </members>
 </doc>
