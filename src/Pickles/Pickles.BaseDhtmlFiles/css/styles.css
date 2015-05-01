@@ -39,6 +39,10 @@ li.step {
 .keyword {
     font-weight: bold;
     color: #0000FF;
+    float: left;
+    width: 40px;
+    text-align: right;
+    margin-right: 4px;
 }
 
 .steps table {
