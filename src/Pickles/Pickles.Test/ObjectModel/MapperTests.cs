@@ -18,6 +18,8 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.Linq;
 using NFluent;
 using NUnit.Framework;
 using PicklesDoc.Pickles.ObjectModel;
@@ -75,19 +77,25 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToTableRow_RowWithCellValues_ReturnsRowContainingThoseValues()
         {
-            Gherkin3.Ast.TableRow row = new Gherkin3.Ast.TableRow(
-                AnyLocation,
-                new[]
-                {
-                    CreateGherkinTableCell("first cell"),
-                    CreateGherkinTableCell("second cell")
-                });
+            Gherkin3.Ast.TableRow row = CreateGherkinTableRow(new[]
+                    {
+                        "first cell",
+                        "second cell"
+                    }
+                );
 
             var mapper = new Mapper();
 
             var result = mapper.MapToTableRow(row);
 
             Check.That(result).ContainsExactly("first cell", "second cell");
+        }
+
+        private static Gherkin3.Ast.TableRow CreateGherkinTableRow(IEnumerable<string> cellValues)
+        {
+            return new Gherkin3.Ast.TableRow(
+                AnyLocation,
+                cellValues.Select(CreateGherkinTableCell).ToArray());
         }
 
         [Test]
