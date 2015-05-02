@@ -426,6 +426,12 @@
       <Link>Resources\Dhtml\pickledFeatures.js</Link>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gherkin3\Gherkin3.csproj">
+      <Project>{370982b4-9938-4533-8ea1-6f9044b84130}</Project>
+      <Name>Gherkin3</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
