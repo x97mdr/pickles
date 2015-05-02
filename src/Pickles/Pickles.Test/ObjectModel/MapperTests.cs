@@ -27,10 +27,12 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
     [TestFixture]
     public class MapperTests
     {
+        private const Gherkin3.Ast.Location AnyLocation = null;
+
         [Test]
         public void MapToStringTableCell_TableCellWithValue_ReturnsThatValue()
         {
-            var cell = new Gherkin3.Ast.TableCell(null, "My cell value");
+            var cell = new Gherkin3.Ast.TableCell(AnyLocation, "My cell value");
 
             var mapper = CreateMapper();
 
@@ -68,7 +70,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToTableRow_RowWithCellValues_ReturnsRowContainingThoseValues()
         {
-            Gherkin3.Ast.TableRow row = new Gherkin3.Ast.TableRow(null, new []{ new Gherkin3.Ast.TableCell(null, "first cell"), new Gherkin3.Ast.TableCell(null,"second cell") });
+            Gherkin3.Ast.TableRow row = new Gherkin3.Ast.TableRow(AnyLocation, new[] { new Gherkin3.Ast.TableCell(AnyLocation, "first cell"), new Gherkin3.Ast.TableCell(AnyLocation, "second cell") });
 
             var mapper = new Mapper();
 
