@@ -18,6 +18,7 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
 using System.Linq;
 using NFluent;
 using NUnit.Framework;
@@ -110,11 +111,11 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToTable_DataTableWithThreeRows_ReturnsTableWithHeaderRowAndTwoRows()
         {
-            Gherkin3.Ast.DataTable dataTable = new Gherkin3.Ast.DataTable(new[]
+            Gherkin3.Ast.DataTable dataTable = CreateGherkinDataTable(new[]
             {
-                CreateGherkinTableRow("Header row, first cell", "Header row, second cell"),
-                CreateGherkinTableRow("First row, first cell", "First row, second cell"),
-                CreateGherkinTableRow("Second row, first cell", "Second row, second cell")
+                new[] { "Header row, first cell", "Header row, second cell" },
+                new[] { "First row, first cell", "First row, second cell" },
+                new[] { "Second row, first cell", "Second row, second cell" }
             });
 
             var mapper = new Mapper();
@@ -125,6 +126,11 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             Check.That(result.DataRows).HasSize(2);
             Check.That(result.DataRows[0]).ContainsExactly("First row, first cell", "First row, second cell");
             Check.That(result.DataRows[1]).ContainsExactly("Second row, first cell", "Second row, second cell");
+        }
+
+        private static Gherkin3.Ast.DataTable CreateGherkinDataTable(IEnumerable<string[]> rows)
+        {
+            return new Gherkin3.Ast.DataTable(rows.Select(CreateGherkinTableRow).ToArray());
         }
     }
 }
