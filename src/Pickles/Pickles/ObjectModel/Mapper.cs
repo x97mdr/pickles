@@ -12,17 +12,17 @@ namespace PicklesDoc.Pickles.ObjectModel
                 .ConstructUsing(
                     row =>
                         new TableRow(
-                            row.Cells.Select(cell => AutoMapper.Mapper.Map<Gherkin3.Ast.TableCell, string>(cell))));
+                            row.Cells.Select(AutoMapper.Mapper.Map<string>)));
         }
 
         public string MapToString(Gherkin3.Ast.TableCell cell)
         {
-            return AutoMapper.Mapper.Map<Gherkin3.Ast.TableCell, string>(cell);
+            return AutoMapper.Mapper.Map<string>(cell);
         }
 
         public TableRow MapToTableRow(Gherkin3.Ast.TableRow tableRow)
         {
-            return AutoMapper.Mapper.Map<Gherkin3.Ast.TableRow, TableRow>(tableRow);
+            return AutoMapper.Mapper.Map<TableRow>(tableRow);
         }
     }
 }
