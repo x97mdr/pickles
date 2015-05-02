@@ -32,13 +32,18 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToStringTableCell_TableCellWithValue_ReturnsThatValue()
         {
-            var cell = new Gherkin3.Ast.TableCell(AnyLocation, "My cell value");
+            var cell = CreateGherkinTableCell("My cell value");
 
             var mapper = CreateMapper();
 
             string result = mapper.MapToString(cell);
 
             Check.That(result).IsEqualTo("My cell value");
+        }
+
+        private static Gherkin3.Ast.TableCell CreateGherkinTableCell(string cellValue)
+        {
+            return new Gherkin3.Ast.TableCell(AnyLocation, cellValue);
         }
 
         private static Mapper CreateMapper()
@@ -74,8 +79,8 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
                 AnyLocation,
                 new[]
                 {
-                    new Gherkin3.Ast.TableCell(AnyLocation, "first cell"),
-                    new Gherkin3.Ast.TableCell(AnyLocation, "second cell")
+                    CreateGherkinTableCell("first cell"),
+                    CreateGherkinTableCell("second cell")
                 });
 
             var mapper = new Mapper();
