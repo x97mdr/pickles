@@ -51,7 +51,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         }
 
         [Test]
-        public void GetRelativeUriTo_DirectoryToFileBelow_ReturnsEmpty()
+        public void GetRelativeUriTo_DirectoryToFileBelow_ReturnsCurrentDirectory()
         {
             var directoryInfo = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\temp");
 
@@ -59,7 +59,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
 
             string relative = node.GetRelativeUriTo(new Uri(@"file:///c:/temp/test2.html"));
 
-            Check.That(relative).IsEqualTo("");
+            Check.That(relative).IsEqualTo("./");
         }
 
         [Test]
