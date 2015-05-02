@@ -36,6 +36,11 @@ namespace PicklesDoc.Pickles.ObjectModel
             AddRange(cells);
         }
 
+        public TableRow(IEnumerable<string> cells)
+        {
+            AddRange(cells);
+        }
+
       public TestResult Result { get; set; }
     }
 }

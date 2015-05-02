@@ -54,5 +54,27 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
             Check.That(result).IsNull();
         }
+
+        [Test]
+        public void MapToTableRow_NullTableRow_ReturnsNull()
+        {
+            var mapper = new Mapper();
+
+            TableRow result = mapper.MapToTableRow(null);
+
+            Check.That(result).IsNull();
+        }
+
+        [Test]
+        public void MapToTableRow_RowWithCellValues_ReturnsRowContainingThoseValues()
+        {
+            Gherkin3.Ast.TableRow row = new Gherkin3.Ast.TableRow(null, new []{ new Gherkin3.Ast.TableCell(null, "first cell"), new Gherkin3.Ast.TableCell(null,"second cell") });
+
+            var mapper = new Mapper();
+
+            var result = mapper.MapToTableRow(row);
+
+            Check.That(result).ContainsExactly("first cell", "second cell");
+        }
     }
 }
