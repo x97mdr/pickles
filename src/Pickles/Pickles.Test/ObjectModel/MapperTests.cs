@@ -107,5 +107,25 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
             Check.That(result).IsNull();
         }
+
+        [Test]
+        public void MapToTable_DataTableWithThreeRows_ReturnsTableWithHeaderRowAndTwoRows()
+        {
+            Gherkin3.Ast.DataTable dataTable = new Gherkin3.Ast.DataTable(new[]
+            {
+                CreateGherkinTableRow("Header row, first cell", "Header row, second cell"),
+                CreateGherkinTableRow("First row, first cell", "First row, second cell"),
+                CreateGherkinTableRow("Second row, first cell", "Second row, second cell")
+            });
+
+            var mapper = new Mapper();
+
+            var result = mapper.MapToTable(dataTable);
+
+            Check.That(result.HeaderRow).ContainsExactly("Header row, first cell", "Header row, second cell");
+            Check.That(result.DataRows).HasSize(2);
+            Check.That(result.DataRows[0]).ContainsExactly("First row, first cell", "First row, second cell");
+            Check.That(result.DataRows[1]).ContainsExactly("Second row, first cell", "Second row, second cell");
+        }
     }
 }

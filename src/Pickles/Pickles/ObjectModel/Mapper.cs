@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace PicklesDoc.Pickles.ObjectModel
@@ -13,6 +14,14 @@ namespace PicklesDoc.Pickles.ObjectModel
                     row =>
                         new TableRow(
                             row.Cells.Select(AutoMapper.Mapper.Map<string>)));
+            AutoMapper.Mapper.CreateMap<Gherkin3.Ast.DataTable, Table>()
+                .ConstructUsing(
+                    dataTable =>
+                        new Table
+                        {
+                            HeaderRow = AutoMapper.Mapper.Map<TableRow>(dataTable.Rows.Take(1).Single()),
+                            DataRows = new List<TableRow>(dataTable.Rows.Skip(1).Select(AutoMapper.Mapper.Map<TableRow>))
+                        });
         }
 
         public string MapToString(Gherkin3.Ast.TableCell cell)
