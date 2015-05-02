@@ -91,7 +91,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             Check.That(result).ContainsExactly("first cell", "second cell");
         }
 
-        private static Gherkin3.Ast.TableRow CreateGherkinTableRow(IEnumerable<string> cellValues)
+        private static Gherkin3.Ast.TableRow CreateGherkinTableRow(params string[] cellValues)
         {
             return new Gherkin3.Ast.TableRow(
                 AnyLocation,
