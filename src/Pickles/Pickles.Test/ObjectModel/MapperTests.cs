@@ -70,7 +70,13 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToTableRow_RowWithCellValues_ReturnsRowContainingThoseValues()
         {
-            Gherkin3.Ast.TableRow row = new Gherkin3.Ast.TableRow(AnyLocation, new[] { new Gherkin3.Ast.TableCell(AnyLocation, "first cell"), new Gherkin3.Ast.TableCell(AnyLocation, "second cell") });
+            Gherkin3.Ast.TableRow row = new Gherkin3.Ast.TableRow(
+                AnyLocation,
+                new[]
+                {
+                    new Gherkin3.Ast.TableCell(AnyLocation, "first cell"),
+                    new Gherkin3.Ast.TableCell(AnyLocation, "second cell")
+                });
 
             var mapper = new Mapper();
 
