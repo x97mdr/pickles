@@ -24,5 +24,10 @@ namespace PicklesDoc.Pickles.ObjectModel
         {
             return AutoMapper.Mapper.Map<TableRow>(tableRow);
         }
+
+        public Table MapToTable(Gherkin3.Ast.DataTable dataTable)
+        {
+            return AutoMapper.Mapper.Map<Table>(dataTable);
+        }
     }
 }

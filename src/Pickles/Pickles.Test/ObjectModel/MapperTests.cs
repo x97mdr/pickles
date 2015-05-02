@@ -84,5 +84,15 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
             Check.That(result).ContainsExactly("first cell", "second cell");
         }
+
+        [Test]
+        public void MapToTable_NullDataTable_ReturnsNullTable()
+        {
+            var mapper = new Mapper();
+
+            Table result = mapper.MapToTable(null);
+
+            Check.That(result).IsNull();
+        }
     }
 }
