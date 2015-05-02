@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="TableCellToStringMapperTests.cs" company="PicklesDoc">
+//  <copyright file="MapperTests.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -20,30 +20,37 @@
 
 using NFluent;
 using NUnit.Framework;
+using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.Test.ObjectModel
 {
     [TestFixture]
-    public class TableCellToStringMapperTests
+    public class MapperTests
     {
         [Test]
-        public void TestSimpleTranslation()
+        public void MapToStringTableCell_TableCellWithValue_ReturnsThatValue()
         {
             var cell = new Gherkin3.Ast.TableCell(null, "My cell value");
 
-            var mapper = new Pickles.ObjectModel.Mapper();
+            var mapper = CreateMapper();
 
-            string result = mapper.Map(cell);
+            string result = mapper.MapToString(cell);
 
             Check.That(result).IsEqualTo("My cell value");
         }
 
-        [Test]
-        public void NullTableCell_Always_ReturnsNull()
+        private static Mapper CreateMapper()
         {
-            var mapper = new Pickles.ObjectModel.Mapper();
+            var mapper = new Mapper();
+            return mapper;
+        }
 
-            string result = mapper.Map(null);
+        [Test]
+        public void MapToStringTableCell_NullTableCell_ReturnsNull()
+        {
+            var mapper = new Mapper();
+
+            string result = mapper.MapToString(null);
 
             Check.That(result).IsNull();
         }
