@@ -272,6 +272,7 @@
     <Compile Include="LanguageServices.cs" />
     <Compile Include="MarkdownProvider.cs" />
     <Compile Include="ObjectModel\Example.cs" />
+    <Compile Include="ObjectModel\Mapper.cs" />
     <Compile Include="Parser\FeatureElementState.cs" />
     <Compile Include="ObjectModel\IFeatureElement.cs" />
     <Compile Include="Parser\JsonResult\Element.cs" />
