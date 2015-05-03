@@ -58,7 +58,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = new Mapper();
 
-            string result = mapper.MapToString(null);
+            string result = mapper.MapToString((Gherkin3.Ast.TableCell) null);
 
             Check.That(result).IsNull();
         }

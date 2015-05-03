@@ -38,5 +38,10 @@ namespace PicklesDoc.Pickles.ObjectModel
         {
             return AutoMapper.Mapper.Map<Table>(dataTable);
         }
+
+        public string MapToString(Gherkin3.Ast.DocString cell)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
