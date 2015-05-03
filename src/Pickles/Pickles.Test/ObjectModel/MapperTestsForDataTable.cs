@@ -46,7 +46,6 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             Check.That(result).IsEqualTo("My cell value");
         }
 
-
         [Test]
         public void MapToStringTableCell_NullTableCell_ReturnsNull()
         {
