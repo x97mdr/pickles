@@ -23,6 +23,8 @@ namespace PicklesDoc.Pickles.ObjectModel
                             HeaderRow = AutoMapper.Mapper.Map<TableRow>(dataTable.Rows.Take(1).Single()),
                             DataRows = new List<TableRow>(dataTable.Rows.Skip(1).Select(AutoMapper.Mapper.Map<TableRow>))
                         });
+
+            AutoMapper.Mapper.CreateMap<G.DocString, string>().ConstructUsing(docString => docString.Content);
         }
 
         public string MapToString(G.TableCell cell)

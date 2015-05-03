@@ -28,6 +28,8 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
     [TestFixture]
     public class MapperTestsForDocString
     {
+        private const G.Location AnyLocation = null;
+
         [Test]
         public void MapToStringDocString_NullArgument_ReturnsNull()
         {
@@ -41,6 +43,20 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         private static Mapper CreateMapper()
         {
             return FactoryMethods.CreateMapper();
+        }
+
+        [Test]
+        public void MapToStringDocString_ArgumentWithStringValue_ReturnsThatString()
+        {
+            var docString = new G.DocString(AnyLocation, null, @"My doc string line 1
+My doc string line 2");
+
+            var mapper = CreateMapper();
+
+            string result = mapper.MapToString(docString);
+
+            Check.That(result).IsEqualTo(@"My doc string line 1
+My doc string line 2");
         }
     }
 }
