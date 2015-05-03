@@ -19,15 +19,23 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using PicklesDoc.Pickles.ObjectModel;
+using G = Gherkin3.Ast;
 
 namespace PicklesDoc.Pickles.Test.ObjectModel
 {
     public class Factory
     {
+        private const G.Location AnyLocation = null;
+
         internal Mapper CreateMapper()
         {
             var mapper = new Mapper();
             return mapper;
+        }
+
+        internal G.TableCell CreateGherkinTableCell(string cellValue)
+        {
+            return new G.TableCell(AnyLocation, cellValue);
         }
     }
 }

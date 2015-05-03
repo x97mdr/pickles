@@ -37,7 +37,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToStringTableCell_TableCellWithValue_ReturnsThatValue()
         {
-            var cell = CreateGherkinTableCell("My cell value");
+            var cell = this.factory.CreateGherkinTableCell("My cell value");
 
             var mapper = this.factory.CreateMapper();
 
@@ -46,10 +46,6 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             Check.That(result).IsEqualTo("My cell value");
         }
 
-        private static G.TableCell CreateGherkinTableCell(string cellValue)
-        {
-            return new G.TableCell(AnyLocation, cellValue);
-        }
 
         [Test]
         public void MapToStringTableCell_NullTableCell_ReturnsNull()
@@ -74,7 +70,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToTableRow_RowWithCellValues_ReturnsRowContainingThoseValues()
         {
-            G.TableRow row = CreateGherkinTableRow(new[]
+            G.TableRow row = this.CreateGherkinTableRow(new[]
                     {
                         "first cell",
                         "second cell"
@@ -88,11 +84,11 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             Check.That(result).ContainsExactly("first cell", "second cell");
         }
 
-        private static G.TableRow CreateGherkinTableRow(params string[] cellValues)
+        private G.TableRow CreateGherkinTableRow(params string[] cellValues)
         {
             return new G.TableRow(
                 AnyLocation,
-                cellValues.Select(CreateGherkinTableCell).ToArray());
+                cellValues.Select(this.factory.CreateGherkinTableCell).ToArray());
         }
 
         [Test]
@@ -108,7 +104,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToTable_DataTableWithThreeRows_ReturnsTableWithHeaderRowAndTwoRows()
         {
-            G.DataTable dataTable = CreateGherkinDataTable(new[]
+            G.DataTable dataTable = this.CreateGherkinDataTable(new[]
             {
                 new[] { "Header row, first cell", "Header row, second cell" },
                 new[] { "First row, first cell", "First row, second cell" },
@@ -125,9 +121,9 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             Check.That(result.DataRows[1]).ContainsExactly("Second row, first cell", "Second row, second cell");
         }
 
-        private static G.DataTable CreateGherkinDataTable(IEnumerable<string[]> rows)
+        private G.DataTable CreateGherkinDataTable(IEnumerable<string[]> rows)
         {
-            return new G.DataTable(rows.Select(CreateGherkinTableRow).ToArray());
+            return new G.DataTable(rows.Select(this.CreateGherkinTableRow).ToArray());
         }
     }
 }
