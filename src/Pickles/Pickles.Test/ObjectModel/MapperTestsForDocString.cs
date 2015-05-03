@@ -44,8 +44,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToStringDocString_ArgumentWithStringValue_ReturnsThatString()
         {
-            var docString = new G.DocString(AnyLocation, null, @"My doc string line 1
-My doc string line 2");
+            var docString = this.factory.CreateDocString();
 
             var mapper = this.factory.CreateMapper();
 

@@ -37,5 +37,11 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             return new G.TableCell(AnyLocation, cellValue);
         }
+
+        internal G.DocString CreateDocString()
+        {
+            return new G.DocString(AnyLocation, null, @"My doc string line 1
+My doc string line 2");
+        }
     }
 }
