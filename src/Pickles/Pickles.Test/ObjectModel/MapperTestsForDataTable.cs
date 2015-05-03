@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="MapperTests.cs" company="PicklesDoc">
+//  <copyright file="MapperTestsForDataTable.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -27,7 +27,7 @@ using PicklesDoc.Pickles.ObjectModel;
 namespace PicklesDoc.Pickles.Test.ObjectModel
 {
     [TestFixture]
-    public class MapperTests
+    public class MapperTestsForDataTable
     {
         private const Gherkin3.Ast.Location AnyLocation = null;
 
