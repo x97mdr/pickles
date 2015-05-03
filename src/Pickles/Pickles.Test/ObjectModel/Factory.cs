@@ -50,7 +50,7 @@ My doc string line 2");
         {
             return new G.TableRow(
                 AnyLocation,
-                cellValues.Select(CreateGherkinTableCell).ToArray());
+                cellValues.Select(this.CreateGherkinTableCell).ToArray());
         }
 
         internal G.DataTable CreateGherkinDataTable(IEnumerable<string[]> rows)
