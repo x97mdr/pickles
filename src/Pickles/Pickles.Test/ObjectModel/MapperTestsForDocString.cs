@@ -21,6 +21,7 @@ using System;
 using NFluent;
 using NUnit.Framework;
 using PicklesDoc.Pickles.ObjectModel;
+using G = Gherkin3.Ast;
 
 namespace PicklesDoc.Pickles.Test.ObjectModel
 {
@@ -32,7 +33,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = CreateMapper();
 
-            string docString = mapper.MapToString((Gherkin3.Ast.DocString) null);
+            string docString = mapper.MapToString((G.DocString) null);
 
             Check.That(docString).IsNull();
         }
