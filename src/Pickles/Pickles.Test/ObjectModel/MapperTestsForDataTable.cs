@@ -18,8 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Linq;
 using NFluent;
 using NUnit.Framework;
 using PicklesDoc.Pickles.ObjectModel;
@@ -94,7 +92,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToTable_DataTableWithThreeRows_ReturnsTableWithHeaderRowAndTwoRows()
         {
-            G.DataTable dataTable = this.CreateGherkinDataTable(new[]
+            G.DataTable dataTable = this.factory.CreateGherkinDataTable(new[]
             {
                 new[] { "Header row, first cell", "Header row, second cell" },
                 new[] { "First row, first cell", "First row, second cell" },
@@ -109,11 +107,6 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             Check.That(result.DataRows).HasSize(2);
             Check.That(result.DataRows[0]).ContainsExactly("First row, first cell", "First row, second cell");
             Check.That(result.DataRows[1]).ContainsExactly("Second row, first cell", "Second row, second cell");
-        }
-
-        private G.DataTable CreateGherkinDataTable(IEnumerable<string[]> rows)
-        {
-            return new G.DataTable(rows.Select(this.factory.CreateGherkinTableRow).ToArray());
         }
     }
 }

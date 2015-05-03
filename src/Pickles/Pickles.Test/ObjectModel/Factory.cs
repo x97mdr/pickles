@@ -18,6 +18,7 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
 using System.Linq;
 using PicklesDoc.Pickles.ObjectModel;
 using G = Gherkin3.Ast;
@@ -50,6 +51,11 @@ My doc string line 2");
             return new G.TableRow(
                 AnyLocation,
                 cellValues.Select(CreateGherkinTableCell).ToArray());
+        }
+
+        internal G.DataTable CreateGherkinDataTable(IEnumerable<string[]> rows)
+        {
+            return new G.DataTable(rows.Select(this.CreateGherkinTableRow).ToArray());
         }
     }
 }
