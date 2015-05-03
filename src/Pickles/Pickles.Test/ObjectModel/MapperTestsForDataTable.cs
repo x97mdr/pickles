@@ -32,12 +32,14 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
     {
         private const G.Location AnyLocation = null;
 
+        private readonly Factory factory = new Factory();
+
         [Test]
         public void MapToStringTableCell_TableCellWithValue_ReturnsThatValue()
         {
             var cell = CreateGherkinTableCell("My cell value");
 
-            var mapper = CreateMapper();
+            var mapper = this.factory.CreateMapper();
 
             string result = mapper.MapToString(cell);
 
@@ -47,11 +49,6 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         private static G.TableCell CreateGherkinTableCell(string cellValue)
         {
             return new G.TableCell(AnyLocation, cellValue);
-        }
-
-        private static Mapper CreateMapper()
-        {
-            return FactoryMethods.CreateMapper();
         }
 
         [Test]

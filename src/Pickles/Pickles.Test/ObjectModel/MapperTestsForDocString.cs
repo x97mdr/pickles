@@ -30,19 +30,16 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
     {
         private const G.Location AnyLocation = null;
 
+        private readonly Factory factory = new Factory();
+
         [Test]
         public void MapToStringDocString_NullArgument_ReturnsNull()
         {
-            var mapper = CreateMapper();
+            var mapper = this.factory.CreateMapper();
 
             string result = mapper.MapToString((G.DocString) null);
 
             Check.That(result).IsNull();
-        }
-
-        private static Mapper CreateMapper()
-        {
-            return FactoryMethods.CreateMapper();
         }
 
         [Test]
@@ -51,7 +48,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             var docString = new G.DocString(AnyLocation, null, @"My doc string line 1
 My doc string line 2");
 
-            var mapper = CreateMapper();
+            var mapper = this.factory.CreateMapper();
 
             string result = mapper.MapToString(docString);
 

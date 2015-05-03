@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="FactoryMethods.cs" company="PicklesDoc">
+//  <copyright file="Factory.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -22,9 +22,9 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.Test.ObjectModel
 {
-    public static class FactoryMethods
+    public class Factory
     {
-        internal static Mapper CreateMapper()
+        internal Mapper CreateMapper()
         {
             var mapper = new Mapper();
             return mapper;
