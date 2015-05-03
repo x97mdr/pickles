@@ -69,7 +69,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToTableRow_RowWithCellValues_ReturnsRowContainingThoseValues()
         {
-            G.TableRow row = this.CreateGherkinTableRow(new[]
+            G.TableRow row = this.factory.CreateGherkinTableRow(new[]
                     {
                         "first cell",
                         "second cell"
@@ -81,13 +81,6 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             var result = mapper.MapToTableRow(row);
 
             Check.That(result).ContainsExactly("first cell", "second cell");
-        }
-
-        private G.TableRow CreateGherkinTableRow(params string[] cellValues)
-        {
-            return new G.TableRow(
-                AnyLocation,
-                cellValues.Select(this.factory.CreateGherkinTableCell).ToArray());
         }
 
         [Test]
@@ -122,7 +115,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
         private G.DataTable CreateGherkinDataTable(IEnumerable<string[]> rows)
         {
-            return new G.DataTable(rows.Select(this.CreateGherkinTableRow).ToArray());
+            return new G.DataTable(rows.Select(this.factory.CreateGherkinTableRow).ToArray());
         }
     }
 }
