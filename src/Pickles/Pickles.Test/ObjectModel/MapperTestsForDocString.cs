@@ -27,8 +27,6 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
     [TestFixture]
     public class MapperTestsForDocString
     {
-        private const G.Location AnyLocation = null;
-
         private readonly Factory factory = new Factory();
 
         [Test]
