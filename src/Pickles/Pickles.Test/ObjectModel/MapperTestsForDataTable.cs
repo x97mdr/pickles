@@ -50,8 +50,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
         private static Mapper CreateMapper()
         {
-            var mapper = new Mapper();
-            return mapper;
+            return FactoryMethods.CreateMapper();
         }
 
         [Test]

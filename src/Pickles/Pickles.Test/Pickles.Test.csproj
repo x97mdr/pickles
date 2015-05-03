@@ -202,6 +202,7 @@
     <Compile Include="BaseFixture.cs" />
     <Compile Include="DirectoryCrawlers\ImageFileDetectorTests.cs" />
     <Compile Include="DirectoryCrawlers\RelevantFileDetectorTests.cs" />
+    <Compile Include="ObjectModel\FactoryMethods.cs" />
     <Compile Include="ObjectModel\MapperTestsForDataTable.cs" />
     <Compile Include="TestFrameworks\WhenParsingMultipleMsTestTestResultsFiles.cs" />
     <Compile Include="TestFrameworks\WhenParsingMultipleNUnitResultsFilesForASingleFeature.cs" />
