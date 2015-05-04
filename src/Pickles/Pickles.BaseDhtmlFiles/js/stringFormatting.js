@@ -6,8 +6,12 @@
             return this.replace(/^\s+|\s+$/g, '');
         }
     }
-
-    return unformattedString.replace(/([A-Z][a-z])/g, " $1").replace(/([A-Z]([A-Z])*)/g, " $1").trim();
+    
+    return unformattedString
+      .replace(/([A-Z][^A-Z+])/g, " $1")
+      .replace(/([A-Z][^a-z+])/g, " $1")
+      .replace(/\s\s/g, '')
+      .trim();
 }
 
 function removeBeginningHash(hashedString) {
