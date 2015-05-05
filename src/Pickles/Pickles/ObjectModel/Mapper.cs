@@ -9,7 +9,9 @@ namespace PicklesDoc.Pickles.ObjectModel
     {
         static Mapper()
         {
-            AutoMapper.Mapper.CreateMap<G.TableCell, string>().ConstructUsing(cell => cell.Value);
+            AutoMapper.Mapper.CreateMap<G.TableCell, string>()
+                .ConstructUsing(cell => cell.Value);
+
             AutoMapper.Mapper.CreateMap<G.TableRow, TableRow>()
                 .ConstructUsing(
                     row =>
