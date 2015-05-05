@@ -27,6 +27,9 @@ namespace PicklesDoc.Pickles.ObjectModel
                 .ForMember(t => t.Keyword, opt => opt.MapFrom(s => s.Keyword))
                 .ForMember(t => t.DocStringArgument, opt => opt.MapFrom(s => s.Argument is G.DocString ? s.Argument : null))
                 .ForMember(t => t.TableArgument, opt => opt.MapFrom(s => s.Argument is G.DataTable ? s.Argument : null));
+
+            AutoMapper.Mapper.CreateMap<G.Tag, string>()
+                .ConstructUsing(tag => tag.Name);
         }
 
         public string MapToString(G.TableCell cell)
@@ -57,6 +60,11 @@ namespace PicklesDoc.Pickles.ObjectModel
         public Keyword MapToKeyword(string keyword)
         {
             return AutoMapper.Mapper.Map<Keyword>(keyword);
+        }
+
+        public string MapToString(G.Tag tag)
+        {
+            return AutoMapper.Mapper.Map<string>(tag);
         }
     }
 }

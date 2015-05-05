@@ -72,5 +72,10 @@ My doc string line 2");
         {
             return  new G.Step(AnyLocation, keyword, text, this.CreateGherkinDataTable(rows));
         }
+
+        internal G.Tag CreateTag(string tag)
+        {
+            return new G.Tag(AnyLocation, tag);
+        }
     }
 }
