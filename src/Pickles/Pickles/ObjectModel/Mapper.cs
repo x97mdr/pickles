@@ -13,10 +13,8 @@ namespace PicklesDoc.Pickles.ObjectModel
                 .ConstructUsing(cell => cell.Value);
 
             AutoMapper.Mapper.CreateMap<G.TableRow, TableRow>()
-                .ConstructUsing(
-                    row =>
-                        new TableRow(
-                            row.Cells.Select(AutoMapper.Mapper.Map<string>)));
+                .ConstructUsing(row => new TableRow(row.Cells.Select(AutoMapper.Mapper.Map<string>)));
+
             AutoMapper.Mapper.CreateMap<G.DataTable, Table>()
                 .ConstructUsing(
                     dataTable =>
