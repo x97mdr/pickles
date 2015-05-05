@@ -56,14 +56,7 @@ namespace PicklesDoc.Pickles.ObjectModel
 
         public Keyword MapToKeyword(string keyword)
         {
-            try
-            {
-                return AutoMapper.Mapper.Map<Keyword>(keyword);
-            }
-            catch (AutoMapper.AutoMapperMappingException)
-            {
-                throw new ArgumentOutOfRangeException("keyword", keyword, "The keyword should correspond to the Keyword enumeration");
-            } 
+            return AutoMapper.Mapper.Map<Keyword>(keyword);
         }
     }
 }

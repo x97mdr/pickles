@@ -78,14 +78,6 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         }
 
         [Test]
-        public void MapToKeyWord_InvalidKeyword_ThrowsArgumentOutOfRangeException()
-        {
-            var mapper = this.factory.CreateMapper();
-
-            Check.ThatCode(() => mapper.MapToKeyword("Invalid")).Throws<ArgumentOutOfRangeException>();
-        }
-
-        [Test]
         public void MapToStep_StepWithDocStringArgument_ReturnStepWithDocString()
         {
             var mapper = this.factory.CreateMapper();
