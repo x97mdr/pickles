@@ -21,16 +21,12 @@ namespace PicklesDoc.Pickles.ObjectModel
 
             AutoMapper.Mapper.CreateMap<G.DocString, string>().ConstructUsing(docString => docString.Content);
 
-            AutoMapper.Mapper.CreateMap<G.Step, Step>().ConstructUsing(step =>
-                new Step
-                {
-                    DocStringArgument = step.Argument is G.DocString ? AutoMapper.Mapper.Map<string>(step.Argument) : null,
-                    NativeKeyword = step.Keyword,
-                    Name = step.Text,
-                    Keyword = Keyword.Given,
-                    TableArgument = step.Argument is G.DataTable ? AutoMapper.Mapper.Map<Table>(step.Argument) : null
-                });
-
+            AutoMapper.Mapper.CreateMap<G.Step, Step>()
+                .ForMember(t => t.NativeKeyword, opt => opt.MapFrom(s => s.Keyword))
+                .ForMember(t => t.Name, opt => opt.MapFrom(s => s.Text))
+                .ForMember(t => t.Keyword, opt => opt.MapFrom(s => s.Keyword))
+                .ForMember(t => t.DocStringArgument, opt => opt.MapFrom(s => s.Argument is G.DocString ? s.Argument : null))
+                .ForMember(t => t.TableArgument, opt => opt.MapFrom(s => s.Argument is G.DataTable ? s.Argument : null));
         }
 
         public string MapToString(G.TableCell cell)
