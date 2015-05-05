@@ -25,6 +25,17 @@ namespace PicklesDoc.Pickles.ObjectModel
                         });
 
             AutoMapper.Mapper.CreateMap<G.DocString, string>().ConstructUsing(docString => docString.Content);
+
+            AutoMapper.Mapper.CreateMap<G.Step, Step>().ConstructUsing(step =>
+                new Step
+                {
+                    DocStringArgument = step.Argument is G.DocString ? AutoMapper.Mapper.Map<string>(step.Argument) : null,
+                    NativeKeyword = step.Keyword,
+                    Name = step.Text,
+                    Keyword = Keyword.Given,
+                    TableArgument = step.Argument is G.DataTable ? AutoMapper.Mapper.Map<Table>(step.Argument) : null
+                });
+
         }
 
         public string MapToString(G.TableCell cell)
@@ -45,6 +56,23 @@ namespace PicklesDoc.Pickles.ObjectModel
         public string MapToString(G.DocString docString)
         {
             return AutoMapper.Mapper.Map<string>(docString);
+        }
+
+        public Step MapToStep(G.Step step)
+        {
+            return AutoMapper.Mapper.Map<Step>(step);
+        }
+
+        public Keyword MapToKeyword(string keyword)
+        {
+            try
+            {
+                return AutoMapper.Mapper.Map<Keyword>(keyword);
+            }
+            catch (AutoMapper.AutoMapperMappingException)
+            {
+                throw new ArgumentOutOfRangeException("keyword", keyword, "The keyword should correspond to the Keyword enumeration");
+            } 
         }
     }
 }

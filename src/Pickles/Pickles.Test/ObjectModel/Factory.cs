@@ -40,9 +40,9 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             return new G.TableCell(AnyLocation, cellValue);
         }
 
-        internal G.DocString CreateDocString()
+        internal G.DocString CreateDocString(string docString = null)
         {
-            return new G.DocString(AnyLocation, null, @"My doc string line 1
+            return new G.DocString(AnyLocation, null, docString ?? @"My doc string line 1
 My doc string line 2");
         }
 
@@ -56,6 +56,21 @@ My doc string line 2");
         internal G.DataTable CreateGherkinDataTable(IEnumerable<string[]> rows)
         {
             return new G.DataTable(rows.Select(this.CreateGherkinTableRow).ToArray());
+        }
+
+        internal G.Step CreateStep(string keyword, string text)
+        {
+            return new G.Step(AnyLocation, keyword, text, null);
+        }
+
+        public G.Step CreateStep(string keyword, string text, string docString)
+        {
+            return new G.Step(AnyLocation, keyword, text, this.CreateDocString(docString));
+        }
+
+        public G.Step CreateStep(string keyword, string text, IEnumerable<string[]> rows)
+        {
+            return  new G.Step(AnyLocation, keyword, text, this.CreateGherkinDataTable(rows));
         }
     }
 }
