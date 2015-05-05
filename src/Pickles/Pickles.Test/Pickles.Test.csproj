@@ -206,7 +206,7 @@
     <Compile Include="ObjectModel\MapperTestsForDataTable.cs" />
     <Compile Include="ObjectModel\MapperTestsForDocString.cs" />
     <Compile Include="ObjectModel\MapperTestsForStep.cs" />
-    <Compile Include="ObjectModel\MapperTestsForTags.cs" />
+    <Compile Include="ObjectModel\MapperTestsForTag.cs" />
     <Compile Include="TestFrameworks\WhenParsingMultipleMsTestTestResultsFiles.cs" />
     <Compile Include="TestFrameworks\WhenParsingMultipleNUnitResultsFilesForASingleFeature.cs" />
     <Compile Include="TestFrameworks\WhenParsingMultipleTestResultsTests.cs" />

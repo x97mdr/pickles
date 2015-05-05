@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="MapperTestsForTags.cs" company="PicklesDoc">
+//  <copyright file="MapperTestsForTag.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -18,13 +18,15 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using NFluent;
 using NUnit.Framework;
 using G = Gherkin3.Ast;
+
 namespace PicklesDoc.Pickles.Test.ObjectModel
 {
     [TestFixture]
-    public class MapperTestsForTags
+    public class MapperTestsForTag
     {
         private readonly Factory factory = new Factory();
 
