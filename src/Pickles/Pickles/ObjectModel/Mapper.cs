@@ -73,5 +73,10 @@ namespace PicklesDoc.Pickles.ObjectModel
         {
             return AutoMapper.Mapper.Map<Scenario>(scenario);
         }
+
+        public Example MapToExample(G.Examples examples)
+        {
+            return AutoMapper.Mapper.Map<Example>(examples);
+        }
     }
 }
