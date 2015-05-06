@@ -32,7 +32,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         private readonly Factory factory = new Factory();
 
         [Test]
-        public void MapScenario_NullScenario_ReturnsNull()
+        public void MapToScenario_NullScenario_ReturnsNull()
         {
             var mapper = this.factory.CreateMapper();
 
