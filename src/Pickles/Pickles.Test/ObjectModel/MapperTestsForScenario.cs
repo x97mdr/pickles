@@ -36,7 +36,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = this.factory.CreateMapper();
 
-            Scenario result = mapper.MapToScenario((G.Scenario) null);
+            Scenario result = mapper.MapToScenario(null);
 
             Check.That(result).IsNull();
         }

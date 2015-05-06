@@ -66,5 +66,10 @@ namespace PicklesDoc.Pickles.ObjectModel
         {
             return AutoMapper.Mapper.Map<string>(tag);
         }
+
+        public Scenario MapToScenario(G.Scenario scenario)
+        {
+            return AutoMapper.Mapper.Map<Scenario>(scenario);
+        }
     }
 }
