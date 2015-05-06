@@ -45,7 +45,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToScenario_RegularScenario_ReturnsScenario()
         {
-            var scenario = this.CreateScenario(
+            var scenario = this.factory.CreateScenario(
                 new[] { "myTag1", "myTag2" },
                 "My scenario title",
                 "Description of the scenario",
@@ -75,18 +75,6 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             Check.That(result.Tags.Count).IsEqualTo(2);
             Check.That(result.Tags[0]).IsEqualTo("myTag1");
             Check.That(result.Tags[1]).IsEqualTo("myTag2");
-        }
-
-        private G.Scenario CreateScenario(string[] tags, string name, string description, G.Step[] steps)
-        {
-            G.Scenario scenario = new G.Scenario(
-                tags.Select(s => this.factory.CreateTag(s)).ToArray(),
-                null,
-                "Scenario",
-                name,
-                description,
-                steps);
-            return scenario;
         }
     }
 }

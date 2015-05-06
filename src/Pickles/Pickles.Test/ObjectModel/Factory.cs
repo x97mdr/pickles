@@ -77,5 +77,17 @@ My doc string line 2");
         {
             return new G.Tag(AnyLocation, tag);
         }
+
+        public G.Scenario CreateScenario(string[] tags, string name, string description, G.Step[] steps)
+        {
+            G.Scenario scenario = new G.Scenario(
+                tags.Select(this.CreateTag).ToArray(),
+                null,
+                "Scenario",
+                name,
+                description,
+                steps);
+            return scenario;
+        }
     }
 }
