@@ -19,6 +19,7 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Linq;
 using NFluent;
 using NUnit.Framework;
 using PicklesDoc.Pickles.ObjectModel;
@@ -44,14 +45,8 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToScenario_RegularScenario_ReturnsScenario()
         {
-            G.Scenario scenario = new G.Scenario(
-                new []
-                {
-                    this.factory.CreateTag("myTag1"),
-                    this.factory.CreateTag("myTag2")
-                },
-                null,
-                "Scenario",
+            var scenario = this.CreateScenario(
+                new[] { "myTag1", "myTag2" },
                 "My scenario title",
                 "Description of the scenario",
                 new []
@@ -80,6 +75,18 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             Check.That(result.Tags.Count).IsEqualTo(2);
             Check.That(result.Tags[0]).IsEqualTo("myTag1");
             Check.That(result.Tags[1]).IsEqualTo("myTag2");
+        }
+
+        private G.Scenario CreateScenario(string[] tags, string name, string description, G.Step[] steps)
+        {
+            G.Scenario scenario = new G.Scenario(
+                tags.Select(s => this.factory.CreateTag(s)).ToArray(),
+                null,
+                "Scenario",
+                name,
+                description,
+                steps);
+            return scenario;
         }
     }
 }
