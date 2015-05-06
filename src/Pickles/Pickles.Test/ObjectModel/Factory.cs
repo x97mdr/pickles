@@ -89,5 +89,19 @@ My doc string line 2");
                 steps);
             return scenario;
         }
+
+        internal G.Examples CreateExamples(string name, string description, string[] headerCells, IEnumerable<string[]> exampleRows)
+        {
+            var examples = new G.Examples(
+                null,
+                null,
+                "Examples",
+                name,
+                description, 
+                this.CreateGherkinTableRow(headerCells),
+                exampleRows.Select(this.CreateGherkinTableRow).ToArray());
+
+            return examples;
+        }
     }
 }

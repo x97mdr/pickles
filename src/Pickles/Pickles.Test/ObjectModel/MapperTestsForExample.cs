@@ -44,17 +44,14 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToExample_RegularExamples_ReturnsCorrectExample()
         {
-            var examples = new G.Examples(
-                null,
-                null,
-                "Examples",
+            var examples = this.factory.CreateExamples(
                 "Examples",
                 "My Description",
-                this.factory.CreateGherkinTableRow("Header 1", "Header 2"),
+                new[] { "Header 1", "Header 2" },
                 new[]
                 {
-                    this.factory.CreateGherkinTableRow("Row 1, Value 1", "Row 2, Value 2"),
-                    this.factory.CreateGherkinTableRow("Row 2, Value 1", "Row 2, Value 2")
+                    new[] { "Row 1, Value 1", "Row 2, Value 2" },
+                    new[] { "Row 2, Value 1", "Row 2, Value 2" }
                 });
 
             var mapper = this.factory.CreateMapper();
