@@ -206,6 +206,7 @@
     <Compile Include="ObjectModel\MapperTestsForDataTable.cs" />
     <Compile Include="ObjectModel\MapperTestsForDocString.cs" />
     <Compile Include="ObjectModel\MapperTestsForExample.cs" />
+    <Compile Include="ObjectModel\MapperTestsForScenarioOutline.cs" />
     <Compile Include="ObjectModel\MapperTestsForScenario.cs" />
     <Compile Include="ObjectModel\MapperTestsForStep.cs" />
     <Compile Include="ObjectModel\MapperTestsForTag.cs" />
