@@ -32,6 +32,13 @@ namespace PicklesDoc.Pickles.ObjectModel
                 .ConstructUsing(tag => tag.Name);
 
             AutoMapper.Mapper.CreateMap<G.Scenario, Scenario>();
+
+            AutoMapper.Mapper.CreateMap<IEnumerable<G.TableRow>, Table>()
+                .ForMember(t => t.HeaderRow, opt => opt.MapFrom(s => s.Take(1).Single()))
+                .ForMember(t => t.DataRows, opt => opt.MapFrom(s => s.Skip(1)));
+
+            AutoMapper.Mapper.CreateMap<G.Examples, Example>()
+                .ForMember(t => t.TableArgument, opt => opt.MapFrom(s => ((G.IHasRows) s).Rows));
         }
 
         public string MapToString(G.TableCell cell)

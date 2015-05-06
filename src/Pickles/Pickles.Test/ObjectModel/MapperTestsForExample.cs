@@ -40,5 +40,33 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
             Check.That(example).IsNull();
         }
+
+        [Test]
+        public void MapToExample_RegularExamples_ReturnsCorrectExample()
+        {
+            var examples = new G.Examples(
+                null,
+                null,
+                "Examples",
+                "Examples",
+                "My Description",
+                this.factory.CreateGherkinTableRow("Header 1", "Header 2"),
+                new[]
+                {
+                    this.factory.CreateGherkinTableRow("Row 1, Value 1", "Row 2, Value 2"),
+                    this.factory.CreateGherkinTableRow("Row 2, Value 1", "Row 2, Value 2")
+                });
+
+            var mapper = this.factory.CreateMapper();
+
+            var result = mapper.MapToExample(examples);
+
+            Check.That(result.Name).IsEqualTo("Examples");
+            Check.That(result.Description).IsEqualTo("My Description");
+            Check.That(result.TableArgument.HeaderRow).ContainsExactly("Header 1", "Header 2");
+            Check.That(result.TableArgument.DataRows.Count).IsEqualTo(2);
+            Check.That(result.TableArgument.DataRows[0]).ContainsExactly("Row 1, Value 1", "Row 2, Value 2");
+            Check.That(result.TableArgument.DataRows[1]).ContainsExactly("Row 2, Value 1", "Row 2, Value 2");
+        }
     }
 }
