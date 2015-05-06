@@ -30,6 +30,8 @@ namespace PicklesDoc.Pickles.ObjectModel
 
             AutoMapper.Mapper.CreateMap<G.Tag, string>()
                 .ConstructUsing(tag => tag.Name);
+
+            AutoMapper.Mapper.CreateMap<G.Scenario, Scenario>();
         }
 
         public string MapToString(G.TableCell cell)

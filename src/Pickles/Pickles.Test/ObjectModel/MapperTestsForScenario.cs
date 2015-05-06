@@ -40,5 +40,46 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
             Check.That(result).IsNull();
         }
+
+        [Test]
+        public void MapToScenario_RegularScenario_ReturnsScenario()
+        {
+            G.Scenario scenario = new G.Scenario(
+                new []
+                {
+                    this.factory.CreateTag("myTag1"),
+                    this.factory.CreateTag("myTag2")
+                },
+                null,
+                "Scenario",
+                "My scenario title",
+                "Description of the scenario",
+                new []
+                {
+                    this.factory.CreateStep("Given", "I enter '50' in the calculator"),
+                    this.factory.CreateStep("When", "I press 'plus' on the calculator"),
+                    this.factory.CreateStep("Then", "the screen shows '50'")
+                });
+
+            var mapper = this.factory.CreateMapper();
+
+            Scenario result = mapper.MapToScenario(scenario);
+
+            Check.That(result.Name).IsEqualTo("My scenario title");
+
+            Check.That(result.Description).IsEqualTo("Description of the scenario");
+
+            Check.That(result.Steps.Count).IsEqualTo(3);
+            Check.That(result.Steps[0].Keyword).IsEqualTo(Keyword.Given);
+            Check.That(result.Steps[0].Name).IsEqualTo("I enter '50' in the calculator");
+            Check.That(result.Steps[1].Keyword).IsEqualTo(Keyword.When);
+            Check.That(result.Steps[1].Name).IsEqualTo("I press 'plus' on the calculator");
+            Check.That(result.Steps[2].Keyword).IsEqualTo(Keyword.Then);
+            Check.That(result.Steps[2].Name).IsEqualTo("the screen shows '50'");
+
+            Check.That(result.Tags.Count).IsEqualTo(2);
+            Check.That(result.Tags[0]).IsEqualTo("myTag1");
+            Check.That(result.Tags[1]).IsEqualTo("myTag2");
+        }
     }
 }
