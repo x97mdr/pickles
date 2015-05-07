@@ -82,7 +82,7 @@ My doc string line 2");
         {
             G.Scenario scenario = new G.Scenario(
                 tags.Select(this.CreateTag).ToArray(),
-                null,
+                AnyLocation,
                 "Scenario",
                 name,
                 description,
@@ -94,7 +94,7 @@ My doc string line 2");
         {
             var examples = new G.Examples(
                 null,
-                null,
+                AnyLocation,
                 "Examples",
                 name,
                 description, 
@@ -108,7 +108,7 @@ My doc string line 2");
         {
             G.ScenarioOutline scenarioOutline = new G.ScenarioOutline(
                 tags.Select(this.CreateTag).ToArray(),
-                null,
+                AnyLocation,
                 "Scenario",
                 name,
                 description,
@@ -120,7 +120,7 @@ My doc string line 2");
         internal G.Background CreateBackground(string name, string description, G.Step[] steps)
         {
             G.Background background = new G.Background(
-                null,
+                AnyLocation,
                 "Background",
                 name,
                 description,
