@@ -116,5 +116,16 @@ My doc string line 2");
                 examples);
             return scenarioOutline;
         }
+
+        internal G.Background CreateBackground(string name, string description, G.Step[] steps)
+        {
+            G.Background background = new G.Background(
+                null,
+                "Background",
+                name,
+                description,
+                steps);
+            return background;
+        }
     }
 }
