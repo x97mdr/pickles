@@ -54,7 +54,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             Check.That(result.Description).IsEqualTo("Description of the feature");
         }
 
-        private static G.Feature CreateFeature(string name, string description, G.ScenarioDefinition[] scenarioDefinitions = null, G.Background background = null)
+        private static G.Feature CreateFeature(string name, string description, G.Background background = null, G.ScenarioDefinition[] scenarioDefinitions = null)
         {
             return new G.Feature(null, null, null, "Feature", name, description, background, scenarioDefinitions, null);
         }
@@ -65,7 +65,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             var feature = CreateFeature(
                 "My Feature",
                 string.Empty,
-                new G.ScenarioDefinition[]
+                scenarioDefinitions: new G.ScenarioDefinition[]
                 {
                     this.factory.CreateScenario(new string[0], "My scenario", string.Empty, new G.Step[0]),
                     this.factory.CreateScenarioOutline(new string[0], "My scenario outline", string.Empty, new G.Step[0], new G.Examples[0])
