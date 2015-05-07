@@ -41,7 +41,8 @@ namespace PicklesDoc.Pickles.ObjectModel
             AutoMapper.Mapper.CreateMap<G.Examples, Example>()
                 .ForMember(t => t.TableArgument, opt => opt.MapFrom(s => ((G.IHasRows) s).Rows));
 
-            AutoMapper.Mapper.CreateMap<G.ScenarioOutline, ScenarioOutline>();
+            AutoMapper.Mapper.CreateMap<G.ScenarioOutline, ScenarioOutline>()
+                .ForMember(t => t.Description, opt => opt.NullSubstitute(string.Empty));
 
             AutoMapper.Mapper.CreateMap<G.Background, Scenario>();
 

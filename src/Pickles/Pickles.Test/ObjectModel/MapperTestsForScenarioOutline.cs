@@ -96,5 +96,25 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             Check.That(result.Examples[0].TableArgument.DataRows[0]).ContainsExactly("Row 1, Value 1", "Row 2, Value 2");
             Check.That(result.Examples[0].TableArgument.DataRows[1]).ContainsExactly("Row 2, Value 1", "Row 2, Value 2");
         }
+
+        [Test]
+        public void MapToScenarioOutline_ScenarioOutlineWithNullDescription_ReturnsScenarioOutlineWithEmptyDescription()
+        {
+            var scenarioOutline = this.factory.CreateScenarioOutline(
+                new[] { "unimportant tag" },
+                "My scenario outline title",
+                null,
+                new[]
+                {
+                    this.factory.CreateStep("Given", "unimportant step"),
+                },
+                null);
+
+            var mapper = this.factory.CreateMapper();
+
+            ScenarioOutline result = mapper.MapToScenarioOutline(scenarioOutline);
+
+            Check.That(result.Description).IsEqualTo(string.Empty);
+        }
     }
 }
