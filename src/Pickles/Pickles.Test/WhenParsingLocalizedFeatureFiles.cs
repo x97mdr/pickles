@@ -16,7 +16,8 @@ namespace PicklesDoc.Pickles.Test
         public void ThenCanParseMostBasicFeatureSuccessfully()
         {
             string featureText =
-                @"# ignorera denna kommentar
+                @"# language: sv
+# ignorera denna kommentar
 Egenskap: Test egenskap
     Som svensk användare
     Vill jag skriva mina krav på svenska
