@@ -75,5 +75,24 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             Check.That(result.Tags[0]).IsEqualTo("myTag1");
             Check.That(result.Tags[1]).IsEqualTo("myTag2");
         }
+
+        [Test]
+        public void MapToScenario_ScenarioWithNullDescription_ReturnsScenarioWithEmptyDescription()
+        {
+            var scenario = this.factory.CreateScenario(
+                new [] { "unimportant tag" },
+                "My scenario title",
+                null,
+                new[]
+                {
+                    this.factory.CreateStep("Given", "unimportant step"),
+                });
+
+            var mapper = this.factory.CreateMapper();
+
+            Scenario result = mapper.MapToScenario(scenario);
+
+            Check.That(result.Description).IsEqualTo(string.Empty);
+        }
     }
 }

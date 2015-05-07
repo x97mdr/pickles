@@ -31,7 +31,8 @@ namespace PicklesDoc.Pickles.ObjectModel
             AutoMapper.Mapper.CreateMap<G.Tag, string>()
                 .ConstructUsing(tag => tag.Name);
 
-            AutoMapper.Mapper.CreateMap<G.Scenario, Scenario>();
+            AutoMapper.Mapper.CreateMap<G.Scenario, Scenario>()
+                .ForMember(t => t.Description, opt => opt.NullSubstitute(string.Empty));
 
             AutoMapper.Mapper.CreateMap<IEnumerable<G.TableRow>, Table>()
                 .ForMember(t => t.HeaderRow, opt => opt.MapFrom(s => s.Take(1).Single()))
@@ -52,7 +53,7 @@ namespace PicklesDoc.Pickles.ObjectModel
                     {
                         return AutoMapper.Mapper.Map<Scenario>(scenario);
                     }
-                    
+
                     var scenarioOutline = sd as G.ScenarioOutline;
                     if (scenarioOutline != null)
                     {
