@@ -54,9 +54,30 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             Check.That(result.Description).IsEqualTo("Description of the feature");
         }
 
-        private static G.Feature CreateFeature(string name, string description)
+        private static G.Feature CreateFeature(string name, string description, G.ScenarioDefinition[] scenarioDefinitions = null)
         {
-            return new G.Feature(null, null, null, "Feature", name, description, null, null, null);
+            return new G.Feature(null, null, null, "Feature", name, description, null, scenarioDefinitions, null);
+        }
+
+        [Test]
+        public void MapToFeature_FeatureWithScenarioDefinitions_ReturnsFeatureWithFeatureElements()
+        {
+            var feature = CreateFeature(
+                "My Feature",
+                string.Empty,
+                new G.ScenarioDefinition[]
+                {
+                    this.factory.CreateScenario(new string[0], "My scenario", string.Empty, new G.Step[0]),
+                    this.factory.CreateScenarioOutline(new string[0], "My scenario outline", string.Empty, new G.Step[0], new G.Examples[0])
+                });
+
+            var mapper = this.factory.CreateMapper();
+
+            var result = mapper.MapToFeature(feature);
+
+            Check.That(result.FeatureElements.Count).IsEqualTo(2);
+            Check.That(result.FeatureElements[0].Name).IsEqualTo("My scenario");
+            Check.That(result.FeatureElements[1].Name).IsEqualTo("My scenario outline");
         }
     }
 }

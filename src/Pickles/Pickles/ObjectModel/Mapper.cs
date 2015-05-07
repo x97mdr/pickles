@@ -44,7 +44,26 @@ namespace PicklesDoc.Pickles.ObjectModel
 
             AutoMapper.Mapper.CreateMap<G.Background, Scenario>();
 
-            AutoMapper.Mapper.CreateMap<G.Feature, Feature>();
+            AutoMapper.Mapper.CreateMap<G.ScenarioDefinition, IFeatureElement>().ConvertUsing(
+                sd =>
+                {
+                    var scenario = sd as G.Scenario;
+                    if (scenario != null)
+                    {
+                        return AutoMapper.Mapper.Map<Scenario>(scenario);
+                    }
+                    
+                    var scenarioOutline = sd as G.ScenarioOutline;
+                    if (scenarioOutline != null)
+                    {
+                        return AutoMapper.Mapper.Map<ScenarioOutline>(scenarioOutline);
+                    }
+
+                    throw new ArgumentException("Only arguments of type Scenario and ScenarioOutline are supported.");
+                });
+
+            AutoMapper.Mapper.CreateMap<G.Feature, Feature>()
+                .ForMember(t => t.FeatureElements, opt => opt.ResolveUsing(s => s.ScenarioDefinitions));
         }
 
         public string MapToString(G.TableCell cell)
