@@ -127,5 +127,10 @@ My doc string line 2");
                 steps);
             return background;
         }
+
+        internal G.Feature CreateFeature(string name, string description, string[] tags = null, G.Background background = null, G.ScenarioDefinition[] scenarioDefinitions = null)
+        {
+            return new G.Feature((tags ?? new string[0]).Select(this.CreateTag).ToArray(), null, null, "Feature", name, description, background, scenarioDefinitions, null);
+        }
     }
 }

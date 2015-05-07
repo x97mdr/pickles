@@ -45,7 +45,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToFeature_FeatureWithSimpleProperties_ReturnsFeaturesWithThoseProperties()
         {
-            G.Feature feature = this.CreateFeature("Title of the feature", "Description of the feature");
+            G.Feature feature = this.factory.CreateFeature("Title of the feature", "Description of the feature");
 
             var mapper = this.factory.CreateMapper();
 
@@ -55,15 +55,10 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             Check.That(result.Description).IsEqualTo("Description of the feature");
         }
 
-        private G.Feature CreateFeature(string name, string description, string[] tags = null, G.Background background = null, G.ScenarioDefinition[] scenarioDefinitions = null)
-        {
-            return new G.Feature((tags ?? new string[0]).Select(t => this.factory.CreateTag(t)).ToArray(), null, null, "Feature", name, description, background, scenarioDefinitions, null);
-        }
-
         [Test]
         public void MapToFeature_FeatureWithScenarioDefinitions_ReturnsFeatureWithFeatureElements()
         {
-            var feature = this.CreateFeature(
+            var feature = this.factory.CreateFeature(
                 "My Feature",
                 string.Empty,
                 scenarioDefinitions: new G.ScenarioDefinition[]
@@ -84,7 +79,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToFeature_FeatureWithBackground_ReturnsFeatureWithBackground()
         {
-            var feature = this.CreateFeature(
+            var feature = this.factory.CreateFeature(
                 "My Feature",
                 string.Empty,
                 background: this.factory.CreateBackground("My background", "My description", new G.Step[0]));
@@ -100,7 +95,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToFeature_FeatureWithTags_ReturnsFeatureWithTags()
         {
-            var feature = this.CreateFeature("My Feature", string.Empty, tags: new[] { "my tag 1", "my tag 2" });
+            var feature = this.factory.CreateFeature("My Feature", string.Empty, tags: new[] { "my tag 1", "my tag 2" });
 
             var mapper = this.factory.CreateMapper();
 
