@@ -68,13 +68,11 @@ namespace PicklesDoc.Pickles
 
         public Feature Parse(TextReader featureFileReader)
         {
-            string fileContent = featureFileReader.ReadToEnd();
+            var gherkinParser = new Gherkin3.Parser();
+            Gherkin3.Ast.Feature feature = gherkinParser.Parse(featureFileReader);
+            Feature result = new Mapper().MapToFeature(feature);
 
-            var parser = new PicklesParser(this.languageService.GetLanguage());
-            Lexer lexer = this.languageService.GetNativeLexer(parser);
-            lexer.scan(fileContent);
-
-            return parser.GetFeature();
+            return result;
         }
     }
 }
