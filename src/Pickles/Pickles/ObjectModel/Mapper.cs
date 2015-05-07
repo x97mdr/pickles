@@ -43,6 +43,8 @@ namespace PicklesDoc.Pickles.ObjectModel
             AutoMapper.Mapper.CreateMap<G.ScenarioOutline, ScenarioOutline>();
 
             AutoMapper.Mapper.CreateMap<G.Background, Scenario>();
+
+            AutoMapper.Mapper.CreateMap<G.Feature, Feature>();
         }
 
         public string MapToString(G.TableCell cell)
@@ -98,6 +100,11 @@ namespace PicklesDoc.Pickles.ObjectModel
         public Scenario MapToScenario(G.Background background)
         {
             return AutoMapper.Mapper.Map<Scenario>(background);
+        }
+
+        public Feature MapToFeature(G.Feature feature)
+        {
+            return AutoMapper.Mapper.Map<Feature>(feature);
         }
     }
 }

@@ -36,9 +36,27 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = this.factory.CreateMapper();
 
-            Feature result = mapper.MapToFeature((G.Feature) null);
+            Feature result = mapper.MapToFeature(null);
 
             Check.That(result).IsNull();
+        }
+
+        [Test]
+        public void MapToFeature_FeatureWithSimpleProperties_ReturnsFeaturesWithThoseProperties()
+        {
+            G.Feature feature = CreateFeature("Title of the feature", "Description of the feature");
+
+            var mapper = this.factory.CreateMapper();
+
+            var result = mapper.MapToFeature(feature);
+
+            Check.That(result.Name).IsEqualTo("Title of the feature");
+            Check.That(result.Description).IsEqualTo("Description of the feature");
+        }
+
+        private static G.Feature CreateFeature(string name, string description)
+        {
+            return new G.Feature(null, null, null, "Feature", name, description, null, null, null);
         }
     }
 }
