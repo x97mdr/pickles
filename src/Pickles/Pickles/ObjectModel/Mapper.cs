@@ -41,6 +41,8 @@ namespace PicklesDoc.Pickles.ObjectModel
                 .ForMember(t => t.TableArgument, opt => opt.MapFrom(s => ((G.IHasRows) s).Rows));
 
             AutoMapper.Mapper.CreateMap<G.ScenarioOutline, ScenarioOutline>();
+
+            AutoMapper.Mapper.CreateMap<G.Background, Scenario>();
         }
 
         public string MapToString(G.TableCell cell)
@@ -91,6 +93,11 @@ namespace PicklesDoc.Pickles.ObjectModel
         public ScenarioOutline MapToScenarioOutline(G.ScenarioOutline scenarioOutline)
         {
             return AutoMapper.Mapper.Map<ScenarioOutline>(scenarioOutline);
+        }
+
+        public Scenario MapToScenario(G.Background background)
+        {
+            return AutoMapper.Mapper.Map<Scenario>(background);
         }
     }
 }

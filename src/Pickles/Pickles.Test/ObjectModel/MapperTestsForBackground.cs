@@ -40,5 +40,30 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
             Check.That(result).IsNull();
         }
+
+        [Test]
+        public void MapToScenarioBackground_RegularBackground_ReturnsScenario()
+        {
+            G.Background background = new G.Background(
+                null,
+                "Background",
+                "Background",
+                "Description of the Background",
+                new[]
+                {
+                    this.factory.CreateStep("Given", "I enter '50' in the calculator"),
+                });
+
+            var mapper = this.factory.CreateMapper();
+
+            Scenario result = mapper.MapToScenario(background);
+
+            Check.That(result.Name).IsEqualTo("Background");
+            Check.That(result.Description).IsEqualTo("Description of the Background");
+            Check.That(result.Steps.Count).IsEqualTo(1);
+            Check.That(result.Steps[0].Keyword).IsEqualTo(Keyword.Given);
+            Check.That(result.Steps[0].Name).IsEqualTo("I enter '50' in the calculator");
+            Check.That(result.Tags).IsEmpty();
+        }
     }
 }
