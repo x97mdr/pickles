@@ -25,7 +25,7 @@ using G = Gherkin3.Ast;
 
 namespace PicklesDoc.Pickles.Test.ObjectModel
 {
-    public class Factory
+    internal class Factory
     {
         private const G.Location AnyLocation = null;
 
@@ -63,12 +63,12 @@ My doc string line 2");
             return new G.Step(AnyLocation, keyword, text, null);
         }
 
-        public G.Step CreateStep(string keyword, string text, string docString)
+        internal G.Step CreateStep(string keyword, string text, string docString)
         {
             return new G.Step(AnyLocation, keyword, text, this.CreateDocString(docString));
         }
 
-        public G.Step CreateStep(string keyword, string text, IEnumerable<string[]> rows)
+        internal G.Step CreateStep(string keyword, string text, IEnumerable<string[]> rows)
         {
             return  new G.Step(AnyLocation, keyword, text, this.CreateGherkinDataTable(rows));
         }
@@ -78,7 +78,7 @@ My doc string line 2");
             return new G.Tag(AnyLocation, tag);
         }
 
-        public G.Scenario CreateScenario(string[] tags, string name, string description, G.Step[] steps)
+        internal G.Scenario CreateScenario(string[] tags, string name, string description, G.Step[] steps)
         {
             G.Scenario scenario = new G.Scenario(
                 tags.Select(this.CreateTag).ToArray(),
