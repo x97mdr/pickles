@@ -63,5 +63,23 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             Check.That(result.Steps[0].Name).IsEqualTo("I enter '50' in the calculator");
             Check.That(result.Tags).IsEmpty();
         }
+
+        [Test]
+        public void MapToScenario_BackgroundWithNullDescription_ReturnsScenarioWithEmptyDescription()
+        {
+            G.Background background = this.factory.CreateBackground(
+                "Background",
+                null,
+                new[]
+                {
+                    this.factory.CreateStep("Given", "unimportant step"),
+                });
+
+            var mapper = this.factory.CreateMapper();
+
+            Scenario result = mapper.MapToScenario(background);
+
+            Check.That(result.Description).IsEqualTo(string.Empty);
+        }
     }
 }

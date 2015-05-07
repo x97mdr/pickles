@@ -44,7 +44,8 @@ namespace PicklesDoc.Pickles.ObjectModel
             AutoMapper.Mapper.CreateMap<G.ScenarioOutline, ScenarioOutline>()
                 .ForMember(t => t.Description, opt => opt.NullSubstitute(string.Empty));
 
-            AutoMapper.Mapper.CreateMap<G.Background, Scenario>();
+            AutoMapper.Mapper.CreateMap<G.Background, Scenario>()
+                .ForMember(t => t.Description, opt => opt.NullSubstitute(string.Empty));
 
             AutoMapper.Mapper.CreateMap<G.ScenarioDefinition, IFeatureElement>().ConvertUsing(
                 sd =>
