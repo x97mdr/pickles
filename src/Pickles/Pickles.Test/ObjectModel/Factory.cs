@@ -104,7 +104,7 @@ My doc string line 2");
             return examples;
         }
 
-        public G.ScenarioOutline CreateScenarioOutline(string[] tags, string name, string description, G.Step[] steps, G.Examples[] examples)
+        internal G.ScenarioOutline CreateScenarioOutline(string[] tags, string name, string description, G.Step[] steps, G.Examples[] examples)
         {
             G.ScenarioOutline scenarioOutline = new G.ScenarioOutline(
                 tags.Select(this.CreateTag).ToArray(),
