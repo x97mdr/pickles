@@ -44,9 +44,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToScenarioBackground_RegularBackground_ReturnsScenario()
         {
-            G.Background background = new G.Background(
-                null,
-                "Background",
+            G.Background background = this.CreateBackground(
                 "Background",
                 "Description of the Background",
                 new[]
@@ -64,6 +62,17 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             Check.That(result.Steps[0].Keyword).IsEqualTo(Keyword.Given);
             Check.That(result.Steps[0].Name).IsEqualTo("I enter '50' in the calculator");
             Check.That(result.Tags).IsEmpty();
+        }
+
+        private G.Background CreateBackground(string name, string description, G.Step[] steps)
+        {
+            G.Background background = new G.Background(
+                null,
+                "Background",
+                name,
+                description,
+                steps);
+            return background;
         }
     }
 }
