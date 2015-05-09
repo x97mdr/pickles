@@ -2,16 +2,28 @@
     // IE does not implement trim() and the following replaces the functionality if unavailable
     // http://stackoverflow.com/questions/2308134/trim-in-javascript-not-working-in-ie
     if (typeof String.prototype.trim !== 'function') {
-        String.prototype.trim = function() {
+        String.prototype.trim = function () {
             return this.replace(/^\s+|\s+$/g, '');
         }
     }
-    
-    return unformattedString
-      .replace(/([A-Z][^A-Z+])/g, " $1")
-      .replace(/([A-Z][^a-z+])/g, " $1")
-      .replace(/\s\s/g, '')
-      .trim();
+
+    var formattedString = '';
+    var i = 0;
+    while (i <= unformattedString.length) {
+        var ch = unformattedString.charAt(i);
+        var nextChar = unformattedString.charAt(i + 1);
+
+        if (ch == ch.toLowerCase() && nextChar == nextChar.toUpperCase()) {
+            formattedString = formattedString.trim() + ch + ' ';
+        } else if (ch == ch.toUpperCase() && nextChar == nextChar.toLowerCase() && nextChar != nextChar.toUpperCase() && nextChar != '') {
+            formattedString = formattedString.trim() + ' ' + ch;
+        } else {
+            formattedString += ch;
+        }
+        i++;
+    }
+
+    return formattedString.trim();
 }
 
 function removeBeginningHash(hashedString) {

@@ -2,8 +2,9 @@
     equal(addSpacesToCamelCasedString("ThisIsATestString"), "This Is A Test String", "Happy path test");
     equal(addSpacesToCamelCasedString("00ThisIsATestString"), "00 This Is A Test String", "String prefaced by numbers");
     equal(addSpacesToCamelCasedString("ThisIsATestString."), "This Is A Test String.", "String ending with punctuation.");
-    equal(addSpacesToCamelCasedString("ThisIsATestStringABC"), "This Is A Test String ABC", "String with abbreviation at the end.");
-    equal(addSpacesToCamelCasedString("ABCThisIsATestString"), "ABC This Is A Test String", "String with abbreviation at the beginning.");
+    equal(addSpacesToCamelCasedString("ThisIsATestStringABC"), "This Is A Test String ABC", "String with abbreviation at the end");
+    equal(addSpacesToCamelCasedString("ThisIsATestStringABC."), "This Is A Test String ABC.", "String with abbreviation and punctuation");
+    equal(addSpacesToCamelCasedString("ABCThisIsATestString"), "ABC This Is A Test String", "String with abbreviation at the beginning");
 });
 
 test("Can pull off # from hashtag", function() {
