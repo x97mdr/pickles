@@ -1,7 +1,10 @@
 ﻿test("Can convert camel cased string to spaced string", function () {
     equal(addSpacesToCamelCasedString("ThisIsATestString"), "This Is A Test String", "Happy path test");
     equal(addSpacesToCamelCasedString("00ThisIsATestString"), "00 This Is A Test String", "String prefaced by numbers");
-    equal(addSpacesToCamelCasedString("ThisIsATestString."), "This Is A Test String.", "String ending with puncuation.");
+    equal(addSpacesToCamelCasedString("ThisIsATestString."), "This Is A Test String.", "String ending with punctuation.");
+    equal(addSpacesToCamelCasedString("ThisIsATestStringABC"), "This Is A Test String ABC", "String with abbreviation at the end");
+    equal(addSpacesToCamelCasedString("ThisIsATestStringABC."), "This Is A Test String ABC.", "String with abbreviation and punctuation");
+    equal(addSpacesToCamelCasedString("ABCThisIsATestString"), "ABC This Is A Test String", "String with abbreviation at the beginning");
 });
 
 test("Can pull off # from hashtag", function() {
