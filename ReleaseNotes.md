@@ -1,5 +1,15 @@
 # Pickles Release Notes
 
+## v1.1.0 - 2015-05-12
+
+### New Feature
+
+- In both the DHtml and Html versions: Align scenario keywords to the right side so that step texts start from the same position ([#195](https://github.com/picklesdoc/pickles/issues/195))
+
+### Bugs Fixed
+
+- Abbreviations displayed incorrectly with spaces between letters ([#192](https://github.com/picklesdoc/pickles/issues/192))
+ 
 ## v1.0.1 - 2015-03-31
 
 ### Bugs Fixed
