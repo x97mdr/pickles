@@ -212,6 +212,7 @@
     <Compile Include="ObjectModel\MapperTestsForScenario.cs" />
     <Compile Include="ObjectModel\MapperTestsForStep.cs" />
     <Compile Include="ObjectModel\MapperTestsForTag.cs" />
+    <Compile Include="ObjectModel\MappingTestsForKeyword.cs" />
     <Compile Include="TestFrameworks\WhenParsingMultipleMsTestTestResultsFiles.cs" />
     <Compile Include="TestFrameworks\WhenParsingMultipleNUnitResultsFilesForASingleFeature.cs" />
     <Compile Include="TestFrameworks\WhenParsingMultipleTestResultsTests.cs" />
