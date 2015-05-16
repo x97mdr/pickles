@@ -9,7 +9,7 @@ namespace PicklesDoc.Pickles.ObjectModel
 {
     public class Mapper
     {
-        private MappingEngine mapper;
+        private readonly MappingEngine mapper;
 
         public Mapper(string featureLanguage = "en")
         {
