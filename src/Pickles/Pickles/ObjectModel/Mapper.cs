@@ -9,7 +9,6 @@ namespace PicklesDoc.Pickles.ObjectModel
 {
     public class Mapper
     {
-        private readonly string featureLanguage;
         private MappingEngine mapper;
 
         static Mapper()
@@ -18,13 +17,11 @@ namespace PicklesDoc.Pickles.ObjectModel
 
         public Mapper(string featureLanguage = "en")
         {
-            this.featureLanguage = featureLanguage;
-
             var configurationStore = new ConfigurationStore(new TypeMapFactory(), MapperRegistry.Mappers);
 
             this.mapper = new MappingEngine(configurationStore);
 
-            configurationStore.CreateMap<string, Keyword>().ConvertUsing(new KeywordResolver(this.featureLanguage));
+            configurationStore.CreateMap<string, Keyword>().ConvertUsing(new KeywordResolver(featureLanguage));
 
             configurationStore.CreateMap<G.TableCell, string>()
         .ConstructUsing(cell => cell.Value);
