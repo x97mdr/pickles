@@ -58,6 +58,22 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         }
 
         [Test]
+        public void MapToStep_StepWithWhen_ReturnStep()
+        {
+            var mapper = this.factory.CreateMapper();
+
+            G.Step step = this.factory.CreateStep("When", "I press 'enter'");
+
+            var result = mapper.MapToStep(step);
+
+            Check.That(result.Keyword).IsEqualTo(Keyword.When);
+            Check.That(result.NativeKeyword).IsEqualTo("When");
+            Check.That(result.Name).IsEqualTo("I press 'enter'");
+            Check.That(result.DocStringArgument).IsNull();
+            Check.That(result.TableArgument).IsNull();
+        }
+
+        [Test]
         public void MapToKeyWord_StringGiven_ReturnsGiven()
         {
             var mapper = this.factory.CreateMapper();
