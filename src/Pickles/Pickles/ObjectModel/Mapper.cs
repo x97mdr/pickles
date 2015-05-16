@@ -11,10 +11,6 @@ namespace PicklesDoc.Pickles.ObjectModel
     {
         private MappingEngine mapper;
 
-        static Mapper()
-        {
-        }
-
         public Mapper(string featureLanguage = "en")
         {
             var configurationStore = new ConfigurationStore(new TypeMapFactory(), MapperRegistry.Mappers);
