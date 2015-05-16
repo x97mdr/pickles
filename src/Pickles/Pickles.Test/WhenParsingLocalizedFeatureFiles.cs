@@ -19,9 +19,9 @@ namespace PicklesDoc.Pickles.Test
                 @"# language: sv
 # ignorera denna kommentar
 Egenskap: Test egenskap
-    Som svensk användare
-    Vill jag skriva mina krav på svenska
-    Så att beställaren kan förstå dem
+  Som svensk användare
+  Vill jag skriva mina krav på svenska
+  Så att beställaren kan förstå dem
 
   Scenario: Ett scenario
         Givet en egenskap
