@@ -89,5 +89,15 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
             Check.That(result).IsEqualTo(Keyword.But);
         }
+
+        [Test]
+        public void MapToKeyword_KeywordIsProvidedWithBlank_ReturnsKeyword()
+        {
+            var mapper = this.factory.CreateMapper();
+
+            var result = mapper.MapToKeyword("Then ");
+
+            Check.That(result).IsEqualTo(Keyword.Then);
+        }
     }
 }
