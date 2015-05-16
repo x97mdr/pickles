@@ -29,9 +29,9 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
     {
         private const G.Location AnyLocation = null;
 
-        internal Mapper CreateMapper()
+        internal Mapper CreateMapper(string defaultLanguage = "en")
         {
-            var mapper = new Mapper();
+            var mapper = new Mapper(defaultLanguage);
             return mapper;
         }
 
@@ -97,7 +97,7 @@ My doc string line 2");
                 AnyLocation,
                 "Examples",
                 name,
-                description, 
+                description,
                 this.CreateGherkinTableRow(headerCells),
                 exampleRows.Select(this.CreateGherkinTableRow).ToArray());
 

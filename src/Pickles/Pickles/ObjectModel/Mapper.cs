@@ -7,6 +7,8 @@ namespace PicklesDoc.Pickles.ObjectModel
 {
     public class Mapper
     {
+        private readonly string featureLanguage;
+
         static Mapper()
         {
             AutoMapper.Mapper.CreateMap<G.TableCell, string>()
@@ -67,6 +69,11 @@ namespace PicklesDoc.Pickles.ObjectModel
 
             AutoMapper.Mapper.CreateMap<G.Feature, Feature>()
                 .ForMember(t => t.FeatureElements, opt => opt.ResolveUsing(s => s.ScenarioDefinitions));
+        }
+
+        public Mapper(string featureLanguage = "en")
+        {
+            this.featureLanguage = featureLanguage;
         }
 
         public string MapToString(G.TableCell cell)

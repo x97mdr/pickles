@@ -70,7 +70,7 @@ namespace PicklesDoc.Pickles
         {
             var gherkinParser = new Gherkin3.Parser();
             Gherkin3.Ast.Feature feature = gherkinParser.Parse(featureFileReader);
-            Feature result = new Mapper().MapToFeature(feature);
+            Feature result = new Mapper(feature.Language).MapToFeature(feature);
 
             return result;
         }
