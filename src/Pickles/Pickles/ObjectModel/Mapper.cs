@@ -103,29 +103,6 @@ namespace PicklesDoc.Pickles.ObjectModel
 
         public Keyword MapToKeyword(string keyword)
         {
-            var dialectProvider = new Gherkin3.GherkinDialectProvider(this.featureLanguage);
-
-            if (dialectProvider.GetDialect(this.featureLanguage, null).WhenStepKeywords.Select(s => s.Trim()).Contains(keyword))
-            {
-                return Keyword.When;
-            }
-            if (dialectProvider.GetDialect(this.featureLanguage, null).GivenStepKeywords.Select(s => s.Trim()).Contains(keyword))
-            {
-                return Keyword.Given;
-            }
-            if (dialectProvider.GetDialect(this.featureLanguage, null).ThenStepKeywords.Select(s => s.Trim()).Contains(keyword))
-            {
-                return Keyword.Then;
-            }
-            if (dialectProvider.GetDialect(this.featureLanguage, null).AndStepKeywords.Select(s => s.Trim()).Contains(keyword))
-            {
-                return Keyword.And;
-            }
-            if (dialectProvider.GetDialect(this.featureLanguage, null).ButStepKeywords.Select(s => s.Trim()).Contains(keyword))
-            {
-                return Keyword.But;
-            }
-
             return AutoMapper.Mapper.Map<Keyword>(keyword);
         }
 
