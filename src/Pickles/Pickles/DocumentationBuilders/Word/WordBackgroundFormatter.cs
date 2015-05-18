@@ -54,7 +54,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
 	    private string GetLocalizedBackgroundKeyword()
 	    {
-	        var keywords = languageSevices.GetLanguage().keywords("background");
+	        var keywords = languageSevices.GetKeywords("background");
 	        if (keywords != null && !keywords.isEmpty())
 	        {
 	            return keywords.get(0).ToString();
