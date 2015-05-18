@@ -282,7 +282,6 @@
     <Compile Include="Parser\JsonResult\Result.cs" />
     <Compile Include="Parser\JsonResult\Step.cs" />
     <Compile Include="Parser\JsonResult\Tag.cs" />
-    <Compile Include="Parser\PicklesParser.cs" />
     <Compile Include="Parser\Builders\ScenarioBuilder.cs" />
     <Compile Include="Parser\Builders\ScenarioOutlineBuilder.cs" />
     <Compile Include="Parser\SpecRun\Factory.cs" />
