@@ -39,6 +39,18 @@ namespace PicklesDoc.Pickles
             return this.GetLanguage().keywords(key);
         }
 
+        public string GetKeyword(string key)
+        {
+            var keywords = this.GetKeywords("background");
+
+            if (keywords != null && !keywords.isEmpty())
+            {
+                return keywords.get(0).ToString();
+            }
+
+            return null;
+        }
+
         private I18n GetLanguage()
         {
             if (this.currentCulture == null)
