@@ -22,8 +22,6 @@ using System;
 using System.IO.Abstractions;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
-using gherkin.lexer;
 
 using TextReader = System.IO.TextReader;
 
