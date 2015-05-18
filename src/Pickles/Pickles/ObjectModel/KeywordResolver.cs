@@ -25,23 +25,25 @@ namespace PicklesDoc.Pickles.ObjectModel
 
             var dialectProvider = new Gherkin3.GherkinDialectProvider();
 
-            if (dialectProvider.GetDialect(this.language, null).WhenStepKeywords.Select(s => s.Trim()).Contains(keyword))
+            var gherkinDialect = dialectProvider.GetDialect(this.language, null);
+
+            if (gherkinDialect.WhenStepKeywords.Select(s => s.Trim()).Contains(keyword))
             {
                 return Keyword.When;
             }
-            if (dialectProvider.GetDialect(this.language, null).GivenStepKeywords.Select(s => s.Trim()).Contains(keyword))
+            if (gherkinDialect.GivenStepKeywords.Select(s => s.Trim()).Contains(keyword))
             {
                 return Keyword.Given;
             }
-            if (dialectProvider.GetDialect(this.language, null).ThenStepKeywords.Select(s => s.Trim()).Contains(keyword))
+            if (gherkinDialect.ThenStepKeywords.Select(s => s.Trim()).Contains(keyword))
             {
                 return Keyword.Then;
             }
-            if (dialectProvider.GetDialect(this.language, null).AndStepKeywords.Select(s => s.Trim()).Contains(keyword))
+            if (gherkinDialect.AndStepKeywords.Select(s => s.Trim()).Contains(keyword))
             {
                 return Keyword.And;
             }
-            if (dialectProvider.GetDialect(this.language, null).ButStepKeywords.Select(s => s.Trim()).Contains(keyword))
+            if (gherkinDialect.ButStepKeywords.Select(s => s.Trim()).Contains(keyword))
             {
                 return Keyword.But;
             }
