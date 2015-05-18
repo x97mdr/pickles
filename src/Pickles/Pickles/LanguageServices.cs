@@ -34,7 +34,7 @@ namespace PicklesDoc.Pickles
                 this.currentCulture = CultureInfo.GetCultureInfo(configuration.Language);
         }
 
-        public java.util.List GetKeywords(string key)
+        private java.util.List GetKeywords(string key)
         {
             return this.GetLanguage().keywords(key);
         }
