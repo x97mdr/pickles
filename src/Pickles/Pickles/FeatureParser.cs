@@ -31,13 +31,10 @@ namespace PicklesDoc.Pickles
 {
     public class FeatureParser
     {
-        private readonly LanguageServices languageService;
-
         private readonly IFileSystem fileSystem;
 
-        public FeatureParser(LanguageServices languageService, IFileSystem fileSystem)
+        public FeatureParser(IFileSystem fileSystem)
         {
-            this.languageService = languageService;
             this.fileSystem = fileSystem;
         }
 

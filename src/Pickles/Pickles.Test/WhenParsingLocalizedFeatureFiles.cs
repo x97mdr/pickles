@@ -32,7 +32,7 @@ Egenskap: Test egenskap
                                         Language = "sv"
                                     };
 
-            var parser = new FeatureParser(new LanguageServices(configuration), FileSystem);
+            var parser = new FeatureParser(FileSystem);
             Feature feature = parser.Parse(new StringReader(featureText));
 
             Check.That(feature).IsNotNull();
