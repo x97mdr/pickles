@@ -21,7 +21,6 @@
 using System;
 using System.Globalization;
 using gherkin;
-using gherkin.lexer;
 
 namespace PicklesDoc.Pickles
 {
@@ -41,25 +40,6 @@ namespace PicklesDoc.Pickles
                 return new I18n("en");
 
             return new I18n(this.currentCulture.TwoLetterISOLanguageName);
-        }
-
-        public Lexer GetNativeLexer(Listener parser)
-        {
-            if (this.currentCulture == null)
-                return new I18nLexer(parser);
-
-            string typeName = string.Format("gherkin.lexer.i18n.{0}, {1}",
-                                            this.currentCulture.TwoLetterISOLanguageName.ToUpper(),
-                                            typeof (I18nLexer).Assembly.FullName);
-
-            Type lexerType = Type.GetType(typeName);
-
-            if (lexerType == null)
-                throw new ApplicationException(
-                    string.Format("The specified language '{1}' with language code '{0}' is not supported!",
-                                  this.currentCulture.TwoLetterISOLanguageName.ToUpper(), this.currentCulture.NativeName));
-
-            return Activator.CreateInstance(lexerType, parser) as Lexer;
         }
     }
 }
