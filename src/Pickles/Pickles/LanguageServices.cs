@@ -20,43 +20,42 @@
 
 using System;
 using System.Globalization;
-using gherkin;
+using System.Linq;
+using Gherkin3;
 
 namespace PicklesDoc.Pickles
 {
     public class LanguageServices
     {
         private readonly CultureInfo currentCulture;
+        private readonly GherkinDialectProvider dialectProvider;
 
         public LanguageServices(Configuration configuration)
         {
             if (!string.IsNullOrEmpty(configuration.Language))
                 this.currentCulture = CultureInfo.GetCultureInfo(configuration.Language);
+
+            this.dialectProvider = new GherkinDialectProvider();
         }
 
-        private java.util.List GetKeywords(string key)
+        private string[] GetBackgroundKeywords()
         {
-            return this.GetLanguage().keywords(key);
+            return this.GetLanguage().BackgroundKeywords;
         }
 
         public string GetKeyword(string key)
         {
-            var keywords = this.GetKeywords("background");
+            var keywords = this.GetBackgroundKeywords();
 
-            if (keywords != null && !keywords.isEmpty())
-            {
-                return keywords.get(0).ToString();
-            }
-
-            return null;
+            return keywords.FirstOrDefault();
         }
 
-        private I18n GetLanguage()
+        private GherkinDialect GetLanguage()
         {
             if (this.currentCulture == null)
-                return new I18n("en");
+                return this.dialectProvider.GetDialect("en", null);
 
-            return new I18n(this.currentCulture.TwoLetterISOLanguageName);
+            return this.dialectProvider.GetDialect(this.currentCulture.TwoLetterISOLanguageName, null);
         }
     }
 }
