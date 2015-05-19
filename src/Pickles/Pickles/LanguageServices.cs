@@ -39,7 +39,7 @@ namespace PicklesDoc.Pickles
             this.language = string.IsNullOrWhiteSpace(language) ? "en" : language;
 
             this.dialectProvider = new GherkinDialectProvider();
-
+            this.getLanguageLazy = new Lazy<GherkinDialect>(() => this.dialectProvider.GetDialect(this.language, null));
             this.whenStepKeywordsLazy = new Lazy<string[]>(() => this.GetLanguage().WhenStepKeywords.Select(s => s.Trim()).ToArray());
         }
 
@@ -70,9 +70,10 @@ namespace PicklesDoc.Pickles
             return keywords.FirstOrDefault();
         }
 
+        private readonly Lazy<GherkinDialect> getLanguageLazy;
         private GherkinDialect GetLanguage()
         {
-            return this.dialectProvider.GetDialect(this.language, null);
+            return this.getLanguageLazy.Value;
         }
     }
 }
