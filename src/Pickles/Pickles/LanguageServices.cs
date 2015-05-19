@@ -28,6 +28,7 @@ namespace PicklesDoc.Pickles
     {
         private readonly string language;
         private readonly GherkinDialectProvider dialectProvider;
+        private readonly Lazy<GherkinDialect> languageLazy;
 
         public LanguageServices(Configuration configuration)
             : this(configuration.Language)
@@ -70,7 +71,6 @@ namespace PicklesDoc.Pickles
             return keywords.FirstOrDefault();
         }
 
-        private readonly Lazy<GherkinDialect> languageLazy;
         private GherkinDialect Language()
         {
             return this.languageLazy.Value;
