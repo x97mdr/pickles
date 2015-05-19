@@ -72,10 +72,9 @@ namespace PicklesDoc.Pickles
 
         private GherkinDialect GetLanguage()
         {
-            if (string.IsNullOrWhiteSpace(this.language))
-                return this.dialectProvider.GetDialect("en", null);
+            string l = string.IsNullOrWhiteSpace(this.language) ? "en" : this.language;
 
-            return this.dialectProvider.GetDialect(this.language, null);
+            return this.dialectProvider.GetDialect(l, null);
         }
     }
 }
