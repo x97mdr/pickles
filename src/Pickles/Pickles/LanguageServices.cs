@@ -19,7 +19,6 @@
 #endregion
 
 using System;
-using System.Globalization;
 using System.Linq;
 using Gherkin3;
 
@@ -27,13 +26,12 @@ namespace PicklesDoc.Pickles
 {
     public class LanguageServices
     {
-        private readonly CultureInfo currentCulture;
+        private readonly string language;
         private readonly GherkinDialectProvider dialectProvider;
 
         public LanguageServices(Configuration configuration)
         {
-            if (!string.IsNullOrEmpty(configuration.Language))
-                this.currentCulture = CultureInfo.GetCultureInfo(configuration.Language);
+            this.language = configuration.Language;
 
             this.dialectProvider = new GherkinDialectProvider();
 
@@ -69,10 +67,10 @@ namespace PicklesDoc.Pickles
 
         private GherkinDialect GetLanguage()
         {
-            if (this.currentCulture == null)
+            if (string.IsNullOrWhiteSpace(this.language))
                 return this.dialectProvider.GetDialect("en", null);
 
-            return this.dialectProvider.GetDialect(this.currentCulture.TwoLetterISOLanguageName, null);
+            return this.dialectProvider.GetDialect(this.language, null);
         }
     }
 }
