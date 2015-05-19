@@ -33,15 +33,15 @@ namespace PicklesDoc.Pickles.ObjectModel
             {
                 return Keyword.Given;
             }
-            if (gherkinDialect.ThenStepKeywords.Select(s => s.Trim()).Contains(keyword))
+            if (gherkinDialect.ThenStepKeywords.Contains(keyword))
             {
                 return Keyword.Then;
             }
-            if (gherkinDialect.AndStepKeywords.Select(s => s.Trim()).Contains(keyword))
+            if (gherkinDialect.AndStepKeywords.Contains(keyword))
             {
                 return Keyword.And;
             }
-            if (gherkinDialect.ButStepKeywords.Select(s => s.Trim()).Contains(keyword))
+            if (gherkinDialect.ButStepKeywords.Contains(keyword))
             {
                 return Keyword.But;
             }
