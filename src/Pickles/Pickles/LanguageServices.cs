@@ -26,7 +26,6 @@ namespace PicklesDoc.Pickles
 {
     public class LanguageServices
     {
-        private readonly GherkinDialectProvider dialectProvider;
         private readonly Lazy<GherkinDialect> languageLazy;
 
         private readonly Lazy<string[]> givenStepKeywordsLazy;
@@ -42,8 +41,7 @@ namespace PicklesDoc.Pickles
 
         public LanguageServices(string language = "en")
         {
-            this.dialectProvider = new GherkinDialectProvider();
-            this.languageLazy = new Lazy<GherkinDialect>(() => this.dialectProvider.GetDialect(language, null));
+            this.languageLazy = new Lazy<GherkinDialect>(() => new GherkinDialectProvider().GetDialect(language, null));
             this.whenStepKeywordsLazy = new Lazy<string[]>(() => this.Language.WhenStepKeywords.Select(s => s.Trim()).ToArray());
             this.givenStepKeywordsLazy = new Lazy<string[]>(() => this.Language.GivenStepKeywords.Select(s => s.Trim()).ToArray());
             this.thenStepKeywordsLazy = new Lazy<string[]>(() => this.Language.ThenStepKeywords.Select(s => s.Trim()).ToArray());
