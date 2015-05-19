@@ -25,11 +25,11 @@ namespace PicklesDoc.Pickles.ObjectModel
 
             var gherkinDialect = new LanguageServices(new Configuration() { Language = this.language });
 
-            if (gherkinDialect.WhenStepKeywords.Select(s => s.Trim()).Contains(keyword))
+            if (gherkinDialect.WhenStepKeywords.Contains(keyword))
             {
                 return Keyword.When;
             }
-            if (gherkinDialect.GivenStepKeywords.Select(s => s.Trim()).Contains(keyword))
+            if (gherkinDialect.GivenStepKeywords.Contains(keyword))
             {
                 return Keyword.Given;
             }
