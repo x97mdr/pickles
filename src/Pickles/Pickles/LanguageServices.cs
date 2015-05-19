@@ -33,6 +33,7 @@ namespace PicklesDoc.Pickles
         private readonly Lazy<string[]> thenStepKeywordsLazy;
         private readonly Lazy<string[]> andStepKeywordsLazy;
         private readonly Lazy<string[]> butStepKeywordsLazy;
+        private readonly Lazy<string[]> backgroundKeywordsLazy;
 
         public LanguageServices(Configuration configuration)
             : this(configuration.Language)
@@ -47,6 +48,7 @@ namespace PicklesDoc.Pickles
             this.thenStepKeywordsLazy = new Lazy<string[]>(() => this.Language.ThenStepKeywords.Select(s => s.Trim()).ToArray());
             this.andStepKeywordsLazy = new Lazy<string[]>(() => this.Language.AndStepKeywords.Select(s => s.Trim()).ToArray());
             this.butStepKeywordsLazy = new Lazy<string[]>(() => this.Language.ButStepKeywords.Select(s => s.Trim()).ToArray());
+            this.backgroundKeywordsLazy = new Lazy<string[]>(() => this.Language.BackgroundKeywords.Select(s => s.Trim()).ToArray());
         }
 
         public string[] GivenStepKeywords { get { return this.givenStepKeywordsLazy.Value; } }
@@ -54,22 +56,11 @@ namespace PicklesDoc.Pickles
         public string[] ThenStepKeywords { get { return this.thenStepKeywordsLazy.Value; } }
         public string[] AndStepKeywords { get { return this.andStepKeywordsLazy.Value; } }
         public string[] ButStepKeywords { get { return this.butStepKeywordsLazy.Value; } }
+        public string[] BackgroundKeywords { get { return this.backgroundKeywordsLazy.Value; } }
 
         private GherkinDialect Language
         {
             get { return this.languageLazy.Value; }
-        }
-
-        private string[] GetBackgroundKeywords()
-        {
-            return this.Language.BackgroundKeywords;
-        }
-
-        public string GetKeyword(string key)
-        {
-            var keywords = this.GetBackgroundKeywords();
-
-            return keywords.FirstOrDefault();
         }
     }
 }
