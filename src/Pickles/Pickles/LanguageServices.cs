@@ -29,12 +29,11 @@ namespace PicklesDoc.Pickles
         private readonly string language;
         private readonly GherkinDialectProvider dialectProvider;
         private readonly Lazy<GherkinDialect> languageLazy;
+
         private readonly Lazy<string[]> givenStepKeywordsLazy;
         private readonly Lazy<string[]> whenStepKeywordsLazy;
-
         private readonly Lazy<string[]> thenStepKeywordsLazy;
         private readonly Lazy<string[]> andStepKeywordsLazy;
-
         private readonly Lazy<string[]> butStepKeywordsLazy;
 
         public LanguageServices(Configuration configuration)
@@ -56,19 +55,9 @@ namespace PicklesDoc.Pickles
         }
 
         public string[] GivenStepKeywords { get { return this.givenStepKeywordsLazy.Value; } }
-
-        public string[] WhenStepKeywords
-        {
-            get
-            {
-                return this.whenStepKeywordsLazy.Value;
-            }
-        }
-
+        public string[] WhenStepKeywords { get { return this.whenStepKeywordsLazy.Value; } }
         public string[] ThenStepKeywords { get { return this.thenStepKeywordsLazy.Value; } }
-
         public string[] AndStepKeywords { get { return this.andStepKeywordsLazy.Value; } }
-
         public string[] ButStepKeywords { get { return this.butStepKeywordsLazy.Value; } }
 
         private GherkinDialect Language
