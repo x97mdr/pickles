@@ -36,7 +36,7 @@ namespace PicklesDoc.Pickles
 
         public LanguageServices(string language = "en")
         {
-            this.language = language;
+            this.language = string.IsNullOrWhiteSpace(language) ? "en" : language;
 
             this.dialectProvider = new GherkinDialectProvider();
 
@@ -72,7 +72,7 @@ namespace PicklesDoc.Pickles
 
         private GherkinDialect GetLanguage()
         {
-            string l = string.IsNullOrWhiteSpace(this.language) ? "en" : this.language;
+            string l = this.language;
 
             return this.dialectProvider.GetDialect(l, null);
         }
