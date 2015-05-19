@@ -23,8 +23,6 @@ namespace PicklesDoc.Pickles.ObjectModel
         {
             keyword = keyword.Trim();
 
-            var dialectProvider = new Gherkin3.GherkinDialectProvider();
-
             var gherkinDialect = new LanguageServices(new Configuration() { Language = this.language });
 
             if (gherkinDialect.WhenStepKeywords.Select(s => s.Trim()).Contains(keyword))
