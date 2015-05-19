@@ -39,8 +39,8 @@ namespace PicklesDoc.Pickles
             this.language = string.IsNullOrWhiteSpace(language) ? "en" : language;
 
             this.dialectProvider = new GherkinDialectProvider();
-            this.getLanguageLazy = new Lazy<GherkinDialect>(() => this.dialectProvider.GetDialect(this.language, null));
-            this.whenStepKeywordsLazy = new Lazy<string[]>(() => this.GetLanguage().WhenStepKeywords.Select(s => s.Trim()).ToArray());
+            this.languageLazy = new Lazy<GherkinDialect>(() => this.dialectProvider.GetDialect(this.language, null));
+            this.whenStepKeywordsLazy = new Lazy<string[]>(() => this.Language().WhenStepKeywords.Select(s => s.Trim()).ToArray());
         }
 
         private readonly Lazy<string[]> whenStepKeywordsLazy;
@@ -53,14 +53,14 @@ namespace PicklesDoc.Pickles
             }
         }
 
-        public string[] GivenStepKeywords { get { return this.GetLanguage().GivenStepKeywords; } }
-        public string[] ThenStepKeywords { get { return this.GetLanguage().ThenStepKeywords; } }
-        public string[] AndStepKeywords { get { return this.GetLanguage().AndStepKeywords; } }
-        public string[] ButStepKeywords { get { return this.GetLanguage().ButStepKeywords; } }
+        public string[] GivenStepKeywords { get { return this.Language().GivenStepKeywords; } }
+        public string[] ThenStepKeywords { get { return this.Language().ThenStepKeywords; } }
+        public string[] AndStepKeywords { get { return this.Language().AndStepKeywords; } }
+        public string[] ButStepKeywords { get { return this.Language().ButStepKeywords; } }
 
         private string[] GetBackgroundKeywords()
         {
-            return this.GetLanguage().BackgroundKeywords;
+            return this.Language().BackgroundKeywords;
         }
 
         public string GetKeyword(string key)
@@ -70,10 +70,10 @@ namespace PicklesDoc.Pickles
             return keywords.FirstOrDefault();
         }
 
-        private readonly Lazy<GherkinDialect> getLanguageLazy;
-        private GherkinDialect GetLanguage()
+        private readonly Lazy<GherkinDialect> languageLazy;
+        private GherkinDialect Language()
         {
-            return this.getLanguageLazy.Value;
+            return this.languageLazy.Value;
         }
     }
 }
