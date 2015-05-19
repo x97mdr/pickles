@@ -77,7 +77,7 @@ namespace PicklesDoc.Pickles
                     }
                 }).SingleInstance();
 
-            builder.RegisterType<LanguageServices>().SingleInstance();
+            builder.RegisterType<LanguageServices>().UsingConstructor(typeof(Configuration)).SingleInstance();
 
             builder.RegisterType<HtmlMarkdownFormatter>().SingleInstance();
             builder.RegisterType<HtmlResourceWriter>().SingleInstance();

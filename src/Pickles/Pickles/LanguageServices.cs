@@ -30,8 +30,13 @@ namespace PicklesDoc.Pickles
         private readonly GherkinDialectProvider dialectProvider;
 
         public LanguageServices(Configuration configuration)
+            : this(configuration.Language)
         {
-            this.language = configuration.Language;
+        }
+
+        public LanguageServices(string language = "en")
+        {
+            this.language = language;
 
             this.dialectProvider = new GherkinDialectProvider();
 
