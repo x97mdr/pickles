@@ -29,6 +29,13 @@ namespace PicklesDoc.Pickles
         private readonly string language;
         private readonly GherkinDialectProvider dialectProvider;
         private readonly Lazy<GherkinDialect> languageLazy;
+        private readonly Lazy<string[]> givenStepKeywordsLazy;
+        private readonly Lazy<string[]> whenStepKeywordsLazy;
+
+        private readonly Lazy<string[]> thenStepKeywordsLazy;
+        private readonly Lazy<string[]> andStepKeywordsLazy;
+
+        private readonly Lazy<string[]> butStepKeywordsLazy;
 
         public LanguageServices(Configuration configuration)
             : this(configuration.Language)
@@ -48,7 +55,7 @@ namespace PicklesDoc.Pickles
             this.butStepKeywordsLazy = new Lazy<string[]>(() => this.Language.ButStepKeywords.Select(s => s.Trim()).ToArray());
         }
 
-        private readonly Lazy<string[]> whenStepKeywordsLazy;
+        public string[] GivenStepKeywords { get { return this.givenStepKeywordsLazy.Value; } }
 
         public string[] WhenStepKeywords
         {
@@ -57,21 +64,17 @@ namespace PicklesDoc.Pickles
                 return this.whenStepKeywordsLazy.Value;
             }
         }
-        private readonly Lazy<string[]> givenStepKeywordsLazy;
-
-        public string[] GivenStepKeywords { get { return this.givenStepKeywordsLazy.Value; } }
-
-        private readonly Lazy<string[]> thenStepKeywordsLazy;
 
         public string[] ThenStepKeywords { get { return this.thenStepKeywordsLazy.Value; } }
 
-        private readonly Lazy<string[]> andStepKeywordsLazy;
-
         public string[] AndStepKeywords { get { return this.andStepKeywordsLazy.Value; } }
 
-        private readonly Lazy<string[]> butStepKeywordsLazy;
-
         public string[] ButStepKeywords { get { return this.butStepKeywordsLazy.Value; } }
+
+        private GherkinDialect Language
+        {
+            get { return this.languageLazy.Value; }
+        }
 
         private string[] GetBackgroundKeywords()
         {
@@ -83,11 +86,6 @@ namespace PicklesDoc.Pickles
             var keywords = this.GetBackgroundKeywords();
 
             return keywords.FirstOrDefault();
-        }
-
-        private GherkinDialect Language
-        {
-            get { return this.languageLazy.Value; }
         }
     }
 }
