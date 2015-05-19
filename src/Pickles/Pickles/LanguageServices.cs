@@ -36,7 +36,24 @@ namespace PicklesDoc.Pickles
                 this.currentCulture = CultureInfo.GetCultureInfo(configuration.Language);
 
             this.dialectProvider = new GherkinDialectProvider();
+
+            this.whenStepKeywordsLazy = new Lazy<string[]>(() => this.GetLanguage().WhenStepKeywords.Select(s => s.Trim()).ToArray());
         }
+
+        private readonly Lazy<string[]> whenStepKeywordsLazy;
+
+        public string[] WhenStepKeywords
+        {
+            get
+            {
+                return this.whenStepKeywordsLazy.Value;
+            }
+        }
+
+        public string[] GivenStepKeywords { get { return this.GetLanguage().GivenStepKeywords; } }
+        public string[] ThenStepKeywords { get { return this.GetLanguage().ThenStepKeywords; } }
+        public string[] AndStepKeywords { get { return this.GetLanguage().AndStepKeywords; } }
+        public string[] ButStepKeywords { get { return this.GetLanguage().ButStepKeywords; } }
 
         private string[] GetBackgroundKeywords()
         {

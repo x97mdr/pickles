@@ -25,7 +25,7 @@ namespace PicklesDoc.Pickles.ObjectModel
 
             var dialectProvider = new Gherkin3.GherkinDialectProvider();
 
-            var gherkinDialect = dialectProvider.GetDialect(this.language, null);
+            var gherkinDialect = new LanguageServices(new Configuration() { Language = this.language });
 
             if (gherkinDialect.WhenStepKeywords.Select(s => s.Trim()).Contains(keyword))
             {
