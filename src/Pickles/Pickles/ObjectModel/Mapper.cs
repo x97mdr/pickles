@@ -11,7 +11,7 @@ namespace PicklesDoc.Pickles.ObjectModel
     {
         private readonly MappingEngine mapper;
 
-        public Mapper(string featureLanguage = "en")
+        public Mapper(string featureLanguage = LanguageServices.DefaultLanguage)
         {
             var configurationStore = new ConfigurationStore(new TypeMapFactory(), MapperRegistry.Mappers);
 
