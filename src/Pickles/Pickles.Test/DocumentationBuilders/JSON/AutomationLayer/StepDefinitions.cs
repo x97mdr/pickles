@@ -43,12 +43,12 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.JSON.AutomationLayer
         }
 
         [Then("the JSON file should contain")]
-        public void ThenTheResultShouldBe(string result)
+        public void ThenTheResultShouldBe(string expectedResult)
         {
             var actualResult = base.FileSystem.File.ReadAllText(@"c:\output\pickledFeatures.json");
             actualResult = actualResult.Replace("{", "{{").Replace("}", "}}");
-            result = result.Replace("{", "{{").Replace("}", "}}");
-            Check.That(actualResult).Contains(result);
+            expectedResult = expectedResult.Replace("{", "{{").Replace("}", "}}");
+            Check.That(actualResult).Contains(expectedResult);
         }
     }
 }
