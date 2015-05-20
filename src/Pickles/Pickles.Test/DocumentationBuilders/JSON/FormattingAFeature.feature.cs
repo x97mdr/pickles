@@ -85,12 +85,11 @@ Scenario: Clear the screen
     Given I have entered 50 into the calculator
     And I have entered 70 into the calculator
     When I press C
-    Then the screen should be empty
-", ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 21
+    Then the screen should be empty", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 20
  testRunner.When("I generate the documentation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 22
+#line 21
     testRunner.Then("the JSON file should contain", "{\r\n  \"Features\": [\r\n    {\r\n      \"RelativeFolder\": \"\",\r\n      \"Feature\": {\r\n     " +
                     "   \"Name\": \"Clearing Screen\",\r\n        \"Description\": \"    In order to restart a" +
                     " new set of calculations\\r\\n    As a math idiot\\r\\n    I want to be able to clea" +

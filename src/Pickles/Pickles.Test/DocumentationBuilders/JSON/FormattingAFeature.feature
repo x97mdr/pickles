@@ -16,7 +16,6 @@ Scenario: A simple feature
             And I have entered 70 into the calculator
             When I press C
             Then the screen should be empty
-
         """
 	When I generate the documentation
     Then the JSON file should contain
