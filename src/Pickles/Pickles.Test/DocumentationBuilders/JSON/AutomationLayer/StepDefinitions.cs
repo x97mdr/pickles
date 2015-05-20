@@ -46,7 +46,9 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.JSON.AutomationLayer
         public void ThenTheResultShouldBe(string result)
         {
             var actualResult = base.FileSystem.File.ReadAllText(@"c:\output\pickledFeatures.json");
-            Check.That(actualResult.Replace("{", "{{").Replace("}", "}}")).Contains(result.Replace("{", "{{").Replace("}", "}}"));
+            actualResult = actualResult.Replace("{", "{{").Replace("}", "}}");
+            result = result.Replace("{", "{{").Replace("}", "}}");
+            Check.That(actualResult).Contains(result);
         }
     }
 }
