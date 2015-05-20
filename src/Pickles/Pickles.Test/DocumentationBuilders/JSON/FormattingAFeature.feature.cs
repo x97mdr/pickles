@@ -113,6 +113,110 @@ Scenario: Clear the screen
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("A feature with a table")]
+        [NUnit.Framework.CategoryAttribute("json")]
+        public virtual void AFeatureWithATable()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A feature with a table", new string[] {
+                        "json"});
+#line 82
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+#line 84
+    testRunner.Given("I have this feature description", @"Feature: Interactive DHTML View
+    In order to increase stakeholder engagement with pickled specs
+    As a SpecFlow evangelist
+    I want to adjust the level of detail in the DHTML view to suit my audience
+    So that I do not overwhelm them.
+
+Scenario: Scenario with large data table
+    Given a feature with a large table of data:
+        | heading    | page # |
+        | Chapter 1  | 1      |
+        | Chapter 2  | 5      |
+        | Chapter 3  | 10     |
+        | Chapter 4  | 15     |
+        | Chapter 5  | 20     |
+        | Chapter 6  | 25     |
+        | Chapter 7  | 30     |
+        | Chapter 8  | 35     |
+        | Chapter 9  | 40     |
+        | Chapter 10 | 45     |
+        | Chapter 11 | 50     |
+        | Chapter 12 | 55     |
+        | Chapter 13 | 60     |
+        | Chapter 14 | 65     |
+        | Chapter 15 | 70     |
+        | Chapter 16 | 75     |
+        | Chapter 17 | 80     |
+        | Chapter 18 | 85     |
+        | Chapter 19 | 90     |
+        | Chapter 20 | 95     |
+        | Chapter 21 | 100    |
+        | Chapter 22 | 105    |
+    When I click on the table heading
+    Then the table body should collapse", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 120
+ testRunner.When("I generate the documentation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 121
+    testRunner.Then("the JSON file should contain", "{\r\n  \"Features\": [\r\n    {\r\n      \"RelativeFolder\": \"\",\r\n      \"Feature\": {\r\n     " +
+                    "   \"Name\": \"Interactive DHTML View\",\r\n        \"Description\": \"    In order to in" +
+                    "crease stakeholder engagement with pickled specs\\r\\n    As a SpecFlow evangelist" +
+                    "\\r\\n    I want to adjust the level of detail in the DHTML view to suit my audien" +
+                    "ce\\r\\n    So that I do not overwhelm them.\",\r\n        \"FeatureElements\": [\r\n    " +
+                    "      {\r\n            \"Name\": \"Scenario with large data table\",\r\n            \"Des" +
+                    "cription\": \"\",\r\n            \"Steps\": [\r\n              {\r\n                \"Keywor" +
+                    "d\": \"Given\",\r\n                \"NativeKeyword\": \"Given \",\r\n                \"Name\"" +
+                    ": \"a feature with a large table of data:\",\r\n                \"TableArgument\": {\r\n" +
+                    "                  \"HeaderRow\": [\r\n                    \"heading\",\r\n              " +
+                    "      \"page #\"\r\n                  ],\r\n                  \"DataRows\": [\r\n         " +
+                    "           [\r\n                      \"Chapter 1\",\r\n                      \"1\"\r\n   " +
+                    "                 ],\r\n                    [\r\n                      \"Chapter 2\",\r\n" +
+                    "                      \"5\"\r\n                    ],\r\n                    [\r\n      " +
+                    "                \"Chapter 3\",\r\n                      \"10\"\r\n                    ]," +
+                    "\r\n                    [\r\n                      \"Chapter 4\",\r\n                   " +
+                    "   \"15\"\r\n                    ],\r\n                    [\r\n                      \"C" +
+                    "hapter 5\",\r\n                      \"20\"\r\n                    ],\r\n                " +
+                    "    [\r\n                      \"Chapter 6\",\r\n                      \"25\"\r\n         " +
+                    "           ],\r\n                    [\r\n                      \"Chapter 7\",\r\n      " +
+                    "                \"30\"\r\n                    ],\r\n                    [\r\n           " +
+                    "           \"Chapter 8\",\r\n                      \"35\"\r\n                    ],\r\n   " +
+                    "                 [\r\n                      \"Chapter 9\",\r\n                      \"4" +
+                    "0\"\r\n                    ],\r\n                    [\r\n                      \"Chapte" +
+                    "r 10\",\r\n                      \"45\"\r\n                    ],\r\n                    " +
+                    "[\r\n                      \"Chapter 11\",\r\n                      \"50\"\r\n            " +
+                    "        ],\r\n                    [\r\n                      \"Chapter 12\",\r\n        " +
+                    "              \"55\"\r\n                    ],\r\n                    [\r\n             " +
+                    "         \"Chapter 13\",\r\n                      \"60\"\r\n                    ],\r\n    " +
+                    "                [\r\n                      \"Chapter 14\",\r\n                      \"6" +
+                    "5\"\r\n                    ],\r\n                    [\r\n                      \"Chapte" +
+                    "r 15\",\r\n                      \"70\"\r\n                    ],\r\n                    " +
+                    "[\r\n                      \"Chapter 16\",\r\n                      \"75\"\r\n            " +
+                    "        ],\r\n                    [\r\n                      \"Chapter 17\",\r\n        " +
+                    "              \"80\"\r\n                    ],\r\n                    [\r\n             " +
+                    "         \"Chapter 18\",\r\n                      \"85\"\r\n                    ],\r\n    " +
+                    "                [\r\n                      \"Chapter 19\",\r\n                      \"9" +
+                    "0\"\r\n                    ],\r\n                    [\r\n                      \"Chapte" +
+                    "r 20\",\r\n                      \"95\"\r\n                    ],\r\n                    " +
+                    "[\r\n                      \"Chapter 21\",\r\n                      \"100\"\r\n           " +
+                    "         ],\r\n                    [\r\n                      \"Chapter 22\",\r\n       " +
+                    "               \"105\"\r\n                    ]\r\n                  ]\r\n              " +
+                    "  }\r\n              },\r\n              {\r\n                \"Keyword\": \"When\",\r\n    " +
+                    "            \"NativeKeyword\": \"When \",\r\n                \"Name\": \"I click on the t" +
+                    "able heading\"\r\n              },\r\n              {\r\n                \"Keyword\": \"Th" +
+                    "en\",\r\n                \"NativeKeyword\": \"Then \",\r\n                \"Name\": \"the ta" +
+                    "ble body should collapse\"\r\n              }\r\n            ],\r\n            \"Tags\": " +
+                    "[],\r\n            \"Result\": {\r\n              \"WasExecuted\": false,\r\n             " +
+                    " \"WasSuccessful\": false\r\n            }\r\n          }\r\n        ],\r\n        \"Result" +
+                    "\": {\r\n          \"WasExecuted\": false,\r\n          \"WasSuccessful\": false\r\n       " +
+                    " },\r\n        \"Tags\": []\r\n      },\r\n      \"Result\": {\r\n        \"WasExecuted\": fal" +
+                    "se,\r\n        \"WasSuccessful\": false\r\n      }\r\n    }\r\n  ],\r\n  \"Configuration\": {", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
