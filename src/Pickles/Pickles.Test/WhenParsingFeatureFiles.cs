@@ -28,7 +28,7 @@ Feature: Test
   Scenario: A scenario
     Given some feature
     When it runs
-    Then I should see that this thing happens	
+    Then I should see that this thing happens
 
     Scenario: Another scenario
     Given some other feature
@@ -204,10 +204,10 @@ Feature: Test
             Check.That(examples.First().Description).IsNullOrEmpty();
 
             Table table = examples.First().TableArgument;
-            Check.That(table.HeaderRow[0]).IsEqualTo("keyword1");
-            Check.That(table.HeaderRow[1]).IsEqualTo("keyword2");
-            Check.That(table.DataRows[0][0]).IsEqualTo("this");
-            Check.That(table.DataRows[0][1]).IsEqualTo("that");
+            Check.That(table.HeaderRow.Cells[0]).IsEqualTo("keyword1");
+            Check.That(table.HeaderRow.Cells[1]).IsEqualTo("keyword2");
+            Check.That(table.DataRows[0].Cells[0]).IsEqualTo("this");
+            Check.That(table.DataRows[0].Cells[1]).IsEqualTo("that");
         }
 
         [Test]
@@ -302,10 +302,10 @@ Feature: Test
             Feature feature = parser.Parse(new StringReader(featureText));
 
             Table table = feature.FeatureElements[0].Steps[0].TableArgument;
-            Check.That(table.HeaderRow[0]).IsEqualTo("Column1");
-            Check.That(table.HeaderRow[1]).IsEqualTo("Column2");
-            Check.That(table.DataRows[0][0]).IsEqualTo("Value 1");
-            Check.That(table.DataRows[0][1]).IsEqualTo("Value 2");
+            Check.That(table.HeaderRow.Cells[0]).IsEqualTo("Column1");
+            Check.That(table.HeaderRow.Cells[1]).IsEqualTo("Column2");
+            Check.That(table.DataRows[0].Cells[0]).IsEqualTo("Value 1");
+            Check.That(table.DataRows[0].Cells[1]).IsEqualTo("Value 2");
         }
 
         [Test]

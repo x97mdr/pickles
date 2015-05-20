@@ -25,21 +25,25 @@ using PicklesDoc.Pickles.TestFrameworks;
 
 namespace PicklesDoc.Pickles.ObjectModel
 {
-    public class TableRow : List<string>
+    public class TableRow
     {
+        private readonly List<string> tableCells = new List<string>();
+
         public TableRow()
         {
         }
 
         public TableRow(params string[] cells)
         {
-            AddRange(cells);
+            this.tableCells.AddRange(cells);
         }
 
         public TableRow(IEnumerable<string> cells)
         {
-            AddRange(cells);
+            this.tableCells.AddRange(cells);
         }
+
+        public List<string> Cells { get { return this.tableCells; } }
 
       public TestResult Result { get; set; }
     }

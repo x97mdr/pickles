@@ -36,7 +36,7 @@ namespace PicklesDoc.Pickles
     public class Runner
     {
       private static readonly Logger log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
-      
+
       public void Run(IContainer container)
         {
             var configuration = container.Resolve<Configuration>();
@@ -107,7 +107,7 @@ namespace PicklesDoc.Pickles
                 {
                   foreach (var example in scenarioOutline.Examples.SelectMany(e => e.TableArgument.DataRows))
                   {
-                    example.Result = testResults.GetExampleResult(scenarioOutline, example.ToArray());
+                      example.Result = testResults.GetExampleResult(scenarioOutline, example.Cells.ToArray());
                   }
 
                   scenarioOutline.Result =

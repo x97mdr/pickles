@@ -48,7 +48,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var wordTable = new DocumentFormat.OpenXml.Wordprocessing.Table();
             wordTable.Append(GenerateTableProperties());
             var headerRow = new TableRow();
-            foreach (string cell in table.HeaderRow)
+            foreach (string cell in table.HeaderRow.Cells)
             {
                 var wordCell = new TableCell();
                 wordCell.Append(new Paragraph(new Run(new Text(cell))));
@@ -60,7 +60,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             {
                 var wordRow = new TableRow();
 
-                foreach (string cell in row)
+                foreach (string cell in row.Cells)
                 {
                     var wordCell = new TableCell();
                     wordCell.Append(new Paragraph(new Run(new Text(cell))));

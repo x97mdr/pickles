@@ -91,10 +91,10 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             Check.That(result.Examples.Count).IsEqualTo(1);
             Check.That(result.Examples[0].Name).IsEqualTo("Examples");
             Check.That(result.Description).IsEqualTo("Description of the scenario");
-            Check.That(result.Examples[0].TableArgument.HeaderRow).ContainsExactly("Header 1", "Header 2");
+            Check.That(result.Examples[0].TableArgument.HeaderRow.Cells).ContainsExactly("Header 1", "Header 2");
             Check.That(result.Examples[0].TableArgument.DataRows.Count).IsEqualTo(2);
-            Check.That(result.Examples[0].TableArgument.DataRows[0]).ContainsExactly("Row 1, Value 1", "Row 2, Value 2");
-            Check.That(result.Examples[0].TableArgument.DataRows[1]).ContainsExactly("Row 2, Value 1", "Row 2, Value 2");
+            Check.That(result.Examples[0].TableArgument.DataRows[0].Cells).ContainsExactly("Row 1, Value 1", "Row 2, Value 2");
+            Check.That(result.Examples[0].TableArgument.DataRows[1].Cells).ContainsExactly("Row 2, Value 1", "Row 2, Value 2");
         }
 
         [Test]

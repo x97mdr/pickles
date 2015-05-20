@@ -126,9 +126,9 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             Check.That(result.Keyword).IsEqualTo(Keyword.When);
             Check.That(result.NativeKeyword).IsEqualTo("When");
             Check.That(result.Name).IsEqualTo("I use this table");
-            Check.That(result.TableArgument.HeaderRow).ContainsExactly("Header 1", "Header 2");
+            Check.That(result.TableArgument.HeaderRow.Cells).ContainsExactly("Header 1", "Header 2");
             Check.That(result.TableArgument.DataRows).HasSize(1);
-            Check.That(result.TableArgument.DataRows[0]).ContainsExactly("Value 1", "Value 2");
+            Check.That(result.TableArgument.DataRows[0].Cells).ContainsExactly("Value 1", "Value 2");
             Check.That(result.DocStringArgument).IsNull();
         }
     }

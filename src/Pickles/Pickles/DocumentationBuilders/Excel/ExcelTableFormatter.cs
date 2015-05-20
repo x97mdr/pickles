@@ -34,7 +34,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
         {
             int startRow = row;
             int headerColumn = TableStartColumn;
-            foreach (string cell in table.HeaderRow)
+            foreach (string cell in table.HeaderRow.Cells)
             {
                 worksheet.Cell(row, headerColumn).Style.Font.SetBold();
                 worksheet.Cell(row, headerColumn).Style.Font.SetItalic();
@@ -46,7 +46,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
             foreach (TableRow dataRow in table.DataRows)
             {
                 int dataColumn = TableStartColumn;
-                foreach (string cell in dataRow)
+                foreach (string cell in dataRow.Cells)
                 {
                     worksheet.Cell(row, dataColumn++).Value = cell;
                 }

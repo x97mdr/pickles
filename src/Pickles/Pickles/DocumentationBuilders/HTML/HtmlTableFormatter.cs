@@ -41,12 +41,12 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
         {
             return Format(table, null, false);
         }
-        
+
         public XElement Format(Table table, ScenarioOutline scenarioOutline, bool includeResults)
         {
             if (table == null) return null;
 
-            var headerCells = table.HeaderRow.ToArray();
+            var headerCells = table.HeaderRow.Cells.ToArray();
 
             if (includeResults)
             {
@@ -71,7 +71,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
       private XElement FormatRow(TableRow row, ScenarioOutline scenarioOutline, bool includeResults)
       {
-        var formattedCells = row.Select(
+          var formattedCells = row.Cells.Select(
           cell =>
           new XElement(
             this.xmlns + "td",
@@ -80,7 +80,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
         if (includeResults && scenarioOutline != null)
         {
           formattedCells.Add(
-            new XElement(this.xmlns + "td", this.htmlImageResultFormatter.Format(scenarioOutline, row.ToArray())));
+            new XElement(this.xmlns + "td", this.htmlImageResultFormatter.Format(scenarioOutline, row.Cells.ToArray())));
         }
 
         var result = new XElement(this.xmlns + "tr");

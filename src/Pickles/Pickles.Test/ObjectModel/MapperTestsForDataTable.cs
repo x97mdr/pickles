@@ -76,7 +76,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
             var result = mapper.MapToTableRow(row);
 
-            Check.That(result).ContainsExactly("first cell", "second cell");
+            Check.That(result.Cells).ContainsExactly("first cell", "second cell");
         }
 
         [Test]
@@ -103,10 +103,10 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
             var result = mapper.MapToTable(dataTable);
 
-            Check.That(result.HeaderRow).ContainsExactly("Header row, first cell", "Header row, second cell");
+            Check.That(result.HeaderRow.Cells).ContainsExactly("Header row, first cell", "Header row, second cell");
             Check.That(result.DataRows).HasSize(2);
-            Check.That(result.DataRows[0]).ContainsExactly("First row, first cell", "First row, second cell");
-            Check.That(result.DataRows[1]).ContainsExactly("Second row, first cell", "Second row, second cell");
+            Check.That(result.DataRows[0].Cells).ContainsExactly("First row, first cell", "First row, second cell");
+            Check.That(result.DataRows[1].Cells).ContainsExactly("Second row, first cell", "Second row, second cell");
         }
     }
 }
