@@ -17,6 +17,34 @@
     margin-top: 5px;
 }
 
+    .feature-folder-header span {
+        cursor: pointer;
+    }
+
+.feature-folder-contents {
+    margin-left: 15px;
+}
+
+.navbar-below {
+    margin-top: -1px;
+    margin-left: 10px;
+    border-top: 0;
+    -ms-border-bottom-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    -ms-border-bottom-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 180px;
+    background-color: black;
+    color: rgb(173, 173, 173);
+}
+
+    .navbar-below div {
+        display: inline-block;
+        padding-left: 8px;
+        padding-right: 8px;
+        cursor: pointer;
+    }
+
 #scenarios, .steps {
     list-style-type: none;
     margin: 0;
@@ -49,13 +77,13 @@ li.step {
     margin-bottom: 0px;
 }
 
-.steps table td {
-    color: #B21515;
-}
+    .steps table td {
+        color: #B21515;
+    }
 
-.steps table th {
-    font-style: italic;
-}
+    .steps table th {
+        font-style: italic;
+    }
 
 #SearchButton {
     margin-top: 0;
@@ -70,21 +98,21 @@ li.step {
     border-right: 1px lightgrey solid;
 }
 
-#FolderNav a:hover {
-    background-color: #EEEEEE;
-    color: #1A668C;
-    text-decoration: none;
-}
+    #FolderNav a:hover {
+        background-color: #EEEEEE;
+        color: #1A668C;
+        text-decoration: none;
+    }
 
 .feature {
     padding: 5px;
 }
 
-.feature:hover {
-    background-color: #EEEEEE;
-    cursor: pointer;
-    color: #1A668C;
-}
+    .feature:hover {
+        background-color: #EEEEEE;
+        cursor: pointer;
+        color: #1A668C;
+    }
 
 .canHighlight {
 }
