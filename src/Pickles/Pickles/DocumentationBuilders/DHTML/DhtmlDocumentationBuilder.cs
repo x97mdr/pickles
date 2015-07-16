@@ -18,13 +18,16 @@
 
 #endregion
 
+using System.Collections.Generic;
 using System.IO.Abstractions;
+using System.Linq;
 using NLog;
 using NGenerics.DataStructures.Trees;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.JSON;
 using PicklesDoc.Pickles.TestFrameworks;
 using System.Reflection;
+using sun.awt.geom;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
 {
@@ -53,14 +56,27 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
                 log.Info("Writing DHTML files to {0}", this.configuration.OutputFolder.FullName);
             }
 
-            log.Info("WriteResources");
+            log.Info("Pull Down Feature Images ");
+            this.PullDownFeatureImages(features);
+
+            log.Info("Write Resources");
             this.WriteResources();
-            
-            log.Info("UtilizeJsonBuilderToDumpJsonFeatureFileNextToDthmlResources");
+
+            log.Info("Utilize JsonBuilder To Dump Json Feature File Next To Dthml Resources");
             UtilizeJsonBuilderToDumpJsonFeatureFileNextToDthmlResources(features);
 
             log.Info("Tweak Json file");
             TweakJsonFile();
+        }
+
+        private void PullDownFeatureImages(IEnumerable<INode> features)
+        {
+            foreach (var image in features.Where(p => p.GetType() == typeof (ImageNode)).Select(p => (ImageNode) p))
+            {
+                var source = image.OriginalLocation.FullName;
+                var dest = this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, image.OriginalLocation.Name);
+                this.fileSystem.File.Copy(source, dest, true);
+            }
         }
 
         private void UtilizeJsonBuilderToDumpJsonFeatureFileNextToDthmlResources(GeneralTree<INode> features)

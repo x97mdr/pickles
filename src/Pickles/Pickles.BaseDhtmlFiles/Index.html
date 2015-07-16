@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>Features</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Le styles -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
@@ -26,11 +26,11 @@
 
     <script type="text/html" id="featuresByFolder-template">
         <div class="features-folder">
-            <div class="feature-folder-header" data-bind="click: toggleShowingFolderFeatures">
-                <span class="icon-chevron-down"></span>
+            <div class="feature-folder-header" data-bind="click: $root.toggleShowingFolderFeatures">
+                <span data-bind="css: { 'icon-chevron-down': IsExpanded() == true, 'icon-chevron-right': IsExpanded() == false }"></span>
                 <span data-bind="text: Name" style="padding: 5px"></span>
             </div>
-            <div class="feature-folder-contents" style="margin-left: 15px;display:none">
+            <div class="feature-folder-contents" data-bind="visible: IsExpanded">
                 <div data-bind="template: { name: 'features-template', foreach: features }"></div>
                 <div data-bind="template: { name: 'featuresByFolder-template', foreach: SubDirectories }"></div>
             </div>
@@ -49,7 +49,7 @@
 
     <script type="text/html" id="steps-template">
         <li class="step">
-            <span class="keyword" data-bind="text: NativeKeyword"></span><span data-bind="    text: Name"></span>
+            <span class="keyword" data-bind="text: NativeKeyword"></span><span data-bind="text: Name"></span>
             <div data-bind="if: DocStringArgument != ''">
                 <div data-bind="text: DocStringArgument" class="pre"></div>
             </div>
@@ -90,13 +90,16 @@
                 </div>
             </div>
         </div>
+        <div class="navbar-below">
+            <div data-bind="click: $root.hideShowNavigation"><i class="icon-white" data-bind="css: { 'icon-minus-sign': $root.navIsShown(), 'icon-plus-sign': !$root.navIsShown() }"></i> Navigation</div>
+            <div data-bind="click: $root.hideShowNavigationTree"><i class="icon-white" data-bind="css: { 'icon-minus-sign': $root.ShowAllLinks(), 'icon-plus-sign': !$root.ShowAllLinks() }"></i> Links</div>
+        </div>
     </div>
 
     <div class="container-fluid" id="MainContainer">
         <div class="row-fluid">
             <div class="span12">
                 <div class="span3" id="FolderNav" data-bind="visible: navIsShown, css: { span3 : navIsShown(), span0 : !navIsShown() }">
-                    <div id="HideIt" data-bind="click: hideNav"><i class="icon-chevron-left"></i></div>
                     <div id="InnerNav">
                         <div data-bind="template: { name: 'features-template', foreach: featuresByFolder().features }"></div>
                         <div data-bind="template: { name: 'featuresByFolder-template', foreach: featuresByFolder().SubDirectories }"></div>
@@ -109,7 +112,6 @@
                 </div>
 
                 <div id="Content" data-bind="with: currentFeature, css: { span12 : navIsHidden(), span9 : !navIsHidden() }">
-                    <div id="ShowIt" data-bind="visible: $root.navIsHidden, click: $root.showNav"><i class="icon-chevron-right"></i></div>
                     <div data-bind="with: Feature" id="featureDetails">
                         <div data-bind="template: { name: 'testResults-template', data: Result }"></div>
                         <div data-bind="if: Tags.length > 0" class="canHighlight inline">
@@ -118,7 +120,7 @@
                             <span data-bind="text: $data" class="inline"></span>
                             <!-- /ko -->
                         </div>
-                        <h1 data-bind="text: Name, click: $root.toggleDetails" class="canHighlight, clickable"></h1>
+                        <h1 data-bind="text: Name, click: $root.toggleDetails" class="canHighlight clickable"></h1>
                         <div class="description" data-bind="html: renderMarkdownBlock(Description)"></div>
                     </div>
 
@@ -182,11 +184,11 @@
         </div>
         <!--/row-->
 
-        <hr>
+        <!--<hr>
 
         <footer>
             <p></p>
-        </footer>
+        </footer>-->
 
     </div>
     <!--/.fluid-container-->
@@ -211,13 +213,14 @@
         function ViewModel(features, configuration) {
             var self = this;
 
-            features = $.map(features, function(el, i) { return new FeatureParent(el); });
+            features = $.map(features, function (el, i) { return new FeatureParent(el); });
 
             self.originalFeaturesList = ko.observableArray(features);
             self.featuresByFolder = ko.observable(buildFullHierarchy(getFeaturesFromScenariosList(features)));
             self.currentFeature = ko.observable();
             self.configuration = ko.observable(configuration);
-
+            self.ShowAllLinks = ko.observable(false);
+            
             self.setCurrentFeature = function () {
                 if (window.location.hash != '') {
                     var featureFromHashLocation = findFeatureByRelativeFolder(removeBeginningHash(window.location.hash), features);
@@ -274,6 +277,24 @@
             self.showNav = function () { self.navIsShown(true); self.navIsHidden(false); };
             self.isSelected = function (path) {
                 return self.currentFeature().RelativeFolder == path;
+            };
+            self.toggleShowingFolderFeatures = function (dir) {
+                dir.IsExpanded(!dir.IsExpanded());
+            };
+            self.hideShowNavigation = function () {
+                self.navIsShown(!self.navIsShown());
+                self.navIsHidden(!self.navIsHidden());
+            };
+            self.hideShowNavigationTree = function () {
+                self.ShowAllLinks(!self.ShowAllLinks());
+                expandContractDirectoryLinks(self.featuresByFolder().SubDirectories);
+            };
+
+            function expandContractDirectoryLinks(subDirs) {
+                $.each(subDirs, function (key, value) {
+                    value.IsExpanded(self.ShowAllLinks());
+                    expandContractDirectoryLinks(value.SubDirectories);
+                });
             };
 
             // Hide / show detailed areas
@@ -335,20 +356,6 @@
 
             setupSubmitSearchWhenEnterKeyPressed();
         });
-        
-        function toggleShowingFolderFeatures(element, event) {
-            var icon = $($(event.target).parent().children('span')[0]);
-            var folderContents = $($(event.target).parent().next('div'));
-            if (icon.hasClass("icon-chevron-right")) {
-                icon.removeClass("icon-chevron-right");
-                icon.addClass("icon-chevron-down");
-                folderContents.hide();
-            } else {
-                icon.addClass("icon-chevron-right");
-                icon.removeClass("icon-chevron-down");
-                folderContents.show();
-            }
-        };
     </script>
 </body>
 </html>
