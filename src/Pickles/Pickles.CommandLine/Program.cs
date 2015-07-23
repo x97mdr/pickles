@@ -63,8 +63,13 @@ namespace PicklesDoc.Pickles.CommandLine
                         log.Info("Pickles completed successfully");
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
+                    if (log.IsFatalEnabled)
+                    {
+                        log.FatalException("Pickles did not complete successfully", ex);
+                    }
+
                     return 1;
                 }
             }
