@@ -240,6 +240,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TestFrameworks\WhenParsingxUnit2ResultsFile.cs" />
     <Compile Include="TestResultExtensionsTests.cs" />
     <Compile Include="TestFrameworks\WhenParsingCucumberJsonResultsFile.cs" />
     <Compile Include="TestFrameworks\WhenParsingMsTestResultsFile.cs" />
@@ -275,6 +276,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="TestFrameworks\results-example-xunit2.xml" />
     <EmbeddedResource Include="TestFrameworks\results-example-nunit - Run 1.xml" />
     <EmbeddedResource Include="TestFrameworks\results-example-nunit - Run 2.xml" />
     <EmbeddedResource Include="TestFrameworks\results-example-specrun.html" />
