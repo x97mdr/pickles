@@ -1,5 +1,16 @@
 # Pickles Release Notes
 
+## v1.2.0 - 2015-07-28
+
+### New Feature
+
+- In the DHtml version, there are now links to hide/show the navigation, and to collapse/expand all nodes in the navigation ([#204](https://github.com/picklesdoc/pickles/issues/204))
+
+### Bugs Fixed
+
+- The command line version no longer silently fails when an error occurs. You will need to adapt the configuration in order to get more information from the error ([#202]((https://github.com/picklesdoc/pickles/issues/202))
+- The issue of failing silently in case the full filename is too long has been fixed ([#199](https://github.com/picklesdoc/pickles/issues/199))
+
 ## v1.1.0 - 2015-05-12
 
 ### New Feature
