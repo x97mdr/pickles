@@ -114,7 +114,11 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
           {
             if (log.IsWarnEnabled)
             {
-              log.Warn("The file, {0}, will be ignored because it could not be read in properly", file.FullName);
+                // retrieving the name as file.FullName may trigger an exception if the FullName is too long
+                // so we retreive Name and DirectoryName separately
+                // https://github.com/picklesdoc/pickles/issues/199
+                var fullName = file.Name + " in directory " + file.DirectoryName;
+                log.Warn("The file {0} will be ignored because it could not be read in properly", fullName);
             }
           }
 
