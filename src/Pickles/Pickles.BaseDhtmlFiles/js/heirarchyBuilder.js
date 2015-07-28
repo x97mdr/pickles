@@ -1,5 +1,6 @@
 ﻿function Directory(name) {
     this.Name = name;
+    this.IsExpanded = ko.observable(false);
     this.features = new Array();
     this.SubDirectories = new Array();
 }
