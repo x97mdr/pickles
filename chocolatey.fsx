@@ -1,5 +1,5 @@
 // include Fake lib
-#r @"packages\FAKE\tools\FakeLib.dll"
+#r @"src\Pickles\packages\FAKE.3.36.0\tools\FakeLib.dll"
 open Fake
 
 // Properties
