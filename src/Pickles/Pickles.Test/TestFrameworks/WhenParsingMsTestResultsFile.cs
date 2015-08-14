@@ -135,6 +135,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
         {
             return new Feature { Name = "Inconclusive" };
         }
+
         private Feature FailingFeature()
         {
             return new Feature { Name = "Failing" };
