@@ -1,5 +1,12 @@
 # Pickles Release Notes
 
+## v1.2.1 - 2015-08-14
+
+### Bugs Fixed
+
+- In the Html version, the alignment of the keywords (Given, When, Then) was fixed for non-English languages ([#209](https://github.com/picklesdoc/pickles/issues/209))
+- A NullReferenceException in the MSTest provider was fixed when the test results also contain ordinary unit test results in addition to the SpecFlow results ([#212](https://github.com/picklesdoc/pickles/issues/212))
+
 ## v1.2.0 - 2015-07-28
 
 ### New Feature
