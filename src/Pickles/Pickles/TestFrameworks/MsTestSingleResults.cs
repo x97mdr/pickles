@@ -154,7 +154,8 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
     private IEnumerable<XElement> AllScenariosInResultFile()
     {
-      return this.resultsDocument.Root.Descendants(ns + "UnitTest");
+      // Feature scenarios unit-tests should have Description. It is a scenario name
+      return this.resultsDocument.Root.Descendants(ns + "UnitTest").Where(s => s.Element(ns + "Description") != null);
     }
 
     private IEnumerable<XElement> AllScenarioExecutionResultsInResultFile()
