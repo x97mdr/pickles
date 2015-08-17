@@ -6,11 +6,11 @@ namespace PicklesDoc.Pickles.ObjectModel
 {
     public class KeywordResolver : ITypeConverter<string, Keyword>
     {
-        private readonly string language;
+        private readonly LanguageServices languageServices;
 
         public KeywordResolver(string language)
         {
-            this.language = language;
+            this.languageServices = new LanguageServices(language);
         }
 
         public Keyword Convert(ResolutionContext context)
@@ -23,25 +23,23 @@ namespace PicklesDoc.Pickles.ObjectModel
         {
             keyword = keyword.Trim();
 
-            var gherkinDialect = new LanguageServices(this.language);
-
-            if (gherkinDialect.WhenStepKeywords.Contains(keyword))
+            if (this.languageServices.WhenStepKeywords.Contains(keyword))
             {
                 return Keyword.When;
             }
-            if (gherkinDialect.GivenStepKeywords.Contains(keyword))
+            if (this.languageServices.GivenStepKeywords.Contains(keyword))
             {
                 return Keyword.Given;
             }
-            if (gherkinDialect.ThenStepKeywords.Contains(keyword))
+            if (this.languageServices.ThenStepKeywords.Contains(keyword))
             {
                 return Keyword.Then;
             }
-            if (gherkinDialect.AndStepKeywords.Contains(keyword))
+            if (this.languageServices.AndStepKeywords.Contains(keyword))
             {
                 return Keyword.And;
             }
-            if (gherkinDialect.ButStepKeywords.Contains(keyword))
+            if (this.languageServices.ButStepKeywords.Contains(keyword))
             {
                 return Keyword.But;
             }
