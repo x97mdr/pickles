@@ -79,3 +79,4 @@ packages/FAKE/
 
 # Fody
 !src/Pickles/packages/Fody*/build/*
+src/Pickles/.vs/config/applicationhost.config
