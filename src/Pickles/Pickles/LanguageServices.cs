@@ -20,7 +20,7 @@
 
 using System;
 using System.Linq;
-using Gherkin3;
+using Gherkin;
 
 namespace PicklesDoc.Pickles
 {

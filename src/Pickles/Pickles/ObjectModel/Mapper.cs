@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using AutoMapper.Mappers;
-using G = Gherkin3.Ast;
+using G = Gherkin.Ast;
 
 namespace PicklesDoc.Pickles.ObjectModel
 {

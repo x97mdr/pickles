@@ -20,7 +20,7 @@
 using System;
 using NFluent;
 using NUnit.Framework;
-using G = Gherkin3.Ast;
+using G = Gherkin.Ast;
 
 namespace PicklesDoc.Pickles.Test.ObjectModel
 {

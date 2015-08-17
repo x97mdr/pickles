@@ -23,7 +23,7 @@ using System.Linq;
 using NFluent;
 using NUnit.Framework;
 using PicklesDoc.Pickles.ObjectModel;
-using G = Gherkin3.Ast;
+using G = Gherkin.Ast;
 
 namespace PicklesDoc.Pickles.Test.ObjectModel
 {

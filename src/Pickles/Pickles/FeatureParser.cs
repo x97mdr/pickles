@@ -63,8 +63,8 @@ namespace PicklesDoc.Pickles
 
         public Feature Parse(TextReader featureFileReader)
         {
-            var gherkinParser = new Gherkin3.Parser();
-            Gherkin3.Ast.Feature feature = gherkinParser.Parse(featureFileReader);
+            var gherkinParser = new Gherkin.Parser();
+            Gherkin.Ast.Feature feature = gherkinParser.Parse(featureFileReader);
             Feature result = new Mapper(feature.Language).MapToFeature(feature);
 
             return result;
