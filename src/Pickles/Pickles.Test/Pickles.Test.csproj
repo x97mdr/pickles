@@ -105,6 +105,7 @@
       <DependentUpon>FormattingAFeature.feature</DependentUpon>
     </Compile>
     <Compile Include="ObjectModel\Factory.cs" />
+    <Compile Include="ObjectModel\Json\JsonTableRowTests.cs" />
     <Compile Include="ObjectModel\MapperTestsForDataTable.cs" />
     <Compile Include="ObjectModel\MapperTestsForDocString.cs" />
     <Compile Include="ObjectModel\MapperTestsForExample.cs" />

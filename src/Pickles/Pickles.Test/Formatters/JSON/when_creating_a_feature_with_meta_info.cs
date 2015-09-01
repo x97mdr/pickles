@@ -16,7 +16,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
 
         private FeatureNode _featureDirectoryNode;
         private FileInfoBase _featureFileInfo;
-        private FeatureWithMetaInfo _featureWithMeta;
+        private JsonFeatureWithMetaInfo _featureWithMeta;
         private Feature _testFeature;
 
         public void Setup()
@@ -25,7 +25,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
             this._featureFileInfo = this.FileSystem.FileInfo.FromFileName(FileSystem.Path.Combine(ROOT_PATH, FEATURE_PATH));
             this._featureDirectoryNode = new FeatureNode(this._featureFileInfo, RELATIVE_PATH, this._testFeature);
 
-            this._featureWithMeta = new FeatureWithMetaInfo(this._featureDirectoryNode);
+            this._featureWithMeta = new JsonFeatureWithMetaInfo(this._featureDirectoryNode);
         }
 
         [Test]
