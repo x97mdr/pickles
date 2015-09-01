@@ -186,10 +186,6 @@
     <Compile Include="WhenWorkingWithHtmlResources.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Gherkin3\Gherkin3.csproj">
-      <Project>{370982b4-9938-4533-8ea1-6f9044b84130}</Project>
-      <Name>Gherkin3</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Pickles\Pickles.csproj">
       <Project>{38BAD6E0-78AB-4AC3-91A8-BF72AF5EE394}</Project>
       <Name>Pickles</Name>
