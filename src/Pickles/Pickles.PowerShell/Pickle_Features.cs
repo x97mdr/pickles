@@ -65,7 +65,7 @@ namespace PicklesDoc.Pickles.PowerShell
 
             var configuration = container.Resolve<Configuration>();
 
-            this.ParseParameters(configuration, container.Resolve<IFileSystem>());
+            this.ParseParameters(configuration, container.Resolve<IFileSystem>(), this.SessionState.Path.CurrentFileSystemLocation);
 
             WriteObject(string.Format("Pickles v.{0}{1}", Assembly.GetExecutingAssembly().GetName().Version,
                                       Environment.NewLine));
@@ -77,10 +77,11 @@ namespace PicklesDoc.Pickles.PowerShell
             WriteObject(string.Format("Pickles completed successfully"));
         }
 
-        private void ParseParameters(Configuration configuration, IFileSystem fileSystem)
+        private void ParseParameters(Configuration configuration, IFileSystem fileSystem, PathInfo currentFileSystemLocation)
         {
-            configuration.FeatureFolder = fileSystem.DirectoryInfo.FromDirectoryName(this.FeatureDirectory);
-            configuration.OutputFolder = fileSystem.DirectoryInfo.FromDirectoryName(this.OutputDirectory);
+            configuration.FeatureFolder = this.DetermineFeatureFolder(fileSystem, currentFileSystemLocation, this.FeatureDirectory);
+            configuration.OutputFolder = this.DetermineFeatureFolder(fileSystem, currentFileSystemLocation, this.OutputDirectory);
+
             if (!string.IsNullOrEmpty(this.TestResultsFormat))
             {
                 configuration.TestResultsFormat =
@@ -100,6 +101,23 @@ namespace PicklesDoc.Pickles.PowerShell
             {
                 configuration.Language = this.Language;
              }
+        }
+
+        private DirectoryInfoBase DetermineFeatureFolder(IFileSystem fileSystem, PathInfo currentFileSystemLocation, string directory)
+        {
+            DirectoryInfoBase result;
+
+            if (fileSystem.Path.IsPathRooted(directory))
+            {
+                result = fileSystem.DirectoryInfo.FromDirectoryName(directory);
+            }
+            else
+            {
+                result = fileSystem.DirectoryInfo.FromDirectoryName(
+                    fileSystem.Path.Combine(currentFileSystemLocation.Path, directory));
+            }
+
+            return result;
         }
     }
 }
