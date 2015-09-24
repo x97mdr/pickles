@@ -1,5 +1,11 @@
 # Pickles Release Notes
 
+## v1.2.2 - 2015-09-24
+
+### Bugs Fixed
+
+- The PowerShell version now correctly traces relative paths from the current directory ([#216](https://github.com/picklesdoc/pickles/issues/216))
+
 ## v1.2.1 - 2015-08-14
 
 ### Bugs Fixed
@@ -27,7 +33,7 @@
 ### Bugs Fixed
 
 - Abbreviations displayed incorrectly with spaces between letters ([#192](https://github.com/picklesdoc/pickles/issues/192))
- 
+
 ## v1.0.1 - 2015-03-31
 
 ### Bugs Fixed
@@ -55,7 +61,7 @@
 
 - The command line and powershell runners now return an error code of 0 when everything went fine, and 1 if there was an error.
 - The HTML and DHTML output versions no longer horizontally spread tables.
-- The GUI version has an icon  
+- The GUI version has an icon
 
 ## v0.19.0 - 2014-11-25
 
@@ -216,7 +222,7 @@ Some things went wrong during the publication of versions 0.17.0 and 0.17.1. The
 
 ## Older Releases without Release Notes
 
-- v0.9 - 2013-07-23 
+- v0.9 - 2013-07-23
 - v0.8 - 2012-12-17
 - v0.7 - 2012-08-07
 - v0.6 was skipped
