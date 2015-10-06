@@ -1,5 +1,11 @@
 # Pickles Release Notes
 
+## v1.2.3 - 2015-10-06
+
+### Bugs Fixed
+
+- In the DHtml version, the alignment of the keywords (Given, When, Then) was fixed for non-English languages ([#219](https://github.com/picklesdoc/pickles/issues/219))
+
 ## v1.2.2 - 2015-09-24
 
 ### Bugs Fixed
