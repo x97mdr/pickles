@@ -27,7 +27,6 @@ using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.JSON;
 using PicklesDoc.Pickles.TestFrameworks;
 using System.Reflection;
-using sun.awt.geom;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
 {
