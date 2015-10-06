@@ -2024,12 +2024,12 @@
         </member>
         <member name="M:NLog.Config.LoggingRule.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:NLog.Config.LoggingRule"/> class.
+            Create an empty <see cref="T:NLog.Config.LoggingRule"/>.
             </summary>
         </member>
         <member name="M:NLog.Config.LoggingRule.#ctor(System.String,NLog.LogLevel,NLog.Targets.Target)">
             <summary>
-            Initializes a new instance of the <see cref="T:NLog.Config.LoggingRule"/> class.
+            Create a new <see cref="T:NLog.Config.LoggingRule"/> with a <paramref name="minLevel"/> which writes to <paramref name="target"/>.
             </summary>
             <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
             <param name="minLevel">Minimum log level needed to trigger this rule.</param>
@@ -2037,11 +2037,10 @@
         </member>
         <member name="M:NLog.Config.LoggingRule.#ctor(System.String,NLog.Targets.Target)">
             <summary>
-            Initializes a new instance of the <see cref="T:NLog.Config.LoggingRule"/> class.
+            Create a (disabled) <see cref="T:NLog.Config.LoggingRule"/>. You should call <see cref="M:NLog.Config.LoggingRule.EnableLoggingForLevel(NLog.LogLevel)"/> to enable logging.
             </summary>
             <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
             <param name="target">Target to be written to when the rule matches.</param>
-            <remarks>By default no logging levels are defined. You should call <see cref="M:NLog.Config.LoggingRule.EnableLoggingForLevel(NLog.LogLevel)"/> and <see cref="M:NLog.Config.LoggingRule.DisableLoggingForLevel(NLog.LogLevel)"/> to set them.</remarks>
         </member>
         <member name="M:NLog.Config.LoggingRule.EnableLoggingForLevel(NLog.LogLevel)">
             <summary>
@@ -2858,6 +2857,13 @@
             </summary>
             <param name="name">The name of the context property.</param>
             <param name="value">The value of the context property.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NLog.Fluent.LogBuilder.Properties(System.Collections.IDictionary)">
+            <summary>
+            Sets multiple per-event context properties on the logging event.
+            </summary>
+            <param name="properties">The properties to set.</param>
             <returns></returns>
         </member>
         <member name="M:NLog.Fluent.LogBuilder.TimeStamp(System.DateTime)">
