@@ -35,6 +35,7 @@ namespace PicklesDoc.Pickles
         public Configuration()
         {
             this.testResultsFiles = new List<FileInfoBase>();
+            this.Language = LanguageServices.DefaultLanguage;
         }
 
         public DirectoryInfoBase FeatureFolder { get; set; }

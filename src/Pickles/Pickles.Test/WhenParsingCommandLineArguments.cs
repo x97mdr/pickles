@@ -14,25 +14,25 @@ namespace PicklesDoc.Pickles.Test
   public class WhenParsingCommandLineArguments : BaseFixture
   {
     private const string ExpectedHelpString = @"  -f, --feature-directory=VALUE
-                             directory to start scanning recursively for 
+                             directory to start scanning recursively for
                                features
   -o, --output-directory=VALUE
                              directory where output files will be placed
       --trfmt, --test-results-format=VALUE
-                             the format of the linked test results 
+                             the format of the linked test results
                                (nunit|xunit)
       --lr, --link-results-file=VALUE
-                             the path to the linked test results file (can be 
+                             the path to the linked test results file (can be
                                a semicolon-separated list of files)
       --sn, --system-under-test-name=VALUE
-                             a file containing the results of testing the 
+                             a file containing the results of testing the
                                features
       --sv, --system-under-test-version=VALUE
                              the name of the system under test
   -l, --language=VALUE       the language of the feature files
       --df, --documentation-format=VALUE
                              the format of the output documentation
-  -v, --version              
+  -v, --version
   -h, -?, --help";
 
     private static readonly string ExpectedVersionString =
@@ -76,7 +76,8 @@ namespace PicklesDoc.Pickles.Test
 
 
       var actual = RetrieveString(writer);
-      Check.That(actual).Contains(ExpectedHelpString.ComparisonNormalize());
+        var expected = ExpectedHelpString.ComparisonNormalize();
+        Check.That(actual).Contains(expected);
       Check.That(shouldContinue).IsFalse();
     }
 
@@ -428,5 +429,17 @@ namespace PicklesDoc.Pickles.Test
       Check.That(configuration.HasTestResults).IsFalse();
       Check.That(configuration.TestResultsFiles).IsEmpty();
     }
+
+      [Test]
+      public void ThenSetsLanguageToEnglishByDefault()
+      {
+          var args = new[] {""};
+
+          var configuration = new Configuration();
+          var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
+          bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+
+          Check.That(configuration.Language).IsEqualTo("en");
+      }
   }
 }
