@@ -13,27 +13,29 @@ namespace PicklesDoc.Pickles.Test
   [TestFixture]
   public class WhenParsingCommandLineArguments : BaseFixture
   {
-    private const string ExpectedHelpString = @"  -f, --feature-directory=VALUE
-                             directory to start scanning recursively for
-                               features
-  -o, --output-directory=VALUE
-                             directory where output files will be placed
-      --trfmt, --test-results-format=VALUE
-                             the format of the linked test results
-                               (nunit|xunit)
-      --lr, --link-results-file=VALUE
-                             the path to the linked test results file (can be
-                               a semicolon-separated list of files)
-      --sn, --system-under-test-name=VALUE
-                             a file containing the results of testing the
-                               features
-      --sv, --system-under-test-version=VALUE
-                             the name of the system under test
-  -l, --language=VALUE       the language of the feature files
-      --df, --documentation-format=VALUE
-                             the format of the output documentation
-  -v, --version
-  -h, -?, --help";
+    private static readonly string ExpectedHelpString = string.Format(
+"  -f, --feature-directory=VALUE" + "{0}" +
+"                             directory to start scanning recursively for " + "{0}" +
+"                               features" + "{0}" +
+"  -o, --output-directory=VALUE" + "{0}" +
+"                             directory where output files will be placed" + "{0}" +
+"      --trfmt, --test-results-format=VALUE" + "{0}" +
+"                             the format of the linked test results " + "{0}" +
+"                               (nunit|xunit)" + "{0}" +
+"      --lr, --link-results-file=VALUE" + "{0}" +
+"                             the path to the linked test results file (can be " + "{0}" +
+"                               a semicolon-separated list of files)" + "{0}" +
+"      --sn, --system-under-test-name=VALUE" + "{0}" +
+"                             a file containing the results of testing the " + "{0}" +
+"                               features" + "{0}" +
+"      --sv, --system-under-test-version=VALUE" + "{0}" +
+"                             the name of the system under test" + "{0}" +
+"  -l, --language=VALUE       the language of the feature files" + "{0}" +
+"      --df, --documentation-format=VALUE" + "{0}" +
+"                             the format of the output documentation" + "{0}" +
+"  -v, --version              " + "{0}" +
+"  -h, -?, --help",
+Environment.NewLine);
 
     private static readonly string ExpectedVersionString =
         string.Format(@"Pickles version {0}", Assembly.GetExecutingAssembly().GetName().Version);
