@@ -22,7 +22,6 @@ using System;
 using ClosedXML.Excel;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 {

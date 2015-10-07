@@ -25,7 +25,6 @@ using NFluent;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 using PicklesDoc.Pickles.Test.Extensions;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML

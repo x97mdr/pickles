@@ -22,7 +22,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Security.AccessControl;
 using NUnit.Framework;
 
 namespace PicklesDoc.Pickles.Test

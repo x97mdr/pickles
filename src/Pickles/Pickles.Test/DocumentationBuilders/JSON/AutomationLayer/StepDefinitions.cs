@@ -19,18 +19,12 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using Autofac;
 using NFluent;
 using NGenerics.DataStructures.Trees;
 using PicklesDoc.Pickles.DirectoryCrawler;
-using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.DocumentationBuilders.JSON;
-using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Test.DocumentationBuilders.HTML.AutomationLayer;
 using TechTalk.SpecFlow;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.JSON.AutomationLayer

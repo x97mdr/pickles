@@ -31,8 +31,6 @@ using Autofac;
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Ioc;
-
 using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.UserInterface.Mvvm;
 using PicklesDoc.Pickles.UserInterface.Settings;

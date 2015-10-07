@@ -23,7 +23,6 @@ using System.Xml.Linq;
 using Autofac;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 using TechTalk.SpecFlow;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML.AutomationLayer

@@ -27,8 +27,6 @@ using System.Linq;
 using Newtonsoft.Json;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
-
 using Feature = PicklesDoc.Pickles.Parser.JsonResult.Feature;
 
 namespace PicklesDoc.Pickles.TestFrameworks

@@ -24,7 +24,6 @@ using System.IO.Abstractions;
 using System.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.TestFrameworks
 {

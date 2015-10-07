@@ -26,7 +26,6 @@ using NUnit.Framework;
 using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 
 namespace PicklesDoc.Pickles.Test.Formatters
 {
