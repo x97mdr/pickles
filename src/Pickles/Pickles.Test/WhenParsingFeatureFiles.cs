@@ -5,7 +5,7 @@ using Autofac;
 
 using PicklesDoc.Pickles.ObjectModel;
 using System;
-
+using PicklesDoc.Pickles.Extensions;
 using StringReader = System.IO.StringReader;
 
 namespace PicklesDoc.Pickles.Test
@@ -41,9 +41,9 @@ Feature: Test
 
             Check.That(feature).IsNotNull();
             Check.That(feature.Name).IsEqualTo("Test");
-            Check.That(feature.Description).IsEqualTo(@"    In order to do something
+            Check.That(feature.Description.ComparisonNormalize()).IsEqualTo(@"    In order to do something
     As a user
-    I want to run this scenario");
+    I want to run this scenario".ComparisonNormalize());
             Check.That(feature.FeatureElements.Count).IsEqualTo(2);
             Check.That(feature.Tags).IsEmpty();
 
@@ -122,9 +122,9 @@ Feature: Test
 
             Check.That(feature).IsNotNull();
             Check.That(feature.Name).IsEqualTo("Test");
-            Check.That(feature.Description).IsEqualTo(@"    In order to do something
+            Check.That(feature.Description.ComparisonNormalize()).IsEqualTo(@"    In order to do something
     As a user
-    I want to run this scenario");
+    I want to run this scenario".ComparisonNormalize());
             Check.That(feature.FeatureElements.Count).IsEqualTo(1);
             Check.That(feature.Tags).IsEmpty();
 
@@ -277,8 +277,8 @@ it can be many lines long
             var parser = Container.Resolve<FeatureParser>();
             Feature feature = parser.Parse(new StringReader(featureText));
 
-            Check.That(feature.FeatureElements[0].Steps[0].DocStringArgument).IsEqualTo(@"This is a document string
-it can be many lines long");
+            Check.That(feature.FeatureElements[0].Steps[0].DocStringArgument.ComparisonNormalize()).IsEqualTo(@"This is a document string
+it can be many lines long".ComparisonNormalize());
         }
 
         [Test]

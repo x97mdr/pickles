@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
 using NFluent;
-
+using PicklesDoc.Pickles.Extensions;
 using StringReader = System.IO.StringReader;
 
 namespace PicklesDoc.Pickles.Test
@@ -37,9 +37,9 @@ Egenskap: Test egenskap
 
             Check.That(feature).IsNotNull();
             Check.That(feature.Name).IsEqualTo("Test egenskap");
-            Check.That(feature.Description).IsEqualTo(@"  Som svensk användare
+            Check.That(feature.Description.ComparisonNormalize()).IsEqualTo(@"  Som svensk användare
   Vill jag skriva mina krav på svenska
-  Så att beställaren kan förstå dem");
+  Så att beställaren kan förstå dem".ComparisonNormalize());
             Check.That(feature.FeatureElements.Count).IsEqualTo(1);
             Check.That(feature.Tags.Count).IsEqualTo(0);
 
