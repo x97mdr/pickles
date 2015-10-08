@@ -48,11 +48,6 @@ namespace PicklesDoc.Pickles.Extensions
             return sb.ToString();
         }
 
-        public static string ToDitaName(this string word)
-        {
-            return word.Replace(" ", "_").ToLowerInvariant();
-        }
-
         /// <summary>
         /// Takes a string and lowercases it, removing newline characters and replacing tabs with spaces
         /// </summary>
