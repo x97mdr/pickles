@@ -31,28 +31,28 @@ namespace PicklesDoc.Pickles.PowerShell
     [Cmdlet("Pickle", "Features")]
     public class Pickle_Features : PSCmdlet
     {
-        [Parameter(HelpMessage = CommandLineArgumentParser.HELP_FEATURE_DIR, Mandatory = true)]
+        [Parameter(HelpMessage = CommandLineArgumentParser.HelpFeatureDir, Mandatory = true)]
         public string FeatureDirectory { get; set; }
 
-        [Parameter(HelpMessage = CommandLineArgumentParser.HELP_OUTPUT_DIR, Mandatory = true)]
+        [Parameter(HelpMessage = CommandLineArgumentParser.HelpOutputDir, Mandatory = true)]
         public string OutputDirectory { get; set; }
 
-        [Parameter(HelpMessage = CommandLineArgumentParser.HELP_LANGUAGE_FEATURE_FILES, Mandatory = false)]
+        [Parameter(HelpMessage = CommandLineArgumentParser.HelpLanguageFeatureFiles, Mandatory = false)]
         public string Language { get; set; }
 
-        [Parameter(HelpMessage = CommandLineArgumentParser.HELP_TEST_RESULTS_FORMAT, Mandatory = false)]
+        [Parameter(HelpMessage = CommandLineArgumentParser.HelpTestResultsFormat, Mandatory = false)]
         public string TestResultsFormat { get; set; }
 
-        [Parameter(HelpMessage = CommandLineArgumentParser.HELP_TEST_RESULTS_FILE, Mandatory = false)]
+        [Parameter(HelpMessage = CommandLineArgumentParser.HelpTestResultsFile, Mandatory = false)]
         public string TestResultsFile { get; set; }
 
-        [Parameter(HelpMessage = CommandLineArgumentParser.HELP_SUT_NAME, Mandatory = false)]
+        [Parameter(HelpMessage = CommandLineArgumentParser.HelpSutName, Mandatory = false)]
         public string SystemUnderTestName { get; set; }
 
-        [Parameter(HelpMessage = CommandLineArgumentParser.HELP_SUT_VERSION, Mandatory = false)]
+        [Parameter(HelpMessage = CommandLineArgumentParser.HelpSutVersion, Mandatory = false)]
         public string SystemUnderTestVersion { get; set; }
 
-        [Parameter(HelpMessage = CommandLineArgumentParser.HELP_DOCUMENTATION_FORMAT, Mandatory = false)]
+        [Parameter(HelpMessage = CommandLineArgumentParser.HelpDocumentationFormat, Mandatory = false)]
         public string DocumentationFormat { get; set; }
 
         protected override void ProcessRecord()
