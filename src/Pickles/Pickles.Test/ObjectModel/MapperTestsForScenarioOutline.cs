@@ -65,8 +65,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
                             new[] { "Row 1, Value 1", "Row 2, Value 2" },
                             new[] { "Row 2, Value 1", "Row 2, Value 2" }
                         })
-                }
-            );
+                });
 
             var mapper = this.factory.CreateMapper();
 
@@ -104,10 +103,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
                 new[] { "unimportant tag" },
                 "My scenario outline title",
                 null,
-                new[]
-                {
-                    this.factory.CreateStep("Given", "unimportant step"),
-                },
+                new[] { this.factory.CreateStep("Given", "unimportant step") },
                 null);
 
             var mapper = this.factory.CreateMapper();

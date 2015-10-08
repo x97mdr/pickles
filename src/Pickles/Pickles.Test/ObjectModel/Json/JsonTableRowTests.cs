@@ -40,6 +40,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
 
             Check.That(jsonTableRow).ContainsExactly("cell 1", "cell 2");
         }
+
         [Test]
         public void TableRowWithTestResult_Always_ConvertsToJsonTableRowWithTestResult()
         {

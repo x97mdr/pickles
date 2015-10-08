@@ -31,7 +31,7 @@ namespace PicklesDoc.Pickles.Test
     [TestFixture]
     public class ParserTests : BaseFixture
     {
-        [Test, TestCaseSource(typeof (ParserFileFactory), "Files")]
+        [Test, TestCaseSource(typeof(ParserFileFactory), "Files")]
         [Ignore("The expected results files need some modification based on the latest changes to the formatters")]
         public void CanParseFeatureFilesSuccessfully(string featureText, string xhtmlText)
         {

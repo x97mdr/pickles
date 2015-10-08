@@ -20,10 +20,10 @@
 
 using System;
 using System.Collections.Generic;
+using Autofac;
 using ClosedXML.Excel;
 using NFluent;
 using NUnit.Framework;
-using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.Excel;
 using PicklesDoc.Pickles.ObjectModel;
 

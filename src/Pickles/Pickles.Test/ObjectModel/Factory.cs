@@ -70,7 +70,7 @@ My doc string line 2");
 
         internal G.Step CreateStep(string keyword, string text, IEnumerable<string[]> rows)
         {
-            return  new G.Step(AnyLocation, keyword, text, this.CreateGherkinDataTable(rows));
+            return new G.Step(AnyLocation, keyword, text, this.CreateGherkinDataTable(rows));
         }
 
         internal G.Tag CreateTag(string tag)

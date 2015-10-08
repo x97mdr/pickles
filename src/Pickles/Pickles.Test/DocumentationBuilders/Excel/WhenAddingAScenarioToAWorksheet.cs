@@ -20,10 +20,10 @@
 
 using System;
 using System.Collections.Generic;
+using Autofac;
 using ClosedXML.Excel;
 using NFluent;
 using NUnit.Framework;
-using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.Excel;
 using PicklesDoc.Pickles.ObjectModel;
 
@@ -37,11 +37,11 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
         {
             var excelScenarioFormatter = Container.Resolve<ExcelScenarioFormatter>();
             var scenario = new Scenario
-                               {
-                                   Name = "Test Feature",
-                                   Description =
-                                       "In order to test this feature,\nAs a developer\nI want to test this feature"
-                               };
+            {
+                Name = "Test Feature",
+                Description =
+                    "In order to test this feature,\nAs a developer\nI want to test this feature"
+            };
 
             using (var workbook = new XLWorkbook())
             {
@@ -60,15 +60,15 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
         {
             var excelScenarioFormatter = Container.Resolve<ExcelScenarioFormatter>();
             var scenario = new Scenario
-                               {
-                                   Name = "Test Feature",
-                                   Description =
-                                       "In order to test this feature,\nAs a developer\nI want to test this feature"
-                               };
-            var given = new Step {NativeKeyword = "Given", Name = "a precondition"};
-            var when = new Step {NativeKeyword = "When", Name = "an event occurs"};
-            var then = new Step {NativeKeyword = "Then", Name = "a postcondition"};
-            scenario.Steps = new List<Step>(new[] {given, when, then});
+            {
+                Name = "Test Feature",
+                Description =
+                    "In order to test this feature,\nAs a developer\nI want to test this feature"
+            };
+            var given = new Step { NativeKeyword = "Given", Name = "a precondition" };
+            var when = new Step { NativeKeyword = "When", Name = "an event occurs" };
+            var then = new Step { NativeKeyword = "Then", Name = "a postcondition" };
+            scenario.Steps = new List<Step>(new[] { given, when, then });
 
             using (var workbook = new XLWorkbook())
             {

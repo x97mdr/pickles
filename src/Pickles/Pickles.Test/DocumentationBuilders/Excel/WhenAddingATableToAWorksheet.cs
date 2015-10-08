@@ -20,10 +20,10 @@
 
 using System;
 using System.Collections.Generic;
+using Autofac;
 using ClosedXML.Excel;
 using NFluent;
 using NUnit.Framework;
-using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.Excel;
 using PicklesDoc.Pickles.ObjectModel;
 
@@ -39,7 +39,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
             var table = new Table();
             table.HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4");
             table.DataRows =
-                new List<TableRow>(new[] {new TableRow("1", "2", "3", "4"), new TableRow("5", "6", "7", "8")});
+                new List<TableRow>(new[] { new TableRow("1", "2", "3", "4"), new TableRow("5", "6", "7", "8") });
 
             using (var workbook = new XLWorkbook())
             {

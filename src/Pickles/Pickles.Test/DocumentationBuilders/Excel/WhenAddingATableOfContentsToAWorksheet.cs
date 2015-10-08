@@ -25,13 +25,11 @@ using PicklesDoc.Pickles.DocumentationBuilders.Excel;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
 {
-    //[TestFixture]
+    // [TestFixture]
     public class WhenAddingATableOfContentsToAWorksheet : BaseFixture
     {
-        //[Test]
-        [Ignore(
-            "The table of contents needs a tree of features to function and there is no easy facility at this time to build it"
-            )]
+        // [Test]
+        [Ignore("The table of contents needs a tree of features to function and there is no easy facility at this time to build it")]
         public void ThenCanAddTableOfContentsWorksheetSuccessfully()
         {
             var excelTableOfContentsFormatter = new ExcelTableOfContentsFormatter();

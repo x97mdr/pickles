@@ -53,14 +53,14 @@ namespace PicklesDoc.Pickles.Test
             }
         }
 
-      private static MockFileSystem CreateMockFileSystem()
-      {
-        var mockFileSystem = new MockFileSystem();
-        mockFileSystem.Directory.SetCurrentDirectory(Assembly.GetExecutingAssembly().Location);
-        return mockFileSystem;
-      }
+        private static MockFileSystem CreateMockFileSystem()
+        {
+            var mockFileSystem = new MockFileSystem();
+            mockFileSystem.Directory.SetCurrentDirectory(Assembly.GetExecutingAssembly().Location);
+            return mockFileSystem;
+        }
 
-      protected MockFileSystem FileSystem
+        protected MockFileSystem FileSystem
         {
             get { return (MockFileSystem)this.Container.Resolve<IFileSystem>(); }
         }
@@ -69,42 +69,45 @@ namespace PicklesDoc.Pickles.Test
         public void TearDown()
         {
             if (this.container != null)
+            {
                 this.container.Dispose();
+            }
+
             this.container = null;
         }
 
+        protected void AddFakeFolderStructures()
+        {
+            this.AddFakeFolderAndFiles("AcceptanceTest", new[] { "AdvancedFeature.feature", "LevelOne.feature" });
+            this.AddFakeFolderAndFiles("EmptyFolderTests", new string[0]);
 
-      protected void AddFakeFolderStructures()
-      {
-          AddFakeFolderAndFiles("AcceptanceTest", new[] { "AdvancedFeature.feature", "LevelOne.feature" });
-          AddFakeFolderAndFiles("EmptyFolderTests", new string[0]);
+            this.AddFakeFolderAndFiles("FeatureCrawlerTests", new[] { "index.md", "LevelOne.feature", "image.png" });
+            this.AddFakeFolderAndFiles(@"FeatureCrawlerTests\SubLevelOne", new[] { "ignorethisfile.ignore", "LevelOneSublevelOne.feature", "LevelOneSublevelTwo.feature" });
+            this.AddFakeFolderAndFiles(@"FeatureCrawlerTests\SubLevelOne\SubLevelTwo", new[] { "LevelOneSublevelOneSubLevelTwo.feature" });
+            this.AddFakeFolderAndFiles(@"FeatureCrawlerTests\SubLevelOne\SubLevelTwo\IgnoreThisDirectory", new[] { "IgnoreThisFile.ignore" });
+        }
 
-          AddFakeFolderAndFiles("FeatureCrawlerTests", new[] { "index.md", "LevelOne.feature", "image.png" });
-          AddFakeFolderAndFiles(@"FeatureCrawlerTests\SubLevelOne", new[] { "ignorethisfile.ignore", "LevelOneSublevelOne.feature", "LevelOneSublevelTwo.feature" });
-          AddFakeFolderAndFiles(@"FeatureCrawlerTests\SubLevelOne\SubLevelTwo", new[] { "LevelOneSublevelOneSubLevelTwo.feature" });
-          AddFakeFolderAndFiles(@"FeatureCrawlerTests\SubLevelOne\SubLevelTwo\IgnoreThisDirectory", new[] { "IgnoreThisFile.ignore" });
-      }
+        protected void AddFakeFolderAndFiles(string directoryName, IEnumerable<string> fileNames)
+        {
+            string directoryPath = FileSystemPrefix + directoryName + @"\";
+            string resourceIdentifier = ResourcePrefix + directoryName.Replace(@"\", ".") + ".";
 
-      protected void AddFakeFolderAndFiles(string directoryName, IEnumerable<string> fileNames)
-      {
-          string directoryPath = FileSystemPrefix + directoryName + @"\";
-          string resourceIdentifier = ResourcePrefix + directoryName.Replace(@"\", ".") + ".";
+            this.FileSystem.AddDirectory(directoryPath);
 
-          FileSystem.AddDirectory(directoryPath);
-
-          foreach (var fileName in fileNames)
-          {
-              FileSystem.AddFile(
-                  directoryPath + fileName,
-                  RetrieveContentOfFileFromResources(resourceIdentifier + fileName));
-          }
-      }
+            foreach (var fileName in fileNames)
+            {
+                this.FileSystem.AddFile(
+                    directoryPath + fileName,
+                    RetrieveContentOfFileFromResources(resourceIdentifier + fileName));
+            }
+        }
 
         protected static string RetrieveContentOfFileFromResources(string resourceName)
         {
             string resultFile;
 
-            System.IO.Stream manifestResourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
+            System.IO.Stream manifestResourceStream =
+                Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
 
             using (var reader = new System.IO.StreamReader(manifestResourceStream))
             {

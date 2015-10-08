@@ -117,8 +117,8 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             G.Step step = this.factory.CreateStep("When", "I use this table",
                 new[]
                 {
-                    new[] { "Header 1", "Header 2"},
-                    new[] { "Value 1", "Value 2"},
+                    new[] { "Header 1", "Header 2" },
+                    new[] { "Value 1", "Value 2" },
                 });
 
             var result = mapper.MapToStep(step);

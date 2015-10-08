@@ -21,11 +21,10 @@
 using System;
 
 using NUnit.Framework;
-
+using NFluent;
 using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks;
 
-using NFluent;
 
 namespace PicklesDoc.Pickles.Test.TestFrameworks
 {
@@ -40,7 +39,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
         [Test]
         public void ThenCanReadBackgroundResultSuccessfully()
         {
-            var background = new Scenario {Name = "Background", Feature = this.AdditionFeature()};
+            var background = new Scenario { Name = "Background", Feature = this.AdditionFeature() };
             var feature = this.AdditionFeature();
             feature.AddBackground(background);
             var results = ParseResultsFile();
@@ -71,7 +70,6 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
             Check.That(result).IsEqualTo(TestResult.Failed);
         }
 
-
         [Test]
         public void ThenCanReadPassedFeatureResultSuccessfully()
         {
@@ -86,7 +84,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
         public void ThenCanReadScenarioOutlineResultSuccessfully()
         {
             var results = ParseResultsFile();
-            var scenarioOutline = new ScenarioOutline {Name = "Adding several numbers", Feature = this.AdditionFeature()};
+            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers", Feature = this.AdditionFeature() };
 
             TestResult result = results.GetScenarioOutlineResult(scenarioOutline);
 

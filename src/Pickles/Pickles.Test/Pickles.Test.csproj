@@ -166,7 +166,7 @@
     <Compile Include="Helpers\XElementExentions.cs" />
     <Compile Include="Helpers\JSONStringAssertHelpers.cs" />
     <Compile Include="WhenCrawlingFoldersForFeatures.cs" />
-    <Compile Include="Formatters\HtmlTableOfContentsFormatterTests.cs" />
+    <Compile Include="Formatters\TableOfContentsShouldBeCreatedFromAFolderStructure.cs" />
     <Compile Include="ParserFileFactory.cs" />
     <Compile Include="ParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

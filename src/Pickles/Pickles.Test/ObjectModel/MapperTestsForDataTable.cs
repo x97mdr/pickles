@@ -47,7 +47,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = new Mapper();
 
-            string result = mapper.MapToString((G.TableCell) null);
+            string result = mapper.MapToString((G.TableCell)null);
 
             Check.That(result).IsNull();
         }
@@ -65,12 +65,12 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToTableRow_RowWithCellValues_ReturnsRowContainingThoseValues()
         {
-            G.TableRow row = this.factory.CreateGherkinTableRow(new[]
-                    {
-                        "first cell",
-                        "second cell"
-                    }
-                );
+            G.TableRow row = this.factory.CreateGherkinTableRow(
+                new[]
+                {
+                    "first cell",
+                    "second cell"
+                });
 
             var mapper = new Mapper();
 

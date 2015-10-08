@@ -1,15 +1,15 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="WhenParsingMultipleNUnitResultsFiles.cs" company="PicklesDoc">
+//  <copyright file="WhenParsingMultipleNUnitResultsFilesForASingleFeature.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
-//  
-//  
+//
+//
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You may obtain a copy of the License at
-//  
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-//  
+//
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -57,7 +57,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
             var feature = new Feature { Name = "FeatureWithMultipleResultsFiles" };
             var scenarioOutline = new ScenarioOutline { Name = "Some scenario outline", Feature = feature };
-            
+
             TestResult result = results.GetScenarioOutlineResult(scenarioOutline);
 
             Check.That(result.WasExecuted).IsTrue();
@@ -71,6 +71,6 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
             Check.That(exampleResult2.WasExecuted).IsTrue();
             Check.That(exampleResult2.WasSuccessful).IsTrue();
         }
-        
+
     }
 }

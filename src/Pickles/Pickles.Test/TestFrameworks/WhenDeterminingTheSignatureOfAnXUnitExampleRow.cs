@@ -23,12 +23,11 @@ using System.Text.RegularExpressions;
 
 using Autofac;
 
+using NFluent;
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks;
-
-using NFluent;
 
 namespace PicklesDoc.Pickles.Test.TestFrameworks
 {
@@ -38,8 +37,8 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
         [Test]
         public void ThenCanSuccessfullyMatch()
         {
-            var scenarioOutline = new ScenarioOutline {Name = "Adding several numbers"};
-            var exampleRow = new[] {"40", "50", "90"};
+            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers" };
+            var exampleRow = new[] { "40", "50", "90" };
 
             var signatureBuilder = Container.Resolve<xUnitExampleSignatureBuilder>();
             Regex signature = signatureBuilder.Build(scenarioOutline, exampleRow);

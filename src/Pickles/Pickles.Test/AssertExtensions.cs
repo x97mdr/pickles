@@ -32,10 +32,10 @@ namespace PicklesDoc.Pickles.Test
         {
             var actual = ExtensibilityHelper.ExtractChecker(check).Value;
 
-          XAttribute xAttribute = actual.Attributes().FirstOrDefault(attribute => attribute.Name.LocalName == name);
-          Check.That(xAttribute).IsNotNull();
+          XAttribute xmlAttribute = actual.Attributes().FirstOrDefault(attribute => attribute.Name.LocalName == name);
+          Check.That(xmlAttribute).IsNotNull();
           // ReSharper disable once PossibleNullReferenceException
-          Check.That(xAttribute.Value).IsEqualTo(value);
+          Check.That(xmlAttribute.Value).IsEqualTo(value);
         }
 
         public static void HasElement(this ICheck<XElement> check, string name)

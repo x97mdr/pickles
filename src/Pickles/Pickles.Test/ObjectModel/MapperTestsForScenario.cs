@@ -48,7 +48,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
                 new[] { "myTag1", "myTag2" },
                 "My scenario title",
                 "Description of the scenario",
-                new []
+                new[]
                 {
                     this.factory.CreateStep("Given", "I enter '50' in the calculator"),
                     this.factory.CreateStep("When", "I press 'plus' on the calculator"),
@@ -80,13 +80,10 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         public void MapToScenario_ScenarioWithNullDescription_ReturnsScenarioWithEmptyDescription()
         {
             var scenario = this.factory.CreateScenario(
-                new [] { "unimportant tag" },
+                new[] { "unimportant tag" },
                 "My scenario title",
                 null,
-                new[]
-                {
-                    this.factory.CreateStep("Given", "unimportant step"),
-                });
+                new[] { this.factory.CreateStep("Given", "unimportant step") });
 
             var mapper = this.factory.CreateMapper();
 
