@@ -59,7 +59,7 @@ namespace PicklesDoc.Pickles
             }
             catch (Exception ex)
             {
-              log.Error(string.Format("Something went wrong while during generation: {0}", ex), ex);
+              log.Error(ex, "Something went wrong during generation: {0}", ex);
               throw;
             }
         }
