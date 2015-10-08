@@ -70,8 +70,6 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
           SimpleIoc.Default.Register<IMainModelSerializer>(() => new MainModelSerializer(DataDirectoryDeriver.DeriveDataDirectory(), fileSystem));
           SimpleIoc.Default.Register<MainViewModel>();
         }
-
-
         public MainViewModel Main
         {
             get
