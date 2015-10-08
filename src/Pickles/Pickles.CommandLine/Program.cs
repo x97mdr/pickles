@@ -28,7 +28,7 @@ namespace PicklesDoc.Pickles.CommandLine
 {
     internal class Program
     {
-      private static readonly Logger log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
+      private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
 
         private static int Main(string[] args)
         {
@@ -45,11 +45,13 @@ namespace PicklesDoc.Pickles.CommandLine
 
             if (shouldContinue)
             {
-                if (log.IsInfoEnabled)
+                if (Log.IsInfoEnabled)
                 {
-                    log.Info("Pickles v.{0}{1}", Assembly.GetExecutingAssembly().GetName().Version,
-                                   Environment.NewLine);
-                    new ConfigurationReporter().ReportOn(configuration, message => log.Info(message));
+                    Log.Info(
+                        "Pickles v.{0}{1}",
+                        Assembly.GetExecutingAssembly().GetName().Version,
+                        Environment.NewLine);
+                    new ConfigurationReporter().ReportOn(configuration, message => Log.Info(message));
                 }
 
                 var runner = container.Resolve<Runner>();
@@ -58,16 +60,16 @@ namespace PicklesDoc.Pickles.CommandLine
                 {
                     runner.Run(container);
 
-                    if (log.IsInfoEnabled)
+                    if (Log.IsInfoEnabled)
                     {
-                        log.Info("Pickles completed successfully");
+                        Log.Info("Pickles completed successfully");
                     }
                 }
                 catch (Exception ex)
                 {
-                    if (log.IsFatalEnabled)
+                    if (Log.IsFatalEnabled)
                     {
-                        log.Fatal(ex, "Pickles did not complete successfully");
+                        Log.Fatal(ex, "Pickles did not complete successfully");
                     }
 
                     return 1;
