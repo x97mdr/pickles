@@ -28,7 +28,7 @@ namespace PicklesDoc.Pickles.UserInterface.Settings
   /// </summary>
   public class MainModelSerializer : IMainModelSerializer
   {
-    private const string entitiesNameV1 = "MainSettingsV1";
+    private const string EntitiesNameV1 = "MainSettingsV1";
 
     private readonly string dataDirectory;
 
@@ -51,7 +51,7 @@ namespace PicklesDoc.Pickles.UserInterface.Settings
     /// <param name="item">The item.</param>
     public void Write(MainModel item)
     {
-      string path = this.fileSystem.Path.Combine(this.dataDirectory, entitiesNameV1 + ".xml");
+      string path = this.fileSystem.Path.Combine(this.dataDirectory, EntitiesNameV1 + ".xml");
 
       using (var stream = this.fileSystem.File.Create(path))
       {
@@ -67,7 +67,7 @@ namespace PicklesDoc.Pickles.UserInterface.Settings
     {
       MainModel result;
 
-      string path = this.fileSystem.Path.Combine(this.dataDirectory, entitiesNameV1 + ".xml");
+      string path = this.fileSystem.Path.Combine(this.dataDirectory, EntitiesNameV1 + ".xml");
 
       if (!this.fileSystem.File.Exists(path))
       {

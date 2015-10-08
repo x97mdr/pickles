@@ -1,5 +1,5 @@
 //  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="SingleSelectableCollection.cs" company="PicklesDoc">
+//  <copyright file="SelectableCollection.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -36,7 +36,7 @@ namespace PicklesDoc.Pickles.UserInterface.Mvvm
         }
 
         /// <summary>
-        /// Returns the first selected item, or the default value of <typeparamref name="T"/> if no item is selected.
+        /// Gets the first selected item, or the default value of <typeparamref name="T"/> if no item is selected.
         /// </summary>
         public T Selected
         {

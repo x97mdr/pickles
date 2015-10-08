@@ -63,7 +63,7 @@ namespace PicklesDoc.Pickles.UserInterface.Mvvm
 
         protected override void ClearItems()
         {
-            foreach (var item in Items)
+            foreach (var item in this.Items)
             {
                 item.PropertyChanged -= this.ItemOnPropertyChanged;
             }

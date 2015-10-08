@@ -112,8 +112,10 @@
     <Compile Include="Settings\IMainModelSerializer.cs" />
     <Compile Include="Settings\MainModel.cs" />
     <Compile Include="Mvvm\MultiSelectableCollection.cs" />
-    <Compile Include="Mvvm\SingleSelectableCollection.cs" />
-    <Compile Include="Mvvm\SelectableItem.cs" />
+    <Compile Include="Mvvm\SelectableCollection.cs" />
+    <Compile Include="Mvvm\SelectableItem.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Settings\MainModelSerializer.cs" />
     <Compile Include="Settings\StreamExtensions.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
