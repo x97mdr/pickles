@@ -67,14 +67,13 @@ namespace PicklesDoc.Pickles.PowerShell
 
             this.ParseParameters(configuration, container.Resolve<IFileSystem>(), this.SessionState.Path.CurrentFileSystemLocation);
 
-            WriteObject(string.Format("Pickles v.{0}{1}", Assembly.GetExecutingAssembly().GetName().Version,
-                                      Environment.NewLine));
-            new ConfigurationReporter().ReportOn(configuration, message => WriteObject(message));
+            this.WriteObject($"Pickles v.{Assembly.GetExecutingAssembly().GetName().Version}{Environment.NewLine}");
+            new ConfigurationReporter().ReportOn(configuration, this.WriteObject);
 
             var runner = container.Resolve<Runner>();
             runner.Run(container);
 
-            WriteObject(string.Format("Pickles completed successfully"));
+            this.WriteObject("Pickles completed successfully");
         }
 
         private void ParseParameters(Configuration configuration, IFileSystem fileSystem, PathInfo currentFileSystemLocation)
@@ -85,22 +84,25 @@ namespace PicklesDoc.Pickles.PowerShell
             if (!string.IsNullOrEmpty(this.TestResultsFormat))
             {
                 configuration.TestResultsFormat =
-                    (TestResultsFormat) Enum.Parse(typeof (TestResultsFormat), this.TestResultsFormat, true);
+                    (TestResultsFormat)Enum.Parse(typeof(TestResultsFormat), this.TestResultsFormat, true);
             }
+
             if (!string.IsNullOrEmpty(this.TestResultsFile))
             {
                 configuration.AddTestResultFile(fileSystem.FileInfo.FromFileName(this.TestResultsFile));
             }
+
             configuration.SystemUnderTestName = this.SystemUnderTestName;
             configuration.SystemUnderTestVersion = this.SystemUnderTestVersion;
             if (!string.IsNullOrEmpty(this.DocumentationFormat))
-                configuration.DocumentationFormat =
-                    (DocumentationFormat) Enum.Parse(typeof (DocumentationFormat), this.DocumentationFormat, true);
+            {
+                configuration.DocumentationFormat = (DocumentationFormat)Enum.Parse(typeof(DocumentationFormat), this.DocumentationFormat, true);
+            }
 
             if (!string.IsNullOrEmpty(this.Language))
             {
                 configuration.Language = this.Language;
-             }
+            }
         }
 
         private DirectoryInfoBase DetermineFeatureFolder(IFileSystem fileSystem, PathInfo currentFileSystemLocation, string directory)
