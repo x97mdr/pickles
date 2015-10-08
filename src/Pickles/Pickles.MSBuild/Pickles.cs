@@ -21,9 +21,9 @@
 using System;
 using System.IO.Abstractions;
 using System.Reflection;
+using Autofac;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
-using Autofac;
 
 namespace PicklesDoc.Pickles.MSBuild
 {
@@ -46,23 +46,6 @@ namespace PicklesDoc.Pickles.MSBuild
         public string SystemUnderTestVersion { get; set; }
 
         public string DocumentationFormat { get; set; }
-
-        private void CaptureConfiguration(Configuration configuration, IFileSystem fileSystem)
-        {
-            configuration.FeatureFolder = fileSystem.DirectoryInfo.FromDirectoryName(this.FeatureDirectory);
-            configuration.OutputFolder = fileSystem.DirectoryInfo.FromDirectoryName(this.OutputDirectory);
-            if (!string.IsNullOrEmpty(this.Language)) configuration.Language = this.Language;
-            if (!string.IsNullOrEmpty(this.ResultsFormat))
-                configuration.TestResultsFormat =
-                    (TestResultsFormat) Enum.Parse(typeof (TestResultsFormat), this.ResultsFormat, true);
-            if (!string.IsNullOrEmpty(this.ResultsFile)) configuration.AddTestResultFile(fileSystem.FileInfo.FromFileName(this.ResultsFile));
-            if (!string.IsNullOrEmpty(this.SystemUnderTestName)) configuration.SystemUnderTestName = this.SystemUnderTestName;
-            if (!string.IsNullOrEmpty(this.SystemUnderTestVersion))
-                configuration.SystemUnderTestVersion = this.SystemUnderTestVersion;
-            if (!string.IsNullOrEmpty(this.DocumentationFormat))
-                configuration.DocumentationFormat =
-                    (DocumentationFormat) Enum.Parse(typeof (DocumentationFormat), this.DocumentationFormat, true);
-        }
 
         public override bool Execute()
         {
@@ -91,6 +74,41 @@ namespace PicklesDoc.Pickles.MSBuild
             }
 
             return true;
+        }
+
+        private void CaptureConfiguration(Configuration configuration, IFileSystem fileSystem)
+        {
+            configuration.FeatureFolder = fileSystem.DirectoryInfo.FromDirectoryName(this.FeatureDirectory);
+            configuration.OutputFolder = fileSystem.DirectoryInfo.FromDirectoryName(this.OutputDirectory);
+            if (!string.IsNullOrEmpty(this.Language))
+            {
+                configuration.Language = this.Language;
+            }
+
+            if (!string.IsNullOrEmpty(this.ResultsFormat))
+            {
+                configuration.TestResultsFormat = (TestResultsFormat)Enum.Parse(typeof(TestResultsFormat), this.ResultsFormat, true);
+            }
+
+            if (!string.IsNullOrEmpty(this.ResultsFile))
+            {
+                configuration.AddTestResultFile(fileSystem.FileInfo.FromFileName(this.ResultsFile));
+            }
+
+            if (!string.IsNullOrEmpty(this.SystemUnderTestName))
+            {
+                configuration.SystemUnderTestName = this.SystemUnderTestName;
+            }
+
+            if (!string.IsNullOrEmpty(this.SystemUnderTestVersion))
+            {
+                configuration.SystemUnderTestVersion = this.SystemUnderTestVersion;
+            }
+
+            if (!string.IsNullOrEmpty(this.DocumentationFormat))
+            {
+                configuration.DocumentationFormat = (DocumentationFormat)Enum.Parse(typeof(DocumentationFormat), this.DocumentationFormat, true);
+            }
         }
     }
 }
