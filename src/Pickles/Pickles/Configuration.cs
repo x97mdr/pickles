@@ -29,7 +29,7 @@ namespace PicklesDoc.Pickles
 {
     public class Configuration
     {
-        private static readonly Logger log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
+        private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
         private readonly List<FileInfoBase> testResultsFiles;
 
         public Configuration()
@@ -50,14 +50,14 @@ namespace PicklesDoc.Pickles
 
         public bool HasTestResults
         {
-            get { return this.TestResultsFiles != null && testResultsFiles.Count > 0; }
+            get { return this.TestResultsFiles != null && this.testResultsFiles.Count > 0; }
         }
 
         public FileInfoBase TestResultsFile
         {
             get
             {
-                return testResultsFiles[0];
+                return this.testResultsFiles[0];
             }
         }
 
@@ -94,7 +94,7 @@ namespace PicklesDoc.Pickles
             }
             else
             {
-                log.Error("A test result file could not be found, it will be skipped: {0}", fileInfoBase.FullName);
+                Log.Error("A test result file could not be found, it will be skipped: {0}", fileInfoBase.FullName);
             }
         }
     }
