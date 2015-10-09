@@ -55,68 +55,74 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
         {
             if (string.IsNullOrEmpty(scenarioOutline.Name)) return null;
 
-            var result = new XElement(this.xmlns + "div",
-                                    new XAttribute("class", "scenario-heading"),
-                                    new XElement(this.xmlns + "h2", scenarioOutline.Name));
+            var result = new XElement(
+                this.xmlns + "div",
+                new XAttribute("class", "scenario-heading"),
+                new XElement(this.xmlns + "h2", scenarioOutline.Name));
             var tags = RetrieveTags(scenarioOutline);
             if (tags.Length > 0)
             {
-              var paragraph = new XElement(this.xmlns + "p", HtmlScenarioFormatter.CreateTagElements(tags.OrderBy(t => t).ToArray(), this.xmlns));
-              paragraph.Add(new XAttribute("class", "tags"));
-              result.Add(paragraph);
+                var paragraph = new XElement(this.xmlns + "p", HtmlScenarioFormatter.CreateTagElements(tags.OrderBy(t => t).ToArray(), this.xmlns));
+                paragraph.Add(new XAttribute("class", "tags"));
+                result.Add(paragraph);
             }
 
-          result.Add(this.htmlDescriptionFormatter.Format(scenarioOutline.Description));
+            result.Add(this.htmlDescriptionFormatter.Format(scenarioOutline.Description));
 
-          return result;
+            return result;
         }
 
         private XElement FormatSteps(ScenarioOutline scenarioOutline)
         {
             if (scenarioOutline.Steps == null) return null;
 
-            return new XElement(this.xmlns + "div",
-                                new XAttribute("class", "steps"),
-                                new XElement(this.xmlns + "ul",
-                                             scenarioOutline.Steps.Select(
-                                                 step => this.htmlStepFormatter.Format(step))));
+            return new XElement(
+                this.xmlns + "div",
+                new XAttribute("class", "steps"),
+                new XElement(
+                    this.xmlns + "ul",
+                    scenarioOutline.Steps.Select(
+                        step => this.htmlStepFormatter.Format(step))));
         }
 
         private XElement FormatExamples(ScenarioOutline scenarioOutline)
         {
-      var exampleDiv = new XElement(this.xmlns + "div");
+            var exampleDiv = new XElement(this.xmlns + "div");
 
-      foreach (var example in scenarioOutline.Examples)
-      {
-              exampleDiv.Add(new XElement(this.xmlns + "div",
-                                  new XAttribute("class", "examples"),
-                                  new XElement(this.xmlns + "h3", "Examples: " + example.Name),
-                                  this.htmlDescriptionFormatter.Format(example.Description),
-                                  (example.TableArgument == null) ? null : this.htmlTableFormatter.Format(example.TableArgument, scenarioOutline, this.testResults.SupportsExampleResults)));
-      }
+            foreach (var example in scenarioOutline.Examples)
+            {
+                exampleDiv.Add(
+                    new XElement(
+                        this.xmlns + "div",
+                        new XAttribute("class", "examples"),
+                        new XElement(this.xmlns + "h3", "Examples: " + example.Name),
+                        this.htmlDescriptionFormatter.Format(example.Description),
+                        (example.TableArgument == null) ? null : this.htmlTableFormatter.Format(example.TableArgument, scenarioOutline, this.testResults.SupportsExampleResults)));
+            }
 
-      return exampleDiv;
+            return exampleDiv;
         }
 
         public XElement Format(ScenarioOutline scenarioOutline, int id)
         {
-            return new XElement(this.xmlns + "li",
-                                new XAttribute("class", "scenario"),
-                                this.htmlImageResultFormatter.Format(scenarioOutline),
-                                this.FormatHeading(scenarioOutline),
-                                this.FormatSteps(scenarioOutline),
-                                (scenarioOutline.Examples == null || !scenarioOutline.Examples.Any())
-                            ? null
-                            : this.FormatExamples(scenarioOutline));
+            return new XElement(
+                this.xmlns + "li",
+                new XAttribute("class", "scenario"),
+                this.htmlImageResultFormatter.Format(scenarioOutline),
+                this.FormatHeading(scenarioOutline),
+                this.FormatSteps(scenarioOutline),
+                (scenarioOutline.Examples == null || !scenarioOutline.Examples.Any())
+                    ? null
+                    : this.FormatExamples(scenarioOutline));
         }
 
         private static string[] RetrieveTags(ScenarioOutline scenarioOutline)
         {
-          if (scenarioOutline == null) return new string[0];
+            if (scenarioOutline == null) return new string[0];
 
-          if (scenarioOutline.Feature == null) return scenarioOutline.Tags.ToArray();
+            if (scenarioOutline.Feature == null) return scenarioOutline.Tags.ToArray();
 
-          return scenarioOutline.Feature.Tags.Concat(scenarioOutline.Tags).ToArray();
+            return scenarioOutline.Feature.Tags.Concat(scenarioOutline.Tags).ToArray();
         }
     }
 }

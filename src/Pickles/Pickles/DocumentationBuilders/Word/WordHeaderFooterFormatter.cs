@@ -51,8 +51,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             footer1.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
             footer1.AddNamespaceDeclaration("m", "http://schemas.openxmlformats.org/officeDocument/2006/math");
             footer1.AddNamespaceDeclaration("v", "urn:schemas-microsoft-com:vml");
-            footer1.AddNamespaceDeclaration("wp",
-                "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing");
+            footer1.AddNamespaceDeclaration("wp", "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing");
             footer1.AddNamespaceDeclaration("w10", "urn:schemas-microsoft-com:office:word");
             footer1.AddNamespaceDeclaration("w", "http://schemas.openxmlformats.org/wordprocessingml/2006/main");
             footer1.AddNamespaceDeclaration("wne", "http://schemas.microsoft.com/office/word/2006/wordml");
@@ -86,8 +85,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             header1.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
             header1.AddNamespaceDeclaration("m", "http://schemas.openxmlformats.org/officeDocument/2006/math");
             header1.AddNamespaceDeclaration("v", "urn:schemas-microsoft-com:vml");
-            header1.AddNamespaceDeclaration("wp",
-                "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing");
+            header1.AddNamespaceDeclaration("wp", "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing");
             header1.AddNamespaceDeclaration("w10", "urn:schemas-microsoft-com:office:word");
             header1.AddNamespaceDeclaration("w", "http://schemas.openxmlformats.org/wordprocessingml/2006/main");
             header1.AddNamespaceDeclaration("wne", "http://schemas.microsoft.com/office/word/2006/wordml");

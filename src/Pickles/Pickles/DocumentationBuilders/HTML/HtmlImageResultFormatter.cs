@@ -74,9 +74,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         private XElement BuildImageElement(TestResult result, string elementName = "div")
         {
-            return new XElement(this.xmlns + elementName,
+            return new XElement(
+                this.xmlns + elementName,
                 new XAttribute("class", "float-right"),
-                new XElement(this.xmlns + "i",
+                new XElement(
+                    this.xmlns + "i",
                     new XAttribute("class", this.DetermineClass(result)),
                     new XAttribute("title", this.BuildTitle(result)),
                     " "));

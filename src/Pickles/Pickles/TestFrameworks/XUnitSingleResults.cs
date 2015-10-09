@@ -39,7 +39,13 @@ namespace PicklesDoc.Pickles.TestFrameworks
           this.resultsDocument = resultsDocument;
         }
 
-      #region ITestResults Members
+        public bool SupportsExampleResults
+        {
+            get
+            {
+                return true;
+            }
+        }
 
         public TestResult GetFeatureResult(Feature feature)
         {
@@ -77,9 +83,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
                 : TestResult.Inconclusive;
         }
 
-        #endregion
-
-      private XElement GetFeatureElement(Feature feature)
+        private XElement GetFeatureElement(Feature feature)
         {
             IEnumerable<XElement> featureQuery =
                 from clazz in this.resultsDocument.Root.Descendants("class")
@@ -177,14 +181,6 @@ namespace PicklesDoc.Pickles.TestFrameworks
                 }
             }
             return result;
-        }
-
-        public bool SupportsExampleResults
-        {
-            get
-            {
-                return true;
-            }
         }
     }
 }

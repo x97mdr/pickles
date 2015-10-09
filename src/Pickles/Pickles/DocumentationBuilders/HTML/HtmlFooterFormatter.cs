@@ -42,7 +42,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             {
                 return new XElement(
                     this.xmlns + "p",
-                    string.Format("Test results generated for: {0}, version {1}",
+                    string.Format(
+                        "Test results generated for: {0}, version {1}",
                         this.configuration.SystemUnderTestName,
                         this.configuration.SystemUnderTestVersion));
             }
@@ -56,8 +57,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             {
                 return new XElement(
                     this.xmlns + "p",
-                    string.Format("Test results generated for: version {1}",
-                        this.configuration.SystemUnderTestVersion));
+                    string.Format("Test results generated for: version {1}", this.configuration.SystemUnderTestVersion));
             }
 
             return null;
@@ -70,7 +70,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                 new XAttribute("id", "footer"),
                 this.BuildVersionString(),
                 new XElement(this.xmlns + "p", "Generated on: " + DateTime.Now.ToString("d MMMM yyyy HH:mm:ss")),
-                new XElement(this.xmlns + "p",
+                new XElement(
+                    this.xmlns + "p",
                     "Produced by Pickles, version " +
                     Assembly.GetExecutingAssembly().GetName().Version));
         }

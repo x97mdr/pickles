@@ -28,8 +28,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
         public XElement Format()
         {
             XNamespace xmlns = HtmlNamespace.Xhtml;
-            return new XElement(xmlns + "div",
-                                new XAttribute("id", "top"));
+            return new XElement(xmlns + "div", new XAttribute("id", "top"));
         }
     }
 }

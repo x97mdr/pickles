@@ -83,9 +83,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             }
 
             using (
-                WordprocessingDocument wordProcessingDocument = WordprocessingDocument.Create(documentFileName,
-                    WordprocessingDocumentType
-                        .Document))
+                WordprocessingDocument wordProcessingDocument = WordprocessingDocument.Create(
+                    documentFileName,
+                    WordprocessingDocumentType.Document))
             {
                 MainDocumentPart mainDocumentPart = wordProcessingDocument.AddMainDocumentPart();
                 this.wordStyleApplicator.AddStylesPartToPackage(wordProcessingDocument);
@@ -105,8 +105,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
                         node as FeatureNode;
                     if (featureDirectoryTreeNode != null)
                     {
-                        this.wordFeatureFormatter.Format(body,
-                            featureDirectoryTreeNode);
+                        this.wordFeatureFormatter.Format(body, featureDirectoryTreeNode);
                     }
                 });
 

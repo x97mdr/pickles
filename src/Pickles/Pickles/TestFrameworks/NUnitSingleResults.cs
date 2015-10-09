@@ -38,9 +38,15 @@ namespace PicklesDoc.Pickles.TestFrameworks
       this.resultsDocument = resultsDocument;
     }
 
-    #region ITestResults Members
+      public bool SupportsExampleResults
+      {
+          get
+          {
+              return true;
+          }
+      }
 
-    public TestResult GetFeatureResult(Feature feature)
+      public TestResult GetFeatureResult(Feature feature)
     {
       var featureElement = this.GetFeatureElement(feature);
 
@@ -68,15 +74,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
       return this.GetResultFromElement(scenarioElement);
     }
 
-    public bool SupportsExampleResults
-    {
-      get
-      {
-        return true;
-      }
-    }
-
-    public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
+      public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
     {
       XElement featureElement = this.GetFeatureElement(scenarioOutline.Feature);
       XElement scenarioOutlineElement = null;
@@ -96,9 +94,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
       return this.GetResultFromElement(scenarioOutlineElement);
     }
 
-    #endregion
-
-    private XElement GetFeatureElement(Feature feature)
+      private XElement GetFeatureElement(Feature feature)
     {
       return this.resultsDocument
         .Descendants("test-suite")

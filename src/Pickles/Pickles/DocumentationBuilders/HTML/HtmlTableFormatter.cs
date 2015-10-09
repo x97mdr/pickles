@@ -53,15 +53,20 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                 headerCells = headerCells.Concat(new[] { " " }).ToArray();
             }
 
-            return new XElement(this.xmlns + "div",
+            return new XElement(
+                this.xmlns + "div",
                 new XAttribute("class", "table_container"),
-                new XElement(this.xmlns + "table",
+                new XElement(
+                    this.xmlns + "table",
                     new XAttribute("class", "datatable"),
-                    new XElement(this.xmlns + "thead",
-                        new XElement(this.xmlns + "tr",
+                    new XElement(
+                        this.xmlns + "thead",
+                        new XElement(
+                            this.xmlns + "tr",
                             headerCells.Select(
                                 cell => new XElement(this.xmlns + "th", cell)))),
-                    new XElement(this.xmlns + "tbody",
+                    new XElement(
+                        this.xmlns + "tbody",
                         table.DataRows.Select(row => this.FormatRow(row, scenarioOutline, includeResults)))));
         }
 

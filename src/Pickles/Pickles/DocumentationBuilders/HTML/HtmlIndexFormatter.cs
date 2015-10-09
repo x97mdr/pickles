@@ -57,9 +57,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                 features.Where(f => f.OriginalLocation is FileInfoBase).Where(
                     f => files.Contains(f.OriginalLocation.FullName)).ToArray();
 
-            var div = new XElement(this.xmlns + "div",
-                                   new XAttribute("id", "feature"),
-                                   new XElement(this.xmlns + "h1", node.Name));
+            var div = new XElement(
+                this.xmlns + "div",
+                new XAttribute("id", "feature"),
+                new XElement(this.xmlns + "h1", node.Name));
 
             MarkdownNode markdownNode =
                 featuresThatAreDirectChildrenOfFolder.Where(n => n.IsIndexMarkDownNode()).OfType<MarkdownNode>().FirstOrDefault();

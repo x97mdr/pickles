@@ -68,9 +68,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
         {
             var xElement = new XElement(
                 xmlns + "li",
-                new XElement(xmlns + "div",
+                new XElement(
+                    xmlns + "div",
                     new XAttribute("class", "directory"),
-                    new XElement(xmlns + "a",
+                    new XElement(
+                        xmlns + "a",
                         new XAttribute("href", childNode.Data.GetRelativeUriTo(file) + "index.html"),
                         new XText(childNode.Data.Name))),
                 this.BuildListItems(xmlns, file, childNode));
@@ -93,7 +95,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             }
             else
             {
-                xElement.Add(new XElement(xmlns + "a",
+                xElement.Add(new XElement(
+                    xmlns + "a",
                     new XAttribute("href", file.GetUriForTargetRelativeToMe(rootfile, ".html")),
                     nodeText));
             }
@@ -153,7 +156,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         private XElement BuildCollapser(XNamespace xmlns)
         {
-            return new XElement(xmlns + "p",
+            return new XElement(
+                xmlns + "p",
                 new XAttribute("class", "tocCollapser"),
                 new XAttribute("title", "Collapse Table of Content"),
                 new XText("«"));

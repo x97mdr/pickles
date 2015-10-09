@@ -39,10 +39,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                 return null;
             }
 
-            return new XElement(this.xmlns + "div",
+            return new XElement(
+                this.xmlns + "div",
                 new XAttribute("class", "pre"),
-                new XElement(this.xmlns + "pre",
-                    new XElement(this.xmlns + "code",
+                new XElement(
+                    this.xmlns + "pre",
+                    new XElement(
+                        this.xmlns + "code",
                         new XAttribute("class", "no-highlight"),
                         new XText(multilineText))));
         }

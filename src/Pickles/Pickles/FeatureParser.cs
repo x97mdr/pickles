@@ -48,10 +48,11 @@ namespace PicklesDoc.Pickles
                 catch (Exception e)
                 {
                     string message =
-                        string.Format("There was an error parsing the feature file here: {0}{1}Errormessage was:'{2}'",
-                                      this.fileSystem.Path.GetFullPath(filename),
-                                      Environment.NewLine,
-                                      e.Message);
+                        string.Format(
+                            "There was an error parsing the feature file here: {0}{1}Errormessage was:'{2}'",
+                            this.fileSystem.Path.GetFullPath(filename),
+                            Environment.NewLine,
+                            e.Message);
                     throw new FeatureParseException(message, e);
                 }
 
