@@ -92,7 +92,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                                   new XAttribute("class", "examples"),
                                   new XElement(this.xmlns + "h3", "Examples: " + example.Name),
                                   this.htmlDescriptionFormatter.Format(example.Description),
-                                  (example.TableArgument == null) ? null : this.htmlTableFormatter.Format(example.TableArgument, scenarioOutline, testResults.SupportsExampleResults)));
+                                  (example.TableArgument == null) ? null : this.htmlTableFormatter.Format(example.TableArgument, scenarioOutline, this.testResults.SupportsExampleResults)));
       }
 
       return exampleDiv;

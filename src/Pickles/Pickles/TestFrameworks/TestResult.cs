@@ -44,12 +44,12 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         public bool WasExecuted
         {
-            get { return wasExecuted; }
+            get { return this.wasExecuted; }
         }
 
         public bool WasSuccessful
         {
-            get { return wasSuccessful; }
+            get { return this.wasSuccessful; }
         }
 
         public static TestResult Passed

@@ -33,7 +33,8 @@ namespace PicklesDoc.Pickles
         {
         }
 
-        public FeatureParseException(string msg, Exception e) :base(msg,e)
+        public FeatureParseException(string msg, Exception e)
+            : base(msg, e)
         {
         }
     }

@@ -35,7 +35,7 @@ namespace PicklesDoc.Pickles.ObjectModel
 
         public Keyword Convert(ResolutionContext context)
         {
-            string source = (string) context.SourceValue;
+            string source = (string)context.SourceValue;
             return this.MapToKeyword(source);
         }
 

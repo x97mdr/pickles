@@ -28,14 +28,14 @@ namespace PicklesDoc.Pickles.Extensions
         public static void GenerateParagraph(this Body body, string text, string styleId)
         {
             var paragraph = new Paragraph
-                                {
-                                    RsidParagraphAddition = "00CC1B7A",
-                                    RsidParagraphProperties = "0016335E",
-                                    RsidRunAdditionDefault = "0016335E"
-                                };
+            {
+                RsidParagraphAddition = "00CC1B7A",
+                RsidParagraphProperties = "0016335E",
+                RsidRunAdditionDefault = "0016335E"
+            };
 
             var paragraphProperties = new ParagraphProperties();
-            var paragraphStyleId = new ParagraphStyleId {Val = styleId};
+            var paragraphStyleId = new ParagraphStyleId { Val = styleId };
 
             paragraphProperties.Append(paragraphStyleId);
 
@@ -53,7 +53,7 @@ namespace PicklesDoc.Pickles.Extensions
 
         public static void InsertPageBreak(this Body body)
         {
-            body.Append(new Paragraph(new Run(new Break {Type = BreakValues.Page})));
+            body.Append(new Paragraph(new Run(new Break { Type = BreakValues.Page })));
         }
     }
 }

@@ -74,15 +74,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
                     {
                         IXLWorksheet worksheet =
                             workbook.AddWorksheet(
-                                this.excelSheetNameGenerator.
-                                    GenerateSheetName(
+                                this.excelSheetNameGenerator.GenerateSheetName(
                                         workbook,
                                         featureDirectoryTreeNode
                                             .Feature));
                         this.excelFeatureFormatter.Format(
                             worksheet,
-                            featureDirectoryTreeNode.
-                                Feature);
+                            featureDirectoryTreeNode.Feature);
                     }
                 });
 

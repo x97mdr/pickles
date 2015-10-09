@@ -76,10 +76,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
                         featuresToFormat.Add(
                             new JsonFeatureWithMetaInfo(
                                 featureTreeNode,
-                                this.testResults.
-                                    GetFeatureResult(
-                                        featureTreeNode.
-                                            Feature)));
+                                this.testResults.GetFeatureResult(
+                                        featureTreeNode.Feature)));
                     }
                     else
                     {
@@ -92,12 +90,12 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
 
             features.AcceptVisitor(actionVisitor);
 
-            CreateFile(this.OutputFilePath, GenerateJSON(featuresToFormat));
+            this.CreateFile(this.OutputFilePath, this.GenerateJson(featuresToFormat));
         }
 
         #endregion
 
-        private string GenerateJSON(List<JsonFeatureWithMetaInfo> features)
+        private string GenerateJson(List<JsonFeatureWithMetaInfo> features)
         {
             var data = new
             {

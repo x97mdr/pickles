@@ -36,43 +36,43 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         public HtmlTableOfContentsFormatter(HtmlImageResultFormatter imageResultFormatter, IFileSystem fileSystem)
         {
-          this.imageResultFormatter = imageResultFormatter;
-          this.fileSystem = fileSystem;
+            this.imageResultFormatter = imageResultFormatter;
+            this.fileSystem = fileSystem;
         }
 
         private XElement BuildListItems(XNamespace xmlns, Uri file, GeneralTree<INode> features)
-          {
-              var ul = new XElement(xmlns + "ul", new XAttribute("class", "features"));
+        {
+            var ul = new XElement(xmlns + "ul", new XAttribute("class", "features"));
 
-              foreach (var childNode in features.ChildNodes)
-              {
-                  if (childNode.Data.NodeType == NodeType.Content)
-                  {
-                      if (childNode.Data.IsIndexMarkDownNode())
-                      {
-                          continue;
-                      }
+            foreach (var childNode in features.ChildNodes)
+            {
+                if (childNode.Data.NodeType == NodeType.Content)
+                {
+                    if (childNode.Data.IsIndexMarkDownNode())
+                    {
+                        continue;
+                    }
 
-                      ul.Add(this.AddNodeForFile(xmlns, file, childNode));
-                  }
-                  else if (childNode.Data.NodeType == NodeType.Structure)
-                  {
-                      ul.Add(this.AddNodeForDirectory(xmlns, file, childNode));
-                  }
-              }
+                    ul.Add(this.AddNodeForFile(xmlns, file, childNode));
+                }
+                else if (childNode.Data.NodeType == NodeType.Structure)
+                {
+                    ul.Add(this.AddNodeForDirectory(xmlns, file, childNode));
+                }
+            }
 
-              return ul;
-          }
+            return ul;
+        }
 
         private XElement AddNodeForDirectory(XNamespace xmlns, Uri file, GeneralTree<INode> childNode)
         {
             var xElement = new XElement(
                 xmlns + "li",
                 new XElement(xmlns + "div",
-                             new XAttribute("class", "directory"),
-                             new XElement(xmlns + "a",
-                                          new XAttribute("href", childNode.Data.GetRelativeUriTo(file) + "index.html"),
-                                          new XText(childNode.Data.Name))),
+                    new XAttribute("class", "directory"),
+                    new XElement(xmlns + "a",
+                        new XAttribute("href", childNode.Data.GetRelativeUriTo(file) + "index.html"),
+                        new XText(childNode.Data.Name))),
                 this.BuildListItems(xmlns, file, childNode));
 
             return xElement;
@@ -86,7 +86,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
             string nodeText = "Home";
 
-            bool fileIsActuallyTheRoot = DetermineWhetherFileIsTheRootFile(file, rootfile);
+            bool fileIsActuallyTheRoot = this.DetermineWhetherFileIsTheRootFile(file, rootfile);
             if (fileIsActuallyTheRoot)
             {
                 xElement.Add(new XElement(xmlns + "span", new XAttribute("class", "current"), nodeText));
@@ -94,8 +94,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             else
             {
                 xElement.Add(new XElement(xmlns + "a",
-                                          new XAttribute("href", file.GetUriForTargetRelativeToMe(rootfile, ".html")),
-                                          nodeText));
+                    new XAttribute("href", file.GetUriForTargetRelativeToMe(rootfile, ".html")),
+                    nodeText));
             }
 
             return xElement;
@@ -131,31 +131,31 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             else
             {
                 xElement.Add(new XElement(xmlns + "a", new XAttribute("href", childNode.Data.GetRelativeUriTo(file)),
-                                          nodeText));
+                    nodeText));
             }
 
-          var featureNode = childNode.Data as FeatureNode;
-          if (featureNode != null && this.imageResultFormatter != null)
-          {
-            Feature feature = featureNode.Feature;
-
-            XElement formatForToC = this.imageResultFormatter.FormatForToC(feature);
-
-            if (formatForToC != null)
+            var featureNode = childNode.Data as FeatureNode;
+            if (featureNode != null && this.imageResultFormatter != null)
             {
-              xElement.Add(formatForToC);
-            }
-          }
+                Feature feature = featureNode.Feature;
 
-          return xElement;
+                XElement formatForToC = this.imageResultFormatter.FormatForToC(feature);
+
+                if (formatForToC != null)
+                {
+                    xElement.Add(formatForToC);
+                }
+            }
+
+            return xElement;
         }
 
         private XElement BuildCollapser(XNamespace xmlns)
         {
             return new XElement(xmlns + "p",
-                                new XAttribute("class", "tocCollapser"),
-                                new XAttribute("title", "Collapse Table of Content"),
-                                new XText("«"));
+                new XAttribute("class", "tocCollapser"),
+                new XAttribute("title", "Collapse Table of Content"),
+                new XText("«"));
         }
 
         public XElement Format(Uri file, GeneralTree<INode> features, DirectoryInfoBase outputFolder)
@@ -163,7 +163,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             XNamespace xmlns = HtmlNamespace.Xhtml;
 
             XElement ul = this.BuildListItems(xmlns, file, features);
-            ul.AddFirst(AddNodeForHome(xmlns, file, outputFolder));
+            ul.AddFirst(this.AddNodeForHome(xmlns, file, outputFolder));
 
             return new XElement(
                 xmlns + "div",

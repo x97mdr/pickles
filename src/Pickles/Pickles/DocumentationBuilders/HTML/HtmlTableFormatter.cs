@@ -39,7 +39,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         public XElement Format(Table table)
         {
-            return Format(table, null, false);
+            return this.Format(table, null, false);
         }
 
         public XElement Format(Table table, ScenarioOutline scenarioOutline, bool includeResults)

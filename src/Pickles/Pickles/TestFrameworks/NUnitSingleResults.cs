@@ -49,7 +49,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
         return TestResult.Inconclusive;
       }
       var results = featureElement.Descendants("test-case")
-        .Select(GetResultFromElement);
+        .Select(this.GetResultFromElement);
 
       return results.Merge();
     }
@@ -90,7 +90,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
       if (scenarioOutlineElement != null)
       {
-        return scenarioOutlineElement.Descendants("test-case").Select(GetResultFromElement).Merge();
+        return scenarioOutlineElement.Descendants("test-case").Select(this.GetResultFromElement).Merge();
       }
 
       return this.GetResultFromElement(scenarioOutlineElement);
