@@ -60,35 +60,35 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
         {
             if (log.IsInfoEnabled)
             {
-              log.Info("Writing JSON to {0}", this.configuration.OutputFolder.FullName);
+                log.Info("Writing JSON to {0}", this.configuration.OutputFolder.FullName);
             }
 
             var featuresToFormat = new List<JsonFeatureWithMetaInfo>();
 
             var actionVisitor = new ActionVisitor<INode>(node =>
-                                                                          {
-                                                                              var featureTreeNode =
-                                                                                  node as FeatureNode;
-                                                                              if (featureTreeNode != null)
-                                                                              {
-                                                                                  if (this.configuration.HasTestResults)
-                                                                                  {
-                                                                                      featuresToFormat.Add(
-                                                                                          new JsonFeatureWithMetaInfo(
-                                                                                              featureTreeNode,
-                                                                                              this.testResults.
-                                                                                                  GetFeatureResult(
-                                                                                                      featureTreeNode.
-                                                                                                          Feature)));
-                                                                                  }
-                                                                                  else
-                                                                                  {
-                                                                                      featuresToFormat.Add(
-                                                                                          new JsonFeatureWithMetaInfo(
-                                                                                              featureTreeNode));
-                                                                                  }
-                                                                              }
-                                                                          });
+            {
+                var featureTreeNode =
+                    node as FeatureNode;
+                if (featureTreeNode != null)
+                {
+                    if (this.configuration.HasTestResults)
+                    {
+                        featuresToFormat.Add(
+                            new JsonFeatureWithMetaInfo(
+                                featureTreeNode,
+                                this.testResults.
+                                    GetFeatureResult(
+                                        featureTreeNode.
+                                            Feature)));
+                    }
+                    else
+                    {
+                        featuresToFormat.Add(
+                            new JsonFeatureWithMetaInfo(
+                                featureTreeNode));
+                    }
+                }
+            });
 
             features.AcceptVisitor(actionVisitor);
 
@@ -111,11 +111,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
             };
 
             var settings = new JsonSerializerSettings
-                               {
-                                   ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                                   NullValueHandling = NullValueHandling.Ignore,
-                                   Converters = new List<JsonConverter> {new StringEnumConverter()}
-                               };
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                NullValueHandling = NullValueHandling.Ignore,
+                Converters = new List<JsonConverter> { new StringEnumConverter() }
+            };
 
             return JsonConvert.SerializeObject(data, Formatting.Indented, settings);
         }

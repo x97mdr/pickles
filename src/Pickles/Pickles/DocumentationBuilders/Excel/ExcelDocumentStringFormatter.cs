@@ -27,8 +27,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
     {
         public void Format(IXLWorksheet worksheet, string documentString, ref int row)
         {
-            string[] documentStringLines = documentString.Split(new[] {"\n", "\r"},
-                                                                StringSplitOptions.RemoveEmptyEntries);
+            string[] documentStringLines = documentString.Split(
+                new[] { "\n", "\r" },
+                StringSplitOptions.RemoveEmptyEntries);
 
             foreach (string line in documentStringLines)
             {

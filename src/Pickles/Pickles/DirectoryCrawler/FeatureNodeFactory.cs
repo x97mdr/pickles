@@ -34,8 +34,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
         private readonly RelevantFileDetector relevantFileDetector;
         private readonly IFileSystem fileSystem;
 
-        public FeatureNodeFactory(RelevantFileDetector relevantFileDetector, FeatureParser featureParser,
-                                  HtmlMarkdownFormatter htmlMarkdownFormatter, IFileSystem fileSystem)
+        public FeatureNodeFactory(RelevantFileDetector relevantFileDetector, FeatureParser featureParser, HtmlMarkdownFormatter htmlMarkdownFormatter, IFileSystem fileSystem)
         {
             this.relevantFileDetector = relevantFileDetector;
             this.featureParser = featureParser;

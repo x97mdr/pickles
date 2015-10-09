@@ -28,9 +28,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
         private static TableProperties GenerateTableProperties()
         {
             var tableProperties1 = new TableProperties();
-            var tableStyle1 = new TableStyle {Val = "TableGrid"};
-            var tableWidth1 = new TableWidth {Width = "0", Type = TableWidthUnitValues.Auto};
-            var tableLook1 = new TableLook {Val = "04A0"};
+            var tableStyle1 = new TableStyle { Val = "TableGrid" };
+            var tableWidth1 = new TableWidth { Width = "0", Type = TableWidthUnitValues.Auto };
+            var tableLook1 = new TableLook { Val = "04A0" };
 
             tableProperties1.Append(tableStyle1);
             tableProperties1.Append(tableWidth1);

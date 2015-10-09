@@ -36,7 +36,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
         public static string[] SplitDescription(string description)
         {
-            return description.Split(new string[] {"\n", "\r"}, StringSplitOptions.RemoveEmptyEntries);
+            return description.Split(new string[] { "\n", "\r" }, StringSplitOptions.RemoveEmptyEntries);
         }
     }
 }

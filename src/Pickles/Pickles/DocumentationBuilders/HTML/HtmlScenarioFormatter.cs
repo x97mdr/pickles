@@ -72,8 +72,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
               new XAttribute("class", "steps"),
               new XElement(
                 this.xmlns + "ul",
-                scenario.Steps.Select(step => this.htmlStepFormatter.Format(step))))
-            );
+                scenario.Steps.Select(step => this.htmlStepFormatter.Format(step)))));
         }
 
       internal static XNode[] CreateTagElements(string[] tags, XNamespace xNamespace)

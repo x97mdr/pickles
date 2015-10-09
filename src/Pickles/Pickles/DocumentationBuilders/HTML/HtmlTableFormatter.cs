@@ -33,8 +33,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         public HtmlTableFormatter(HtmlImageResultFormatter htmlImageResultFormatter)
         {
-          this.htmlImageResultFormatter = htmlImageResultFormatter;
-          this.xmlns = HtmlNamespace.Xhtml;
+            this.htmlImageResultFormatter = htmlImageResultFormatter;
+            this.xmlns = HtmlNamespace.Xhtml;
         }
 
         public XElement Format(Table table)
@@ -54,43 +54,39 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             }
 
             return new XElement(this.xmlns + "div",
-                                new XAttribute("class", "table_container"),
-                                new XElement(this.xmlns + "table",
-                                             new XAttribute("class", "datatable"),
-                                             new XElement(this.xmlns + "thead",
-                                                          new XElement(this.xmlns + "tr",
-                                                                       headerCells.Select(
-                                                                           cell => new XElement(this.xmlns + "th", cell))
-                                                              )
-                                                 ),
-                                             new XElement(this.xmlns + "tbody",
-                                                          table.DataRows.Select(row => this.FormatRow(row, scenarioOutline, includeResults))
-                                                 )
-                                    ));
+                new XAttribute("class", "table_container"),
+                new XElement(this.xmlns + "table",
+                    new XAttribute("class", "datatable"),
+                    new XElement(this.xmlns + "thead",
+                        new XElement(this.xmlns + "tr",
+                            headerCells.Select(
+                                cell => new XElement(this.xmlns + "th", cell)))),
+                    new XElement(this.xmlns + "tbody",
+                        table.DataRows.Select(row => this.FormatRow(row, scenarioOutline, includeResults)))));
         }
 
-      private XElement FormatRow(TableRow row, ScenarioOutline scenarioOutline, bool includeResults)
-      {
-          var formattedCells = row.Cells.Select(
-          cell =>
-          new XElement(
-            this.xmlns + "td",
-            cell)).ToList();
-
-        if (includeResults && scenarioOutline != null)
+        private XElement FormatRow(TableRow row, ScenarioOutline scenarioOutline, bool includeResults)
         {
-          formattedCells.Add(
-            new XElement(this.xmlns + "td", this.htmlImageResultFormatter.Format(scenarioOutline, row.Cells.ToArray())));
+            var formattedCells = row.Cells.Select(
+                cell =>
+                    new XElement(
+                        this.xmlns + "td",
+                        cell)).ToList();
+
+            if (includeResults && scenarioOutline != null)
+            {
+                formattedCells.Add(
+                    new XElement(this.xmlns + "td", this.htmlImageResultFormatter.Format(scenarioOutline, row.Cells.ToArray())));
+            }
+
+            var result = new XElement(this.xmlns + "tr");
+
+            foreach (var cell in formattedCells)
+            {
+                result.Add(cell);
+            }
+
+            return result;
         }
-
-        var result = new XElement(this.xmlns + "tr");
-
-        foreach (var cell in formattedCells)
-        {
-          result.Add(cell);
-        }
-
-        return result;
-      }
     }
 }

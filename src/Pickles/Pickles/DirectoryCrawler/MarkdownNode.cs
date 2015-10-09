@@ -38,18 +38,6 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
 
         public XElement MarkdownContent { get; private set; }
 
-        #region INode Members
-
-        public string GetRelativeUriTo(Uri other, string newExtension)
-        {
-            return other.GetUriForTargetRelativeToMe(this.OriginalLocation, newExtension);
-        }
-
-        public string GetRelativeUriTo(Uri other)
-        {
-            return this.GetRelativeUriTo(other, ".html");
-        }
-
         public NodeType NodeType
         {
             get { return NodeType.Content; }
@@ -73,6 +61,14 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
 
         public string RelativePathFromRoot { get; private set; }
 
-        #endregion
+        public string GetRelativeUriTo(Uri other, string newExtension)
+        {
+            return other.GetUriForTargetRelativeToMe(this.OriginalLocation, newExtension);
+        }
+
+        public string GetRelativeUriTo(Uri other)
+        {
+            return this.GetRelativeUriTo(other, ".html");
+        }
     }
 }

@@ -68,6 +68,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             {
                 sb.AppendFormat(" with version {0}", this.configuration.SystemUnderTestVersion);
             }
+
             return sb.ToString();
         }
 
@@ -79,9 +80,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                 new XElement(this.xmlns + "i",
                     new XAttribute("class", this.DetermineClass(result)),
                     new XAttribute("title", this.BuildTitle(result)),
-                    " "
-                    )
-                );
+                    " "));
         }
 
         private string DetermineClass(TestResult result)

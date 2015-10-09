@@ -34,7 +34,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
         private readonly WordTableFormatter wordTableFormatter;
 
         public WordScenarioOutlineFormatter(WordStepFormatter wordStepFormatter, WordTableFormatter wordTableFormatter,
-                                            Configuration configuration, ITestResults testResults)
+            Configuration configuration, ITestResults testResults)
         {
             this.wordStepFormatter = wordStepFormatter;
             this.wordTableFormatter = wordTableFormatter;
@@ -66,11 +66,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
                 this.wordStepFormatter.Format(body, step);
             }
 
-			foreach (var example in scenarioOutline.Examples)
-			{
-	            body.GenerateParagraph("Examples: " + example.Description, "Heading3");
-	            this.wordTableFormatter.Format(body, example.TableArgument);
-			}
+            foreach (var example in scenarioOutline.Examples)
+            {
+                body.GenerateParagraph("Examples: " + example.Description, "Heading3");
+                this.wordTableFormatter.Format(body, example.TableArgument);
+            }
         }
     }
 }

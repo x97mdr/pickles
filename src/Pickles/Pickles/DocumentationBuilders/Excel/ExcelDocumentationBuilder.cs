@@ -31,7 +31,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 {
     public class ExcelDocumentationBuilder : IDocumentationBuilder
     {
-      private static readonly Logger log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
+        private static readonly Logger log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
 
         private readonly Configuration configuration;
         private readonly ExcelFeatureFormatter excelFeatureFormatter;
@@ -56,37 +56,35 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
             this.fileSystem = fileSystem;
         }
 
-        #region IDocumentationBuilder Members
-
         public void Build(GeneralTree<INode> features)
         {
             if (log.IsInfoEnabled)
             {
-              log.Info("Writing Excel workbook to {0}", this.configuration.OutputFolder.FullName);
+                log.Info("Writing Excel workbook to {0}", this.configuration.OutputFolder.FullName);
             }
 
             string spreadsheetPath = this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, "features.xlsx");
             using (var workbook = new XLWorkbook())
             {
                 var actionVisitor = new ActionVisitor<INode>(node =>
-                                                                              {
-                                                                                  var featureDirectoryTreeNode =
-                                                                                      node as FeatureNode;
-                                                                                  if (featureDirectoryTreeNode != null)
-                                                                                  {
-                                                                                      IXLWorksheet worksheet =
-                                                                                          workbook.AddWorksheet(
-                                                                                              this.excelSheetNameGenerator.
-                                                                                                  GenerateSheetName(
-                                                                                                      workbook,
-                                                                                                      featureDirectoryTreeNode
-                                                                                                          .Feature));
-                                                                                      this.excelFeatureFormatter.Format(
-                                                                                          worksheet,
-                                                                                          featureDirectoryTreeNode.
-                                                                                              Feature);
-                                                                                  }
-                                                                              });
+                {
+                    var featureDirectoryTreeNode =
+                        node as FeatureNode;
+                    if (featureDirectoryTreeNode != null)
+                    {
+                        IXLWorksheet worksheet =
+                            workbook.AddWorksheet(
+                                this.excelSheetNameGenerator.
+                                    GenerateSheetName(
+                                        workbook,
+                                        featureDirectoryTreeNode
+                                            .Feature));
+                        this.excelFeatureFormatter.Format(
+                            worksheet,
+                            featureDirectoryTreeNode.
+                                Feature);
+                    }
+                });
 
                 features.AcceptVisitor(actionVisitor);
 
@@ -95,7 +93,5 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
                 workbook.SaveAs(spreadsheetPath);
             }
         }
-
-        #endregion
     }
 }

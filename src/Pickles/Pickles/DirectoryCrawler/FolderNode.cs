@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-
 using System;
 using System.IO.Abstractions;
 using PicklesDoc.Pickles.Extensions;
@@ -34,7 +33,21 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
             this.RelativePathFromRoot = relativePathFromRoot;
         }
 
-        #region INode Members
+        public NodeType NodeType
+        {
+            get { return NodeType.Structure; }
+        }
+
+        public string Name
+        {
+            get { return this.OriginalLocation.Name.ExpandWikiWord(); }
+        }
+
+        public FileSystemInfoBase OriginalLocation { get; private set; }
+
+        public Uri OriginalLocationUrl { get; private set; }
+
+        public string RelativePathFromRoot { get; private set; }
 
         public string GetRelativeUriTo(Uri other, string newExtension)
         {
@@ -61,23 +74,5 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
         {
             return this.GetRelativeUriTo(other, ".html");
         }
-
-        public NodeType NodeType
-        {
-            get { return NodeType.Structure; }
-        }
-
-        public string Name
-        {
-            get { return this.OriginalLocation.Name.ExpandWikiWord(); }
-        }
-
-        public FileSystemInfoBase OriginalLocation { get; private set; }
-
-        public Uri OriginalLocationUrl { get; private set; }
-
-        public string RelativePathFromRoot { get; private set; }
-
-        #endregion
     }
 }

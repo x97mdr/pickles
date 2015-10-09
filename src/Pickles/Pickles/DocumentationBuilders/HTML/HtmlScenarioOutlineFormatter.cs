@@ -79,8 +79,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                                 new XAttribute("class", "steps"),
                                 new XElement(this.xmlns + "ul",
                                              scenarioOutline.Steps.Select(
-                                                 step => this.htmlStepFormatter.Format(step)))
-                );
+                                                 step => this.htmlStepFormatter.Format(step))));
         }
 
         private XElement FormatExamples(ScenarioOutline scenarioOutline)
@@ -93,8 +92,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                                   new XAttribute("class", "examples"),
                                   new XElement(this.xmlns + "h3", "Examples: " + example.Name),
                                   this.htmlDescriptionFormatter.Format(example.Description),
-                                  (example.TableArgument == null) ? null : this.htmlTableFormatter.Format(example.TableArgument, scenarioOutline, testResults.SupportsExampleResults)
-                  ));
+                                  (example.TableArgument == null) ? null : this.htmlTableFormatter.Format(example.TableArgument, scenarioOutline, testResults.SupportsExampleResults)));
       }
 
       return exampleDiv;
@@ -109,8 +107,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                                 this.FormatSteps(scenarioOutline),
                                 (scenarioOutline.Examples == null || !scenarioOutline.Examples.Any())
                             ? null
-                            : this.FormatExamples(scenarioOutline)
-                );
+                            : this.FormatExamples(scenarioOutline));
         }
 
         private static string[] RetrieveTags(ScenarioOutline scenarioOutline)

@@ -52,15 +52,15 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             footer1.AddNamespaceDeclaration("m", "http://schemas.openxmlformats.org/officeDocument/2006/math");
             footer1.AddNamespaceDeclaration("v", "urn:schemas-microsoft-com:vml");
             footer1.AddNamespaceDeclaration("wp",
-                                            "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing");
+                "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing");
             footer1.AddNamespaceDeclaration("w10", "urn:schemas-microsoft-com:office:word");
             footer1.AddNamespaceDeclaration("w", "http://schemas.openxmlformats.org/wordprocessingml/2006/main");
             footer1.AddNamespaceDeclaration("wne", "http://schemas.microsoft.com/office/word/2006/wordml");
 
-            var paragraph1 = new Paragraph {RsidParagraphAddition = "005641D2", RsidRunAdditionDefault = "005641D2"};
+            var paragraph1 = new Paragraph { RsidParagraphAddition = "005641D2", RsidRunAdditionDefault = "005641D2" };
 
             var paragraphProperties1 = new ParagraphProperties();
-            var paragraphStyleId1 = new ParagraphStyleId {Val = "Footer"};
+            var paragraphStyleId1 = new ParagraphStyleId { Val = "Footer" };
 
             paragraphProperties1.Append(paragraphStyleId1);
 
@@ -87,15 +87,15 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             header1.AddNamespaceDeclaration("m", "http://schemas.openxmlformats.org/officeDocument/2006/math");
             header1.AddNamespaceDeclaration("v", "urn:schemas-microsoft-com:vml");
             header1.AddNamespaceDeclaration("wp",
-                                            "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing");
+                "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing");
             header1.AddNamespaceDeclaration("w10", "urn:schemas-microsoft-com:office:word");
             header1.AddNamespaceDeclaration("w", "http://schemas.openxmlformats.org/wordprocessingml/2006/main");
             header1.AddNamespaceDeclaration("wne", "http://schemas.microsoft.com/office/word/2006/wordml");
 
-            var paragraph1 = new Paragraph {RsidParagraphAddition = "005641D2", RsidRunAdditionDefault = "005641D2"};
+            var paragraph1 = new Paragraph { RsidParagraphAddition = "005641D2", RsidRunAdditionDefault = "005641D2" };
 
             var paragraphProperties1 = new ParagraphProperties();
-            var paragraphStyleId1 = new ParagraphStyleId {Val = "Header"};
+            var paragraphStyleId1 = new ParagraphStyleId { Val = "Header" };
 
             paragraphProperties1.Append(paragraphStyleId1);
 
@@ -106,7 +106,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
                 !string.IsNullOrEmpty(this.configuration.SystemUnderTestVersion))
             {
                 text1.Text = string.Format("{0}, version {1}", this.configuration.SystemUnderTestName,
-                                           this.configuration.SystemUnderTestVersion);
+                    this.configuration.SystemUnderTestVersion);
             }
             else if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestName))
             {
@@ -122,10 +122,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             paragraph1.Append(paragraphProperties1);
             paragraph1.Append(run1);
 
-            var paragraph2 = new Paragraph {RsidParagraphAddition = "005641D2", RsidRunAdditionDefault = "005641D2"};
+            var paragraph2 = new Paragraph { RsidParagraphAddition = "005641D2", RsidRunAdditionDefault = "005641D2" };
 
             var paragraphProperties2 = new ParagraphProperties();
-            var paragraphStyleId2 = new ParagraphStyleId {Val = "Header"};
+            var paragraphStyleId2 = new ParagraphStyleId { Val = "Header" };
 
             paragraphProperties2.Append(paragraphStyleId2);
 

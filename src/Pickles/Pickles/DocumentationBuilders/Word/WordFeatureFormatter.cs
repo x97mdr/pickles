@@ -38,12 +38,12 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
         private readonly WordBackgroundFormatter wordBackgroundFormatter;
 
         public WordFeatureFormatter(WordScenarioFormatter wordScenarioFormatter,
-                                    WordScenarioOutlineFormatter wordScenarioOutlineFormatter,
-                                    WordStyleApplicator wordStyleApplicator,
-                                    WordDescriptionFormatter wordDescriptionFormatter,
-                                    WordBackgroundFormatter wordBackgroundFormatter,
-                                    Configuration configuration,
-                                    ITestResults nunitResults)
+            WordScenarioOutlineFormatter wordScenarioOutlineFormatter,
+            WordStyleApplicator wordStyleApplicator,
+            WordDescriptionFormatter wordDescriptionFormatter,
+            WordBackgroundFormatter wordBackgroundFormatter,
+            Configuration configuration,
+            ITestResults nunitResults)
         {
             this.wordScenarioFormatter = wordScenarioFormatter;
             this.wordScenarioOutlineFormatter = wordScenarioOutlineFormatter;

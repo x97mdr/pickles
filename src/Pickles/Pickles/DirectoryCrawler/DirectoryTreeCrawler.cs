@@ -30,15 +30,14 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
 {
     public class DirectoryTreeCrawler
     {
-        private static readonly Logger log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
+        private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
         private readonly FeatureNodeFactory featureNodeFactory;
 
         private readonly IFileSystem fileSystem;
 
         private readonly RelevantFileDetector relevantFileDetector;
 
-        public DirectoryTreeCrawler(RelevantFileDetector relevantFileDetector, FeatureNodeFactory featureNodeFactory,
-            IFileSystem fileSystem)
+        public DirectoryTreeCrawler(RelevantFileDetector relevantFileDetector, FeatureNodeFactory featureNodeFactory, IFileSystem fileSystem)
         {
             this.relevantFileDetector = relevantFileDetector;
             this.featureNodeFactory = featureNodeFactory;
@@ -104,8 +103,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
         {
             List<INode> collectedNodes = new List<INode>();
 
-            foreach (FileInfoBase file in directory.GetFiles().Where(file => this.relevantFileDetector.IsRelevant(file))
-                )
+            foreach (FileInfoBase file in directory.GetFiles().Where(file => this.relevantFileDetector.IsRelevant(file)))
             {
                 INode node = null;
                 try
@@ -114,13 +112,13 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
                 }
                 catch (Exception)
                 {
-                    if (log.IsWarnEnabled)
+                    if (Log.IsWarnEnabled)
                     {
                         // retrieving the name as file.FullName may trigger an exception if the FullName is too long
                         // so we retreive Name and DirectoryName separately
                         // https://github.com/picklesdoc/pickles/issues/199
                         var fullName = file.Name + " in directory " + file.DirectoryName;
-                        log.Warn("The file {0} will be ignored because it could not be read in properly", fullName);
+                        Log.Warn("The file {0} will be ignored because it could not be read in properly", fullName);
                     }
                 }
 

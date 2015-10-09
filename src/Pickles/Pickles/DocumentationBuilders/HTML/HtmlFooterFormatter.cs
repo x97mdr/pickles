@@ -41,20 +41,20 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                 !string.IsNullOrEmpty(this.configuration.SystemUnderTestVersion))
             {
                 return new XElement(this.xmlns + "p",
-                                    string.Format("Test results generated for: {0}, version {1}",
-                                                  this.configuration.SystemUnderTestName,
-                                                  this.configuration.SystemUnderTestVersion));
+                    string.Format("Test results generated for: {0}, version {1}",
+                        this.configuration.SystemUnderTestName,
+                        this.configuration.SystemUnderTestVersion));
             }
             else if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestName))
             {
                 return new XElement(this.xmlns + "p",
-                                    string.Format("Test results generated for: {0}", this.configuration.SystemUnderTestName));
+                    string.Format("Test results generated for: {0}", this.configuration.SystemUnderTestName));
             }
             else if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestVersion))
             {
                 return new XElement(this.xmlns + "p",
-                                    string.Format("Test results generated for: version {1}",
-                                                  this.configuration.SystemUnderTestVersion));
+                    string.Format("Test results generated for: version {1}",
+                        this.configuration.SystemUnderTestVersion));
             }
 
             return null;
@@ -63,13 +63,12 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
         public XElement Format()
         {
             return new XElement(this.xmlns + "div",
-                                new XAttribute("id", "footer"),
-                                this.BuildVersionString(),
-                                new XElement(this.xmlns + "p", "Generated on: " + DateTime.Now.ToString("d MMMM yyyy HH:mm:ss")),
-                                new XElement(this.xmlns + "p",
-                                             "Produced by Pickles, version " +
-                                             Assembly.GetExecutingAssembly().GetName().Version)
-                );
+                new XAttribute("id", "footer"),
+                this.BuildVersionString(),
+                new XElement(this.xmlns + "p", "Generated on: " + DateTime.Now.ToString("d MMMM yyyy HH:mm:ss")),
+                new XElement(this.xmlns + "p",
+                    "Produced by Pickles, version " +
+                    Assembly.GetExecutingAssembly().GetName().Version));
         }
     }
 }

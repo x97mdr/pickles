@@ -34,17 +34,17 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         public XElement Format(string multilineText)
         {
-            if (multilineText == null) return null;
+            if (multilineText == null)
+            {
+                return null;
+            }
 
             return new XElement(this.xmlns + "div",
-                                new XAttribute("class", "pre"),
-                                new XElement(this.xmlns + "pre",
-                                             new XElement(this.xmlns + "code",
-                                                          new XAttribute("class", "no-highlight"),
-                                                          new XText(multilineText)
-                                                 )
-                                    )
-                );
+                new XAttribute("class", "pre"),
+                new XElement(this.xmlns + "pre",
+                    new XElement(this.xmlns + "code",
+                        new XAttribute("class", "no-highlight"),
+                        new XText(multilineText))));
         }
     }
 }
