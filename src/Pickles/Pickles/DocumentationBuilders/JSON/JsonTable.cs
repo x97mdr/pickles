@@ -26,6 +26,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
     public class JsonTable
     {
         public JsonTableRow HeaderRow { get; set; }
+
         public List<JsonTableRow> DataRows { get; set; }
     }
 }

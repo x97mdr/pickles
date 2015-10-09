@@ -36,10 +36,15 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
         #region IFeatureElement Members
 
         public string Name { get; set; }
+
         public string Description { get; set; }
+
         public List<JsonStep> Steps { get; set; }
+
         public List<string> Tags { get; set; }
+
         public JsonTestResult Result { get; set; }
+
         public JsonFeature Feature { get; set; }
 
         #endregion

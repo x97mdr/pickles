@@ -100,7 +100,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         private static string[] RetrieveTags(Feature feature)
         {
-          if (feature == null) return new string[0];
+            if (feature == null)
+            {
+                return new string[0];
+            }
 
           return feature.Tags.ToArray();
         }

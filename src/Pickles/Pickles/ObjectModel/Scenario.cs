@@ -36,10 +36,15 @@ namespace PicklesDoc.Pickles.ObjectModel
         #region IFeatureElement Members
 
         public string Name { get; set; }
+
         public string Description { get; set; }
+
         public List<Step> Steps { get; set; }
+
         public List<string> Tags { get; set; }
+
         public TestResult Result { get; set; }
+
         public Feature Feature { get; set; }
 
         #endregion

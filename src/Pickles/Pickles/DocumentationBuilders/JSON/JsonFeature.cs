@@ -32,10 +32,15 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
         }
 
         public string Name { get; set; }
+
         public string Description { get; set; }
+
         public List<IJsonFeatureElement> FeatureElements { get; private set; }
+
         public JsonScenario Background { get; private set; }
+
         public JsonTestResult Result { get; set; }
+
         public List<string> Tags { get; set; }
     }
 }

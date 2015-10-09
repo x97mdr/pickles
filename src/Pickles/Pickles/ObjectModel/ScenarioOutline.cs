@@ -44,6 +44,7 @@ namespace PicklesDoc.Pickles.ObjectModel
         public List<string> Tags { get; set; }
 
         public TestResult Result { get; set; }
+
         public Feature Feature { get; set; }
     }
 }

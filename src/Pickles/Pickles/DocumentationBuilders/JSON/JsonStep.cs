@@ -25,9 +25,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
     public class JsonStep
     {
         public JsonKeyword Keyword { get; set; }
+
         public string NativeKeyword { get; set; }
+
         public string Name { get; set; }
+
         public JsonTable TableArgument { get; set; }
+
         public string DocStringArgument { get; set; }
     }
 }

@@ -71,7 +71,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         public string ScriptsFolder
         {
-          get { return this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, "js"); }
+            get { return this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, "js"); }
         }
 
         public Uri FailureImage
@@ -94,10 +94,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                 {
                     string fileName = this.GetNameFromResourceName(resource);
                     yield return new HtmlResource
-                                     {
-                                         File = fileName,
-                                         Uri = this.configuration.OutputFolder.ToFileUriCombined(fileName, this.fileSystem)
-                                     };
+                    {
+                        File = fileName,
+                        Uri = this.configuration.OutputFolder.ToFileUriCombined(fileName, this.fileSystem)
+                    };
                 }
             }
         }
@@ -112,10 +112,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                 {
                     string fileName = this.GetNameFromResourceName(resource);
                     yield return new HtmlResource
-                                     {
-                                         File = fileName,
-                                         Uri = new Uri(this.fileSystem.Path.Combine(this.ImagesFolder, fileName))
-                                     };
+                    {
+                        File = fileName,
+                        Uri = new Uri(this.fileSystem.Path.Combine(this.ImagesFolder, fileName))
+                    };
                 }
             }
         }
@@ -130,10 +130,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                 {
                     string fileName = this.GetNameFromResourceName(resource);
                     yield return new HtmlResource
-                                     {
-                                         File = fileName,
-                                         Uri = new Uri(this.fileSystem.Path.Combine(this.ScriptsFolder, fileName))
-                                     };
+                    {
+                        File = fileName,
+                        Uri = new Uri(this.fileSystem.Path.Combine(this.ScriptsFolder, fileName))
+                    };
                 }
             }
         }
@@ -147,11 +147,18 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         private string GetNameFromResourceName(string resourceName)
         {
-          if (resourceName.StartsWith("PicklesDoc.Pickles.Resources.Html.img"))
-            return resourceName.Replace("PicklesDoc.Pickles.Resources.Html.img.", string.Empty);
-          else if (resourceName.StartsWith("PicklesDoc.Pickles.Resources.Html.js"))
-            return resourceName.Replace("PicklesDoc.Pickles.Resources.Html.js.", string.Empty);
-          else return resourceName.Replace("PicklesDoc.Pickles.Resources.Html.css.", string.Empty);
+            if (resourceName.StartsWith("PicklesDoc.Pickles.Resources.Html.img"))
+            {
+                return resourceName.Replace("PicklesDoc.Pickles.Resources.Html.img.", string.Empty);
+            }
+            else if (resourceName.StartsWith("PicklesDoc.Pickles.Resources.Html.js"))
+            {
+                return resourceName.Replace("PicklesDoc.Pickles.Resources.Html.js.", string.Empty);
+            }
+            else
+            {
+                return resourceName.Replace("PicklesDoc.Pickles.Resources.Html.css.", string.Empty);
+            }
         }
     }
 }

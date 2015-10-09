@@ -26,6 +26,7 @@ namespace PicklesDoc.Pickles.ObjectModel
     public class Table
     {
         public TableRow HeaderRow { get; set; }
+
         public List<TableRow> DataRows { get; set; }
     }
 }

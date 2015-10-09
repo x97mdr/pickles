@@ -25,7 +25,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
     public class JsonExample
     {
         public string Name { get; set; }
+
         public string Description { get; set; }
+
         public JsonTable TableArgument { get; set; }
     }
 }
