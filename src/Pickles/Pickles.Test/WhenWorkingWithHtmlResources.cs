@@ -20,9 +20,9 @@
 
 using System;
 using System.Linq;
+using NFluent;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
-using NFluent;
 
 namespace PicklesDoc.Pickles.Test
 {

@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="when_formatting_a_folder_structure_with_features.cs" company="PicklesDoc">
+//  <copyright file="WhenFormattingAFolderStructureWithFeatures.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -19,9 +19,9 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using Autofac;
 using NGenerics.DataStructures.Trees;
 using NUnit.Framework;
-using Autofac;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.JSON;
 using PicklesDoc.Pickles.Test.Helpers;
@@ -29,36 +29,39 @@ using PicklesDoc.Pickles.Test.Helpers;
 namespace PicklesDoc.Pickles.Test.Formatters.JSON
 {
     [TestFixture]
-    public class when_formatting_a_folder_structure_with_features : BaseFixture
+    public class WhenFormattingAFolderStructureWithFeatures : BaseFixture
     {
-        private const string OUTPUT_DIRECTORY = FileSystemPrefix + @"JSONFeatureOutput";
+        private const string OutputDirectory = FileSystemPrefix + @"JSONFeatureOutput";
 
         public void Setup()
         {
-            AddFakeFolderStructures();
+            this.AddFakeFolderStructures();
 
             GeneralTree<INode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(FileSystemPrefix);
 
-            var outputDirectory = FileSystem.DirectoryInfo.FromDirectoryName(OUTPUT_DIRECTORY);
-            if (!outputDirectory.Exists) outputDirectory.Create();
+            var outputDirectory = FileSystem.DirectoryInfo.FromDirectoryName(OutputDirectory);
+            if (!outputDirectory.Exists)
+            {
+                outputDirectory.Create();
+            }
 
-            var configuration = new Configuration() {
-                                      OutputFolder = FileSystem.DirectoryInfo.FromDirectoryName(OUTPUT_DIRECTORY),
-                                        DocumentationFormat = DocumentationFormat.JSON
-                                    };
-
+            var configuration = new Configuration
+            {
+                OutputFolder = FileSystem.DirectoryInfo.FromDirectoryName(OutputDirectory),
+                DocumentationFormat = DocumentationFormat.JSON
+            };
 
             var jsonDocumentationBuilder = new JSONDocumentationBuilder(configuration, null, FileSystem);
             jsonDocumentationBuilder.Build(features);
         }
 
         [Test]
-        public void should_contain_the_features()
+        public void ShouldContainTheFeatures()
         {
-            Setup();
+            this.Setup();
 
-            string content = FileSystem.File.ReadAllText(this.FileSystem.Path.Combine(OUTPUT_DIRECTORY, JSONDocumentationBuilder.JsonFileName));
-            content.AssertJSONKeyValue("Name", "Addition");
+            string content = FileSystem.File.ReadAllText(this.FileSystem.Path.Combine(OutputDirectory, JSONDocumentationBuilder.JsonFileName));
+            content.AssertJsonKeyValue("Name", "Addition");
         }
     }
 }

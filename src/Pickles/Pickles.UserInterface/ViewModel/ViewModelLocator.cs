@@ -52,7 +52,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
         /// </summary>
         public ViewModelLocator()
         {
-          ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             ////if (ViewModelBase.IsInDesignModeStatic)
             ////{
@@ -65,17 +65,15 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
 
-          var fileSystem = new FileSystem();
-          SimpleIoc.Default.Register<IFileSystem>(() => fileSystem);
-          SimpleIoc.Default.Register<IMainModelSerializer>(() => new MainModelSerializer(DataDirectoryDeriver.DeriveDataDirectory(), fileSystem));
-          SimpleIoc.Default.Register<MainViewModel>();
+            var fileSystem = new FileSystem();
+            SimpleIoc.Default.Register<IFileSystem>(() => fileSystem);
+            SimpleIoc.Default.Register<IMainModelSerializer>(() => new MainModelSerializer(DataDirectoryDeriver.DeriveDataDirectory(), fileSystem));
+            SimpleIoc.Default.Register<MainViewModel>();
         }
+
         public MainViewModel Main
         {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
-            }
+            get { return ServiceLocator.Current.GetInstance<MainViewModel>(); }
         }
 
         public static void Cleanup()

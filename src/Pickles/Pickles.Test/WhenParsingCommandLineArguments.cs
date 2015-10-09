@@ -21,12 +21,12 @@
 using System;
 using System.Linq;
 using System.Reflection;
+using NFluent;
 using NUnit.Framework;
 using PicklesDoc.Pickles.Extensions;
-using NFluent;
 
-using TextWriter = System.IO.TextWriter;
 using StringWriter = System.IO.StringWriter;
+using TextWriter = System.IO.TextWriter;
 
 namespace PicklesDoc.Pickles.Test
 {
@@ -57,8 +57,7 @@ namespace PicklesDoc.Pickles.Test
             "  -h, -?, --help",
             Environment.NewLine);
 
-        private static readonly string ExpectedVersionString =
-            string.Format(@"Pickles version {0}", Assembly.GetExecutingAssembly().GetName().Version);
+        private static readonly string ExpectedVersionString = string.Format(@"Pickles version {0}", Assembly.GetExecutingAssembly().GetName().Version);
 
         [Test]
         public void ThenCanParseExcelDocumentationFormatWithLongFormSuccessfully()
@@ -95,7 +94,6 @@ namespace PicklesDoc.Pickles.Test
             var writer = new StringWriter();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
             bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
-
 
             var actual = RetrieveString(writer);
             var expected = ExpectedHelpString.ComparisonNormalize();

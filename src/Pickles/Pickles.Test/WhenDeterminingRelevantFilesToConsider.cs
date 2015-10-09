@@ -19,10 +19,10 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using NUnit.Framework;
 using Autofac;
-using PicklesDoc.Pickles.DirectoryCrawler;
 using NFluent;
+using NUnit.Framework;
+using PicklesDoc.Pickles.DirectoryCrawler;
 
 namespace PicklesDoc.Pickles.Test
 {

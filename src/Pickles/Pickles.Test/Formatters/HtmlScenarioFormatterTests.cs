@@ -21,9 +21,9 @@
 using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
+using Autofac;
 using NFluent;
 using NUnit.Framework;
-using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.ObjectModel;
 
@@ -50,17 +50,17 @@ namespace PicklesDoc.Pickles.Test.Formatters
         private Scenario BuildMinimalScenario()
         {
             return new Scenario
-                       {
-                           Description = "My Scenario Description",
-                           Steps = new List<Step>
-                                       {
-                                           new Step
-                                               {
-                                                   NativeKeyword = "Given",
-                                                   Name = "My Step Name",
-                                               }
-                                       }
-                       };
+            {
+                Description = "My Scenario Description",
+                Steps = new List<Step>
+                {
+                    new Step
+                    {
+                        NativeKeyword = "Given",
+                        Name = "My Step Name",
+                    }
+                }
+            };
         }
 
         [Test]

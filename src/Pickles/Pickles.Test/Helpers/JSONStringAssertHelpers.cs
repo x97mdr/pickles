@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="JSONStringAssertHelpers.cs" company="PicklesDoc">
+//  <copyright file="JsonStringAssertHelpers.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -23,19 +23,19 @@ using NFluent;
 
 namespace PicklesDoc.Pickles.Test.Helpers
 {
-    public static class JSONStringAssertHelpers
+    public static class JsonStringAssertHelpers
     {
-        private const string KEY_VALUE_TEMPLATE = "\"{0}\": \"{1}\"";
-        private const string ARRAY_TEMPLATE = "\"{0}\": [\r\n      \"{1}\"\r\n    ]";
+        private const string KeyValueTemplate = "\"{0}\": \"{1}\"";
+        private const string ArrayTemplate = "\"{0}\": [\r\n      \"{1}\"\r\n    ]";
 
-        public static void AssertJSONKeyValue(this string json, string key, string value)
+        public static void AssertJsonKeyValue(this string json, string key, string value)
         {
-            Check.That(json).Contains(string.Format(KEY_VALUE_TEMPLATE, key, value));
+            Check.That(json).Contains(string.Format(KeyValueTemplate, key, value));
         }
 
-        public static void AssertJSONArrayValue(this string json, string key, string value)
+        public static void AssertJsonArrayValue(this string json, string key, string value)
         {
-            Check.That(json).Contains(string.Format(ARRAY_TEMPLATE, key, value));
+            Check.That(json).Contains(string.Format(ArrayTemplate, key, value));
         }
 
         public static void AssertJsonContainsKey(this string json, string key)

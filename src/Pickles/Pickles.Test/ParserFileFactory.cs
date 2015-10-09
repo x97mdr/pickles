@@ -42,8 +42,7 @@ namespace PicklesDoc.Pickles.Test
                     string associatedXhtml =
                         xhtmls.SingleOrDefault(
                             name =>
-                            String.Equals(name.Replace(".html", string.Empty), featureName,
-                                          StringComparison.InvariantCultureIgnoreCase));
+                            string.Equals(name.Replace(".html", string.Empty), featureName, StringComparison.InvariantCultureIgnoreCase));
 
                     if (associatedXhtml != null)
                     {

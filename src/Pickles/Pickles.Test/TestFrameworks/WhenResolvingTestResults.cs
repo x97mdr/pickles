@@ -22,11 +22,10 @@ using System;
 
 using Autofac;
 
+using NFluent;
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.TestFrameworks;
-
-using NFluent;
 
 namespace PicklesDoc.Pickles.Test.TestFrameworks
 {
@@ -151,7 +150,6 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
             Check.That(item).IsNotNull();
             Check.That(item).IsInstanceOf<NullTestResults>();
         }
-
 
         [Test]
         public void ThenCanResolveWhenTestResultsAreMsTest()

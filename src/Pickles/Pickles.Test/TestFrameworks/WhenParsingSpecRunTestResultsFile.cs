@@ -20,12 +20,11 @@
 
 using System;
 
+using NFluent;
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks;
-
-using NFluent;
 
 namespace PicklesDoc.Pickles.Test.TestFrameworks
 {

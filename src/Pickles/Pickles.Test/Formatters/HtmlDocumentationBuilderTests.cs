@@ -19,8 +19,9 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using NUnit.Framework;
+
 using Autofac;
+using NUnit.Framework;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 
@@ -29,16 +30,16 @@ namespace PicklesDoc.Pickles.Test.Formatters
     [TestFixture]
     public class HtmlDocumentationBuilderTests : BaseFixture
     {
-        private const string ROOT_PATH = FileSystemPrefix + @"EmptyFolderTests";
+        private const string RootPath = FileSystemPrefix + @"EmptyFolderTests";
 
         [Test]
         public void ShouldNotBlowUpWHenParsingEmptyFolder()
         {
-            AddFakeFolderStructures();
+            this.AddFakeFolderStructures();
 
             var configuration = Container.Resolve<Configuration>();
-            configuration.OutputFolder = FileSystem.DirectoryInfo.FromDirectoryName(FileSystemPrefix);
-            var features = Container.Resolve<DirectoryTreeCrawler>().Crawl(ROOT_PATH);
+            configuration.OutputFolder = this.FileSystem.DirectoryInfo.FromDirectoryName(FileSystemPrefix);
+            var features = Container.Resolve<DirectoryTreeCrawler>().Crawl(RootPath);
             var builder = Container.Resolve<HtmlDocumentationBuilder>();
 
             builder.Build(features);

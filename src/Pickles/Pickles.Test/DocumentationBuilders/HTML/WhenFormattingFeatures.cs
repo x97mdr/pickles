@@ -21,9 +21,9 @@
 using System;
 using System.Linq;
 using System.Xml.Linq;
+using Autofac;
 using NFluent;
 using NUnit.Framework;
-using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.ObjectModel;
 

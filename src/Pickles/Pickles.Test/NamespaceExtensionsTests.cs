@@ -29,7 +29,7 @@ namespace PicklesDoc.Pickles.Test
     [TestFixture]
     public class NamespaceExtensionsTests
     {
-        private static readonly XNamespace newNamespace = XNamespace.Get("http://myNewNamespace/");
+        private static readonly XNamespace NewNamespace = XNamespace.Get("http://myNewNamespace/");
 
         [Test]
         public void MoveNamespace()
@@ -41,11 +41,11 @@ namespace PicklesDoc.Pickles.Test
                     "content",
                     new XAttribute("MyAttr", "content")));
 
-            tree1.MoveToNamespace(newNamespace);
+            tree1.MoveToNamespace(NewNamespace);
 
             foreach (XElement node in tree1.DescendantsAndSelf())
             {
-                Check.That(node).IsInNamespace(newNamespace.NamespaceName);
+                Check.That(node).IsInNamespace(NewNamespace.NamespaceName);
             }
         }
     }

@@ -19,11 +19,11 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using Autofac;
+using NFluent;
 using NGenerics.DataStructures.Trees;
 using NUnit.Framework;
-using Autofac;
 using PicklesDoc.Pickles.DirectoryCrawler;
-using NFluent;
 
 namespace PicklesDoc.Pickles.Test
 {
@@ -33,7 +33,7 @@ namespace PicklesDoc.Pickles.Test
         [Test]
         public void Then_can_crawl_all_folders_including_subfolders_for_features_successfully()
         {
-            AddFakeFolderStructures();
+            this.AddFakeFolderStructures();
 
             string rootPath = FileSystemPrefix + @"FeatureCrawlerTests";
             GeneralTree<INode> features = Container.Resolve<DirectoryTreeCrawler>().Crawl(rootPath);

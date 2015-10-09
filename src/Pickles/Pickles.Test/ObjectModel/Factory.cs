@@ -42,7 +42,10 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
         internal G.DocString CreateDocString(string docString = null)
         {
-            return new G.DocString(AnyLocation, null, docString ?? @"My doc string line 1
+            return new G.DocString(
+                AnyLocation,
+                null,
+                docString ?? @"My doc string line 1
 My doc string line 2");
         }
 

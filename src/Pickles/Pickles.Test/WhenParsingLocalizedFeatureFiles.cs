@@ -20,11 +20,12 @@
 
 using System;
 using System.Linq;
-using NUnit.Framework;
 
-using PicklesDoc.Pickles.ObjectModel;
 using NFluent;
+using NUnit.Framework;
 using PicklesDoc.Pickles.Extensions;
+using PicklesDoc.Pickles.ObjectModel;
+
 using StringReader = System.IO.StringReader;
 
 namespace PicklesDoc.Pickles.Test
@@ -48,9 +49,10 @@ Egenskap: Test egenskap
         När den körs
         Så skall jag se att det inträffat";
 
-            var configuration = new Configuration() {
-                                        Language = "sv"
-                                    };
+            var configuration = new Configuration
+            {
+                Language = "sv"
+            };
 
             var parser = new FeatureParser(FileSystem);
             Feature feature = parser.Parse(new StringReader(featureText));

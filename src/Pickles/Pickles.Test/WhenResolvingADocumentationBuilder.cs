@@ -19,9 +19,9 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using Autofac;
 using NFluent;
 using NUnit.Framework;
-using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders;
 using PicklesDoc.Pickles.DocumentationBuilders.Excel;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;

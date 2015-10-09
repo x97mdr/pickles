@@ -20,9 +20,9 @@
 
 using System;
 using Autofac;
+using NFluent;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
-using NFluent;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 {

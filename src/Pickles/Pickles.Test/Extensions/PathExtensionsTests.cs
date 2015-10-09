@@ -20,9 +20,9 @@
 
 using System;
 using System.IO.Abstractions.TestingHelpers;
+using NFluent;
 using NUnit.Framework;
 using PicklesDoc.Pickles.Extensions;
-using NFluent;
 
 namespace PicklesDoc.Pickles.Test.Extensions
 {

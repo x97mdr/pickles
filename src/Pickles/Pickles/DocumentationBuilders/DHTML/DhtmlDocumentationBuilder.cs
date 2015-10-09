@@ -21,18 +21,18 @@
 using System.Collections.Generic;
 using System.IO.Abstractions;
 using System.Linq;
-using NLog;
+using System.Reflection;
 using NGenerics.DataStructures.Trees;
+using NLog;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.JSON;
 using PicklesDoc.Pickles.TestFrameworks;
-using System.Reflection;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
 {
     public class DhtmlDocumentationBuilder : IDocumentationBuilder
     {
-        private static readonly Logger log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
+        private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
 
         private readonly Configuration configuration;
         private readonly ITestResults testResults;
@@ -46,31 +46,29 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
             this.fileSystem = fileSystem;
         }
 
-        #region IDocumentationBuilder Members
-
         public void Build(GeneralTree<INode> features)
         {
-            if (log.IsInfoEnabled)
+            if (Log.IsInfoEnabled)
             {
-                log.Info("Writing DHTML files to {0}", this.configuration.OutputFolder.FullName);
+                Log.Info("Writing DHTML files to {0}", this.configuration.OutputFolder.FullName);
             }
 
-            log.Info("Pull Down Feature Images ");
+            Log.Info("Pull Down Feature Images ");
             this.PullDownFeatureImages(features);
 
-            log.Info("Write Resources");
+            Log.Info("Write Resources");
             this.WriteResources();
 
-            log.Info("Utilize JsonBuilder To Dump Json Feature File Next To Dthml Resources");
-            UtilizeJsonBuilderToDumpJsonFeatureFileNextToDthmlResources(features);
+            Log.Info("Utilize JsonBuilder To Dump Json Feature File Next To Dthml Resources");
+            this.UtilizeJsonBuilderToDumpJsonFeatureFileNextToDthmlResources(features);
 
-            log.Info("Tweak Json file");
-            TweakJsonFile();
+            Log.Info("Tweak Json file");
+            this.TweakJsonFile();
         }
 
         private void PullDownFeatureImages(IEnumerable<INode> features)
         {
-            foreach (var image in features.Where(p => p.GetType() == typeof (ImageNode)).Select(p => (ImageNode) p))
+            foreach (var image in features.Where(p => p.GetType() == typeof(ImageNode)).Select(p => (ImageNode)p))
             {
                 var source = image.OriginalLocation.FullName;
                 var dest = this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, image.OriginalLocation.Name);
@@ -80,25 +78,24 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
 
         private void UtilizeJsonBuilderToDumpJsonFeatureFileNextToDthmlResources(GeneralTree<INode> features)
         {
-            var jsonBuilder = new JSONDocumentationBuilder(configuration, testResults, this.fileSystem);
+            var jsonBuilder = new JSONDocumentationBuilder(this.configuration, this.testResults, this.fileSystem);
             jsonBuilder.Build(features);
         }
 
         private void WriteResources()
         {
-            var dhtmlResourceWriter = new DhtmlResourceWriter(fileSystem);
-            dhtmlResourceWriter.WriteTo(configuration.OutputFolder.FullName);
+            var dhtmlResourceWriter = new DhtmlResourceWriter(this.fileSystem);
+            dhtmlResourceWriter.WriteTo(this.configuration.OutputFolder.FullName);
         }
 
         private void TweakJsonFile()
         {
-            var jsonBuilder = new JSONDocumentationBuilder(configuration, testResults, this.fileSystem);
+            var jsonBuilder = new JSONDocumentationBuilder(this.configuration, this.testResults, this.fileSystem);
             var jsonFilePath = jsonBuilder.OutputFilePath;
 
             var tweaker = new JsonTweaker(this.fileSystem);
             tweaker.AddJsonPWrapperTo(jsonFilePath);
             tweaker.RenameFileTo(jsonFilePath, jsonFilePath.Replace(".json", ".js"));
         }
-        #endregion
     }
 }

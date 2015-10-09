@@ -18,14 +18,14 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Linq;
+
+using Autofac;
 using NFluent;
 using NUnit.Framework;
-using Autofac;
-
-using PicklesDoc.Pickles.ObjectModel;
-using System;
 using PicklesDoc.Pickles.Extensions;
+using PicklesDoc.Pickles.ObjectModel;
 using StringReader = System.IO.StringReader;
 
 namespace PicklesDoc.Pickles.Test
@@ -33,7 +33,7 @@ namespace PicklesDoc.Pickles.Test
     [TestFixture]
     public class WhenParsingFeatureFiles : BaseFixture
     {
-        private const string DOC_STRING_DELIMITER = "\"\"\"";
+        private const string DocStringDelimiter = "\"\"\"";
 
         [Test]
         public void ThenCanParseFeatureWithMultipleScenariosSuccessfully()
@@ -274,11 +274,12 @@ Feature: Test
         [Test]
         public void ThenCanParseScenarioWithDocstringSuccessfully()
         {
-            string docstring = string.Format(@"{0}
+            string docstring = string.Format(
+                @"{0}
 This is a document string
 it can be many lines long
 {0}",
-                                             DOC_STRING_DELIMITER);
+                                             DocStringDelimiter);
 
             string featureText =
                 string.Format(

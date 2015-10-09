@@ -22,10 +22,10 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 using Autofac;
+using NFluent;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.ObjectModel;
-using NFluent;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 {
@@ -40,10 +40,10 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
                 HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4"),
                 DataRows =
                     new List<TableRow>(new[]
-                                            {
-                                                new TableRow("1", "2", "3", "4"),
-                                                new TableRow("5", "6", "7", "8")
-                                            })
+                    {
+                        new TableRow("1", "2", "3", "4"),
+                        new TableRow("5", "6", "7", "8")
+                    })
             };
 
             var htmlTableFormatter = Container.Resolve<HtmlTableFormatter>();
@@ -67,6 +67,5 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 
             Check.That(output).IsNull();
         }
-
     }
 }

@@ -114,7 +114,9 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = this.factory.CreateMapper();
 
-            G.Step step = this.factory.CreateStep("When", "I use this table",
+            G.Step step = this.factory.CreateStep(
+                "When",
+                "I use this table",
                 new[]
                 {
                     new[] { "Header 1", "Header 2" },
