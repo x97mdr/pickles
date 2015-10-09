@@ -43,7 +43,10 @@ namespace PicklesDoc.Pickles.ObjectModel
             this.tableCells.AddRange(cells);
         }
 
-        public List<string> Cells { get { return this.tableCells; } }
+        public List<string> Cells
+        {
+            get { return this.tableCells; }
+        }
 
       public TestResult Result { get; set; }
     }

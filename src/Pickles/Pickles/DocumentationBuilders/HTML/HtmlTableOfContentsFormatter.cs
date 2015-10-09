@@ -109,9 +109,14 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             var fileInfo = this.fileSystem.FileInfo.FromFileName(file.LocalPath);
 
             if (rootfile.DirectoryName != fileInfo.DirectoryName)
+            {
                 return false; // they're not even in the same directory
+            }
 
-            if (rootfile.FullName == file.LocalPath) return true; // it's really the same file
+            if (rootfile.FullName == file.LocalPath)
+            {
+                return true; // it's really the same file
+            }
 
             if (fileInfo.Name == string.Empty)
             {

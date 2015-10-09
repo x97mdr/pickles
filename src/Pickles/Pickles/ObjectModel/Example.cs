@@ -25,7 +25,9 @@ namespace PicklesDoc.Pickles.ObjectModel
     public class Example
     {
         public string Name { get; set; }
+
         public string Description { get; set; }
+
         public Table TableArgument { get; set; }
     }
 }

@@ -81,7 +81,6 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
         private XElement FormatList(INode node, IEnumerable<FeatureNode> items)
         {
             // <ul class="list">...</ul>
-
             var list = new XElement(this.xmlns + "ul", new XAttribute("class", "list"));
 
             foreach (

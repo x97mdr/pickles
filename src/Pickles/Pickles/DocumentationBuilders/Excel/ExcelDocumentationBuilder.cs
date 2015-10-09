@@ -31,7 +31,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 {
     public class ExcelDocumentationBuilder : IDocumentationBuilder
     {
-        private static readonly Logger log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
+        private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
 
         private readonly Configuration configuration;
         private readonly ExcelFeatureFormatter excelFeatureFormatter;
@@ -58,9 +58,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 
         public void Build(GeneralTree<INode> features)
         {
-            if (log.IsInfoEnabled)
+            if (Log.IsInfoEnabled)
             {
-                log.Info("Writing Excel workbook to {0}", this.configuration.OutputFolder.FullName);
+                Log.Info("Writing Excel workbook to {0}", this.configuration.OutputFolder.FullName);
             }
 
             string spreadsheetPath = this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, "features.xlsx");

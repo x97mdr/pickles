@@ -80,6 +80,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
             {
                 featureElementsToRender.Add(feature.Background);
             }
+
             featureElementsToRender.AddRange(feature.FeatureElements);
 
             var row = 4;

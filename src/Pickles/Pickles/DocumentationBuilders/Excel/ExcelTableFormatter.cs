@@ -40,6 +40,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
                 worksheet.Cell(row, headerColumn).Style.Fill.SetBackgroundColor(XLColor.AliceBlue);
                 worksheet.Cell(row, headerColumn++).Value = cell;
             }
+
             row++;
 
             foreach (TableRow dataRow in table.DataRows)
@@ -49,6 +50,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
                 {
                     worksheet.Cell(row, dataColumn++).Value = cell;
                 }
+
                 row++;
             }
 

@@ -67,7 +67,6 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
             div.Add(this.htmlDescriptionFormatter.Format(feature.Description));
 
-
             var scenarios = new XElement(this.xmlns + "ul", new XAttribute("id", "scenarios"));
             int id = 0;
 

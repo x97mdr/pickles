@@ -40,26 +40,20 @@ namespace PicklesDoc.Pickles.TestFrameworks
             this.resultsDocument = this.ReadResultsFile(configuration);
         }
 
-        private List<Feature> ReadResultsFile(FileInfoBase testResultsFile)
+        public bool SupportsExampleResults
         {
-            List<Feature> result;
-            using (var stream = testResultsFile.OpenRead())
-            {
-                using (var reader = new StreamReader(stream))
-                {
-                    result = JsonConvert.DeserializeObject<List<Feature>>(reader.ReadToEnd());
-                }
-            }
-            return result;
+            get { return false; }
         }
 
-        #region ITestResults Members
+        public TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+        {
+            throw new NotSupportedException();
+        }
 
         public TestResult GetFeatureResult(ObjectModel.Feature feature)
         {
             var cucumberFeature = this.GetFeatureElement(feature);
             return this.GetResultFromFeature(cucumberFeature);
-
         }
 
         public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
@@ -73,22 +67,26 @@ namespace PicklesDoc.Pickles.TestFrameworks
             Parser.JsonResult.Element cucumberScenario = null;
             var cucumberFeature = this.GetFeatureElement(scenario.Feature);
             if (cucumberFeature != null)
+            {
                 cucumberScenario = cucumberFeature.elements.FirstOrDefault(x => x.name == scenario.Name);
+            }
+
             return this.GetResultFromScenario(cucumberScenario);
-
         }
 
-        public TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+        private List<Feature> ReadResultsFile(FileInfoBase testResultsFile)
         {
-            throw new NotSupportedException();
-        }
+            List<Feature> result;
+            using (var stream = testResultsFile.OpenRead())
+            {
+                using (var reader = new StreamReader(stream))
+                {
+                    result = JsonConvert.DeserializeObject<List<Feature>>(reader.ReadToEnd());
+                }
+            }
 
-        public bool SupportsExampleResults
-        {
-            get { return false; }
+            return result;
         }
-
-        #endregion
 
         private Feature GetFeatureElement(ObjectModel.Feature feature)
         {
@@ -97,7 +95,10 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         private TestResult GetResultFromScenario(Parser.JsonResult.Element cucumberScenario)
         {
-            if (cucumberScenario == null) return TestResult.Inconclusive;
+            if (cucumberScenario == null)
+            {
+                return TestResult.Inconclusive;
+            }
 
             bool wasSuccessful = CheckScenarioStatus(cucumberScenario);
 
@@ -111,12 +112,14 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         private TestResult GetResultFromFeature(Feature cucumberFeature)
         {
-            if (cucumberFeature == null || cucumberFeature.elements == null) return TestResult.Inconclusive;
+            if (cucumberFeature == null || cucumberFeature.elements == null)
+            {
+                return TestResult.Inconclusive;
+            }
 
             bool wasSuccessful = cucumberFeature.elements.All(CheckScenarioStatus);
 
             return wasSuccessful ? TestResult.Passed : TestResult.Failed;
         }
-
     }
 }

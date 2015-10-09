@@ -36,7 +36,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 {
     public class WordDocumentationBuilder : IDocumentationBuilder
     {
-        private static readonly Logger log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
+        private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
 
         private readonly Configuration configuration;
         private readonly WordFeatureFormatter wordFeatureFormatter;
@@ -77,7 +77,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
                 }
                 catch (System.IO.IOException ex)
                 {
-                    log.Error("Cannot delete Word file. Is it still open in Word?", ex);
+                    Log.Error("Cannot delete Word file. Is it still open in Word?", ex);
                     return;
                 }
             }

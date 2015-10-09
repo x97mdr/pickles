@@ -54,6 +54,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
                 wordCell.Append(new Paragraph(new Run(new Text(cell))));
                 headerRow.Append(wordCell);
             }
+
             wordTable.Append(headerRow);
 
             foreach (ObjectModel.TableRow row in table.DataRows)
@@ -69,6 +70,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
                 wordTable.Append(wordRow);
             }
+
             return wordTable;
         }
     }

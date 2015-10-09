@@ -28,5 +28,4 @@ namespace PicklesDoc.Pickles.Parser.JsonResult
 
         public string error_message { get; set; }
     }
-
 }

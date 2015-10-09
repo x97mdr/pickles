@@ -143,8 +143,6 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             get { return new Uri(this.fileSystem.Path.Combine(this.ImagesFolder, "inconclusive.png")); }
         }
 
-
-
         private string GetNameFromResourceName(string resourceName)
         {
             if (resourceName.StartsWith("PicklesDoc.Pickles.Resources.Html.img"))

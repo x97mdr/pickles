@@ -67,9 +67,20 @@ namespace PicklesDoc.Pickles.TestFrameworks
             foreach (XElement exampleElement in exampleElements)
             {
                 TestResult result = this.GetResultFromElement(exampleElement);
-                if (result.WasExecuted == false) skippedCount++;
-                if (result.WasExecuted && result.WasSuccessful) passedCount++;
-                if (result.WasExecuted && !result.WasSuccessful) failedCount++;
+                if (result.WasExecuted == false)
+                {
+                    skippedCount++;
+                }
+
+                if (result.WasExecuted && result.WasSuccessful)
+                {
+                    passedCount++;
+                }
+
+                if (result.WasExecuted && !result.WasSuccessful)
+                {
+                    failedCount++;
+                }
             }
 
             return GetAggregateResult(passedCount, failedCount, skippedCount);
@@ -138,6 +149,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
                     result = TestResult.Inconclusive;
                     break;
             }
+
             return result;
         }
 
@@ -180,6 +192,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
                     return this.GetResultFromElement(exampleElement);
                 }
             }
+
             return result;
         }
     }

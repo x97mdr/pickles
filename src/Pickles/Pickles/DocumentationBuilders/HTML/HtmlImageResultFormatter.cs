@@ -71,7 +71,6 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             return sb.ToString();
         }
 
-
         private XElement BuildImageElement(TestResult result, string elementName = "div")
         {
             return new XElement(
@@ -97,7 +96,6 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                     : "icon-minus-sign failed";
             }
         }
-
 
         public XElement Format(Feature feature)
         {

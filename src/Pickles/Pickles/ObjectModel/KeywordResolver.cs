@@ -47,18 +47,22 @@ namespace PicklesDoc.Pickles.ObjectModel
             {
                 return Keyword.When;
             }
+
             if (this.languageServices.GivenStepKeywords.Contains(keyword))
             {
                 return Keyword.Given;
             }
+
             if (this.languageServices.ThenStepKeywords.Contains(keyword))
             {
                 return Keyword.Then;
             }
+
             if (this.languageServices.AndStepKeywords.Contains(keyword))
             {
                 return Keyword.And;
             }
+
             if (this.languageServices.ButStepKeywords.Contains(keyword))
             {
                 return Keyword.But;

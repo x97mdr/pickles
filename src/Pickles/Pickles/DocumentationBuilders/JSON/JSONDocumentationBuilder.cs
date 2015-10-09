@@ -23,10 +23,10 @@ using System.Collections.Generic;
 using System.IO.Abstractions;
 using System.Reflection;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
 using NLog;
-using Newtonsoft.Json.Converters;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.TestFrameworks;
 
@@ -35,7 +35,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
     public class JSONDocumentationBuilder : IDocumentationBuilder
     {
         public const string JsonFileName = @"pickledFeatures.json";
-        private static readonly Logger log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
+        private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
 
         private readonly Configuration configuration;
         private readonly ITestResults testResults;
@@ -58,9 +58,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
 
         public void Build(GeneralTree<INode> features)
         {
-            if (log.IsInfoEnabled)
+            if (Log.IsInfoEnabled)
             {
-                log.Info("Writing JSON to {0}", this.configuration.OutputFolder.FullName);
+                Log.Info("Writing JSON to {0}", this.configuration.OutputFolder.FullName);
             }
 
             var featuresToFormat = new List<JsonFeatureWithMetaInfo>();

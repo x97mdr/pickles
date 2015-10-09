@@ -45,8 +45,6 @@ namespace PicklesDoc.Pickles.TestFrameworks
             this.testResults = this.GetSingleTestResults(configuration);
         }
 
-        public abstract TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues);
-
         public bool SupportsExampleResults
         {
             get { return this.supportsExampleResults; }
@@ -56,6 +54,8 @@ namespace PicklesDoc.Pickles.TestFrameworks
         {
             get { return this.testResults; }
         }
+
+        public abstract TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues);
 
         private IEnumerable<ITestResults> GetSingleTestResults(Configuration configuration)
         {

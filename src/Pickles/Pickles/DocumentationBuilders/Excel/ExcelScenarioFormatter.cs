@@ -58,7 +58,6 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
                         : XLColor.CandyAppleRed);
             }
 
-
             foreach (Step step in scenario.Steps)
             {
                 this.excelStepFormatter.Format(worksheet, step, ref row);

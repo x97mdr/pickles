@@ -40,7 +40,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
         }
 
         public string RelativeFolder { get; set; }
+
         public JsonFeature Feature { get; set; }
+
         public JsonTestResult Result { get; set; }
     }
 }

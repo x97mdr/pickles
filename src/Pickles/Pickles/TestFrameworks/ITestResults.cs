@@ -26,6 +26,8 @@ namespace PicklesDoc.Pickles.TestFrameworks
 {
     public interface ITestResults
     {
+        bool SupportsExampleResults { get; }
+
         TestResult GetFeatureResult(Feature feature);
 
         TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline);
@@ -33,7 +35,5 @@ namespace PicklesDoc.Pickles.TestFrameworks
         TestResult GetScenarioResult(Scenario scenario);
 
         TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues);
-
-        bool SupportsExampleResults { get; }
     }
 }

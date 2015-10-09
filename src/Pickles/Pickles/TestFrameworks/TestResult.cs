@@ -30,17 +30,17 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         private readonly bool wasSuccessful;
 
-        private static readonly TestResult passed = new TestResult(wasExecuted: true, wasSuccessful: true);
-
-        private static readonly TestResult failed = new TestResult(wasExecuted: true, wasSuccessful: false);
-
-        private static readonly TestResult inconclusive = new TestResult(wasExecuted: false, wasSuccessful: false);
-
         private TestResult(bool wasExecuted, bool wasSuccessful)
         {
             this.wasExecuted = wasExecuted;
             this.wasSuccessful = wasSuccessful;
         }
+
+        public static TestResult Passed { get; } = new TestResult(wasExecuted: true, wasSuccessful: true);
+
+        public static TestResult Failed { get; } = new TestResult(wasExecuted: true, wasSuccessful: false);
+
+        public static TestResult Inconclusive { get; } = new TestResult(wasExecuted: false, wasSuccessful: false);
 
         public bool WasExecuted
         {
@@ -52,21 +52,6 @@ namespace PicklesDoc.Pickles.TestFrameworks
             get { return this.wasSuccessful; }
         }
 
-        public static TestResult Passed
-        {
-            get { return passed; }
-        }
-
-        public static TestResult Failed
-        {
-            get { return failed; }
-        }
-
-        public static TestResult Inconclusive
-        {
-            get { return inconclusive; }
-        }
-
         public bool Equals(TestResult other)
         {
             return this.WasExecuted.Equals(other.WasExecuted) && this.WasSuccessful.Equals(other.WasSuccessful);
@@ -74,7 +59,11 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
             return obj is TestResult && Equals((TestResult)obj);
         }
 
@@ -87,7 +76,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         public override string ToString()
         {
-            return string.Format("WasExecuted: {0}, WasSuccessful: {1}", this.WasExecuted, this.WasSuccessful);
+            return $"WasExecuted: {this.WasExecuted}, WasSuccessful: {this.WasSuccessful}";
         }
 
         public static bool operator ==(TestResult left, TestResult right)

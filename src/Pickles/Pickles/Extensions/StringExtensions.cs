@@ -45,6 +45,7 @@ namespace PicklesDoc.Pickles.Extensions
                 sb.Append(current);
                 previous = current;
             }
+
             return sb.ToString();
         }
 

@@ -65,7 +65,6 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
 
                     throw new ArgumentException("Only arguments of type Scenario and ScenarioOutline are supported.");
                 });
-
         }
 
         public JsonTableRow Map(TableRow tableRow)

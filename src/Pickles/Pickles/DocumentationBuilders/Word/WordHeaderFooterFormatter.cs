@@ -103,7 +103,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestName) &&
                 !string.IsNullOrEmpty(this.configuration.SystemUnderTestVersion))
             {
-                text1.Text = string.Format("{0}, version {1}", this.configuration.SystemUnderTestName, this.configuration.SystemUnderTestVersion);
+                text1.Text =
+                    $"{this.configuration.SystemUnderTestName}, version {this.configuration.SystemUnderTestVersion}";
             }
             else if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestName))
             {
@@ -111,7 +112,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             }
             else if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestVersion))
             {
-                text1.Text = string.Format("Features for version {0}", this.configuration.SystemUnderTestVersion);
+                text1.Text = $"Features for version {this.configuration.SystemUnderTestVersion}";
             }
 
             run1.Append(text1);

@@ -40,27 +40,29 @@ namespace PicklesDoc.Pickles.TestFrameworks
         {
             var resultsDocument = this.ReadResultsFile(fileInfo);
 
-            this.specRunFeatures = resultsDocument.Descendants("feature").Select(SpecRun.Factory.ToSpecRunFeature).ToList();
+            this.specRunFeatures =
+                resultsDocument.Descendants("feature").Select(SpecRun.Factory.ToSpecRunFeature).ToList();
         }
 
         public TestResult GetFeatureResult(Feature feature)
-          {
-              if (this.specRunFeatures == null)
-              {
-                  return TestResult.Inconclusive;
-              }
-
-              var specRunFeature = this.FindSpecRunFeature(feature);
-
-              if (specRunFeature == null)
-              {
+        {
+            if (this.specRunFeatures == null)
+            {
                 return TestResult.Inconclusive;
-              }
+            }
 
-              TestResult result = specRunFeature.Scenarios.Select(specRunScenario => StringToTestResult(specRunScenario.Result)).Merge();
+            var specRunFeature = this.FindSpecRunFeature(feature);
 
-              return result;
-          }
+            if (specRunFeature == null)
+            {
+                return TestResult.Inconclusive;
+            }
+
+            TestResult result =
+                specRunFeature.Scenarios.Select(specRunScenario => StringToTestResult(specRunScenario.Result)).Merge();
+
+            return result;
+        }
 
         public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
         {
@@ -112,21 +114,17 @@ namespace PicklesDoc.Pickles.TestFrameworks
             return StringToTestResult(specRunScenario.Result);
         }
 
-      public TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
-      {
-        throw new NotSupportedException();
-      }
-
-
-      public bool SupportsExampleResults
-      {
-        get
+        public TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
         {
-          return false;
+            throw new NotSupportedException();
         }
-      }
 
-      private static TestResult StringsToTestResult(IEnumerable<string> results)
+        public bool SupportsExampleResults
+        {
+            get { return false; }
+        }
+
+        private static TestResult StringsToTestResult(IEnumerable<string> results)
         {
             if (results == null)
             {

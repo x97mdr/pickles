@@ -34,20 +34,23 @@ namespace PicklesDoc.Pickles
 {
     public class Runner
     {
-      private static readonly Logger log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
+        private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
 
-      public void Run(IContainer container)
+        public void Run(IContainer container)
         {
             var configuration = container.Resolve<Configuration>();
-            if (!configuration.OutputFolder.Exists) configuration.OutputFolder.Create();
+            if (!configuration.OutputFolder.Exists)
+            {
+                configuration.OutputFolder.Create();
+            }
 
             var featureCrawler = container.Resolve<DirectoryTreeCrawler>();
             GeneralTree<INode> features = featureCrawler.Crawl(configuration.FeatureFolder);
 
             if (features == null)
             {
-              log.Warn("No features found at {0}", configuration.FeatureFolder);
-              return;
+                Log.Warn("No features found at {0}", configuration.FeatureFolder);
+                return;
             }
 
             ApplyTestResultsToFeatures(container, configuration, features);
@@ -55,69 +58,78 @@ namespace PicklesDoc.Pickles
             var documentationBuilder = container.Resolve<IDocumentationBuilder>();
             try
             {
-              documentationBuilder.Build(features);
+                documentationBuilder.Build(features);
             }
             catch (Exception ex)
             {
-              log.Error(ex, "Something went wrong during generation: {0}", ex);
-              throw;
+                Log.Error(ex, "Something went wrong during generation: {0}", ex);
+                throw;
             }
         }
 
-        private static void ApplyTestResultsToFeatures(IContainer container, Configuration configuration, GeneralTree<INode> features)
+        private static void ApplyTestResultsToFeatures(IContainer container, Configuration configuration,
+            GeneralTree<INode> features)
         {
             var testResults = container.Resolve<ITestResults>();
 
             var actionVisitor = new ActionVisitor<INode>(node =>
+            {
+                var featureTreeNode = node as FeatureNode;
+                if (featureTreeNode == null)
                 {
-                    var featureTreeNode = node as FeatureNode;
-                    if (featureTreeNode == null) return;
-                    if (configuration.HasTestResults)
-                    {
-                        SetResultsAtFeatureLevel(featureTreeNode, testResults);
-                        SetResultsForIndividualScenariosUnderFeature(featureTreeNode, testResults);
-                    }
-                    else
-                    {
-                        featureTreeNode.Feature.Result = TestResult.Inconclusive;
-                    }
-                });
+                    return;
+                }
+
+                if (configuration.HasTestResults)
+                {
+                    SetResultsAtFeatureLevel(featureTreeNode, testResults);
+                    SetResultsForIndividualScenariosUnderFeature(featureTreeNode, testResults);
+                }
+                else
+                {
+                    featureTreeNode.Feature.Result = TestResult.Inconclusive;
+                }
+            });
 
             features.AcceptVisitor(actionVisitor);
         }
 
-        private static void SetResultsForIndividualScenariosUnderFeature(FeatureNode featureTreeNode, ITestResults testResults)
+        private static void SetResultsForIndividualScenariosUnderFeature(FeatureNode featureTreeNode,
+            ITestResults testResults)
         {
             foreach (var featureElement in featureTreeNode.Feature.FeatureElements)
             {
-              var scenario = featureElement as Scenario;
+                var scenario = featureElement as Scenario;
 
-              if (scenario != null)
-              {
-                featureElement.Result = testResults.GetScenarioResult(scenario);
-                continue;
-              }
-
-              var scenarioOutline = featureElement as ScenarioOutline;
-
-              if (scenarioOutline != null)
-              {
-                if (testResults.SupportsExampleResults)
+                if (scenario != null)
                 {
-                  foreach (var example in scenarioOutline.Examples.SelectMany(e => e.TableArgument.DataRows))
-                  {
-                      example.Result = testResults.GetExampleResult(scenarioOutline, example.Cells.ToArray());
-                  }
+                    featureElement.Result = testResults.GetScenarioResult(scenario);
+                    continue;
+                }
 
-                  scenarioOutline.Result =
-                    scenarioOutline.Examples.SelectMany(e => e.TableArgument.DataRows).Select(row => row.Result).Merge();
-                }
-                else
+                var scenarioOutline = featureElement as ScenarioOutline;
+
+                if (scenarioOutline != null)
                 {
-                  featureElement.Result = testResults.GetScenarioOutlineResult(scenarioOutline);
+                    if (testResults.SupportsExampleResults)
+                    {
+                        foreach (var example in scenarioOutline.Examples.SelectMany(e => e.TableArgument.DataRows))
+                        {
+                            example.Result = testResults.GetExampleResult(scenarioOutline, example.Cells.ToArray());
+                        }
+
+                        scenarioOutline.Result =
+                            scenarioOutline.Examples.SelectMany(e => e.TableArgument.DataRows)
+                                .Select(row => row.Result)
+                                .Merge();
+                    }
+                    else
+                    {
+                        featureElement.Result = testResults.GetScenarioOutlineResult(scenarioOutline);
+                    }
+
+                    continue;
                 }
-                continue;
-              }
             }
         }
 

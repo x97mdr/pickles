@@ -28,7 +28,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlDocumentFormatter
     {
-        private const string documentReady =
+        private const string DocumentReady =
             "\n" +
             "$(document).ready(function() {" + "\n" +
             "  initializeToc();" + "\n" +
@@ -78,7 +78,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             body.Add(container);
 
             var head = new XElement(xmlns + "head");
-            head.Add(new XElement(xmlns + "title", string.Format("{0}", featureNode.Name)));
+            head.Add(new XElement(xmlns + "title", featureNode.Name));
 
             head.Add(
                 new XElement(
@@ -119,7 +119,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                 new XElement(
                     xmlns + "script",
                     new XAttribute("type", "text/javascript"),
-                    documentReady));
+                    DocumentReady));
 
             head.Add(new XComment(" We are using Font Awesome - http://fortawesome.github.com/Font-Awesome - licensed under CC BY 3.0 "));
 

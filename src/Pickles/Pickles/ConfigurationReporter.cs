@@ -28,17 +28,17 @@ namespace PicklesDoc.Pickles
         {
             writeToLog("Generating documentation based on the following parameters");
             writeToLog("----------------------------------------------------------");
-            writeToLog(string.Format("Feature Directory         : {0}", configuration.FeatureFolder.FullName));
-            writeToLog(string.Format("Output Directory          : {0}", configuration.OutputFolder.FullName));
-            writeToLog(string.Format("Project Name              : {0}", configuration.SystemUnderTestName));
-            writeToLog(string.Format("Project Version           : {0}", configuration.SystemUnderTestVersion));
-            writeToLog(string.Format("Language                  : {0}", configuration.Language));
-            writeToLog(string.Format("Incorporate Test Results? : {0}", configuration.HasTestResults ? "Yes" : "No"));
+            writeToLog($"Feature Directory         : {configuration.FeatureFolder.FullName}");
+            writeToLog($"Output Directory          : {configuration.OutputFolder.FullName}");
+            writeToLog($"Project Name              : {configuration.SystemUnderTestName}");
+            writeToLog($"Project Version           : {configuration.SystemUnderTestVersion}");
+            writeToLog($"Language                  : {configuration.Language}");
+            writeToLog($"Incorporate Test Results? : {(configuration.HasTestResults ? "Yes" : "No")}");
 
             if (configuration.HasTestResults)
             {
-                writeToLog(string.Format("Test Result Format        : {0}", configuration.TestResultsFormat));
-                writeToLog(string.Format("Test Result File          : {0}", configuration.TestResultsFile.FullName));
+                writeToLog($"Test Result Format        : {configuration.TestResultsFormat}");
+                writeToLog($"Test Result File          : {configuration.TestResultsFile.FullName}");
             }
         }
     }

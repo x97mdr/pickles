@@ -50,7 +50,6 @@ namespace PicklesDoc.Pickles.TestFrameworks
             return new TestResult();
         }
 
-
         public bool SupportsExampleResults
         {
           get

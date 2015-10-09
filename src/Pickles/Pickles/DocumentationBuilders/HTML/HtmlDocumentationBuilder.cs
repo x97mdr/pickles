@@ -33,7 +33,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlDocumentationBuilder : IDocumentationBuilder
     {
-      private static readonly Logger log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
+      private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
 
         private readonly Configuration configuration;
         private readonly HtmlDocumentFormatter htmlDocumentFormatter;
@@ -57,13 +57,12 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         public void Build(GeneralTree<INode> features)
         {
-            if (log.IsInfoEnabled)
+            if (Log.IsInfoEnabled)
             {
-              log.Info("Writing HTML to {0}", this.configuration.OutputFolder.FullName);
+              Log.Info("Writing HTML to {0}", this.configuration.OutputFolder.FullName);
             }
 
             this.htmlResourceWriter.WriteTo(this.configuration.OutputFolder.FullName);
-
 
             var actionVisitor = new ActionVisitor<INode>(node => this.VisitNodes(features, node));
             if (features != null)

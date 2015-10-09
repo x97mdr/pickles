@@ -65,7 +65,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
                         AddNewStyle(part, styleid, stylename);
                     }
                     else
+                    {
                         styleid = styleidFromName;
+                    }
                 }
             }
 
@@ -1225,7 +1227,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var basedOn1 = new BasedOn { Val = "Normal" };
             var nextParagraphStyle1 = new NextParagraphStyle { Val = "Normal" };
             var linkedStyle1 = new LinkedStyle { Val = "Heading1Char" };
-            var uIPriority1 = new UIPriority { Val = 9 };
+            var uiPriority1 = new UIPriority { Val = 9 };
             var primaryStyle2 = new PrimaryStyle();
             var rsid2 = new Rsid { Val = "0016335E" };
 
@@ -1265,7 +1267,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             style2.Append(basedOn1);
             style2.Append(nextParagraphStyle1);
             style2.Append(linkedStyle1);
-            style2.Append(uIPriority1);
+            style2.Append(uiPriority1);
             style2.Append(primaryStyle2);
             style2.Append(rsid2);
             style2.Append(styleParagraphProperties2);
@@ -1276,7 +1278,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var basedOn2 = new BasedOn { Val = "Normal" };
             var nextParagraphStyle2 = new NextParagraphStyle { Val = "Normal" };
             var linkedStyle2 = new LinkedStyle { Val = "Heading2Char" };
-            var uIPriority2 = new UIPriority { Val = 9 };
+            var uiPriority2 = new UIPriority { Val = 9 };
             var unhideWhenUsed1 = new UnhideWhenUsed();
             var primaryStyle3 = new PrimaryStyle();
             var rsid3 = new Rsid { Val = "0016335E" };
@@ -1317,7 +1319,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             style3.Append(basedOn2);
             style3.Append(nextParagraphStyle2);
             style3.Append(linkedStyle2);
-            style3.Append(uIPriority2);
+            style3.Append(uiPriority2);
             style3.Append(unhideWhenUsed1);
             style3.Append(primaryStyle3);
             style3.Append(rsid3);
@@ -1329,7 +1331,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var basedOn3 = new BasedOn { Val = "Normal" };
             var nextParagraphStyle3 = new NextParagraphStyle { Val = "Normal" };
             var linkedStyle3 = new LinkedStyle { Val = "Heading3Char" };
-            var uIPriority3 = new UIPriority { Val = 9 };
+            var uiPriority3 = new UIPriority { Val = 9 };
             var unhideWhenUsed2 = new UnhideWhenUsed();
             var primaryStyle4 = new PrimaryStyle();
             var rsid4 = new Rsid { Val = "0016335E" };
@@ -1366,7 +1368,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             style4.Append(basedOn3);
             style4.Append(nextParagraphStyle3);
             style4.Append(linkedStyle3);
-            style4.Append(uIPriority3);
+            style4.Append(uiPriority3);
             style4.Append(unhideWhenUsed2);
             style4.Append(primaryStyle4);
             style4.Append(rsid4);
@@ -1375,18 +1377,18 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
             var style5 = new Style { Type = StyleValues.Character, StyleId = "DefaultParagraphFont", Default = true };
             var styleName5 = new StyleName { Val = "Default Paragraph Font" };
-            var uIPriority4 = new UIPriority { Val = 1 };
+            var uiPriority4 = new UIPriority { Val = 1 };
             var semiHidden1 = new SemiHidden();
             var unhideWhenUsed3 = new UnhideWhenUsed();
 
             style5.Append(styleName5);
-            style5.Append(uIPriority4);
+            style5.Append(uiPriority4);
             style5.Append(semiHidden1);
             style5.Append(unhideWhenUsed3);
 
             var style6 = new Style { Type = StyleValues.Table, StyleId = "TableNormal", Default = true };
             var styleName6 = new StyleName { Val = "Normal Table" };
-            var uIPriority5 = new UIPriority { Val = 99 };
+            var uiPriority5 = new UIPriority { Val = 99 };
             var semiHidden2 = new SemiHidden();
             var unhideWhenUsed4 = new UnhideWhenUsed();
             var primaryStyle5 = new PrimaryStyle();
@@ -1409,7 +1411,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             styleTableProperties1.Append(tableCellMarginDefault1);
 
             style6.Append(styleName6);
-            style6.Append(uIPriority5);
+            style6.Append(uiPriority5);
             style6.Append(semiHidden2);
             style6.Append(unhideWhenUsed4);
             style6.Append(primaryStyle5);
@@ -1417,12 +1419,12 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
             var style7 = new Style { Type = StyleValues.Numbering, StyleId = "NoList", Default = true };
             var styleName7 = new StyleName { Val = "No List" };
-            var uIPriority6 = new UIPriority { Val = 99 };
+            var uiPriority6 = new UIPriority { Val = 99 };
             var semiHidden3 = new SemiHidden();
             var unhideWhenUsed5 = new UnhideWhenUsed();
 
             style7.Append(styleName7);
-            style7.Append(uIPriority6);
+            style7.Append(uiPriority6);
             style7.Append(semiHidden3);
             style7.Append(unhideWhenUsed5);
 
@@ -1430,7 +1432,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var styleName8 = new StyleName { Val = "Heading 1 Char" };
             var basedOn4 = new BasedOn { Val = "DefaultParagraphFont" };
             var linkedStyle4 = new LinkedStyle { Val = "Heading1" };
-            var uIPriority7 = new UIPriority { Val = 9 };
+            var uiPriority7 = new UIPriority { Val = 9 };
             var rsid5 = new Rsid { Val = "0016335E" };
 
             var styleRunProperties4 = new StyleRunProperties();
@@ -1457,7 +1459,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             style8.Append(styleName8);
             style8.Append(basedOn4);
             style8.Append(linkedStyle4);
-            style8.Append(uIPriority7);
+            style8.Append(uiPriority7);
             style8.Append(rsid5);
             style8.Append(styleRunProperties4);
 
@@ -1465,7 +1467,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var styleName9 = new StyleName { Val = "Heading 2 Char" };
             var basedOn5 = new BasedOn { Val = "DefaultParagraphFont" };
             var linkedStyle5 = new LinkedStyle { Val = "Heading2" };
-            var uIPriority8 = new UIPriority { Val = 9 };
+            var uiPriority8 = new UIPriority { Val = 9 };
             var rsid6 = new Rsid { Val = "0016335E" };
 
             var styleRunProperties5 = new StyleRunProperties();
@@ -1492,7 +1494,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             style9.Append(styleName9);
             style9.Append(basedOn5);
             style9.Append(linkedStyle5);
-            style9.Append(uIPriority8);
+            style9.Append(uiPriority8);
             style9.Append(rsid6);
             style9.Append(styleRunProperties5);
 
@@ -1500,7 +1502,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var styleName10 = new StyleName { Val = "Heading 3 Char" };
             var basedOn6 = new BasedOn { Val = "DefaultParagraphFont" };
             var linkedStyle6 = new LinkedStyle { Val = "Heading3" };
-            var uIPriority9 = new UIPriority { Val = 9 };
+            var uiPriority9 = new UIPriority { Val = 9 };
             var rsid7 = new Rsid { Val = "0016335E" };
 
             var styleRunProperties6 = new StyleRunProperties();
@@ -1523,14 +1525,14 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             style10.Append(styleName10);
             style10.Append(basedOn6);
             style10.Append(linkedStyle6);
-            style10.Append(uIPriority9);
+            style10.Append(uiPriority9);
             style10.Append(rsid7);
             style10.Append(styleRunProperties6);
 
             var style11 = new Style { Type = StyleValues.Table, StyleId = "TableGrid" };
             var styleName11 = new StyleName { Val = "Table Grid" };
             var basedOn7 = new BasedOn { Val = "TableNormal" };
-            var uIPriority10 = new UIPriority { Val = 59 };
+            var uiPriority10 = new UIPriority { Val = 59 };
             var rsid8 = new Rsid { Val = "00BA40EF" };
 
             var styleParagraphProperties5 = new StyleParagraphProperties();
@@ -1576,7 +1578,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
             style11.Append(styleName11);
             style11.Append(basedOn7);
-            style11.Append(uIPriority10);
+            style11.Append(uiPriority10);
             style11.Append(rsid8);
             style11.Append(styleParagraphProperties5);
             style11.Append(styleTableProperties2);
@@ -1584,7 +1586,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var style12 = new Style { Type = StyleValues.Table, StyleId = "LightList-Accent1" };
             var styleName12 = new StyleName { Val = "Light List Accent 1" };
             var basedOn8 = new BasedOn { Val = "TableNormal" };
-            var uIPriority11 = new UIPriority { Val = 61 };
+            var uiPriority11 = new UIPriority { Val = 61 };
             var rsid9 = new Rsid { Val = "00BA40EF" };
 
             var styleParagraphProperties6 = new StyleParagraphProperties();
@@ -1888,7 +1890,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
             style12.Append(styleName12);
             style12.Append(basedOn8);
-            style12.Append(uIPriority11);
+            style12.Append(uiPriority11);
             style12.Append(rsid9);
             style12.Append(styleParagraphProperties6);
             style12.Append(styleTableProperties3);
@@ -1902,7 +1904,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var style13 = new Style { Type = StyleValues.Table, StyleId = "MediumGrid3-Accent1" };
             var styleName13 = new StyleName { Val = "Medium Grid 3 Accent 1" };
             var basedOn9 = new BasedOn { Val = "TableNormal" };
-            var uIPriority12 = new UIPriority { Val = 69 };
+            var uiPriority12 = new UIPriority { Val = 69 };
             var rsid10 = new Rsid { Val = "00BA40EF" };
 
             var styleParagraphProperties9 = new StyleParagraphProperties();
@@ -2423,7 +2425,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
             style13.Append(styleName13);
             style13.Append(basedOn9);
-            style13.Append(uIPriority12);
+            style13.Append(uiPriority12);
             style13.Append(rsid10);
             style13.Append(styleParagraphProperties9);
             style13.Append(styleTableProperties4);
@@ -2438,7 +2440,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var style14 = new Style { Type = StyleValues.Table, StyleId = "MediumShading1-Accent1" };
             var styleName14 = new StyleName { Val = "Medium Shading 1 Accent 1" };
             var basedOn10 = new BasedOn { Val = "TableNormal" };
-            var uIPriority13 = new UIPriority { Val = 63 };
+            var uiPriority13 = new UIPriority { Val = 63 };
             var rsid11 = new Rsid { Val = "00BA40EF" };
 
             var styleParagraphProperties10 = new StyleParagraphProperties();
@@ -2776,7 +2778,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
             style14.Append(styleName14);
             style14.Append(basedOn10);
-            style14.Append(uIPriority13);
+            style14.Append(uiPriority13);
             style14.Append(rsid11);
             style14.Append(styleParagraphProperties10);
             style14.Append(styleTableProperties5);
@@ -2791,7 +2793,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var style15 = new Style { Type = StyleValues.Table, StyleId = "LightGrid-Accent1" };
             var styleName15 = new StyleName { Val = "Light Grid Accent 1" };
             var basedOn11 = new BasedOn { Val = "TableNormal" };
-            var uIPriority14 = new UIPriority { Val = 62 };
+            var uiPriority14 = new UIPriority { Val = 62 };
             var rsid12 = new Rsid { Val = "00BA40EF" };
 
             var styleParagraphProperties13 = new StyleParagraphProperties();
@@ -3330,7 +3332,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
             style15.Append(styleName15);
             style15.Append(basedOn11);
-            style15.Append(uIPriority14);
+            style15.Append(uiPriority14);
             style15.Append(rsid12);
             style15.Append(styleParagraphProperties13);
             style15.Append(styleTableProperties6);
@@ -3347,7 +3349,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var basedOn12 = new BasedOn { Val = "Normal" };
             var nextParagraphStyle4 = new NextParagraphStyle { Val = "Normal" };
             var linkedStyle7 = new LinkedStyle { Val = "QuoteChar" };
-            var uIPriority15 = new UIPriority { Val = 29 };
+            var uiPriority15 = new UIPriority { Val = 29 };
             var primaryStyle6 = new PrimaryStyle();
             var rsid13 = new Rsid { Val = "00851582" };
 
@@ -3379,7 +3381,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             style16.Append(basedOn12);
             style16.Append(nextParagraphStyle4);
             style16.Append(linkedStyle7);
-            style16.Append(uIPriority15);
+            style16.Append(uiPriority15);
             style16.Append(primaryStyle6);
             style16.Append(rsid13);
             style16.Append(styleParagraphProperties16);
@@ -3389,7 +3391,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var styleName17 = new StyleName { Val = "Quote Char" };
             var basedOn13 = new BasedOn { Val = "DefaultParagraphFont" };
             var linkedStyle8 = new LinkedStyle { Val = "Quote" };
-            var uIPriority16 = new UIPriority { Val = 29 };
+            var uiPriority16 = new UIPriority { Val = 29 };
             var rsid14 = new Rsid { Val = "00851582" };
 
             var styleRunProperties8 = new StyleRunProperties();
@@ -3404,7 +3406,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             style17.Append(styleName17);
             style17.Append(basedOn13);
             style17.Append(linkedStyle8);
-            style17.Append(uIPriority16);
+            style17.Append(uiPriority16);
             style17.Append(rsid14);
             style17.Append(styleRunProperties8);
 
@@ -3412,7 +3414,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var styleName18 = new StyleName { Val = "TOC Heading" };
             var basedOn14 = new BasedOn { Val = "Heading1" };
             var nextParagraphStyle5 = new NextParagraphStyle { Val = "Normal" };
-            var uIPriority17 = new UIPriority { Val = 39 };
+            var uiPriority17 = new UIPriority { Val = 39 };
             var semiHidden4 = new SemiHidden();
             var unhideWhenUsed6 = new UnhideWhenUsed();
             var primaryStyle7 = new PrimaryStyle();
@@ -3426,7 +3428,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             style18.Append(styleName18);
             style18.Append(basedOn14);
             style18.Append(nextParagraphStyle5);
-            style18.Append(uIPriority17);
+            style18.Append(uiPriority17);
             style18.Append(semiHidden4);
             style18.Append(unhideWhenUsed6);
             style18.Append(primaryStyle7);
@@ -3438,7 +3440,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var basedOn15 = new BasedOn { Val = "Normal" };
             var nextParagraphStyle6 = new NextParagraphStyle { Val = "Normal" };
             var autoRedefine1 = new AutoRedefine();
-            var uIPriority18 = new UIPriority { Val = 39 };
+            var uiPriority18 = new UIPriority { Val = 39 };
             var unhideWhenUsed7 = new UnhideWhenUsed();
             var rsid16 = new Rsid { Val = "00A636FD" };
 
@@ -3451,7 +3453,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             style19.Append(basedOn15);
             style19.Append(nextParagraphStyle6);
             style19.Append(autoRedefine1);
-            style19.Append(uIPriority18);
+            style19.Append(uiPriority18);
             style19.Append(unhideWhenUsed7);
             style19.Append(rsid16);
             style19.Append(styleParagraphProperties18);
@@ -3461,7 +3463,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var basedOn16 = new BasedOn { Val = "Normal" };
             var nextParagraphStyle7 = new NextParagraphStyle { Val = "Normal" };
             var autoRedefine2 = new AutoRedefine();
-            var uIPriority19 = new UIPriority { Val = 39 };
+            var uiPriority19 = new UIPriority { Val = 39 };
             var unhideWhenUsed8 = new UnhideWhenUsed();
             var rsid17 = new Rsid { Val = "00A636FD" };
 
@@ -3476,7 +3478,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             style20.Append(basedOn16);
             style20.Append(nextParagraphStyle7);
             style20.Append(autoRedefine2);
-            style20.Append(uIPriority19);
+            style20.Append(uiPriority19);
             style20.Append(unhideWhenUsed8);
             style20.Append(rsid17);
             style20.Append(styleParagraphProperties19);
@@ -3486,7 +3488,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var basedOn17 = new BasedOn { Val = "Normal" };
             var nextParagraphStyle8 = new NextParagraphStyle { Val = "Normal" };
             var autoRedefine3 = new AutoRedefine();
-            var uIPriority20 = new UIPriority { Val = 39 };
+            var uiPriority20 = new UIPriority { Val = 39 };
             var unhideWhenUsed9 = new UnhideWhenUsed();
             var rsid18 = new Rsid { Val = "00A636FD" };
 
@@ -3501,7 +3503,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             style21.Append(basedOn17);
             style21.Append(nextParagraphStyle8);
             style21.Append(autoRedefine3);
-            style21.Append(uIPriority20);
+            style21.Append(uiPriority20);
             style21.Append(unhideWhenUsed9);
             style21.Append(rsid18);
             style21.Append(styleParagraphProperties20);
@@ -3509,7 +3511,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var style22 = new Style { Type = StyleValues.Character, StyleId = "Hyperlink" };
             var styleName22 = new StyleName { Val = "Hyperlink" };
             var basedOn18 = new BasedOn { Val = "DefaultParagraphFont" };
-            var uIPriority21 = new UIPriority { Val = 99 };
+            var uiPriority21 = new UIPriority { Val = 99 };
             var unhideWhenUsed10 = new UnhideWhenUsed();
             var rsid19 = new Rsid { Val = "00A636FD" };
 
@@ -3522,7 +3524,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
             style22.Append(styleName22);
             style22.Append(basedOn18);
-            style22.Append(uIPriority21);
+            style22.Append(uiPriority21);
             style22.Append(unhideWhenUsed10);
             style22.Append(rsid19);
             style22.Append(styleRunProperties9);
@@ -3531,7 +3533,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var styleName23 = new StyleName { Val = "Balloon Text" };
             var basedOn19 = new BasedOn { Val = "Normal" };
             var linkedStyle9 = new LinkedStyle { Val = "BalloonTextChar" };
-            var uIPriority22 = new UIPriority { Val = 99 };
+            var uiPriority22 = new UIPriority { Val = 99 };
             var semiHidden5 = new SemiHidden();
             var unhideWhenUsed11 = new UnhideWhenUsed();
             var rsid20 = new Rsid { Val = "00A636FD" };
@@ -3553,7 +3555,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             style23.Append(styleName23);
             style23.Append(basedOn19);
             style23.Append(linkedStyle9);
-            style23.Append(uIPriority22);
+            style23.Append(uiPriority22);
             style23.Append(semiHidden5);
             style23.Append(unhideWhenUsed11);
             style23.Append(rsid20);
@@ -3564,7 +3566,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var styleName24 = new StyleName { Val = "Balloon Text Char" };
             var basedOn20 = new BasedOn { Val = "DefaultParagraphFont" };
             var linkedStyle10 = new LinkedStyle { Val = "BalloonText" };
-            var uIPriority23 = new UIPriority { Val = 99 };
+            var uiPriority23 = new UIPriority { Val = 99 };
             var semiHidden6 = new SemiHidden();
             var rsid21 = new Rsid { Val = "00A636FD" };
 
@@ -3580,7 +3582,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             style24.Append(styleName24);
             style24.Append(basedOn20);
             style24.Append(linkedStyle10);
-            style24.Append(uIPriority23);
+            style24.Append(uiPriority23);
             style24.Append(semiHidden6);
             style24.Append(rsid21);
             style24.Append(styleRunProperties11);
@@ -3704,7 +3706,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var styleName1 = new StyleName { Val = "header" };
             var basedOn1 = new BasedOn { Val = "Normal" };
             var linkedStyle1 = new LinkedStyle { Val = "HeaderChar" };
-            var uIPriority1 = new UIPriority { Val = 99 };
+            var uiPriority1 = new UIPriority { Val = 99 };
             var unhideWhenUsed1 = new UnhideWhenUsed();
             var rsid1 = new Rsid { Val = "005641D2" };
 
@@ -3724,7 +3726,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             style1.Append(styleName1);
             style1.Append(basedOn1);
             style1.Append(linkedStyle1);
-            style1.Append(uIPriority1);
+            style1.Append(uiPriority1);
             style1.Append(unhideWhenUsed1);
             style1.Append(rsid1);
             style1.Append(styleParagraphProperties1);
@@ -3737,13 +3739,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var styleName1 = new StyleName { Val = "Header Char" };
             var basedOn1 = new BasedOn { Val = "DefaultParagraphFont" };
             var linkedStyle1 = new LinkedStyle { Val = "Header" };
-            var uIPriority1 = new UIPriority { Val = 99 };
+            var uiPriority1 = new UIPriority { Val = 99 };
             var rsid1 = new Rsid { Val = "005641D2" };
 
             style1.Append(styleName1);
             style1.Append(basedOn1);
             style1.Append(linkedStyle1);
-            style1.Append(uIPriority1);
+            style1.Append(uiPriority1);
             style1.Append(rsid1);
             return style1;
         }
@@ -3754,7 +3756,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var styleName1 = new StyleName { Val = "footer" };
             var basedOn1 = new BasedOn { Val = "Normal" };
             var linkedStyle1 = new LinkedStyle { Val = "FooterChar" };
-            var uIPriority1 = new UIPriority { Val = 99 };
+            var uiPriority1 = new UIPriority { Val = 99 };
             var semiHidden1 = new SemiHidden();
             var unhideWhenUsed1 = new UnhideWhenUsed();
             var rsid1 = new Rsid { Val = "005641D2" };
@@ -3775,7 +3777,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             style1.Append(styleName1);
             style1.Append(basedOn1);
             style1.Append(linkedStyle1);
-            style1.Append(uIPriority1);
+            style1.Append(uiPriority1);
             style1.Append(semiHidden1);
             style1.Append(unhideWhenUsed1);
             style1.Append(rsid1);
@@ -3789,14 +3791,14 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             var styleName1 = new StyleName { Val = "Footer Char" };
             var basedOn1 = new BasedOn { Val = "DefaultParagraphFont" };
             var linkedStyle1 = new LinkedStyle { Val = "Footer" };
-            var uIPriority1 = new UIPriority { Val = 99 };
+            var uiPriority1 = new UIPriority { Val = 99 };
             var semiHidden1 = new SemiHidden();
             var rsid1 = new Rsid { Val = "005641D2" };
 
             style1.Append(styleName1);
             style1.Append(basedOn1);
             style1.Append(linkedStyle1);
-            style1.Append(uIPriority1);
+            style1.Append(uiPriority1);
             style1.Append(semiHidden1);
             style1.Append(rsid1);
             return style1;
