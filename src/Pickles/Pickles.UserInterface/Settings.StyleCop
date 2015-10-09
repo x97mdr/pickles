@@ -1,1 +1,12 @@
-<StyleCopSettings Version="105" />
+<StyleCopSettings Version="105">
+  <GlobalSettings>
+    <CollectionProperty Name="RecognizedWords">
+      <Value>bindable</Value>
+      <Value>ch</Value>
+      <Value>galasoft</Value>
+      <Value>mvvm</Value>
+      <Value>mvvminpc</Value>
+      <Value>xaml</Value>
+    </CollectionProperty>
+  </GlobalSettings>
+</StyleCopSettings>
