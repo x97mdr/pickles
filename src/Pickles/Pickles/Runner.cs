@@ -67,8 +67,7 @@ namespace PicklesDoc.Pickles
             }
         }
 
-        private static void ApplyTestResultsToFeatures(IContainer container, Configuration configuration,
-            GeneralTree<INode> features)
+        private static void ApplyTestResultsToFeatures(IContainer container, Configuration configuration, GeneralTree<INode> features)
         {
             var testResults = container.Resolve<ITestResults>();
 
@@ -94,8 +93,7 @@ namespace PicklesDoc.Pickles
             features.AcceptVisitor(actionVisitor);
         }
 
-        private static void SetResultsForIndividualScenariosUnderFeature(FeatureNode featureTreeNode,
-            ITestResults testResults)
+        private static void SetResultsForIndividualScenariosUnderFeature(FeatureNode featureTreeNode, ITestResults testResults)
         {
             foreach (var featureElement in featureTreeNode.Feature.FeatureElements)
             {
