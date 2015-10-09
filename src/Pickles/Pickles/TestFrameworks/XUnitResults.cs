@@ -29,13 +29,13 @@ namespace PicklesDoc.Pickles.TestFrameworks
   {
     private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
 
-    public XUnitResults(Configuration configuration, xUnitExampleSignatureBuilder exampleSignatureBuilder)
+    public XUnitResults(Configuration configuration, XUnitExampleSignatureBuilder exampleSignatureBuilder)
       : base(true, configuration)
     {
       this.SetExampleSignatureBuilder(exampleSignatureBuilder);
     }
 
-    public void SetExampleSignatureBuilder(xUnitExampleSignatureBuilder exampleSignatureBuilder)
+    public void SetExampleSignatureBuilder(XUnitExampleSignatureBuilder exampleSignatureBuilder)
     {
       foreach (var testResult in TestResults.OfType<XUnitSingleResults>())
       {

@@ -32,9 +32,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
         private readonly Configuration configuration;
         private readonly ITestResults testResults;
 
-        public ExcelScenarioFormatter(ExcelStepFormatter excelStepFormatter,
-                                      Configuration configuration,
-                                      ITestResults testResults)
+        public ExcelScenarioFormatter(
+            ExcelStepFormatter excelStepFormatter,
+            Configuration configuration,
+            ITestResults testResults)
         {
             this.excelStepFormatter = excelStepFormatter;
             this.configuration = configuration;
@@ -51,9 +52,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
             var results = this.testResults.GetScenarioResult(scenario);
             if (this.configuration.HasTestResults && results.WasExecuted)
             {
-                worksheet.Cell(originalRow, "B").Style.Fill.SetBackgroundColor(results.WasSuccessful
-                                                                                   ? XLColor.AppleGreen
-                                                                                   : XLColor.CandyAppleRed);
+                worksheet.Cell(originalRow, "B").Style.Fill.SetBackgroundColor(
+                    results.WasSuccessful
+                        ? XLColor.AppleGreen
+                        : XLColor.CandyAppleRed);
             }
 
 

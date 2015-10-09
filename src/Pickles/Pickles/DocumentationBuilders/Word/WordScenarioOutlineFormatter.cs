@@ -33,8 +33,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
         private readonly WordStepFormatter wordStepFormatter;
         private readonly WordTableFormatter wordTableFormatter;
 
-        public WordScenarioOutlineFormatter(WordStepFormatter wordStepFormatter, WordTableFormatter wordTableFormatter,
-            Configuration configuration, ITestResults testResults)
+        public WordScenarioOutlineFormatter(WordStepFormatter wordStepFormatter, WordTableFormatter wordTableFormatter, Configuration configuration, ITestResults testResults)
         {
             this.wordStepFormatter = wordStepFormatter;
             this.wordTableFormatter = wordTableFormatter;

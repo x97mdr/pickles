@@ -42,11 +42,14 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
         private readonly IFileSystem fileSystem;
         private readonly HtmlTableOfContentsFormatter htmlTableOfContentsFormatter;
 
-        public HtmlDocumentFormatter(Configuration configuration, HtmlHeaderFormatter htmlHeaderFormatter,
-                                     HtmlTableOfContentsFormatter htmlTableOfContentsFormatter,
-                                     HtmlContentFormatter htmlContentFormatter, HtmlFooterFormatter htmlFooterFormatter,
-                                     HtmlResourceSet htmlResources,
-          IFileSystem fileSystem)
+        public HtmlDocumentFormatter(
+            Configuration configuration,
+            HtmlHeaderFormatter htmlHeaderFormatter,
+            HtmlTableOfContentsFormatter htmlTableOfContentsFormatter,
+            HtmlContentFormatter htmlContentFormatter,
+            HtmlFooterFormatter htmlFooterFormatter,
+            HtmlResourceSet htmlResources,
+            IFileSystem fileSystem)
         {
             this.configuration = configuration;
             this.htmlHeaderFormatter = htmlHeaderFormatter;
@@ -54,15 +57,15 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             this.htmlContentFormatter = htmlContentFormatter;
             this.htmlFooterFormatter = htmlFooterFormatter;
             this.htmlResources = htmlResources;
-          this.fileSystem = fileSystem;
+            this.fileSystem = fileSystem;
         }
 
-        public XDocument Format(INode featureNode, GeneralTree<INode> features,
-                                DirectoryInfoBase rootFolder)
+        public XDocument Format(INode featureNode, GeneralTree<INode> features, DirectoryInfoBase rootFolder)
         {
             XNamespace xmlns = HtmlNamespace.Xhtml;
-            string featureNodeOutputPath = this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName,
-                                                        featureNode.RelativePathFromRoot);
+            string featureNodeOutputPath = this.fileSystem.Path.Combine(
+                this.configuration.OutputFolder.FullName,
+                featureNode.RelativePathFromRoot);
             var featureNodeOutputUri = new Uri(featureNodeOutputPath);
 
             var container = new XElement(xmlns + "div", new XAttribute("id", "container"));
@@ -77,45 +80,62 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             var head = new XElement(xmlns + "head");
             head.Add(new XElement(xmlns + "title", string.Format("{0}", featureNode.Name)));
 
-            head.Add(new XElement(xmlns + "link",
-                                  new XAttribute("rel", "stylesheet"),
-                                  new XAttribute("href",
-                                                 featureNodeOutputUri.MakeRelativeUri(this.htmlResources.MasterStylesheet)),
-                                  new XAttribute("type", "text/css")));
+            head.Add(
+                new XElement(
+                    xmlns + "link",
+                    new XAttribute("rel", "stylesheet"),
+                    new XAttribute(
+                        "href",
+                        featureNodeOutputUri.MakeRelativeUri(this.htmlResources.MasterStylesheet)),
+                    new XAttribute("type", "text/css")));
 
-            head.Add(new XElement(xmlns + "link",
-                                  new XAttribute("rel", "stylesheet"),
-                                  new XAttribute("href",
-                                                 featureNodeOutputUri.MakeRelativeUri(this.htmlResources.PrintStylesheet)),
-                                  new XAttribute("type", "text/css"),
-                                  new XAttribute("media", "print")));
+            head.Add(
+                new XElement(
+                    xmlns + "link",
+                    new XAttribute("rel", "stylesheet"),
+                    new XAttribute(
+                        "href",
+                        featureNodeOutputUri.MakeRelativeUri(this.htmlResources.PrintStylesheet)),
+                    new XAttribute("type", "text/css"),
+                    new XAttribute("media", "print")));
 
-            head.Add(new XElement(xmlns + "script",
-                                  new XAttribute("src", featureNodeOutputUri.MakeRelativeUri(this.htmlResources.jQueryScript)),
-                                  new XAttribute("type", "text/javascript"),
-                                  new XText(string.Empty)));
+            head.Add(
+                new XElement(
+                    xmlns + "script",
+                    new XAttribute("src", featureNodeOutputUri.MakeRelativeUri(this.htmlResources.jQueryScript)),
+                    new XAttribute("type", "text/javascript"),
+                    new XText(string.Empty)));
 
-            head.Add(new XElement(xmlns + "script",
-                                  new XAttribute("src",
-                                                 featureNodeOutputUri.MakeRelativeUri(this.htmlResources.AdditionalScripts)),
-                                  new XAttribute("type", "text/javascript"),
-                                  new XText(string.Empty)));
+            head.Add(
+                new XElement(
+                    xmlns + "script",
+                    new XAttribute(
+                        "src",
+                        featureNodeOutputUri.MakeRelativeUri(this.htmlResources.AdditionalScripts)),
+                    new XAttribute("type", "text/javascript"),
+                    new XText(string.Empty)));
 
-            head.Add(new XElement(xmlns + "script",
-                                  new XAttribute("type", "text/javascript"),
-                                  documentReady));
+            head.Add(
+                new XElement(
+                    xmlns + "script",
+                    new XAttribute("type", "text/javascript"),
+                    documentReady));
 
             head.Add(new XComment(" We are using Font Awesome - http://fortawesome.github.com/Font-Awesome - licensed under CC BY 3.0 "));
 
-            var html = new XElement(xmlns + "html",
-                                    new XAttribute(XNamespace.Xml + "lang", "en"),
-                                    head,
-                                    body);
+            var html = new XElement(
+                xmlns + "html",
+                new XAttribute(XNamespace.Xml + "lang", "en"),
+                head,
+                body);
 
             var document = new XDocument(
                 new XDeclaration("1.0", "UTF-8", null),
-                new XDocumentType("html", "-//W3C//DTD XHTML 1.0 Strict//EN",
-                                  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd", string.Empty),
+                new XDocumentType(
+                    "html",
+                    "-//W3C//DTD XHTML 1.0 Strict//EN",
+                    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd",
+                    string.Empty),
                 html);
 
             return document;

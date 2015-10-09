@@ -39,7 +39,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         public XElement Format(string descriptionText)
         {
-            if (String.IsNullOrEmpty(descriptionText)) return null;
+            if (string.IsNullOrEmpty(descriptionText))
+            {
+                return null;
+            }
 
             string markdownResult = "<div>" + this.markdown.Transform(descriptionText) + "</div>";
             XElement descriptionElements = XElement.Parse(markdownResult);

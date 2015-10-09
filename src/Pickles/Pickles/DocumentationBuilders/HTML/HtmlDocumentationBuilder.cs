@@ -23,9 +23,9 @@ using System.IO.Abstractions;
 using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
-using NLog;
 using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
+using NLog;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.Extensions;
 

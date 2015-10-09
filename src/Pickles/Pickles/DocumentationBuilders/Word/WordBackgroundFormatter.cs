@@ -66,7 +66,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
                 }
             }
 
-            cell.Append(CreateNormalParagraph("")); // Is there a better way to generate a new empty line?
+            cell.Append(CreateNormalParagraph(string.Empty)); // Is there a better way to generate a new empty line?
             row.Append(cell);
             table.Append(row);
 

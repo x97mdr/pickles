@@ -143,7 +143,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
         public void ThenCanReadIndividualResultsFromScenarioOutline_AllPass_ShouldBeTestResultPassed()
         {
           var results = ParseResultsFile();
-          results.SetExampleSignatureBuilder(new xUnitExampleSignatureBuilder());
+          results.SetExampleSignatureBuilder(new XUnitExampleSignatureBuilder());
 
           var feature = new Feature { Name = "Scenario Outlines" };
 
@@ -166,7 +166,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
         public void ThenCanReadIndividualResultsFromScenarioOutline_OneFailed_ShouldBeTestResultFailed_xUnitDoesNotSupportInconclusive()
         {
           var results = ParseResultsFile();
-          results.SetExampleSignatureBuilder(new xUnitExampleSignatureBuilder());
+          results.SetExampleSignatureBuilder(new XUnitExampleSignatureBuilder());
 
           var feature = new Feature { Name = "Scenario Outlines" };
 
@@ -189,7 +189,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
         public void ThenCanReadIndividualResultsFromScenarioOutline_OneFailed_ShouldBeTestResultFailed()
         {
           var results = ParseResultsFile();
-          results.SetExampleSignatureBuilder(new xUnitExampleSignatureBuilder());
+          results.SetExampleSignatureBuilder(new XUnitExampleSignatureBuilder());
 
           var feature = new Feature { Name = "Scenario Outlines" };
 
@@ -212,7 +212,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
         public void ThenCanReadIndividualResultsFromScenarioOutline_MultipleExampleSections_ShouldBeTestResultFailed()
         {
           var results = ParseResultsFile();
-          results.SetExampleSignatureBuilder(new xUnitExampleSignatureBuilder());
+          results.SetExampleSignatureBuilder(new XUnitExampleSignatureBuilder());
 
           var feature = new Feature { Name = "Scenario Outlines" };
 
@@ -244,7 +244,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
         public void ThenCanReadResultsWithBackslashes()
         {
           var results = ParseResultsFile();
-          results.SetExampleSignatureBuilder(new xUnitExampleSignatureBuilder());
+          results.SetExampleSignatureBuilder(new XUnitExampleSignatureBuilder());
 
           var feature = new Feature { Name = "Scenario Outlines" };
 

@@ -40,8 +40,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
             worksheet.Cell(row++, column).Value = directoryName;
         }
 
-        public void BuildTableOfContents(XLWorkbook workbook, IXLWorksheet worksheet, ref int row, int column,
-                                         GeneralTree<INode> features)
+        public void BuildTableOfContents(XLWorkbook workbook, IXLWorksheet worksheet, ref int row, int column, GeneralTree<INode> features)
         {
             foreach (var childNode in features.ChildNodes)
             {

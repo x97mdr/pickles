@@ -40,7 +40,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
             var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers" };
             var exampleRow = new[] { "40", "50", "90" };
 
-            var signatureBuilder = Container.Resolve<xUnitExampleSignatureBuilder>();
+            var signatureBuilder = Container.Resolve<XUnitExampleSignatureBuilder>();
             Regex signature = signatureBuilder.Build(scenarioOutline, exampleRow);
 
           var isMatch = signature.IsMatch("Pickles.TestHarness.xUnit.AdditionFeature.AddingSeveralNumbers(firstNumber: \"40\", secondNumber: \"50\", result: \"90\", exampleTags: System.String[])".ToLowerInvariant());

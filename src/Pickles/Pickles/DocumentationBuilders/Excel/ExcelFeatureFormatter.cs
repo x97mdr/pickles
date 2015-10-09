@@ -18,28 +18,29 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.Reflection;
 using ClosedXML.Excel;
 using NLog;
 using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks;
-using System.Collections.Generic;
-using System.Reflection;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 {
     public class ExcelFeatureFormatter
     {
-        private static readonly Logger log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
+        private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
 
         private readonly ExcelScenarioFormatter excelScenarioFormatter;
         private readonly ExcelScenarioOutlineFormatter excelScenarioOutlineFormatter;
         private readonly Configuration configuration;
         private readonly ITestResults testResults;
 
-        public ExcelFeatureFormatter(ExcelScenarioFormatter excelScenarioFormatter,
-                                     ExcelScenarioOutlineFormatter excelScenarioOutlineFormatter,
-                                     Configuration configuration,
-                                     ITestResults testResults)
+        public ExcelFeatureFormatter(
+            ExcelScenarioFormatter excelScenarioFormatter,
+            ExcelScenarioOutlineFormatter excelScenarioOutlineFormatter,
+            Configuration configuration,
+            ITestResults testResults)
         {
             this.excelScenarioFormatter = excelScenarioFormatter;
             this.excelScenarioOutlineFormatter = excelScenarioOutlineFormatter;
@@ -59,7 +60,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
             else
             {
                 var description = feature.Description.Substring(0, short.MaxValue);
-                log.Warn("The description of feature {0} was truncated because of cell size limitations in Excel.", feature.Name);
+                Log.Warn("The description of feature {0} was truncated because of cell size limitations in Excel.", feature.Name);
                 worksheet.Cell("B2").Value = description;
             }
 
@@ -70,8 +71,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
             if (this.configuration.HasTestResults && results.WasExecuted)
             {
                 worksheet.Cell("A1").Style.Fill.SetBackgroundColor(results.WasSuccessful
-                                                                       ? XLColor.AppleGreen
-                                                                       : XLColor.CandyAppleRed);
+                    ? XLColor.AppleGreen
+                    : XLColor.CandyAppleRed);
             }
 
             var featureElementsToRender = new List<IFeatureElement>();

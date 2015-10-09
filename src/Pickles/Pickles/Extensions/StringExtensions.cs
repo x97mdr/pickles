@@ -29,15 +29,15 @@ namespace PicklesDoc.Pickles.Extensions
         public static string ExpandWikiWord(this string word)
         {
             var sb = new StringBuilder();
-            char previous = Char.MinValue;
-            foreach (char current in word.Where(x => Char.IsLetterOrDigit(x)))
+            char previous = char.MinValue;
+            foreach (char current in word.Where(x => char.IsLetterOrDigit(x)))
             {
-                if (previous != Char.MinValue && sb.Length > 1 &&
-                    ((Char.IsUpper(current) || Char.IsDigit(current)) && Char.IsLower(previous)))
+                if (previous != char.MinValue && sb.Length > 1 &&
+                    ((char.IsUpper(current) || char.IsDigit(current)) && char.IsLower(previous)))
                 {
                     sb.Append(' ');
                 }
-                else if (Char.IsNumber(previous) && Char.IsUpper(current))
+                else if (char.IsNumber(previous) && char.IsUpper(current))
                 {
                     sb.Append(' ');
                 }
@@ -51,8 +51,8 @@ namespace PicklesDoc.Pickles.Extensions
         /// <summary>
         /// Takes a string and lowercases it, removing newline characters and replacing tabs with spaces
         /// </summary>
-        /// <param name="text"></param>
-        /// <returns></returns>
+        /// <param name="text">The string that will be normalized for comparison.</param>
+        /// <returns>The normalized string.</returns>
         public static string ComparisonNormalize(this string text)
         {
             return

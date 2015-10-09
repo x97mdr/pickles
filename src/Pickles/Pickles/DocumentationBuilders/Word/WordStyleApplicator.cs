@@ -107,8 +107,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
         // Create a new style with the specified styleid and stylename and add it to the specified
         // style definitions part.
-        private static void AddNewStyle(StyleDefinitionsPart styleDefinitionsPart,
-            string styleid, string stylename)
+        private static void AddNewStyle(StyleDefinitionsPart styleDefinitionsPart, string styleid, string stylename)
         {
             // Get access to the root element of the styles part.
             Styles styles = styleDefinitionsPart.Styles;

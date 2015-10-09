@@ -105,8 +105,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestName) &&
                 !string.IsNullOrEmpty(this.configuration.SystemUnderTestVersion))
             {
-                text1.Text = string.Format("{0}, version {1}", this.configuration.SystemUnderTestName,
-                    this.configuration.SystemUnderTestVersion);
+                text1.Text = string.Format("{0}, version {1}", this.configuration.SystemUnderTestName, this.configuration.SystemUnderTestVersion);
             }
             else if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestName))
             {

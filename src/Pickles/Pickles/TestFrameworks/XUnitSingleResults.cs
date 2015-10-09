@@ -30,7 +30,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
 {
     public class XUnitSingleResults : ITestResults
     {
-        internal xUnitExampleSignatureBuilder ExampleSignatureBuilder { get; set; }
+        internal XUnitExampleSignatureBuilder ExampleSignatureBuilder { get; set; }
 
         private readonly XDocument resultsDocument;
 
@@ -171,7 +171,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
             foreach (XElement exampleElement in exampleElements)
             {
               Regex signature = signatureBuilder.Build(scenarioOutline, exampleValues);
-                if (signature.IsMatch(exampleElement.Attribute("name").Value.ToLowerInvariant().Replace(@"\", "")))
+                if (signature.IsMatch(exampleElement.Attribute("name").Value.ToLowerInvariant().Replace(@"\", string.Empty)))
                 {
                     return this.GetResultFromElement(exampleElement);
                 }

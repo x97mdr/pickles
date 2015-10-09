@@ -110,8 +110,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
             if (rootfile.FullName == file.LocalPath) return true; // it's really the same file
 
-            if (fileInfo.Name == "")
+            if (fileInfo.Name == string.Empty)
+            {
                 return true; // the file is actually the directory, so we consider that the root file
+            }
 
             if (fileInfo.Name.StartsWith("index", StringComparison.InvariantCultureIgnoreCase))
                 return true; // the file is an index file, so we consider that the root
@@ -130,8 +132,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             }
             else
             {
-                xElement.Add(new XElement(xmlns + "a", new XAttribute("href", childNode.Data.GetRelativeUriTo(file)),
-                    nodeText));
+                xElement.Add(new XElement(xmlns + "a", new XAttribute("href", childNode.Data.GetRelativeUriTo(file)), nodeText));
             }
 
             var featureNode = childNode.Data as FeatureNode;

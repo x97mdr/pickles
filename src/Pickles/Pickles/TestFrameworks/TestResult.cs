@@ -81,7 +81,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
         public override int GetHashCode()
         {
             int hashCode = this.WasExecuted.GetHashCode();
-            hashCode = (hashCode) ^ this.WasSuccessful.GetHashCode();
+            hashCode = hashCode ^ this.WasSuccessful.GetHashCode();
             return hashCode;
         }
 

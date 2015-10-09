@@ -37,7 +37,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
         private readonly WordDescriptionFormatter wordDescriptionFormatter;
         private readonly WordBackgroundFormatter wordBackgroundFormatter;
 
-        public WordFeatureFormatter(WordScenarioFormatter wordScenarioFormatter,
+        public WordFeatureFormatter(
+            WordScenarioFormatter wordScenarioFormatter,
             WordScenarioOutlineFormatter wordScenarioOutlineFormatter,
             WordStyleApplicator wordStyleApplicator,
             WordDescriptionFormatter wordDescriptionFormatter,

@@ -51,10 +51,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         public XElement Format(Feature feature)
         {
-            var div = new XElement(this.xmlns + "div",
-                                   new XAttribute("id", "feature"),
-                                   this.htmlImageResultFormatter.Format(feature),
-                                   new XElement(this.xmlns + "h1", feature.Name));
+            var div = new XElement(
+                this.xmlns + "div",
+                new XAttribute("id", "feature"),
+                this.htmlImageResultFormatter.Format(feature),
+                new XElement(this.xmlns + "h1", feature.Name));
 
             var tags = RetrieveTags(feature);
             if (tags.Length > 0)

@@ -181,7 +181,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
     private static bool IsMatchingTestCase(XElement x, Regex exampleSignature)
     {
       var name = x.Attribute("name");
-      return name != null && exampleSignature.IsMatch(name.Value.ToLowerInvariant().Replace(@"\", ""));
+      return name != null && exampleSignature.IsMatch(name.Value.ToLowerInvariant().Replace(@"\", string.Empty));
     }
 
     private static bool IsMatchingParameterizedTestElement(XElement element, ScenarioOutline scenarioOutline)

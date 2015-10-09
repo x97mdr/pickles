@@ -34,9 +34,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         private readonly XNamespace xmlns;
 
-        public HtmlStepFormatter(HtmlTableFormatter htmlTableFormatter,
-                                 HtmlMultilineStringFormatter htmlMultilineStringFormatter,
-                                 LanguageServices languageServices)
+        public HtmlStepFormatter(
+            HtmlTableFormatter htmlTableFormatter,
+            HtmlMultilineStringFormatter htmlMultilineStringFormatter,
+            LanguageServices languageServices)
         {
             this.htmlTableFormatter = htmlTableFormatter;
             this.htmlMultilineStringFormatter = htmlMultilineStringFormatter;

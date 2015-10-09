@@ -30,8 +30,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
         private readonly ExcelDocumentStringFormatter excelDocumentStringFormatter;
         private readonly ExcelTableFormatter excelTableFormatter;
 
-        public ExcelStepFormatter(ExcelTableFormatter excelTableFormatter,
-                                  ExcelDocumentStringFormatter excelDocumentStringFormatter)
+        public ExcelStepFormatter(
+            ExcelTableFormatter excelTableFormatter,
+            ExcelDocumentStringFormatter excelDocumentStringFormatter)
         {
             this.excelTableFormatter = excelTableFormatter;
             this.excelDocumentStringFormatter = excelDocumentStringFormatter;

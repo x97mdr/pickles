@@ -57,8 +57,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestName) &&
                 !string.IsNullOrEmpty(this.configuration.SystemUnderTestVersion))
             {
-                sb.AppendFormat(" with {0} version {1}", this.configuration.SystemUnderTestName,
-                    this.configuration.SystemUnderTestVersion);
+                sb.AppendFormat(" with {0} version {1}", this.configuration.SystemUnderTestName, this.configuration.SystemUnderTestVersion);
             }
             else if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestName))
             {
