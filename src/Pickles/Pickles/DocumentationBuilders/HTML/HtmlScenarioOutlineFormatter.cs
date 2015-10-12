@@ -53,7 +53,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         private XElement FormatHeading(ScenarioOutline scenarioOutline)
         {
-            if (string.IsNullOrEmpty(scenarioOutline.Name)) return null;
+            if (string.IsNullOrEmpty(scenarioOutline.Name))
+            {
+                return null;
+            }
 
             var result = new XElement(
                 this.xmlns + "div",
@@ -74,7 +77,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         private XElement FormatSteps(ScenarioOutline scenarioOutline)
         {
-            if (scenarioOutline.Steps == null) return null;
+            if (scenarioOutline.Steps == null)
+            {
+                return null;
+            }
 
             return new XElement(
                 this.xmlns + "div",
@@ -118,9 +124,15 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         private static string[] RetrieveTags(ScenarioOutline scenarioOutline)
         {
-            if (scenarioOutline == null) return new string[0];
+            if (scenarioOutline == null)
+            {
+                return new string[0];
+            }
 
-            if (scenarioOutline.Feature == null) return scenarioOutline.Tags.ToArray();
+            if (scenarioOutline.Feature == null)
+            {
+                return scenarioOutline.Tags.ToArray();
+            }
 
             return scenarioOutline.Feature.Tags.Concat(scenarioOutline.Tags).ToArray();
         }

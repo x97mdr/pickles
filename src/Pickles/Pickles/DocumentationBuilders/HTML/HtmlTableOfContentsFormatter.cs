@@ -124,7 +124,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             }
 
             if (fileInfo.Name.StartsWith("index", StringComparison.InvariantCultureIgnoreCase))
+            {
                 return true; // the file is an index file, so we consider that the root
+            }
 
             return false;
         }

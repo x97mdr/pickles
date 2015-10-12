@@ -84,14 +84,18 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             // Check that there are styles and how many.
             int n = s.Elements<Style>().Count();
             if (n == 0)
+            {
                 return false;
+            }
 
             // Look for a match on styleid.
             Style style = s.Elements<Style>()
                 .Where(st => (st.StyleId == styleid) && (st.Type == StyleValues.Paragraph))
                 .FirstOrDefault();
             if (style == null)
+            {
                 return false;
+            }
 
             return true;
         }

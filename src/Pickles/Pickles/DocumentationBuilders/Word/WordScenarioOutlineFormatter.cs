@@ -58,7 +58,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
             body.GenerateParagraph(scenarioOutline.Name, "Heading2");
             if (!string.IsNullOrEmpty(scenarioOutline.Description))
+            {
                 body.GenerateParagraph(scenarioOutline.Description, "Normal");
+            }
 
             foreach (Step step in scenarioOutline.Steps)
             {

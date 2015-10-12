@@ -27,8 +27,15 @@ namespace PicklesDoc.Pickles.Extensions
     {
         public static string MakeRelativePath(string from, string to, IFileSystem fileSystem)
         {
-            if (string.IsNullOrEmpty(from)) throw new ArgumentNullException("from");
-            if (string.IsNullOrEmpty(to)) throw new ArgumentNullException("to");
+            if (string.IsNullOrEmpty(from))
+            {
+                throw new ArgumentNullException("from");
+            }
+
+            if (string.IsNullOrEmpty(to))
+            {
+                throw new ArgumentNullException("to");
+            }
 
             string fromString = AddTrailingSlashToDirectoriesForUriMethods(from, fileSystem);
             string toString = AddTrailingSlashToDirectoriesForUriMethods(to, fileSystem);
@@ -58,8 +65,15 @@ namespace PicklesDoc.Pickles.Extensions
 
         public static string MakeRelativePath(FileSystemInfoBase from, FileSystemInfoBase to, IFileSystem fileSystem)
         {
-            if (from == null) throw new ArgumentNullException("from");
-            if (to == null) throw new ArgumentNullException("to");
+            if (from == null)
+            {
+                throw new ArgumentNullException("from");
+            }
+
+            if (to == null)
+            {
+                throw new ArgumentNullException("to");
+            }
 
             return MakeRelativePath(from.FullName, to.FullName, fileSystem);
         }

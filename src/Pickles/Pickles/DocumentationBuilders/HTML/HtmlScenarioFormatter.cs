@@ -47,57 +47,63 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         public XElement Format(Scenario scenario, int id)
         {
-          var header = new XElement(
-            this.xmlns + "div",
-            new XAttribute("class", "scenario-heading"),
-            new XElement(this.xmlns + "h2", scenario.Name));
+            var header = new XElement(
+                this.xmlns + "div",
+                new XAttribute("class", "scenario-heading"),
+                new XElement(this.xmlns + "h2", scenario.Name));
 
-          var tags = RetrieveTags(scenario);
-          if (tags.Length > 0)
-          {
-            var paragraph = new XElement(this.xmlns + "p", CreateTagElements(tags.OrderBy(t => t).ToArray(), this.xmlns));
-            paragraph.Add(new XAttribute("class", "tags"));
-            header.Add(paragraph);
-          }
+            var tags = RetrieveTags(scenario);
+            if (tags.Length > 0)
+            {
+                var paragraph = new XElement(this.xmlns + "p", CreateTagElements(tags.OrderBy(t => t).ToArray(), this.xmlns));
+                paragraph.Add(new XAttribute("class", "tags"));
+                header.Add(paragraph);
+            }
 
-          header.Add(this.htmlDescriptionFormatter.Format(scenario.Description));
+            header.Add(this.htmlDescriptionFormatter.Format(scenario.Description));
 
-          return new XElement(
-            this.xmlns + "li",
-            new XAttribute("class", "scenario"),
-            this.htmlImageResultFormatter.Format(scenario),
-            header,
-            new XElement(
-              this.xmlns + "div",
-              new XAttribute("class", "steps"),
-              new XElement(
-                this.xmlns + "ul",
-                scenario.Steps.Select(step => this.htmlStepFormatter.Format(step)))));
+            return new XElement(
+                this.xmlns + "li",
+                new XAttribute("class", "scenario"),
+                this.htmlImageResultFormatter.Format(scenario),
+                header,
+                new XElement(
+                    this.xmlns + "div",
+                    new XAttribute("class", "steps"),
+                    new XElement(
+                        this.xmlns + "ul",
+                        scenario.Steps.Select(step => this.htmlStepFormatter.Format(step)))));
         }
 
-      internal static XNode[] CreateTagElements(string[] tags, XNamespace xNamespace)
-      {
-        List<XNode> result = new List<XNode>();
-
-        result.Add(new XText("Tags: "));
-        result.Add(new XElement(xNamespace + "span", tags.First()));
-
-        foreach (var tag in tags.Skip(1))
+        internal static XNode[] CreateTagElements(string[] tags, XNamespace xNamespace)
         {
-          result.Add(new XText(", "));
-          result.Add(new XElement(xNamespace + "span", tag));
+            List<XNode> result = new List<XNode>();
+
+            result.Add(new XText("Tags: "));
+            result.Add(new XElement(xNamespace + "span", tags.First()));
+
+            foreach (var tag in tags.Skip(1))
+            {
+                result.Add(new XText(", "));
+                result.Add(new XElement(xNamespace + "span", tag));
+            }
+
+            return result.ToArray();
         }
 
-        return result.ToArray();
-      }
+        private static string[] RetrieveTags(Scenario scenario)
+        {
+            if (scenario == null)
+            {
+                return new string[0];
+            }
 
-      private static string[] RetrieveTags(Scenario scenario)
-      {
-        if (scenario == null) return new string[0];
+            if (scenario.Feature == null)
+            {
+                return scenario.Tags.ToArray();
+            }
 
-        if (scenario.Feature == null) return scenario.Tags.ToArray();
-
-        return scenario.Feature.Tags.Concat(scenario.Tags).ToArray();
-      }
+            return scenario.Feature.Tags.Concat(scenario.Tags).ToArray();
+        }
     }
 }

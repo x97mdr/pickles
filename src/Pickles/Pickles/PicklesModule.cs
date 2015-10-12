@@ -64,7 +64,10 @@ namespace PicklesDoc.Pickles
             builder.Register<ITestResults>(c =>
                 {
                     var configuration = c.Resolve<Configuration>();
-                    if (!configuration.HasTestResults) return c.Resolve<NullTestResults>();
+                    if (!configuration.HasTestResults)
+                    {
+                        return c.Resolve<NullTestResults>();
+                    }
 
                     switch (configuration.TestResultsFormat)
                     {

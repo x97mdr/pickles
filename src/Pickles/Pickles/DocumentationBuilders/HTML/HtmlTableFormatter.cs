@@ -44,7 +44,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         public XElement Format(Table table, ScenarioOutline scenarioOutline, bool includeResults)
         {
-            if (table == null) return null;
+            if (table == null)
+            {
+                return null;
+            }
 
             var headerCells = table.HeaderRow.Cells.ToArray();
 
