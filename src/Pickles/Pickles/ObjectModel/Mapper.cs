@@ -27,7 +27,7 @@ using G = Gherkin.Ast;
 
 namespace PicklesDoc.Pickles.ObjectModel
 {
-    public class Mapper
+    public class Mapper : IDisposable
     {
         private readonly MappingEngine mapper;
 
@@ -156,6 +156,19 @@ namespace PicklesDoc.Pickles.ObjectModel
         public Feature MapToFeature(G.Feature feature)
         {
             return this.mapper.Map<Feature>(feature);
+        }
+
+        public void Dispose()
+        {
+            this.Dispose(true);
+        }
+
+        protected virtual void Dispose(bool isDisposing)
+        {
+            if (isDisposing)
+            {
+                this.mapper.Dispose();
+            }
         }
     }
 }

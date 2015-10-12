@@ -33,7 +33,6 @@ namespace PicklesDoc.Pickles.TestFrameworks
             {
                 XmlReader xmlReader = XmlReader.Create(stream);
                 document = XDocument.Load(xmlReader);
-                stream.Close();
             }
 
             return document;

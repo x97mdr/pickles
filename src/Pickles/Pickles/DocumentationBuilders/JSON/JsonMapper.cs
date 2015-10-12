@@ -26,7 +26,7 @@ using PicklesDoc.Pickles.TestFrameworks;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
 {
-    public class JsonMapper
+    public class JsonMapper : IDisposable
     {
         private readonly MappingEngine mapper;
 
@@ -80,6 +80,19 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
         public JsonTestResult Map(TestResult testResult)
         {
             return this.mapper.Map<JsonTestResult>(testResult);
+        }
+
+        public void Dispose()
+        {
+            this.Dispose(true);
+        }
+
+        protected virtual void Dispose(bool isDisposing)
+        {
+            if (isDisposing)
+            {
+                this.mapper.Dispose();
+            }
         }
     }
 }
