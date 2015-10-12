@@ -102,7 +102,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             head.Add(
                 new XElement(
                     xmlns + "script",
-                    new XAttribute("src", featureNodeOutputUri.MakeRelativeUri(this.htmlResources.jQueryScript)),
+                    new XAttribute("src", featureNodeOutputUri.MakeRelativeUri(this.htmlResources.JQueryScript)),
                     new XAttribute("type", "text/javascript"),
                     new XText(string.Empty)));
 

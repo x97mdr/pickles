@@ -49,7 +49,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             get { return this.configuration.OutputFolder.ToFileUriCombined("css/print.css", this.fileSystem); }
         }
 
-        public Uri jQueryScript
+        public Uri JQueryScript
         {
             get { return this.configuration.OutputFolder.ToFileUriCombined("js/jquery.js", this.fileSystem); }
         }
