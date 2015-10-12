@@ -19,19 +19,25 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PicklesDoc.Pickles.Parser.JsonResult
 {
     public class Step
     {
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "The lowercase name is part of an external contract.")]
         public string keyword { get; set; }
 
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "The lowercase name is part of an external contract.")]
         public string name { get; set; }
 
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "The lowercase name is part of an external contract.")]
         public int line { get; set; }
 
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "The lowercase name is part of an external contract.")]
         public Match match { get; set; }
 
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "The lowercase name is part of an external contract.")]
         public Result result { get; set; }
     }
 }

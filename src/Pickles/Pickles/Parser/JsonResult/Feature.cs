@@ -20,25 +20,34 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PicklesDoc.Pickles.Parser.JsonResult
 {
     public class Feature
     {
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "The lowercase name is part of an external contract.")]
         public string uri { get; set; }
 
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "The lowercase name is part of an external contract.")]
         public string keyword { get; set; }
 
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "The lowercase name is part of an external contract.")]
         public string id { get; set; }
 
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "The lowercase name is part of an external contract.")]
         public string name { get; set; }
 
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "The lowercase name is part of an external contract.")]
         public int line { get; set; }
 
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "The lowercase name is part of an external contract.")]
         public string description { get; set; }
 
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "The lowercase name is part of an external contract.")]
         public List<Tag> tags { get; set; }
 
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "The lowercase name is part of an external contract.")]
         public List<Element> elements { get; set; }
     }
 }

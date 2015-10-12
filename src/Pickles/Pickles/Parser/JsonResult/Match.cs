@@ -19,11 +19,13 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PicklesDoc.Pickles.Parser.JsonResult
 {
     public class Match
     {
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "The lowercase name is part of an external contract.")]
         public string location { get; set; }
     }
 }
