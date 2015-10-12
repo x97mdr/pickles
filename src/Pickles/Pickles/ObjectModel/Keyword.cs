@@ -22,12 +22,34 @@ using System;
 
 namespace PicklesDoc.Pickles.ObjectModel
 {
+    /// <summary>
+    /// The Gherkin Keywords.
+    /// </summary>
     public enum Keyword
     {
+        /// <summary>
+        /// Keyword Given.
+        /// </summary>
         Given,
+
+        /// <summary>
+        /// Keyword When.
+        /// </summary>
         When,
+
+        /// <summary>
+        /// Keyword Then.
+        /// </summary>
         Then,
+
+        /// <summary>
+        /// Keyword And.
+        /// </summary>
         And,
+
+        /// <summary>
+        /// Keyword But.
+        /// </summary>
         But
     }
 }

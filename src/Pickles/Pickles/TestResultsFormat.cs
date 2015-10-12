@@ -22,12 +22,34 @@ using System;
 
 namespace PicklesDoc.Pickles
 {
+    /// <summary>
+    /// The supported test result formats.
+    /// </summary>
     public enum TestResultsFormat
     {
+        /// <summary>
+        /// NUnit 2 format.
+        /// </summary>
         NUnit,
+
+        /// <summary>
+        /// xUnit 1 format.
+        /// </summary>
         xUnit,
+
+        /// <summary>
+        /// Microsoft Test format.
+        /// </summary>
         MsTest,
+
+        /// <summary>
+        /// Cucumber's JSON format.
+        /// </summary>
         CucumberJson,
+
+        /// <summary>
+        /// SpecRun format.
+        /// </summary>
         SpecRun
     }
 }
