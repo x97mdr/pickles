@@ -52,10 +52,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         public bool SupportsExampleResults
         {
-          get
-          {
-            return false;
-          }
+            get { return false; }
         }
     }
 }

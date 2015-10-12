@@ -25,10 +25,10 @@ using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
 {
-  public class DhtmlResourceWriter : ResourceWriter
+    public class DhtmlResourceWriter : ResourceWriter
     {
         public DhtmlResourceWriter(IFileSystem fileSystem)
-          : base(fileSystem, "PicklesDoc.Pickles.Resources.Dhtml.")
+            : base(fileSystem, "PicklesDoc.Pickles.Resources.Dhtml.")
         {
         }
 

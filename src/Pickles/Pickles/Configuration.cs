@@ -55,18 +55,12 @@ namespace PicklesDoc.Pickles
 
         public FileInfoBase TestResultsFile
         {
-            get
-            {
-                return this.testResultsFiles[0];
-            }
+            get { return this.testResultsFiles[0]; }
         }
 
         public IEnumerable<FileInfoBase> TestResultsFiles
         {
-            get
-            {
-                return this.testResultsFiles;
-            }
+            get { return this.testResultsFiles; }
         }
 
         public string SystemUnderTestName { get; set; }
@@ -83,7 +77,7 @@ namespace PicklesDoc.Pickles
             foreach (var fileInfoBase in fileInfoBases ?? new FileInfoBase[0])
             {
                 this.AddTestResultFileIfItExists(fileInfoBase);
-          }
+            }
         }
 
         private void AddTestResultFileIfItExists(FileInfoBase fileInfoBase)

@@ -28,7 +28,7 @@ namespace PicklesDoc.Pickles.CommandLine
 {
     internal class Program
     {
-      private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
+        private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
 
         private static int Main(string[] args)
         {

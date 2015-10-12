@@ -28,18 +28,18 @@ namespace PicklesDoc.Pickles.TestFrameworks
     public class CucumberJsonResults : MultipleTestResults
     {
         public CucumberJsonResults(Configuration configuration)
-          : base(false, configuration)
+            : base(false, configuration)
         {
         }
 
-      public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
-      {
-        throw new NotSupportedException();
-      }
-
-      protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
+        public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
         {
-          return new CucumberJsonSingleResults(fileInfo);
+            throw new NotSupportedException();
+        }
+
+        protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
+        {
+            return new CucumberJsonSingleResults(fileInfo);
         }
     }
 }

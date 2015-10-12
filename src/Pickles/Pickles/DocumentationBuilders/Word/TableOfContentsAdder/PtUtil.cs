@@ -6,7 +6,7 @@ This code is licensed using the Microsoft Public License (Ms-PL).  The text of t
 can be found here:
 
 http://www.microsoft.com/resources/sharedsource/licensingbasics/publiclicense.mspx
-  
+
  This code was modified to include a comment that the usage of System.IO is a legitimate one.
 
 ***************************************************************************/
@@ -96,7 +96,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
             XElement prev = null;
             foreach (XElement e in element.Elements())
             {
-                e.AddAnnotation(new ReverseDocumentOrderInfo {PreviousSibling = prev});
+                e.AddAnnotation(new ReverseDocumentOrderInfo { PreviousSibling = prev });
                 prev = e;
             }
         }
@@ -133,13 +133,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
         }
 
         public static IEnumerable<XElement> DescendantsTrimmed(this XElement element,
-                                                               XName trimName)
+            XName trimName)
         {
             return DescendantsTrimmed(element, e => e.Name == trimName);
         }
 
         public static IEnumerable<XElement> DescendantsTrimmed(this XElement element,
-                                                               Func<XElement, bool> predicate)
+            Func<XElement, bool> predicate)
         {
             var iteratorStack = new Stack<IEnumerator<XElement>>();
             iteratorStack.Push(element.Elements().GetEnumerator());
@@ -201,7 +201,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return ((IEnumerable<TSource>) this).GetEnumerator();
+            return ((IEnumerable<TSource>)this).GetEnumerator();
         }
 
         IEnumerator<TSource>

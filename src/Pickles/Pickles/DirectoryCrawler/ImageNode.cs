@@ -41,10 +41,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
 
         public string Name
         {
-            get
-            {
-                return this.OriginalLocation.Name;
-            }
+            get { return this.OriginalLocation.Name; }
         }
 
         public FileSystemInfoBase OriginalLocation { get; private set; }

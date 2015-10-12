@@ -23,63 +23,63 @@ using System.IO.Abstractions;
 
 namespace PicklesDoc.Pickles.UserInterface.Settings
 {
-  /// <summary>
-  /// A serializer class for <see cref="MainModel"/>.
-  /// </summary>
-  public class MainModelSerializer : IMainModelSerializer
-  {
-    private const string EntitiesNameV1 = "MainSettingsV1";
-
-    private readonly string dataDirectory;
-
-    private readonly IFileSystem fileSystem;
-
     /// <summary>
-    /// Initializes a new instance of the <see cref="MainModelSerializer"/> class.
+    /// A serializer class for <see cref="MainModel"/>.
     /// </summary>
-    /// <param name="dataDirectory">The data directory.</param>
-    /// <param name="fileSystem">The wrapper for the file system.</param>
-    public MainModelSerializer(string dataDirectory, IFileSystem fileSystem)
+    public class MainModelSerializer : IMainModelSerializer
     {
-        this.dataDirectory = dataDirectory;
-        this.fileSystem = fileSystem;
+        private const string EntitiesNameV1 = "MainSettingsV1";
+
+        private readonly string dataDirectory;
+
+        private readonly IFileSystem fileSystem;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainModelSerializer"/> class.
+        /// </summary>
+        /// <param name="dataDirectory">The data directory.</param>
+        /// <param name="fileSystem">The wrapper for the file system.</param>
+        public MainModelSerializer(string dataDirectory, IFileSystem fileSystem)
+        {
+            this.dataDirectory = dataDirectory;
+            this.fileSystem = fileSystem;
+        }
+
+        /// <summary>
+        /// Writes the specified item with the specified id.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        public void Write(MainModel item)
+        {
+            string path = this.fileSystem.Path.Combine(this.dataDirectory, EntitiesNameV1 + ".xml");
+
+            using (var stream = this.fileSystem.File.Create(path))
+            {
+                stream.Serialize(item);
+            }
+        }
+
+        /// <summary>
+        /// Reads the collection.
+        /// </summary>
+        /// <returns>The collection with data that was written.</returns>
+        public MainModel Read()
+        {
+            MainModel result;
+
+            string path = this.fileSystem.Path.Combine(this.dataDirectory, EntitiesNameV1 + ".xml");
+
+            if (!this.fileSystem.File.Exists(path))
+            {
+                return null;
+            }
+
+            using (var stream = this.fileSystem.File.OpenRead(path))
+            {
+                result = stream.Deserialize<MainModel>();
+            }
+
+            return result;
+        }
     }
-
-      /// <summary>
-    /// Writes the specified item with the specified id.
-    /// </summary>
-    /// <param name="item">The item.</param>
-    public void Write(MainModel item)
-    {
-      string path = this.fileSystem.Path.Combine(this.dataDirectory, EntitiesNameV1 + ".xml");
-
-      using (var stream = this.fileSystem.File.Create(path))
-      {
-        stream.Serialize(item);
-      }
-    }
-
-    /// <summary>
-    /// Reads the collection.
-    /// </summary>
-    /// <returns>The collection with data that was written.</returns>
-    public MainModel Read()
-    {
-      MainModel result;
-
-      string path = this.fileSystem.Path.Combine(this.dataDirectory, EntitiesNameV1 + ".xml");
-
-      if (!this.fileSystem.File.Exists(path))
-      {
-          return null;
-      }
-
-      using (var stream = this.fileSystem.File.OpenRead(path))
-      {
-        result = stream.Deserialize<MainModel>();
-      }
-
-      return result;
-    }
-  }
 }

@@ -41,7 +41,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
         {
             if (file.Name.EndsWith("csproj.FileListAbsolute.txt"))
             {
-              return false;
+                return false;
             }
 
             switch (file.Extension.ToLowerInvariant())

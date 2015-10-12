@@ -50,8 +50,8 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
                 XElement headerElement =
                     this.MarkdownContent.Descendants().FirstOrDefault(element => element.Name.LocalName == "h1");
                 return headerElement != null
-                           ? headerElement.Value
-                           : this.OriginalLocation.Name.Replace(this.OriginalLocation.Extension, string.Empty).ExpandWikiWord();
+                    ? headerElement.Value
+                    : this.OriginalLocation.Name.Replace(this.OriginalLocation.Extension, string.Empty).ExpandWikiWord();
             }
         }
 

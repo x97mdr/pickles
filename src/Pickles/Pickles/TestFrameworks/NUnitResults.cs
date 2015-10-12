@@ -26,34 +26,34 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks
 {
-  public class NUnitResults : MultipleTestResults
-  {
-    private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
-
-    public NUnitResults(Configuration configuration, NUnitExampleSignatureBuilder exampleSignatureBuilder)
-      : base(true, configuration)
+    public class NUnitResults : MultipleTestResults
     {
-      this.SetExampleSignatureBuilder(exampleSignatureBuilder);
-    }
+        private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
 
-    public void SetExampleSignatureBuilder(NUnitExampleSignatureBuilder exampleSignatureBuilder)
-    {
-      foreach (var testResult in TestResults.OfType<NUnitSingleResults>())
-      {
-        testResult.ExampleSignatureBuilder = exampleSignatureBuilder;
-      }
-    }
+        public NUnitResults(Configuration configuration, NUnitExampleSignatureBuilder exampleSignatureBuilder)
+            : base(true, configuration)
+        {
+            this.SetExampleSignatureBuilder(exampleSignatureBuilder);
+        }
 
-    protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
-    {
-      return new NUnitSingleResults(DocumentLoader.Load(fileInfo));
-    }
+        public void SetExampleSignatureBuilder(NUnitExampleSignatureBuilder exampleSignatureBuilder)
+        {
+            foreach (var testResult in TestResults.OfType<NUnitSingleResults>())
+            {
+                testResult.ExampleSignatureBuilder = exampleSignatureBuilder;
+            }
+        }
 
-    public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] arguments)
-    {
-      var results = TestResults.OfType<NUnitSingleResults>().Select(tr => tr.GetExampleResult(scenarioOutline, arguments)).ToArray();
+        protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
+        {
+            return new NUnitSingleResults(DocumentLoader.Load(fileInfo));
+        }
 
-      return EvaluateTestResults(results);
+        public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] arguments)
+        {
+            var results = TestResults.OfType<NUnitSingleResults>().Select(tr => tr.GetExampleResult(scenarioOutline, arguments)).ToArray();
+
+            return EvaluateTestResults(results);
+        }
     }
-  }
 }

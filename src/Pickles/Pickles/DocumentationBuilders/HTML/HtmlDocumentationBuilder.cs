@@ -33,7 +33,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlDocumentationBuilder : IDocumentationBuilder
     {
-      private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
+        private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
 
         private readonly Configuration configuration;
         private readonly HtmlDocumentFormatter htmlDocumentFormatter;
@@ -59,7 +59,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
         {
             if (Log.IsInfoEnabled)
             {
-              Log.Info("Writing HTML to {0}", this.configuration.OutputFolder.FullName);
+                Log.Info("Writing HTML to {0}", this.configuration.OutputFolder.FullName);
             }
 
             this.htmlResourceWriter.WriteTo(this.configuration.OutputFolder.FullName);
@@ -85,7 +85,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             {
                 htmlFilePath = nodePath.Replace(this.fileSystem.Path.GetExtension(nodePath), ".html");
                 this.WriteContentNode(features, node, htmlFilePath);
-           }
+            }
             else if (node.NodeType == NodeType.Structure)
             {
                 this.fileSystem.Directory.CreateDirectory(nodePath);

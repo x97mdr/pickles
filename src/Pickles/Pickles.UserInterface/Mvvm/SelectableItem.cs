@@ -48,10 +48,7 @@ namespace PicklesDoc.Pickles.UserInterface.Mvvm
 
         public bool IsSelected
         {
-            get
-            {
-                return this.isSelected;
-            }
+            get { return this.isSelected; }
 
             set
             {

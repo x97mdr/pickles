@@ -129,132 +129,132 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
         [Test]
         public void WithoutExampleSignatureBuilderThrowsInvalidOperationException()
         {
-          var results = ParseResultsFile();
-          results.SetExampleSignatureBuilder(null);
+            var results = ParseResultsFile();
+            results.SetExampleSignatureBuilder(null);
 
-          var feature = new Feature { Name = "Addition" };
+            var feature = new Feature { Name = "Addition" };
 
-          var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers", Feature = feature };
+            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers", Feature = feature };
 
-          Check.ThatCode(() => results.GetExampleResult(scenarioOutline, new[] { "40", "50", "90" })).Throws<InvalidOperationException>();
+            Check.ThatCode(() => results.GetExampleResult(scenarioOutline, new[] { "40", "50", "90" })).Throws<InvalidOperationException>();
         }
 
         [Test]
         public void ThenCanReadIndividualResultsFromScenarioOutline_AllPass_ShouldBeTestResultPassed()
         {
-          var results = ParseResultsFile();
-          results.SetExampleSignatureBuilder(new XUnitExampleSignatureBuilder());
+            var results = ParseResultsFile();
+            results.SetExampleSignatureBuilder(new XUnitExampleSignatureBuilder());
 
-          var feature = new Feature { Name = "Scenario Outlines" };
+            var feature = new Feature { Name = "Scenario Outlines" };
 
-          var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline where all scenarios pass", Feature = feature };
+            var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline where all scenarios pass", Feature = feature };
 
-          TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
-          Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
+            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+            Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
 
-          TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
-          Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
+            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
+            Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
 
-          TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
-          Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
+            TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
+            Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
 
-          TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "pass_3" });
-          Check.That(exampleResult3).IsEqualTo(TestResult.Passed);
+            TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "pass_3" });
+            Check.That(exampleResult3).IsEqualTo(TestResult.Passed);
         }
 
         [Test]
         public void ThenCanReadIndividualResultsFromScenarioOutline_OneFailed_ShouldBeTestResultFailed_xUnitDoesNotSupportInconclusive()
         {
-          var results = ParseResultsFile();
-          results.SetExampleSignatureBuilder(new XUnitExampleSignatureBuilder());
+            var results = ParseResultsFile();
+            results.SetExampleSignatureBuilder(new XUnitExampleSignatureBuilder());
 
-          var feature = new Feature { Name = "Scenario Outlines" };
+            var feature = new Feature { Name = "Scenario Outlines" };
 
-          var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline where one scenario is inconclusive", Feature = feature };
+            var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline where one scenario is inconclusive", Feature = feature };
 
-          TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
-          Check.That(exampleResultOutline).IsEqualTo(TestResult.Failed);
+            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+            Check.That(exampleResultOutline).IsEqualTo(TestResult.Failed);
 
-          TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
-          Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
+            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
+            Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
 
-          TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
-          Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
+            TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
+            Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
 
-          TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_1" });
-          Check.That(exampleResult3).IsEqualTo(TestResult.Failed);
+            TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_1" });
+            Check.That(exampleResult3).IsEqualTo(TestResult.Failed);
         }
 
         [Test]
         public void ThenCanReadIndividualResultsFromScenarioOutline_OneFailed_ShouldBeTestResultFailed()
         {
-          var results = ParseResultsFile();
-          results.SetExampleSignatureBuilder(new XUnitExampleSignatureBuilder());
+            var results = ParseResultsFile();
+            results.SetExampleSignatureBuilder(new XUnitExampleSignatureBuilder());
 
-          var feature = new Feature { Name = "Scenario Outlines" };
+            var feature = new Feature { Name = "Scenario Outlines" };
 
-          var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline where one scenario fails", Feature = feature };
+            var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline where one scenario fails", Feature = feature };
 
-          TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
-          Check.That(exampleResultOutline).IsEqualTo(TestResult.Failed);
+            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+            Check.That(exampleResultOutline).IsEqualTo(TestResult.Failed);
 
-          TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
-          Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
+            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
+            Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
 
-          TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
-          Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
+            TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
+            Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
 
-          TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "fail_1" });
-          Check.That(exampleResult3).IsEqualTo(TestResult.Failed);
+            TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "fail_1" });
+            Check.That(exampleResult3).IsEqualTo(TestResult.Failed);
         }
 
         [Test]
         public void ThenCanReadIndividualResultsFromScenarioOutline_MultipleExampleSections_ShouldBeTestResultFailed()
         {
-          var results = ParseResultsFile();
-          results.SetExampleSignatureBuilder(new XUnitExampleSignatureBuilder());
+            var results = ParseResultsFile();
+            results.SetExampleSignatureBuilder(new XUnitExampleSignatureBuilder());
 
-          var feature = new Feature { Name = "Scenario Outlines" };
+            var feature = new Feature { Name = "Scenario Outlines" };
 
-          var scenarioOutline = new ScenarioOutline { Name = "And we can go totally bonkers with multiple example sections.", Feature = feature };
+            var scenarioOutline = new ScenarioOutline { Name = "And we can go totally bonkers with multiple example sections.", Feature = feature };
 
-          TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
-          Check.That(exampleResultOutline).IsEqualTo(TestResult.Failed);
+            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+            Check.That(exampleResultOutline).IsEqualTo(TestResult.Failed);
 
-          TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
-          Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
+            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
+            Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
 
-          TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
-          Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
+            TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
+            Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
 
-          TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_1" });
-          Check.That(exampleResult3).IsEqualTo(TestResult.Failed);
+            TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_1" });
+            Check.That(exampleResult3).IsEqualTo(TestResult.Failed);
 
-          TestResult exampleResult4 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_2" });
-          Check.That(exampleResult4).IsEqualTo(TestResult.Failed);
+            TestResult exampleResult4 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_2" });
+            Check.That(exampleResult4).IsEqualTo(TestResult.Failed);
 
-          TestResult exampleResult5 = results.GetExampleResult(scenarioOutline, new[] { "fail_1" });
-          Check.That(exampleResult5).IsEqualTo(TestResult.Failed);
+            TestResult exampleResult5 = results.GetExampleResult(scenarioOutline, new[] { "fail_1" });
+            Check.That(exampleResult5).IsEqualTo(TestResult.Failed);
 
-          TestResult exampleResult6 = results.GetExampleResult(scenarioOutline, new[] { "fail_2" });
-          Check.That(exampleResult6).IsEqualTo(TestResult.Failed);
+            TestResult exampleResult6 = results.GetExampleResult(scenarioOutline, new[] { "fail_2" });
+            Check.That(exampleResult6).IsEqualTo(TestResult.Failed);
         }
 
         [Test]
         public void ThenCanReadResultsWithBackslashes()
         {
-          var results = ParseResultsFile();
-          results.SetExampleSignatureBuilder(new XUnitExampleSignatureBuilder());
+            var results = ParseResultsFile();
+            results.SetExampleSignatureBuilder(new XUnitExampleSignatureBuilder());
 
-          var feature = new Feature { Name = "Scenario Outlines" };
+            var feature = new Feature { Name = "Scenario Outlines" };
 
-          var scenarioOutline = new ScenarioOutline { Name = "Deal correctly with backslashes in the examples", Feature = feature };
+            var scenarioOutline = new ScenarioOutline { Name = "Deal correctly with backslashes in the examples", Feature = feature };
 
-          TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
-          Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
+            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+            Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
 
-          TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { @"c:\Temp\" });
-          Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
+            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { @"c:\Temp\" });
+            Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
         }
     }
-  }
+}

@@ -48,6 +48,6 @@ namespace PicklesDoc.Pickles.ObjectModel
             get { return this.tableCells; }
         }
 
-      public TestResult Result { get; set; }
+        public TestResult Result { get; set; }
     }
 }

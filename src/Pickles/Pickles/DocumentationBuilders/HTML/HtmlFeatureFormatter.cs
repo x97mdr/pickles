@@ -60,9 +60,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             var tags = RetrieveTags(feature);
             if (tags.Length > 0)
             {
-              var paragraph = new XElement(this.xmlns + "p", HtmlScenarioFormatter.CreateTagElements(tags.OrderBy(t => t).ToArray(), this.xmlns));
-              paragraph.Add(new XAttribute("class", "tags"));
-              div.Add(paragraph);
+                var paragraph = new XElement(this.xmlns + "p", HtmlScenarioFormatter.CreateTagElements(tags.OrderBy(t => t).ToArray(), this.xmlns));
+                paragraph.Add(new XAttribute("class", "tags"));
+                div.Add(paragraph);
             }
 
             div.Add(this.htmlDescriptionFormatter.Format(feature.Description));
@@ -104,7 +104,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                 return new string[0];
             }
 
-          return feature.Tags.ToArray();
+            return feature.Tags.ToArray();
         }
     }
 }

@@ -52,33 +52,45 @@ namespace PicklesDoc.Pickles
                 var configuration = c.Resolve<Configuration>();
                 switch (configuration.DocumentationFormat)
                 {
-                    case DocumentationFormat.Html: return c.Resolve<HtmlDocumentationBuilder>();
-                    case DocumentationFormat.Word: return c.Resolve<WordDocumentationBuilder>();
-                    case DocumentationFormat.JSON: return c.Resolve<JSONDocumentationBuilder>();
-                    case DocumentationFormat.Excel: return c.Resolve<ExcelDocumentationBuilder>();
-                    case DocumentationFormat.DHtml: return c.Resolve<DhtmlDocumentationBuilder>();
-                    default: return c.Resolve<HtmlDocumentationBuilder>();
+                    case DocumentationFormat.Html:
+                        return c.Resolve<HtmlDocumentationBuilder>();
+                    case DocumentationFormat.Word:
+                        return c.Resolve<WordDocumentationBuilder>();
+                    case DocumentationFormat.JSON:
+                        return c.Resolve<JSONDocumentationBuilder>();
+                    case DocumentationFormat.Excel:
+                        return c.Resolve<ExcelDocumentationBuilder>();
+                    case DocumentationFormat.DHtml:
+                        return c.Resolve<DhtmlDocumentationBuilder>();
+                    default:
+                        return c.Resolve<HtmlDocumentationBuilder>();
                 }
             }).SingleInstance();
 
             builder.Register<ITestResults>(c =>
+            {
+                var configuration = c.Resolve<Configuration>();
+                if (!configuration.HasTestResults)
                 {
-                    var configuration = c.Resolve<Configuration>();
-                    if (!configuration.HasTestResults)
-                    {
-                        return c.Resolve<NullTestResults>();
-                    }
+                    return c.Resolve<NullTestResults>();
+                }
 
-                    switch (configuration.TestResultsFormat)
-                    {
-                        case TestResultsFormat.NUnit: return c.Resolve<NUnitResults>();
-                        case TestResultsFormat.xUnit: return c.Resolve<XUnitResults>();
-                        case TestResultsFormat.MsTest: return c.Resolve<MsTestResults>();
-                        case TestResultsFormat.CucumberJson: return c.Resolve<CucumberJsonResults>();
-                        case TestResultsFormat.SpecRun: return c.Resolve<SpecRunResults>();
-                        default: return c.Resolve<NullTestResults>();
-                    }
-                }).SingleInstance();
+                switch (configuration.TestResultsFormat)
+                {
+                    case TestResultsFormat.NUnit:
+                        return c.Resolve<NUnitResults>();
+                    case TestResultsFormat.xUnit:
+                        return c.Resolve<XUnitResults>();
+                    case TestResultsFormat.MsTest:
+                        return c.Resolve<MsTestResults>();
+                    case TestResultsFormat.CucumberJson:
+                        return c.Resolve<CucumberJsonResults>();
+                    case TestResultsFormat.SpecRun:
+                        return c.Resolve<SpecRunResults>();
+                    default:
+                        return c.Resolve<NullTestResults>();
+                }
+            }).SingleInstance();
 
             builder.RegisterType<LanguageServices>().UsingConstructor(typeof(Configuration)).SingleInstance();
 

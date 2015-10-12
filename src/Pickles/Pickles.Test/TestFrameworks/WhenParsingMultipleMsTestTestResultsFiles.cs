@@ -49,35 +49,35 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
         [Test]
         public void ThenCanReadPassedScenarioResultSuccessfully()
         {
-          var results = ParseResultsFile();
+            var results = ParseResultsFile();
 
-          var scenario = new Scenario
-          {
-            Name = "Failing Feature Passing Scenario",
-            Feature = new Feature { Name = "Failing" }
-          };
+            var scenario = new Scenario
+            {
+                Name = "Failing Feature Passing Scenario",
+                Feature = new Feature { Name = "Failing" }
+            };
 
-          var result = results.GetScenarioResult(scenario);
+            var result = results.GetScenarioResult(scenario);
 
-          Check.That(result.WasExecuted).IsTrue();
-          Check.That(result.WasSuccessful).IsTrue();
+            Check.That(result.WasExecuted).IsTrue();
+            Check.That(result.WasSuccessful).IsTrue();
         }
 
         [Test]
         public void ThenCanReadFailedScenarioResultSuccessfully()
         {
-          var results = ParseResultsFile();
+            var results = ParseResultsFile();
 
-          var scenario = new Scenario
-          {
-            Name = "Failing Feature Failing Scenario",
-            Feature = new Feature { Name = "Failing" }
-          };
+            var scenario = new Scenario
+            {
+                Name = "Failing Feature Failing Scenario",
+                Feature = new Feature { Name = "Failing" }
+            };
 
-          var result = results.GetScenarioResult(scenario);
+            var result = results.GetScenarioResult(scenario);
 
-          Check.That(result.WasExecuted).IsTrue();
-          Check.That(result.WasSuccessful).IsFalse();
+            Check.That(result.WasExecuted).IsTrue();
+            Check.That(result.WasSuccessful).IsFalse();
         }
     }
 }

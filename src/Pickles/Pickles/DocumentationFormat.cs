@@ -31,31 +31,26 @@ namespace PicklesDoc.Pickles
         /// <summary>
         /// Static HTML format without search.
         /// </summary>
-        [Description("HTML")]
-        Html,
+        [Description("HTML")] Html,
 
         /// <summary>
         /// Word format.
         /// </summary>
-        [Description("Microsoft Word OpenXML (.docx)")]
-        Word,
+        [Description("Microsoft Word OpenXML (.docx)")] Word,
 
         /// <summary>
         /// JSON format.
         /// </summary>
-        [Description("Javascript Object Notation (JSON)")]
-        JSON,
+        [Description("Javascript Object Notation (JSON)")] JSON,
 
         /// <summary>
         /// Excel format.
         /// </summary>
-        [Description("Microsoft Excel OpenXML (.xlsx)")]
-        Excel,
+        [Description("Microsoft Excel OpenXML (.xlsx)")] Excel,
 
         /// <summary>
         /// Dynamic HTML format with search.
         /// </summary>
-        [Description("HTML with search")]
-        DHtml
+        [Description("HTML with search")] DHtml
     }
 }

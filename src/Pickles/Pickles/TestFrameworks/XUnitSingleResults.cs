@@ -36,15 +36,12 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         public XUnitSingleResults(XDocument resultsDocument)
         {
-          this.resultsDocument = resultsDocument;
+            this.resultsDocument = resultsDocument;
         }
 
         public bool SupportsExampleResults
         {
-            get
-            {
-                return true;
-            }
+            get { return true; }
         }
 
         public TestResult GetFeatureResult(Feature feature)
@@ -181,12 +178,12 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
             if (signatureBuilder == null)
             {
-              throw new InvalidOperationException("You need to set the ExampleSignatureBuilder before using GetExampleResult.");
+                throw new InvalidOperationException("You need to set the ExampleSignatureBuilder before using GetExampleResult.");
             }
 
             foreach (XElement exampleElement in exampleElements)
             {
-              Regex signature = signatureBuilder.Build(scenarioOutline, exampleValues);
+                Regex signature = signatureBuilder.Build(scenarioOutline, exampleValues);
                 if (signature.IsMatch(exampleElement.Attribute("name").Value.ToLowerInvariant().Replace(@"\", string.Empty)))
                 {
                     return this.GetResultFromElement(exampleElement);

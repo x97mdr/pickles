@@ -279,7 +279,7 @@ Feature: Test
 This is a document string
 it can be many lines long
 {0}",
-                                             DocStringDelimiter);
+                DocStringDelimiter);
 
             string featureText =
                 string.Format(

@@ -43,8 +43,8 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
             var signatureBuilder = Container.Resolve<XUnitExampleSignatureBuilder>();
             Regex signature = signatureBuilder.Build(scenarioOutline, exampleRow);
 
-          var isMatch = signature.IsMatch("Pickles.TestHarness.xUnit.AdditionFeature.AddingSeveralNumbers(firstNumber: \"40\", secondNumber: \"50\", result: \"90\", exampleTags: System.String[])".ToLowerInvariant());
-          Check.That(isMatch).IsTrue();
+            var isMatch = signature.IsMatch("Pickles.TestHarness.xUnit.AdditionFeature.AddingSeveralNumbers(firstNumber: \"40\", secondNumber: \"50\", result: \"90\", exampleTags: System.String[])".ToLowerInvariant());
+            Check.That(isMatch).IsTrue();
         }
     }
 }

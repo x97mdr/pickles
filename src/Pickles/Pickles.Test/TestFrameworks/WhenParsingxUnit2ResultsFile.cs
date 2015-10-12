@@ -47,4 +47,4 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
             Check.ThatCode(() => results.GetFeatureResult(feature)).Throws<Exception>();
         }
     }
-  }
+}

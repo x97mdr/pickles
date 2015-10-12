@@ -76,10 +76,10 @@ namespace PicklesDoc.Pickles.UserInterface.Mvvm
             switch (propertyChangedEventArgs.PropertyName)
             {
                 case "IsSelected":
-                    {
-                        this.SelectionChanged.Raise(this, EventArgs.Empty);
-                        break;
-                    }
+                {
+                    this.SelectionChanged.Raise(this, EventArgs.Empty);
+                    break;
+                }
             }
         }
     }

@@ -39,7 +39,7 @@ namespace PicklesDoc.Pickles.UserInterface
 
         private MainViewModel ViewModel
         {
-          get { return this.DataContext as MainViewModel; }
+            get { return this.DataContext as MainViewModel; }
         }
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
@@ -54,32 +54,32 @@ namespace PicklesDoc.Pickles.UserInterface
 
         private void MainWindow_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-          var oldVm = e.NewValue as MainViewModel;
+            var oldVm = e.NewValue as MainViewModel;
 
-          if (oldVm != null)
-          {
-            oldVm.PropertyChanged -= this.ViewModelOnPropertyChanged;
-          }
+            if (oldVm != null)
+            {
+                oldVm.PropertyChanged -= this.ViewModelOnPropertyChanged;
+            }
 
-          var newVm = e.NewValue as MainViewModel;
+            var newVm = e.NewValue as MainViewModel;
 
-          if (newVm != null)
-          {
-            newVm.PropertyChanged += this.ViewModelOnPropertyChanged;
-          }
+            if (newVm != null)
+            {
+                newVm.PropertyChanged += this.ViewModelOnPropertyChanged;
+            }
         }
 
         private void ViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
-          switch (propertyChangedEventArgs.PropertyName)
-          {
-            case "IsRunning":
-              {
-                this.progressIndicator.Visibility = this.ViewModel.IsRunning ? Visibility.Visible : Visibility.Hidden;
-                this.taskBarItemInfo.ProgressState = this.ViewModel.IsRunning ? TaskbarItemProgressState.Indeterminate : TaskbarItemProgressState.None;
-                break;
-              }
-          }
+            switch (propertyChangedEventArgs.PropertyName)
+            {
+                case "IsRunning":
+                {
+                    this.progressIndicator.Visibility = this.ViewModel.IsRunning ? Visibility.Visible : Visibility.Hidden;
+                    this.taskBarItemInfo.ProgressState = this.ViewModel.IsRunning ? TaskbarItemProgressState.Indeterminate : TaskbarItemProgressState.None;
+                    break;
+                }
+            }
         }
     }
 }

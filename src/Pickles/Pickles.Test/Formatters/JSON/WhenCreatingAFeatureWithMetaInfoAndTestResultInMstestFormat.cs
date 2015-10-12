@@ -112,10 +112,10 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
             var jsonObj = JObject.Parse(content);
 
             IEnumerable<JToken> featureJsonElement = from feat in jsonObj["Features"]
-                where
-                    feat["Feature"]["Name"].Value<string>().Equals(
-                        "Two more scenarios transfering funds between accounts")
-                select feat;
+                                                     where
+                                                         feat["Feature"]["Name"].Value<string>().Equals(
+                                                             "Two more scenarios transfering funds between accounts")
+                                                     select feat;
 
             Check.That(featureJsonElement.ElementAt(0)["Result"]["WasSuccessful"].Value<bool>()).IsTrue();
         }
@@ -128,10 +128,10 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
             var jsonObj = JObject.Parse(content);
 
             IEnumerable<JToken> featureJsonElement = from feat in jsonObj["Features"]
-                where
-                    feat["Feature"]["Name"].Value<string>().Equals(
-                        "Transfer funds between accounts")
-                select feat;
+                                                     where
+                                                         feat["Feature"]["Name"].Value<string>().Equals(
+                                                             "Transfer funds between accounts")
+                                                     select feat;
 
             Check.That(featureJsonElement.ElementAt(0)["Result"]["WasSuccessful"].Value<bool>()).IsTrue();
         }
@@ -144,10 +144,10 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
             var jsonObj = JObject.Parse(content);
 
             IEnumerable<JToken> featureJsonElement = from feat in jsonObj["Features"]
-                where
-                    feat["Feature"]["Name"].Value<string>().Equals(
-                        "Transfer funds between accounts onc scenario and FAILING")
-                select feat;
+                                                     where
+                                                         feat["Feature"]["Name"].Value<string>().Equals(
+                                                             "Transfer funds between accounts onc scenario and FAILING")
+                                                     select feat;
 
             Check.That(featureJsonElement.ElementAt(0)["Result"]["WasSuccessful"].Value<bool>()).IsFalse();
         }
@@ -160,10 +160,10 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
             var jsonObj = JObject.Parse(content);
 
             IEnumerable<JToken> featureJsonElement = from feat in jsonObj["Features"]
-                where
-                    feat["Feature"]["Name"].Value<string>().Equals(
-                        "Two more scenarios transfering funds between accounts - one failng and one succeding")
-                select feat;
+                                                     where
+                                                         feat["Feature"]["Name"].Value<string>().Equals(
+                                                             "Two more scenarios transfering funds between accounts - one failng and one succeding")
+                                                     select feat;
 
             Check.That(featureJsonElement.ElementAt(0)["Result"]["WasSuccessful"].Value<bool>()).IsFalse();
         }
@@ -189,3 +189,4 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         }
     }
 }
+

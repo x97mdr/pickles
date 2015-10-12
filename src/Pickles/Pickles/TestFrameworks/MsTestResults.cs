@@ -25,23 +25,23 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks
 {
-  public class MsTestResults : MultipleTestResults
-  {
-    private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
-
-    public MsTestResults(Configuration configuration)
-      : base(false, configuration)
+    public class MsTestResults : MultipleTestResults
     {
-    }
+        private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
 
-    public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
-    {
-      throw new NotSupportedException();
-    }
+        public MsTestResults(Configuration configuration)
+            : base(false, configuration)
+        {
+        }
 
-    protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
-    {
-      return new MsTestSingleResults(DocumentLoader.Load(fileInfo));
+        public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+        {
+            throw new NotSupportedException();
+        }
+
+        protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
+        {
+            return new MsTestSingleResults(DocumentLoader.Load(fileInfo));
+        }
     }
-  }
 }

@@ -25,21 +25,21 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks
 {
-  public class SpecRunResults : MultipleTestResults
-  {
-    public SpecRunResults(Configuration configuration)
-      : base(false, configuration)
+    public class SpecRunResults : MultipleTestResults
     {
-    }
+        public SpecRunResults(Configuration configuration)
+            : base(false, configuration)
+        {
+        }
 
-    public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
-    {
-      throw new NotSupportedException();
-    }
+        public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+        {
+            throw new NotSupportedException();
+        }
 
-    protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
-    {
-      return new SpecRunSingleResults(fileInfo);
+        protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
+        {
+            return new SpecRunSingleResults(fileInfo);
+        }
     }
-  }
 }

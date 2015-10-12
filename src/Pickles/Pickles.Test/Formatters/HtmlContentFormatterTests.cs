@@ -34,17 +34,17 @@ namespace PicklesDoc.Pickles.Test.Formatters
         [Test]
         public void Constructor_NullHtmlFeatureFormatter_ThrowsArgumentNullException()
         {
-          Check.ThatCode(() => new HtmlContentFormatter(null, null))
-            .Throws<ArgumentNullException>()
-            .WithProperty("ParamName", "htmlFeatureFormatter");
+            Check.ThatCode(() => new HtmlContentFormatter(null, null))
+                .Throws<ArgumentNullException>()
+                .WithProperty("ParamName", "htmlFeatureFormatter");
         }
 
         [Test]
         public void Constructor_NullHtmlIndexFormatter_ThrowsArgumentNullException()
         {
-          Check.ThatCode(() => new HtmlContentFormatter(new Mock<IHtmlFeatureFormatter>().Object, null))
-            .Throws<ArgumentNullException>()
-            .WithProperty("ParamName", "htmlIndexFormatter");
+            Check.ThatCode(() => new HtmlContentFormatter(new Mock<IHtmlFeatureFormatter>().Object, null))
+                .Throws<ArgumentNullException>()
+                .WithProperty("ParamName", "htmlIndexFormatter");
         }
 
         [Test]

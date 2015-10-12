@@ -26,7 +26,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlMarkdownFormatter
     {
-      private readonly MarkdownProvider markdown;
+        private readonly MarkdownProvider markdown;
 
         private readonly XNamespace xmlns;
 

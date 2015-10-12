@@ -37,11 +37,11 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
         {
             var excelFeatureFormatter = Container.Resolve<ExcelFeatureFormatter>();
             var feature = new Feature
-                              {
-                                  Name = "Test Feature",
-                                  Description =
-                                      "In order to test this feature,\nAs a developer\nI want to test this feature"
-                              };
+            {
+                Name = "Test Feature",
+                Description =
+                    "In order to test this feature,\nAs a developer\nI want to test this feature"
+            };
 
             using (var workbook = new XLWorkbook())
             {
@@ -59,11 +59,11 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
             var excelFeatureFormatter = Container.Resolve<ExcelFeatureFormatter>();
 
             var feature = new Feature
-                              {
-                                  Name = "Test Feature",
-                                  Description =
-                                      "In order to test this feature,\nAs a developer\nI want to test this feature",
-                              };
+            {
+                Name = "Test Feature",
+                Description =
+                    "In order to test this feature,\nAs a developer\nI want to test this feature",
+            };
             var background = new Scenario
             {
                 Name = "Test Background Scenario",
@@ -91,11 +91,11 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
             var excelFeatureFormatter = Container.Resolve<ExcelFeatureFormatter>();
 
             var feature = new Feature
-                              {
-                                  Name = "Test Feature",
-                                  Description =
-                                      "In order to test this feature,\nAs a developer\nI want to test this feature",
-                              };
+            {
+                Name = "Test Feature",
+                Description =
+                    "In order to test this feature,\nAs a developer\nI want to test this feature",
+            };
             var scenario = new Scenario
             {
                 Name = "Test Scenario",

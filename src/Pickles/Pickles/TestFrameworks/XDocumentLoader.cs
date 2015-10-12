@@ -24,19 +24,19 @@ using System.Xml.Linq;
 
 namespace PicklesDoc.Pickles.TestFrameworks
 {
-  public class XDocumentLoader
-  {
-    public XDocument Load(FileInfoBase fileInfo)
+    public class XDocumentLoader
     {
-      XDocument document;
-      using (var stream = fileInfo.OpenRead())
-      {
-        XmlReader xmlReader = XmlReader.Create(stream);
-        document = XDocument.Load(xmlReader);
-        stream.Close();
-      }
+        public XDocument Load(FileInfoBase fileInfo)
+        {
+            XDocument document;
+            using (var stream = fileInfo.OpenRead())
+            {
+                XmlReader xmlReader = XmlReader.Create(stream);
+                document = XDocument.Load(xmlReader);
+                stream.Close();
+            }
 
-      return document;
+            return document;
+        }
     }
-  }
 }

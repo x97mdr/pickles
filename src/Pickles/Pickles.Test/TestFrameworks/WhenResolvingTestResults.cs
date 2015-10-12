@@ -169,7 +169,7 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
         [Test]
         public void ThenCanResolveWhenTestResultsAreNUnit()
         {
-           FileSystem.AddFile("results-example-nunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "results-example-nunit.xml"));
+            FileSystem.AddFile("results-example-nunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "results-example-nunit.xml"));
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.NUnit;

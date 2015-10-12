@@ -26,7 +26,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
     public class HtmlResourceWriter : ResourceWriter
     {
         public HtmlResourceWriter(IFileSystem fileSystem)
-          : base(fileSystem, "PicklesDoc.Pickles.Resources.Html.")
+            : base(fileSystem, "PicklesDoc.Pickles.Resources.Html.")
         {
         }
 
@@ -63,10 +63,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         private void EnsureFolder(string cssFolder)
         {
-          if (!this.FileSystem.Directory.Exists(cssFolder))
-          {
-            this.FileSystem.Directory.CreateDirectory(cssFolder);
-          }
+            if (!this.FileSystem.Directory.Exists(cssFolder))
+            {
+                this.FileSystem.Directory.CreateDirectory(cssFolder);
+            }
         }
     }
 }

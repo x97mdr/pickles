@@ -77,7 +77,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
                             new JsonFeatureWithMetaInfo(
                                 featureTreeNode,
                                 this.testResults.GetFeatureResult(
-                                        featureTreeNode.Feature)));
+                                    featureTreeNode.Feature)));
                     }
                     else
                     {

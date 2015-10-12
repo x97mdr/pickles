@@ -35,7 +35,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
             foreach (string value in row)
             {
-              stringBuilder.AppendFormat("\"{0}\",", value.ToLowerInvariant().Replace(@"\", string.Empty));
+                stringBuilder.AppendFormat("\"{0}\",", value.ToLowerInvariant().Replace(@"\", string.Empty));
             }
 
             stringBuilder.Remove(stringBuilder.Length - 1, 1);

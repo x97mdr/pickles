@@ -24,20 +24,20 @@ using System.Linq;
 
 namespace PicklesDoc.Pickles.UserInterface.Mvvm
 {
-  public class MultiSelectableCollection<T> : NotifySelectionChangedCollection<T>
-  {
-    public MultiSelectableCollection()
+    public class MultiSelectableCollection<T> : NotifySelectionChangedCollection<T>
     {
-    }
+        public MultiSelectableCollection()
+        {
+        }
 
-    public MultiSelectableCollection(IEnumerable<T> items)
-        : base(items)
-    {
-    }
+        public MultiSelectableCollection(IEnumerable<T> items)
+            : base(items)
+        {
+        }
 
-      public IEnumerable<T> Selected
-      {
-          get { return this.Where(item => item.IsSelected).Select(item => item.Item); }
-      }
-  }
+        public IEnumerable<T> Selected
+        {
+            get { return this.Where(item => item.IsSelected).Select(item => item.Item); }
+        }
+    }
 }

@@ -79,8 +79,8 @@ namespace PicklesDoc.Pickles.Extensions
         public static string GetUriForTargetRelativeToMe(this Uri me, FileSystemInfoBase target, string newExtension)
         {
             return target.FullName != me.LocalPath
-                       ? me.MakeRelativeUri(target.ToUri()).ToString().Replace(target.Extension, newExtension)
-                       : "#";
+                ? me.MakeRelativeUri(target.ToUri()).ToString().Replace(target.Extension, newExtension)
+                : "#";
         }
     }
 }

@@ -89,9 +89,9 @@ namespace PicklesDoc.Pickles.Test.Formatters
                             DataRows =
                                 new List<TableRow>(
                                     new[]
-                                {
-                                    new TableRow("Value1")
-                                })
+                                    {
+                                        new TableRow("Value1")
+                                    })
                         },
                     }
                 }

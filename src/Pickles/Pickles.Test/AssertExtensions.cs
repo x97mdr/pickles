@@ -32,48 +32,48 @@ namespace PicklesDoc.Pickles.Test
         {
             var actual = ExtensibilityHelper.ExtractChecker(check).Value;
 
-          XAttribute xmlAttribute = actual.Attributes().FirstOrDefault(attribute => attribute.Name.LocalName == name);
-          Check.That(xmlAttribute).IsNotNull();
-          // ReSharper disable once PossibleNullReferenceException
-          Check.That(xmlAttribute.Value).IsEqualTo(value);
+            XAttribute xmlAttribute = actual.Attributes().FirstOrDefault(attribute => attribute.Name.LocalName == name);
+            Check.That(xmlAttribute).IsNotNull();
+            // ReSharper disable once PossibleNullReferenceException
+            Check.That(xmlAttribute.Value).IsEqualTo(value);
         }
 
         public static void HasElement(this ICheck<XElement> check, string name)
         {
-          var actual = ExtensibilityHelper.ExtractChecker(check).Value;
+            var actual = ExtensibilityHelper.ExtractChecker(check).Value;
 
-          Check.That(actual.HasElement(name)).IsTrue();
+            Check.That(actual.HasElement(name)).IsTrue();
         }
 
         public static void IsInNamespace(this ICheck<XElement> check, string nameOfNamespace)
         {
-          var actual = ExtensibilityHelper.ExtractChecker(check).Value;
+            var actual = ExtensibilityHelper.ExtractChecker(check).Value;
 
-          Check.That(actual.Name.NamespaceName).IsEqualTo(nameOfNamespace);
+            Check.That(actual.Name.NamespaceName).IsEqualTo(nameOfNamespace);
         }
 
         public static void IsNamed(this ICheck<XElement> check, string name)
         {
-          var actual = ExtensibilityHelper.ExtractChecker(check).Value;
+            var actual = ExtensibilityHelper.ExtractChecker(check).Value;
 
-          Check.That(actual.Name.LocalName).IsEqualTo(name);
+            Check.That(actual.Name.LocalName).IsEqualTo(name);
         }
 
         public static void IsDeeplyEqualTo(this ICheck<XElement> check, XElement actual)
         {
-          var element = ExtensibilityHelper.ExtractChecker(check).Value;
+            var element = ExtensibilityHelper.ExtractChecker(check).Value;
 
-          if (!XNode.DeepEquals(element, actual))
-          {
-            var fluentMessage = FluentMessage.BuildMessage("The {0} is not equal to the given one (using deep comparison)").For("XML element").On(element.ToString()).And.WithGivenValue(actual.ToString());
+            if (!XNode.DeepEquals(element, actual))
+            {
+                var fluentMessage = FluentMessage.BuildMessage("The {0} is not equal to the given one (using deep comparison)").For("XML element").On(element.ToString()).And.WithGivenValue(actual.ToString());
 
-            throw new FluentCheckException(fluentMessage.ToString());
-          }
+                throw new FluentCheckException(fluentMessage.ToString());
+            }
         }
 
         private static bool HasElement(this XElement element, string name)
         {
-          return element.Elements().Any(e => e.Name.LocalName == name);
+            return element.Elements().Any(e => e.Name.LocalName == name);
         }
     }
 }

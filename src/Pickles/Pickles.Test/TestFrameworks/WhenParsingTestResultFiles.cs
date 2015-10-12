@@ -47,14 +47,14 @@ namespace PicklesDoc.Pickles.Test.TestFrameworks
 
         protected void AddTestResultsToConfiguration()
         {
-          foreach (var fileName in this.resultsFileNames)
-          {
-              // Write out the embedded test results file
-              using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test.TestFrameworks." + fileName)))
-              {
-                  FileSystem.AddFile(fileName, new MockFileData(input.ReadToEnd()));
-              }
-          }
+            foreach (var fileName in this.resultsFileNames)
+            {
+                // Write out the embedded test results file
+                using (var input = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("PicklesDoc.Pickles.Test.TestFrameworks." + fileName)))
+                {
+                    FileSystem.AddFile(fileName, new MockFileData(input.ReadToEnd()));
+                }
+            }
 
             var configuration = Container.Resolve<Configuration>();
 

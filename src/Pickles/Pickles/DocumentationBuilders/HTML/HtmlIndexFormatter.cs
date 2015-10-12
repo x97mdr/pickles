@@ -87,7 +87,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                 XElement li in
                     items.Select(
                         item =>
-                        this.FormatListItem(item.GetRelativeUriTo(node.OriginalLocationUrl), item.Feature.Name, item.Feature.Description)))
+                            this.FormatListItem(item.GetRelativeUriTo(node.OriginalLocationUrl), item.Feature.Name, item.Feature.Description)))
             {
                 list.Add(li);
             }

@@ -40,15 +40,15 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
                 HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4"),
                 DataRows =
                     new List<TableRow>(new[]
-                                            {
-                                                new TableRow("1", "2", "3", "4"),
-                                                new TableRow("5", "6", "7", "8")
-                                            })
+                    {
+                        new TableRow("1", "2", "3", "4"),
+                        new TableRow("5", "6", "7", "8")
+                    })
             };
 
-      var example = new Example { Name = "Some examples", Description = "An example", TableArgument = table };
-      var examples = new List<Example>();
-      examples.Add(example);
+            var example = new Example { Name = "Some examples", Description = "An example", TableArgument = table };
+            var examples = new List<Example>();
+            examples.Add(example);
 
             var scenarioOutline = new ScenarioOutline
             {
@@ -72,15 +72,15 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
                 HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4"),
                 DataRows =
                     new List<TableRow>(new[]
-                                            {
-                                                new TableRow("1", "2", "3", "4"),
-                                                new TableRow("5", "6", "7", "8")
-                                            })
+                    {
+                        new TableRow("1", "2", "3", "4"),
+                        new TableRow("5", "6", "7", "8")
+                    })
             };
 
-      var example = new Example { Name = "Some examples", Description = "An example", TableArgument = table };
-      var examples = new List<Example>();
-      examples.Add(example);
+            var example = new Example { Name = "Some examples", Description = "An example", TableArgument = table };
+            var examples = new List<Example>();
+            examples.Add(example);
 
             var scenarioOutline = new ScenarioOutline
             {
@@ -103,17 +103,17 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
                 HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4"),
                 DataRows =
                     new List<TableRow>(new[]
-                                            {
-                                                new TableRow("1", "2", "3", "4"),
-                                                new TableRow("5", "6", "7", "8")
-                                            })
+                    {
+                        new TableRow("1", "2", "3", "4"),
+                        new TableRow("5", "6", "7", "8")
+                    })
             };
 
             var example = new Example { Name = "Some examples", Description = "An example", TableArgument = table };
-      var examples = new List<Example>();
-      examples.Add(example);
+            var examples = new List<Example>();
+            examples.Add(example);
 
-      var scenarioOutline = new ScenarioOutline
+            var scenarioOutline = new ScenarioOutline
             {
                 Name = "Testing a scenario outline",
                 Examples = examples
@@ -147,10 +147,10 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
         public void ThenCanFormatScenarioOutlineWithMissingTableFromExampleCorrectly()
         {
             var example = new Example { Name = "Some examples", Description = "An example" };
-      var examples = new List<Example>();
-      examples.Add(example);
+            var examples = new List<Example>();
+            examples.Add(example);
 
-      var scenarioOutline = new ScenarioOutline
+            var scenarioOutline = new ScenarioOutline
             {
                 Name = "Testing a scenario outline",
                 Description = "We need to make sure that scenario outlines work properly",

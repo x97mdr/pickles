@@ -75,9 +75,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
                         IXLWorksheet worksheet =
                             workbook.AddWorksheet(
                                 this.excelSheetNameGenerator.GenerateSheetName(
-                                        workbook,
-                                        featureDirectoryTreeNode
-                                            .Feature));
+                                    workbook,
+                                    featureDirectoryTreeNode
+                                        .Feature));
                         this.excelFeatureFormatter.Format(
                             worksheet,
                             featureDirectoryTreeNode.Feature);

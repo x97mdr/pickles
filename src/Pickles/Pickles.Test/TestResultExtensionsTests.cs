@@ -49,9 +49,9 @@ namespace PicklesDoc.Pickles.Test
         public void Merge_SingleItem_ReturnsThatItem()
         {
             var testResults = new[]
-          {
-            TestResult.Passed
-          };
+            {
+                TestResult.Passed
+            };
 
             TestResult actual = testResults.Merge();
 
