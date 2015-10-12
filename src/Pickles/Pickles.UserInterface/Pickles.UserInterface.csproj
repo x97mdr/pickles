@@ -107,6 +107,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="..\VersionInfo.cs">
+      <Link>VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Mvvm\NotifySelectionChangedCollection.cs" />
     <Compile Include="Settings\DataDirectoryDeriver.cs" />
     <Compile Include="Settings\IMainModelSerializer.cs" />
