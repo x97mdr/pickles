@@ -43,7 +43,10 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML.AutomationLayer
                 }
             }
 
-            set { ScenarioContext.Current["Feature"] = value; }
+            set
+            {
+                ScenarioContext.Current["Feature"] = value;
+            }
         }
 
         public static IContainer Container { get; set; }
@@ -62,7 +65,10 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML.AutomationLayer
                 }
             }
 
-            set { ScenarioContext.Current["Html"] = value; }
+            set
+            {
+                ScenarioContext.Current["Html"] = value;
+            }
         }
     }
 }

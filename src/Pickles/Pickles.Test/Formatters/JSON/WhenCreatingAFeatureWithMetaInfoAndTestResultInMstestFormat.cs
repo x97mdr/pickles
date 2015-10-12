@@ -189,4 +189,3 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         }
     }
 }
-
