@@ -23,6 +23,8 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace PicklesDoc.Pickles.Parser.JsonResult
 {
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "The lowercase name is part of an external contract.")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "The lowercase name is part of an external contract.")]
     public class Result
     {
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "The lowercase name is part of an external contract.")]
