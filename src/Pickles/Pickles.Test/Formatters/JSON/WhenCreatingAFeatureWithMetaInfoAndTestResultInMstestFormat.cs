@@ -68,7 +68,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
             var configuration = new Configuration
             {
                 OutputFolder = FileSystem.DirectoryInfo.FromDirectoryName(OutputDirectoryName),
-                DocumentationFormat = DocumentationFormat.JSON,
+                DocumentationFormat = DocumentationFormat.Json,
                 TestResultsFormat = TestResultsFormat.MsTest,
                 SystemUnderTestName = "SUT Name",
                 SystemUnderTestVersion = "SUT Version"

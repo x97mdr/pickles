@@ -48,7 +48,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
             var configuration = new Configuration
             {
                 OutputFolder = FileSystem.DirectoryInfo.FromDirectoryName(OutputDirectory),
-                DocumentationFormat = DocumentationFormat.JSON
+                DocumentationFormat = DocumentationFormat.Json
             };
 
             var jsonDocumentationBuilder = new JsonDocumentationBuilder(configuration, null, FileSystem);

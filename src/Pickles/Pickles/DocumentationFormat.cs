@@ -41,7 +41,7 @@ namespace PicklesDoc.Pickles
         /// <summary>
         /// JSON format.
         /// </summary>
-        [Description("Javascript Object Notation (JSON)")] JSON,
+        [Description("Javascript Object Notation (JSON)")] Json,
 
         /// <summary>
         /// Excel format.
