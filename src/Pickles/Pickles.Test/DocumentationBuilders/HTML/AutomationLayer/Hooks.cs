@@ -41,10 +41,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML.AutomationLayer
         {
             var container = CurrentScenarioContext.Container;
 
-            if (container != null)
-            {
-                container.Dispose();
-            }
+            container?.Dispose();
 
             CurrentScenarioContext.Container = null;
         }

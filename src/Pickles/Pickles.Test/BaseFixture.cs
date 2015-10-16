@@ -68,10 +68,7 @@ namespace PicklesDoc.Pickles.Test
         [TearDown]
         public void TearDown()
         {
-            if (this.container != null)
-            {
-                this.container.Dispose();
-            }
+            this.container?.Dispose();
 
             this.container = null;
         }

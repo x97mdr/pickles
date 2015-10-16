@@ -26,10 +26,7 @@ namespace PicklesDoc.Pickles.UserInterface.Mvvm
     {
         public static void Raise(this EventHandler handler, object sender, EventArgs e)
         {
-            if (handler != null)
-            {
-                handler(sender, e);
-            }
+            handler?.Invoke(sender, e);
         }
     }
 }

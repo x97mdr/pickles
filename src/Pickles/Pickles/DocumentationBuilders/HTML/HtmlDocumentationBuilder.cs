@@ -65,10 +65,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             this.htmlResourceWriter.WriteTo(this.configuration.OutputFolder.FullName);
 
             var actionVisitor = new ActionVisitor<INode>(node => this.VisitNodes(features, node));
-            if (features != null)
-            {
-                features.AcceptVisitor(actionVisitor);
-            }
+            features?.AcceptVisitor(actionVisitor);
         }
 
         private void VisitNodes(GeneralTree<INode> features, INode node)
