@@ -26,14 +26,10 @@ namespace PicklesDoc.Pickles.TestFrameworks
 {
     public struct TestResult
     {
-        private readonly bool wasExecuted;
-
-        private readonly bool wasSuccessful;
-
         private TestResult(bool wasExecuted, bool wasSuccessful)
         {
-            this.wasExecuted = wasExecuted;
-            this.wasSuccessful = wasSuccessful;
+            this.WasExecuted = wasExecuted;
+            this.WasSuccessful = wasSuccessful;
         }
 
         public static TestResult Passed { get; } = new TestResult(wasExecuted: true, wasSuccessful: true);
@@ -42,15 +38,9 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         public static TestResult Inconclusive { get; } = new TestResult(wasExecuted: false, wasSuccessful: false);
 
-        public bool WasExecuted
-        {
-            get { return this.wasExecuted; }
-        }
+        public bool WasExecuted { get; }
 
-        public bool WasSuccessful
-        {
-            get { return this.wasSuccessful; }
-        }
+        public bool WasSuccessful { get; }
 
         public bool Equals(TestResult other)
         {

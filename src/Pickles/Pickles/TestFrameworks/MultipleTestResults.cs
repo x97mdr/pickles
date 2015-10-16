@@ -29,31 +29,21 @@ namespace PicklesDoc.Pickles.TestFrameworks
 {
     public abstract class MultipleTestResults : ITestResults
     {
-        private readonly bool supportsExampleResults;
-
-        private readonly IEnumerable<ITestResults> testResults;
-
         protected MultipleTestResults(bool supportsExampleResults, IEnumerable<ITestResults> testResults)
         {
-            this.supportsExampleResults = supportsExampleResults;
-            this.testResults = testResults;
+            this.SupportsExampleResults = supportsExampleResults;
+            this.TestResults = testResults;
         }
 
         protected MultipleTestResults(bool supportsExampleResults, Configuration configuration)
         {
-            this.supportsExampleResults = supportsExampleResults;
-            this.testResults = this.GetSingleTestResults(configuration);
+            this.SupportsExampleResults = supportsExampleResults;
+            this.TestResults = this.GetSingleTestResults(configuration);
         }
 
-        public bool SupportsExampleResults
-        {
-            get { return this.supportsExampleResults; }
-        }
+        public bool SupportsExampleResults { get; }
 
-        protected IEnumerable<ITestResults> TestResults
-        {
-            get { return this.testResults; }
-        }
+        protected IEnumerable<ITestResults> TestResults { get; }
 
         public abstract TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues);
 
