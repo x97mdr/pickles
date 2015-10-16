@@ -33,7 +33,6 @@ namespace PicklesDoc.Pickles
     {
         public const string HelpFeatureDir = "directory to start scanning recursively for features";
         public const string HelpOutputDir = "directory where output files will be placed";
-        public const string HelpResultFile = "a file containing the results of testing the features";
         public const string HelpSutName = "the name of the system under test";
         public const string HelpSutVersion = "the version of the system under test";
         public const string HelpLanguageFeatureFiles = "the language of the feature files";
@@ -65,8 +64,8 @@ namespace PicklesDoc.Pickles
                 { "o|output-directory=", HelpOutputDir, v => this.outputDirectory = v },
                 { "trfmt|test-results-format=", HelpTestResultsFormat, v => this.testResultsFormat = v },
                 { "lr|link-results-file=", HelpTestResultsFile, v => this.testResultsFile = v },
-                { "sn|system-under-test-name=", HelpResultFile, v => this.systemUnderTestName = v },
-                { "sv|system-under-test-version=", HelpSutName, v => this.systemUnderTestVersion = v },
+                { "sn|system-under-test-name=", HelpSutName, v => this.systemUnderTestName = v },
+                { "sv|system-under-test-version=", HelpSutVersion, v => this.systemUnderTestVersion = v },
                 { "l|language=", HelpLanguageFeatureFiles, v => this.language = v },
                 { "df|documentation-format=", HelpDocumentationFormat, v => this.documentationFormat = v },
                 { "v|version", v => this.versionRequested = v != null },

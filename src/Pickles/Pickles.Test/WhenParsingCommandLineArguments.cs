@@ -46,10 +46,9 @@ namespace PicklesDoc.Pickles.Test
             "                             the path to the linked test results file (can be " + "{0}" +
             "                               a semicolon-separated list of files)" + "{0}" +
             "      --sn, --system-under-test-name=VALUE" + "{0}" +
-            "                             a file containing the results of testing the " + "{0}" +
-            "                               features" + "{0}" +
-            "      --sv, --system-under-test-version=VALUE" + "{0}" +
             "                             the name of the system under test" + "{0}" +
+            "      --sv, --system-under-test-version=VALUE" + "{0}" +
+            "                             the version of the system under test" + "{0}" +
             "  -l, --language=VALUE       the language of the feature files" + "{0}" +
             "      --df, --documentation-format=VALUE" + "{0}" +
             "                             the format of the output documentation" + "{0}" +
