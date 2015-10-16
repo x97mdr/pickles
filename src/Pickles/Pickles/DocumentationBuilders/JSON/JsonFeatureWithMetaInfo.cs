@@ -39,9 +39,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
             this.Result = jsonMapper.Map(result);
         }
 
-        public string RelativeFolder { get; set; }
+        public string RelativeFolder { get; }
 
-        public JsonFeature Feature { get; set; }
+        public JsonFeature Feature { get; }
 
         public JsonTestResult Result { get; set; }
     }

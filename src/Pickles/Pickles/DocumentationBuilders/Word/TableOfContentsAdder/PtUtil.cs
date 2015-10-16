@@ -195,7 +195,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
             this.Key = key;
         }
 
-        private List<TSource> GroupList { get; set; }
+        private List<TSource> GroupList { get; }
 
         #region IEnumerable<TSource> Members
 
@@ -215,7 +215,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
 
         #region IGrouping<TKey,TSource> Members
 
-        public TKey Key { get; set; }
+        public TKey Key { get; }
 
         #endregion
     }

@@ -54,8 +54,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
             this.FileName = null;
         }
 
-        public string FileName { get; set; }
-        public byte[] DocumentByteArray { get; set; }
+        public string FileName { get; }
+        public byte[] DocumentByteArray { get; }
 
         public WordprocessingDocument GetWordprocessingDocument()
         {

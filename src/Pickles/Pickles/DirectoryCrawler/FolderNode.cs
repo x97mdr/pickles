@@ -43,11 +43,11 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
             get { return this.OriginalLocation.Name.ExpandWikiWord(); }
         }
 
-        public FileSystemInfoBase OriginalLocation { get; private set; }
+        public FileSystemInfoBase OriginalLocation { get; }
 
-        public Uri OriginalLocationUrl { get; private set; }
+        public Uri OriginalLocationUrl { get; }
 
-        public string RelativePathFromRoot { get; private set; }
+        public string RelativePathFromRoot { get; }
 
         public string GetRelativeUriTo(Uri other, string newExtension)
         {
