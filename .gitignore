@@ -39,7 +39,7 @@ Ankh.NoLoad
 #Tooling
 _ReSharper*/
 *.resharper
-
+.fake/
 
 #Project files
 [Bb]uild/*
@@ -66,6 +66,7 @@ Output/
 
 #nuget stuff
 *.nupkg
+src/Pickles/packages/
 src/Pickles/Pickles.1.2.dotCover
 
 #TestRunner stuff
