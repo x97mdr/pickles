@@ -35,7 +35,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
             this.Feature = feature;
         }
 
-        public Feature Feature { get; set; }
+        public Feature Feature { get; }
 
         public NodeType NodeType
         {
@@ -47,11 +47,11 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
             get { return this.Feature.Name; }
         }
 
-        public FileSystemInfoBase OriginalLocation { get; private set; }
+        public FileSystemInfoBase OriginalLocation { get; }
 
-        public Uri OriginalLocationUrl { get; private set; }
+        public Uri OriginalLocationUrl { get; }
 
-        public string RelativePathFromRoot { get; private set; }
+        public string RelativePathFromRoot { get; }
 
         public string GetRelativeUriTo(Uri other, string newExtension)
         {
