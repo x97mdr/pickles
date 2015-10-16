@@ -41,7 +41,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
             const string RootPath = FileSystemPrefix + @"JSON\Features";
             const string TestResultFilePath = FileSystemPrefix + @"JSON\results-example-failing-and-pasing-mstest.trx";
 
-            string filePath = FileSystem.Path.Combine(OutputDirectoryName, JSONDocumentationBuilder.JsonFileName);
+            string filePath = FileSystem.Path.Combine(OutputDirectoryName, JsonDocumentationBuilder.JsonFileName);
 
             this.AddFakeFolderAndFiles("JSON", new[] { "results-example-failing-and-pasing-mstest.trx" });
             this.AddFakeFolderAndFiles(
@@ -76,7 +76,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
             configuration.AddTestResultFile(FileSystem.FileInfo.FromFileName(TestResultFilePath));
 
             ITestResults testResults = new MsTestResults(configuration);
-            var jsonDocumentationBuilder = new JSONDocumentationBuilder(configuration, testResults, FileSystem);
+            var jsonDocumentationBuilder = new JsonDocumentationBuilder(configuration, testResults, FileSystem);
             jsonDocumentationBuilder.Build(features);
             string content = FileSystem.File.ReadAllText(filePath);
 

@@ -32,7 +32,7 @@ using PicklesDoc.Pickles.TestFrameworks;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
 {
-    public class JSONDocumentationBuilder : IDocumentationBuilder
+    public class JsonDocumentationBuilder : IDocumentationBuilder
     {
         public const string JsonFileName = @"pickledFeatures.json";
         private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
@@ -42,7 +42,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
 
         private readonly IFileSystem fileSystem;
 
-        public JSONDocumentationBuilder(Configuration configuration, ITestResults testResults, IFileSystem fileSystem)
+        public JsonDocumentationBuilder(Configuration configuration, ITestResults testResults, IFileSystem fileSystem)
         {
             this.configuration = configuration;
             this.testResults = testResults;

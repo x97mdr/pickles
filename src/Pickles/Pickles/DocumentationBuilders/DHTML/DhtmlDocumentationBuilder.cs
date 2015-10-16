@@ -78,7 +78,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
 
         private void UtilizeJsonBuilderToDumpJsonFeatureFileNextToDthmlResources(GeneralTree<INode> features)
         {
-            var jsonBuilder = new JSONDocumentationBuilder(this.configuration, this.testResults, this.fileSystem);
+            var jsonBuilder = new JsonDocumentationBuilder(this.configuration, this.testResults, this.fileSystem);
             jsonBuilder.Build(features);
         }
 
@@ -90,7 +90,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
 
         private void TweakJsonFile()
         {
-            var jsonBuilder = new JSONDocumentationBuilder(this.configuration, this.testResults, this.fileSystem);
+            var jsonBuilder = new JsonDocumentationBuilder(this.configuration, this.testResults, this.fileSystem);
             var jsonFilePath = jsonBuilder.OutputFilePath;
 
             var tweaker = new JsonTweaker(this.fileSystem);

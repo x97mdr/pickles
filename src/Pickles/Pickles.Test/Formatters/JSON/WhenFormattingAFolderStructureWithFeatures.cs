@@ -51,7 +51,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
                 DocumentationFormat = DocumentationFormat.JSON
             };
 
-            var jsonDocumentationBuilder = new JSONDocumentationBuilder(configuration, null, FileSystem);
+            var jsonDocumentationBuilder = new JsonDocumentationBuilder(configuration, null, FileSystem);
             jsonDocumentationBuilder.Build(features);
         }
 
@@ -60,7 +60,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         {
             this.Setup();
 
-            string content = FileSystem.File.ReadAllText(this.FileSystem.Path.Combine(OutputDirectory, JSONDocumentationBuilder.JsonFileName));
+            string content = FileSystem.File.ReadAllText(this.FileSystem.Path.Combine(OutputDirectory, JsonDocumentationBuilder.JsonFileName));
             content.AssertJsonKeyValue("Name", "Addition");
         }
     }

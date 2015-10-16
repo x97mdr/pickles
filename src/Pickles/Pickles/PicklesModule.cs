@@ -43,7 +43,7 @@ namespace PicklesDoc.Pickles
 
             builder.RegisterType<HtmlDocumentationBuilder>().SingleInstance();
             builder.RegisterType<WordDocumentationBuilder>().SingleInstance();
-            builder.RegisterType<JSONDocumentationBuilder>().SingleInstance();
+            builder.RegisterType<JsonDocumentationBuilder>().SingleInstance();
             builder.RegisterType<ExcelDocumentationBuilder>().SingleInstance();
             builder.RegisterType<DhtmlDocumentationBuilder>().SingleInstance();
 
@@ -56,8 +56,8 @@ namespace PicklesDoc.Pickles
                         return c.Resolve<HtmlDocumentationBuilder>();
                     case DocumentationFormat.Word:
                         return c.Resolve<WordDocumentationBuilder>();
-                    case DocumentationFormat.JSON:
-                        return c.Resolve<JSONDocumentationBuilder>();
+                    case DocumentationFormat.Json:
+                        return c.Resolve<JsonDocumentationBuilder>();
                     case DocumentationFormat.Excel:
                         return c.Resolve<ExcelDocumentationBuilder>();
                     case DocumentationFormat.DHtml:

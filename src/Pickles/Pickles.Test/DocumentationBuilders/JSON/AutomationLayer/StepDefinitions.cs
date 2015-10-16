@@ -50,7 +50,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.JSON.AutomationLayer
         {
             var configuration = this.Container.Resolve<Configuration>();
             configuration.OutputFolder = this.FileSystem.DirectoryInfo.FromDirectoryName(@"c:\output\");
-            var jsonDocumentationBuilder = this.Container.Resolve<JSONDocumentationBuilder>();
+            var jsonDocumentationBuilder = this.Container.Resolve<JsonDocumentationBuilder>();
 
             jsonDocumentationBuilder.Build(this.nodes);
         }
