@@ -1,12 +1,14 @@
 @echo off
-set "picklesVersion=1.2.2"
-set "fakeVersion=3.36.0"
+set "picklesVersion=2.0.0"
 
 cls
 
-"src\Pickles\packages\FAKE.%fakeVersion%\tools\Fake.exe" build.fsx --envvar version %picklesVersion%
-"src\Pickles\packages\FAKE.%fakeVersion%\tools\Fake.exe" nuget.fsx --envvar version %picklesVersion%
-"src\Pickles\packages\FAKE.%fakeVersion%\tools\Fake.exe" chocolatey.fsx --envvar version %picklesVersion%
+"packages\nuget\NuGet.exe" "Install" "FAKE" "-OutputDirectory" "packages" "-ExcludeVersion"
+"packages\nuget\NuGet.exe" "Restore" "src\Pickles\Pickles.sln"
+
+"packages\FAKE\tools\Fake.exe" build.fsx --envvar version %picklesVersion%
+"packages\FAKE\tools\Fake.exe" nuget.fsx --envvar version %picklesVersion%
+"packages\FAKE\tools\Fake.exe" chocolatey.fsx --envvar version %picklesVersion%
 
 call unzip.cmd %picklesVersion%
 

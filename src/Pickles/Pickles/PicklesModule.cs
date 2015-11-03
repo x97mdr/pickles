@@ -1,22 +1,22 @@
-#region License
-
-/*
-    Copyright [2011] [Jeffrey Cameron]
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-*/
-
-#endregion
+//  --------------------------------------------------------------------------------------------------------------------
+//  <copyright file="PicklesModule.cs" company="PicklesDoc">
+//  Copyright 2011 Jeffrey Cameron
+//  Copyright 2012-present PicklesDoc team and community contributors
+//
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//  </copyright>
+//  --------------------------------------------------------------------------------------------------------------------
 
 using System;
 using Autofac;
@@ -43,7 +43,7 @@ namespace PicklesDoc.Pickles
 
             builder.RegisterType<HtmlDocumentationBuilder>().SingleInstance();
             builder.RegisterType<WordDocumentationBuilder>().SingleInstance();
-            builder.RegisterType<JSONDocumentationBuilder>().SingleInstance();
+            builder.RegisterType<JsonDocumentationBuilder>().SingleInstance();
             builder.RegisterType<ExcelDocumentationBuilder>().SingleInstance();
             builder.RegisterType<DhtmlDocumentationBuilder>().SingleInstance();
 
@@ -52,32 +52,47 @@ namespace PicklesDoc.Pickles
                 var configuration = c.Resolve<Configuration>();
                 switch (configuration.DocumentationFormat)
                 {
-                    case DocumentationFormat.Html: return c.Resolve<HtmlDocumentationBuilder>();
-                    case DocumentationFormat.Word: return c.Resolve<WordDocumentationBuilder>();
-                    case DocumentationFormat.JSON: return c.Resolve<JSONDocumentationBuilder>();
-                    case DocumentationFormat.Excel: return c.Resolve<ExcelDocumentationBuilder>();
-                    case DocumentationFormat.DHtml: return c.Resolve<DhtmlDocumentationBuilder>();
-                    default: return c.Resolve<HtmlDocumentationBuilder>();
+                    case DocumentationFormat.Html:
+                        return c.Resolve<HtmlDocumentationBuilder>();
+                    case DocumentationFormat.Word:
+                        return c.Resolve<WordDocumentationBuilder>();
+                    case DocumentationFormat.Json:
+                        return c.Resolve<JsonDocumentationBuilder>();
+                    case DocumentationFormat.Excel:
+                        return c.Resolve<ExcelDocumentationBuilder>();
+                    case DocumentationFormat.DHtml:
+                        return c.Resolve<DhtmlDocumentationBuilder>();
+                    default:
+                        return c.Resolve<HtmlDocumentationBuilder>();
                 }
             }).SingleInstance();
 
             builder.Register<ITestResults>(c =>
+            {
+                var configuration = c.Resolve<Configuration>();
+                if (!configuration.HasTestResults)
                 {
-                    var configuration = c.Resolve<Configuration>();
-                    if (!configuration.HasTestResults) return c.Resolve<NullTestResults>();
+                    return c.Resolve<NullTestResults>();
+                }
 
-                    switch (configuration.TestResultsFormat)
-                    {
-                        case TestResultsFormat.NUnit: return c.Resolve<NUnitResults>();
-                        case TestResultsFormat.xUnit: return c.Resolve<XUnitResults>();
-                        case TestResultsFormat.MsTest: return c.Resolve<MsTestResults>();
-                        case TestResultsFormat.CucumberJson: return c.Resolve<CucumberJsonResults>();
-                        case TestResultsFormat.SpecRun: return c.Resolve<SpecRunResults>();
-                        default: return c.Resolve<NullTestResults>();
-                    }
-                }).SingleInstance();
+                switch (configuration.TestResultsFormat)
+                {
+                    case TestResultsFormat.NUnit:
+                        return c.Resolve<NUnitResults>();
+                    case TestResultsFormat.xUnit:
+                        return c.Resolve<XUnitResults>();
+                    case TestResultsFormat.MsTest:
+                        return c.Resolve<MsTestResults>();
+                    case TestResultsFormat.CucumberJson:
+                        return c.Resolve<CucumberJsonResults>();
+                    case TestResultsFormat.SpecRun:
+                        return c.Resolve<SpecRunResults>();
+                    default:
+                        return c.Resolve<NullTestResults>();
+                }
+            }).SingleInstance();
 
-            builder.RegisterType<LanguageServices>().SingleInstance();
+            builder.RegisterType<LanguageServices>().UsingConstructor(typeof(Configuration)).SingleInstance();
 
             builder.RegisterType<HtmlMarkdownFormatter>().SingleInstance();
             builder.RegisterType<HtmlResourceWriter>().SingleInstance();

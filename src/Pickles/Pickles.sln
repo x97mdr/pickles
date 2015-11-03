@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pickles.UserInterface", "Pi
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Pickles.BaseDhtmlFiles", "Pickles.BaseDhtmlFiles\", "{1F17FEE9-0033-42CE-9E91-48D3B2CCD34A}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
 		Debug.AspNetCompiler.VirtualPath = "/Pickles.BaseDhtmlFiles"
 		Debug.AspNetCompiler.PhysicalPath = "Pickles.BaseDhtmlFiles\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Pickles.BaseDhtmlFiles\"
