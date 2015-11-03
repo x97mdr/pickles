@@ -1,4 +1,24 @@
-﻿using System;
+﻿//  --------------------------------------------------------------------------------------------------------------------
+//  <copyright file="HtmlResourceSet.cs" company="PicklesDoc">
+//  Copyright 2011 Jeffrey Cameron
+//  Copyright 2012-present PicklesDoc team and community contributors
+//
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//  </copyright>
+//  --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.IO.Abstractions;
 using System.Linq;
@@ -29,7 +49,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             get { return this.configuration.OutputFolder.ToFileUriCombined("css/print.css", this.fileSystem); }
         }
 
-        public Uri jQueryScript
+        public Uri JQueryScript
         {
             get { return this.configuration.OutputFolder.ToFileUriCombined("js/jquery.js", this.fileSystem); }
         }
@@ -51,7 +71,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         public string ScriptsFolder
         {
-          get { return this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, "js"); }
+            get { return this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, "js"); }
         }
 
         public Uri FailureImage
@@ -74,10 +94,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                 {
                     string fileName = this.GetNameFromResourceName(resource);
                     yield return new HtmlResource
-                                     {
-                                         File = fileName,
-                                         Uri = this.configuration.OutputFolder.ToFileUriCombined(fileName, this.fileSystem)
-                                     };
+                    {
+                        File = fileName,
+                        Uri = this.configuration.OutputFolder.ToFileUriCombined(fileName, this.fileSystem)
+                    };
                 }
             }
         }
@@ -92,10 +112,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                 {
                     string fileName = this.GetNameFromResourceName(resource);
                     yield return new HtmlResource
-                                     {
-                                         File = fileName,
-                                         Uri = new Uri(this.fileSystem.Path.Combine(this.ImagesFolder, fileName))
-                                     };
+                    {
+                        File = fileName,
+                        Uri = new Uri(this.fileSystem.Path.Combine(this.ImagesFolder, fileName))
+                    };
                 }
             }
         }
@@ -110,10 +130,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                 {
                     string fileName = this.GetNameFromResourceName(resource);
                     yield return new HtmlResource
-                                     {
-                                         File = fileName,
-                                         Uri = new Uri(this.fileSystem.Path.Combine(this.ScriptsFolder, fileName))
-                                     };
+                    {
+                        File = fileName,
+                        Uri = new Uri(this.fileSystem.Path.Combine(this.ScriptsFolder, fileName))
+                    };
                 }
             }
         }
@@ -123,15 +143,20 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             get { return new Uri(this.fileSystem.Path.Combine(this.ImagesFolder, "inconclusive.png")); }
         }
 
-
-
         private string GetNameFromResourceName(string resourceName)
         {
-          if (resourceName.StartsWith("PicklesDoc.Pickles.Resources.Html.img"))
-            return resourceName.Replace("PicklesDoc.Pickles.Resources.Html.img.", string.Empty);
-          else if (resourceName.StartsWith("PicklesDoc.Pickles.Resources.Html.js"))
-            return resourceName.Replace("PicklesDoc.Pickles.Resources.Html.js.", string.Empty);
-          else return resourceName.Replace("PicklesDoc.Pickles.Resources.Html.css.", string.Empty);
+            if (resourceName.StartsWith("PicklesDoc.Pickles.Resources.Html.img"))
+            {
+                return resourceName.Replace("PicklesDoc.Pickles.Resources.Html.img.", string.Empty);
+            }
+            else if (resourceName.StartsWith("PicklesDoc.Pickles.Resources.Html.js"))
+            {
+                return resourceName.Replace("PicklesDoc.Pickles.Resources.Html.js.", string.Empty);
+            }
+            else
+            {
+                return resourceName.Replace("PicklesDoc.Pickles.Resources.Html.css.", string.Empty);
+            }
         }
     }
 }

@@ -1,22 +1,22 @@
-﻿#region License
-
-/*
-    Copyright [2011] [Jeffrey Cameron]
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-*/
-
-#endregion
+﻿//  --------------------------------------------------------------------------------------------------------------------
+//  <copyright file="ExcelDocumentationBuilder.cs" company="PicklesDoc">
+//  Copyright 2011 Jeffrey Cameron
+//  Copyright 2012-present PicklesDoc team and community contributors
+//
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//  </copyright>
+//  --------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.IO.Abstractions;
@@ -31,7 +31,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 {
     public class ExcelDocumentationBuilder : IDocumentationBuilder
     {
-      private static readonly Logger log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
+        private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
 
         private readonly Configuration configuration;
         private readonly ExcelFeatureFormatter excelFeatureFormatter;
@@ -56,37 +56,33 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
             this.fileSystem = fileSystem;
         }
 
-        #region IDocumentationBuilder Members
-
         public void Build(GeneralTree<INode> features)
         {
-            if (log.IsInfoEnabled)
+            if (Log.IsInfoEnabled)
             {
-              log.Info("Writing Excel workbook to {0}", this.configuration.OutputFolder.FullName);
+                Log.Info("Writing Excel workbook to {0}", this.configuration.OutputFolder.FullName);
             }
 
             string spreadsheetPath = this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, "features.xlsx");
             using (var workbook = new XLWorkbook())
             {
                 var actionVisitor = new ActionVisitor<INode>(node =>
-                                                                              {
-                                                                                  var featureDirectoryTreeNode =
-                                                                                      node as FeatureNode;
-                                                                                  if (featureDirectoryTreeNode != null)
-                                                                                  {
-                                                                                      IXLWorksheet worksheet =
-                                                                                          workbook.AddWorksheet(
-                                                                                              this.excelSheetNameGenerator.
-                                                                                                  GenerateSheetName(
-                                                                                                      workbook,
-                                                                                                      featureDirectoryTreeNode
-                                                                                                          .Feature));
-                                                                                      this.excelFeatureFormatter.Format(
-                                                                                          worksheet,
-                                                                                          featureDirectoryTreeNode.
-                                                                                              Feature);
-                                                                                  }
-                                                                              });
+                {
+                    var featureDirectoryTreeNode =
+                        node as FeatureNode;
+                    if (featureDirectoryTreeNode != null)
+                    {
+                        IXLWorksheet worksheet =
+                            workbook.AddWorksheet(
+                                this.excelSheetNameGenerator.GenerateSheetName(
+                                    workbook,
+                                    featureDirectoryTreeNode
+                                        .Feature));
+                        this.excelFeatureFormatter.Format(
+                            worksheet,
+                            featureDirectoryTreeNode.Feature);
+                    }
+                });
 
                 features.AcceptVisitor(actionVisitor);
 
@@ -95,7 +91,5 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
                 workbook.SaveAs(spreadsheetPath);
             }
         }
-
-        #endregion
     }
 }

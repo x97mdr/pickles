@@ -1,28 +1,27 @@
-﻿#region License
-
-/*
-    Copyright [2011] [Jeffrey Cameron]
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-*/
-
-#endregion
+﻿//  --------------------------------------------------------------------------------------------------------------------
+//  <copyright file="WordScenarioOutlineFormatter.cs" company="PicklesDoc">
+//  Copyright 2011 Jeffrey Cameron
+//  Copyright 2012-present PicklesDoc team and community contributors
+//
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//  </copyright>
+//  --------------------------------------------------------------------------------------------------------------------
 
 using System;
 using DocumentFormat.OpenXml.Wordprocessing;
 using PicklesDoc.Pickles.Extensions;
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Parser;
 using PicklesDoc.Pickles.TestFrameworks;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Word
@@ -34,8 +33,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
         private readonly WordStepFormatter wordStepFormatter;
         private readonly WordTableFormatter wordTableFormatter;
 
-        public WordScenarioOutlineFormatter(WordStepFormatter wordStepFormatter, WordTableFormatter wordTableFormatter,
-                                            Configuration configuration, ITestResults testResults)
+        public WordScenarioOutlineFormatter(WordStepFormatter wordStepFormatter, WordTableFormatter wordTableFormatter, Configuration configuration, ITestResults testResults)
         {
             this.wordStepFormatter = wordStepFormatter;
             this.wordTableFormatter = wordTableFormatter;
@@ -60,18 +58,20 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
             body.GenerateParagraph(scenarioOutline.Name, "Heading2");
             if (!string.IsNullOrEmpty(scenarioOutline.Description))
+            {
                 body.GenerateParagraph(scenarioOutline.Description, "Normal");
+            }
 
             foreach (Step step in scenarioOutline.Steps)
             {
                 this.wordStepFormatter.Format(body, step);
             }
-			
-			foreach (var example in scenarioOutline.Examples)
-			{
-	            body.GenerateParagraph("Examples: " + example.Description, "Heading3");
-	            this.wordTableFormatter.Format(body, example.TableArgument);
-			}
+
+            foreach (var example in scenarioOutline.Examples)
+            {
+                body.GenerateParagraph("Examples: " + example.Description, "Heading3");
+                this.wordTableFormatter.Format(body, example.TableArgument);
+            }
         }
     }
 }

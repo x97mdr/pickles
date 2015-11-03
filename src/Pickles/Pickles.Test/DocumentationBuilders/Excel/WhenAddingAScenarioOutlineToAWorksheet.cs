@@ -1,9 +1,29 @@
-﻿using System;
+﻿//  --------------------------------------------------------------------------------------------------------------------
+//  <copyright file="WhenAddingAScenarioOutlineToAWorksheet.cs" company="PicklesDoc">
+//  Copyright 2011 Jeffrey Cameron
+//  Copyright 2012-present PicklesDoc team and community contributors
+//
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//  </copyright>
+//  --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+using Autofac;
 using ClosedXML.Excel;
 using NFluent;
 using NUnit.Framework;
-using Autofac;
 using PicklesDoc.Pickles.DocumentationBuilders.Excel;
 using PicklesDoc.Pickles.ObjectModel;
 
@@ -19,17 +39,17 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
             var exampleTable = new Table();
             exampleTable.HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4");
             exampleTable.DataRows =
-                new List<TableRow>(new[] {new TableRow("1", "2", "3", "4"), new TableRow("5", "6", "7", "8")});
-            var example = new Example {Name = "Examples", Description = string.Empty, TableArgument = exampleTable};
-      var examples = new List<Example>();
-      examples.Add(example);
+                new List<TableRow>(new[] { new TableRow("1", "2", "3", "4"), new TableRow("5", "6", "7", "8") });
+            var example = new Example { Name = "Examples", Description = string.Empty, TableArgument = exampleTable };
+            var examples = new List<Example>();
+            examples.Add(example);
             var scenarioOutline = new ScenarioOutline
-                                      {
-                                          Name = "Test Feature",
-                                          Description =
-                                              "In order to test this feature,\nAs a developer\nI want to test this feature",
-                                          Examples = examples
-                                      };
+            {
+                Name = "Test Feature",
+                Description =
+                    "In order to test this feature,\nAs a developer\nI want to test this feature",
+                Examples = examples
+            };
 
             using (var workbook = new XLWorkbook())
             {
@@ -63,21 +83,21 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Excel
             var exampleTable = new Table();
             exampleTable.HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4");
             exampleTable.DataRows =
-                new List<TableRow>(new[] {new TableRow("1", "2", "3", "4"), new TableRow("5", "6", "7", "8")});
-            var example = new Example {Name = "Examples", Description = string.Empty, TableArgument = exampleTable};
-      var examples = new List<Example>();
-      examples.Add(example);
+                new List<TableRow>(new[] { new TableRow("1", "2", "3", "4"), new TableRow("5", "6", "7", "8") });
+            var example = new Example { Name = "Examples", Description = string.Empty, TableArgument = exampleTable };
+            var examples = new List<Example>();
+            examples.Add(example);
             var scenarioOutline = new ScenarioOutline
-                                      {
-                                          Name = "Test Feature",
-                                          Description =
-                                              "In order to test this feature,\nAs a developer\nI want to test this feature",
-                                          Examples = examples
-                                      };
-            var given = new Step {NativeKeyword = "Given", Name = "a precondition"};
-            var when = new Step {NativeKeyword = "When", Name = "an event occurs"};
-            var then = new Step {NativeKeyword = "Then", Name = "a postcondition"};
-            scenarioOutline.Steps = new List<Step>(new[] {given, when, then});
+            {
+                Name = "Test Feature",
+                Description =
+                    "In order to test this feature,\nAs a developer\nI want to test this feature",
+                Examples = examples
+            };
+            var given = new Step { NativeKeyword = "Given", Name = "a precondition" };
+            var when = new Step { NativeKeyword = "When", Name = "an event occurs" };
+            var then = new Step { NativeKeyword = "Then", Name = "a postcondition" };
+            scenarioOutline.Steps = new List<Step>(new[] { given, when, then });
 
             using (var workbook = new XLWorkbook())
             {

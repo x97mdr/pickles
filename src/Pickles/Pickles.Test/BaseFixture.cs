@@ -1,4 +1,24 @@
-﻿using System;
+﻿//  --------------------------------------------------------------------------------------------------------------------
+//  <copyright file="BaseFixture.cs" company="PicklesDoc">
+//  Copyright 2011 Jeffrey Cameron
+//  Copyright 2012-present PicklesDoc team and community contributors
+//
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//  </copyright>
+//  --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
@@ -18,7 +38,7 @@ namespace PicklesDoc.Pickles.Test
 
         protected IContainer Container
         {
-            get 
+            get
             {
                 if (this.container == null)
                 {
@@ -33,14 +53,14 @@ namespace PicklesDoc.Pickles.Test
             }
         }
 
-      private static MockFileSystem CreateMockFileSystem()
-      {
-        var mockFileSystem = new MockFileSystem();
-        mockFileSystem.Directory.SetCurrentDirectory(Assembly.GetExecutingAssembly().Location);
-        return mockFileSystem;
-      }
+        private static MockFileSystem CreateMockFileSystem()
+        {
+            var mockFileSystem = new MockFileSystem();
+            mockFileSystem.Directory.SetCurrentDirectory(Assembly.GetExecutingAssembly().Location);
+            return mockFileSystem;
+        }
 
-      protected MockFileSystem FileSystem
+        protected MockFileSystem FileSystem
         {
             get { return (MockFileSystem)this.Container.Resolve<IFileSystem>(); }
         }
@@ -48,43 +68,43 @@ namespace PicklesDoc.Pickles.Test
         [TearDown]
         public void TearDown()
         {
-            if (this.container != null)
-                this.container.Dispose();
+            this.container?.Dispose();
+
             this.container = null;
         }
 
+        protected void AddFakeFolderStructures()
+        {
+            this.AddFakeFolderAndFiles("AcceptanceTest", new[] { "AdvancedFeature.feature", "LevelOne.feature" });
+            this.AddFakeFolderAndFiles("EmptyFolderTests", new string[0]);
 
-      protected void AddFakeFolderStructures()
-      {
-          AddFakeFolderAndFiles("AcceptanceTest", new[] { "AdvancedFeature.feature", "LevelOne.feature" });
-          AddFakeFolderAndFiles("EmptyFolderTests", new string[0]);
+            this.AddFakeFolderAndFiles("FeatureCrawlerTests", new[] { "index.md", "LevelOne.feature", "image.png" });
+            this.AddFakeFolderAndFiles(@"FeatureCrawlerTests\SubLevelOne", new[] { "ignorethisfile.ignore", "LevelOneSublevelOne.feature", "LevelOneSublevelTwo.feature" });
+            this.AddFakeFolderAndFiles(@"FeatureCrawlerTests\SubLevelOne\SubLevelTwo", new[] { "LevelOneSublevelOneSubLevelTwo.feature" });
+            this.AddFakeFolderAndFiles(@"FeatureCrawlerTests\SubLevelOne\SubLevelTwo\IgnoreThisDirectory", new[] { "IgnoreThisFile.ignore" });
+        }
 
-          AddFakeFolderAndFiles("FeatureCrawlerTests", new[] { "index.md", "LevelOne.feature", "image.png" });
-          AddFakeFolderAndFiles(@"FeatureCrawlerTests\SubLevelOne", new[] { "ignorethisfile.ignore", "LevelOneSublevelOne.feature", "LevelOneSublevelTwo.feature" });
-          AddFakeFolderAndFiles(@"FeatureCrawlerTests\SubLevelOne\SubLevelTwo", new[] { "LevelOneSublevelOneSubLevelTwo.feature" });
-          AddFakeFolderAndFiles(@"FeatureCrawlerTests\SubLevelOne\SubLevelTwo\IgnoreThisDirectory", new[] { "IgnoreThisFile.ignore" });
-      }
+        protected void AddFakeFolderAndFiles(string directoryName, IEnumerable<string> fileNames)
+        {
+            string directoryPath = FileSystemPrefix + directoryName + @"\";
+            string resourceIdentifier = ResourcePrefix + directoryName.Replace(@"\", ".") + ".";
 
-      protected void AddFakeFolderAndFiles(string directoryName, IEnumerable<string> fileNames)
-      {
-          string directoryPath = FileSystemPrefix + directoryName + @"\";
-          string resourceIdentifier = ResourcePrefix + directoryName.Replace(@"\", ".") + ".";
+            this.FileSystem.AddDirectory(directoryPath);
 
-          FileSystem.AddDirectory(directoryPath);
-
-          foreach (var fileName in fileNames)
-          {
-              FileSystem.AddFile(
-                  directoryPath + fileName,
-                  RetrieveContentOfFileFromResources(resourceIdentifier + fileName));
-          }
-      }
+            foreach (var fileName in fileNames)
+            {
+                this.FileSystem.AddFile(
+                    directoryPath + fileName,
+                    RetrieveContentOfFileFromResources(resourceIdentifier + fileName));
+            }
+        }
 
         protected static string RetrieveContentOfFileFromResources(string resourceName)
         {
             string resultFile;
 
-            System.IO.Stream manifestResourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
+            System.IO.Stream manifestResourceStream =
+                Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
 
             using (var reader = new System.IO.StreamReader(manifestResourceStream))
             {

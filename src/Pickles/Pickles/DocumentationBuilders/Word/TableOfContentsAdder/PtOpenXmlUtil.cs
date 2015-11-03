@@ -6,7 +6,7 @@ This code is licensed using the Microsoft Public License (Ms-PL).  The text of t
 can be found here:
 
 http://www.microsoft.com/resources/sharedsource/licensingbasics/publiclicense.mspx
-  
+
  This code was modified to use System.IO.Abstractions in the appropriate places.
 
 ***************************************************************************/
@@ -54,8 +54,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
             this.FileName = null;
         }
 
-        public string FileName { get; set; }
-        public byte[] DocumentByteArray { get; set; }
+        public string FileName { get; }
+        public byte[] DocumentByteArray { get; }
 
         public WordprocessingDocument GetWordprocessingDocument()
         {
@@ -2211,38 +2211,38 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
         public static XName zOrder = w + "zOrder";
 
         public static XName[] BlockLevelContentContainers =
-            {
-                body,
-                tc,
-                txbxContent,
-                hdr,
-                ftr,
-                endnote,
-                footnote
-            };
+        {
+            body,
+            tc,
+            txbxContent,
+            hdr,
+            ftr,
+            endnote,
+            footnote
+        };
 
         public static XName[] SubRunLevelContent =
-            {
-                br,
-                cr,
-                dayLong,
-                dayShort,
-                drawing,
-                drawing,
-                monthLong,
-                monthShort,
-                noBreakHyphen,
-                ptab,
-                pgNum,
-                pict,
-                softHyphen,
-                sym,
-                t,
-                tab,
-                yearLong,
-                yearShort,
-                MC.AlternateContent,
-            };
+        {
+            br,
+            cr,
+            dayLong,
+            dayShort,
+            drawing,
+            drawing,
+            monthLong,
+            monthShort,
+            noBreakHyphen,
+            ptab,
+            pgNum,
+            pict,
+            softHyphen,
+            sym,
+            t,
+            tab,
+            yearLong,
+            yearShort,
+            MC.AlternateContent,
+        };
     }
 
     public static class W10
@@ -2525,11 +2525,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
                 element.Name == W.txbxContent)
                 return element
                     .DescendantsTrimmed(e =>
-                                        e.Name == W.tbl ||
-                                        e.Name == W.p)
+                        e.Name == W.tbl ||
+                        e.Name == W.p)
                     .Where(e =>
-                           e.Name == W.p ||
-                           e.Name == W.tbl);
+                        e.Name == W.p ||
+                        e.Name == W.tbl);
             if (element.Name == W.tbl)
                 return element
                     .DescendantsTrimmed(W.tr)
@@ -2553,12 +2553,12 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
             if (element.Name == MC.AlternateContent)
                 return element
                     .DescendantsTrimmed(e =>
-                                        e.Name == W.pict ||
-                                        e.Name == W.drawing ||
-                                        e.Name == MC.Fallback)
+                        e.Name == W.pict ||
+                        e.Name == W.drawing ||
+                        e.Name == MC.Fallback)
                     .Where(e =>
-                           e.Name == W.pict ||
-                           e.Name == W.drawing);
+                        e.Name == W.pict ||
+                        e.Name == W.drawing);
             if (element.Name == W.pict || element.Name == W.drawing)
                 return element
                     .DescendantsTrimmed(W.txbxContent)
@@ -2591,7 +2591,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
         // Used to track changes to parts
 
         /// <summary>
-        /// Gets the XDocument for a part	
+        /// Gets the XDocument for a part
         /// </summary>
         public static XDocument GetXDocumentWithTracking(this OpenXmlPart part)
         {
@@ -2620,7 +2620,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
 
         private static void ElementChangedHandler(object sender, XObjectChangeEventArgs e)
         {
-            XDocument xDocument = ((XObject) sender).Document;
+            XDocument xDocument = ((XObject)sender).Document;
             if (xDocument != null)
             {
                 xDocument.Changing -= ElementChanged;
@@ -2630,7 +2630,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
         }
 
         /// <summary>
-        /// Writes out all XDocuments	
+        /// Writes out all XDocuments
         /// </summary>
         public static void FlushTrackedXDocuments(this OpenXmlPackage doc)
         {
@@ -2775,11 +2775,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
         public static FieldInfo ParseField(string field)
         {
             var emptyField = new FieldInfo
-                                 {
-                                     FieldType = "",
-                                     Arguments = new string[] {},
-                                     Switches = new string[] {},
-                                 };
+            {
+                FieldType = "",
+                Arguments = new string[] { },
+                Switches = new string[] { },
+            };
 
             if (field.Length == 0)
                 return emptyField;
@@ -2790,11 +2790,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
             if (tokens.Length == 0)
                 return emptyField;
             var fieldInfo = new FieldInfo
-                                {
-                                    FieldType = tokens[0],
-                                    Switches = tokens.Where(t => t[0] == '\\').ToArray(),
-                                    Arguments = tokens.Skip(1).Where(t => t[0] != '\\').ToArray(),
-                                };
+            {
+                FieldType = tokens[0],
+                Switches = tokens.Where(t => t[0] == '\\').ToArray(),
+                Arguments = tokens.Skip(1).Where(t => t[0] != '\\').ToArray(),
+            };
             return fieldInfo;
         }
 

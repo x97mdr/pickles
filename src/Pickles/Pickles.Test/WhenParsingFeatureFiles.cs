@@ -1,11 +1,31 @@
-﻿using System.Linq;
+﻿//  --------------------------------------------------------------------------------------------------------------------
+//  <copyright file="WhenParsingFeatureFiles.cs" company="PicklesDoc">
+//  Copyright 2011 Jeffrey Cameron
+//  Copyright 2012-present PicklesDoc team and community contributors
+//
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//  </copyright>
+//  --------------------------------------------------------------------------------------------------------------------
+
+using System;
+using System.Linq;
+
+using Autofac;
 using NFluent;
 using NUnit.Framework;
-using Autofac;
-
+using PicklesDoc.Pickles.Extensions;
 using PicklesDoc.Pickles.ObjectModel;
-using System;
-
 using StringReader = System.IO.StringReader;
 
 namespace PicklesDoc.Pickles.Test
@@ -13,7 +33,7 @@ namespace PicklesDoc.Pickles.Test
     [TestFixture]
     public class WhenParsingFeatureFiles : BaseFixture
     {
-        private const string DOC_STRING_DELIMITER = "\"\"\"";
+        private const string DocStringDelimiter = "\"\"\"";
 
         [Test]
         public void ThenCanParseFeatureWithMultipleScenariosSuccessfully()
@@ -28,7 +48,7 @@ Feature: Test
   Scenario: A scenario
     Given some feature
     When it runs
-    Then I should see that this thing happens	
+    Then I should see that this thing happens
 
     Scenario: Another scenario
     Given some other feature
@@ -41,9 +61,9 @@ Feature: Test
 
             Check.That(feature).IsNotNull();
             Check.That(feature.Name).IsEqualTo("Test");
-            Check.That(feature.Description).IsEqualTo(@"  In order to do something
-  As a user
-  I want to run this scenario");
+            Check.That(feature.Description.ComparisonNormalize()).IsEqualTo(@"    In order to do something
+    As a user
+    I want to run this scenario".ComparisonNormalize());
             Check.That(feature.FeatureElements.Count).IsEqualTo(2);
             Check.That(feature.Tags).IsEmpty();
 
@@ -122,9 +142,9 @@ Feature: Test
 
             Check.That(feature).IsNotNull();
             Check.That(feature.Name).IsEqualTo("Test");
-            Check.That(feature.Description).IsEqualTo(@"  In order to do something
-  As a user
-  I want to run this scenario");
+            Check.That(feature.Description.ComparisonNormalize()).IsEqualTo(@"    In order to do something
+    As a user
+    I want to run this scenario".ComparisonNormalize());
             Check.That(feature.FeatureElements.Count).IsEqualTo(1);
             Check.That(feature.Tags).IsEmpty();
 
@@ -204,10 +224,10 @@ Feature: Test
             Check.That(examples.First().Description).IsNullOrEmpty();
 
             Table table = examples.First().TableArgument;
-            Check.That(table.HeaderRow[0]).IsEqualTo("keyword1");
-            Check.That(table.HeaderRow[1]).IsEqualTo("keyword2");
-            Check.That(table.DataRows[0][0]).IsEqualTo("this");
-            Check.That(table.DataRows[0][1]).IsEqualTo("that");
+            Check.That(table.HeaderRow.Cells[0]).IsEqualTo("keyword1");
+            Check.That(table.HeaderRow.Cells[1]).IsEqualTo("keyword2");
+            Check.That(table.DataRows[0].Cells[0]).IsEqualTo("this");
+            Check.That(table.DataRows[0].Cells[1]).IsEqualTo("that");
         }
 
         [Test]
@@ -254,11 +274,12 @@ Feature: Test
         [Test]
         public void ThenCanParseScenarioWithDocstringSuccessfully()
         {
-            string docstring = string.Format(@"{0}
+            string docstring = string.Format(
+                @"{0}
 This is a document string
 it can be many lines long
 {0}",
-                                             DOC_STRING_DELIMITER);
+                DocStringDelimiter);
 
             string featureText =
                 string.Format(
@@ -277,8 +298,8 @@ it can be many lines long
             var parser = Container.Resolve<FeatureParser>();
             Feature feature = parser.Parse(new StringReader(featureText));
 
-            Check.That(feature.FeatureElements[0].Steps[0].DocStringArgument).IsEqualTo(@"This is a document string
-it can be many lines long");
+            Check.That(feature.FeatureElements[0].Steps[0].DocStringArgument.ComparisonNormalize()).IsEqualTo(@"This is a document string
+it can be many lines long".ComparisonNormalize());
         }
 
         [Test]
@@ -302,10 +323,10 @@ Feature: Test
             Feature feature = parser.Parse(new StringReader(featureText));
 
             Table table = feature.FeatureElements[0].Steps[0].TableArgument;
-            Check.That(table.HeaderRow[0]).IsEqualTo("Column1");
-            Check.That(table.HeaderRow[1]).IsEqualTo("Column2");
-            Check.That(table.DataRows[0][0]).IsEqualTo("Value 1");
-            Check.That(table.DataRows[0][1]).IsEqualTo("Value 2");
+            Check.That(table.HeaderRow.Cells[0]).IsEqualTo("Column1");
+            Check.That(table.HeaderRow.Cells[1]).IsEqualTo("Column2");
+            Check.That(table.DataRows[0].Cells[0]).IsEqualTo("Value 1");
+            Check.That(table.DataRows[0].Cells[1]).IsEqualTo("Value 2");
         }
 
         [Test]
