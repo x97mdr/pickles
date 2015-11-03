@@ -122,6 +122,6 @@
 
 
     <Button Command="{Binding GeneratePickles}" Content="Generate" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" Padding="15" Grid.ColumnSpan="2" Margin="0,20" />
-    <nlogViewer:NlogViewer x:Name="logCtrl" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="11" />
+        <nlogViewer:NlogViewer x:Name="logCtrl" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="11" LevelWidth="auto" ExceptionWidth="auto" MessageWidth="auto" />
   </Grid>
 </mahapps:MetroWindow>
