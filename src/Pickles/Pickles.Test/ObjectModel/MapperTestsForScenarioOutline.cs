@@ -112,5 +112,31 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
             Check.That(result.Description).IsEqualTo(string.Empty);
         }
+
+        [Test]
+        public void MapToScenarioOutline_Always_MapsFeatureProperty()
+        {
+            var scenarioOutline = this.factory.CreateScenarioOutline(
+                new[] { "unimportant tag" },
+                "My scenario outline title",
+                null,
+                new[] { this.factory.CreateStep("Given", "unimportant step") },
+                null);
+            var feature = this.factory.CreateFeature(
+                "My Feature",
+                "My Description",
+                scenarioDefinitions: new G.ScenarioDefinition[] { scenarioOutline });
+
+
+            var mapper = this.factory.CreateMapper();
+
+            var mappedFeature = mapper.MapToFeature(feature);
+
+            Check.That(mappedFeature.FeatureElements.Count).IsEqualTo(1);
+
+            var mappedScenarioOutline = mappedFeature.FeatureElements[0] as ScenarioOutline;
+
+            Check.That(mappedScenarioOutline.Feature).IsSameReferenceThan(mappedFeature);
+        }
     }
 }

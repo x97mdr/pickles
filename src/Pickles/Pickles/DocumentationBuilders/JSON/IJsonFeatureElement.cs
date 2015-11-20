@@ -24,5 +24,6 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
 {
     public interface IJsonFeatureElement
     {
+        JsonFeature Feature { get; set; }
     }
 }
