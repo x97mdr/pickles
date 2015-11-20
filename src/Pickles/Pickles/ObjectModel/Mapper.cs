@@ -103,8 +103,7 @@ namespace PicklesDoc.Pickles.ObjectModel
                             {
                                 featureElement.Feature = targetFeature;
                             }
-                        })
-                        ;
+                        });
         }
 
         public string MapToString(G.TableCell cell)
