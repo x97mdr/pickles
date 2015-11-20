@@ -1,22 +1,22 @@
-﻿#region License
-
-/*
-    Copyright [2011] [Jeffrey Cameron]
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-*/
-
-#endregion
+﻿//  --------------------------------------------------------------------------------------------------------------------
+//  <copyright file="MarkdownNode.cs" company="PicklesDoc">
+//  Copyright 2011 Jeffrey Cameron
+//  Copyright 2012-present PicklesDoc team and community contributors
+//
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//  </copyright>
+//  --------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.IO.Abstractions;
@@ -36,19 +36,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
             this.MarkdownContent = markdownContent;
         }
 
-        public XElement MarkdownContent { get; private set; }
-
-        #region INode Members
-
-        public string GetRelativeUriTo(Uri other, string newExtension)
-        {
-            return other.GetUriForTargetRelativeToMe(this.OriginalLocation, newExtension);
-        }
-
-        public string GetRelativeUriTo(Uri other)
-        {
-            return this.GetRelativeUriTo(other, ".html");
-        }
+        public XElement MarkdownContent { get; }
 
         public NodeType NodeType
         {
@@ -62,17 +50,25 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
                 XElement headerElement =
                     this.MarkdownContent.Descendants().FirstOrDefault(element => element.Name.LocalName == "h1");
                 return headerElement != null
-                           ? headerElement.Value
-                           : this.OriginalLocation.Name.Replace(this.OriginalLocation.Extension, string.Empty).ExpandWikiWord();
+                    ? headerElement.Value
+                    : this.OriginalLocation.Name.Replace(this.OriginalLocation.Extension, string.Empty).ExpandWikiWord();
             }
         }
 
-        public FileSystemInfoBase OriginalLocation { get; private set; }
+        public FileSystemInfoBase OriginalLocation { get; }
 
-        public Uri OriginalLocationUrl { get; private set; }
+        public Uri OriginalLocationUrl { get; }
 
-        public string RelativePathFromRoot { get; private set; }
+        public string RelativePathFromRoot { get; }
 
-        #endregion
+        public string GetRelativeUriTo(Uri other, string newExtension)
+        {
+            return other.GetUriForTargetRelativeToMe(this.OriginalLocation, newExtension);
+        }
+
+        public string GetRelativeUriTo(Uri other)
+        {
+            return this.GetRelativeUriTo(other, ".html");
+        }
     }
 }

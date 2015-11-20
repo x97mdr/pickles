@@ -35,12 +35,12 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
             XDocument fontTableXDoc = fontTablePart.GetXDocument();
 
             AddElementIfMissing(fontTableXDoc,
-                                fontTableXDoc
-                                    .Root
-                                    .Elements(W.font)
-                                    .Where(e => (string) e.Attribute(W.name) == "Tahoma")
-                                    .FirstOrDefault(),
-                                @"<w:font w:name='Tahoma' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
+                fontTableXDoc
+                    .Root
+                    .Elements(W.font)
+                    .Where(e => (string)e.Attribute(W.name) == "Tahoma")
+                    .FirstOrDefault(),
+                @"<w:font w:name='Tahoma' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
                      <w:panose1 w:val='020B0604030504040204'/>
                      <w:charset w:val='00'/>
                      <w:family w:val='swiss'/>
@@ -58,7 +58,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
                 partXDoc.Root.Elements(W.style)
                     .Where(
                         e =>
-                        (string) e.Attribute(W.type) == "paragraph" && (string) e.Attribute(W.styleId) == "TOCHeading")
+                            (string)e.Attribute(W.type) == "paragraph" && (string)e.Attribute(W.styleId) == "TOCHeading")
                     .FirstOrDefault(),
                 @"<w:style w:type='paragraph' w:styleId='TOCHeading' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
                     <w:name w:val='TOC Heading'/>
@@ -83,8 +83,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
                     partXDoc.Root.Elements(W.style)
                         .Where(
                             e =>
-                            (string) e.Attribute(W.type) == "paragraph" &&
-                            (string) e.Attribute(W.styleId) == ("TOC" + i.ToString()))
+                                (string)e.Attribute(W.type) == "paragraph" &&
+                                (string)e.Attribute(W.styleId) == ("TOC" + i.ToString()))
                         .FirstOrDefault(),
                     String.Format(
                         @"<w:style w:type='paragraph' w:styleId='TOC{0}' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
@@ -107,8 +107,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
                     partXDoc.Root.Elements(W.style)
                         .Where(
                             e =>
-                            (string) e.Attribute(W.type) == "paragraph" &&
-                            (string) e.Attribute(W.styleId) == ("TOC" + i.ToString()))
+                                (string)e.Attribute(W.type) == "paragraph" &&
+                                (string)e.Attribute(W.styleId) == ("TOC" + i.ToString()))
                         .FirstOrDefault(),
                     String.Format(
                         @"<w:style w:type='paragraph' w:styleId='TOC{0}' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
@@ -134,7 +134,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
                 partXDoc.Root.Elements(W.style)
                     .Where(
                         e =>
-                        (string) e.Attribute(W.type) == "character" && (string) e.Attribute(W.styleId) == "Hyperlink")
+                            (string)e.Attribute(W.type) == "character" && (string)e.Attribute(W.styleId) == "Hyperlink")
                     .FirstOrDefault(),
                 @"<w:style w:type='character' w:styleId='Hyperlink' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
                      <w:name w:val='Hyperlink'/>
@@ -152,7 +152,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
                 partXDoc.Root.Elements(W.style)
                     .Where(
                         e =>
-                        (string) e.Attribute(W.type) == "paragraph" && (string) e.Attribute(W.styleId) == "BalloonText")
+                            (string)e.Attribute(W.type) == "paragraph" && (string)e.Attribute(W.styleId) == "BalloonText")
                     .FirstOrDefault(),
                 @"<w:style w:type='paragraph' w:styleId='BalloonText' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
                     <w:name w:val='Balloon Text'/>
@@ -174,9 +174,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
             AddElementIfMissing(
                 partXDoc,
                 partXDoc.Root.Elements(W.style)
-                    .Where(e => (string) e.Attribute(W.type) == "character" &&
-                                (bool?) e.Attribute(W.customStyle) == true &&
-                                (string) e.Attribute(W.styleId) == "BalloonTextChar")
+                    .Where(e => (string)e.Attribute(W.type) == "character" &&
+                                (bool?)e.Attribute(W.customStyle) == true &&
+                                (string)e.Attribute(W.styleId) == "BalloonTextChar")
                     .FirstOrDefault(),
                 @"<w:style w:type='character' w:customStyle='1' w:styleId='BalloonTextChar' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
                     <w:name w:val='Balloon Text Char'/>
@@ -219,8 +219,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
                 partXDoc.Root.Elements(W.style)
                     .Where(
                         e =>
-                        (string) e.Attribute(W.type) == "paragraph" &&
-                        (string) e.Attribute(W.styleId) == "TableofFigures")
+                            (string)e.Attribute(W.type) == "paragraph" &&
+                            (string)e.Attribute(W.styleId) == "TableofFigures")
                     .FirstOrDefault(),
                 @"<w:style w:type='paragraph' w:styleId='TableofFigures' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
                     <w:name w:val='table of figures'/>
@@ -238,7 +238,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
                 partXDoc.Root.Elements(W.style)
                     .Where(
                         e =>
-                        (string) e.Attribute(W.type) == "character" && (string) e.Attribute(W.styleId) == "Hyperlink")
+                            (string)e.Attribute(W.type) == "character" && (string)e.Attribute(W.styleId) == "Hyperlink")
                     .FirstOrDefault(),
                 @"<w:style w:type='character' w:styleId='Hyperlink' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
                      <w:name w:val='Hyperlink'/>
@@ -273,7 +273,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
         }
 
         public static void AddToc(WordprocessingDocument doc, XElement addBefore, string switches, string title,
-                                  int? rightTabPos)
+            int? rightTabPos)
         {
             UpdateFontTablePart(doc);
             UpdateStylesPartForToc(doc);
@@ -359,7 +359,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
             else
             {
                 updateFields = new XElement(W.updateFields,
-                                            new XAttribute(W.val, "true"));
+                    new XAttribute(W.val, "true"));
                 settingsXDoc.Root.Add(updateFields);
             }
             doc.MainDocumentPart.DocumentSettingsPart.PutXDocument();
@@ -413,7 +413,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
             else
             {
                 updateFields = new XElement(W.updateFields,
-                                            new XAttribute(W.val, "true"));
+                    new XAttribute(W.val, "true"));
                 settingsXDoc.Root.Add(updateFields);
             }
             doc.MainDocumentPart.DocumentSettingsPart.PutXDocument();

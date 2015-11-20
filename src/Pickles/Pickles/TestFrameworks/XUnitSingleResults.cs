@@ -1,22 +1,22 @@
-﻿#region License
-
-/*
-    Copyright [2011] [Jeffrey Cameron]
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-*/
-
-#endregion
+﻿//  --------------------------------------------------------------------------------------------------------------------
+//  <copyright file="XUnitSingleResults.cs" company="PicklesDoc">
+//  Copyright 2011 Jeffrey Cameron
+//  Copyright 2012-present PicklesDoc team and community contributors
+//
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//  </copyright>
+//  --------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -30,16 +30,19 @@ namespace PicklesDoc.Pickles.TestFrameworks
 {
     public class XUnitSingleResults : ITestResults
     {
-        internal xUnitExampleSignatureBuilder ExampleSignatureBuilder { get; set; }
+        internal XUnitExampleSignatureBuilder ExampleSignatureBuilder { get; set; }
 
         private readonly XDocument resultsDocument;
 
         public XUnitSingleResults(XDocument resultsDocument)
         {
-          this.resultsDocument = resultsDocument;
+            this.resultsDocument = resultsDocument;
         }
 
-      #region ITestResults Members
+        public bool SupportsExampleResults
+        {
+            get { return true; }
+        }
 
         public TestResult GetFeatureResult(Feature feature)
         {
@@ -61,9 +64,20 @@ namespace PicklesDoc.Pickles.TestFrameworks
             foreach (XElement exampleElement in exampleElements)
             {
                 TestResult result = this.GetResultFromElement(exampleElement);
-                if (result.WasExecuted == false) skippedCount++;
-                if (result.WasExecuted && result.WasSuccessful) passedCount++;
-                if (result.WasExecuted && !result.WasSuccessful) failedCount++;
+                if (result.WasExecuted == false)
+                {
+                    skippedCount++;
+                }
+
+                if (result.WasExecuted && result.WasSuccessful)
+                {
+                    passedCount++;
+                }
+
+                if (result.WasExecuted && !result.WasSuccessful)
+                {
+                    failedCount++;
+                }
             }
 
             return GetAggregateResult(passedCount, failedCount, skippedCount);
@@ -72,14 +86,12 @@ namespace PicklesDoc.Pickles.TestFrameworks
         public TestResult GetScenarioResult(Scenario scenario)
         {
             XElement scenarioElement = this.GetScenarioElement(scenario);
-            return scenarioElement != null 
+            return scenarioElement != null
                 ? this.GetResultFromElement(scenarioElement)
                 : TestResult.Inconclusive;
         }
 
-        #endregion
-
-      private XElement GetFeatureElement(Feature feature)
+        private XElement GetFeatureElement(Feature feature)
         {
             IEnumerable<XElement> featureQuery =
                 from clazz in this.resultsDocument.Root.Descendants("class")
@@ -134,6 +146,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
                     result = TestResult.Inconclusive;
                     break;
             }
+
             return result;
         }
 
@@ -165,26 +178,19 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
             if (signatureBuilder == null)
             {
-              throw new InvalidOperationException("You need to set the ExampleSignatureBuilder before using GetExampleResult.");
+                throw new InvalidOperationException("You need to set the ExampleSignatureBuilder before using GetExampleResult.");
             }
 
             foreach (XElement exampleElement in exampleElements)
             {
-              Regex signature = signatureBuilder.Build(scenarioOutline, exampleValues);
-                if (signature.IsMatch(exampleElement.Attribute("name").Value.ToLowerInvariant().Replace(@"\", "")))
+                Regex signature = signatureBuilder.Build(scenarioOutline, exampleValues);
+                if (signature.IsMatch(exampleElement.Attribute("name").Value.ToLowerInvariant().Replace(@"\", string.Empty)))
                 {
                     return this.GetResultFromElement(exampleElement);
                 }
             }
-            return result;
-        }
 
-        public bool SupportsExampleResults
-        {
-            get
-            {
-                return true;
-            }
+            return result;
         }
     }
 }

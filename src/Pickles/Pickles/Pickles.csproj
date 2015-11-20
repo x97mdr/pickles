@@ -10,9 +10,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PicklesDoc.Pickles</RootNamespace>
     <AssemblyName>PicklesDoc.Pickles.Library</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,160 +32,61 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac">
-      <HintPath>..\packages\Autofac.2.6.3.862\lib\NET35\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Autofac.Configuration">
-      <HintPath>..\packages\Autofac.2.6.3.862\lib\NET35\Autofac.Configuration.dll</HintPath>
+    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ClosedXML, Version=0.76.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
-      <HintPath>..\packages\ClosedXML.0.76.0\lib\net35-client\ClosedXML.dll</HintPath>
+      <HintPath>..\packages\ClosedXML.0.76.0\lib\net40-client\ClosedXML.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="gherkin">
-      <HintPath>..\packages\gherkin.2.9.0\lib\gherkin.dll</HintPath>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="IKVM.AWT.WinForms">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.AWT.WinForms.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Beans">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Beans.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Charsets">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Charsets.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Corba">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Corba.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Core">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Core.dll</HintPath>
+    <Reference Include="Gherkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=86496cfa5b4a5851, processorArchitecture=MSIL">
+      <HintPath>..\packages\Gherkin.3.1.2\lib\net45\Gherkin.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Jdbc">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Jdbc.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Management">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Management.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Media">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Media.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Misc">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Misc.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Naming">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Naming.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Remoting">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Remoting.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Security">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Security.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.SwingAWT">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.SwingAWT.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Text">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Text.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Tools">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Tools.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Util">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.Util.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.API">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.XML.API.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.Bind">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.XML.Bind.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.Crypto">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.XML.Crypto.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.Parse">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.XML.Parse.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.Transform">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.XML.Transform.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.WebServices">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.XML.WebServices.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.XPath">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.OpenJDK.XML.XPath.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="IKVM.Reflection">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.Reflection.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="IKVM.Runtime">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.Runtime.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.Runtime.JNI">
-      <HintPath>..\packages\IKVM.0.46.0.1\lib\net20\IKVM.Runtime.JNI.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="MarkdownDeep, Version=1.5.4615.26275, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MarkdownDeep.NET.1.5\lib\.NetFramework 3.5\MarkdownDeep.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="NDesk.Options">
       <HintPath>..\packages\NDesk.Options.0.2.1\lib\NDesk.Options.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net35\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NGenerics, Version=1.4.1.0, Culture=neutral, PublicKeyToken=e4b41be133ea7faf, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NGenerics.1.4.1.0\lib\net35\NGenerics.dll</HintPath>
     </Reference>
-    <Reference Include="NLog, Version=3.2.1.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.3.2.1\lib\net35\NLog.dll</HintPath>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.2.0\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.IO.Abstractions, Version=1.4.0.93, Culture=neutral, PublicKeyToken=d480b5b72fb413da, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\System.IO.Abstractions.1.4.0.93\lib\net35\System.IO.Abstractions.dll</HintPath>
+    <Reference Include="System.IO.Abstractions, Version=2.0.0.117, Culture=neutral, PublicKeyToken=d480b5b72fb413da, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Abstractions.2.0.0.117\lib\net40\System.IO.Abstractions.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
-    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <HintPath>..\packages\DocumentFormat.OpenXml.1.0\lib\DocumentFormat.OpenXml.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\VersionInfo.cs">
@@ -230,11 +133,28 @@
     <Compile Include="DocumentationBuilders\HTML\IHtmlFeatureFormatter.cs" />
     <Compile Include="DocumentationBuilders\HTML\ResourceWriter.cs" />
     <Compile Include="DocumentationBuilders\IDocumentationBuilder.cs" />
-    <Compile Include="DocumentationBuilders\JSON\FeatureWithMetaInfo.cs" />
+    <Compile Include="DocumentationBuilders\JSON\IJsonFeatureElement.cs" />
+    <Compile Include="DocumentationBuilders\JSON\JsonExample.cs" />
+    <Compile Include="DocumentationBuilders\JSON\JsonFeature.cs" />
+    <Compile Include="DocumentationBuilders\JSON\JsonFeatureWithMetaInfo.cs" />
     <Compile Include="DocumentationBuilders\JSON\JSONDocumentationBuilder.cs" />
-    <Compile Include="DocumentationBuilders\Word\TableOfContentsAdder\PtOpenXmlUtil.cs" />
-    <Compile Include="DocumentationBuilders\Word\TableOfContentsAdder\PtUtil.cs" />
-    <Compile Include="DocumentationBuilders\Word\TableOfContentsAdder\TocAdder.cs" />
+    <Compile Include="DocumentationBuilders\JSON\JsonKeyword.cs" />
+    <Compile Include="DocumentationBuilders\JSON\JsonMapper.cs" />
+    <Compile Include="DocumentationBuilders\JSON\JsonScenario.cs" />
+    <Compile Include="DocumentationBuilders\JSON\JsonScenarioOutline.cs" />
+    <Compile Include="DocumentationBuilders\JSON\JsonStep.cs" />
+    <Compile Include="DocumentationBuilders\JSON\JsonTable.cs" />
+    <Compile Include="DocumentationBuilders\JSON\JsonTableRow.cs" />
+    <Compile Include="DocumentationBuilders\JSON\JsonTestResult.cs" />
+    <Compile Include="DocumentationBuilders\Word\TableOfContentsAdder\PtOpenXmlUtil.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="DocumentationBuilders\Word\TableOfContentsAdder\PtUtil.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="DocumentationBuilders\Word\TableOfContentsAdder\TocAdder.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="DocumentationBuilders\Word\WordBackgroundFormatter.cs" />
     <Compile Include="DocumentationBuilders\Word\WordDescriptionFormatter.cs" />
     <Compile Include="DocumentationBuilders\Word\WordDocumentationBuilder.cs" />
@@ -262,7 +182,8 @@
     <Compile Include="LanguageServices.cs" />
     <Compile Include="MarkdownProvider.cs" />
     <Compile Include="ObjectModel\Example.cs" />
-    <Compile Include="Parser\FeatureElementState.cs" />
+    <Compile Include="ObjectModel\KeywordResolver.cs" />
+    <Compile Include="ObjectModel\Mapper.cs" />
     <Compile Include="ObjectModel\IFeatureElement.cs" />
     <Compile Include="Parser\JsonResult\Element.cs" />
     <Compile Include="Parser\JsonResult\Feature.cs" />
@@ -270,13 +191,9 @@
     <Compile Include="Parser\JsonResult\Result.cs" />
     <Compile Include="Parser\JsonResult\Step.cs" />
     <Compile Include="Parser\JsonResult\Tag.cs" />
-    <Compile Include="Parser\PicklesParser.cs" />
-    <Compile Include="Parser\Builders\ScenarioBuilder.cs" />
-    <Compile Include="Parser\Builders\ScenarioOutlineBuilder.cs" />
     <Compile Include="Parser\SpecRun\Factory.cs" />
     <Compile Include="Parser\SpecRun\Feature.cs" />
     <Compile Include="Parser\SpecRun\Scenario.cs" />
-    <Compile Include="Parser\Builders\StepBuilder.cs" />
     <Compile Include="ObjectModel\Table.cs" />
     <Compile Include="ObjectModel\Feature.cs" />
     <Compile Include="ObjectModel\Keyword.cs" />
@@ -285,7 +202,6 @@
     <Compile Include="ObjectModel\Scenario.cs" />
     <Compile Include="ObjectModel\ScenarioOutline.cs" />
     <Compile Include="ObjectModel\Step.cs" />
-    <Compile Include="Parser\Builders\TableBuilder.cs" />
     <Compile Include="ObjectModel\TableRow.cs" />
     <Compile Include="PicklesModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -314,7 +230,6 @@
     <Compile Include="TestFrameworks\XUnitResults.cs" />
     <Compile Include="TestFrameworks\XUnitSingleResults.cs" />
     <Compile Include="TestResultsFormat.cs" />
-    <Compile Include="Parser\Builders\ExampleBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

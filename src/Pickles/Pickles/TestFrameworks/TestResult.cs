@@ -1,22 +1,22 @@
-﻿#region License
-
-/*
-    Copyright [2011] [Jeffrey Cameron]
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-*/
-
-#endregion
+﻿//  --------------------------------------------------------------------------------------------------------------------
+//  <copyright file="TestResult.cs" company="PicklesDoc">
+//  Copyright 2011 Jeffrey Cameron
+//  Copyright 2012-present PicklesDoc team and community contributors
+//
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//  </copyright>
+//  --------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -26,46 +26,21 @@ namespace PicklesDoc.Pickles.TestFrameworks
 {
     public struct TestResult
     {
-        private readonly bool wasExecuted;
-
-        private readonly bool wasSuccessful;
-
-        private static readonly TestResult passed = new TestResult(wasExecuted: true, wasSuccessful: true);
-
-        private static readonly TestResult failed = new TestResult(wasExecuted: true, wasSuccessful: false);
-
-        private static readonly TestResult inconclusive = new TestResult(wasExecuted: false, wasSuccessful: false);
-
         private TestResult(bool wasExecuted, bool wasSuccessful)
         {
-            this.wasExecuted = wasExecuted;
-            this.wasSuccessful = wasSuccessful;
+            this.WasExecuted = wasExecuted;
+            this.WasSuccessful = wasSuccessful;
         }
 
-        public bool WasExecuted
-        {
-            get { return wasExecuted; }
-        }
+        public static TestResult Passed { get; } = new TestResult(wasExecuted: true, wasSuccessful: true);
 
-        public bool WasSuccessful
-        {
-            get { return wasSuccessful; }
-        }
+        public static TestResult Failed { get; } = new TestResult(wasExecuted: true, wasSuccessful: false);
 
-        public static TestResult Passed
-        {
-            get { return passed; }
-        }
+        public static TestResult Inconclusive { get; } = new TestResult(wasExecuted: false, wasSuccessful: false);
 
-        public static TestResult Failed
-        {
-            get { return failed; }
-        }
+        public bool WasExecuted { get; }
 
-        public static TestResult Inconclusive
-        {
-            get { return inconclusive; }
-        }
+        public bool WasSuccessful { get; }
 
         public bool Equals(TestResult other)
         {
@@ -74,20 +49,24 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
             return obj is TestResult && Equals((TestResult)obj);
         }
 
         public override int GetHashCode()
         {
             int hashCode = this.WasExecuted.GetHashCode();
-            hashCode = (hashCode) ^ this.WasSuccessful.GetHashCode();
+            hashCode = hashCode ^ this.WasSuccessful.GetHashCode();
             return hashCode;
         }
 
         public override string ToString()
         {
-            return string.Format("WasExecuted: {0}, WasSuccessful: {1}", this.WasExecuted, this.WasSuccessful);
+            return $"WasExecuted: {this.WasExecuted}, WasSuccessful: {this.WasSuccessful}";
         }
 
         public static bool operator ==(TestResult left, TestResult right)

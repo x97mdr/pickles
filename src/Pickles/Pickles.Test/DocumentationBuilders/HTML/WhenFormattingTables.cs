@@ -1,11 +1,31 @@
-﻿using System;
+﻿//  --------------------------------------------------------------------------------------------------------------------
+//  <copyright file="WhenFormattingTables.cs" company="PicklesDoc">
+//  Copyright 2011 Jeffrey Cameron
+//  Copyright 2012-present PicklesDoc team and community contributors
+//
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//  </copyright>
+//  --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 using Autofac;
+using NFluent;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.ObjectModel;
-using NFluent;
 
 namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 {
@@ -20,10 +40,10 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
                 HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4"),
                 DataRows =
                     new List<TableRow>(new[]
-                                            {
-                                                new TableRow("1", "2", "3", "4"),
-                                                new TableRow("5", "6", "7", "8")
-                                            })
+                    {
+                        new TableRow("1", "2", "3", "4"),
+                        new TableRow("5", "6", "7", "8")
+                    })
             };
 
             var htmlTableFormatter = Container.Resolve<HtmlTableFormatter>();
@@ -47,6 +67,5 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 
             Check.That(output).IsNull();
         }
-
     }
 }
