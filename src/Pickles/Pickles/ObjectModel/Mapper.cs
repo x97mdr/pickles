@@ -95,7 +95,16 @@ namespace PicklesDoc.Pickles.ObjectModel
                 });
 
             configurationStore.CreateMap<G.Feature, Feature>()
-                .ForMember(t => t.FeatureElements, opt => opt.ResolveUsing(s => s.ScenarioDefinitions));
+                .ForMember(t => t.FeatureElements, opt => opt.ResolveUsing(s => s.ScenarioDefinitions))
+                .AfterMap(
+                    (sourceFeature, targetFeature) =>
+                        {
+                            foreach (var featureElement in targetFeature.FeatureElements.ToArray())
+                            {
+                                featureElement.Feature = targetFeature;
+                            }
+                        })
+                        ;
         }
 
         public string MapToString(G.TableCell cell)
