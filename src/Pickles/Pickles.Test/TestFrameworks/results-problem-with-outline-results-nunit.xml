@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="E:\Google Drive\Documents\Cucumber_Selenium_CSharp\Specflow_Selenium_PO_Example2\Specflow_Selenium_PO_Example2\bin\Debug\Specflow_Selenium_PO_Example2.dll" total="4" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2015-11-17" time="08:39:12">
+    <environment nunit-version="2.6.4.14350" clr-version="2.0.50727.8009" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="E:\Google Drive\Documents\Cucumber_Selenium_CSharp\Specflow_Selenium_PO_Example2\Specflow_Selenium_PO_Example2" machine-name="CHROMEBOOKVM2" user="markwinspear" user-domain="CHROMEBOOKVM2" />
+    <culture-info current-culture="en-GB" current-uiculture="en-US" />
+    <test-suite type="Assembly" name="E:\Google Drive\Documents\Cucumber_Selenium_CSharp\Specflow_Selenium_PO_Example2\Specflow_Selenium_PO_Example2\bin\Debug\Specflow_Selenium_PO_Example2.dll" executed="True" result="Success" success="True" time="39.350" asserts="0">
+        <results>
+            <test-suite type="Namespace" name="Specflow_Selenium_PO_Example2" executed="True" result="Success" success="True" time="39.337" asserts="0">
+                <results>
+                    <test-suite type="Namespace" name="Features" executed="True" result="Success" success="True" time="39.337" asserts="0">
+                        <results>
+                            <test-suite type="TestFixture" name="ExampleFeature" description="example" executed="True" result="Success" success="True" time="0.712" asserts="0">
+                                <results>
+                                    <test-case name="Specflow_Selenium_PO_Example2.Features.ExampleFeature.AddTwoNumbers" description="Add two numbers" executed="True" result="Success" success="True" time="0.270" asserts="0">
+                                        <categories>
+                                            <category name="mytag" />
+                                        </categories>
+                                    </test-case>
+                                </results>
+                            </test-suite>
+                            <test-suite type="TestFixture" name="ExampleWebFeatureFeature" description="ExampleWebFeature" executed="True" result="Success" success="True" time="38.614" asserts="0">
+                                <categories>
+                                    <category name="web" />
+                                </categories>
+                                <results>
+                                    <test-suite type="ParameterizedTest" name="Login" description="Login" executed="True" result="Success" success="True" time="38.611" asserts="0">
+                                        <results>
+                                            <test-case name="Specflow_Selenium_PO_Example2.Features.ExampleWebFeatureFeature.Login(&quot;special characters&quot;,&quot;$$$&quot;,&quot;SuperSecretPassword!&quot;,&quot;failed&quot;,null)" executed="True" result="Success" success="True" time="10.734" asserts="1" />
+                                        </results>
+                                    </test-suite>
+                                </results>
+                            </test-suite>
+                        </results>
+                    </test-suite>
+                </results>
+            </test-suite>
+        </results>
+    </test-suite>
+</test-results>
