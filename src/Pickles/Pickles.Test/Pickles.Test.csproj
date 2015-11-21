@@ -121,6 +121,7 @@
     <Compile Include="TestFrameworks\WhenParsingMultipleMsTestTestResultsFiles.cs" />
     <Compile Include="TestFrameworks\WhenParsingMultipleNUnitResultsFilesForASingleFeature.cs" />
     <Compile Include="TestFrameworks\WhenParsingMultipleTestResultsTests.cs" />
+    <Compile Include="TestFrameworks\WhenParsingProblematicScenarioOutlineResults.cs" />
     <Compile Include="TestFrameworks\WhenParsingSpecRunTestResultsFile.cs" />
     <Compile Include="DirectoryCrawlers\FolderDirectoryTreeNodeTests.cs" />
     <Compile Include="DocumentationBuilders\DHTML\WhenDoingSomeIntegrationTests.cs" />
@@ -194,6 +195,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="TestFrameworks\results-problem-with-outline-results-nunit.xml" />
     <EmbeddedResource Include="TestFrameworks\results-example-xunit2.xml" />
     <EmbeddedResource Include="TestFrameworks\results-example-nunit - Run 1.xml" />
     <EmbeddedResource Include="TestFrameworks\results-example-nunit - Run 2.xml" />
