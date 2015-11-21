@@ -164,7 +164,7 @@ li.step {
 }
 
 .table {
-    width: 0;
+    width: auto;
     max-width: 90%;
 }
 
