@@ -38,13 +38,13 @@ namespace MyNamespace
         {
             ScenarioContext.Current.Pending();
         }
-        
+
         [When(@"unimplemented step")]
         public void WhenUnimplementedStep()
         {
             ScenarioContext.Current.Pending();
         }
-        
+
         [Then(@"unimplemented step")]
         public void ThenUnimplementedStep()
         {
@@ -117,13 +117,13 @@ Then the result should be 3.2 on the screen
    at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
    at Pickles.TestHarness.xunit.MinimalFeatures.FailingFeature.ScenarioCleanup() in c:\Dev\Code\pickles-testresults\TestHarness\xunit\Minimal Features\Failing.feature.cs:line 0
    at Pickles.TestHarness.xunit.MinimalFeatures.FailingFeature.FailingFeatureInconclusiveScenario() in c:\Dev\Code\pickles-testresults\TestHarness\xunit\Minimal Features\Failing.feature:line 7</stack-trace></failure></test><test name="Pickles.TestHarness.xunit.MinimalFeatures.FailingFeature.FailingFeatureFailingScenario" type="Pickles.TestHarness.xunit.MinimalFeatures.FailingFeature" method="FailingFeatureFailingScenario" result="Fail" time="0.024"><traits><trait name="Description" value="Failing Feature Failing Scenario" /><trait name="FeatureTitle" value="Failing" /></traits><output>Then failing step
--&gt; error: 
+-&gt; error:
     true
         should be
     False
         but was
     True
-</output><failure exception-type="Shouldly.ChuckedAWobbly"><message>Shouldly.ChuckedAWobbly : 
+</output><failure exception-type="Shouldly.ChuckedAWobbly"><message>Shouldly.ChuckedAWobbly :
     true
         should be
     False
@@ -194,13 +194,13 @@ namespace MyNamespace
         {
             ScenarioContext.Current.Pending();
         }
-        
+
         [When(@"unimplemented step")]
         public void WhenUnimplementedStep()
         {
             ScenarioContext.Current.Pending();
         }
-        
+
         [Then(@"unimplemented step")]
         public void ThenUnimplementedStep()
         {
@@ -257,13 +257,13 @@ namespace MyNamespace
         {
             ScenarioContext.Current.Pending();
         }
-        
+
         [When(@"unimplemented step")]
         public void WhenUnimplementedStep()
         {
             ScenarioContext.Current.Pending();
         }
-        
+
         [Then(@"unimplemented step")]
         public void ThenUnimplementedStep()
         {
@@ -320,13 +320,13 @@ namespace MyNamespace
         {
             ScenarioContext.Current.Pending();
         }
-        
+
         [When(@"unimplemented step")]
         public void WhenUnimplementedStep()
         {
             ScenarioContext.Current.Pending();
         }
-        
+
         [Then(@"unimplemented step")]
         public void ThenUnimplementedStep()
         {
@@ -348,13 +348,13 @@ namespace MyNamespace
 </output></test><test name="Pickles.TestHarness.xunit.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereOneScenarioFails(result: &quot;pass_2&quot;, exampleTags: System.String[])" type="Pickles.TestHarness.xunit.ScenarioOutlinesFeature" method="ThisIsAScenarioOutlineWhereOneScenarioFails" result="Pass" time="0.000"><traits><trait name="Description" value="This is a scenario outline where one scenario fails" /><trait name="FeatureTitle" value="Scenario Outlines" /></traits><output>Then the scenario will 'pass_2'
 -&gt; done: ScenarioOutlineSteps.ThenTheScenarioWill("pass_2") (0,0s)
 </output></test><test name="Pickles.TestHarness.xunit.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereOneScenarioFails(result: &quot;fail_1&quot;, exampleTags: System.String[])" type="Pickles.TestHarness.xunit.ScenarioOutlinesFeature" method="ThisIsAScenarioOutlineWhereOneScenarioFails" result="Fail" time="0.003"><traits><trait name="Description" value="This is a scenario outline where one scenario fails" /><trait name="FeatureTitle" value="Scenario Outlines" /></traits><output>Then the scenario will 'fail_1'
--&gt; error: 
+-&gt; error:
     true
         should be
     False
         but was
     True
-</output><failure exception-type="Shouldly.ChuckedAWobbly"><message>Shouldly.ChuckedAWobbly : 
+</output><failure exception-type="Shouldly.ChuckedAWobbly"><message>Shouldly.ChuckedAWobbly :
     true
         should be
     False
@@ -368,13 +368,13 @@ namespace MyNamespace
    at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
    at Pickles.TestHarness.xunit.ScenarioOutlinesFeature.ScenarioCleanup() in c:\Dev\Code\pickles-testresults\TestHarness\xunit\ScenarioOutlines.feature.cs:line 0
    at Pickles.TestHarness.xunit.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereOneScenarioFails(String result, String[] exampleTags) in c:\Dev\Code\pickles-testresults\TestHarness\xunit\ScenarioOutlines.feature:line 34</stack-trace></failure></test><test name="Pickles.TestHarness.xunit.ScenarioOutlinesFeature.AndWeCanGoTotallyBonkersWithMultipleExampleSections_(result: &quot;fail_2&quot;, exampleTags: System.String[])" type="Pickles.TestHarness.xunit.ScenarioOutlinesFeature" method="AndWeCanGoTotallyBonkersWithMultipleExampleSections_" result="Fail" time="0.001"><traits><trait name="FeatureTitle" value="Scenario Outlines" /><trait name="Description" value="And we can go totally bonkers with multiple example sections." /></traits><output>Then the scenario will 'fail_2'
--&gt; error: 
+-&gt; error:
     true
         should be
     False
         but was
     True
-</output><failure exception-type="Shouldly.ChuckedAWobbly"><message>Shouldly.ChuckedAWobbly : 
+</output><failure exception-type="Shouldly.ChuckedAWobbly"><message>Shouldly.ChuckedAWobbly :
     true
         should be
     False
@@ -404,13 +404,13 @@ namespace MyNamespace
    at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
    at Pickles.TestHarness.xunit.ScenarioOutlinesFeature.ScenarioCleanup() in c:\Dev\Code\pickles-testresults\TestHarness\xunit\ScenarioOutlines.feature.cs:line 0
    at Pickles.TestHarness.xunit.ScenarioOutlinesFeature.AndWeCanGoTotallyBonkersWithMultipleExampleSections_(String result, String[] exampleTags) in c:\Dev\Code\pickles-testresults\TestHarness\xunit\ScenarioOutlines.feature:line 45</stack-trace></failure></test><test name="Pickles.TestHarness.xunit.ScenarioOutlinesFeature.AndWeCanGoTotallyBonkersWithMultipleExampleSections_(result: &quot;fail_1&quot;, exampleTags: System.String[])" type="Pickles.TestHarness.xunit.ScenarioOutlinesFeature" method="AndWeCanGoTotallyBonkersWithMultipleExampleSections_" result="Fail" time="0.001"><traits><trait name="FeatureTitle" value="Scenario Outlines" /><trait name="Description" value="And we can go totally bonkers with multiple example sections." /></traits><output>Then the scenario will 'fail_1'
--&gt; error: 
+-&gt; error:
     true
         should be
     False
         but was
     True
-</output><failure exception-type="Shouldly.ChuckedAWobbly"><message>Shouldly.ChuckedAWobbly : 
+</output><failure exception-type="Shouldly.ChuckedAWobbly"><message>Shouldly.ChuckedAWobbly :
     true
         should be
     False

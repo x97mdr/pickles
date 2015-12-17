@@ -60,63 +60,63 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WhenDeterminingTheSignatureOfAnNUnitExampleRow.cs" />
-    <Compile Include="WhenDeterminingTheSignatureOfAnXUnitExampleRow.cs" />
-    <Compile Include="WhenParsingCucumberJsonResultsFile.cs" />
-    <Compile Include="WhenParsingMsTestResultsFile.cs" />
-    <Compile Include="WhenParsingMultipleMsTestTestResultsFiles.cs" />
-    <Compile Include="WhenParsingMultipleNUnitResultsFilesForASingleFeature.cs" />
-    <Compile Include="WhenParsingMultipleTestResultsTests.cs" />
-    <Compile Include="WhenParsingNUnitResultsFile.cs" />
-    <Compile Include="WhenParsingProblematicScenarioOutlineResults.cs" />
-    <Compile Include="WhenParsingSpecRunTestResultsFile.cs" />
+    <Compile Include="NUnit2\WhenDeterminingTheSignatureOfAnNUnitExampleRow.cs" />
+    <Compile Include="XUnit1\WhenDeterminingTheSignatureOfAnXUnitExampleRow.cs" />
+    <Compile Include="CucumberJson\WhenParsingCucumberJsonResultsFile.cs" />
+    <Compile Include="MsTest\WhenParsingMsTestResultsFile.cs" />
+    <Compile Include="MsTest\WhenParsingMultipleMsTestTestResultsFiles.cs" />
+    <Compile Include="NUnit2\WhenParsingMultipleNUnitResultsFilesForASingleFeature.cs" />
+    <Compile Include="SpecRun\WhenParsingMultipleTestResultsTests.cs" />
+    <Compile Include="NUnit2\WhenParsingNUnitResultsFile.cs" />
+    <Compile Include="NUnit2\WhenParsingProblematicScenarioOutlineResults.cs" />
+    <Compile Include="SpecRun\WhenParsingSpecRunTestResultsFile.cs" />
     <Compile Include="WhenParsingTestResultFiles.cs" />
-    <Compile Include="WhenParsingxUnit2ResultsFile.cs" />
-    <Compile Include="WhenParsingxUnitResultsFile.cs" />
+    <Compile Include="XUnit2\WhenParsingxUnit2ResultsFile.cs" />
+    <Compile Include="XUnit1\WhenParsingxUnitResultsFile.cs" />
     <Compile Include="WhenResolvingTestResults.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="results-example-json.json" />
+    <EmbeddedResource Include="CucumberJson\results-example-json.json" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="results-example-mstest - Run 1 %28failing%29.trx">
+    <EmbeddedResource Include="MsTest\results-example-mstest - Run 1 %28failing%29.trx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="results-example-mstest - Run 2 %28passing%29.trx">
+    <EmbeddedResource Include="MsTest\results-example-mstest - Run 2 %28passing%29.trx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="results-example-mstest.trx">
+    <EmbeddedResource Include="MsTest\results-example-mstest.trx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="results-example-nunit - Run 1.xml" />
+    <EmbeddedResource Include="NUnit2\results-example-nunit - Run 1.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="results-example-nunit - Run 2.xml" />
+    <EmbeddedResource Include="NUnit2\results-example-nunit - Run 2.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="results-example-nunit.xml">
+    <EmbeddedResource Include="NUnit2\results-example-nunit.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="results-example-specrun.html" />
+    <EmbeddedResource Include="SpecRun\results-example-specrun.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="results-example-xunit.xml">
+    <EmbeddedResource Include="XUnit1\results-example-xunit.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="results-example-xunit2.xml" />
+    <EmbeddedResource Include="XUnit2\results-example-xunit2.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="results-problem-with-outline-results-nunit.xml" />
+    <EmbeddedResource Include="NUnit2\results-problem-with-outline-results-nunit.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
