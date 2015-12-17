@@ -32,7 +32,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
     public class WhenParsingProblematicScenarioOutlineResults : WhenParsingTestResultFiles<NUnitResults>
     {
         public WhenParsingProblematicScenarioOutlineResults()
-            : base("results-problem-with-outline-results-nunit.xml")
+            : base("NUnit2." + "results-problem-with-outline-results-nunit.xml")
         {
         }
 

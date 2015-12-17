@@ -32,7 +32,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
     public class WhenParsingMultipleNUnitResultsFilesForASingleFeature : WhenParsingTestResultFiles<NUnitResults>
     {
         public WhenParsingMultipleNUnitResultsFilesForASingleFeature()
-            : base(@"results-example-nunit - Run 1.xml;results-example-nunit - Run 2.xml")
+            : base("NUnit2." + @"results-example-nunit - Run 1.xml;" + "NUnit2." + "results-example-nunit - Run 2.xml")
         {
         }
 

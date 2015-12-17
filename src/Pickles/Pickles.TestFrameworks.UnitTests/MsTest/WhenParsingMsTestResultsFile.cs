@@ -32,7 +32,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.MsTest
     public class WhenParsingMsTestResultsFile : WhenParsingTestResultFiles<MsTestResults>
     {
         public WhenParsingMsTestResultsFile()
-            : base("results-example-mstest.trx")
+            : base("MsTest." + "results-example-mstest.trx")
         {
         }
 

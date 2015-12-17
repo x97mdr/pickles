@@ -104,7 +104,7 @@ namespace PicklesDoc.Pickles.Test
             string resultFile;
 
             System.IO.Stream manifestResourceStream =
-                Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
+                Assembly.GetCallingAssembly().GetManifestResourceStream(resourceName);
 
             using (var reader = new System.IO.StreamReader(manifestResourceStream))
             {

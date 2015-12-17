@@ -33,7 +33,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
     [TestFixture]
     public class WhenResolvingTestResults : BaseFixture
     {
-        private const string TestResultsResourcePrefix = "PicklesDoc.Pickles.Test.TestFrameworks.";
+        private const string TestResultsResourcePrefix = "PicklesDoc.Pickles.TestFrameworks.UnitTests.";
 
         [Test]
         public void ThenCanResolveAsSingletonWhenNoTestResultsSelected()
@@ -51,7 +51,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         [Test]
         public void ThenCanResolveAsSingletonWhenTestResultsAreMsTest()
         {
-            FileSystem.AddFile("results-example-mstest.trx", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "results-example-mstest.trx"));
+            FileSystem.AddFile("results-example-mstest.trx", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "MsTest.results-example-mstest.trx"));
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.MsTest;
@@ -70,7 +70,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         [Test]
         public void ThenCanResolveAsSingletonWhenTestResultsAreNUnit()
         {
-            FileSystem.AddFile("results-example-nunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "results-example-nunit.xml"));
+            FileSystem.AddFile("results-example-nunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "NUnit2.results-example-nunit.xml"));
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.NUnit;
@@ -89,7 +89,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         [Test]
         public void ThenCanResolveAsSingletonWhenTestResultsArexUnit()
         {
-            FileSystem.AddFile("results-example-xunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "results-example-xunit.xml"));
+            FileSystem.AddFile("results-example-xunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "XUnit1.results-example-xunit.xml"));
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.xUnit;
@@ -108,7 +108,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         [Test]
         public void ThenCanResolveAsSingletonWhenTestResultsAreCucumberJson()
         {
-            FileSystem.AddFile("results-example-json.json", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "results-example-json.json"));
+            FileSystem.AddFile("results-example-json.json", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "CucumberJson.results-example-json.json"));
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.CucumberJson;
@@ -127,7 +127,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         [Test]
         public void ThenCanResolveAsSingletonWhenTestResultsAreSpecrun()
         {
-            FileSystem.AddFile("results-example-specrun.html", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "results-example-specrun.html"));
+            FileSystem.AddFile("results-example-specrun.html", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "SpecRun.results-example-specrun.html"));
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.SpecRun;
@@ -155,7 +155,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         [Test]
         public void ThenCanResolveWhenTestResultsAreMsTest()
         {
-            FileSystem.AddFile("results-example-mstest.trx", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "results-example-mstest.trx"));
+            FileSystem.AddFile("results-example-mstest.trx", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "MsTest.results-example-mstest.trx"));
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.MsTest;
@@ -170,7 +170,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         [Test]
         public void ThenCanResolveWhenTestResultsAreNUnit()
         {
-            FileSystem.AddFile("results-example-nunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "results-example-nunit.xml"));
+            FileSystem.AddFile("results-example-nunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "NUnit2.results-example-nunit.xml"));
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.NUnit;
@@ -185,7 +185,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         [Test]
         public void ThenCanResolveWhenTestResultsArexUnit()
         {
-            FileSystem.AddFile("results-example-xunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "results-example-xunit.xml"));
+            FileSystem.AddFile("results-example-xunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "XUnit1.results-example-xunit.xml"));
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.xUnit;
@@ -200,7 +200,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         [Test]
         public void ThenCanResolveWhenTestResultsAreCucumberJson()
         {
-            FileSystem.AddFile("results-example-json.json", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "results-example-json.json"));
+            FileSystem.AddFile("results-example-json.json", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "CucumberJson.results-example-json.json"));
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.CucumberJson;
@@ -215,7 +215,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         [Test]
         public void ThenCanResolveWhenTestResultsAreSpecrun()
         {
-            FileSystem.AddFile("results-example-specrun.html", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "results-example-specrun.html"));
+            FileSystem.AddFile("results-example-specrun.html", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "SpecRun.results-example-specrun.html"));
 
             var configuration = Container.Resolve<Configuration>();
             configuration.TestResultsFormat = TestResultsFormat.SpecRun;

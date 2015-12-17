@@ -32,7 +32,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.SpecRun
     public class WhenParsingSpecRunTestResultsFile : WhenParsingTestResultFiles<SpecRunResults>
     {
         public WhenParsingSpecRunTestResultsFile()
-            : base("results-example-specrun.html")
+            : base("SpecRun." + "results-example-specrun.html")
         {
         }
 

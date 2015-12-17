@@ -32,7 +32,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.CucumberJson
     public class WhenParsingCucumberJsonResultsFile : WhenParsingTestResultFiles<CucumberJsonResults>
     {
         public WhenParsingCucumberJsonResultsFile()
-            : base("results-example-json.json")
+            : base("CucumberJson." + "results-example-json.json")
         {
         }
 

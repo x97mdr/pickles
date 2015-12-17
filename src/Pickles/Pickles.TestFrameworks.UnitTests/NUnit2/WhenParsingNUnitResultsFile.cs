@@ -32,7 +32,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
     public class WhenParsingNUnitResultsFile : WhenParsingTestResultFiles<NUnitResults>
     {
         public WhenParsingNUnitResultsFile()
-            : base("results-example-nunit.xml")
+            : base("NUnit2." + "results-example-nunit.xml")
         {
         }
 
