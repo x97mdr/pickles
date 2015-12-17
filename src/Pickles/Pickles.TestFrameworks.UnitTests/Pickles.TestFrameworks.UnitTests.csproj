@@ -30,12 +30,106 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NFluent, Version=1.3.1.0, Culture=neutral, PublicKeyToken=18828b37b84b1437, processorArchitecture=MSIL">
+      <HintPath>..\packages\NFluent.1.3.1.0\lib\net40\NFluent.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.IO.Abstractions, Version=2.0.0.117, Culture=neutral, PublicKeyToken=d480b5b72fb413da, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Abstractions.2.0.0.117\lib\net40\System.IO.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Abstractions.TestingHelpers, Version=2.0.0.117, Culture=neutral, PublicKeyToken=d480b5b72fb413da, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Abstractions.TestingHelpers.2.0.0.117\lib\net40\System.IO.Abstractions.TestingHelpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WhenDeterminingTheSignatureOfAnNUnitExampleRow.cs" />
+    <Compile Include="WhenDeterminingTheSignatureOfAnXUnitExampleRow.cs" />
+    <Compile Include="WhenParsingCucumberJsonResultsFile.cs" />
+    <Compile Include="WhenParsingMsTestResultsFile.cs" />
+    <Compile Include="WhenParsingMultipleMsTestTestResultsFiles.cs" />
+    <Compile Include="WhenParsingMultipleNUnitResultsFilesForASingleFeature.cs" />
+    <Compile Include="WhenParsingMultipleTestResultsTests.cs" />
+    <Compile Include="WhenParsingNUnitResultsFile.cs" />
+    <Compile Include="WhenParsingProblematicScenarioOutlineResults.cs" />
+    <Compile Include="WhenParsingSpecRunTestResultsFile.cs" />
+    <Compile Include="WhenParsingTestResultFiles.cs" />
+    <Compile Include="WhenParsingxUnit2ResultsFile.cs" />
+    <Compile Include="WhenParsingxUnitResultsFile.cs" />
+    <Compile Include="WhenResolvingTestResults.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="results-example-json.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="results-example-mstest - Run 1 %28failing%29.trx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="results-example-mstest - Run 2 %28passing%29.trx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="results-example-mstest.trx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="results-example-nunit - Run 1.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="results-example-nunit - Run 2.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="results-example-nunit.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="results-example-specrun.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="results-example-xunit.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="results-example-xunit2.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="results-problem-with-outline-results-nunit.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pickles.Test\Pickles.Test.csproj">
+      <Project>{8bd9fcd2-7ed5-46b5-b6a4-7fa3775e159f}</Project>
+      <Name>Pickles.Test</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pickles\Pickles.csproj">
+      <Project>{38bad6e0-78ab-4ac3-91a8-bf72af5ee394}</Project>
+      <Name>Pickles</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
