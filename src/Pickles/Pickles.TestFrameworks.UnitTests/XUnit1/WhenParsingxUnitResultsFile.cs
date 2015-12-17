@@ -21,12 +21,12 @@
 using System;
 
 using NFluent;
+
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.TestFrameworks;
 
-namespace PicklesDoc.Pickles.Test.TestFrameworks
+namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit1
 {
     [TestFixture]
     public class WhenParsingxUnitResultsFile : WhenParsingTestResultFiles<XUnitResults>

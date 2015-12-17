@@ -22,12 +22,15 @@ using System;
 using System.Text.RegularExpressions;
 
 using Autofac;
-using NFluent;
-using NUnit.Framework;
-using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.TestFrameworks;
 
-namespace PicklesDoc.Pickles.Test.TestFrameworks
+using NFluent;
+
+using NUnit.Framework;
+
+using PicklesDoc.Pickles.ObjectModel;
+using PicklesDoc.Pickles.Test;
+
+namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
 {
     [TestFixture]
     public class WhenDeterminingTheSignatureOfAnNUnitExampleRow : BaseFixture

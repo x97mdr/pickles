@@ -18,14 +18,15 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
+using System;
+
 using NFluent;
 
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.TestFrameworks;
 
-namespace PicklesDoc.Pickles.Test.TestFrameworks
+namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
 {
     [TestFixture]
     public class WhenParsingProblematicScenarioOutlineResults : WhenParsingTestResultFiles<NUnitResults>

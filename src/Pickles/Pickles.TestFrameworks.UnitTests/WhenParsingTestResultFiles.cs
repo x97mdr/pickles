@@ -26,7 +26,9 @@ using System.Reflection;
 
 using Autofac;
 
-namespace PicklesDoc.Pickles.Test.TestFrameworks
+using PicklesDoc.Pickles.Test;
+
+namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 {
     public abstract class WhenParsingTestResultFiles<TResults> : BaseFixture
     {

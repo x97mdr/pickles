@@ -25,12 +25,12 @@ using System.IO.Abstractions;
 using Moq;
 
 using NFluent;
+
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.TestFrameworks;
 
-namespace PicklesDoc.Pickles.Test.TestFrameworks
+namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.SpecRun
 {
     [TestFixture]
     public class WhenParsingMultipleTestResultsTests
