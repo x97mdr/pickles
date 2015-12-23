@@ -81,5 +81,38 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
             Check.That(result.Description).IsEqualTo(string.Empty);
         }
+
+        [Test]
+        public void MapToFeature_Always_MapsFeaturePropertyOfBackground()
+        {
+            var scenario = this.factory.CreateScenario(
+                new[] { "unimportant tag" },
+                "My scenario title",
+                null,
+                new[] { this.factory.CreateStep("Given", "unimportant step") });
+            var background = this.factory.CreateBackground(
+                "Background",
+                "Description of the Background",
+                new[]
+                {
+                    this.factory.CreateStep("Given", "another unimportant step"),
+                });
+            var feature = this.factory.CreateFeature(
+                "My Feature",
+                "My Description",
+                scenarioDefinitions: new G.ScenarioDefinition[] { scenario },
+                background: background);
+
+
+            var mapper = this.factory.CreateMapper();
+
+            var mappedFeature = mapper.MapToFeature(feature);
+
+            Check.That(mappedFeature.FeatureElements.Count).IsEqualTo(1);
+
+            var mappedBackground = mappedFeature.Background;
+
+            Check.That(mappedBackground.Feature).IsSameReferenceThan(mappedFeature);
+        }
     }
 }
