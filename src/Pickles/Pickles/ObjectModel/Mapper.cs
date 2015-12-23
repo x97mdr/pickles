@@ -103,6 +103,11 @@ namespace PicklesDoc.Pickles.ObjectModel
                             {
                                 featureElement.Feature = targetFeature;
                             }
+
+                            if (targetFeature.Background != null)
+                            {
+                                targetFeature.Background.Feature = targetFeature;
+                            }
                         });
         }
 
