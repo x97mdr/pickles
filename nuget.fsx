@@ -46,7 +46,21 @@ Target "CreatePackageMsBuild" (fun _ ->
 
 Target "CreatePackagePowerShell" (fun _ ->
     // Copy all the package files into a package folder
-    CopyFiles packagingDir [powerShellDir + "PicklesDoc.Pickles.PowerShell.dll"; "src/Pickles/Pickles.PowerShell/init.ps1"  ]
+    CopyFiles packagingDir [
+        powerShellDir + "Autofac.dll";
+        powerShellDir + "AutoMapper.dll";
+        powerShellDir + "ClosedXML.dll";
+        powerShellDir + "DocumentFormat.OpenXml.dll";
+        powerShellDir + "Gherkin.dll";
+        powerShellDir + "MarkdownDeep.dll";
+        powerShellDir + "NDesk.Options.dll";
+        powerShellDir + "Newtonsoft.Json.dll";
+        powerShellDir + "NGenerics.dll";
+        powerShellDir + "NLog.dll";
+        powerShellDir + "PicklesDoc.Pickles.Library.dll";
+        powerShellDir + "PicklesDoc.Pickles.PowerShell.dll";
+        powerShellDir + "System.IO.Abstractions.dll";
+        "src/Pickles/Pickles.PowerShell/init.ps1"  ]
 
     NuGet (fun p -> 
         {p with
