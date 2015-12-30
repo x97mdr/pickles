@@ -16,6 +16,7 @@
 			ResultsFile="$(Pickles_ResultsFile)"
 			SystemUnderTestName="$(Pickles_SystemUnderTestName)"
 			SystemUnderTestVersion="$(Pickles_SystemUnderTestVersion)"			
-			DocumentationFormat="$(Pickles_DocumentationFormat)" />
+			DocumentationFormat="$(Pickles_DocumentationFormat)"
+			Language="$(Pickles_Language)" />
 	</Target>
 </Project>
