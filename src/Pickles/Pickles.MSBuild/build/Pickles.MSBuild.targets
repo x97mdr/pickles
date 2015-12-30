@@ -1,22 +1,22 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<UsingTask AssemblyFile="$(MSBuildThisFileDirectory)..\tools\PicklesDoc.Pickles.MSBuild.Tasks.dll" TaskName="Pickles" />
-	<Target Name="DocumentationGeneration" AfterTargets="Build" Condition=" '$(Pickles_Generate)' == 'True' ">
-		<PropertyGroup>
-			<Pickles_OutputDirectory Condition=" '$(Pickles_OutputDirectory)' == '' ">$(MSBuildProjectDirectory)\pickles-site</Pickles_OutputDirectory>
-			<Pickles_FeatureDirectory Condition=" '$(Pickles_FeatureDirectory)' == '' ">$(MSBuildProjectDirectory)\Features</Pickles_FeatureDirectory>
-		</PropertyGroup>	
+    <UsingTask AssemblyFile="$(MSBuildThisFileDirectory)..\tools\PicklesDoc.Pickles.MSBuild.Tasks.dll" TaskName="Pickles" />
+    <Target Name="DocumentationGeneration" AfterTargets="Build" Condition=" '$(Pickles_Generate)' == 'True' ">
+        <PropertyGroup>
+            <Pickles_OutputDirectory Condition=" '$(Pickles_OutputDirectory)' == '' ">$(MSBuildProjectDirectory)\pickles-site</Pickles_OutputDirectory>
+            <Pickles_FeatureDirectory Condition=" '$(Pickles_FeatureDirectory)' == '' ">$(MSBuildProjectDirectory)\Features</Pickles_FeatureDirectory>
+        </PropertyGroup>
 
-		<RemoveDir Directories="$(Pickles_OutputDirectory)" />
-		<MakeDir Directories="$(Pickles_OutputDirectory)" />
+        <RemoveDir Directories="$(Pickles_OutputDirectory)" />
+        <MakeDir Directories="$(Pickles_OutputDirectory)" />
 
-		<Pickles 
-			FeatureDirectory="$(Pickles_FeatureDirectory)" 
-			OutputDirectory="$(Pickles_OutputDirectory)" 
-			ResultsFormat="$(Pickles_ResultsFormat)"
-			ResultsFile="$(Pickles_ResultsFile)"
-			SystemUnderTestName="$(Pickles_SystemUnderTestName)"
-			SystemUnderTestVersion="$(Pickles_SystemUnderTestVersion)"			
-			DocumentationFormat="$(Pickles_DocumentationFormat)"
-			Language="$(Pickles_Language)" />
-	</Target>
+        <Pickles
+            FeatureDirectory="$(Pickles_FeatureDirectory)"
+            OutputDirectory="$(Pickles_OutputDirectory)"
+            ResultsFormat="$(Pickles_ResultsFormat)"
+            ResultsFile="$(Pickles_ResultsFile)"
+            SystemUnderTestName="$(Pickles_SystemUnderTestName)"
+            SystemUnderTestVersion="$(Pickles_SystemUnderTestVersion)"
+            DocumentationFormat="$(Pickles_DocumentationFormat)"
+            Language="$(Pickles_Language)" />
+    </Target>
 </Project>
