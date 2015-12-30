@@ -158,7 +158,6 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <Resource Include="FodyWeavers.xml" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
