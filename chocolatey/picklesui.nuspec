@@ -39,22 +39,22 @@ Optionally, *Pickles* can **integrate test results**, so that your stakeholders 
         <file src="AutoMapper.dll" target="tools" />
         <file src="ClosedXML.dll" target="tools" />
         <file src="DocumentFormat.OpenXml.dll" target="tools" />
-        <file src="GalaSoft.MvvmLight.dll" />
-        <file src="GalaSoft.MvvmLight.Extras.dll" />
-        <file src="GalaSoft.MvvmLight.Platform.dll" />
+        <file src="GalaSoft.MvvmLight.dll" target="tools" />
+        <file src="GalaSoft.MvvmLight.Extras.dll" target="tools" />
+        <file src="GalaSoft.MvvmLight.Platform.dll" target="tools" />
         <file src="Gherkin.dll" target="tools" />
-        <file src="MahApps.Metro.dll" />
+        <file src="MahApps.Metro.dll" target="tools" />
         <file src="MarkdownDeep.dll" target="tools" />
-        <file src="Microsoft.Practices.ServiceLocation.dll" />
+        <file src="Microsoft.Practices.ServiceLocation.dll" target="tools" />
         <file src="NDesk.Options.dll" target="tools" />
         <file src="Newtonsoft.Json.dll" target="tools" />
         <file src="NGenerics.dll" target="tools" />
         <file src="NLog.dll" target="tools" />
-        <file src="NlogViewer.dll" />
-        <file src="Ookii.Dialogs.Wpf.dll" />
+        <file src="NlogViewer.dll" target="tools" />
+        <file src="Ookii.Dialogs.Wpf.dll" target="tools" />
         <file src="PicklesDoc.Pickles.Library.dll" target="tools" />
         <file src="System.IO.Abstractions.dll" target="tools" />
-        <file src="System.Windows.Interactivity.dll" />
+        <file src="System.Windows.Interactivity.dll" target="tools" />
         <file src="picklesui.exe" target="tools" />
         <file src="picklesui.exe.gui" target="tools" />
         <file src="NLog.config" target="tools" />
