@@ -20,27 +20,55 @@ Target "Clean" (fun _ ->
 
 Target "CreatePackageCommandLine" (fun _ ->
     // Copy all the package files into a package folder
-    CopyFiles packagingDir [cmdDir + "pickles.exe"; cmdDir + "NLog.config" ]
+    CopyFiles packagingDir [
+        cmdDir + "Autofac.dll";
+        cmdDir + "AutoMapper.dll";
+        cmdDir + "ClosedXML.dll";
+        cmdDir + "DocumentFormat.OpenXml.dll";
+        cmdDir + "Gherkin.dll";
+        cmdDir + "MarkdownDeep.dll";
+        cmdDir + "NDesk.Options.dll";
+        cmdDir + "Newtonsoft.Json.dll";
+        cmdDir + "NGenerics.dll";
+        cmdDir + "NLog.dll";
+        cmdDir + "PicklesDoc.Pickles.Library.dll";
+        cmdDir + "System.IO.Abstractions.dll";
+        cmdDir + "pickles.exe";
+        cmdDir + "NLog.config" ]
 
-    NuGet (fun p -> 
+    NuGet (fun p ->
         {p with
             OutputPath = deployDir
             WorkingDir = packagingDir
             Version = version
-            Publish = false }) 
+            Publish = false })
             "src/Pickles/Pickles.CommandLine/Pickles.CommandLine.nuspec"
 )
 
 Target "CreatePackageMsBuild" (fun _ ->
     // Copy all the package files into a package folder
-    CopyFiles packagingDir [msBuildDir + "PicklesDoc.Pickles.MSBuild.Tasks.dll"; msBuildDir + "build/Pickles.MSBuild.targets";]
+    CopyFiles packagingDir [
+        msBuildDir + "Autofac.dll";
+        msBuildDir + "AutoMapper.dll";
+        msBuildDir + "ClosedXML.dll";
+        msBuildDir + "DocumentFormat.OpenXml.dll";
+        msBuildDir + "Gherkin.dll";
+        msBuildDir + "MarkdownDeep.dll";
+        msBuildDir + "NDesk.Options.dll";
+        msBuildDir + "Newtonsoft.Json.dll";
+        msBuildDir + "NGenerics.dll";
+        msBuildDir + "NLog.dll";
+        msBuildDir + "PicklesDoc.Pickles.Library.dll";
+        msBuildDir + "System.IO.Abstractions.dll";
+        msBuildDir + "PicklesDoc.Pickles.MSBuild.Tasks.dll";
+        msBuildDir + "build/Pickles.MSBuild.targets";]
 
-    NuGet (fun p -> 
+    NuGet (fun p ->
         {p with
             OutputPath = deployDir
             WorkingDir = packagingDir
             Version = version
-            Publish = false }) 
+            Publish = false })
             "src/Pickles/Pickles.MSBuild/Pickles.MSBuild.nuspec"
 )
 
@@ -62,16 +90,16 @@ Target "CreatePackagePowerShell" (fun _ ->
         powerShellDir + "System.IO.Abstractions.dll";
         "src/Pickles/Pickles.PowerShell/init.ps1"  ]
 
-    NuGet (fun p -> 
+    NuGet (fun p ->
         {p with
             OutputPath = deployDir
             WorkingDir = packagingDir
             Version = version
-            Publish = false }) 
+            Publish = false })
             "src/Pickles/Pickles.PowerShell/Pickles.nuspec"
 )
 
-Target "CreatePackage" (fun _ -> 
+Target "CreatePackage" (fun _ ->
     trace ("Starting build of nuget packages version " + version)
     DeleteDir packagingDir
 )
