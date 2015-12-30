@@ -36,6 +36,18 @@
     <iconUrl>https://cdn.rawgit.com/picklesdoc/pickles/master/pickles.jpeg</iconUrl>
   </metadata>
   <files>
+    <file src="Autofac.dll" target="tools" />
+    <file src="AutoMapper.dll" target="tools" />
+    <file src="ClosedXML.dll" target="tools" />
+    <file src="DocumentFormat.OpenXml.dll" target="tools" />
+    <file src="Gherkin.dll" target="tools" />
+    <file src="MarkdownDeep.dll" target="tools" />
+    <file src="NDesk.Options.dll" target="tools" />
+    <file src="Newtonsoft.Json.dll" target="tools" />
+    <file src="NGenerics.dll" target="tools" />
+    <file src="NLog.dll" target="tools" />
+    <file src="PicklesDoc.Pickles.Library.dll" target="tools" />
+    <file src="System.IO.Abstractions.dll" target="tools" />
     <file src="Pickles.exe" target="tools" />
     <file src="NLog.config" target="tools" />
   </files>
