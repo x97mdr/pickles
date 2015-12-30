@@ -18,7 +18,22 @@ Target "Clean" (fun _ ->
 
 
 Target "CreatePackage CMD" (fun _ ->
-    CopyFiles packagingDir [cmdDir + "Pickles.exe"; cmdDir + "NLog.config"]
+    CopyFiles packagingDir [
+        cmdDir + "Autofac.dll";
+        cmdDir + "AutoMapper.dll";
+        cmdDir + "ClosedXML.dll";
+        cmdDir + "DocumentFormat.OpenXml.dll";
+        cmdDir + "Gherkin.dll";
+        cmdDir + "MarkdownDeep.dll";
+        cmdDir + "NDesk.Options.dll";
+        cmdDir + "Newtonsoft.Json.dll";
+        cmdDir + "NGenerics.dll";
+        cmdDir + "NLog.dll";
+        cmdDir + "PicklesDoc.Pickles.Library.dll";
+        cmdDir + "System.IO.Abstractions.dll";
+        cmdDir + "pickles.exe";
+        cmdDir + "NLog.config" ]
+
     WriteFile (packagingDir + "version.ps1") [("$version = \"" + version + "\"")]
     NuGet (fun p ->
         {p with
@@ -31,7 +46,31 @@ Target "CreatePackage CMD" (fun _ ->
 
 
 Target "CreatePackage GUI" (fun _ ->
-    CopyFiles packagingDir [guiDir + "picklesui.exe"; guiDir + "NLog.config"; guiDir + "PicklesUI.exe.config"]
+    CopyFiles packagingDir [
+        guiDir + "Autofac.dll";
+        guiDir + "AutoMapper.dll";
+        guiDir + "ClosedXML.dll";
+        guiDir + "DocumentFormat.OpenXml.dll";
+        guiDir + "GalaSoft.MvvmLight.dll";
+        guiDir + "GalaSoft.MvvmLight.Extras.dll";
+        guiDir + "GalaSoft.MvvmLight.Platform.dll";
+        guiDir + "Gherkin.dll";
+        guiDir + "MahApps.Metro.dll";
+        guiDir + "MarkdownDeep.dll";
+        guiDir + "Microsoft.Practices.ServiceLocation.dll";
+        guiDir + "NDesk.Options.dll";
+        guiDir + "Newtonsoft.Json.dll";
+        guiDir + "NGenerics.dll";
+        guiDir + "NLog.dll";
+        guiDir + "NlogViewer.dll";
+        guiDir + "Ookii.Dialogs.Wpf.dll";
+        guiDir + "PicklesDoc.Pickles.Library.dll";
+        guiDir + "System.IO.Abstractions.dll";
+        guiDir + "System.Windows.Interactivity.dll";
+        guiDir + "picklesui.exe";
+        guiDir + "NLog.config";
+        guiDir + "PicklesUI.exe.config"]
+
     WriteFile (packagingDir + "version.ps1") [("$version = \"" + version + "\"")]
     WriteFile (packagingDir + "picklesui.exe.gui") [("")]
     NuGet (fun p ->
