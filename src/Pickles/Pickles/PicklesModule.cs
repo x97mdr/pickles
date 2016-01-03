@@ -28,6 +28,11 @@ using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.DocumentationBuilders.JSON;
 using PicklesDoc.Pickles.DocumentationBuilders.Word;
 using PicklesDoc.Pickles.TestFrameworks;
+using PicklesDoc.Pickles.TestFrameworks.CucumberJson;
+using PicklesDoc.Pickles.TestFrameworks.MsTest;
+using PicklesDoc.Pickles.TestFrameworks.NUnit2;
+using PicklesDoc.Pickles.TestFrameworks.SpecRun;
+using PicklesDoc.Pickles.TestFrameworks.XUnit1;
 
 namespace PicklesDoc.Pickles
 {

@@ -27,9 +27,10 @@ using System.Linq;
 using Newtonsoft.Json;
 
 using PicklesDoc.Pickles.ObjectModel;
+
 using Feature = PicklesDoc.Pickles.Parser.JsonResult.Feature;
 
-namespace PicklesDoc.Pickles.TestFrameworks
+namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
 {
     public class CucumberJsonSingleResults : ITestResults
     {

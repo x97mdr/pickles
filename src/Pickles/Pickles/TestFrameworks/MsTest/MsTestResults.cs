@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="SpecRunResults.cs" company="PicklesDoc">
+//  <copyright file="MsTestResults.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -23,11 +23,13 @@ using System.IO.Abstractions;
 
 using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.TestFrameworks
+namespace PicklesDoc.Pickles.TestFrameworks.MsTest
 {
-    public class SpecRunResults : MultipleTestResults
+    public class MsTestResults : MultipleTestResults
     {
-        public SpecRunResults(Configuration configuration)
+        private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
+
+        public MsTestResults(Configuration configuration)
             : base(false, configuration)
         {
         }
@@ -39,7 +41,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
         {
-            return new SpecRunSingleResults(fileInfo);
+            return new MsTestSingleResults(DocumentLoader.Load(fileInfo));
         }
     }
 }

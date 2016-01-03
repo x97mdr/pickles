@@ -26,7 +26,7 @@ using System.Xml.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.TestFrameworks
+namespace PicklesDoc.Pickles.TestFrameworks.XUnit1
 {
     public class XUnitSingleResults : ITestResults
     {

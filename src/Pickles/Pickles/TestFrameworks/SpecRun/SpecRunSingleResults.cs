@@ -27,24 +27,24 @@ using System.Xml.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
 
-using Gherkin = PicklesDoc.Pickles.Parser;
-using SpecRun = PicklesDoc.Pickles.Parser.SpecRun;
+using Feature = PicklesDoc.Pickles.Parser.SpecRun.Feature;
+using Scenario = PicklesDoc.Pickles.ObjectModel.Scenario;
 
-namespace PicklesDoc.Pickles.TestFrameworks
+namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 {
     public class SpecRunSingleResults : ITestResults
     {
-        private readonly List<SpecRun.Feature> specRunFeatures;
+        private readonly List<Feature> specRunFeatures;
 
         public SpecRunSingleResults(FileInfoBase fileInfo)
         {
             var resultsDocument = this.ReadResultsFile(fileInfo);
 
             this.specRunFeatures =
-                resultsDocument.Descendants("feature").Select(SpecRun.Factory.ToSpecRunFeature).ToList();
+                resultsDocument.Descendants("feature").Select(Parser.SpecRun.Factory.ToSpecRunFeature).ToList();
         }
 
-        public TestResult GetFeatureResult(Feature feature)
+        public TestResult GetFeatureResult(ObjectModel.Feature feature)
         {
             if (this.specRunFeatures == null)
             {
@@ -78,7 +78,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
                 return TestResult.Inconclusive;
             }
 
-            SpecRun.Scenario[] specRunScenarios = FindSpecRunScenarios(scenarioOutline, specRunFeature);
+            Parser.SpecRun.Scenario[] specRunScenarios = FindSpecRunScenarios(scenarioOutline, specRunFeature);
 
             if (specRunScenarios.Length == 0)
             {
@@ -160,19 +160,19 @@ namespace PicklesDoc.Pickles.TestFrameworks
             }
         }
 
-        private static SpecRun.Scenario[] FindSpecRunScenarios(ScenarioOutline scenarioOutline, SpecRun.Feature specRunFeature)
+        private static Parser.SpecRun.Scenario[] FindSpecRunScenarios(ScenarioOutline scenarioOutline, Parser.SpecRun.Feature specRunFeature)
         {
             return specRunFeature.Scenarios.Where(d => d.Title.StartsWith(scenarioOutline.Name + ", ")).ToArray();
         }
 
-        private static SpecRun.Scenario FindSpecRunScenario(Scenario scenario, SpecRun.Feature specRunFeature)
+        private static Parser.SpecRun.Scenario FindSpecRunScenario(Scenario scenario, Parser.SpecRun.Feature specRunFeature)
         {
-            SpecRun.Scenario result = specRunFeature.Scenarios.FirstOrDefault(d => d.Title.Equals(scenario.Name));
+            Parser.SpecRun.Scenario result = specRunFeature.Scenarios.FirstOrDefault(d => d.Title.Equals(scenario.Name));
 
             return result;
         }
 
-        private SpecRun.Feature FindSpecRunFeature(Feature feature)
+        private Parser.SpecRun.Feature FindSpecRunFeature(ObjectModel.Feature feature)
         {
             return this.specRunFeatures.FirstOrDefault(specRunFeature => specRunFeature.Title == feature.Name);
         }

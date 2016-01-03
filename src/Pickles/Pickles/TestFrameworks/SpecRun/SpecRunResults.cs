@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="XUnitExampleSignatureBuilder.cs" company="PicklesDoc">
+//  <copyright file="SpecRunResults.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -19,28 +19,27 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Text;
-using System.Text.RegularExpressions;
+using System.IO.Abstractions;
 
 using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.TestFrameworks
+namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 {
-    public class XUnitExampleSignatureBuilder
+    public class SpecRunResults : MultipleTestResults
     {
-        public Regex Build(ScenarioOutline scenarioOutline, string[] row)
+        public SpecRunResults(Configuration configuration)
+            : base(false, configuration)
         {
-            var stringBuilder = new StringBuilder();
-            stringBuilder.Append(scenarioOutline.Name.ToLowerInvariant().Replace(" ", string.Empty) + "\\(");
+        }
 
-            foreach (string value in row)
-            {
-                stringBuilder.AppendFormat("(.*): \"{0}\", ", value.ToLowerInvariant().Replace(@"\", string.Empty).Replace(@"$", @"\$"));
-            }
+        public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+        {
+            throw new NotSupportedException();
+        }
 
-            stringBuilder.Remove(stringBuilder.Length - 2, 2);
-
-            return new Regex(stringBuilder.ToString());
+        protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
+        {
+            return new SpecRunSingleResults(fileInfo);
         }
     }
 }

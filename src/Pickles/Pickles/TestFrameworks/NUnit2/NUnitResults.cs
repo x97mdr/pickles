@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="MsTestResults.cs" company="PicklesDoc">
+//  <copyright file="NUnitResults.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -20,28 +20,40 @@
 
 using System;
 using System.IO.Abstractions;
+using System.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.TestFrameworks
+namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
 {
-    public class MsTestResults : MultipleTestResults
+    public class NUnitResults : MultipleTestResults
     {
         private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
 
-        public MsTestResults(Configuration configuration)
-            : base(false, configuration)
+        public NUnitResults(Configuration configuration, NUnitExampleSignatureBuilder exampleSignatureBuilder)
+            : base(true, configuration)
         {
+            this.SetExampleSignatureBuilder(exampleSignatureBuilder);
         }
 
-        public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+        public void SetExampleSignatureBuilder(NUnitExampleSignatureBuilder exampleSignatureBuilder)
         {
-            throw new NotSupportedException();
+            foreach (var testResult in TestResults.OfType<NUnitSingleResults>())
+            {
+                testResult.ExampleSignatureBuilder = exampleSignatureBuilder;
+            }
         }
 
         protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
         {
-            return new MsTestSingleResults(DocumentLoader.Load(fileInfo));
+            return new NUnitSingleResults(DocumentLoader.Load(fileInfo));
+        }
+
+        public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] arguments)
+        {
+            var results = TestResults.OfType<NUnitSingleResults>().Select(tr => tr.GetExampleResult(scenarioOutline, arguments)).ToArray();
+
+            return EvaluateTestResults(results);
         }
     }
 }

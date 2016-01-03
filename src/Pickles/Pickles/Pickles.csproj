@@ -212,23 +212,23 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Runner.cs" />
-    <Compile Include="TestFrameworks\CucumberJsonResults.cs" />
-    <Compile Include="TestFrameworks\CucumberJsonSingleResults.cs" />
+    <Compile Include="TestFrameworks\CucumberJson\CucumberJsonResults.cs" />
+    <Compile Include="TestFrameworks\CucumberJson\CucumberJsonSingleResults.cs" />
     <Compile Include="TestFrameworks\ITestResults.cs" />
-    <Compile Include="TestFrameworks\MsTestResults.cs" />
+    <Compile Include="TestFrameworks\MsTest\MsTestResults.cs" />
     <Compile Include="TestFrameworks\MultipleTestResults.cs" />
     <Compile Include="TestFrameworks\NullTestResults.cs" />
-    <Compile Include="TestFrameworks\NUnitExampleSignatureBuilder.cs" />
-    <Compile Include="TestFrameworks\NUnitResults.cs" />
-    <Compile Include="TestFrameworks\MsTestSingleResults.cs" />
-    <Compile Include="TestFrameworks\NUnitSingleResults.cs" />
-    <Compile Include="TestFrameworks\SpecRunResults.cs" />
-    <Compile Include="TestFrameworks\SpecRunSingleResults.cs" />
+    <Compile Include="TestFrameworks\NUnit2\NUnitExampleSignatureBuilder.cs" />
+    <Compile Include="TestFrameworks\NUnit2\NUnitResults.cs" />
+    <Compile Include="TestFrameworks\MsTest\MsTestSingleResults.cs" />
+    <Compile Include="TestFrameworks\NUnit2\NUnitSingleResults.cs" />
+    <Compile Include="TestFrameworks\SpecRun\SpecRunResults.cs" />
+    <Compile Include="TestFrameworks\SpecRun\SpecRunSingleResults.cs" />
     <Compile Include="TestFrameworks\TestResult.cs" />
     <Compile Include="TestFrameworks\XDocumentLoader.cs" />
-    <Compile Include="TestFrameworks\xUnitExampleSignatureBuilder.cs" />
-    <Compile Include="TestFrameworks\XUnitResults.cs" />
-    <Compile Include="TestFrameworks\XUnitSingleResults.cs" />
+    <Compile Include="TestFrameworks\XUnit1\xUnitExampleSignatureBuilder.cs" />
+    <Compile Include="TestFrameworks\XUnit1\XUnitResults.cs" />
+    <Compile Include="TestFrameworks\XUnit1\XUnitSingleResults.cs" />
     <Compile Include="TestResultsFormat.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -339,6 +339,7 @@
       <Link>Resources\Dhtml\pickledFeatures.js</Link>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

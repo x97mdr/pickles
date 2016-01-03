@@ -30,6 +30,7 @@ using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.JSON;
 using PicklesDoc.Pickles.Test.Helpers;
 using PicklesDoc.Pickles.TestFrameworks;
+using PicklesDoc.Pickles.TestFrameworks.MsTest;
 
 namespace PicklesDoc.Pickles.Test.Formatters.JSON
 {

@@ -23,7 +23,7 @@ using System.IO.Abstractions;
 
 using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.TestFrameworks
+namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
 {
     public class CucumberJsonResults : MultipleTestResults
     {

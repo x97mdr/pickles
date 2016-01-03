@@ -25,6 +25,7 @@ using NFluent;
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
+using PicklesDoc.Pickles.TestFrameworks.SpecRun;
 
 namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.SpecRun
 {

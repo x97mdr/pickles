@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="WhenDeterminingTheSignatureOfAnNUnitExampleRow.cs" company="PicklesDoc">
+//  <copyright file="XUnitExampleSignatureBuilder.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -19,34 +19,28 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Text;
 using System.Text.RegularExpressions;
 
-using Autofac;
-
-using NFluent;
-
-using NUnit.Framework;
-
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Test;
-using PicklesDoc.Pickles.TestFrameworks.NUnit2;
 
-namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
+namespace PicklesDoc.Pickles.TestFrameworks.XUnit1
 {
-    [TestFixture]
-    public class WhenDeterminingTheSignatureOfAnNUnitExampleRow : BaseFixture
+    public class XUnitExampleSignatureBuilder
     {
-        [Test]
-        public void ThenCanSuccessfullyMatch()
+        public Regex Build(ScenarioOutline scenarioOutline, string[] row)
         {
-            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers" };
-            var exampleRow = new[] { "40", "50", "90" };
+            var stringBuilder = new StringBuilder();
+            stringBuilder.Append(scenarioOutline.Name.ToLowerInvariant().Replace(" ", string.Empty) + "\\(");
 
-            var signatureBuilder = Container.Resolve<NUnitExampleSignatureBuilder>();
-            Regex signature = signatureBuilder.Build(scenarioOutline, exampleRow);
+            foreach (string value in row)
+            {
+                stringBuilder.AppendFormat("(.*): \"{0}\", ", value.ToLowerInvariant().Replace(@"\", string.Empty).Replace(@"$", @"\$"));
+            }
 
-            var isMatch = signature.IsMatch("Pickles.TestHarness.AdditionFeature.AddingSeveralNumbers(\"40\",\"50\",\"90\",System.String[])".ToLowerInvariant());
-            Check.That(isMatch).IsTrue();
+            stringBuilder.Remove(stringBuilder.Length - 2, 2);
+
+            return new Regex(stringBuilder.ToString());
         }
     }
 }

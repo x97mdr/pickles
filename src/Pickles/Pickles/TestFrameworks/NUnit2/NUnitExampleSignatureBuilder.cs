@@ -24,7 +24,7 @@ using System.Text.RegularExpressions;
 
 using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.TestFrameworks
+namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
 {
     public class NUnitExampleSignatureBuilder
     {
