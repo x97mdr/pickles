@@ -3,7 +3,7 @@
 open Fake
 
 // Properties
-let deployDir  = "./deploy/"
+let deployDir  = "./deploy/nuget/"
 let cmdDir = "./build/exe/"
 let msBuildDir = "./build/msbuild/"
 let powerShellDir = "./build/powershell/"
@@ -14,7 +14,7 @@ let version = environVar "version" // or retrieve from CI server
 
 // Targets
 Target "Clean" (fun _ ->
-    CleanDirs [packagingDir; ]
+    CleanDirs [deployDir; packagingDir; ]
 )
 
 

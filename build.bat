@@ -10,7 +10,7 @@ cls
 "packages\FAKE\tools\Fake.exe" nuget.fsx --envvar version %picklesVersion%
 "packages\FAKE\tools\Fake.exe" chocolatey.fsx --envvar version %picklesVersion%
 
-call unzip.cmd %picklesVersion%
+call InstallPackages.cmd
 
 FOR %%A IN (testRunnerCmd testRunnerMsBuild testRunnerPowerShell) DO (
 call %%A.cmd %picklesVersion%

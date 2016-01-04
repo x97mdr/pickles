@@ -16,7 +16,7 @@ Try
         $TestResultsFile = ""
 
         # Import the Pickles-comandlet
-        $pathToModule = ".\deploy\pickles-" + $version + "\powershell\PicklesDoc.Pickles.PowerShell.dll"
+        $pathToModule = ".\deploy\nuget\packages\pickles." + $version + "\tools\PicklesDoc.Pickles.PowerShell.dll"
         Import-Module $pathToModule
 
         # Call pickles
