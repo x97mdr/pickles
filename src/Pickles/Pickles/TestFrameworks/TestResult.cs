@@ -24,6 +24,13 @@ using System.Linq;
 
 namespace PicklesDoc.Pickles.TestFrameworks
 {
+    public enum TestResult
+    {
+        Inconclusive,
+        Failed,
+        Passed
+    }
+    /*
     public struct TestResult
     {
         private TestResult(bool wasExecuted, bool wasSuccessful)
@@ -79,6 +86,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
             return !(left == right);
         }
     }
+    */
 
     public static class TestResultExtensions
     {

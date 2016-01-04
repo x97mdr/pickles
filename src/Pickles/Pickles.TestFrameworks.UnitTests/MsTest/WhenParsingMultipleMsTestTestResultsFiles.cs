@@ -60,8 +60,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.MsTest
 
             var result = results.GetScenarioResult(scenario);
 
-            Check.That(result.WasExecuted).IsTrue();
-            Check.That(result.WasSuccessful).IsTrue();
+            Check.That(result).IsEqualTo(TestResult.Passed);
         }
 
         [Test]
@@ -77,8 +76,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.MsTest
 
             var result = results.GetScenarioResult(scenario);
 
-            Check.That(result.WasExecuted).IsTrue();
-            Check.That(result.WasSuccessful).IsFalse();
+            Check.That(result).IsEqualTo(TestResult.Failed);
         }
     }
 }

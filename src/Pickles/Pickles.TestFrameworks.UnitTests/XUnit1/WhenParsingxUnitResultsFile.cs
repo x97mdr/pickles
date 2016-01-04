@@ -46,8 +46,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit1
             var feature = new Feature { Name = "Addition" };
             TestResult result = results.GetFeatureResult(feature);
 
-            Check.That(result.WasExecuted).IsTrue();
-            Check.That(result.WasSuccessful).IsFalse();
+            Check.That(result).IsEqualTo(TestResult.Failed);
         }
 
         [Test]
@@ -60,16 +59,13 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit1
             var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers", Feature = feature };
             TestResult result = results.GetScenarioOutlineResult(scenarioOutline);
 
-            Check.That(result.WasExecuted).IsTrue();
-            Check.That(result.WasSuccessful).IsTrue();
+            Check.That(result).IsEqualTo(TestResult.Passed);
 
             TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "40", "50", "90" });
-            Check.That(exampleResult1.WasExecuted).IsTrue();
-            Check.That(exampleResult1.WasSuccessful).IsTrue();
+            Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
 
             TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "60", "70", "130" });
-            Check.That(exampleResult2.WasExecuted).IsTrue();
-            Check.That(exampleResult2.WasSuccessful).IsTrue();
+            Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
         }
 
         [Test]
@@ -82,8 +78,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit1
             var passedScenario = new Scenario { Name = "Add two numbers", Feature = feature };
             TestResult result = results.GetScenarioResult(passedScenario);
 
-            Check.That(result.WasExecuted).IsTrue();
-            Check.That(result.WasSuccessful).IsTrue();
+            Check.That(result).IsEqualTo(TestResult.Passed);
         }
 
         [Test]
@@ -94,8 +89,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit1
             var scenario = new Scenario { Name = "Fail to add two numbers", Feature = feature };
             TestResult result = results.GetScenarioResult(scenario);
 
-            Check.That(result.WasExecuted).IsTrue();
-            Check.That(result.WasSuccessful).IsFalse();
+            Check.That(result).IsEqualTo(TestResult.Failed);
         }
 
         [Test]
@@ -106,8 +100,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit1
             var ignoredScenario = new Scenario { Name = "Ignored adding two numbers", Feature = feature };
             var result = results.GetScenarioResult(ignoredScenario);
 
-            Check.That(result.WasExecuted).IsFalse();
-            Check.That(result.WasSuccessful).IsFalse();
+            Check.That(result).IsEqualTo(TestResult.Inconclusive);
         }
 
         [Test]
@@ -123,8 +116,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit1
 
             var result = results.GetScenarioResult(notFoundScenario);
 
-            Check.That(result.WasExecuted).IsFalse();
-            Check.That(result.WasSuccessful).IsFalse();
+            Check.That(result).IsEqualTo(TestResult.Inconclusive);
         }
 
         [Test]

@@ -46,11 +46,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             if (this.configuration.HasTestResults)
             {
                 TestResult testResult = this.testResults.GetScenarioOutlineResult(scenarioOutline);
-                if (testResult.WasExecuted && testResult.WasSuccessful)
+                if (testResult == TestResult.Passed)
                 {
                     body.GenerateParagraph("Passed", "Passed");
                 }
-                else if (testResult.WasExecuted && !testResult.WasSuccessful)
+                else if (testResult == TestResult.Failed)
                 {
                     body.GenerateParagraph("Failed", "Failed");
                 }

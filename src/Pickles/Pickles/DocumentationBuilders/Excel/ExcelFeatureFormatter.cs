@@ -68,9 +68,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 
             var results = this.testResults.GetFeatureResult(feature);
 
-            if (this.configuration.HasTestResults && results.WasExecuted)
+            if (this.configuration.HasTestResults && results != TestResult.Inconclusive)
             {
-                worksheet.Cell("A1").Style.Fill.SetBackgroundColor(results.WasSuccessful
+                worksheet.Cell("A1").Style.Fill.SetBackgroundColor(results == TestResult.Passed
                     ? XLColor.AppleGreen
                     : XLColor.CandyAppleRed);
             }

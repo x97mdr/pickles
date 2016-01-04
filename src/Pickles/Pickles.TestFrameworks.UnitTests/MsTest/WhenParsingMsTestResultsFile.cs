@@ -47,8 +47,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.MsTest
 
             TestResult result = results.GetScenarioResult(background);
 
-            Check.That(result.WasExecuted).IsFalse();
-            Check.That(result.WasSuccessful).IsFalse();
+            Check.That(result).IsEqualTo(TestResult.Inconclusive);
         }
 
         [Test]
@@ -89,8 +88,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.MsTest
 
             TestResult result = results.GetScenarioOutlineResult(scenarioOutline);
 
-            Check.That(result.WasExecuted).IsTrue();
-            Check.That(result.WasSuccessful).IsTrue();
+            Check.That(result).IsEqualTo(TestResult.Passed);
         }
 
         [Test]
@@ -101,8 +99,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.MsTest
 
             TestResult result = results.GetScenarioResult(passedScenario);
 
-            Check.That(result.WasExecuted).IsTrue();
-            Check.That(result.WasSuccessful).IsTrue();
+            Check.That(result).IsEqualTo(TestResult.Passed);
         }
 
         [Test]
@@ -112,8 +109,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.MsTest
             var scenario = new Scenario { Name = "Fail to add two numbers", Feature = this.AdditionFeature() };
             TestResult result = results.GetScenarioResult(scenario);
 
-            Check.That(result.WasExecuted).IsTrue();
-            Check.That(result.WasSuccessful).IsFalse();
+            Check.That(result).IsEqualTo(TestResult.Failed);
         }
 
         [Test]
@@ -124,8 +120,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.MsTest
 
             var result = results.GetScenarioResult(ignoredScenario);
 
-            Check.That(result.WasExecuted).IsFalse();
-            Check.That(result.WasSuccessful).IsFalse();
+            Check.That(result).IsEqualTo(TestResult.Inconclusive);
         }
 
         [Test]
@@ -141,8 +136,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.MsTest
 
             var result = results.GetScenarioResult(inconclusiveScenario);
 
-            Check.That(result.WasExecuted).IsFalse();
-            Check.That(result.WasSuccessful).IsFalse();
+            Check.That(result).IsEqualTo(TestResult.Inconclusive);
         }
 
         private Feature AdditionFeature()

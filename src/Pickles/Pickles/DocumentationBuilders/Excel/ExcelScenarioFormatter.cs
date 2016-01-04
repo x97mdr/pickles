@@ -50,10 +50,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
             worksheet.Cell(row++, "C").Value = scenario.Description;
 
             var results = this.testResults.GetScenarioResult(scenario);
-            if (this.configuration.HasTestResults && results.WasExecuted)
+            if (this.configuration.HasTestResults && results != TestResult.Inconclusive)
             {
                 worksheet.Cell(originalRow, "B").Style.Fill.SetBackgroundColor(
-                    results.WasSuccessful
+                    results == TestResult.Passed
                         ? XLColor.AppleGreen
                         : XLColor.CandyAppleRed);
             }

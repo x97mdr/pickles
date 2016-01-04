@@ -64,17 +64,17 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit1
             foreach (XElement exampleElement in exampleElements)
             {
                 TestResult result = this.GetResultFromElement(exampleElement);
-                if (result.WasExecuted == false)
+                if (result == TestResult.Inconclusive)
                 {
                     skippedCount++;
                 }
 
-                if (result.WasExecuted && result.WasSuccessful)
+                if (result == TestResult.Passed)
                 {
                     passedCount++;
                 }
 
-                if (result.WasExecuted && !result.WasSuccessful)
+                if (result == TestResult.Failed)
                 {
                     failedCount++;
                 }

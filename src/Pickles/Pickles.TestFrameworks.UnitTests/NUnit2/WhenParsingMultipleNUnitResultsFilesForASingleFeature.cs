@@ -46,8 +46,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
             var feature = new Feature { Name = "FeatureWithMultipleResultsFiles" };
             TestResult result = results.GetFeatureResult(feature);
 
-            Check.That(result.WasExecuted).IsTrue();
-            Check.That(result.WasSuccessful).IsTrue();
+            Check.That(result).IsEqualTo(TestResult.Passed);
         }
 
         [Test]
@@ -60,16 +59,13 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
 
             TestResult result = results.GetScenarioOutlineResult(scenarioOutline);
 
-            Check.That(result.WasExecuted).IsTrue();
-            Check.That(result.WasSuccessful).IsTrue();
+            Check.That(result).IsEqualTo(TestResult.Passed);
 
             TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "false" });
-            Check.That(exampleResult1.WasExecuted).IsTrue();
-            Check.That(exampleResult1.WasSuccessful).IsTrue();
+            Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
 
             TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "true" });
-            Check.That(exampleResult2.WasExecuted).IsTrue();
-            Check.That(exampleResult2.WasSuccessful).IsTrue();
+            Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
         }
     }
 }

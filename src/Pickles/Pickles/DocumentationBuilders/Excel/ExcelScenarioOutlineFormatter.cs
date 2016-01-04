@@ -52,9 +52,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
             worksheet.Cell(row++, "C").Value = scenarioOutline.Description;
 
             var results = this.testResults.GetScenarioOutlineResult(scenarioOutline);
-            if (this.configuration.HasTestResults && results.WasExecuted)
+            if (this.configuration.HasTestResults && (results != TestResult.Inconclusive))
             {
-                worksheet.Cell(originalRow, "B").Style.Fill.SetBackgroundColor(results.WasSuccessful
+                worksheet.Cell(originalRow, "B").Style.Fill.SetBackgroundColor(results == TestResult.Passed
                     ? XLColor.AppleGreen
                     : XLColor.CandyAppleRed);
             }

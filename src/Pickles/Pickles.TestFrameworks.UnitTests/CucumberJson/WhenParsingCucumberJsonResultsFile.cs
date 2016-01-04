@@ -45,8 +45,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.CucumberJson
             var feature = new Feature { Name = "Test Feature" };
             TestResult result = results.GetFeatureResult(feature);
 
-            Check.That(result.WasExecuted).IsTrue();
-            Check.That(result.WasSuccessful).IsFalse();
+            Check.That(result).IsEqualTo(TestResult.Failed);
         }
 
         [Test]
@@ -59,14 +58,12 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.CucumberJson
             var scenario1 = new Scenario { Name = "Passing", Feature = feature };
             TestResult result1 = results.GetScenarioResult(scenario1);
 
-            Check.That(result1.WasExecuted).IsTrue();
-            Check.That(result1.WasSuccessful).IsTrue();
+            Check.That(result1).IsEqualTo(TestResult.Passed);
 
             var scenario2 = new Scenario { Name = "Failing", Feature = feature };
             TestResult result2 = results.GetScenarioResult(scenario2);
 
-            Check.That(result2.WasExecuted).IsTrue();
-            Check.That(result2.WasSuccessful).IsFalse();
+            Check.That(result2).IsEqualTo(TestResult.Failed);
         }
 
         [Test]
