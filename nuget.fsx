@@ -32,6 +32,8 @@ Target "CreatePackageCommandLine" (fun _ ->
         cmdDir + "NGenerics.dll";
         cmdDir + "NLog.dll";
         cmdDir + "PicklesDoc.Pickles.Library.dll";
+        cmdDir + "PicklesDoc.Pickles.ObjectModel.dll";
+        cmdDir + "PicklesDoc.Pickles.TestFrameworks.dll";
         cmdDir + "System.IO.Abstractions.dll";
         cmdDir + "pickles.exe";
         cmdDir + "NLog.config" ]
@@ -59,6 +61,8 @@ Target "CreatePackageMsBuild" (fun _ ->
         msBuildDir + "NGenerics.dll";
         msBuildDir + "NLog.dll";
         msBuildDir + "PicklesDoc.Pickles.Library.dll";
+        msBuildDir + "PicklesDoc.Pickles.ObjectModel.dll";
+        msBuildDir + "PicklesDoc.Pickles.TestFrameworks.dll";
         msBuildDir + "System.IO.Abstractions.dll";
         msBuildDir + "PicklesDoc.Pickles.MSBuild.Tasks.dll";
         msBuildDir + "build/Pickles.MSBuild.targets";]
@@ -86,6 +90,8 @@ Target "CreatePackagePowerShell" (fun _ ->
         powerShellDir + "NGenerics.dll";
         powerShellDir + "NLog.dll";
         powerShellDir + "PicklesDoc.Pickles.Library.dll";
+        powerShellDir + "PicklesDoc.Pickles.ObjectModel.dll";
+        powerShellDir + "PicklesDoc.Pickles.TestFrameworks.dll";
         powerShellDir + "PicklesDoc.Pickles.PowerShell.dll";
         powerShellDir + "System.IO.Abstractions.dll";
         "src/Pickles/Pickles.PowerShell/init.ps1"  ]
