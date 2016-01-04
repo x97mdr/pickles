@@ -21,7 +21,8 @@
 using System;
 using NFluent;
 using NUnit.Framework;
-using PicklesDoc.Pickles.TestFrameworks;
+
+using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.Test
 {

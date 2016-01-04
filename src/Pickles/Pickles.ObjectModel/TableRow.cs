@@ -21,8 +21,6 @@
 using System;
 using System.Collections.Generic;
 
-using PicklesDoc.Pickles.TestFrameworks;
-
 namespace PicklesDoc.Pickles.ObjectModel
 {
     public class TableRow
