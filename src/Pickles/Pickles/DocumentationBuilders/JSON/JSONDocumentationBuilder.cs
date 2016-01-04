@@ -28,6 +28,7 @@ using NGenerics.DataStructures.Trees;
 using NGenerics.Patterns.Visitor;
 using NLog;
 using PicklesDoc.Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.JSON

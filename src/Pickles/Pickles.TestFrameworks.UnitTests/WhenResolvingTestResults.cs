@@ -26,6 +26,7 @@ using NFluent;
 
 using NUnit.Framework;
 
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Test;
 using PicklesDoc.Pickles.TestFrameworks.CucumberJson;
 using PicklesDoc.Pickles.TestFrameworks.MsTest;

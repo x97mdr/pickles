@@ -28,6 +28,7 @@ using NGenerics.DataStructures.Trees;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.JSON;
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Test.Helpers;
 using PicklesDoc.Pickles.TestFrameworks;
 using PicklesDoc.Pickles.TestFrameworks.MsTest;

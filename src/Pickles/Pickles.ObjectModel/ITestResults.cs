@@ -20,9 +20,7 @@
 
 using System;
 
-using PicklesDoc.Pickles.ObjectModel;
-
-namespace PicklesDoc.Pickles.TestFrameworks
+namespace PicklesDoc.Pickles.ObjectModel
 {
     public interface ITestResults
     {
