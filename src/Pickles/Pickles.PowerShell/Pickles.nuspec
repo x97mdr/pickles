@@ -47,6 +47,8 @@
     <file src="NGenerics.dll" target="tools" />
     <file src="NLog.dll" target="tools" />
     <file src="PicklesDoc.Pickles.Library.dll" target="tools" />
+    <file src="PicklesDoc.Pickles.ObjectModel.dll" target="tools" />
+    <file src="PicklesDoc.Pickles.TestFrameworks.dll" target="tools" />
     <file src="PicklesDoc.Pickles.PowerShell.dll" target="tools" />
     <file src="System.IO.Abstractions.dll" target="tools" />
     <file src="init.ps1" target="tools\init.ps1" />

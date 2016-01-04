@@ -46,6 +46,8 @@ Optionally, *Pickles* can **integrate test results**, so that your stakeholders 
         <file src="NGenerics.dll" target="tools" />
         <file src="NLog.dll" target="tools" />
         <file src="PicklesDoc.Pickles.Library.dll" target="tools" />
+        <file src="PicklesDoc.Pickles.ObjectModel.dll" target="tools" />
+        <file src="PicklesDoc.Pickles.TestFrameworks.dll" target="tools" />
         <file src="System.IO.Abstractions.dll" target="tools" />
         <file src="pickles.exe" target="tools" />
     </files>
