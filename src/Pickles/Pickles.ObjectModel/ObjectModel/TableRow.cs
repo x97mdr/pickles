@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="Feature.cs" company="PicklesDoc">
+//  <copyright file="TableRow.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -18,46 +18,33 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 
 namespace PicklesDoc.Pickles.ObjectModel
 {
-    public class Feature
+    public class TableRow
     {
-        public Feature()
+        private readonly List<string> tableCells = new List<string>();
+
+        public TableRow()
         {
-            this.FeatureElements = new List<IFeatureElement>();
-            this.Tags = new List<string>();
         }
 
-        public string Name { get; set; }
+        public TableRow(params string[] cells)
+        {
+            this.tableCells.AddRange(cells);
+        }
 
-        public string Description { get; set; }
+        public TableRow(IEnumerable<string> cells)
+        {
+            this.tableCells.AddRange(cells);
+        }
 
-        public List<IFeatureElement> FeatureElements { get; }
-
-        public Scenario Background { get; private set; }
+        public List<string> Cells
+        {
+            get { return this.tableCells; }
+        }
 
         public TestResult Result { get; set; }
-
-        public List<string> Tags { get; }
-
-        public void AddTag(string tag)
-        {
-            this.Tags.Add(tag);
-        }
-
-        public void AddBackground(Scenario background)
-        {
-            background.Feature = this;
-            this.Background = background;
-        }
-
-        public void AddFeatureElement(IFeatureElement featureElement)
-        {
-            featureElement.Feature = this;
-            this.FeatureElements.Add(featureElement);
-        }
     }
 }

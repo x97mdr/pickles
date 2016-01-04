@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="Step.cs" company="PicklesDoc">
+//  <copyright file="Example.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -18,20 +18,14 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 namespace PicklesDoc.Pickles.ObjectModel
 {
-    public class Step
+    public class Example
     {
-        public Keyword Keyword { get; set; }
-
-        public string NativeKeyword { get; set; }
-
         public string Name { get; set; }
 
-        public Table TableArgument { get; set; }
+        public string Description { get; set; }
 
-        public string DocStringArgument { get; set; }
+        public Table TableArgument { get; set; }
     }
 }

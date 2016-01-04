@@ -7,7 +7,7 @@
     <ProjectGuid>{55382AFC-E050-4DF7-AA4F-0ABA71E2E169}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PicklesDoc.Pickles.ObjectModel</RootNamespace>
+    <RootNamespace>PicklesDoc.Pickles</RootNamespace>
     <AssemblyName>PicklesDoc.Pickles.ObjectModel</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -45,19 +45,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DocumentationFormat.cs" />
-    <Compile Include="Example.cs" />
-    <Compile Include="Feature.cs" />
     <Compile Include="IConfiguration.cs" />
-    <Compile Include="IFeatureElement.cs" />
-    <Compile Include="ITestResults.cs" />
-    <Compile Include="Keyword.cs" />
+    <Compile Include="ObjectModel\Example.cs" />
+    <Compile Include="ObjectModel\Feature.cs" />
+    <Compile Include="ObjectModel\IFeatureElement.cs" />
+    <Compile Include="ObjectModel\ITestResults.cs" />
+    <Compile Include="ObjectModel\Keyword.cs" />
+    <Compile Include="ObjectModel\Scenario.cs" />
+    <Compile Include="ObjectModel\ScenarioOutline.cs" />
+    <Compile Include="ObjectModel\Step.cs" />
+    <Compile Include="ObjectModel\Table.cs" />
+    <Compile Include="ObjectModel\TableRow.cs" />
+    <Compile Include="ObjectModel\TestResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scenario.cs" />
-    <Compile Include="ScenarioOutline.cs" />
-    <Compile Include="Step.cs" />
-    <Compile Include="Table.cs" />
-    <Compile Include="TableRow.cs" />
-    <Compile Include="TestResult.cs" />
     <Compile Include="TestResultsFormat.cs" />
   </ItemGroup>
   <ItemGroup>

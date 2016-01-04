@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="Keyword.cs" company="PicklesDoc">
+//  <copyright file="Scenario.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -18,38 +18,32 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
+using System.Collections.Generic;
 
 namespace PicklesDoc.Pickles.ObjectModel
 {
-    /// <summary>
-    /// The Gherkin Keywords.
-    /// </summary>
-    public enum Keyword
+    public class Scenario : IFeatureElement
     {
-        /// <summary>
-        /// Keyword Given.
-        /// </summary>
-        Given,
+        public Scenario()
+        {
+            this.Steps = new List<Step>();
+            this.Tags = new List<string>();
+        }
 
-        /// <summary>
-        /// Keyword When.
-        /// </summary>
-        When,
+        #region IFeatureElement Members
 
-        /// <summary>
-        /// Keyword Then.
-        /// </summary>
-        Then,
+        public string Name { get; set; }
 
-        /// <summary>
-        /// Keyword And.
-        /// </summary>
-        And,
+        public string Description { get; set; }
 
-        /// <summary>
-        /// Keyword But.
-        /// </summary>
-        But
+        public List<Step> Steps { get; set; }
+
+        public List<string> Tags { get; set; }
+
+        public TestResult Result { get; set; }
+
+        public Feature Feature { get; set; }
+
+        #endregion
     }
 }

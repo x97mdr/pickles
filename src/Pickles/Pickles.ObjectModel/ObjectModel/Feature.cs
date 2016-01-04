@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="ScenarioOutline.cs" company="PicklesDoc">
+//  <copyright file="Feature.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -18,31 +18,45 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 
 namespace PicklesDoc.Pickles.ObjectModel
 {
-    public class ScenarioOutline : IFeatureElement
+    public class Feature
     {
-        public ScenarioOutline()
+        public Feature()
         {
-            this.Steps = new List<Step>();
+            this.FeatureElements = new List<IFeatureElement>();
             this.Tags = new List<string>();
         }
-
-        public List<Example> Examples { get; set; }
 
         public string Name { get; set; }
 
         public string Description { get; set; }
 
-        public List<Step> Steps { get; set; }
+        public List<IFeatureElement> FeatureElements { get; }
 
-        public List<string> Tags { get; set; }
+        public Scenario Background { get; private set; }
 
         public TestResult Result { get; set; }
 
-        public Feature Feature { get; set; }
+        public List<string> Tags { get; }
+
+        public void AddTag(string tag)
+        {
+            this.Tags.Add(tag);
+        }
+
+        public void AddBackground(Scenario background)
+        {
+            background.Feature = this;
+            this.Background = background;
+        }
+
+        public void AddFeatureElement(IFeatureElement featureElement)
+        {
+            featureElement.Feature = this;
+            this.FeatureElements.Add(featureElement);
+        }
     }
 }

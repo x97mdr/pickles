@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="Table.cs" company="PicklesDoc">
+//  <copyright file="Keyword.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -18,15 +18,36 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
 namespace PicklesDoc.Pickles.ObjectModel
 {
-    public class Table
+    /// <summary>
+    /// The Gherkin Keywords.
+    /// </summary>
+    public enum Keyword
     {
-        public TableRow HeaderRow { get; set; }
+        /// <summary>
+        /// Keyword Given.
+        /// </summary>
+        Given,
 
-        public List<TableRow> DataRows { get; set; }
+        /// <summary>
+        /// Keyword When.
+        /// </summary>
+        When,
+
+        /// <summary>
+        /// Keyword Then.
+        /// </summary>
+        Then,
+
+        /// <summary>
+        /// Keyword And.
+        /// </summary>
+        And,
+
+        /// <summary>
+        /// Keyword But.
+        /// </summary>
+        But
     }
 }

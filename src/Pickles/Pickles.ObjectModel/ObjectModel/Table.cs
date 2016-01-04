@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="Scenario.cs" company="PicklesDoc">
+//  <copyright file="Table.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -18,33 +18,14 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 
 namespace PicklesDoc.Pickles.ObjectModel
 {
-    public class Scenario : IFeatureElement
+    public class Table
     {
-        public Scenario()
-        {
-            this.Steps = new List<Step>();
-            this.Tags = new List<string>();
-        }
+        public TableRow HeaderRow { get; set; }
 
-        #region IFeatureElement Members
-
-        public string Name { get; set; }
-
-        public string Description { get; set; }
-
-        public List<Step> Steps { get; set; }
-
-        public List<string> Tags { get; set; }
-
-        public TestResult Result { get; set; }
-
-        public Feature Feature { get; set; }
-
-        #endregion
+        public List<TableRow> DataRows { get; set; }
     }
 }

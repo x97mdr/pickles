@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="TableRow.cs" company="PicklesDoc">
+//  <copyright file="ScenarioOutline.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -18,34 +18,30 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 
 namespace PicklesDoc.Pickles.ObjectModel
 {
-    public class TableRow
+    public class ScenarioOutline : IFeatureElement
     {
-        private readonly List<string> tableCells = new List<string>();
-
-        public TableRow()
+        public ScenarioOutline()
         {
+            this.Steps = new List<Step>();
+            this.Tags = new List<string>();
         }
 
-        public TableRow(params string[] cells)
-        {
-            this.tableCells.AddRange(cells);
-        }
+        public List<Example> Examples { get; set; }
 
-        public TableRow(IEnumerable<string> cells)
-        {
-            this.tableCells.AddRange(cells);
-        }
+        public string Name { get; set; }
 
-        public List<string> Cells
-        {
-            get { return this.tableCells; }
-        }
+        public string Description { get; set; }
+
+        public List<Step> Steps { get; set; }
+
+        public List<string> Tags { get; set; }
 
         public TestResult Result { get; set; }
+
+        public Feature Feature { get; set; }
     }
 }
