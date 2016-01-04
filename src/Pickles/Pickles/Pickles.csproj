@@ -181,10 +181,8 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="LanguageServices.cs" />
     <Compile Include="MarkdownProvider.cs" />
-    <Compile Include="ObjectModel\Example.cs" />
     <Compile Include="ObjectModel\KeywordResolver.cs" />
     <Compile Include="ObjectModel\Mapper.cs" />
-    <Compile Include="ObjectModel\IFeatureElement.cs" />
     <Compile Include="TestFrameworks\CucumberJson\Element.cs" />
     <Compile Include="TestFrameworks\CucumberJson\Feature.cs" />
     <Compile Include="TestFrameworks\CucumberJson\Match.cs" />
@@ -194,15 +192,8 @@
     <Compile Include="TestFrameworks\SpecRun\Factory.cs" />
     <Compile Include="TestFrameworks\SpecRun\Feature.cs" />
     <Compile Include="TestFrameworks\SpecRun\Scenario.cs" />
-    <Compile Include="ObjectModel\Table.cs" />
-    <Compile Include="ObjectModel\Feature.cs" />
-    <Compile Include="ObjectModel\Keyword.cs" />
     <Compile Include="DirectoryCrawler\DirectoryTreeCrawler.cs" />
     <Compile Include="FeatureParser.cs" />
-    <Compile Include="ObjectModel\Scenario.cs" />
-    <Compile Include="ObjectModel\ScenarioOutline.cs" />
-    <Compile Include="ObjectModel\Step.cs" />
-    <Compile Include="ObjectModel\TableRow.cs" />
     <Compile Include="PicklesModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DirectoryCrawler\RelevantFileDetector.cs" />
@@ -224,7 +215,6 @@
     <Compile Include="TestFrameworks\NUnit2\NUnitSingleResults.cs" />
     <Compile Include="TestFrameworks\SpecRun\SpecRunResults.cs" />
     <Compile Include="TestFrameworks\SpecRun\SpecRunSingleResults.cs" />
-    <Compile Include="TestFrameworks\TestResult.cs" />
     <Compile Include="TestFrameworks\XDocumentLoader.cs" />
     <Compile Include="TestFrameworks\XUnit1\xUnitExampleSignatureBuilder.cs" />
     <Compile Include="TestFrameworks\XUnit1\XUnitResults.cs" />
@@ -339,7 +329,12 @@
       <Link>Resources\Dhtml\pickledFeatures.js</Link>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Pickles.ObjectModel\Pickles.ObjectModel.csproj">
+      <Project>{55382AFC-E050-4DF7-AA4F-0ABA71E2E169}</Project>
+      <Name>Pickles.ObjectModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

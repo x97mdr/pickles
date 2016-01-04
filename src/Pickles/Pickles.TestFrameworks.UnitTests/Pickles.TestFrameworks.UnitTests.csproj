@@ -123,6 +123,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Pickles.ObjectModel\Pickles.ObjectModel.csproj">
+      <Project>{55382AFC-E050-4DF7-AA4F-0ABA71E2E169}</Project>
+      <Name>Pickles.ObjectModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Pickles.Test\Pickles.Test.csproj">
       <Project>{8bd9fcd2-7ed5-46b5-b6a4-7fa3775e159f}</Project>
       <Name>Pickles.Test</Name>
