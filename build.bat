@@ -4,6 +4,7 @@ set "picklesVersion=2.1.0"
 cls
 
 "packages\nuget\NuGet.exe" "Install" "FAKE" "-OutputDirectory" "packages" "-ExcludeVersion"
+"packages\nuget\NuGet.exe" "Install" "Chocolatey" "-OutputDirectory" "packages" "-ExcludeVersion"
 "packages\nuget\NuGet.exe" "Restore" "src\Pickles\Pickles.sln"
 
 "packages\FAKE\tools\Fake.exe" build.fsx --envvar version %picklesVersion%
