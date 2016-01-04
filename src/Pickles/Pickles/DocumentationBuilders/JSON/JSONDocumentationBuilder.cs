@@ -37,12 +37,12 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
         public const string JsonFileName = @"pickledFeatures.json";
         private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
 
-        private readonly Configuration configuration;
+        private readonly IConfiguration configuration;
         private readonly ITestResults testResults;
 
         private readonly IFileSystem fileSystem;
 
-        public JsonDocumentationBuilder(Configuration configuration, ITestResults testResults, IFileSystem fileSystem)
+        public JsonDocumentationBuilder(IConfiguration configuration, ITestResults testResults, IFileSystem fileSystem)
         {
             this.configuration = configuration;
             this.testResults = testResults;

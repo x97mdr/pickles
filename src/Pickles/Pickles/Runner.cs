@@ -38,7 +38,7 @@ namespace PicklesDoc.Pickles
 
         public void Run(IContainer container)
         {
-            var configuration = container.Resolve<Configuration>();
+            var configuration = container.Resolve<IConfiguration>();
             if (!configuration.OutputFolder.Exists)
             {
                 configuration.OutputFolder.Create();
@@ -67,7 +67,7 @@ namespace PicklesDoc.Pickles
             }
         }
 
-        private static void ApplyTestResultsToFeatures(IContainer container, Configuration configuration, GeneralTree<INode> features)
+        private static void ApplyTestResultsToFeatures(IContainer container, IConfiguration configuration, GeneralTree<INode> features)
         {
             var testResults = container.Resolve<ITestResults>();
 

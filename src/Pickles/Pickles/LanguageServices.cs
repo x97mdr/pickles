@@ -37,7 +37,7 @@ namespace PicklesDoc.Pickles
         private readonly Lazy<string[]> butStepKeywordsLazy;
         private readonly Lazy<string[]> backgroundKeywordsLazy;
 
-        public LanguageServices(Configuration configuration)
+        public LanguageServices(IConfiguration configuration)
             : this(configuration.Language)
         {
         }

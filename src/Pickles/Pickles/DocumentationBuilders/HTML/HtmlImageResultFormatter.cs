@@ -29,12 +29,12 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlImageResultFormatter
     {
-        private readonly Configuration configuration;
+        private readonly IConfiguration configuration;
 
         private readonly ITestResults results;
         private readonly XNamespace xmlns;
 
-        public HtmlImageResultFormatter(Configuration configuration, ITestResults results)
+        public HtmlImageResultFormatter(IConfiguration configuration, ITestResults results)
         {
             this.configuration = configuration;
             this.results = results;

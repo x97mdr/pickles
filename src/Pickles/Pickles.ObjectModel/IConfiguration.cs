@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="CucumberJsonResults.cs" company="PicklesDoc">
+//  <copyright file="IConfiguration.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -18,28 +18,35 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
+using System.Collections.Generic;
 using System.IO.Abstractions;
 
-using PicklesDoc.Pickles.ObjectModel;
-
-namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
+namespace PicklesDoc.Pickles
 {
-    public class CucumberJsonResults : MultipleTestResults
+    public interface IConfiguration
     {
-        public CucumberJsonResults(Configuration configuration)
-            : base(false, configuration)
-        {
-        }
+        DirectoryInfoBase FeatureFolder { get; set; }
 
-        public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
-        {
-            throw new NotSupportedException();
-        }
+        DirectoryInfoBase OutputFolder { get; set; }
 
-        protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
-        {
-            return new CucumberJsonSingleResults(fileInfo);
-        }
+        DocumentationFormat DocumentationFormat { get; set; }
+
+        string Language { get; set; }
+
+        TestResultsFormat TestResultsFormat { get; set; }
+
+        bool HasTestResults { get; }
+
+        FileInfoBase TestResultsFile { get; }
+
+        IEnumerable<FileInfoBase> TestResultsFiles { get; }
+
+        string SystemUnderTestName { get; set; }
+
+        string SystemUnderTestVersion { get; set; }
+
+        void AddTestResultFile(FileInfoBase fileInfoBase);
+
+        void AddTestResultFiles(IEnumerable<FileInfoBase> fileInfoBases);
     }
 }

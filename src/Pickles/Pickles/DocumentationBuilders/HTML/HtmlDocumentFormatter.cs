@@ -34,7 +34,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             "  initializeToc();" + "\n" +
             "});" + "\n";
 
-        private readonly Configuration configuration;
+        private readonly IConfiguration configuration;
         private readonly HtmlContentFormatter htmlContentFormatter;
         private readonly HtmlFooterFormatter htmlFooterFormatter;
         private readonly HtmlHeaderFormatter htmlHeaderFormatter;
@@ -43,7 +43,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
         private readonly HtmlTableOfContentsFormatter htmlTableOfContentsFormatter;
 
         public HtmlDocumentFormatter(
-            Configuration configuration,
+            IConfiguration configuration,
             HtmlHeaderFormatter htmlHeaderFormatter,
             HtmlTableOfContentsFormatter htmlTableOfContentsFormatter,
             HtmlContentFormatter htmlContentFormatter,

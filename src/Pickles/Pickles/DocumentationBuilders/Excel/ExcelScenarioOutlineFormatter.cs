@@ -30,13 +30,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
     {
         private readonly ExcelStepFormatter excelStepFormatter;
         private readonly ExcelTableFormatter excelTableFormatter;
-        private readonly Configuration configuration;
+        private readonly IConfiguration configuration;
         private readonly ITestResults testResults;
 
         public ExcelScenarioOutlineFormatter(
             ExcelStepFormatter excelStepFormatter,
             ExcelTableFormatter excelTableFormatter,
-            Configuration configuration,
+            IConfiguration configuration,
             ITestResults testResults)
         {
             this.excelStepFormatter = excelStepFormatter;

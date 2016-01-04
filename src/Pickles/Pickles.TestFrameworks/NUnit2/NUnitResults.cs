@@ -30,7 +30,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
     {
         private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
 
-        public NUnitResults(Configuration configuration, NUnitExampleSignatureBuilder exampleSignatureBuilder)
+        public NUnitResults(IConfiguration configuration, NUnitExampleSignatureBuilder exampleSignatureBuilder)
             : base(true, configuration)
         {
             this.SetExampleSignatureBuilder(exampleSignatureBuilder);

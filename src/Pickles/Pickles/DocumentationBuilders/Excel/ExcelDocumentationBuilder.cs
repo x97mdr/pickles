@@ -33,7 +33,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
     {
         private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
 
-        private readonly Configuration configuration;
+        private readonly IConfiguration configuration;
         private readonly ExcelFeatureFormatter excelFeatureFormatter;
         private readonly ExcelSheetNameGenerator excelSheetNameGenerator;
         private readonly ExcelTableOfContentsFormatter excelTableOfContentsFormatter;
@@ -41,7 +41,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
         private readonly DirectoryTreeCrawler featureCrawler;
 
         public ExcelDocumentationBuilder(
-            Configuration configuration,
+            IConfiguration configuration,
             DirectoryTreeCrawler featureCrawler,
             ExcelFeatureFormatter excelFeatureFormatter,
             ExcelSheetNameGenerator excelSheetNameGenerator,

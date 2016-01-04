@@ -33,13 +33,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 
         private readonly ExcelScenarioFormatter excelScenarioFormatter;
         private readonly ExcelScenarioOutlineFormatter excelScenarioOutlineFormatter;
-        private readonly Configuration configuration;
+        private readonly IConfiguration configuration;
         private readonly ITestResults testResults;
 
         public ExcelFeatureFormatter(
             ExcelScenarioFormatter excelScenarioFormatter,
             ExcelScenarioOutlineFormatter excelScenarioOutlineFormatter,
-            Configuration configuration,
+            IConfiguration configuration,
             ITestResults testResults)
         {
             this.excelScenarioFormatter = excelScenarioFormatter;

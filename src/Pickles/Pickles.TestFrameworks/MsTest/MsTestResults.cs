@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="XUnitResults.cs" company="PicklesDoc">
+//  <copyright file="MsTestResults.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -20,40 +20,28 @@
 
 using System;
 using System.IO.Abstractions;
-using System.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.TestFrameworks.XUnit1
+namespace PicklesDoc.Pickles.TestFrameworks.MsTest
 {
-    public class XUnitResults : MultipleTestResults
+    public class MsTestResults : MultipleTestResults
     {
         private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
 
-        public XUnitResults(Configuration configuration, XUnitExampleSignatureBuilder exampleSignatureBuilder)
-            : base(true, configuration)
+        public MsTestResults(IConfiguration configuration)
+            : base(false, configuration)
         {
-            this.SetExampleSignatureBuilder(exampleSignatureBuilder);
         }
 
-        public void SetExampleSignatureBuilder(XUnitExampleSignatureBuilder exampleSignatureBuilder)
+        public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
         {
-            foreach (var testResult in TestResults.OfType<XUnitSingleResults>())
-            {
-                testResult.ExampleSignatureBuilder = exampleSignatureBuilder;
-            }
+            throw new NotSupportedException();
         }
 
         protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
         {
-            return new XUnitSingleResults(DocumentLoader.Load(fileInfo));
-        }
-
-        public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] arguments)
-        {
-            var results = TestResults.OfType<XUnitSingleResults>().Select(tr => tr.GetExampleResult(scenarioOutline, arguments)).ToArray();
-
-            return EvaluateTestResults(results);
+            return new MsTestSingleResults(DocumentLoader.Load(fileInfo));
         }
     }
 }

@@ -179,6 +179,10 @@
       <Project>{55382AFC-E050-4DF7-AA4F-0ABA71E2E169}</Project>
       <Name>Pickles.ObjectModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Pickles.TestFrameworks\Pickles.TestFrameworks.csproj">
+      <Project>{599BCF0C-8FB4-4727-A902-160C4E7D8FB0}</Project>
+      <Name>Pickles.TestFrameworks</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Pickles\Pickles.csproj">
       <Project>{38BAD6E0-78AB-4AC3-91A8-BF72AF5EE394}</Project>
       <Name>Pickles</Name>

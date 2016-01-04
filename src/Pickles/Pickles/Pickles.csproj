@@ -166,7 +166,6 @@
     <Compile Include="DocumentationBuilders\Word\WordStepFormatter.cs" />
     <Compile Include="DocumentationBuilders\Word\WordStyleApplicator.cs" />
     <Compile Include="DocumentationBuilders\Word\WordTableFormatter.cs" />
-    <Compile Include="DocumentationFormat.cs" />
     <Compile Include="Extensions\BodyExtensions.cs" />
     <Compile Include="Extensions\NamespaceExtensions.cs" />
     <Compile Include="Extensions\PathExtensions.cs" />
@@ -183,15 +182,6 @@
     <Compile Include="MarkdownProvider.cs" />
     <Compile Include="ObjectModel\KeywordResolver.cs" />
     <Compile Include="ObjectModel\Mapper.cs" />
-    <Compile Include="TestFrameworks\CucumberJson\Element.cs" />
-    <Compile Include="TestFrameworks\CucumberJson\Feature.cs" />
-    <Compile Include="TestFrameworks\CucumberJson\Match.cs" />
-    <Compile Include="TestFrameworks\CucumberJson\Result.cs" />
-    <Compile Include="TestFrameworks\CucumberJson\Step.cs" />
-    <Compile Include="TestFrameworks\CucumberJson\Tag.cs" />
-    <Compile Include="TestFrameworks\SpecRun\Factory.cs" />
-    <Compile Include="TestFrameworks\SpecRun\Feature.cs" />
-    <Compile Include="TestFrameworks\SpecRun\Scenario.cs" />
     <Compile Include="DirectoryCrawler\DirectoryTreeCrawler.cs" />
     <Compile Include="FeatureParser.cs" />
     <Compile Include="PicklesModule.cs" />
@@ -203,23 +193,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Runner.cs" />
-    <Compile Include="TestFrameworks\CucumberJson\CucumberJsonResults.cs" />
-    <Compile Include="TestFrameworks\CucumberJson\CucumberJsonSingleResults.cs" />
-    <Compile Include="TestFrameworks\ITestResults.cs" />
-    <Compile Include="TestFrameworks\MsTest\MsTestResults.cs" />
-    <Compile Include="TestFrameworks\MultipleTestResults.cs" />
     <Compile Include="TestFrameworks\NullTestResults.cs" />
-    <Compile Include="TestFrameworks\NUnit2\NUnitExampleSignatureBuilder.cs" />
-    <Compile Include="TestFrameworks\NUnit2\NUnitResults.cs" />
-    <Compile Include="TestFrameworks\MsTest\MsTestSingleResults.cs" />
-    <Compile Include="TestFrameworks\NUnit2\NUnitSingleResults.cs" />
-    <Compile Include="TestFrameworks\SpecRun\SpecRunResults.cs" />
-    <Compile Include="TestFrameworks\SpecRun\SpecRunSingleResults.cs" />
-    <Compile Include="TestFrameworks\XDocumentLoader.cs" />
-    <Compile Include="TestFrameworks\XUnit1\xUnitExampleSignatureBuilder.cs" />
-    <Compile Include="TestFrameworks\XUnit1\XUnitResults.cs" />
-    <Compile Include="TestFrameworks\XUnit1\XUnitSingleResults.cs" />
-    <Compile Include="TestResultsFormat.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -333,6 +307,10 @@
     <ProjectReference Include="..\Pickles.ObjectModel\Pickles.ObjectModel.csproj">
       <Project>{55382AFC-E050-4DF7-AA4F-0ABA71E2E169}</Project>
       <Name>Pickles.ObjectModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pickles.TestFrameworks\Pickles.TestFrameworks.csproj">
+      <Project>{599BCF0C-8FB4-4727-A902-160C4E7D8FB0}</Project>
+      <Name>Pickles.TestFrameworks</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

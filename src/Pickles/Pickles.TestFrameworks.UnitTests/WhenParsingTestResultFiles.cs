@@ -58,7 +58,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
                 }
             }
 
-            var configuration = Container.Resolve<Configuration>();
+            var configuration = Container.Resolve<IConfiguration>();
 
             configuration.AddTestResultFiles(this.resultsFileNames.Select(f => FileSystem.FileInfo.FromFileName(f)));
         }

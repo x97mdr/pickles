@@ -34,12 +34,12 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
     {
         private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
 
-        private readonly Configuration configuration;
+        private readonly IConfiguration configuration;
         private readonly ITestResults testResults;
 
         private readonly IFileSystem fileSystem;
 
-        public DhtmlDocumentationBuilder(Configuration configuration, ITestResults testResults, IFileSystem fileSystem)
+        public DhtmlDocumentationBuilder(IConfiguration configuration, ITestResults testResults, IFileSystem fileSystem)
         {
             this.configuration = configuration;
             this.testResults = testResults;

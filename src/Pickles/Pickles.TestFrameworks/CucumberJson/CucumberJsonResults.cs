@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="SpecRunResults.cs" company="PicklesDoc">
+//  <copyright file="CucumberJsonResults.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -23,11 +23,11 @@ using System.IO.Abstractions;
 
 using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
+namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
 {
-    public class SpecRunResults : MultipleTestResults
+    public class CucumberJsonResults : MultipleTestResults
     {
-        public SpecRunResults(Configuration configuration)
+        public CucumberJsonResults(IConfiguration configuration)
             : base(false, configuration)
         {
         }
@@ -39,7 +39,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 
         protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
         {
-            return new SpecRunSingleResults(fileInfo);
+            return new CucumberJsonSingleResults(fileInfo);
         }
     }
 }

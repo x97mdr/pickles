@@ -48,7 +48,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.JSON.AutomationLayer
         [When(@"I generate the documentation")]
         public void WhenIGenerateTheJsonDocumentation()
         {
-            var configuration = this.Container.Resolve<Configuration>();
+            var configuration = this.Container.Resolve<IConfiguration>();
             configuration.OutputFolder = this.FileSystem.DirectoryInfo.FromDirectoryName(@"c:\output\");
             var jsonDocumentationBuilder = this.Container.Resolve<JsonDocumentationBuilder>();
 

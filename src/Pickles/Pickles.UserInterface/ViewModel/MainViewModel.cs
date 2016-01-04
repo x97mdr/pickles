@@ -470,7 +470,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
                 builder.RegisterModule<PicklesModule>();
                 var container = builder.Build();
 
-                var configuration = container.Resolve<Configuration>();
+                var configuration = container.Resolve<IConfiguration>();
 
                 configuration.FeatureFolder = this.fileSystem.DirectoryInfo.FromDirectoryName(this.featureFolder);
 
