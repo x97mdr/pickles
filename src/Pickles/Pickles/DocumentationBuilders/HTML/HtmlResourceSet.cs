@@ -29,11 +29,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlResourceSet
     {
-        private readonly Configuration configuration;
+        private readonly IConfiguration configuration;
 
         private readonly IFileSystem fileSystem;
 
-        public HtmlResourceSet(Configuration configuration, IFileSystem fileSystem)
+        public HtmlResourceSet(IConfiguration configuration, IFileSystem fileSystem)
         {
             this.configuration = configuration;
             this.fileSystem = fileSystem;

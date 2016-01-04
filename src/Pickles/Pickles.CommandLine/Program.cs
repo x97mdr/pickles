@@ -38,7 +38,7 @@ namespace PicklesDoc.Pickles.CommandLine
             builder.RegisterModule<PicklesModule>();
             var container = builder.Build();
 
-            var configuration = container.Resolve<Configuration>();
+            var configuration = container.Resolve<IConfiguration>();
 
             var commandLineArgumentParser = container.Resolve<CommandLineArgumentParser>();
             var shouldContinue = commandLineArgumentParser.Parse(args, configuration, Console.Out);

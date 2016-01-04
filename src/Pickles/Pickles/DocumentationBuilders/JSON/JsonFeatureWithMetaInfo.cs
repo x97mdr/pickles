@@ -20,7 +20,7 @@
 
 using System;
 using PicklesDoc.Pickles.DirectoryCrawler;
-using PicklesDoc.Pickles.TestFrameworks;
+using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
 {

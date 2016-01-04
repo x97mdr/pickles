@@ -26,10 +26,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlFooterFormatter
     {
-        private readonly Configuration configuration;
+        private readonly IConfiguration configuration;
         private readonly XNamespace xmlns;
 
-        public HtmlFooterFormatter(Configuration configuration)
+        public HtmlFooterFormatter(IConfiguration configuration)
         {
             this.configuration = configuration;
             this.xmlns = HtmlNamespace.Xhtml;

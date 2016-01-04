@@ -33,7 +33,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
         private readonly LanguageServices languageSevices;
         private readonly WordTableFormatter wordTableFormatter;
 
-        public WordBackgroundFormatter(Configuration configuration, WordTableFormatter wordTableFormatter)
+        public WordBackgroundFormatter(IConfiguration configuration, WordTableFormatter wordTableFormatter)
         {
             this.wordTableFormatter = wordTableFormatter;
             this.languageSevices = new LanguageServices(configuration);

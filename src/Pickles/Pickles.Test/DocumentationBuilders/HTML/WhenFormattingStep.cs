@@ -106,7 +106,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
                 DocStringArgument = null,
             };
 
-            var configuration = Container.Resolve<Configuration>();
+            var configuration = Container.Resolve<IConfiguration>();
             configuration.Language = "sv";
 
             var formatter = Container.Resolve<HtmlStepFormatter>();

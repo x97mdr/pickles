@@ -63,7 +63,7 @@ namespace PicklesDoc.Pickles.PowerShell
             builder.RegisterModule<PicklesModule>();
             var container = builder.Build();
 
-            var configuration = container.Resolve<Configuration>();
+            var configuration = container.Resolve<IConfiguration>();
 
             this.ParseParameters(configuration, container.Resolve<IFileSystem>(), this.SessionState.Path.CurrentFileSystemLocation);
 
@@ -76,7 +76,7 @@ namespace PicklesDoc.Pickles.PowerShell
             this.WriteObject("Pickles completed successfully");
         }
 
-        private void ParseParameters(Configuration configuration, IFileSystem fileSystem, PathInfo currentFileSystemLocation)
+        private void ParseParameters(IConfiguration configuration, IFileSystem fileSystem, PathInfo currentFileSystemLocation)
         {
             configuration.FeatureFolder = this.DetermineFeatureFolder(fileSystem, currentFileSystemLocation, this.FeatureDirectory);
             configuration.OutputFolder = this.DetermineFeatureFolder(fileSystem, currentFileSystemLocation, this.OutputDirectory);

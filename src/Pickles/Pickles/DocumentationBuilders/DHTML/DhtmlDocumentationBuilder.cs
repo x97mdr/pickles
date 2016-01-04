@@ -26,6 +26,7 @@ using NGenerics.DataStructures.Trees;
 using NLog;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.JSON;
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
@@ -34,12 +35,12 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
     {
         private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
 
-        private readonly Configuration configuration;
+        private readonly IConfiguration configuration;
         private readonly ITestResults testResults;
 
         private readonly IFileSystem fileSystem;
 
-        public DhtmlDocumentationBuilder(Configuration configuration, ITestResults testResults, IFileSystem fileSystem)
+        public DhtmlDocumentationBuilder(IConfiguration configuration, ITestResults testResults, IFileSystem fileSystem)
         {
             this.configuration = configuration;
             this.testResults = testResults;

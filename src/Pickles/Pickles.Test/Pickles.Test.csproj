@@ -118,11 +118,6 @@
     <Compile Include="ObjectModel\MapperTestsForStep.cs" />
     <Compile Include="ObjectModel\MapperTestsForTag.cs" />
     <Compile Include="ObjectModel\MappingTestsForKeyword.cs" />
-    <Compile Include="TestFrameworks\WhenParsingMultipleMsTestTestResultsFiles.cs" />
-    <Compile Include="TestFrameworks\WhenParsingMultipleNUnitResultsFilesForASingleFeature.cs" />
-    <Compile Include="TestFrameworks\WhenParsingMultipleTestResultsTests.cs" />
-    <Compile Include="TestFrameworks\WhenParsingProblematicScenarioOutlineResults.cs" />
-    <Compile Include="TestFrameworks\WhenParsingSpecRunTestResultsFile.cs" />
     <Compile Include="DirectoryCrawlers\FolderDirectoryTreeNodeTests.cs" />
     <Compile Include="DocumentationBuilders\DHTML\WhenDoingSomeIntegrationTests.cs" />
     <Compile Include="DocumentationBuilders\HTML\AutomationLayer\CurrentScenarioContext.cs" />
@@ -160,10 +155,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="TestFrameworks\WhenParsingxUnit2ResultsFile.cs" />
     <Compile Include="TestResultExtensionsTests.cs" />
-    <Compile Include="TestFrameworks\WhenParsingCucumberJsonResultsFile.cs" />
-    <Compile Include="TestFrameworks\WhenParsingMsTestResultsFile.cs" />
     <Compile Include="Formatters\JSON\WhenCreatingAFeatureWithMetaInfo.cs" />
     <Compile Include="Formatters\JSON\WhenFormattingAFolderStructureWithFeatures.cs" />
     <Compile Include="Helpers\XElementExentions.cs" />
@@ -174,32 +166,29 @@
     <Compile Include="ParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WhenDeterminingRelevantFilesToConsider.cs" />
-    <Compile Include="TestFrameworks\WhenDeterminingTheSignatureOfAnNUnitExampleRow.cs" />
-    <Compile Include="TestFrameworks\WhenDeterminingTheSignatureOfAnXUnitExampleRow.cs" />
     <Compile Include="DocumentationBuilders\HTML\WhenFormattingFeatures.cs" />
     <Compile Include="DocumentationBuilders\HTML\WhenFormattingStep.cs" />
     <Compile Include="WhenParsingCommandLineArguments.cs" />
     <Compile Include="WhenParsingFeatureFiles.cs" />
     <Compile Include="WhenParsingLocalizedFeatureFiles.cs" />
-    <Compile Include="TestFrameworks\WhenParsingNUnitResultsFile.cs" />
-    <Compile Include="TestFrameworks\WhenParsingTestResultFiles.cs" />
-    <Compile Include="TestFrameworks\WhenParsingxUnitResultsFile.cs" />
     <Compile Include="WhenResolvingADocumentationBuilder.cs" />
-    <Compile Include="TestFrameworks\WhenResolvingTestResults.cs" />
     <Compile Include="WhenWorkingWithHtmlResources.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Pickles.ObjectModel\Pickles.ObjectModel.csproj">
+      <Project>{55382AFC-E050-4DF7-AA4F-0ABA71E2E169}</Project>
+      <Name>Pickles.ObjectModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pickles.TestFrameworks\Pickles.TestFrameworks.csproj">
+      <Project>{599BCF0C-8FB4-4727-A902-160C4E7D8FB0}</Project>
+      <Name>Pickles.TestFrameworks</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Pickles\Pickles.csproj">
       <Project>{38BAD6E0-78AB-4AC3-91A8-BF72AF5EE394}</Project>
       <Name>Pickles</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="TestFrameworks\results-problem-with-outline-results-nunit.xml" />
-    <EmbeddedResource Include="TestFrameworks\results-example-xunit2.xml" />
-    <EmbeddedResource Include="TestFrameworks\results-example-nunit - Run 1.xml" />
-    <EmbeddedResource Include="TestFrameworks\results-example-nunit - Run 2.xml" />
-    <EmbeddedResource Include="TestFrameworks\results-example-specrun.html" />
     <None Include="DocumentationBuilders\HTML\FormattingAFeature.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>FormattingAFeature.feature.cs</LastGenOutput>
@@ -221,9 +210,6 @@
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TestFrameworks\results-example-xunit.xml">
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="HtmlFormatterTestFiles\MultilineString.feature">
       <LastGenOutput>SimplestFile.feature.cs</LastGenOutput>
@@ -260,23 +246,8 @@
       <LastGenOutput>TwoScenariosTransferingMoneyBetweenAccoutsWithSuccess.feature.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
-    <EmbeddedResource Include="TestFrameworks\results-example-mstest.trx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="FakeFolderStructures\JSON\results-example-failing-and-pasing-mstest.trx" />
-    <EmbeddedResource Include="TestFrameworks\results-example-json.json" />
-    <EmbeddedResource Include="TestFrameworks\results-example-mstest - Run 1 %28failing%29.trx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TestFrameworks\results-example-mstest - Run 2 %28passing%29.trx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <None Include="Settings.StyleCop" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestFrameworks\results-example-nunit.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
