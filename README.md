@@ -18,7 +18,7 @@ Supported Output Formats
 - Word
 - Excel
 
-If there are other formats you would like to see feel free to create a [GitHub Issue](/picklesdoc/pickles/issues).
+If there are other formats you would like to see feel free to create a [GitHub Issue](https://github.com/picklesdoc/pickles/issues).
 
 Supported Test Runner Integrations
 ----------------------------------
