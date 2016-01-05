@@ -18,7 +18,7 @@ Supported Output Formats
 - Word
 - Excel
 
-If there are other formats you would like to see then why don't you post on the [newsgroup we have for pickles development][1]
+If there are other formats you would like to see feel free to create a [GitHub Issue](./issues).
 
 Supported Test Runner Integrations
 ----------------------------------
