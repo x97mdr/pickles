@@ -27,11 +27,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlDescriptionFormatter
     {
-        private readonly MarkdownProvider markdown;
+        private readonly IMarkdownProvider markdown;
 
         private readonly XNamespace xmlns;
 
-        public HtmlDescriptionFormatter(MarkdownProvider markdown)
+        public HtmlDescriptionFormatter(IMarkdownProvider markdown)
         {
             this.markdown = markdown;
             this.xmlns = HtmlNamespace.Xhtml;

@@ -114,7 +114,7 @@ namespace PicklesDoc.Pickles
             builder.RegisterType<HtmlFooterFormatter>().SingleInstance();
             builder.RegisterType<HtmlDocumentFormatter>().SingleInstance();
             builder.RegisterType<HtmlFeatureFormatter>().As<IHtmlFeatureFormatter>().SingleInstance();
-            builder.RegisterType<MarkdownProvider>().SingleInstance();
+            builder.RegisterType<MarkdownProvider>().As<IMarkdownProvider>().SingleInstance();
         }
     }
 }
