@@ -69,9 +69,18 @@
     <Compile Include="XUnit1\xUnitExampleSignatureBuilder.cs" />
     <Compile Include="XUnit1\XUnitResults.cs" />
     <Compile Include="XUnit1\XUnitSingleResults.cs" />
+    <Compile Include="XUnit2\results-example-xunit2.cs">
+      <DependentUpon>results-example-xunit2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="XUnit2\XUnit2Results.cs" />
+    <Compile Include="XUnit2\XUnit2SingleResults.cs" />
+    <Compile Include="XUnit2\xUnit2ExampleSignatureBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="XUnit2\results-example-xunit2.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pickles.ObjectModel\Pickles.ObjectModel.csproj">
@@ -79,6 +88,7 @@
       <Name>Pickles.ObjectModel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
