@@ -1,6 +1,8 @@
 Introduction
 ============
 
+[![Join the chat at https://gitter.im/picklesdoc/pickles](https://badges.gitter.im/picklesdoc/pickles.svg)](https://gitter.im/picklesdoc/pickles?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build status](https://ci.appveyor.com/api/projects/status/rqt59hq1m2jt2a5v)](https://ci.appveyor.com/project/dirkrombauts/pickles-715)
 
 [![Documentation Status](https://readthedocs.org/projects/pickles/badge/?version=latest)](https://readthedocs.org/projects/pickles/?badge=latest)
