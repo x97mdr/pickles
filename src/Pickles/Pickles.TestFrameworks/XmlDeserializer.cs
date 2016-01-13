@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="TestResultsFormat.cs" company="PicklesDoc">
+//  <copyright file="XmlDeserializer.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -18,43 +18,42 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
+using System.Collections.Generic;
+using System.IO;
+using System.IO.Abstractions;
+using System.Xml;
 
-namespace PicklesDoc.Pickles
+namespace PicklesDoc.Pickles.TestFrameworks
 {
     /// <summary>
-    /// The supported test result formats.
+    /// A generic xml deserializer class.
     /// </summary>
-    public enum TestResultsFormat
+    /// <typeparam name="TItem">The type of the items that will be deserialized.</typeparam>
+    public class XmlDeserializer<TItem>
+        where TItem : class
     {
-        /// <summary>
-        /// NUnit 2 format.
-        /// </summary>
-        NUnit,
+        public TItem Load(FileInfoBase fileInfo)
+        {
+            TItem document;
 
-        /// <summary>
-        /// xUnit 1 format.
-        /// </summary>
-        xUnit,
+            using (var stream = fileInfo.OpenRead())
+            {
+                document = this.Load(stream);
+            }
 
-        /// <summary>
-        /// Microsoft Test format.
-        /// </summary>
-        MsTest,
+            return document;
+        }
 
-        /// <summary>
-        /// Cucumber's JSON format.
-        /// </summary>
-        CucumberJson,
+        public TItem Load(Stream stream)
+        {
+            TItem result;
 
-        /// <summary>
-        /// SpecRun format.
-        /// </summary>
-        SpecRun,
+            using (XmlReader reader = XmlReader.Create(stream))
+            {
+                result = (TItem)new System.Xml.Serialization.XmlSerializer(typeof(TItem)).Deserialize(reader);
+            }
 
-        /// <summary>
-        /// xUnit 2 format.
-        /// </summary>
-        xUnit2
+            return result;
+        }
     }
 }
