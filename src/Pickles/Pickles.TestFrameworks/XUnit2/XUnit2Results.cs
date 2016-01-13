@@ -28,6 +28,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit2
 {
     public class XUnit2Results : MultipleTestResults
     {
+        private readonly XmlDeserializer<assemblies> xmlDeserializer = new XmlDeserializer<assemblies>();
+
         public XUnit2Results(IConfiguration configuration, XUnit2ExampleSignatureBuilder exampleSignatureBuilder)
             : base(true, configuration)
         {
@@ -44,6 +46,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit2
 
         protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
         {
+            return new XUnit2SingleResults(xmlDeserializer.Load(fileInfo));
         }
 
         public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] arguments)

@@ -66,6 +66,7 @@
     <Compile Include="SpecRun\SpecRunResults.cs" />
     <Compile Include="SpecRun\SpecRunSingleResults.cs" />
     <Compile Include="XDocumentLoader.cs" />
+    <Compile Include="XmlDeserializer.cs" />
     <Compile Include="XUnit1\xUnitExampleSignatureBuilder.cs" />
     <Compile Include="XUnit1\XUnitResults.cs" />
     <Compile Include="XUnit1\XUnitSingleResults.cs" />
