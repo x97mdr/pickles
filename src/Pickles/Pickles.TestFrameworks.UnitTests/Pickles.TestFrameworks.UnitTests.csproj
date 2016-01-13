@@ -71,6 +71,7 @@
     <Compile Include="NUnit2\WhenParsingProblematicScenarioOutlineResults.cs" />
     <Compile Include="SpecRun\WhenParsingSpecRunTestResultsFile.cs" />
     <Compile Include="WhenParsingTestResultFiles.cs" />
+    <Compile Include="XUnit2\WhenDeterminingTheSignatureOfAnXUnitExampleRow.cs" />
     <Compile Include="XUnit2\WhenParsingxUnit2ResultsFile.cs" />
     <Compile Include="XUnit1\WhenParsingxUnitResultsFile.cs" />
     <Compile Include="WhenResolvingTestResults.cs" />
@@ -139,6 +140,9 @@
       <Project>{38bad6e0-78ab-4ac3-91a8-bf72af5ee394}</Project>
       <Name>Pickles</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
