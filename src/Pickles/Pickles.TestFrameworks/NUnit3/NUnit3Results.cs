@@ -28,6 +28,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit3
 {
     public class NUnit3Results : MultipleTestResults
     {
+        private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
+
         public NUnit3Results(IEnumerable<ITestResults> testResults)
             : base(true, testResults)
         {
@@ -55,7 +57,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit3
 
         protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
         {
-            throw new System.NotImplementedException();
+            return new NUnit3SingleResult(DocumentLoader.Load(fileInfo));
         }
     }
 }
