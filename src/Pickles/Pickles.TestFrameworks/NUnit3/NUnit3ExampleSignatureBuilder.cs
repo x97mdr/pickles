@@ -19,6 +19,7 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Text;
 using System.Text.RegularExpressions;
 
 using PicklesDoc.Pickles.ObjectModel;
@@ -29,7 +30,17 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit3
     {
         public Regex Build(ScenarioOutline scenarioOutline, string[] row)
         {
-            throw new NotImplementedException();
+            var stringBuilder = new StringBuilder();
+            stringBuilder.Append(scenarioOutline.Name.ToLowerInvariant().Replace(" ", string.Empty) + "\\(");
+
+            foreach (string value in row)
+            {
+                stringBuilder.AppendFormat("\"{0}\",", value.ToLowerInvariant().Replace(@"\", string.Empty).Replace(@"$", @"\$"));
+            }
+
+            stringBuilder.Remove(stringBuilder.Length - 1, 1);
+
+            return new Regex(stringBuilder.ToString());
         }
     }
 }

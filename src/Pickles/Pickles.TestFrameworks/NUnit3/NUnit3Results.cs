@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
 using System.IO.Abstractions;
 using System.Linq;
 
@@ -30,9 +29,10 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit3
     {
         private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
 
-        public NUnit3Results(IConfiguration configuration)
+        public NUnit3Results(IConfiguration configuration, NUnit3ExampleSignatureBuilder exampleSignatureBuilder)
             : base(true, configuration)
         {
+            this.SetExampleSignatureBuilder(exampleSignatureBuilder);
         }
 
         public void SetExampleSignatureBuilder(NUnit3ExampleSignatureBuilder exampleSignatureBuilder)

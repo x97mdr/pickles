@@ -66,8 +66,10 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit3
             {
                 scenarioElement = featureElement
                     .Descendants("test-case")
-                    .Where(x => x.Attribute("description") != null)
-                    .FirstOrDefault(x => x.Attribute("description").Value == scenario.Name);
+                    .FirstOrDefault(
+                        ts =>
+                        ts.Elements("properties").Elements("property")
+                        .Any(p => p.Attribute("name").Value == "Description" && p.Attribute("value").Value == scenario.Name));
             }
 
             return this.GetResultFromElement(scenarioElement);
@@ -81,8 +83,10 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit3
             {
                 scenarioOutlineElement = this.GetFeatureElement(scenarioOutline.Feature)
                     .Descendants("test-suite")
-                    .Where(x => x.Attribute("description") != null)
-                    .FirstOrDefault(x => x.Attribute("description").Value == scenarioOutline.Name);
+                    .FirstOrDefault(
+                        ts =>
+                        ts.Elements("properties").Elements("property")
+                        .Any(p => p.Attribute("name").Value == "Description" && p.Attribute("value").Value == scenarioOutline.Name));
             }
 
             if (scenarioOutlineElement != null)
@@ -95,10 +99,13 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit3
 
         private XElement GetFeatureElement(Feature feature)
         {
-            return this.resultsDocument
-                .Descendants("test-suite")
-                .Where(x => x.Attribute("description") != null)
-                .FirstOrDefault(x => x.Attribute("description").Value == feature.Name);
+            return
+                this.resultsDocument
+                    .Descendants("test-suite")
+                    .FirstOrDefault(
+                        ts =>
+                        ts.Elements("properties").Elements("property")
+                        .Any(p => p.Attribute("name").Value == "Description" && p.Attribute("value").Value == feature.Name));
         }
 
         private TestResult GetResultFromElement(XElement element)
@@ -107,7 +114,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit3
             {
                 return TestResult.Inconclusive;
             }
-            else if (IsAttributeSetToValue(element, "result", "Ignored"))
+            else if (IsAttributeSetToValue(element, "result", "Skipped"))
             {
                 return TestResult.Inconclusive;
             }
@@ -115,11 +122,11 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit3
             {
                 return TestResult.Inconclusive;
             }
-            else if (IsAttributeSetToValue(element, "result", "Failure"))
+            else if (IsAttributeSetToValue(element, "result", "Failed"))
             {
                 return TestResult.Failed;
             }
-            else if (IsAttributeSetToValue(element, "result", "Success"))
+            else if (IsAttributeSetToValue(element, "result", "Passed"))
             {
                 return TestResult.Passed;
             }
@@ -166,7 +173,10 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit3
 
                 var parameterizedTestElement = featureElement
                     .Descendants("test-suite")
-                    .FirstOrDefault(x => IsMatchingParameterizedTestElement(x, scenarioOutline));
+                    .FirstOrDefault(
+                        ts =>
+                        ts.Elements("properties").Elements("property")
+                        .Any(p => p.Attribute("name").Value == "Description" && p.Attribute("value").Value == scenarioOutline.Name));
 
                 if (parameterizedTestElement != null)
                 {
