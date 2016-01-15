@@ -55,6 +55,11 @@ namespace PicklesDoc.Pickles
         /// <summary>
         /// xUnit 2 format.
         /// </summary>
-        xUnit2
+        xUnit2,
+
+        /// <summary>
+        /// NUnit 3 format.
+        /// </summary>
+        NUnit3
     }
 }

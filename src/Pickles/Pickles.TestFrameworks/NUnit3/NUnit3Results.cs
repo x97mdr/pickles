@@ -30,11 +30,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit3
     {
         private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
 
-        public NUnit3Results(IEnumerable<ITestResults> testResults)
-            : base(true, testResults)
-        {
-        }
-
         public NUnit3Results(IConfiguration configuration)
             : base(true, configuration)
         {
