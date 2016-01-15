@@ -29,12 +29,12 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 {
     public class HtmlImageResultFormatter
     {
-        private readonly Configuration configuration;
+        private readonly IConfiguration configuration;
 
         private readonly ITestResults results;
         private readonly XNamespace xmlns;
 
-        public HtmlImageResultFormatter(Configuration configuration, ITestResults results)
+        public HtmlImageResultFormatter(IConfiguration configuration, ITestResults results)
         {
             this.configuration = configuration;
             this.results = results;
@@ -45,13 +45,18 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
         {
             var sb = new StringBuilder();
 
-            if (!successful.WasExecuted)
+            switch (successful)
             {
-                sb.AppendFormat("{0}", "Inconclusive");
-            }
-            else
-            {
-                sb.AppendFormat("{0}", successful.WasSuccessful ? "Successful" : "Failed");
+                default:
+                case TestResult.Inconclusive:
+                    sb.AppendFormat("{0}", "Inconclusive");
+                    break;
+                case TestResult.Passed:
+                    sb.AppendFormat("{0}", "Successful");
+                    break;
+                case TestResult.Failed:
+                    sb.AppendFormat("{0}", "Failed");
+                    break;
             }
 
             if (!string.IsNullOrEmpty(this.configuration.SystemUnderTestName) &&
@@ -85,15 +90,15 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         private string DetermineClass(TestResult result)
         {
-            if (!result.WasExecuted)
+            switch (result)
             {
-                return "icon-warning-sign inconclusive";
-            }
-            else
-            {
-                return result.WasSuccessful
-                    ? "icon-ok passed"
-                    : "icon-minus-sign failed";
+                default:
+                case TestResult.Inconclusive:
+                    return "icon-warning-sign inconclusive";
+                case TestResult.Passed:
+                    return "icon-ok passed";
+                case TestResult.Failed:
+                    return "icon-minus-sign failed";
             }
         }
 

@@ -30,6 +30,8 @@ Target "CreatePackage CMD" (fun _ ->
         cmdDir + "NGenerics.dll";
         cmdDir + "NLog.dll";
         cmdDir + "PicklesDoc.Pickles.Library.dll";
+        cmdDir + "PicklesDoc.Pickles.ObjectModel.dll";
+        cmdDir + "PicklesDoc.Pickles.TestFrameworks.dll";
         cmdDir + "System.IO.Abstractions.dll";
         cmdDir + "pickles.exe";
         cmdDir + "NLog.config" ]
@@ -65,6 +67,8 @@ Target "CreatePackage GUI" (fun _ ->
         guiDir + "NlogViewer.dll";
         guiDir + "Ookii.Dialogs.Wpf.dll";
         guiDir + "PicklesDoc.Pickles.Library.dll";
+        guiDir + "PicklesDoc.Pickles.ObjectModel.dll";
+        guiDir + "PicklesDoc.Pickles.TestFrameworks.dll";
         guiDir + "System.IO.Abstractions.dll";
         guiDir + "System.Windows.Interactivity.dll";
         guiDir + "picklesui.exe";

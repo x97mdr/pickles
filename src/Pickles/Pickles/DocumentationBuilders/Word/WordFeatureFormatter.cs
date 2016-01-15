@@ -29,7 +29,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 {
     public class WordFeatureFormatter
     {
-        private readonly Configuration configuration;
+        private readonly IConfiguration configuration;
         private readonly ITestResults nunitResults;
         private readonly WordScenarioFormatter wordScenarioFormatter;
         private readonly WordScenarioOutlineFormatter wordScenarioOutlineFormatter;
@@ -43,7 +43,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             WordStyleApplicator wordStyleApplicator,
             WordDescriptionFormatter wordDescriptionFormatter,
             WordBackgroundFormatter wordBackgroundFormatter,
-            Configuration configuration,
+            IConfiguration configuration,
             ITestResults nunitResults)
         {
             this.wordScenarioFormatter = wordScenarioFormatter;
@@ -64,11 +64,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             if (this.configuration.HasTestResults)
             {
                 TestResult testResult = this.nunitResults.GetFeatureResult(feature);
-                if (testResult.WasExecuted && testResult.WasSuccessful)
+                if (testResult == TestResult.Passed)
                 {
                     body.GenerateParagraph("Passed", "Passed");
                 }
-                else if (testResult.WasExecuted && !testResult.WasSuccessful)
+                else if (testResult == TestResult.Failed)
                 {
                     body.GenerateParagraph("Failed", "Failed");
                 }

@@ -24,7 +24,7 @@ namespace PicklesDoc.Pickles
 {
     public class ConfigurationReporter
     {
-        public void ReportOn(Configuration configuration, Action<string> writeToLog)
+        public void ReportOn(IConfiguration configuration, Action<string> writeToLog)
         {
             writeToLog("Generating documentation based on the following parameters");
             writeToLog("----------------------------------------------------------");

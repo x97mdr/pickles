@@ -38,7 +38,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
     {
         private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
 
-        private readonly Configuration configuration;
+        private readonly IConfiguration configuration;
         private readonly WordFeatureFormatter wordFeatureFormatter;
         private readonly WordFontApplicator wordFontApplicator;
         private readonly WordHeaderFooterFormatter wordHeaderFooterFormatter;
@@ -48,7 +48,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
         private readonly WordStyleApplicator wordStyleApplicator;
 
         public WordDocumentationBuilder(
-            Configuration configuration,
+            IConfiguration configuration,
             WordFeatureFormatter wordFeatureFormatter,
             WordStyleApplicator wordStyleApplicator,
             WordFontApplicator wordFontApplicator,

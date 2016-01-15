@@ -27,9 +27,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 {
     public class WordHeaderFooterFormatter
     {
-        private readonly Configuration configuration;
+        private readonly IConfiguration configuration;
 
-        public WordHeaderFooterFormatter(Configuration configuration)
+        public WordHeaderFooterFormatter(IConfiguration configuration)
         {
             this.configuration = configuration;
         }

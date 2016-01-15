@@ -35,14 +35,14 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
     {
         private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
 
-        private readonly Configuration configuration;
+        private readonly IConfiguration configuration;
         private readonly HtmlDocumentFormatter htmlDocumentFormatter;
         private readonly HtmlResourceWriter htmlResourceWriter;
 
         private readonly IFileSystem fileSystem;
 
         public HtmlDocumentationBuilder(
-            Configuration configuration,
+            IConfiguration configuration,
             HtmlDocumentFormatter htmlDocumentFormatter,
             HtmlResourceWriter htmlResourceWriter,
             IFileSystem fileSystem)

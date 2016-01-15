@@ -59,7 +59,7 @@ namespace PicklesDoc.Pickles.MSBuild
                 builder.RegisterModule<PicklesModule>();
                 var container = builder.Build();
 
-                var configuration = container.Resolve<Configuration>();
+                var configuration = container.Resolve<IConfiguration>();
                 this.CaptureConfiguration(configuration, container.Resolve<IFileSystem>());
 
                 new ConfigurationReporter().ReportOn(configuration, message => Log.LogMessage(message));
@@ -76,7 +76,7 @@ namespace PicklesDoc.Pickles.MSBuild
             return true;
         }
 
-        private void CaptureConfiguration(Configuration configuration, IFileSystem fileSystem)
+        private void CaptureConfiguration(IConfiguration configuration, IFileSystem fileSystem)
         {
             configuration.FeatureFolder = fileSystem.DirectoryInfo.FromDirectoryName(this.FeatureDirectory);
             configuration.OutputFolder = fileSystem.DirectoryInfo.FromDirectoryName(this.OutputDirectory);

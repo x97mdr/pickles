@@ -54,7 +54,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
                  .ForMember(t => t.Feature, opt => opt.Ignore());
             configurationStore.CreateMap<Step, JsonStep>();
             configurationStore.CreateMap<Table, JsonTable>();
-            configurationStore.CreateMap<TestResult, JsonTestResult>();
+            configurationStore.CreateMap<TestResult, JsonTestResult>().ConstructUsing(ToJsonTestResult);
 
             configurationStore.CreateMap<TableRow, JsonTableRow>()
                 .ConstructUsing(row => new JsonTableRow(row.Cells.ToArray()));
@@ -103,6 +103,19 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
             if (isDisposing)
             {
                 this.mapper.Dispose();
+            }
+        }
+
+        private static JsonTestResult ToJsonTestResult(TestResult testResult)
+        {
+            switch (testResult)
+            {
+                case TestResult.Failed:
+                    return new JsonTestResult { WasExecuted = true, WasSuccessful = false };
+                case TestResult.Passed:
+                    return new JsonTestResult { WasExecuted = true, WasSuccessful = true };
+                default:
+                    return new JsonTestResult { WasExecuted = false, WasSuccessful = false };
             }
         }
     }

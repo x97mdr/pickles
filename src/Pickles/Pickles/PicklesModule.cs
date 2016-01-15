@@ -27,7 +27,15 @@ using PicklesDoc.Pickles.DocumentationBuilders.Excel;
 using PicklesDoc.Pickles.DocumentationBuilders.HTML;
 using PicklesDoc.Pickles.DocumentationBuilders.JSON;
 using PicklesDoc.Pickles.DocumentationBuilders.Word;
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks;
+using PicklesDoc.Pickles.TestFrameworks.CucumberJson;
+using PicklesDoc.Pickles.TestFrameworks.MsTest;
+using PicklesDoc.Pickles.TestFrameworks.NUnit2;
+using PicklesDoc.Pickles.TestFrameworks.NUnit3;
+using PicklesDoc.Pickles.TestFrameworks.SpecRun;
+using PicklesDoc.Pickles.TestFrameworks.XUnit1;
+using PicklesDoc.Pickles.TestFrameworks.XUnit2;
 
 namespace PicklesDoc.Pickles
 {
@@ -35,7 +43,7 @@ namespace PicklesDoc.Pickles
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<Configuration>().SingleInstance();
+            builder.RegisterType<Configuration>().As<IConfiguration>().SingleInstance();
             builder.RegisterType<DirectoryTreeCrawler>().SingleInstance();
             builder.RegisterType<FeatureParser>().SingleInstance();
             builder.RegisterType<RelevantFileDetector>().SingleInstance();
@@ -49,7 +57,7 @@ namespace PicklesDoc.Pickles
 
             builder.Register<IDocumentationBuilder>(c =>
             {
-                var configuration = c.Resolve<Configuration>();
+                var configuration = c.Resolve<IConfiguration>();
                 switch (configuration.DocumentationFormat)
                 {
                     case DocumentationFormat.Html:
@@ -67,9 +75,21 @@ namespace PicklesDoc.Pickles
                 }
             }).SingleInstance();
 
+            builder.RegisterType<NUnitResults>();
+            builder.RegisterType<NUnitExampleSignatureBuilder>();
+            builder.RegisterType<NUnit3Results>();
+            builder.RegisterType<NUnit3ExampleSignatureBuilder>();
+            builder.RegisterType<XUnitResults>();
+            builder.RegisterType<XUnitExampleSignatureBuilder>();
+            builder.RegisterType<XUnit2Results>();
+            builder.RegisterType<XUnit2ExampleSignatureBuilder>();
+            builder.RegisterType<MsTestResults>();
+            builder.RegisterType<CucumberJsonResults>();
+            builder.RegisterType<SpecRunResults>();
+
             builder.Register<ITestResults>(c =>
             {
-                var configuration = c.Resolve<Configuration>();
+                var configuration = c.Resolve<IConfiguration>();
                 if (!configuration.HasTestResults)
                 {
                     return c.Resolve<NullTestResults>();
@@ -79,8 +99,12 @@ namespace PicklesDoc.Pickles
                 {
                     case TestResultsFormat.NUnit:
                         return c.Resolve<NUnitResults>();
+                    case TestResultsFormat.NUnit3:
+                        return c.Resolve<NUnit3Results>();
                     case TestResultsFormat.xUnit:
                         return c.Resolve<XUnitResults>();
+                    case TestResultsFormat.xUnit2:
+                        return c.Resolve<XUnit2Results>();
                     case TestResultsFormat.MsTest:
                         return c.Resolve<MsTestResults>();
                     case TestResultsFormat.CucumberJson:
@@ -92,7 +116,7 @@ namespace PicklesDoc.Pickles
                 }
             }).SingleInstance();
 
-            builder.RegisterType<LanguageServices>().UsingConstructor(typeof(Configuration)).SingleInstance();
+            builder.RegisterType<LanguageServices>().UsingConstructor(typeof(IConfiguration)).SingleInstance();
 
             builder.RegisterType<HtmlMarkdownFormatter>().SingleInstance();
             builder.RegisterType<HtmlResourceWriter>().SingleInstance();
@@ -100,7 +124,7 @@ namespace PicklesDoc.Pickles
             builder.RegisterType<HtmlFooterFormatter>().SingleInstance();
             builder.RegisterType<HtmlDocumentFormatter>().SingleInstance();
             builder.RegisterType<HtmlFeatureFormatter>().As<IHtmlFeatureFormatter>().SingleInstance();
-            builder.RegisterType<MarkdownProvider>().SingleInstance();
+            builder.RegisterType<MarkdownProvider>().As<IMarkdownProvider>().SingleInstance();
         }
     }
 }

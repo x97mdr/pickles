@@ -73,7 +73,7 @@ namespace PicklesDoc.Pickles
             };
         }
 
-        public bool Parse(string[] args, Configuration configuration, TextWriter stdout)
+        public bool Parse(string[] args, IConfiguration configuration, TextWriter stdout)
         {
             var currentDirectory =
                 this.fileSystem.DirectoryInfo.FromDirectoryName(this.fileSystem.Directory.GetCurrentDirectory());

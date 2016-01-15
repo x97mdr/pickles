@@ -27,7 +27,7 @@ using NLog;
 
 namespace PicklesDoc.Pickles
 {
-    public class Configuration
+    public class Configuration : IConfiguration
     {
         private static readonly Logger Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.Name);
         private readonly List<FileInfoBase> testResultsFiles;
