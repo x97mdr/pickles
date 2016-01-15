@@ -38,7 +38,8 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.JSON.AutomationLayer
         [Given("I have this feature description")]
         public void IHaveThisFeatureDescription(string featureDescription)
         {
-            FeatureParser parser = new FeatureParser(this.FileSystem);
+            var configuration = this.Container.Resolve<IConfiguration>();
+            FeatureParser parser = new FeatureParser(this.FileSystem, configuration);
 
             var feature = parser.Parse(new StringReader(featureDescription));
 
