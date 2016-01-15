@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="TestResultsFormat.cs" company="PicklesDoc">
+//  <copyright file="NUnit3ExampleSignatureBuilder.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -19,47 +19,28 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Text;
+using System.Text.RegularExpressions;
 
-namespace PicklesDoc.Pickles
+using PicklesDoc.Pickles.ObjectModel;
+
+namespace PicklesDoc.Pickles.TestFrameworks.NUnit3
 {
-    /// <summary>
-    /// The supported test result formats.
-    /// </summary>
-    public enum TestResultsFormat
+    public class NUnit3ExampleSignatureBuilder
     {
-        /// <summary>
-        /// NUnit 2 format.
-        /// </summary>
-        NUnit,
+        public Regex Build(ScenarioOutline scenarioOutline, string[] row)
+        {
+            var stringBuilder = new StringBuilder();
+            stringBuilder.Append(scenarioOutline.Name.ToLowerInvariant().Replace(" ", string.Empty) + "\\(");
 
-        /// <summary>
-        /// xUnit 1 format.
-        /// </summary>
-        xUnit,
+            foreach (string value in row)
+            {
+                stringBuilder.AppendFormat("\"{0}\",", value.ToLowerInvariant().Replace(@"\", string.Empty).Replace(@"$", @"\$"));
+            }
 
-        /// <summary>
-        /// Microsoft Test format.
-        /// </summary>
-        MsTest,
+            stringBuilder.Remove(stringBuilder.Length - 1, 1);
 
-        /// <summary>
-        /// Cucumber's JSON format.
-        /// </summary>
-        CucumberJson,
-
-        /// <summary>
-        /// SpecRun format.
-        /// </summary>
-        SpecRun,
-
-        /// <summary>
-        /// xUnit 2 format.
-        /// </summary>
-        xUnit2,
-
-        /// <summary>
-        /// NUnit 3 format.
-        /// </summary>
-        NUnit3
+            return new Regex(stringBuilder.ToString());
+        }
     }
 }

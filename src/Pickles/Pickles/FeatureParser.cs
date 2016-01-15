@@ -31,9 +31,12 @@ namespace PicklesDoc.Pickles
     {
         private readonly IFileSystem fileSystem;
 
-        public FeatureParser(IFileSystem fileSystem)
+        private readonly IConfiguration configuration;
+
+        public FeatureParser(IFileSystem fileSystem, IConfiguration configuration)
         {
             this.fileSystem = fileSystem;
+            this.configuration = configuration;
         }
 
         public Feature Parse(string filename)
@@ -61,11 +64,27 @@ namespace PicklesDoc.Pickles
 
         public Feature Parse(TextReader featureFileReader)
         {
+            var language = this.DetermineLanguage();
             var gherkinParser = new Gherkin.Parser();
-            Gherkin.Ast.Feature feature = gherkinParser.Parse(featureFileReader);
+
+            Gherkin.Ast.Feature feature = gherkinParser.Parse(
+                new Gherkin.TokenScanner(featureFileReader),
+                new Gherkin.TokenMatcher(language));
+
             Feature result = new Mapper(feature.Language).MapToFeature(feature);
 
             return result;
+        }
+
+        private string DetermineLanguage()
+        {
+            string language = null;
+
+            if (!string.IsNullOrWhiteSpace(this.configuration.Language))
+            {
+                language = this.configuration.Language;
+            }
+            return language;
         }
     }
 }
