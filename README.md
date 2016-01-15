@@ -37,7 +37,7 @@ Supported Test Runner Integrations
 ----------------------------------
 
 - NUnit
-- xUnit
+- xUnit (versions 1.x and 2.x)
 - MSTest
 - Cucumber JSON
 - SpecRun
