@@ -47,11 +47,6 @@ Contributing
 
 It's easy to contribute to Pickles, just setup an account on github and fork the project.  When you have some code to contribute, send a pull request!  There are plenty of ideas for contributions on the wiki and in the issues list.
 
-Latest Builds
--------------
-
-We're working on making them available again.
-
 License
 -------
 
