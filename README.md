@@ -6,15 +6,15 @@ Pickles is an open source living documentation generator that works on feature f
 [![Join the chat at https://gitter.im/picklesdoc/pickles](https://badges.gitter.im/picklesdoc/pickles.svg)](https://gitter.im/picklesdoc/pickles?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build status](https://ci.appveyor.com/api/projects/status/rqt59hq1m2jt2a5v?svg=true)](https://ci.appveyor.com/project/dirkrombauts/pickles-715)
 
-|                             |Status                                                                                                                                     |
-|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| Docs                        |[![Documentation Status](https://readthedocs.org/projects/pickles/badge/?version=stable)](http://docs.picklesdoc.com/en/latest/)           |
-| GitHub Release              |[![GitHub release](https://img.shields.io/github/release/gittools/gitversion.svg)](https://github.com/GitTools/GitVersion/releases/latest) |
-| Chocolatey (pickles)        |[![Chocolatey](https://img.shields.io/chocolatey/v/pickles.svg)](https://chocolatey.org/packages/pickles)                                  |
-| Chocolatey (picklesui)      |[![Chocolatey](https://img.shields.io/chocolatey/v/picklesui.svg)](https://chocolatey.org/packages/picklesui)                              |
-| NuGet (Pickles)             |[![NuGet](https://img.shields.io/nuget/v/Pickles.svg)](https://www.nuget.org/packages/Pickles)                                             |
-| NuGet (Pickles.CommandLine) |[![NuGet](https://img.shields.io/nuget/v/Pickles.CommandLine.svg)](https://www.nuget.org/packages/Pickles.CommandLine)                     |
-| NuGet (Pickles.MSBuild)     |[![NuGet](https://img.shields.io/nuget/v/Pickles.MSBuild.svg)](https://www.nuget.org/packages/Pickles.MSBuild)                             |
+|                             |Status                                                                                                                                   |
+|-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| Docs                        |[![Documentation Status](https://readthedocs.org/projects/pickles/badge/?version=stable)](http://docs.picklesdoc.com/en/latest/)         |
+| GitHub Release              |[![GitHub release](https://img.shields.io/github/release/picklesdoc/pickles.svg)](https://github.com/picklesdoc/pickles/releases/latest) |
+| Chocolatey (pickles)        |[![Chocolatey](https://img.shields.io/chocolatey/v/pickles.svg)](https://chocolatey.org/packages/pickles)                                |
+| Chocolatey (picklesui)      |[![Chocolatey](https://img.shields.io/chocolatey/v/picklesui.svg)](https://chocolatey.org/packages/picklesui)                            |
+| NuGet (Pickles)             |[![NuGet](https://img.shields.io/nuget/v/Pickles.svg)](https://www.nuget.org/packages/Pickles)                                           |
+| NuGet (Pickles.CommandLine) |[![NuGet](https://img.shields.io/nuget/v/Pickles.CommandLine.svg)](https://www.nuget.org/packages/Pickles.CommandLine)                   |
+| NuGet (Pickles.MSBuild)     |[![NuGet](https://img.shields.io/nuget/v/Pickles.MSBuild.svg)](https://www.nuget.org/packages/Pickles.MSBuild)                           |
 
 
 
