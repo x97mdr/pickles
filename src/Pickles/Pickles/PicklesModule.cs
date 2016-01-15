@@ -32,6 +32,7 @@ using PicklesDoc.Pickles.TestFrameworks;
 using PicklesDoc.Pickles.TestFrameworks.CucumberJson;
 using PicklesDoc.Pickles.TestFrameworks.MsTest;
 using PicklesDoc.Pickles.TestFrameworks.NUnit2;
+using PicklesDoc.Pickles.TestFrameworks.NUnit3;
 using PicklesDoc.Pickles.TestFrameworks.SpecRun;
 using PicklesDoc.Pickles.TestFrameworks.XUnit1;
 using PicklesDoc.Pickles.TestFrameworks.XUnit2;
@@ -76,6 +77,8 @@ namespace PicklesDoc.Pickles
 
             builder.RegisterType<NUnitResults>();
             builder.RegisterType<NUnitExampleSignatureBuilder>();
+            builder.RegisterType<NUnit3Results>();
+            builder.RegisterType<NUnit3ExampleSignatureBuilder>();
             builder.RegisterType<XUnitResults>();
             builder.RegisterType<XUnitExampleSignatureBuilder>();
             builder.RegisterType<XUnit2Results>();
@@ -96,6 +99,8 @@ namespace PicklesDoc.Pickles
                 {
                     case TestResultsFormat.NUnit:
                         return c.Resolve<NUnitResults>();
+                    case TestResultsFormat.NUnit3:
+                        return c.Resolve<NUnit3Results>();
                     case TestResultsFormat.xUnit:
                         return c.Resolve<XUnitResults>();
                     case TestResultsFormat.xUnit2:

@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="test-run">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="command-line" type="xs:string" />
+                <xs:element name="test-suite">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="environment">
+                                <xs:complexType>
+                                    <xs:attribute name="framework-version" type="xs:string" use="required" />
+                                    <xs:attribute name="clr-version" type="xs:string" use="required" />
+                                    <xs:attribute name="os-version" type="xs:string" use="required" />
+                                    <xs:attribute name="platform" type="xs:string" use="required" />
+                                    <xs:attribute name="cwd" type="xs:string" use="required" />
+                                    <xs:attribute name="machine-name" type="xs:string" use="required" />
+                                    <xs:attribute name="user" type="xs:string" use="required" />
+                                    <xs:attribute name="user-domain" type="xs:string" use="required" />
+                                    <xs:attribute name="culture" type="xs:string" use="required" />
+                                    <xs:attribute name="uiculture" type="xs:string" use="required" />
+                                    <xs:attribute name="os-architecture" type="xs:string" use="required" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="settings">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" name="setting">
+                                            <xs:complexType>
+                                                <xs:attribute name="name" type="xs:string" use="required" />
+                                                <xs:attribute name="value" type="xs:string" use="required" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="properties">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" name="property">
+                                            <xs:complexType>
+                                                <xs:attribute name="name" type="xs:string" use="required" />
+                                                <xs:attribute name="value" type="xs:string" use="required" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="failure">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="message" type="xs:string" />
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="test-suite">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="failure">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="message" type="xs:string" />
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="test-suite">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="failure">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="message" type="xs:string" />
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="test-suite">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="failure">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="message" type="xs:string" />
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element maxOccurs="unbounded" name="test-suite">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element minOccurs="0" name="properties">
+                                                                                <xs:complexType>
+                                                                                    <xs:sequence>
+                                                                                        <xs:element name="property">
+                                                                                            <xs:complexType>
+                                                                                                <xs:attribute name="name" type="xs:string" use="required" />
+                                                                                                <xs:attribute name="value" type="xs:string" use="required" />
+                                                                                            </xs:complexType>
+                                                                                        </xs:element>
+                                                                                    </xs:sequence>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                            <xs:element name="failure">
+                                                                                <xs:complexType>
+                                                                                    <xs:sequence>
+                                                                                        <xs:element name="message" type="xs:string" />
+                                                                                    </xs:sequence>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                            <xs:element minOccurs="0" maxOccurs="unbounded" name="test-suite">
+                                                                                <xs:complexType>
+                                                                                    <xs:sequence>
+                                                                                        <xs:element name="properties">
+                                                                                            <xs:complexType>
+                                                                                                <xs:sequence>
+                                                                                                    <xs:element maxOccurs="unbounded" name="property">
+                                                                                                        <xs:complexType>
+                                                                                                            <xs:attribute name="name" type="xs:string" use="required" />
+                                                                                                            <xs:attribute name="value" type="xs:string" use="required" />
+                                                                                                        </xs:complexType>
+                                                                                                    </xs:element>
+                                                                                                </xs:sequence>
+                                                                                            </xs:complexType>
+                                                                                        </xs:element>
+                                                                                        <xs:element minOccurs="0" name="failure">
+                                                                                            <xs:complexType>
+                                                                                                <xs:sequence>
+                                                                                                    <xs:element name="message" type="xs:string" />
+                                                                                                </xs:sequence>
+                                                                                            </xs:complexType>
+                                                                                        </xs:element>
+                                                                                        <xs:element maxOccurs="unbounded" name="test-case">
+                                                                                            <xs:complexType>
+                                                                                                <xs:sequence>
+                                                                                                    <xs:element minOccurs="0" name="properties">
+                                                                                                        <xs:complexType>
+                                                                                                            <xs:sequence>
+                                                                                                                <xs:element name="property">
+                                                                                                                    <xs:complexType>
+                                                                                                                        <xs:attribute name="name" type="xs:string" use="required" />
+                                                                                                                        <xs:attribute name="value" type="xs:string" use="required" />
+                                                                                                                    </xs:complexType>
+                                                                                                                </xs:element>
+                                                                                                            </xs:sequence>
+                                                                                                        </xs:complexType>
+                                                                                                    </xs:element>
+                                                                                                    <xs:element minOccurs="0" name="reason">
+                                                                                                        <xs:complexType>
+                                                                                                            <xs:sequence>
+                                                                                                                <xs:element name="message" type="xs:string" />
+                                                                                                            </xs:sequence>
+                                                                                                        </xs:complexType>
+                                                                                                    </xs:element>
+                                                                                                    <xs:element minOccurs="0" name="failure">
+                                                                                                        <xs:complexType>
+                                                                                                            <xs:sequence>
+                                                                                                                <xs:element name="message" type="xs:string" />
+                                                                                                                <xs:element name="stack-trace" type="xs:string" />
+                                                                                                            </xs:sequence>
+                                                                                                        </xs:complexType>
+                                                                                                    </xs:element>
+                                                                                                    <xs:element name="output" type="xs:string" />
+                                                                                                </xs:sequence>
+                                                                                                <xs:attribute name="id" type="xs:string" use="required" />
+                                                                                                <xs:attribute name="name" type="xs:string" use="required" />
+                                                                                                <xs:attribute name="fullname" type="xs:string" use="required" />
+                                                                                                <xs:attribute name="methodname" type="xs:string" use="required" />
+                                                                                                <xs:attribute name="classname" type="xs:string" use="required" />
+                                                                                                <xs:attribute name="runstate" type="xs:string" use="required" />
+                                                                                                <xs:attribute name="seed" type="xs:unsignedInt" use="required" />
+                                                                                                <xs:attribute name="result" type="xs:string" use="required" />
+                                                                                                <xs:attribute name="start-time" type="xs:string" use="required" />
+                                                                                                <xs:attribute name="end-time" type="xs:string" use="required" />
+                                                                                                <xs:attribute name="duration" type="xs:decimal" use="required" />
+                                                                                                <xs:attribute name="asserts" type="xs:unsignedByte" use="required" />
+                                                                                                <xs:attribute name="label" type="xs:string" use="optional" />
+                                                                                            </xs:complexType>
+                                                                                        </xs:element>
+                                                                                    </xs:sequence>
+                                                                                    <xs:attribute name="type" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="id" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="name" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="fullname" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="runstate" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="testcasecount" type="xs:unsignedByte" use="required" />
+                                                                                    <xs:attribute name="result" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="start-time" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="end-time" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="duration" type="xs:decimal" use="required" />
+                                                                                    <xs:attribute name="total" type="xs:unsignedByte" use="required" />
+                                                                                    <xs:attribute name="passed" type="xs:unsignedByte" use="required" />
+                                                                                    <xs:attribute name="failed" type="xs:unsignedByte" use="required" />
+                                                                                    <xs:attribute name="inconclusive" type="xs:unsignedByte" use="required" />
+                                                                                    <xs:attribute name="skipped" type="xs:unsignedByte" use="required" />
+                                                                                    <xs:attribute name="asserts" type="xs:unsignedByte" use="required" />
+                                                                                    <xs:attribute name="classname" type="xs:string" use="optional" />
+                                                                                    <xs:attribute name="site" type="xs:string" use="optional" />
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                            <xs:element minOccurs="0" maxOccurs="unbounded" name="test-case">
+                                                                                <xs:complexType>
+                                                                                    <xs:sequence>
+                                                                                        <xs:element name="properties">
+                                                                                            <xs:complexType>
+                                                                                                <xs:sequence>
+                                                                                                    <xs:element maxOccurs="unbounded" name="property">
+                                                                                                        <xs:complexType>
+                                                                                                            <xs:attribute name="name" type="xs:string" use="required" />
+                                                                                                            <xs:attribute name="value" type="xs:string" use="required" />
+                                                                                                        </xs:complexType>
+                                                                                                    </xs:element>
+                                                                                                </xs:sequence>
+                                                                                            </xs:complexType>
+                                                                                        </xs:element>
+                                                                                        <xs:element minOccurs="0" name="reason">
+                                                                                            <xs:complexType>
+                                                                                                <xs:sequence>
+                                                                                                    <xs:element name="message" type="xs:string" />
+                                                                                                </xs:sequence>
+                                                                                            </xs:complexType>
+                                                                                        </xs:element>
+                                                                                        <xs:element minOccurs="0" name="failure">
+                                                                                            <xs:complexType>
+                                                                                                <xs:sequence>
+                                                                                                    <xs:element name="message" type="xs:string" />
+                                                                                                    <xs:element name="stack-trace" type="xs:string" />
+                                                                                                </xs:sequence>
+                                                                                            </xs:complexType>
+                                                                                        </xs:element>
+                                                                                        <xs:element minOccurs="0" name="output" type="xs:string" />
+                                                                                    </xs:sequence>
+                                                                                    <xs:attribute name="id" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="name" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="fullname" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="methodname" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="classname" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="runstate" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="seed" type="xs:unsignedInt" use="required" />
+                                                                                    <xs:attribute name="result" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="start-time" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="end-time" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="duration" type="xs:decimal" use="required" />
+                                                                                    <xs:attribute name="asserts" type="xs:unsignedByte" use="required" />
+                                                                                    <xs:attribute name="label" type="xs:string" use="optional" />
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                        <xs:attribute name="type" type="xs:string" use="required" />
+                                                                        <xs:attribute name="id" type="xs:string" use="required" />
+                                                                        <xs:attribute name="name" type="xs:string" use="required" />
+                                                                        <xs:attribute name="fullname" type="xs:string" use="required" />
+                                                                        <xs:attribute name="classname" type="xs:string" use="optional" />
+                                                                        <xs:attribute name="runstate" type="xs:string" use="required" />
+                                                                        <xs:attribute name="testcasecount" type="xs:unsignedByte" use="required" />
+                                                                        <xs:attribute name="result" type="xs:string" use="required" />
+                                                                        <xs:attribute name="site" type="xs:string" use="required" />
+                                                                        <xs:attribute name="start-time" type="xs:string" use="required" />
+                                                                        <xs:attribute name="end-time" type="xs:string" use="required" />
+                                                                        <xs:attribute name="duration" type="xs:decimal" use="required" />
+                                                                        <xs:attribute name="total" type="xs:unsignedByte" use="required" />
+                                                                        <xs:attribute name="passed" type="xs:unsignedByte" use="required" />
+                                                                        <xs:attribute name="failed" type="xs:unsignedByte" use="required" />
+                                                                        <xs:attribute name="inconclusive" type="xs:unsignedByte" use="required" />
+                                                                        <xs:attribute name="skipped" type="xs:unsignedByte" use="required" />
+                                                                        <xs:attribute name="asserts" type="xs:unsignedByte" use="required" />
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                            <xs:attribute name="type" type="xs:string" use="required" />
+                                                            <xs:attribute name="id" type="xs:string" use="required" />
+                                                            <xs:attribute name="name" type="xs:string" use="required" />
+                                                            <xs:attribute name="fullname" type="xs:string" use="required" />
+                                                            <xs:attribute name="runstate" type="xs:string" use="required" />
+                                                            <xs:attribute name="testcasecount" type="xs:unsignedByte" use="required" />
+                                                            <xs:attribute name="result" type="xs:string" use="required" />
+                                                            <xs:attribute name="site" type="xs:string" use="required" />
+                                                            <xs:attribute name="start-time" type="xs:string" use="required" />
+                                                            <xs:attribute name="end-time" type="xs:string" use="required" />
+                                                            <xs:attribute name="duration" type="xs:decimal" use="required" />
+                                                            <xs:attribute name="total" type="xs:unsignedByte" use="required" />
+                                                            <xs:attribute name="passed" type="xs:unsignedByte" use="required" />
+                                                            <xs:attribute name="failed" type="xs:unsignedByte" use="required" />
+                                                            <xs:attribute name="inconclusive" type="xs:unsignedByte" use="required" />
+                                                            <xs:attribute name="skipped" type="xs:unsignedByte" use="required" />
+                                                            <xs:attribute name="asserts" type="xs:unsignedByte" use="required" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="type" type="xs:string" use="required" />
+                                                <xs:attribute name="id" type="xs:string" use="required" />
+                                                <xs:attribute name="name" type="xs:string" use="required" />
+                                                <xs:attribute name="fullname" type="xs:string" use="required" />
+                                                <xs:attribute name="runstate" type="xs:string" use="required" />
+                                                <xs:attribute name="testcasecount" type="xs:unsignedByte" use="required" />
+                                                <xs:attribute name="result" type="xs:string" use="required" />
+                                                <xs:attribute name="site" type="xs:string" use="required" />
+                                                <xs:attribute name="start-time" type="xs:string" use="required" />
+                                                <xs:attribute name="end-time" type="xs:string" use="required" />
+                                                <xs:attribute name="duration" type="xs:decimal" use="required" />
+                                                <xs:attribute name="total" type="xs:unsignedByte" use="required" />
+                                                <xs:attribute name="passed" type="xs:unsignedByte" use="required" />
+                                                <xs:attribute name="failed" type="xs:unsignedByte" use="required" />
+                                                <xs:attribute name="inconclusive" type="xs:unsignedByte" use="required" />
+                                                <xs:attribute name="skipped" type="xs:unsignedByte" use="required" />
+                                                <xs:attribute name="asserts" type="xs:unsignedByte" use="required" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="type" type="xs:string" use="required" />
+                                    <xs:attribute name="id" type="xs:string" use="required" />
+                                    <xs:attribute name="name" type="xs:string" use="required" />
+                                    <xs:attribute name="fullname" type="xs:string" use="required" />
+                                    <xs:attribute name="runstate" type="xs:string" use="required" />
+                                    <xs:attribute name="testcasecount" type="xs:unsignedByte" use="required" />
+                                    <xs:attribute name="result" type="xs:string" use="required" />
+                                    <xs:attribute name="site" type="xs:string" use="required" />
+                                    <xs:attribute name="start-time" type="xs:string" use="required" />
+                                    <xs:attribute name="end-time" type="xs:string" use="required" />
+                                    <xs:attribute name="duration" type="xs:decimal" use="required" />
+                                    <xs:attribute name="total" type="xs:unsignedByte" use="required" />
+                                    <xs:attribute name="passed" type="xs:unsignedByte" use="required" />
+                                    <xs:attribute name="failed" type="xs:unsignedByte" use="required" />
+                                    <xs:attribute name="inconclusive" type="xs:unsignedByte" use="required" />
+                                    <xs:attribute name="skipped" type="xs:unsignedByte" use="required" />
+                                    <xs:attribute name="asserts" type="xs:unsignedByte" use="required" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="type" type="xs:string" use="required" />
+                        <xs:attribute name="id" type="xs:string" use="required" />
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                        <xs:attribute name="fullname" type="xs:string" use="required" />
+                        <xs:attribute name="runstate" type="xs:string" use="required" />
+                        <xs:attribute name="testcasecount" type="xs:unsignedByte" use="required" />
+                        <xs:attribute name="result" type="xs:string" use="required" />
+                        <xs:attribute name="site" type="xs:string" use="required" />
+                        <xs:attribute name="start-time" type="xs:string" use="required" />
+                        <xs:attribute name="end-time" type="xs:string" use="required" />
+                        <xs:attribute name="duration" type="xs:decimal" use="required" />
+                        <xs:attribute name="total" type="xs:unsignedByte" use="required" />
+                        <xs:attribute name="passed" type="xs:unsignedByte" use="required" />
+                        <xs:attribute name="failed" type="xs:unsignedByte" use="required" />
+                        <xs:attribute name="inconclusive" type="xs:unsignedByte" use="required" />
+                        <xs:attribute name="skipped" type="xs:unsignedByte" use="required" />
+                        <xs:attribute name="asserts" type="xs:unsignedByte" use="required" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:unsignedByte" use="required" />
+            <xs:attribute name="testcasecount" type="xs:unsignedByte" use="required" />
+            <xs:attribute name="result" type="xs:string" use="required" />
+            <xs:attribute name="total" type="xs:unsignedByte" use="required" />
+            <xs:attribute name="passed" type="xs:unsignedByte" use="required" />
+            <xs:attribute name="failed" type="xs:unsignedByte" use="required" />
+            <xs:attribute name="inconclusive" type="xs:unsignedByte" use="required" />
+            <xs:attribute name="skipped" type="xs:unsignedByte" use="required" />
+            <xs:attribute name="asserts" type="xs:unsignedByte" use="required" />
+            <xs:attribute name="engine-version" type="xs:string" use="required" />
+            <xs:attribute name="clr-version" type="xs:string" use="required" />
+            <xs:attribute name="start-time" type="xs:string" use="required" />
+            <xs:attribute name="end-time" type="xs:string" use="required" />
+            <xs:attribute name="duration" type="xs:decimal" use="required" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
