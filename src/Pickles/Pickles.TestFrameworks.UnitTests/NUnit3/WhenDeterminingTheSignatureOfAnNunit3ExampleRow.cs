@@ -45,7 +45,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.Nunit3
             var signatureBuilder = Container.Resolve<NUnit3ExampleSignatureBuilder>();
             Regex signature = signatureBuilder.Build(scenarioOutline, exampleRow);
 
-            var isMatch = signature.IsMatch("Pickles.TestHarness.xUnit.AdditionFeature.AddingSeveralNumbers(firstNumber: \"40\", secondNumber: \"50\", result: \"90\", exampleTags: System.String[])".ToLowerInvariant());
+            var isMatch = signature.IsMatch("AddingSeveralNumbers(\"40\",\"50\",\"90\",System.String[])".ToLowerInvariant());
             Check.That(isMatch).IsTrue();
         }
     }
