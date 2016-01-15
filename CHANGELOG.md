@@ -13,17 +13,17 @@ This project adheres to [Semantic Versioning](http://semver.org). We consider th
 This document is formatted according to the principles of [Keep A CHANGELOG](http://keepachangelog.com).
 
 
-## [Unreleased]
+## [2.2.0] - 2016-01-15
 
 ### Added
 
-- Support for xUnit 2 ([#230](https://github.com/picklesdoc/pickles/issues/230)) (by ([@dirkrombauts](https://github.com/dirkrombauts)).
+- Support for xUnit 2 ([#230](https://github.com/picklesdoc/pickles/issues/230)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
 - Support for nUnit 3 ([#230](https://github.com/picklesdoc/pickles/issues/224)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
 
 ### Changed
 
-- The Gherkin parser was updated to version 3.2.0 ([#256](https://github.com/picklesdoc/pickles/pull/256)) (by ([@dirkrombauts](https://github.com/dirkrombauts)).
-- Other dependencies were updated (by ([@dirkrombauts](https://github.com/dirkrombauts)).
+- The Gherkin parser was updated to version 3.2.0 ([#256](https://github.com/picklesdoc/pickles/pull/256)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
+- Other dependencies were updated (by [@dirkrombauts](https://github.com/dirkrombauts)).
 
 ### Fixed
 
