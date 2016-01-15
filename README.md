@@ -36,7 +36,7 @@ If there are other formats you would like to see feel free to create a [GitHub I
 Supported Test Runner Integrations
 ----------------------------------
 
-- NUnit
+- NUnit (versions 2.x and 3.x)
 - xUnit (versions 1.x and 2.x)
 - MSTest
 - Cucumber JSON
