@@ -31,9 +31,12 @@ namespace PicklesDoc.Pickles
     {
         private readonly IFileSystem fileSystem;
 
-        public FeatureParser(IFileSystem fileSystem)
+        private readonly IConfiguration configuration;
+
+        public FeatureParser(IFileSystem fileSystem, IConfiguration configuration)
         {
             this.fileSystem = fileSystem;
+            this.configuration = configuration;
         }
 
         public Feature Parse(string filename)
