@@ -100,8 +100,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit2
         {
             var query = from collection in this.resultsDocument.assembly.collection
                         from test in collection.test
-                        from trait in test.traits
-                        where trait.name == "FeatureTitle" && trait.value == feature.Name
+                        where HasFeatureTitleTrait(test, feature.Name)
                         select collection;
 
             return query.FirstOrDefault();
@@ -112,8 +111,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit2
             var featureElement = this.GetFeatureElement(scenario.Feature);
 
             var query = from test in featureElement.test
-                        from trait in test.traits
-                        where trait.name == "Description" && trait.value == scenario.Name
+                        where HasDescriptionTrait(test, scenario.Name)
                         select test;
 
             return query.FirstOrDefault();
@@ -123,13 +121,26 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit2
         {
             var featureElement = this.GetFeatureElement(scenario.Feature);
 
-            var query =
-                from test in featureElement.test
-                from trait in test.traits
-                where trait.name == "Description" && trait.value == scenario.Name
-                select test;
+            var query = from test in featureElement.test
+                        where HasDescriptionTrait(test, scenario.Name)
+                        select test;
 
             return query;
+        }
+
+        private static bool HasDescriptionTrait(assembliesAssemblyCollectionTest test, string description)
+        {
+            return HasTraitWithValue(test, "Description", description);
+        }
+
+        private static bool HasFeatureTitleTrait(assembliesAssemblyCollectionTest test, string featureTitle)
+        {
+            return HasTraitWithValue(test, "FeatureTitle", featureTitle);
+        }
+
+        private static bool HasTraitWithValue(assembliesAssemblyCollectionTest test, string trait, string value)
+        {
+            return test.traits != null && test.traits.Any(t => t.name == trait && t.value == value);
         }
 
         private TestResult GetResultFromElement(assembliesAssemblyCollectionTest element)
