@@ -46,6 +46,12 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit2
         public TestResult GetFeatureResult(Feature feature)
         {
             var featureElement = this.GetFeatureElement(feature);
+
+            if (featureElement == null)
+            {
+                return TestResult.Inconclusive;
+            }
+
             int passedCount = featureElement.passed;
             int failedCount = featureElement.failed;
             int skippedCount = featureElement.skipped;

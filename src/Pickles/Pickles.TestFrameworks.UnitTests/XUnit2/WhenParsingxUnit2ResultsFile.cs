@@ -120,6 +120,17 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit2
         }
 
         [Test]
+        public void ThenCanReadNotFoundFeatureCorrectly()
+        {
+            var results = ParseResultsFile();
+            var notFoundFeature = new Feature { Name = "Not in the project at all!" };
+
+            var result = results.GetFeatureResult(notFoundFeature);
+
+            Check.That(result).IsEqualTo(TestResult.Inconclusive);
+        }
+
+        [Test]
         public void WithoutExampleSignatureBuilderThrowsInvalidOperationException()
         {
             var results = ParseResultsFile();
