@@ -73,6 +73,7 @@
     <Compile Include="NUnit2\WhenParsingProblematicScenarioOutlineResults.cs" />
     <Compile Include="SpecRun\WhenParsingSpecRunTestResultsFile.cs" />
     <Compile Include="WhenParsingTestResultFiles.cs" />
+    <Compile Include="XUnit1\WhenParsingxUnitResultsFileWithMissingTraits.cs" />
     <Compile Include="XUnit2\WhenDeterminingTheSignatureOfAnXUnitExampleRow.cs" />
     <Compile Include="XUnit2\WhenParsingxUnit2ResultsFileWithMissingTraits.cs" />
     <Compile Include="XUnit2\WhenParsingxUnit2ResultsFile.cs" />
@@ -152,6 +153,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="XUnit2\results-example-xunit2-missingTraits.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="XUnit1\results-example-xunit1-missingTraits.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

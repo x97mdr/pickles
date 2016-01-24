@@ -1,0 +1,5 @@
+<assembly name="C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit\bin\Debug\xunitHarness.dll" run-date="2016-01-21" run-time="12:56:02" configFile="C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit\bin\Debug\xunitHarness.dll.config" time="0.353" total="32" passed="17" failed="14" skipped="1" environment="64-bit .NET 4.0.30319.42000" test-framework="xUnit.net 1.9.2.1705">
+    <class time="0.000" name="Pickles.TestHarness.xunit.RegularUnitTest" total="1" passed="1" failed="0" skipped="0">
+        <test name="Pickles.TestHarness.xunit.RegularUnitTest.ThisTestPasses" type="Pickles.TestHarness.xunit.RegularUnitTest" method="ThisTestPasses" result="Pass" time="0.000" />
+    </class>
+</assembly>
