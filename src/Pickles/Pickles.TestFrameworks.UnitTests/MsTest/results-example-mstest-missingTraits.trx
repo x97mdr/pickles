@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="bd2199af-fffc-498a-a77a-df16b4fc9f5a" name="Dirk@SHUTTLEPC 2016-01-21 12:56:08" runUser="SHUTTLEPC\Dirk" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="TestSettings" id="3d90c4f8-ccdc-4663-bad3-9f4c55f42318">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment userDeploymentRoot="C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults" useDefaultDeploymentRoot="false" enabled="false" runDeploymentRoot="Dirk_SHUTTLEPC 2016-01-21 12_56_08" />
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+    <Properties />
+  </TestSettings>
+  <Times creation="2016-01-21T12:56:08.4275455+01:00" queuing="2016-01-21T12:56:08.8135477+01:00" start="2016-01-21T12:56:08.9305884+01:00" finish="2016-01-21T12:56:09.6403444+01:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="32" executed="32" passed="18" error="0" failed="5" timeout="0" aborted="0" inconclusive="9" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="ThisTestPasses" storage="c:\dev\code\github\dirkrombauts\pickles-testresults\\testharness\mstest\bin\debug\mstestharness.dll" id="4564a8b6-0c8b-7bc1-9ad6-ad8ca619bfd2">
+      <Execution id="f39b7193-2e4b-4de2-add4-f2bd673c9687" />
+      <TestMethod codeBase="C:/Dev/Code/GitHub/DirkRombauts/pickles-testresults/TestHarness/mstest/bin/Debug/MsTestHarness.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Pickles.TestHarness.MsTest.RegularUnitTest, MsTestHarness, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ThisTestPasses" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="4564a8b6-0c8b-7bc1-9ad6-ad8ca619bfd2" executionId="f39b7193-2e4b-4de2-add4-f2bd673c9687" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="f39b7193-2e4b-4de2-add4-f2bd673c9687" testId="4564a8b6-0c8b-7bc1-9ad6-ad8ca619bfd2" testName="ThisTestPasses" computerName="SHUTTLEPC" duration="00:00:00.0001821" startTime="2016-01-21T12:56:09.4739277+01:00" endTime="2016-01-21T12:56:09.4769212+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f39b7193-2e4b-4de2-add4-f2bd673c9687">
+    </UnitTestResult>
+  </Results>
+</TestRun>

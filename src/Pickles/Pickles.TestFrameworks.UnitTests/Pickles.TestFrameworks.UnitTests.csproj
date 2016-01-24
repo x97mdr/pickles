@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MsTest\WhenParsingMsTestResultsFileWithMissingTraits.cs" />
     <Compile Include="NUnit2\WhenParsingnUnit2ResultsFileWithMissingTraits.cs" />
     <Compile Include="NUnit3\WhenDeterminingTheSignatureOfAnNunit3ExampleRow.cs" />
     <Compile Include="NUnit3\WhenParsingnUnit3ResultsFileWithMissingTraits.cs" />
@@ -127,6 +128,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <EmbeddedResource Include="MsTest\results-example-mstest-missingTraits.trx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
