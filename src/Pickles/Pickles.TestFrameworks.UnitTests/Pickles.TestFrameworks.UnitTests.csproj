@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NUnit2\WhenParsingnUnit2ResultsFileWithMissingTraits.cs" />
     <Compile Include="NUnit3\WhenDeterminingTheSignatureOfAnNunit3ExampleRow.cs" />
     <Compile Include="NUnit3\WhenParsingNunit3ResultsFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -156,6 +157,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="XUnit1\results-example-xunit1-missingTraits.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NUnit2\results-example-nunit-missingTraits.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
