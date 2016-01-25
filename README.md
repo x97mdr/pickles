@@ -51,5 +51,3 @@ License
 -------
 
 Pickles is licensed with the Apache License, version 2.0.  You can find more information on the license here: http://www.apache.org/licenses/LICENSE-2.0.html
-
-  [1]: https://groups.google.com/forum/?hl=en-GB#!forum/pickles-dev "Pickles Google Group"
