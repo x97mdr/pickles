@@ -33,6 +33,7 @@ Optionally, *Pickles* can **integrate test results**, so that your stakeholders 
         <licenseUrl>http://apache.org/licenses/LICENSE-2.0.html</licenseUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <iconUrl>https://cdn.rawgit.com/picklesdoc/pickles/master/pickles.jpeg</iconUrl>
+        <releaseNotes>https://github.com/picklesdoc/pickles/blob/master/CHANGELOG.md</releaseNotes>
     </metadata>
     <files>
         <file src="Autofac.dll" target="tools" />
