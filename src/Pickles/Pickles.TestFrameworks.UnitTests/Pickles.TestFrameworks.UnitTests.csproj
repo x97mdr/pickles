@@ -59,7 +59,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MsTest\WhenParsingMsTestResultsFileWithMissingTraits.cs" />
+    <Compile Include="NUnit2\WhenParsingnUnit2ResultsFileWithMissingTraits.cs" />
     <Compile Include="NUnit3\WhenDeterminingTheSignatureOfAnNunit3ExampleRow.cs" />
+    <Compile Include="NUnit3\WhenParsingnUnit3ResultsFileWithMissingTraits.cs" />
     <Compile Include="NUnit3\WhenParsingNunit3ResultsFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NUnit2\WhenDeterminingTheSignatureOfAnNUnitExampleRow.cs" />
@@ -73,7 +76,9 @@
     <Compile Include="NUnit2\WhenParsingProblematicScenarioOutlineResults.cs" />
     <Compile Include="SpecRun\WhenParsingSpecRunTestResultsFile.cs" />
     <Compile Include="WhenParsingTestResultFiles.cs" />
+    <Compile Include="XUnit1\WhenParsingxUnitResultsFileWithMissingTraits.cs" />
     <Compile Include="XUnit2\WhenDeterminingTheSignatureOfAnXUnitExampleRow.cs" />
+    <Compile Include="XUnit2\WhenParsingxUnit2ResultsFileWithMissingTraits.cs" />
     <Compile Include="XUnit2\WhenParsingxUnit2ResultsFile.cs" />
     <Compile Include="XUnit1\WhenParsingxUnitResultsFile.cs" />
     <Compile Include="WhenResolvingTestResults.cs" />
@@ -123,6 +128,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <EmbeddedResource Include="MsTest\results-example-mstest-missingTraits.trx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +156,24 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="NUnit3\results-example-nunit3.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="XUnit2\results-example-xunit2-missingTraits.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="XUnit1\results-example-xunit1-missingTraits.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NUnit2\results-example-nunit-missingTraits.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NUnit3\results-example-nunit3-missingTraits.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

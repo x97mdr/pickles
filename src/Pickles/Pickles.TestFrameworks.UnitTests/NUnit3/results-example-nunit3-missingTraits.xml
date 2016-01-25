@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-run id="2" testcasecount="30" result="Failed" total="30" passed="17" failed="6" inconclusive="6" skipped="1" asserts="0" engine-version="3.0.5797.27553" clr-version="4.0.30319.42000" start-time="2016-01-21 11:55:58Z" end-time="2016-01-21 11:55:59Z" duration="1.123818">
+    <command-line><![CDATA["C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\\TestHarness\packages\NUnit.Console.3.0.0\tools\nunit3-console.exe"  "C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\\TestHarness\nunit3\bin\Debug\nunit3Harness.dll" /result="C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\\results-example-nunit3.xml"]]></command-line>
+    <test-suite type="Assembly" id="0-1043" name="nunit3Harness.dll" fullname="C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\nunit3\bin\Debug\nunit3Harness.dll" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2016-01-21 11:55:58Z" end-time="2016-01-21 11:55:59Z" duration="0.690253" total="30" passed="17" failed="6" inconclusive="6" skipped="1" asserts="0">
+        <environment framework-version="3.0.5797.27534" clr-version="4.0.30319.42000" os-version="Microsoft Windows NT 10.0.10586.0" platform="Win32NT" cwd="C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults" machine-name="SHUTTLEPC" user="Dirk" user-domain="SHUTTLEPC" culture="de-AT" uiculture="en-US" os-architecture="x64" />
+        <settings>
+            <setting name="WorkDirectory" value="C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults" />
+            <setting name="NumberOfTestWorkers" value="8" />
+        </settings>
+        <properties>
+            <property name="_PID" value="12540" />
+            <property name="_APPDOMAIN" value="test-domain-" />
+        </properties>
+        <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="0-1044" name="Pickles" fullname="Pickles" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2016-01-21 11:55:58Z" end-time="2016-01-21 11:55:59Z" duration="0.682166" total="30" passed="17" failed="6" inconclusive="6" skipped="1" asserts="0">
+            <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="TestSuite" id="0-1045" name="TestHarness" fullname="Pickles.TestHarness" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2016-01-21 11:55:58Z" end-time="2016-01-21 11:55:59Z" duration="0.682048" total="30" passed="17" failed="6" inconclusive="6" skipped="1" asserts="0">
+                <failure>
+                    <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-suite type="TestSuite" id="0-1046" name="nunit3" fullname="Pickles.TestHarness.nunit3" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2016-01-21 11:55:58Z" end-time="2016-01-21 11:55:59Z" duration="0.682039" total="30" passed="17" failed="6" inconclusive="6" skipped="1" asserts="0">
+                    <failure>
+                        <message><![CDATA[One or more child tests had errors]]></message>
+                    </failure>
+                    <test-suite type="TestFixture" id="0-1010" name="RegularUnitTest" fullname="Pickles.TestHarness.nunit3.RegularUnitTest" classname="Pickles.TestHarness.nunit3.RegularUnitTest" runstate="Runnable" testcasecount="1" result="Passed" start-time="2016-01-21 11:55:59Z" end-time="2016-01-21 11:55:59Z" duration="0.000305" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+                        <test-case id="0-1011" name="ThisTestPasses" fullname="Pickles.TestHarness.nunit3.RegularUnitTest.ThisTestPasses" methodname="ThisTestPasses" classname="Pickles.TestHarness.nunit3.RegularUnitTest" runstate="Runnable" seed="1658039280" result="Passed" start-time="2016-01-21 11:55:59Z" end-time="2016-01-21 11:55:59Z" duration="0.000079" asserts="0" />
+                    </test-suite>
+                </test-suite>
+            </test-suite>
+        </test-suite>
+    </test-suite>
+</test-run>
