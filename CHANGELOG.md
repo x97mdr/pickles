@@ -14,6 +14,8 @@ This document is formatted according to the principles of [Keep A CHANGELOG](htt
 
 ## [Unreleased]
 
+## [2.2.1] - 2016-01-25
+
 ### Changed
 
 - The .nuspec files now contain a releaseNotes elements that points to this file on GitHub.
