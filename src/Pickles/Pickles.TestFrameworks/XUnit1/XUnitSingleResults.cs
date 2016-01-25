@@ -47,6 +47,12 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit1
         public TestResult GetFeatureResult(Feature feature)
         {
             XElement featureElement = this.GetFeatureElement(feature);
+
+            if (featureElement == null)
+            {
+                return TestResult.Inconclusive;
+            }
+
             int passedCount = int.Parse(featureElement.Attribute("passed").Value);
             int failedCount = int.Parse(featureElement.Attribute("failed").Value);
             int skippedCount = int.Parse(featureElement.Attribute("skipped").Value);

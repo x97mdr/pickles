@@ -12,6 +12,17 @@ This project adheres to [Semantic Versioning](http://semver.org). We consider th
 
 This document is formatted according to the principles of [Keep A CHANGELOG](http://keepachangelog.com).
 
+## [Unreleased]
+
+## [2.2.1] - 2016-01-25
+
+### Changed
+
+- The .nuspec files now contain a releaseNotes elements that points to this file on GitHub.
+
+### Fixed
+
+- xUnit1 and xUnit2: Failure when tests are included that don't have traits ([#268](https://github.com/picklesdoc/pickles/issues/268)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
 
 ## [2.2.0] - 2016-01-15
 

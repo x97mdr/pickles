@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<assemblies>
+  <assembly name="C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\bin\Debug\xunit2Harness.DLL" environment="64-bit .NET 4.0.30319.42000 [collection-per-class, non-parallel]" test-framework="xUnit.net 2.1.0.3179" run-date="2016-01-21" run-time="12:56:05" config-file="C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\bin\Debug\xunit2Harness.dll.config" total="32" passed="17" failed="14" skipped="1" time="1.497" errors="0">
+    <errors />
+    <collection total="1" passed="1" failed="0" skipped="0" name="Test collection for Pickles.TestHarness.xunit2.RegularUnitTest" time="0.000">
+      <test name="Pickles.TestHarness.xunit2.RegularUnitTest.ThisTestPasses" type="Pickles.TestHarness.xunit2.RegularUnitTest" method="ThisTestPasses" time="0.0001869" result="Pass" />
+    </collection>
+  </assembly>
+</assemblies>
