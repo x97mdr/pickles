@@ -163,7 +163,6 @@
     <Compile Include="WhenCrawlingFoldersForFeatures.cs" />
     <Compile Include="Formatters\TableOfContentsShouldBeCreatedFromAFolderStructure.cs" />
     <Compile Include="ParserFileFactory.cs" />
-    <Compile Include="ParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WhenDeterminingRelevantFilesToConsider.cs" />
     <Compile Include="DocumentationBuilders\HTML\WhenFormattingFeatures.cs" />

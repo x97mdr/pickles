@@ -14,6 +14,10 @@ This document is formatted according to the principles of [Keep A CHANGELOG](htt
 
 ## [Unreleased]
 
+### Changed
+
+- The .nuspec files now contain a releaseNotes elements that points to this file on GitHub.
+
 ### Fixed
 
 - xUnit1 and xUnit2: Failure when tests are included that don't have traits ([#268](https://github.com/picklesdoc/pickles/issues/268)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
