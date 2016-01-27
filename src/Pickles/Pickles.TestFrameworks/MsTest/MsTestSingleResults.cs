@@ -121,7 +121,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
                 select scenario;
 
             var scenarioOutlineExecutionIds = from scenario in allScenariosForAFeature
-                where NameOf(scenario) == queriedScenarioOutlineName
+                where NameOf(scenario).StartsWith(queriedScenarioOutlineName)
                 select ScenarioExecutionIdOf(scenario);
 
             TestResult result = scenarioOutlineExecutionIds.Select(this.GetExecutionResult).Merge();
