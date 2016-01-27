@@ -14,6 +14,8 @@ This document is formatted according to the principles of [Keep A CHANGELOG](htt
 
 ## [Unreleased]
 
+- Compatibility fixes with SpecFlow v2 ([#276](https://github.com/picklesdoc/pickles/issues/276)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
+
 ## [2.2.1] - 2016-01-25
 
 ### Changed
