@@ -19,28 +19,10 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Text;
-using System.Text.RegularExpressions;
-
-using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.XUnit2
 {
-    public class XUnit2ExampleSignatureBuilder
+    public class XUnit2ExampleSignatureBuilder : XUnit1.XUnitExampleSignatureBuilder
     {
-        public Regex Build(ScenarioOutline scenarioOutline, string[] row)
-        {
-            var stringBuilder = new StringBuilder();
-            stringBuilder.Append(scenarioOutline.Name.ToLowerInvariant().Replace(" ", string.Empty) + "\\(");
-
-            foreach (string value in row)
-            {
-                stringBuilder.AppendFormat("(.*): \"{0}\", ", value.ToLowerInvariant().Replace(@"\", string.Empty).Replace(@"$", @"\$"));
-            }
-
-            stringBuilder.Remove(stringBuilder.Length - 2, 2);
-
-            return new Regex(stringBuilder.ToString());
-        }
     }
 }
