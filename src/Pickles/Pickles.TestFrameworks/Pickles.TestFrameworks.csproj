@@ -74,8 +74,8 @@
     <Compile Include="XDocumentLoader.cs" />
     <Compile Include="XmlDeserializer.cs" />
     <Compile Include="XUnit\xUnitExampleSignatureBuilder.cs" />
-    <Compile Include="XUnit\XUnit1\XUnitResults.cs" />
-    <Compile Include="XUnit\XUnit1\XUnitSingleResults.cs" />
+    <Compile Include="XUnit\XUnit1\XUnit1Results.cs" />
+    <Compile Include="XUnit\XUnit1\XUnit1SingleResult.cs" />
     <Compile Include="XUnit\XUnit2\results-example-xunit2.cs">
       <DependentUpon>results-example-xunit2.xsd</DependentUpon>
     </Compile>

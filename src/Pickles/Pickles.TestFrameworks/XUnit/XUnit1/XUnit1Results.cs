@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="XUnitResults.cs" company="PicklesDoc">
+//  <copyright file="XUnit1Results.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -20,24 +20,23 @@
 
 using System;
 using System.IO.Abstractions;
-using System.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
 {
-    public class XUnitResults : XUnitResultsBase<XUnitSingleResults>
+    public class XUnit1Results : XUnitResultsBase<XUnit1SingleResult>
     {
         private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
 
-        public XUnitResults(IConfiguration configuration, XUnitExampleSignatureBuilder exampleSignatureBuilder)
+        public XUnit1Results(IConfiguration configuration, XUnitExampleSignatureBuilder exampleSignatureBuilder)
             : base(configuration, exampleSignatureBuilder)
         {
         }
 
         protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
         {
-            return new XUnitSingleResults(DocumentLoader.Load(fileInfo));
+            return new XUnit1SingleResult(DocumentLoader.Load(fileInfo));
         }
     }
 }

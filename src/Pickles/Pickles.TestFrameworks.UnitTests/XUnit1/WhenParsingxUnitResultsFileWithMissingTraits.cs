@@ -30,7 +30,7 @@ using PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1;
 namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit1
 {
     [TestFixture]
-    public class WhenParsingxUnit1ResultsFileWithMissingTraits : WhenParsingTestResultFiles<XUnitResults>
+    public class WhenParsingxUnit1ResultsFileWithMissingTraits : WhenParsingTestResultFiles<XUnit1Results>
     {
         public WhenParsingxUnit1ResultsFileWithMissingTraits()
             : base("XUnit1." + "results-example-xunit1-missingTraits.xml")

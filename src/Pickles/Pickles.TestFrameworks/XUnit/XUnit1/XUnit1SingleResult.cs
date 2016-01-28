@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="XUnitSingleResults.cs" company="PicklesDoc">
+//  <copyright file="XUnit1SingleResult.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -28,11 +28,11 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
 {
-    public class XUnitSingleResults : XUnitSingleResultsBase
+    public class XUnit1SingleResult : XUnitSingleResultsBase
     {
         private readonly XDocument resultsDocument;
 
-        public XUnitSingleResults(XDocument resultsDocument)
+        public XUnit1SingleResult(XDocument resultsDocument)
         {
             this.resultsDocument = resultsDocument;
         }

@@ -80,7 +80,7 @@ namespace PicklesDoc.Pickles
             builder.RegisterType<NUnitExampleSignatureBuilder>();
             builder.RegisterType<NUnit3Results>();
             builder.RegisterType<NUnit3ExampleSignatureBuilder>();
-            builder.RegisterType<XUnitResults>();
+            builder.RegisterType<XUnit1Results>();
             builder.RegisterType<XUnitExampleSignatureBuilder>();
             builder.RegisterType<XUnit2Results>();
             builder.RegisterType<MsTestResults>();
@@ -102,7 +102,7 @@ namespace PicklesDoc.Pickles
                     case TestResultsFormat.NUnit3:
                         return c.Resolve<NUnit3Results>();
                     case TestResultsFormat.xUnit:
-                        return c.Resolve<XUnitResults>();
+                        return c.Resolve<XUnit1Results>();
                     case TestResultsFormat.xUnit2:
                         return c.Resolve<XUnit2Results>();
                     case TestResultsFormat.MsTest:

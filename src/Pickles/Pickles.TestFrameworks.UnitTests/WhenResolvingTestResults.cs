@@ -105,9 +105,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
             var item2 = Container.Resolve<ITestResults>();
 
             Check.That(item1).IsNotNull();
-            Check.That(item1).IsInstanceOf<XUnitResults>();
+            Check.That(item1).IsInstanceOf<XUnit1Results>();
             Check.That(item2).IsNotNull();
-            Check.That(item2).IsInstanceOf<XUnitResults>();
+            Check.That(item2).IsInstanceOf<XUnit1Results>();
             Check.That(item1).IsSameReferenceThan(item2);
         }
 
@@ -200,7 +200,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
             var item = Container.Resolve<ITestResults>();
 
             Check.That(item).IsNotNull();
-            Check.That(item).IsInstanceOf<XUnitResults>();
+            Check.That(item).IsInstanceOf<XUnit1Results>();
         }
 
         [Test]

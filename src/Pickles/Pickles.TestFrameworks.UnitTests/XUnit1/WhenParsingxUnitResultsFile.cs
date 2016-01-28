@@ -31,7 +31,7 @@ using PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1;
 namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit1
 {
     [TestFixture]
-    public class WhenParsingxUnitResultsFile : WhenParsingTestResultFiles<XUnitResults>
+    public class WhenParsingxUnitResultsFile : WhenParsingTestResultFiles<XUnit1Results>
     {
         public WhenParsingxUnitResultsFile()
             : base("XUnit1." + "results-example-xunit.xml")
