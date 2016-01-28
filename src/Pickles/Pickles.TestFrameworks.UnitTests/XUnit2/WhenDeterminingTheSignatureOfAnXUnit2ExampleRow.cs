@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="WhenDeterminingTheSignatureOfAnXUnitExampleRow.cs" company="PicklesDoc">
+//  <copyright file="WhenDeterminingTheSignatureOfAnXUnit2ExampleRow.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -29,7 +29,7 @@ using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Test;
-using PicklesDoc.Pickles.TestFrameworks.XUnit2;
+using PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2;
 
 namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit2
 {

@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="XUnitResults.cs" company="PicklesDoc">
+//  <copyright file="XUnit2Results.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -24,21 +24,21 @@ using System.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.TestFrameworks.XUnit1
+namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
 {
-    public class XUnitResults : MultipleTestResults
+    public class XUnit2Results : MultipleTestResults
     {
-        private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
+        private readonly XmlDeserializer<assemblies> xmlDeserializer = new XmlDeserializer<assemblies>();
 
-        public XUnitResults(IConfiguration configuration, XUnitExampleSignatureBuilder exampleSignatureBuilder)
+        public XUnit2Results(IConfiguration configuration, XUnit2ExampleSignatureBuilder exampleSignatureBuilder)
             : base(true, configuration)
         {
             this.SetExampleSignatureBuilder(exampleSignatureBuilder);
         }
 
-        public void SetExampleSignatureBuilder(XUnitExampleSignatureBuilder exampleSignatureBuilder)
+        public void SetExampleSignatureBuilder(XUnit2ExampleSignatureBuilder exampleSignatureBuilder)
         {
-            foreach (var testResult in TestResults.OfType<XUnitSingleResults>())
+            foreach (var testResult in TestResults.OfType<XUnit2SingleResults>())
             {
                 testResult.ExampleSignatureBuilder = exampleSignatureBuilder;
             }
@@ -46,12 +46,12 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit1
 
         protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
         {
-            return new XUnitSingleResults(DocumentLoader.Load(fileInfo));
+            return new XUnit2SingleResults(this.xmlDeserializer.Load(fileInfo));
         }
 
         public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] arguments)
         {
-            var results = TestResults.OfType<XUnitSingleResults>().Select(tr => tr.GetExampleResult(scenarioOutline, arguments)).ToArray();
+            var results = TestResults.OfType<XUnit2SingleResults>().Select(tr => tr.GetExampleResult(scenarioOutline, arguments)).ToArray();
 
             return EvaluateTestResults(results);
         }

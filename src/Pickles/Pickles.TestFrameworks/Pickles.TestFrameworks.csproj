@@ -73,22 +73,22 @@
     <Compile Include="SpecRun\SpecRunSingleResults.cs" />
     <Compile Include="XDocumentLoader.cs" />
     <Compile Include="XmlDeserializer.cs" />
-    <Compile Include="XUnit1\xUnitExampleSignatureBuilder.cs" />
-    <Compile Include="XUnit1\XUnitResults.cs" />
-    <Compile Include="XUnit1\XUnitSingleResults.cs" />
-    <Compile Include="XUnit2\results-example-xunit2.cs">
+    <Compile Include="XUnit\XUnit1\xUnitExampleSignatureBuilder.cs" />
+    <Compile Include="XUnit\XUnit1\XUnitResults.cs" />
+    <Compile Include="XUnit\XUnit1\XUnitSingleResults.cs" />
+    <Compile Include="XUnit\XUnit2\results-example-xunit2.cs">
       <DependentUpon>results-example-xunit2.xsd</DependentUpon>
     </Compile>
-    <Compile Include="XUnit2\XUnit2Results.cs" />
-    <Compile Include="XUnit2\XUnit2SingleResults.cs" />
-    <Compile Include="XUnit2\xUnit2ExampleSignatureBuilder.cs" />
+    <Compile Include="XUnit\XUnit2\XUnit2Results.cs" />
+    <Compile Include="XUnit\XUnit2\XUnit2SingleResults.cs" />
+    <Compile Include="XUnit\XUnit2\xUnit2ExampleSignatureBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NUnit3\results-example-nunit3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="XUnit2\results-example-xunit2.xsd">
+    <None Include="XUnit\XUnit2\results-example-xunit2.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

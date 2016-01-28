@@ -32,7 +32,7 @@ using PicklesDoc.Pickles.TestFrameworks.CucumberJson;
 using PicklesDoc.Pickles.TestFrameworks.MsTest;
 using PicklesDoc.Pickles.TestFrameworks.NUnit2;
 using PicklesDoc.Pickles.TestFrameworks.SpecRun;
-using PicklesDoc.Pickles.TestFrameworks.XUnit1;
+using PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1;
 
 namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 {

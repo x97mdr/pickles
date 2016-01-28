@@ -77,7 +77,7 @@
     <Compile Include="SpecRun\WhenParsingSpecRunTestResultsFile.cs" />
     <Compile Include="WhenParsingTestResultFiles.cs" />
     <Compile Include="XUnit1\WhenParsingxUnitResultsFileWithMissingTraits.cs" />
-    <Compile Include="XUnit2\WhenDeterminingTheSignatureOfAnXUnitExampleRow.cs" />
+    <Compile Include="XUnit2\WhenDeterminingTheSignatureOfAnXUnit2ExampleRow.cs" />
     <Compile Include="XUnit2\WhenParsingxUnit2ResultsFileWithMissingTraits.cs" />
     <Compile Include="XUnit2\WhenParsingxUnit2ResultsFile.cs" />
     <Compile Include="XUnit1\WhenParsingxUnitResultsFile.cs" />

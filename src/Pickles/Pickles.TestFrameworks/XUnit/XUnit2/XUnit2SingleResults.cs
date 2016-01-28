@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="XUnitSingleResults.cs" company="PicklesDoc">
+//  <copyright file="XUnit2SingleResults.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -22,19 +22,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Xml.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.TestFrameworks.XUnit1
+namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
 {
-    public class XUnitSingleResults : ITestResults
+    public class XUnit2SingleResults : ITestResults
     {
-        internal XUnitExampleSignatureBuilder ExampleSignatureBuilder { get; set; }
+        private readonly assemblies resultsDocument;
 
-        private readonly XDocument resultsDocument;
-
-        public XUnitSingleResults(XDocument resultsDocument)
+        public XUnit2SingleResults(assemblies resultsDocument)
         {
             this.resultsDocument = resultsDocument;
         }
@@ -44,30 +41,32 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit1
             get { return true; }
         }
 
+        internal XUnit2ExampleSignatureBuilder ExampleSignatureBuilder { get; set; }
+
         public TestResult GetFeatureResult(Feature feature)
         {
-            XElement featureElement = this.GetFeatureElement(feature);
+            var featureElement = this.GetFeatureElement(feature);
 
             if (featureElement == null)
             {
                 return TestResult.Inconclusive;
             }
 
-            int passedCount = int.Parse(featureElement.Attribute("passed").Value);
-            int failedCount = int.Parse(featureElement.Attribute("failed").Value);
-            int skippedCount = int.Parse(featureElement.Attribute("skipped").Value);
+            int passedCount = featureElement.passed;
+            int failedCount = featureElement.failed;
+            int skippedCount = featureElement.skipped;
 
             return GetAggregateResult(passedCount, failedCount, skippedCount);
         }
 
         public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
         {
-            IEnumerable<XElement> exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
+            IEnumerable<assembliesAssemblyCollectionTest> exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
             int passedCount = 0;
             int failedCount = 0;
             int skippedCount = 0;
 
-            foreach (XElement exampleElement in exampleElements)
+            foreach (var exampleElement in exampleElements)
             {
                 TestResult result = this.GetResultFromElement(exampleElement);
                 if (result == TestResult.Inconclusive)
@@ -91,55 +90,64 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit1
 
         public TestResult GetScenarioResult(Scenario scenario)
         {
-            XElement scenarioElement = this.GetScenarioElement(scenario);
+            var scenarioElement = this.GetScenarioElement(scenario);
             return scenarioElement != null
                 ? this.GetResultFromElement(scenarioElement)
                 : TestResult.Inconclusive;
         }
 
-        private XElement GetFeatureElement(Feature feature)
+        private assembliesAssemblyCollection GetFeatureElement(Feature feature)
         {
-            IEnumerable<XElement> featureQuery =
-                from clazz in this.resultsDocument.Root.Descendants("class")
-                from test in clazz.Descendants("test")
-                from trait in clazz.Descendants("traits").Descendants("trait")
-                where trait.Attribute("name").Value == "FeatureTitle" && trait.Attribute("value").Value == feature.Name
-                select clazz;
+            var query = from collection in this.resultsDocument.assembly.collection
+                        from test in collection.test
+                        where HasFeatureTitleTrait(test, feature.Name)
+                        select collection;
 
-            return featureQuery.FirstOrDefault();
+            return query.FirstOrDefault();
         }
 
-        private XElement GetScenarioElement(Scenario scenario)
+        private assembliesAssemblyCollectionTest GetScenarioElement(Scenario scenario)
         {
-            XElement featureElement = this.GetFeatureElement(scenario.Feature);
+            var featureElement = this.GetFeatureElement(scenario.Feature);
 
-            IEnumerable<XElement> scenarioQuery =
-                from test in featureElement.Descendants("test")
-                from trait in test.Descendants("traits").Descendants("trait")
-                where trait.Attribute("name").Value == "Description" && trait.Attribute("value").Value == scenario.Name
-                select test;
+            var query = from test in featureElement.test
+                        where HasDescriptionTrait(test, scenario.Name)
+                        select test;
 
-            return scenarioQuery.FirstOrDefault();
+            return query.FirstOrDefault();
         }
 
-        private IEnumerable<XElement> GetScenarioOutlineElements(ScenarioOutline scenario)
+        private IEnumerable<assembliesAssemblyCollectionTest> GetScenarioOutlineElements(ScenarioOutline scenario)
         {
-            XElement featureElement = this.GetFeatureElement(scenario.Feature);
+            var featureElement = this.GetFeatureElement(scenario.Feature);
 
-            IEnumerable<XElement> scenarioQuery =
-                from test in featureElement.Descendants("test")
-                from trait in test.Descendants("traits").Descendants("trait")
-                where trait.Attribute("name").Value == "Description" && trait.Attribute("value").Value == scenario.Name
-                select test;
+            var query = from test in featureElement.test
+                        where HasDescriptionTrait(test, scenario.Name)
+                        select test;
 
-            return scenarioQuery;
+            return query;
         }
 
-        private TestResult GetResultFromElement(XElement element)
+        private static bool HasDescriptionTrait(assembliesAssemblyCollectionTest test, string description)
+        {
+            return HasTraitWithValue(test, "Description", description);
+        }
+
+        private static bool HasFeatureTitleTrait(assembliesAssemblyCollectionTest test, string featureTitle)
+        {
+            return HasTraitWithValue(test, "FeatureTitle", featureTitle);
+        }
+
+        private static bool HasTraitWithValue(assembliesAssemblyCollectionTest test, string trait, string value)
+        {
+            return test.traits != null && test.traits.Any(t => t.name == trait && t.value == value);
+        }
+
+        private TestResult GetResultFromElement(assembliesAssemblyCollectionTest element)
         {
             TestResult result;
-            XAttribute resultAttribute = element.Attribute("result");
-            switch (resultAttribute.Value.ToLowerInvariant())
+
+            switch (element.result.ToLowerInvariant())
             {
                 case "pass":
                     result = TestResult.Passed;
@@ -177,7 +185,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit1
 
         public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
         {
-            IEnumerable<XElement> exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
+            IEnumerable<assembliesAssemblyCollectionTest> exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
 
             var result = new TestResult();
             var signatureBuilder = this.ExampleSignatureBuilder;
@@ -187,10 +195,10 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit1
                 throw new InvalidOperationException("You need to set the ExampleSignatureBuilder before using GetExampleResult.");
             }
 
-            foreach (XElement exampleElement in exampleElements)
+            foreach (var exampleElement in exampleElements)
             {
                 Regex signature = signatureBuilder.Build(scenarioOutline, exampleValues);
-                if (signature.IsMatch(exampleElement.Attribute("name").Value.ToLowerInvariant().Replace(@"\", string.Empty)))
+                if (signature.IsMatch(exampleElement.name.ToLowerInvariant().Replace(@"\", string.Empty)))
                 {
                     return this.GetResultFromElement(exampleElement);
                 }
