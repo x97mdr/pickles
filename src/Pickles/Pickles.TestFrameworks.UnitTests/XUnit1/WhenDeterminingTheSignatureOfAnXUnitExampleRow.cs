@@ -29,7 +29,7 @@ using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Test;
-using PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1;
+using PicklesDoc.Pickles.TestFrameworks.XUnit;
 
 namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit1
 {
