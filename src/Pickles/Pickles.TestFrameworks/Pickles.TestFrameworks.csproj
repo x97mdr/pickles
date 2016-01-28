@@ -81,7 +81,6 @@
     </Compile>
     <Compile Include="XUnit\XUnit2\XUnit2Results.cs" />
     <Compile Include="XUnit\XUnit2\XUnit2SingleResults.cs" />
-    <Compile Include="XUnit\XUnit2\xUnit2ExampleSignatureBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NUnit3\results-example-nunit3.xsd">

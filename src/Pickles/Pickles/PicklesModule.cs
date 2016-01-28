@@ -83,7 +83,6 @@ namespace PicklesDoc.Pickles
             builder.RegisterType<XUnitResults>();
             builder.RegisterType<XUnitExampleSignatureBuilder>();
             builder.RegisterType<XUnit2Results>();
-            builder.RegisterType<XUnit2ExampleSignatureBuilder>();
             builder.RegisterType<MsTestResults>();
             builder.RegisterType<CucumberJsonResults>();
             builder.RegisterType<SpecRunResults>();

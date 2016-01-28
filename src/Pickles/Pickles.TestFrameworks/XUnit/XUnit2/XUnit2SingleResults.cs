@@ -41,7 +41,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
             get { return true; }
         }
 
-        internal XUnit2ExampleSignatureBuilder ExampleSignatureBuilder { get; set; }
+        internal XUnitExampleSignatureBuilder ExampleSignatureBuilder { get; set; }
 
         public TestResult GetFeatureResult(Feature feature)
         {

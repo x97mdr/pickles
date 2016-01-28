@@ -30,13 +30,13 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
     {
         private readonly XmlDeserializer<assemblies> xmlDeserializer = new XmlDeserializer<assemblies>();
 
-        public XUnit2Results(IConfiguration configuration, XUnit2ExampleSignatureBuilder exampleSignatureBuilder)
+        public XUnit2Results(IConfiguration configuration, XUnitExampleSignatureBuilder exampleSignatureBuilder)
             : base(true, configuration)
         {
             this.SetExampleSignatureBuilder(exampleSignatureBuilder);
         }
 
-        public void SetExampleSignatureBuilder(XUnit2ExampleSignatureBuilder exampleSignatureBuilder)
+        public void SetExampleSignatureBuilder(XUnitExampleSignatureBuilder exampleSignatureBuilder)
         {
             foreach (var testResult in TestResults.OfType<XUnit2SingleResults>())
             {
