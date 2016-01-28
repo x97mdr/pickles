@@ -27,7 +27,7 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
 {
-    public class XUnit2SingleResults : ITestResults
+    public class XUnit2SingleResults : XUnitSingleResultsBase
     {
         private readonly assemblies resultsDocument;
 
@@ -36,14 +36,12 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
             this.resultsDocument = resultsDocument;
         }
 
-        public bool SupportsExampleResults
+        public override bool SupportsExampleResults
         {
             get { return true; }
         }
 
-        internal XUnitExampleSignatureBuilder ExampleSignatureBuilder { get; set; }
-
-        public TestResult GetFeatureResult(Feature feature)
+        public override TestResult GetFeatureResult(Feature feature)
         {
             var featureElement = this.GetFeatureElement(feature);
 
@@ -59,7 +57,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
             return GetAggregateResult(passedCount, failedCount, skippedCount);
         }
 
-        public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
+        public override TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
         {
             IEnumerable<assembliesAssemblyCollectionTest> exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
             int passedCount = 0;
@@ -88,7 +86,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
             return GetAggregateResult(passedCount, failedCount, skippedCount);
         }
 
-        public TestResult GetScenarioResult(Scenario scenario)
+        public override TestResult GetScenarioResult(Scenario scenario)
         {
             var scenarioElement = this.GetScenarioElement(scenario);
             return scenarioElement != null
@@ -183,7 +181,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
             return result;
         }
 
-        public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
+        public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
         {
             IEnumerable<assembliesAssemblyCollectionTest> exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
 

@@ -26,34 +26,18 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
 {
-    public class XUnitResults : MultipleTestResults
+    public class XUnitResults : XUnitResultsBase<XUnitSingleResults>
     {
         private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
 
         public XUnitResults(IConfiguration configuration, XUnitExampleSignatureBuilder exampleSignatureBuilder)
-            : base(true, configuration)
+            : base(configuration, exampleSignatureBuilder)
         {
-            this.SetExampleSignatureBuilder(exampleSignatureBuilder);
-        }
-
-        public void SetExampleSignatureBuilder(XUnitExampleSignatureBuilder exampleSignatureBuilder)
-        {
-            foreach (var testResult in TestResults.OfType<XUnitSingleResults>())
-            {
-                testResult.ExampleSignatureBuilder = exampleSignatureBuilder;
-            }
         }
 
         protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
         {
             return new XUnitSingleResults(DocumentLoader.Load(fileInfo));
-        }
-
-        public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] arguments)
-        {
-            var results = TestResults.OfType<XUnitSingleResults>().Select(tr => tr.GetExampleResult(scenarioOutline, arguments)).ToArray();
-
-            return EvaluateTestResults(results);
         }
     }
 }

@@ -81,6 +81,8 @@
     </Compile>
     <Compile Include="XUnit\XUnit2\XUnit2Results.cs" />
     <Compile Include="XUnit\XUnit2\XUnit2SingleResults.cs" />
+    <Compile Include="XUnit\XUnitResultsBase.cs" />
+    <Compile Include="XUnit\XUnitSingleResultsBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NUnit3\results-example-nunit3.xsd">

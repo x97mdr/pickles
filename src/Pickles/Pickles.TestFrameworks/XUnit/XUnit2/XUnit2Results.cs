@@ -20,40 +20,23 @@
 
 using System;
 using System.IO.Abstractions;
-using System.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
 {
-    public class XUnit2Results : MultipleTestResults
+    public class XUnit2Results : XUnitResultsBase<XUnit2SingleResults>
     {
         private readonly XmlDeserializer<assemblies> xmlDeserializer = new XmlDeserializer<assemblies>();
 
         public XUnit2Results(IConfiguration configuration, XUnitExampleSignatureBuilder exampleSignatureBuilder)
-            : base(true, configuration)
+            : base(configuration, exampleSignatureBuilder)
         {
-            this.SetExampleSignatureBuilder(exampleSignatureBuilder);
-        }
-
-        public void SetExampleSignatureBuilder(XUnitExampleSignatureBuilder exampleSignatureBuilder)
-        {
-            foreach (var testResult in TestResults.OfType<XUnit2SingleResults>())
-            {
-                testResult.ExampleSignatureBuilder = exampleSignatureBuilder;
-            }
         }
 
         protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
         {
             return new XUnit2SingleResults(this.xmlDeserializer.Load(fileInfo));
-        }
-
-        public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] arguments)
-        {
-            var results = TestResults.OfType<XUnit2SingleResults>().Select(tr => tr.GetExampleResult(scenarioOutline, arguments)).ToArray();
-
-            return EvaluateTestResults(results);
         }
     }
 }
