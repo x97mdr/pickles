@@ -298,19 +298,6 @@ namespace PicklesDoc.Pickles.Test
         }
 
         [Test]
-        public void ThenCanParseResultsFormatXunitWithLongFormSuccessfully()
-        {
-            var args = new[] { @"-test-results-format=xunit" };
-
-            var configuration = new Configuration();
-            var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
-
-            Check.That(shouldContinue).IsTrue();
-            Check.That(configuration.TestResultsFormat).IsEqualTo(TestResultsFormat.xUnit);
-        }
-
-        [Test]
         public void ThenCanParseResultsFormatXunitWithShortFormSuccessfully()
         {
             var args = new[] { @"-trfmt=xunit" };
@@ -320,7 +307,46 @@ namespace PicklesDoc.Pickles.Test
             bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
-            Check.That(configuration.TestResultsFormat).IsEqualTo(TestResultsFormat.xUnit);
+            Check.That(configuration.TestResultsFormat).IsEqualTo(TestResultsFormat.XUnit);
+        }
+
+        [Test]
+        public void ThenCanParseResultsFormatXunitWithLongFormSuccessfully()
+        {
+            var args = new[] { @"-test-results-format=xunit" };
+
+            var configuration = new Configuration();
+            var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
+            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+
+            Check.That(shouldContinue).IsTrue();
+            Check.That(configuration.TestResultsFormat).IsEqualTo(TestResultsFormat.XUnit);
+        }
+
+        [Test]
+        public void ThenCanParseResultsFormatXunit1WithShortFormSuccessfully()
+        {
+            var args = new[] { @"-trfmt=xunit1" };
+
+            var configuration = new Configuration();
+            var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
+            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+
+            Check.That(shouldContinue).IsTrue();
+            Check.That(configuration.TestResultsFormat).IsEqualTo(TestResultsFormat.XUnit1);
+        }
+
+        [Test]
+        public void ThenCanParseResultsFormatXunit1WithLongFormSuccessfully()
+        {
+            var args = new[] { @"-test-results-format=xunit1" };
+
+            var configuration = new Configuration();
+            var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
+            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+
+            Check.That(shouldContinue).IsTrue();
+            Check.That(configuration.TestResultsFormat).IsEqualTo(TestResultsFormat.XUnit1);
         }
 
         [Test]

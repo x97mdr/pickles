@@ -98,7 +98,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
             FileSystem.AddFile("results-example-xunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "XUnit1.results-example-xunit.xml"));
 
             var configuration = Container.Resolve<IConfiguration>();
-            configuration.TestResultsFormat = TestResultsFormat.xUnit;
+            configuration.TestResultsFormat = TestResultsFormat.XUnit1;
             configuration.AddTestResultFile(FileSystem.FileInfo.FromFileName("results-example-xunit.xml"));
 
             var item1 = Container.Resolve<ITestResults>();
@@ -194,7 +194,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
             FileSystem.AddFile("results-example-xunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "XUnit1.results-example-xunit.xml"));
 
             var configuration = Container.Resolve<IConfiguration>();
-            configuration.TestResultsFormat = TestResultsFormat.xUnit;
+            configuration.TestResultsFormat = TestResultsFormat.XUnit1;
             configuration.AddTestResultFile(FileSystem.FileInfo.FromFileName("results-example-xunit.xml"));
 
             var item = Container.Resolve<ITestResults>();

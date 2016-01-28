@@ -35,7 +35,12 @@ namespace PicklesDoc.Pickles
         /// <summary>
         /// xUnit 1 format.
         /// </summary>
-        xUnit,
+        XUnit,
+
+        /// <summary>
+        /// xUnit 1 format.
+        /// </summary>
+        XUnit1,
 
         /// <summary>
         /// Microsoft Test format.

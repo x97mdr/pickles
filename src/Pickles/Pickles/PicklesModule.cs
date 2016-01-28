@@ -101,7 +101,8 @@ namespace PicklesDoc.Pickles
                         return c.Resolve<NUnitResults>();
                     case TestResultsFormat.NUnit3:
                         return c.Resolve<NUnit3Results>();
-                    case TestResultsFormat.xUnit:
+                    case TestResultsFormat.XUnit:
+                    case TestResultsFormat.XUnit1:
                         return c.Resolve<XUnit1Results>();
                     case TestResultsFormat.xUnit2:
                         return c.Resolve<XUnit2Results>();
