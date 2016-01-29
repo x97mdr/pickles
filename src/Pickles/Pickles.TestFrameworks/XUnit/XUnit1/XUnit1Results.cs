@@ -27,16 +27,18 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
 {
     public class XUnit1Results : XUnitResultsBase<XUnit1SingleResult>
     {
-        private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
+        private readonly ISingleResultLoader singleResultLoader = new XUnit1SingleResultLoader();
 
-        public XUnit1Results(IConfiguration configuration, XUnitExampleSignatureBuilder exampleSignatureBuilder)
+        public XUnit1Results(
+            IConfiguration configuration,
+            XUnitExampleSignatureBuilder exampleSignatureBuilder)
             : base(configuration, exampleSignatureBuilder)
         {
         }
 
         protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
         {
-            return new XUnit1SingleResult(DocumentLoader.Load(fileInfo));
+            return this.singleResultLoader.Load(fileInfo);
         }
     }
 }
