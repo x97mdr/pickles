@@ -31,7 +31,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
     {
         private readonly ISingleResultLoader singleResultLoader;
 
-        protected MultipleTestResults(bool supportsExampleResults, IEnumerable<ITestResults> testResults)
+        protected MultipleTestResults(bool supportsExampleResults, IEnumerable<SingleTestRunBase> testResults)
         {
             this.SupportsExampleResults = supportsExampleResults;
             this.TestResults = testResults;
@@ -46,7 +46,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         public bool SupportsExampleResults { get; }
 
-        protected IEnumerable<ITestResults> TestResults { get; }
+        protected IEnumerable<SingleTestRunBase> TestResults { get; }
 
         public abstract TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues);
 
@@ -76,14 +76,14 @@ namespace PicklesDoc.Pickles.TestFrameworks
             return results.Merge(true);
         }
 
-        protected ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
+        protected SingleTestRunBase ConstructSingleTestResult(FileInfoBase fileInfo)
         {
             return this.singleResultLoader.Load(fileInfo);
         }
 
-        private IEnumerable<ITestResults> GetSingleTestResults(IConfiguration configuration)
+        private IEnumerable<SingleTestRunBase> GetSingleTestResults(IConfiguration configuration)
         {
-            ITestResults[] results;
+            SingleTestRunBase[] results;
 
             if (configuration.HasTestResults)
             {
@@ -91,7 +91,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
             }
             else
             {
-                results = new ITestResults[0];
+                results = new SingleTestRunBase[0];
             }
 
             return results;

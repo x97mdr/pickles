@@ -29,7 +29,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2
     {
         private readonly XDocumentLoader documentLoader = new XDocumentLoader();
 
-        public ITestResults Load(FileInfoBase fileInfo)
+        public SingleTestRunBase Load(FileInfoBase fileInfo)
         {
             return new NUnit2SingleResults(this.documentLoader.Load(fileInfo));
         }

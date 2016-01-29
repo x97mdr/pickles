@@ -27,7 +27,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
 {
     public class CucumberJsonSingleResultLoader : ISingleResultLoader
     {
-        public ITestResults Load(FileInfoBase fileInfo)
+        public SingleTestRunBase Load(FileInfoBase fileInfo)
         {
             return new CucumberJsonSingleResults(fileInfo);
         }

@@ -6,6 +6,6 @@ namespace PicklesDoc.Pickles.TestFrameworks
 {
     public interface ISingleResultLoader
     {
-        ITestResults Load(FileInfoBase fileInfo);
+        SingleTestRunBase Load(FileInfoBase fileInfo);
     }
 }

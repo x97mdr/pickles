@@ -27,7 +27,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 {
     public class SpecRunSingleResultLoader : ISingleResultLoader
     {
-        public ITestResults Load(FileInfoBase fileInfo)
+        public SingleTestRunBase Load(FileInfoBase fileInfo)
         {
             return new SpecRunSingleResults(fileInfo);
         }

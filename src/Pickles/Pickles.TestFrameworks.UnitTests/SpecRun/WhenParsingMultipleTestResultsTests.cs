@@ -50,14 +50,14 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.SpecRun
             Check.That(result).IsEqualTo(TestResult.Passed);
         }
 
-        private static MultipleTestResults CreateMultipleTestResults(ITestResults testResults1, ITestResults testResults2)
+        private static MultipleTestResults CreateMultipleTestResults(SingleTestRunBase testResults1, SingleTestRunBase testResults2)
         {
             return new TestableMultipleTestResults(new[] { testResults1, testResults2 });
         }
 
         private class TestableMultipleTestResults : MultipleTestResults
         {
-            public TestableMultipleTestResults(IEnumerable<ITestResults> testResults)
+            public TestableMultipleTestResults(IEnumerable<SingleTestRunBase> testResults)
                 : base(false, testResults)
             {
             }
@@ -120,9 +120,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.SpecRun
             Check.That(result).IsEqualTo(TestResult.Passed);
         }
 
-        private static Mock<ITestResults> SetupStubForGetScenarioOutlineResult(TestResult resultOfGetFeatureResult)
+        private static Mock<SingleTestRunBase> SetupStubForGetScenarioOutlineResult(TestResult resultOfGetFeatureResult)
         {
-            var testResults1 = new Mock<ITestResults>();
+            var testResults1 = new Mock<SingleTestRunBase>();
             testResults1.Setup(ti => ti.GetScenarioOutlineResult(It.IsAny<ScenarioOutline>())).Returns(resultOfGetFeatureResult);
             return testResults1;
         }
@@ -172,9 +172,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.SpecRun
             Check.That(result).IsEqualTo(TestResult.Passed);
         }
 
-        private static Mock<ITestResults> SetupStubForGetScenarioResult(TestResult resultOfGetFeatureResult)
+        private static Mock<SingleTestRunBase> SetupStubForGetScenarioResult(TestResult resultOfGetFeatureResult)
         {
-            var testResults1 = new Mock<ITestResults>();
+            var testResults1 = new Mock<SingleTestRunBase>();
             testResults1.Setup(ti => ti.GetScenarioResult(It.IsAny<Scenario>())).Returns(resultOfGetFeatureResult);
             return testResults1;
         }
