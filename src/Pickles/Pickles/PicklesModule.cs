@@ -31,6 +31,7 @@ using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks;
 using PicklesDoc.Pickles.TestFrameworks.CucumberJson;
 using PicklesDoc.Pickles.TestFrameworks.MsTest;
+using PicklesDoc.Pickles.TestFrameworks.NUnit;
 using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2;
 using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3;
 using PicklesDoc.Pickles.TestFrameworks.SpecRun;
@@ -78,10 +79,9 @@ namespace PicklesDoc.Pickles
 
             builder.RegisterType<NUnit2Results>();
             builder.RegisterType<NUnit2SingleResultLoader>();
-            builder.RegisterType<NUnit2ExampleSignatureBuilder>();
+            builder.RegisterType<NUnitExampleSignatureBuilder>();
             builder.RegisterType<NUnit3Results>();
             builder.RegisterType<NUnit3SingleResultLoader>();
-            builder.RegisterType<NUnit3ExampleSignatureBuilder>();
             builder.RegisterType<XUnit1Results>();
             builder.RegisterType<XUnit1SingleResultLoader>();
             builder.RegisterType<XUnitExampleSignatureBuilder>();

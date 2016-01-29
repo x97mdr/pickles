@@ -41,7 +41,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
         public void ThenCanReadIndividualResultsFromScenarioOutline_ContainingDollarSigns_ShouldBeTestResultSuccess()
         {
             var results = ParseResultsFile();
-            results.SetExampleSignatureBuilder(new NUnit2ExampleSignatureBuilder());
 
             var feature = new Feature { Name = "ExampleWebFeature" };
 
