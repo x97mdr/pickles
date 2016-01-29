@@ -2,7 +2,7 @@
 
 using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.TestFrameworks.XUnit
+namespace PicklesDoc.Pickles.TestFrameworks
 {
     public interface ISingleResultLoader
     {

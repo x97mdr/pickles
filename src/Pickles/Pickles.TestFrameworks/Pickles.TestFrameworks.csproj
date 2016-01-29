@@ -53,6 +53,7 @@
     <Compile Include="CucumberJson\Result.cs" />
     <Compile Include="CucumberJson\Step.cs" />
     <Compile Include="CucumberJson\Tag.cs" />
+    <Compile Include="ISingleResultLoader.cs" />
     <Compile Include="MsTest\MsTestResults.cs" />
     <Compile Include="MsTest\MsTestSingleResults.cs" />
     <Compile Include="MultipleTestResults.cs" />
@@ -73,7 +74,6 @@
     <Compile Include="SpecRun\SpecRunSingleResults.cs" />
     <Compile Include="XDocumentLoader.cs" />
     <Compile Include="XmlDeserializer.cs" />
-    <Compile Include="XUnit\ISingleResultLoader.cs" />
     <Compile Include="XUnit\XUnit1\XUnit1SingleResultLoader.cs" />
     <Compile Include="XUnit\XUnit2\XUnit2SingleResultLoader.cs" />
     <Compile Include="XUnit\xUnitExampleSignatureBuilder.cs" />
