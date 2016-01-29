@@ -21,8 +21,6 @@
 using System;
 using System.IO.Abstractions;
 
-using PicklesDoc.Pickles.ObjectModel;
-
 namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2
 {
     public class NUnit2SingleResultLoader : ISingleResultLoader
