@@ -27,10 +27,8 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
 {
-    public class NUnitSingleResults : ITestResults
+    public class NUnitSingleResults : SingleTestRunBase
     {
-        internal NUnitExampleSignatureBuilder ExampleSignatureBuilder { get; set; }
-
         private readonly XDocument resultsDocument;
 
         public NUnitSingleResults(XDocument resultsDocument)
@@ -38,12 +36,12 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
             this.resultsDocument = resultsDocument;
         }
 
-        public bool SupportsExampleResults
+        public override bool SupportsExampleResults
         {
             get { return true; }
         }
 
-        public TestResult GetFeatureResult(Feature feature)
+        public override TestResult GetFeatureResult(Feature feature)
         {
             var featureElement = this.GetFeatureElement(feature);
 
@@ -58,39 +56,92 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
             return results.Merge();
         }
 
-        public TestResult GetScenarioResult(Scenario scenario)
+        public override TestResult GetScenarioResult(Scenario scenario)
+        {
+            var scenarioElement = this.GetScenarioElement(scenario);
+
+            return this.GetResultFromElement(scenarioElement);
+        }
+
+        public override TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
+        {
+            var scenarioOutlineElement = this.GetScenarioOutlineElement(scenarioOutline);
+
+            return this.DetermineScenarioOutlineResult(scenarioOutlineElement);
+        }
+
+        public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
+        {
+            Regex exampleSignature = this.CreateSignatureRegex(scenarioOutline, exampleValues);
+
+            var examplesElement = this.GetExamplesElement(scenarioOutline, exampleSignature);
+
+            return this.GetResultFromElement(examplesElement);
+        }
+
+        private static bool IsAttributeSetToValue(XElement element, string attributeName, string expectedValue)
+        {
+            return element.Attribute(attributeName) != null
+                       ? string.Equals(
+                           element.Attribute(attributeName).Value,
+                           expectedValue,
+                           StringComparison.InvariantCultureIgnoreCase)
+                       : false;
+        }
+
+        private static bool IsMatchingTestCase(XElement x, Regex exampleSignature)
+        {
+            var name = x.Attribute("name");
+            return name != null && exampleSignature.IsMatch(name.Value.ToLowerInvariant().Replace(@"\", string.Empty));
+        }
+
+        private static bool IsMatchingParameterizedTestElement(XElement element, ScenarioOutline scenarioOutline)
+        {
+            var description = element.Attribute("description");
+
+            return description != null &&
+                   description.Value.Equals(scenarioOutline.Name, StringComparison.OrdinalIgnoreCase) &&
+                   element.Descendants("test-case").Any();
+        }
+
+        private XElement GetScenarioElement(Scenario scenario)
         {
             XElement featureElement = this.GetFeatureElement(scenario.Feature);
             XElement scenarioElement = null;
             if (featureElement != null)
             {
-                scenarioElement = featureElement
-                    .Descendants("test-case")
-                    .Where(x => x.Attribute("description") != null)
-                    .FirstOrDefault(x => x.Attribute("description").Value == scenario.Name);
+                scenarioElement =
+                    featureElement.Descendants("test-case")
+                        .Where(x => x.Attribute("description") != null)
+                        .FirstOrDefault(x => x.Attribute("description").Value == scenario.Name);
             }
-
-            return this.GetResultFromElement(scenarioElement);
+            return scenarioElement;
         }
 
-        public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
+        private XElement GetScenarioOutlineElement(ScenarioOutline scenarioOutline)
         {
             XElement featureElement = this.GetFeatureElement(scenarioOutline.Feature);
             XElement scenarioOutlineElement = null;
             if (featureElement != null)
             {
-                scenarioOutlineElement = this.GetFeatureElement(scenarioOutline.Feature)
-                    .Descendants("test-suite")
-                    .Where(x => x.Attribute("description") != null)
-                    .FirstOrDefault(x => x.Attribute("description").Value == scenarioOutline.Name);
+                scenarioOutlineElement =
+                    this.GetFeatureElement(scenarioOutline.Feature)
+                        .Descendants("test-suite")
+                        .Where(x => x.Attribute("description") != null)
+                        .FirstOrDefault(x => x.Attribute("description").Value == scenarioOutline.Name);
             }
 
+            return scenarioOutlineElement;
+        }
+
+        private TestResult DetermineScenarioOutlineResult(XElement scenarioOutlineElement)
+        {
             if (scenarioOutlineElement != null)
             {
                 return scenarioOutlineElement.Descendants("test-case").Select(this.GetResultFromElement).Merge();
             }
 
-            return this.GetResultFromElement(scenarioOutlineElement);
+            return TestResult.Inconclusive;
         }
 
         private XElement GetFeatureElement(Feature feature)
@@ -138,59 +189,24 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
             }
         }
 
-        private static bool IsAttributeSetToValue(XElement element, string attributeName, string expectedValue)
-        {
-            return element.Attribute(attributeName) != null
-                ? string.Equals(
-                    element.Attribute(attributeName).Value,
-                    expectedValue,
-                    StringComparison.InvariantCultureIgnoreCase)
-                : false;
-        }
-
-        public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
+        private XElement GetExamplesElement(ScenarioOutline scenarioOutline, Regex exampleSignature)
         {
             XElement featureElement = this.GetFeatureElement(scenarioOutline.Feature);
             XElement examplesElement = null;
             if (featureElement != null)
             {
-                var signatureBuilder = this.ExampleSignatureBuilder;
-
-                if (signatureBuilder == null)
-                {
-                    throw new InvalidOperationException(
-                        "You need to set the ExampleSignatureBuilder before using GetExampleResult.");
-                }
-
-                Regex exampleSignature = signatureBuilder.Build(scenarioOutline, exampleValues);
-
-                var parameterizedTestElement = featureElement
-                    .Descendants("test-suite")
-                    .FirstOrDefault(x => IsMatchingParameterizedTestElement(x, scenarioOutline));
+                var parameterizedTestElement =
+                    featureElement.Descendants("test-suite")
+                        .FirstOrDefault(x => IsMatchingParameterizedTestElement(x, scenarioOutline));
 
                 if (parameterizedTestElement != null)
                 {
-                    examplesElement = parameterizedTestElement.Descendants("test-case")
-                        .FirstOrDefault(x => IsMatchingTestCase(x, exampleSignature));
+                    examplesElement =
+                        parameterizedTestElement.Descendants("test-case")
+                            .FirstOrDefault(x => IsMatchingTestCase(x, exampleSignature));
                 }
             }
-
-            return this.GetResultFromElement(examplesElement);
-        }
-
-        private static bool IsMatchingTestCase(XElement x, Regex exampleSignature)
-        {
-            var name = x.Attribute("name");
-            return name != null && exampleSignature.IsMatch(name.Value.ToLowerInvariant().Replace(@"\", string.Empty));
-        }
-
-        private static bool IsMatchingParameterizedTestElement(XElement element, ScenarioOutline scenarioOutline)
-        {
-            var description = element.Attribute("description");
-
-            return description != null &&
-                   description.Value.Equals(scenarioOutline.Name, StringComparison.OrdinalIgnoreCase) &&
-                   element.Descendants("test-case").Any();
+            return examplesElement;
         }
     }
 }

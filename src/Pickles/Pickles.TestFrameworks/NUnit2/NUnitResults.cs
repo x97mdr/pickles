@@ -19,33 +19,14 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Linq;
-
-using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
 {
-    public class NUnitResults : MultipleTestResults
+    public class NUnitResults : MultipleTestRunsBase<NUnitSingleResults>
     {
         public NUnitResults(IConfiguration configuration, NUnit2SingleResultLoader singleResultLoader, NUnitExampleSignatureBuilder exampleSignatureBuilder)
-            : base(true, configuration, singleResultLoader)
+            : base(configuration, singleResultLoader, exampleSignatureBuilder)
         {
-            this.SetExampleSignatureBuilder(exampleSignatureBuilder);
-        }
-
-        public void SetExampleSignatureBuilder(NUnitExampleSignatureBuilder exampleSignatureBuilder)
-        {
-            foreach (var testResult in TestResults.OfType<NUnitSingleResults>())
-            {
-                testResult.ExampleSignatureBuilder = exampleSignatureBuilder;
-            }
-        }
-
-        public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] arguments)
-        {
-            var results = TestResults.OfType<NUnitSingleResults>().Select(tr => tr.GetExampleResult(scenarioOutline, arguments)).ToArray();
-
-            return EvaluateTestResults(results);
         }
     }
 }
