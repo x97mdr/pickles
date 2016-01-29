@@ -83,7 +83,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
                 }
             }
 
-            return GetAggregateResult(passedCount, failedCount, skippedCount);
+            return this.GetAggregateResult(passedCount, failedCount, skippedCount);
         }
 
         public override TestResult GetScenarioResult(Scenario scenario)
@@ -157,25 +157,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
                 default:
                     result = TestResult.Inconclusive;
                     break;
-            }
-
-            return result;
-        }
-
-        private static TestResult GetAggregateResult(int passedCount, int failedCount, int skippedCount)
-        {
-            TestResult result;
-            if (passedCount > 0 && failedCount == 0)
-            {
-                result = TestResult.Passed;
-            }
-            else if (failedCount > 0)
-            {
-                result = TestResult.Failed;
-            }
-            else
-            {
-                result = TestResult.Inconclusive;
             }
 
             return result;
