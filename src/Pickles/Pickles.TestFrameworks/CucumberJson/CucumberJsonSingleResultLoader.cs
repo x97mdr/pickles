@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="CucumberJsonResults.cs" company="PicklesDoc">
+//  <copyright file="CucumberJsonSingleResultLoader.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -25,23 +25,11 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
 {
-    public class CucumberJsonResults : MultipleTestResults
+    public class CucumberJsonSingleResultLoader : ISingleResultLoader
     {
-        private readonly ISingleResultLoader singleResultLoader = new CucumberJsonSingleResultLoader();
-
-        public CucumberJsonResults(IConfiguration configuration)
-            : base(false, configuration)
+        public ITestResults Load(FileInfoBase fileInfo)
         {
-        }
-
-        public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
-        {
-            throw new NotSupportedException();
-        }
-
-        protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
-        {
-            return this.singleResultLoader.Load(fileInfo);
+            return new CucumberJsonSingleResults(fileInfo);
         }
     }
 }

@@ -53,6 +53,7 @@
     <Compile Include="CucumberJson\Result.cs" />
     <Compile Include="CucumberJson\Step.cs" />
     <Compile Include="CucumberJson\Tag.cs" />
+    <Compile Include="CucumberJson\CucumberJsonSingleResultLoader.cs" />
     <Compile Include="ISingleResultLoader.cs" />
     <Compile Include="MsTest\MsTestResults.cs" />
     <Compile Include="MsTest\MsTestSingleResults.cs" />
