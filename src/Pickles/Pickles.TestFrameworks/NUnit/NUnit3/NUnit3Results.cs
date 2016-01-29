@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="NUnit3ExampleSignatureBuilder.cs" company="PicklesDoc">
+//  <copyright file="NUnit3Results.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -19,28 +19,14 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Text;
-using System.Text.RegularExpressions;
 
-using PicklesDoc.Pickles.ObjectModel;
-
-namespace PicklesDoc.Pickles.TestFrameworks.NUnit3
+namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3
 {
-    public class NUnit3ExampleSignatureBuilder : IExampleSignatureBuilder
+    public class NUnit3Results : MultipleTestRunsBase<NUnit3SingleResult>
     {
-        public Regex Build(ScenarioOutline scenarioOutline, string[] row)
+        public NUnit3Results(IConfiguration configuration, NUnit3SingleResultLoader singleResultLoader, NUnitExampleSignatureBuilder exampleSignatureBuilder)
+            : base(configuration, singleResultLoader, exampleSignatureBuilder)
         {
-            var stringBuilder = new StringBuilder();
-            stringBuilder.Append(scenarioOutline.Name.ToLowerInvariant().Replace(" ", string.Empty) + "\\(");
-
-            foreach (string value in row)
-            {
-                stringBuilder.AppendFormat("\"{0}\",", value.ToLowerInvariant().Replace(@"\", string.Empty).Replace(@"$", @"\$"));
-            }
-
-            stringBuilder.Remove(stringBuilder.Length - 1, 1);
-
-            return new Regex(stringBuilder.ToString());
         }
     }
 }

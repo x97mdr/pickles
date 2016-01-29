@@ -61,15 +61,14 @@
     <Compile Include="MsTest\MsTestSingleResultLoader.cs" />
     <Compile Include="MultipleTestResults.cs" />
     <Compile Include="MultipleTestRunsBase.cs" />
-    <Compile Include="NUnit2\NUnitExampleSignatureBuilder.cs" />
-    <Compile Include="NUnit2\NUnitResults.cs" />
-    <Compile Include="NUnit2\NUnitSingleResults.cs" />
-    <Compile Include="NUnit2\NUnit2SingleResultLoader.cs" />
-    <Compile Include="NUnit3\NUnit3SingleResultLoader.cs" />
-    <Compile Include="NUnit3\NUnit3ExampleSignatureBuilder.cs" />
-    <Compile Include="NUnit3\NUnit3Results.cs" />
-    <Compile Include="NUnit3\NUnit3SingleResult.cs" />
-    <Compile Include="NUnit3\results-example-nunit3.cs">
+    <Compile Include="NUnit\NUnitExampleSignatureBuilder.cs" />
+    <Compile Include="NUnit\NUnit2\NUnit2Results.cs" />
+    <Compile Include="NUnit\NUnit2\NUnit2SingleResults.cs" />
+    <Compile Include="NUnit\NUnit2\NUnit2SingleResultLoader.cs" />
+    <Compile Include="NUnit\NUnit3\NUnit3SingleResultLoader.cs" />
+    <Compile Include="NUnit\NUnit3\NUnit3Results.cs" />
+    <Compile Include="NUnit\NUnit3\NUnit3SingleResult.cs" />
+    <Compile Include="NUnit\NUnit3\results-example-nunit3.cs">
       <DependentUpon>results-example-nunit3.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,7 +93,7 @@
     <Compile Include="XUnit\XUnit2\XUnit2SingleResults.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="NUnit3\results-example-nunit3.xsd">
+    <None Include="NUnit\NUnit3\results-example-nunit3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />

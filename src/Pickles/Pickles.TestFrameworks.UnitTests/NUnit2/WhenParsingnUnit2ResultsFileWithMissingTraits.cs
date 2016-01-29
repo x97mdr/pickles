@@ -25,12 +25,12 @@ using NFluent;
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.TestFrameworks.NUnit2;
+using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2;
 
 namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
 {
     [TestFixture]
-    public class WhenParsingnUnit2ResultsFileWithMissingTraits : WhenParsingTestResultFiles<NUnitResults>
+    public class WhenParsingnUnit2ResultsFileWithMissingTraits : WhenParsingTestResultFiles<NUnit2Results>
     {
         public WhenParsingnUnit2ResultsFileWithMissingTraits()
             : base("NUnit2." + "results-example-nunit-missingTraits.xml")

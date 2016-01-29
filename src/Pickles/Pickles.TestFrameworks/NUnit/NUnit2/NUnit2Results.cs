@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="NUnit2SingleResultLoader.cs" company="PicklesDoc">
+//  <copyright file="NUnit2Results.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -19,19 +19,14 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.IO.Abstractions;
 
-using PicklesDoc.Pickles.ObjectModel;
-
-namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
+namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2
 {
-    public class NUnit2SingleResultLoader : ISingleResultLoader
+    public class NUnit2Results : MultipleTestRunsBase<NUnit2SingleResults>
     {
-        private readonly XDocumentLoader documentLoader = new XDocumentLoader();
-
-        public ITestResults Load(FileInfoBase fileInfo)
+        public NUnit2Results(IConfiguration configuration, NUnit2SingleResultLoader singleResultLoader, NUnitExampleSignatureBuilder exampleSignatureBuilder)
+            : base(configuration, singleResultLoader, exampleSignatureBuilder)
         {
-            return new NUnitSingleResults(this.documentLoader.Load(fileInfo));
         }
     }
 }

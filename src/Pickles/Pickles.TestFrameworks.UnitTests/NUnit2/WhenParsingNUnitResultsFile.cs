@@ -25,12 +25,12 @@ using NFluent;
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.TestFrameworks.NUnit2;
+using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2;
 
 namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
 {
     [TestFixture]
-    public class WhenParsingNUnitResultsFile : WhenParsingTestResultFiles<NUnitResults>
+    public class WhenParsingNUnitResultsFile : WhenParsingTestResultFiles<NUnit2Results>
     {
         public WhenParsingNUnitResultsFile()
             : base("NUnit2." + "results-example-nunit.xml")
@@ -200,7 +200,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
         public void ThenCanReadIndividualResultsFromScenarioOutline_AllPass_ShouldBeTestResultPassed()
         {
             var results = ParseResultsFile();
-            results.SetExampleSignatureBuilder(new NUnitExampleSignatureBuilder());
+            results.SetExampleSignatureBuilder(new NUnit2ExampleSignatureBuilder());
 
             var feature = new Feature { Name = "Scenario Outlines" };
 
@@ -223,7 +223,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
         public void ThenCanReadIndividualResultsFromScenarioOutline_OneInconclusive_ShouldBeTestResultInconclusive()
         {
             var results = ParseResultsFile();
-            results.SetExampleSignatureBuilder(new NUnitExampleSignatureBuilder());
+            results.SetExampleSignatureBuilder(new NUnit2ExampleSignatureBuilder());
 
             var feature = new Feature { Name = "Scenario Outlines" };
 
@@ -246,7 +246,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
         public void ThenCanReadIndividualResultsFromScenarioOutline_OneFailed_ShouldBeTestResultFailed()
         {
             var results = ParseResultsFile();
-            results.SetExampleSignatureBuilder(new NUnitExampleSignatureBuilder());
+            results.SetExampleSignatureBuilder(new NUnit2ExampleSignatureBuilder());
 
             var feature = new Feature { Name = "Scenario Outlines" };
 
@@ -269,7 +269,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
         public void ThenCanReadIndividualResultsFromScenarioOutline_MultipleExampleSections_ShouldBeTestResultFailed()
         {
             var results = ParseResultsFile();
-            results.SetExampleSignatureBuilder(new NUnitExampleSignatureBuilder());
+            results.SetExampleSignatureBuilder(new NUnit2ExampleSignatureBuilder());
 
             var feature = new Feature { Name = "Scenario Outlines" };
 
@@ -301,7 +301,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
         public void ThenCanReadResultsWithBackslashes()
         {
             var results = ParseResultsFile();
-            results.SetExampleSignatureBuilder(new NUnitExampleSignatureBuilder());
+            results.SetExampleSignatureBuilder(new NUnit2ExampleSignatureBuilder());
 
             var feature = new Feature { Name = "Scenario Outlines" };
 

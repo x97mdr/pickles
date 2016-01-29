@@ -1,5 +1,5 @@
-//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="NUnitSingleResults.cs" company="PicklesDoc">
+﻿//  --------------------------------------------------------------------------------------------------------------------
+//  <copyright file="NUnit3SingleResult.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -25,13 +25,13 @@ using System.Xml.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
+namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3
 {
-    public class NUnitSingleResults : SingleTestRunBase
+    public class NUnit3SingleResult : SingleTestRunBase
     {
         private readonly XDocument resultsDocument;
 
-        public NUnitSingleResults(XDocument resultsDocument)
+        public NUnit3SingleResult(XDocument resultsDocument)
         {
             this.resultsDocument = resultsDocument;
         }
@@ -82,26 +82,17 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
         private static bool IsAttributeSetToValue(XElement element, string attributeName, string expectedValue)
         {
             return element.Attribute(attributeName) != null
-                       ? string.Equals(
-                           element.Attribute(attributeName).Value,
-                           expectedValue,
-                           StringComparison.InvariantCultureIgnoreCase)
-                       : false;
+                ? string.Equals(
+                    element.Attribute(attributeName).Value,
+                    expectedValue,
+                    StringComparison.InvariantCultureIgnoreCase)
+                : false;
         }
 
         private static bool IsMatchingTestCase(XElement x, Regex exampleSignature)
         {
             var name = x.Attribute("name");
             return name != null && exampleSignature.IsMatch(name.Value.ToLowerInvariant().Replace(@"\", string.Empty));
-        }
-
-        private static bool IsMatchingParameterizedTestElement(XElement element, ScenarioOutline scenarioOutline)
-        {
-            var description = element.Attribute("description");
-
-            return description != null &&
-                   description.Value.Equals(scenarioOutline.Name, StringComparison.OrdinalIgnoreCase) &&
-                   element.Descendants("test-case").Any();
         }
 
         private XElement GetScenarioElement(Scenario scenario)
@@ -112,26 +103,16 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
             {
                 scenarioElement =
                     featureElement.Descendants("test-case")
-                        .Where(x => x.Attribute("description") != null)
-                        .FirstOrDefault(x => x.Attribute("description").Value == scenario.Name);
+                        .FirstOrDefault(
+                            ts =>
+                            ts.Elements("properties")
+                                .Elements("property")
+                                .Any(
+                                    p =>
+                                    p.Attribute("name").Value == "Description" && p.Attribute("value").Value == scenario.Name));
             }
+
             return scenarioElement;
-        }
-
-        private XElement GetScenarioOutlineElement(ScenarioOutline scenarioOutline)
-        {
-            XElement featureElement = this.GetFeatureElement(scenarioOutline.Feature);
-            XElement scenarioOutlineElement = null;
-            if (featureElement != null)
-            {
-                scenarioOutlineElement =
-                    this.GetFeatureElement(scenarioOutline.Feature)
-                        .Descendants("test-suite")
-                        .Where(x => x.Attribute("description") != null)
-                        .FirstOrDefault(x => x.Attribute("description").Value == scenarioOutline.Name);
-            }
-
-            return scenarioOutlineElement;
         }
 
         private TestResult DetermineScenarioOutlineResult(XElement scenarioOutlineElement)
@@ -144,12 +125,36 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
             return TestResult.Inconclusive;
         }
 
+        private XElement GetScenarioOutlineElement(ScenarioOutline scenarioOutline)
+        {
+            XElement featureElement = this.GetFeatureElement(scenarioOutline.Feature);
+            XElement scenarioOutlineElement = null;
+            if (featureElement != null)
+            {
+                scenarioOutlineElement =
+                    this.GetFeatureElement(scenarioOutline.Feature)
+                        .Descendants("test-suite")
+                        .FirstOrDefault(
+                            ts =>
+                            ts.Elements("properties")
+                                .Elements("property")
+                                .Any(
+                                    p =>
+                                    p.Attribute("name").Value == "Description"
+                                    && p.Attribute("value").Value == scenarioOutline.Name));
+            }
+            return scenarioOutlineElement;
+        }
+
         private XElement GetFeatureElement(Feature feature)
         {
-            return this.resultsDocument
-                .Descendants("test-suite")
-                .Where(x => x.Attribute("description") != null)
-                .FirstOrDefault(x => x.Attribute("description").Value == feature.Name);
+            return
+                this.resultsDocument
+                    .Descendants("test-suite")
+                    .FirstOrDefault(
+                        ts =>
+                        ts.Elements("properties").Elements("property")
+                        .Any(p => p.Attribute("name").Value == "Description" && p.Attribute("value").Value == feature.Name));
         }
 
         private TestResult GetResultFromElement(XElement element)
@@ -158,7 +163,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
             {
                 return TestResult.Inconclusive;
             }
-            else if (IsAttributeSetToValue(element, "result", "Ignored"))
+            else if (IsAttributeSetToValue(element, "result", "Skipped"))
             {
                 return TestResult.Inconclusive;
             }
@@ -166,11 +171,11 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
             {
                 return TestResult.Inconclusive;
             }
-            else if (IsAttributeSetToValue(element, "result", "Failure"))
+            else if (IsAttributeSetToValue(element, "result", "Failed"))
             {
                 return TestResult.Failed;
             }
-            else if (IsAttributeSetToValue(element, "result", "Success"))
+            else if (IsAttributeSetToValue(element, "result", "Passed"))
             {
                 return TestResult.Passed;
             }
@@ -189,7 +194,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
             }
         }
 
-        private XElement GetExamplesElement(ScenarioOutline scenarioOutline, Regex exampleSignature)
+        private XElement GetExamplesElement(
+            ScenarioOutline scenarioOutline,
+            Regex exampleSignature)
         {
             XElement featureElement = this.GetFeatureElement(scenarioOutline.Feature);
             XElement examplesElement = null;
@@ -197,7 +204,14 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
             {
                 var parameterizedTestElement =
                     featureElement.Descendants("test-suite")
-                        .FirstOrDefault(x => IsMatchingParameterizedTestElement(x, scenarioOutline));
+                        .FirstOrDefault(
+                            ts =>
+                            ts.Elements("properties")
+                                .Elements("property")
+                                .Any(
+                                    p =>
+                                    p.Attribute("name").Value == "Description"
+                                    && p.Attribute("value").Value == scenarioOutline.Name));
 
                 if (parameterizedTestElement != null)
                 {
@@ -206,6 +220,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
                             .FirstOrDefault(x => IsMatchingTestCase(x, exampleSignature));
                 }
             }
+
             return examplesElement;
         }
     }

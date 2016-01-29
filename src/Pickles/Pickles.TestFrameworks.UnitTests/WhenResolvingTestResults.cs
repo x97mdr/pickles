@@ -30,7 +30,7 @@ using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Test;
 using PicklesDoc.Pickles.TestFrameworks.CucumberJson;
 using PicklesDoc.Pickles.TestFrameworks.MsTest;
-using PicklesDoc.Pickles.TestFrameworks.NUnit2;
+using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2;
 using PicklesDoc.Pickles.TestFrameworks.SpecRun;
 using PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1;
 
@@ -86,9 +86,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
             var item2 = Container.Resolve<ITestResults>();
 
             Check.That(item1).IsNotNull();
-            Check.That(item1).IsInstanceOf<NUnitResults>();
+            Check.That(item1).IsInstanceOf<NUnit2Results>();
             Check.That(item2).IsNotNull();
-            Check.That(item2).IsInstanceOf<NUnitResults>();
+            Check.That(item2).IsInstanceOf<NUnit2Results>();
             Check.That(item1).IsSameReferenceThan(item2);
         }
 
@@ -185,7 +185,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
             var item = Container.Resolve<ITestResults>();
 
             Check.That(item).IsNotNull();
-            Check.That(item).IsInstanceOf<NUnitResults>();
+            Check.That(item).IsInstanceOf<NUnit2Results>();
         }
 
         [Test]

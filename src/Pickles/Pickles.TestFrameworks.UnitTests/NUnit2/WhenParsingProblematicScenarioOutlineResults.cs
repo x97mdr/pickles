@@ -25,12 +25,12 @@ using NFluent;
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.TestFrameworks.NUnit2;
+using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2;
 
 namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
 {
     [TestFixture]
-    public class WhenParsingProblematicScenarioOutlineResults : WhenParsingTestResultFiles<NUnitResults>
+    public class WhenParsingProblematicScenarioOutlineResults : WhenParsingTestResultFiles<NUnit2Results>
     {
         public WhenParsingProblematicScenarioOutlineResults()
             : base("NUnit2." + "results-problem-with-outline-results-nunit.xml")
@@ -41,7 +41,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
         public void ThenCanReadIndividualResultsFromScenarioOutline_ContainingDollarSigns_ShouldBeTestResultSuccess()
         {
             var results = ParseResultsFile();
-            results.SetExampleSignatureBuilder(new NUnitExampleSignatureBuilder());
+            results.SetExampleSignatureBuilder(new NUnit2ExampleSignatureBuilder());
 
             var feature = new Feature { Name = "ExampleWebFeature" };
 

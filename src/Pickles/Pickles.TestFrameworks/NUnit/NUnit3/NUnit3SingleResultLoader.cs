@@ -23,7 +23,7 @@ using System.IO.Abstractions;
 
 using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.TestFrameworks.NUnit3
+namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3
 {
     public class NUnit3SingleResultLoader : ISingleResultLoader
     {

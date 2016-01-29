@@ -25,7 +25,7 @@ using NFluent;
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.TestFrameworks.NUnit3;
+using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3;
 
 namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.Nunit3
 {
