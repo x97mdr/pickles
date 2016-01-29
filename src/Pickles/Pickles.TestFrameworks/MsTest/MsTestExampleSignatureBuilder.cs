@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="MsTestResults.cs" company="PicklesDoc">
+//  <copyright file="MsTestExampleSignatureBuilder.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -19,14 +19,17 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Text.RegularExpressions;
+
+using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.MsTest
 {
-    public class MsTestResults : MultipleTestRunsBase<MsTestSingleResults>
+    public class MsTestExampleSignatureBuilder : IExampleSignatureBuilder
     {
-        public MsTestResults(IConfiguration configuration, MsTestSingleResultLoader singleResultLoader, MsTestExampleSignatureBuilder exampleSignatureBuilder)
-            : base(configuration, singleResultLoader, exampleSignatureBuilder)
+        public Regex Build(ScenarioOutline scenarioOutline, string[] row)
         {
+            throw new NotSupportedException();
         }
     }
 }

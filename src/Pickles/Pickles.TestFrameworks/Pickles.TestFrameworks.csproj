@@ -56,6 +56,7 @@
     <Compile Include="CucumberJson\CucumberJsonSingleResultLoader.cs" />
     <Compile Include="IExampleSignatureBuilder.cs" />
     <Compile Include="ISingleResultLoader.cs" />
+    <Compile Include="MsTest\MsTestExampleSignatureBuilder.cs" />
     <Compile Include="MsTest\MsTestResults.cs" />
     <Compile Include="MsTest\MsTestSingleResults.cs" />
     <Compile Include="MsTest\MsTestSingleResultLoader.cs" />

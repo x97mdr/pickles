@@ -27,7 +27,7 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.MsTest
 {
-    public class MsTestSingleResults : ITestResults
+    public class MsTestSingleResults : SingleTestRunBase
     {
         private const string Failed = "failed";
 
@@ -39,7 +39,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
             this.resultsDocument = resultsDocument;
         }
 
-        public bool SupportsExampleResults
+        public override bool SupportsExampleResults
         {
             get { return false; }
         }
@@ -89,12 +89,12 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
             return executionIdAttribute != null ? new Guid(executionIdAttribute.Value) : Guid.Empty;
         }
 
-        public TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+        public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
         {
             throw new NotSupportedException();
         }
 
-        public TestResult GetFeatureResult(Feature feature)
+        public override TestResult GetFeatureResult(Feature feature)
         {
             var featureExecutionIds =
                 from scenario in this.AllScenariosInResultFile()
@@ -108,7 +108,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
             return result;
         }
 
-        public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
+        public override TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
         {
             var queriedFeatureName = scenarioOutline.Feature.Name;
             var queriedScenarioOutlineName = scenarioOutline.Name;
@@ -129,7 +129,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
             return result;
         }
 
-        public TestResult GetScenarioResult(Scenario scenario)
+        public override TestResult GetScenarioResult(Scenario scenario)
         {
             Guid scenarioExecutionId = this.GetScenarioExecutionId(scenario);
             return this.GetExecutionResult(scenarioExecutionId);
