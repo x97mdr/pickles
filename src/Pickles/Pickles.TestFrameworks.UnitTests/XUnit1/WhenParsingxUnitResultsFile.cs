@@ -121,23 +121,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit1
         }
 
         [Test]
-        public void WithoutExampleSignatureBuilderThrowsInvalidOperationException()
-        {
-            var results = ParseResultsFile();
-            results.SetExampleSignatureBuilder(null);
-
-            var feature = new Feature { Name = "Addition" };
-
-            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers", Feature = feature };
-
-            Check.ThatCode(() => results.GetExampleResult(scenarioOutline, new[] { "40", "50", "90" })).Throws<InvalidOperationException>();
-        }
-
-        [Test]
         public void ThenCanReadIndividualResultsFromScenarioOutline_AllPass_ShouldBeTestResultPassed()
         {
             var results = ParseResultsFile();
-            results.SetExampleSignatureBuilder(new XUnitExampleSignatureBuilder());
 
             var feature = new Feature { Name = "Scenario Outlines" };
 
@@ -160,7 +146,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit1
         public void ThenCanReadIndividualResultsFromScenarioOutline_OneFailed_ShouldBeTestResultFailed_xUnitDoesNotSupportInconclusive()
         {
             var results = ParseResultsFile();
-            results.SetExampleSignatureBuilder(new XUnitExampleSignatureBuilder());
 
             var feature = new Feature { Name = "Scenario Outlines" };
 
@@ -183,7 +168,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit1
         public void ThenCanReadIndividualResultsFromScenarioOutline_OneFailed_ShouldBeTestResultFailed()
         {
             var results = ParseResultsFile();
-            results.SetExampleSignatureBuilder(new XUnitExampleSignatureBuilder());
 
             var feature = new Feature { Name = "Scenario Outlines" };
 
@@ -206,7 +190,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit1
         public void ThenCanReadIndividualResultsFromScenarioOutline_MultipleExampleSections_ShouldBeTestResultFailed()
         {
             var results = ParseResultsFile();
-            results.SetExampleSignatureBuilder(new XUnitExampleSignatureBuilder());
 
             var feature = new Feature { Name = "Scenario Outlines" };
 
@@ -238,7 +221,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit1
         public void ThenCanReadResultsWithBackslashes()
         {
             var results = ParseResultsFile();
-            results.SetExampleSignatureBuilder(new XUnitExampleSignatureBuilder());
 
             var feature = new Feature { Name = "Scenario Outlines" };
 

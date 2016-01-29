@@ -69,19 +69,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
         }
 
         [Test]
-        public void WithoutExampleSignatureBuilderThrowsInvalidOperationException()
-        {
-            var results = ParseResultsFile();
-            results.SetExampleSignatureBuilder(null);
-
-            var feature = new Feature { Name = "Addition" };
-
-            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers", Feature = feature };
-
-            Check.ThatCode(() => results.GetExampleResult(scenarioOutline, new[] { "40", "50", "90" })).Throws<InvalidOperationException>();
-        }
-
-        [Test]
         public void ThenCanReadSuccessfulScenarioResultSuccessfully()
         {
             var results = ParseResultsFile();
