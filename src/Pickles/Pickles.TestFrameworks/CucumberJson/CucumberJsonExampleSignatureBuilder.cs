@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="CucumberJsonResults.cs" company="PicklesDoc">
+//  <copyright file="CucumberJsonExampleSignatureBuilder.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -19,14 +19,17 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Text.RegularExpressions;
+
+using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
 {
-    public class CucumberJsonResults : MultipleTestRunsBase<CucumberJsonSingleResults>
+    public class CucumberJsonExampleSignatureBuilder : IExampleSignatureBuilder
     {
-        public CucumberJsonResults(IConfiguration configuration, CucumberJsonSingleResultLoader singleResultLoader, CucumberJsonExampleSignatureBuilder exampleSignatureBuilder)
-            : base(configuration, singleResultLoader, exampleSignatureBuilder)
+        public Regex Build(ScenarioOutline scenarioOutline, string[] row)
         {
+            throw new NotSupportedException();
         }
     }
 }

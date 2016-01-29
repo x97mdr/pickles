@@ -92,6 +92,7 @@ namespace PicklesDoc.Pickles
             builder.RegisterType<MsTestExampleSignatureBuilder>();
             builder.RegisterType<CucumberJsonResults>();
             builder.RegisterType<CucumberJsonSingleResultLoader>();
+            builder.RegisterType<CucumberJsonExampleSignatureBuilder>();
             builder.RegisterType<SpecRunResults>();
             builder.RegisterType<SpecRunSingleResultLoader>();
 

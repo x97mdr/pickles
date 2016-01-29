@@ -32,7 +32,7 @@ using Feature = PicklesDoc.Pickles.Parser.JsonResult.Feature;
 
 namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
 {
-    public class CucumberJsonSingleResults : ITestResults
+    public class CucumberJsonSingleResults : SingleTestRunBase
     {
         private readonly List<Feature> resultsDocument;
 
@@ -41,29 +41,29 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
             this.resultsDocument = this.ReadResultsFile(configuration);
         }
 
-        public bool SupportsExampleResults
+        public override bool SupportsExampleResults
         {
             get { return false; }
         }
 
-        public TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+        public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
         {
             throw new NotSupportedException();
         }
 
-        public TestResult GetFeatureResult(ObjectModel.Feature feature)
+        public override TestResult GetFeatureResult(ObjectModel.Feature feature)
         {
             var cucumberFeature = this.GetFeatureElement(feature);
             return this.GetResultFromFeature(cucumberFeature);
         }
 
-        public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
+        public override TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
         {
             // Not applicable
-            return new TestResult();
+            return TestResult.Inconclusive;
         }
 
-        public TestResult GetScenarioResult(Scenario scenario)
+        public override TestResult GetScenarioResult(Scenario scenario)
         {
             Parser.JsonResult.Element cucumberScenario = null;
             var cucumberFeature = this.GetFeatureElement(scenario.Feature);
@@ -106,7 +106,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
             return wasSuccessful ? TestResult.Passed : TestResult.Failed;
         }
 
-        private static bool CheckScenarioStatus(Parser.JsonResult.Element cucumberScenario)
+        private bool CheckScenarioStatus(Parser.JsonResult.Element cucumberScenario)
         {
             return cucumberScenario.steps.All(x => x.result.status == "passed");
         }
