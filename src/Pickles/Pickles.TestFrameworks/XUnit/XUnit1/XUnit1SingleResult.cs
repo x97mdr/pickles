@@ -21,7 +21,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
@@ -70,6 +69,23 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
             return scenarioElement != null
                 ? this.GetResultFromElement(scenarioElement)
                 : TestResult.Inconclusive;
+        }
+
+        public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
+        {
+            var signature = this.CreateSignatureRegex(scenarioOutline, exampleValues);
+
+            IEnumerable<XElement> exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
+
+            foreach (XElement exampleElement in exampleElements)
+            {
+                if (signature.IsMatch(exampleElement.Attribute("name").Value.ToLowerInvariant().Replace(@"\", string.Empty)))
+                {
+                    return this.GetResultFromElement(exampleElement);
+                }
+            }
+
+            return TestResult.Inconclusive;
         }
 
         private XElement GetFeatureElement(Feature feature)
@@ -129,23 +145,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
             }
 
             return result;
-        }
-
-        public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
-        {
-            var signature = this.CreateSignatureRegex(scenarioOutline, exampleValues);
-
-            IEnumerable<XElement> exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
-
-            foreach (XElement exampleElement in exampleElements)
-            {
-                if (signature.IsMatch(exampleElement.Attribute("name").Value.ToLowerInvariant().Replace(@"\", string.Empty)))
-                {
-                    return this.GetResultFromElement(exampleElement);
-                }
-            }
-
-            return TestResult.Inconclusive;
         }
     }
 }

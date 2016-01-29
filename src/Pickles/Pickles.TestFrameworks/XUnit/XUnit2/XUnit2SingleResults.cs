@@ -21,7 +21,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 using PicklesDoc.Pickles.ObjectModel;
 
@@ -72,6 +71,38 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
                 : TestResult.Inconclusive;
         }
 
+        public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
+        {
+            var signature = this.CreateSignatureRegex(scenarioOutline, exampleValues);
+
+            IEnumerable<assembliesAssemblyCollectionTest> exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
+
+            foreach (var exampleElement in exampleElements)
+            {
+                if (signature.IsMatch(exampleElement.name.ToLowerInvariant().Replace(@"\", string.Empty)))
+                {
+                    return this.GetResultFromElement(exampleElement);
+                }
+            }
+
+            return TestResult.Inconclusive;
+        }
+
+        private static bool HasDescriptionTrait(assembliesAssemblyCollectionTest test, string description)
+        {
+            return HasTraitWithValue(test, "Description", description);
+        }
+
+        private static bool HasFeatureTitleTrait(assembliesAssemblyCollectionTest test, string featureTitle)
+        {
+            return HasTraitWithValue(test, "FeatureTitle", featureTitle);
+        }
+
+        private static bool HasTraitWithValue(assembliesAssemblyCollectionTest test, string trait, string value)
+        {
+            return test.traits != null && test.traits.Any(t => t.name == trait && t.value == value);
+        }
+
         private assembliesAssemblyCollection GetFeatureElement(Feature feature)
         {
             var query = from collection in this.resultsDocument.assembly.collection
@@ -104,21 +135,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
             return query;
         }
 
-        private static bool HasDescriptionTrait(assembliesAssemblyCollectionTest test, string description)
-        {
-            return HasTraitWithValue(test, "Description", description);
-        }
-
-        private static bool HasFeatureTitleTrait(assembliesAssemblyCollectionTest test, string featureTitle)
-        {
-            return HasTraitWithValue(test, "FeatureTitle", featureTitle);
-        }
-
-        private static bool HasTraitWithValue(assembliesAssemblyCollectionTest test, string trait, string value)
-        {
-            return test.traits != null && test.traits.Any(t => t.name == trait && t.value == value);
-        }
-
         private TestResult GetResultFromElement(assembliesAssemblyCollectionTest element)
         {
             TestResult result;
@@ -138,23 +154,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
             }
 
             return result;
-        }
-
-        public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
-        {
-            var signature = this.CreateSignatureRegex(scenarioOutline, exampleValues);
-
-            IEnumerable<assembliesAssemblyCollectionTest> exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
-
-            foreach (var exampleElement in exampleElements)
-            {
-                if (signature.IsMatch(exampleElement.name.ToLowerInvariant().Replace(@"\", string.Empty)))
-                {
-                    return this.GetResultFromElement(exampleElement);
-                }
-            }
-
-            return TestResult.Inconclusive;
         }
     }
 }
