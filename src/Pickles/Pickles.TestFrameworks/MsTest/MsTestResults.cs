@@ -29,8 +29,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
     {
         private readonly MsTestSingleResultLoader singleResultLoader = new MsTestSingleResultLoader();
 
-        public MsTestResults(IConfiguration configuration)
-            : base(false, configuration)
+        public MsTestResults(IConfiguration configuration, MsTestSingleResultLoader singleResultLoader)
+            : base(false, configuration, singleResultLoader)
         {
         }
 

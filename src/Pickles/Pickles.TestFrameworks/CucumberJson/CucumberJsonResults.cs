@@ -29,8 +29,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
     {
         private readonly ISingleResultLoader singleResultLoader = new CucumberJsonSingleResultLoader();
 
-        public CucumberJsonResults(IConfiguration configuration)
-            : base(false, configuration)
+        public CucumberJsonResults(IConfiguration configuration, CucumberJsonSingleResultLoader singleResultLoader)
+            : base(false, configuration, singleResultLoader)
         {
         }
 

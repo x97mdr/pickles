@@ -7,8 +7,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit
     public abstract class XUnitResultsBase<TSingleResult> : MultipleTestResults
         where TSingleResult : XUnitSingleResultsBase
     {
-        public XUnitResultsBase(IConfiguration configuration, XUnitExampleSignatureBuilder exampleSignatureBuilder)
-            : base(true, configuration)
+        public XUnitResultsBase(IConfiguration configuration, ISingleResultLoader singleResultLoader, XUnitExampleSignatureBuilder exampleSignatureBuilder)
+            : base(true, configuration, singleResultLoader)
         {
             this.SetExampleSignatureBuilder(exampleSignatureBuilder);
         }

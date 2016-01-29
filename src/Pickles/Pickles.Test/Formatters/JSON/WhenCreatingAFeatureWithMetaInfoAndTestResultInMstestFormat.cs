@@ -77,7 +77,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
             };
             configuration.AddTestResultFile(FileSystem.FileInfo.FromFileName(TestResultFilePath));
 
-            ITestResults testResults = new MsTestResults(configuration);
+            ITestResults testResults = new MsTestResults(configuration, new MsTestSingleResultLoader());
             var jsonDocumentationBuilder = new JsonDocumentationBuilder(configuration, testResults, FileSystem);
             jsonDocumentationBuilder.Build(features);
             string content = FileSystem.File.ReadAllText(filePath);

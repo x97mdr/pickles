@@ -29,8 +29,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
     {
         private readonly ISingleResultLoader singleResultLoader = new XUnit2SingleResultLoader();
 
-        public XUnit2Results(IConfiguration configuration, XUnitExampleSignatureBuilder exampleSignatureBuilder)
-            : base(configuration, exampleSignatureBuilder)
+        public XUnit2Results(IConfiguration configuration, XUnit2SingleResultLoader singleResultLoader, XUnitExampleSignatureBuilder exampleSignatureBuilder)
+            : base(configuration, singleResultLoader, exampleSignatureBuilder)
         {
         }
 

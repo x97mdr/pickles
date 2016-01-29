@@ -30,8 +30,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
     {
         private readonly NUnit2SingleResultLoader singleResultLoader = new NUnit2SingleResultLoader();
 
-        public NUnitResults(IConfiguration configuration, NUnitExampleSignatureBuilder exampleSignatureBuilder)
-            : base(true, configuration)
+        public NUnitResults(IConfiguration configuration, NUnit2SingleResultLoader singleResultLoader, NUnitExampleSignatureBuilder exampleSignatureBuilder)
+            : base(true, configuration, singleResultLoader)
         {
             this.SetExampleSignatureBuilder(exampleSignatureBuilder);
         }

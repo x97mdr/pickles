@@ -77,15 +77,22 @@ namespace PicklesDoc.Pickles
             }).SingleInstance();
 
             builder.RegisterType<NUnitResults>();
+            builder.RegisterType<NUnit2SingleResultLoader>();
             builder.RegisterType<NUnitExampleSignatureBuilder>();
             builder.RegisterType<NUnit3Results>();
+            builder.RegisterType<NUnit3SingleResultLoader>();
             builder.RegisterType<NUnit3ExampleSignatureBuilder>();
             builder.RegisterType<XUnit1Results>();
+            builder.RegisterType<XUnit1SingleResultLoader>();
             builder.RegisterType<XUnitExampleSignatureBuilder>();
             builder.RegisterType<XUnit2Results>();
+            builder.RegisterType<XUnit2SingleResultLoader>();
             builder.RegisterType<MsTestResults>();
+            builder.RegisterType<MsTestSingleResultLoader>();
             builder.RegisterType<CucumberJsonResults>();
+            builder.RegisterType<CucumberJsonSingleResultLoader>();
             builder.RegisterType<SpecRunResults>();
+            builder.RegisterType<SpecRunSingleResultLoader>();
 
             builder.Register<ITestResults>(c =>
             {

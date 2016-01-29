@@ -31,8 +31,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
 
         public XUnit1Results(
             IConfiguration configuration,
+            XUnit1SingleResultLoader singleResultLoader,
             XUnitExampleSignatureBuilder exampleSignatureBuilder)
-            : base(configuration, exampleSignatureBuilder)
+            : base(configuration, singleResultLoader, exampleSignatureBuilder)
         {
         }
 

@@ -29,8 +29,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
     {
         private readonly ISingleResultLoader singleResultLoader = new SpecRunSingleResultLoader();
 
-        public SpecRunResults(IConfiguration configuration)
-            : base(false, configuration)
+        public SpecRunResults(IConfiguration configuration, SpecRunSingleResultLoader singleResultLoader)
+            : base(false, configuration, singleResultLoader)
         {
         }
 
