@@ -30,81 +30,24 @@ namespace PicklesDoc.Pickles.ObjectModel
         Failed,
         Passed
     }
-    /*
-    public struct TestResult
-    {
-        private TestResult(bool wasExecuted, bool wasSuccessful)
-        {
-            this.WasExecuted = wasExecuted;
-            this.WasSuccessful = wasSuccessful;
-        }
-
-        public static TestResult Passed { get; } = new TestResult(wasExecuted: true, wasSuccessful: true);
-
-        public static TestResult Failed { get; } = new TestResult(wasExecuted: true, wasSuccessful: false);
-
-        public static TestResult Inconclusive { get; } = new TestResult(wasExecuted: false, wasSuccessful: false);
-
-        public bool WasExecuted { get; }
-
-        public bool WasSuccessful { get; }
-
-        public bool Equals(TestResult other)
-        {
-            return this.WasExecuted.Equals(other.WasExecuted) && this.WasSuccessful.Equals(other.WasSuccessful);
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-
-            return obj is TestResult && Equals((TestResult)obj);
-        }
-
-        public override int GetHashCode()
-        {
-            int hashCode = this.WasExecuted.GetHashCode();
-            hashCode = hashCode ^ this.WasSuccessful.GetHashCode();
-            return hashCode;
-        }
-
-        public override string ToString()
-        {
-            return $"WasExecuted: {this.WasExecuted}, WasSuccessful: {this.WasSuccessful}";
-        }
-
-        public static bool operator ==(TestResult left, TestResult right)
-        {
-            return left.Equals(right);
-        }
-
-        public static bool operator !=(TestResult left, TestResult right)
-        {
-            return !(left == right);
-        }
-    }
-    */
 
     public static class TestResultExtensions
     {
-        public static TestResult Merge(this IEnumerable<TestResult> testResults)
+        public static TestResult Merge(this IEnumerable<TestResult> testResults, bool passedTrumpsInconclusive = false)
         {
             if (testResults == null)
             {
-                throw new ArgumentNullException("testResults");
+                throw new ArgumentNullException(nameof(testResults));
             }
 
             TestResult[] items = testResults.ToArray();
 
             if (!items.Any())
             {
-                return new TestResult();
+                return TestResult.Inconclusive;
             }
 
-            if (items.Count() == 1)
+            if (items.Length == 1)
             {
                 return items.Single();
             }
@@ -114,12 +57,24 @@ namespace PicklesDoc.Pickles.ObjectModel
                 return TestResult.Failed;
             }
 
-            if (items.Any(i => i == TestResult.Inconclusive))
+            if (passedTrumpsInconclusive)
             {
+                if (items.Any(r => r == TestResult.Passed))
+                {
+                    return TestResult.Passed;
+                }
+
                 return TestResult.Inconclusive;
             }
+            else
+            {
+                if (items.Any(i => i == TestResult.Inconclusive))
+                {
+                    return TestResult.Inconclusive;
+                }
 
-            return TestResult.Passed;
+                return TestResult.Passed;
+            }
         }
     }
 }

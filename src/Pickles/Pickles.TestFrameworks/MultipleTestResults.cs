@@ -80,17 +80,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         protected static TestResult EvaluateTestResults(TestResult[] results)
         {
-            if (results.Any(r => r == TestResult.Failed))
-            {
-                return TestResult.Failed;
-            }
-
-            if (results.Any(r => r == TestResult.Passed))
-            {
-                return TestResult.Passed;
-            }
-
-            return TestResult.Inconclusive;
+            return results.Merge(true);
         }
 
         public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
