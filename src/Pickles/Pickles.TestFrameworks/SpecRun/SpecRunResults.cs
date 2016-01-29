@@ -22,7 +22,7 @@ using System;
 
 namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 {
-    public class SpecRunResults : MultipleTestRunsBase<SpecRunSingleResults>
+    public class SpecRunResults : MultipleTestRunsBase
     {
         public SpecRunResults(IConfiguration configuration, SpecRunSingleResultLoader singleResultLoader, SpecRunExampleSignatureBuilder exampleSignatureBuilder)
             : base(false, configuration, singleResultLoader, exampleSignatureBuilder)

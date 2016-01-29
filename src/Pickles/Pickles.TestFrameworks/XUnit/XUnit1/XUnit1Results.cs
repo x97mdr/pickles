@@ -22,7 +22,7 @@ using System;
 
 namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
 {
-    public class XUnit1Results : MultipleTestRunsBase<XUnit1SingleResult>
+    public class XUnit1Results : MultipleTestRunsBase
     {
         public XUnit1Results(
             IConfiguration configuration,

@@ -22,7 +22,7 @@ using System;
 
 namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2
 {
-    public class NUnit2Results : MultipleTestRunsBase<NUnit2SingleResults>
+    public class NUnit2Results : MultipleTestRunsBase
     {
         public NUnit2Results(IConfiguration configuration, NUnit2SingleResultLoader singleResultLoader, NUnitExampleSignatureBuilder exampleSignatureBuilder)
             : base(true, configuration, singleResultLoader, exampleSignatureBuilder)
