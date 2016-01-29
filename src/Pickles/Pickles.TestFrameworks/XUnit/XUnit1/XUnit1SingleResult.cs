@@ -21,6 +21,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
@@ -79,13 +80,18 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
 
             foreach (XElement exampleElement in exampleElements)
             {
-                if (signature.IsMatch(exampleElement.Attribute("name").Value.ToLowerInvariant().Replace(@"\", string.Empty)))
+                if (this.ScenarioOutlineExampleIsMatch(signature, exampleElement))
                 {
                     return this.GetResultFromElement(exampleElement);
                 }
             }
 
             return TestResult.Inconclusive;
+        }
+
+        private bool ScenarioOutlineExampleIsMatch(Regex signature, XElement exampleElement)
+        {
+            return signature.IsMatch(exampleElement.Attribute("name").Value.ToLowerInvariant().Replace(@"\", string.Empty));
         }
 
         private XElement GetFeatureElement(Feature feature)
