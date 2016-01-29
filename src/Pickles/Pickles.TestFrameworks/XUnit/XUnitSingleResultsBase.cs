@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 using PicklesDoc.Pickles.ObjectModel;
 
@@ -62,6 +64,20 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit
             }
 
             return this.GetAggregateResult(passedCount, failedCount, skippedCount);
+        }
+
+        protected Regex CreateSignatureRegex(ScenarioOutline scenarioOutline, string[] exampleValues)
+        {
+            var signatureBuilder = this.ExampleSignatureBuilder;
+
+            if (signatureBuilder == null)
+            {
+                throw new InvalidOperationException(
+                    "You need to set the ExampleSignatureBuilder before using GetExampleResult.");
+            }
+
+            Regex signature = signatureBuilder.Build(scenarioOutline, exampleValues);
+            return signature;
         }
     }
 }

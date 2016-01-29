@@ -133,26 +133,19 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
 
         public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
         {
+            var signature = this.CreateSignatureRegex(scenarioOutline, exampleValues);
+
             IEnumerable<XElement> exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
-
-            var result = new TestResult();
-            var signatureBuilder = this.ExampleSignatureBuilder;
-
-            if (signatureBuilder == null)
-            {
-                throw new InvalidOperationException("You need to set the ExampleSignatureBuilder before using GetExampleResult.");
-            }
 
             foreach (XElement exampleElement in exampleElements)
             {
-                Regex signature = signatureBuilder.Build(scenarioOutline, exampleValues);
                 if (signature.IsMatch(exampleElement.Attribute("name").Value.ToLowerInvariant().Replace(@"\", string.Empty)))
                 {
                     return this.GetResultFromElement(exampleElement);
                 }
             }
 
-            return result;
+            return TestResult.Inconclusive;
         }
     }
 }
