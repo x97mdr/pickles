@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="XUnitExampleSignatureBuilder.cs" company="PicklesDoc">
+//  <copyright file="IExampleSignatureBuilder.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -19,28 +19,14 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Text;
 using System.Text.RegularExpressions;
 
 using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.XUnit
 {
-    public class XUnitExampleSignatureBuilder : IExampleSignatureBuilder
+    public interface IExampleSignatureBuilder
     {
-        public Regex Build(ScenarioOutline scenarioOutline, string[] row)
-        {
-            var stringBuilder = new StringBuilder();
-            stringBuilder.Append(scenarioOutline.Name.ToLowerInvariant().Replace(" ", string.Empty) + "\\(");
-
-            foreach (string value in row)
-            {
-                stringBuilder.AppendFormat("(.*): \"{0}\", ", value.ToLowerInvariant().Replace(@"\", string.Empty).Replace(@"$", @"\$"));
-            }
-
-            stringBuilder.Remove(stringBuilder.Length - 2, 2);
-
-            return new Regex(stringBuilder.ToString());
-        }
+        Regex Build(ScenarioOutline scenarioOutline, string[] row);
     }
 }

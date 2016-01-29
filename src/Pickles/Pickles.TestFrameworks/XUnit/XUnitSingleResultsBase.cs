@@ -8,7 +8,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit
 {
     public abstract class XUnitSingleResultsBase : ITestResults
     {
-        internal XUnitExampleSignatureBuilder ExampleSignatureBuilder { get; set; }
+        internal IExampleSignatureBuilder ExampleSignatureBuilder { get; set; }
 
         public abstract bool SupportsExampleResults { get; }
 
