@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="MsTestResults.cs" company="PicklesDoc">
+//  <copyright file="MsTestSingleResultLoader.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -25,23 +25,13 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.MsTest
 {
-    public class MsTestResults : MultipleTestResults
+    public class MsTestSingleResultLoader : ISingleResultLoader
     {
-        private readonly MsTestSingleResultLoader singleResultLoader = new MsTestSingleResultLoader();
+        private readonly XDocumentLoader documentLoader = new XDocumentLoader();
 
-        public MsTestResults(IConfiguration configuration)
-            : base(false, configuration)
+        public ITestResults Load(FileInfoBase fileInfo)
         {
-        }
-
-        public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
-        {
-            throw new NotSupportedException();
-        }
-
-        protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
-        {
-            return this.singleResultLoader.Load(fileInfo);
+            return new MsTestSingleResults(this.documentLoader.Load(fileInfo));
         }
     }
 }
