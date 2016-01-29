@@ -22,7 +22,7 @@ using System;
 
 namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
 {
-    public class CucumberJsonResults : MultipleTestResults
+    public class CucumberJsonResults : MultipleTestRunsBase
     {
         public CucumberJsonResults(IConfiguration configuration, CucumberJsonSingleResultLoader singleResultLoader, CucumberJsonExampleSignatureBuilder exampleSignatureBuilder)
             : base(false, configuration, singleResultLoader, exampleSignatureBuilder)

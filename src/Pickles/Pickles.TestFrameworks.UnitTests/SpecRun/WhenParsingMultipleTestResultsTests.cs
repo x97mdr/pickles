@@ -50,12 +50,12 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.SpecRun
             Check.That(result).IsEqualTo(TestResult.Passed);
         }
 
-        private static MultipleTestResults CreateMultipleTestResults(SingleTestRunBase testResults1, SingleTestRunBase testResults2)
+        private static MultipleTestRunsBase CreateMultipleTestResults(SingleTestRunBase testResults1, SingleTestRunBase testResults2)
         {
             return new TestableMultipleTestResults(new[] { testResults1, testResults2 });
         }
 
-        private class TestableMultipleTestResults : MultipleTestResults
+        private class TestableMultipleTestResults : MultipleTestRunsBase
         {
             public TestableMultipleTestResults(IEnumerable<SingleTestRunBase> testResults)
                 : base(false, testResults)

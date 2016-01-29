@@ -22,7 +22,7 @@ using System;
 
 namespace PicklesDoc.Pickles.TestFrameworks.MsTest
 {
-    public class MsTestResults : MultipleTestResults
+    public class MsTestResults : MultipleTestRunsBase
     {
         public MsTestResults(IConfiguration configuration, MsTestSingleResultLoader singleResultLoader, MsTestExampleSignatureBuilder exampleSignatureBuilder)
             : base(false, configuration, singleResultLoader, exampleSignatureBuilder)

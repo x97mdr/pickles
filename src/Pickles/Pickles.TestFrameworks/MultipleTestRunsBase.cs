@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="MultipleTestResults.cs" company="PicklesDoc">
+//  <copyright file="MultipleTestRunsBase.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -27,17 +27,17 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks
 {
-    public abstract class MultipleTestResults : ITestResults
+    public abstract class MultipleTestRunsBase : ITestResults
     {
         private readonly ISingleResultLoader singleResultLoader;
 
-        protected MultipleTestResults(bool supportsExampleResults, IEnumerable<SingleTestRunBase> testResults)
+        protected MultipleTestRunsBase(bool supportsExampleResults, IEnumerable<SingleTestRunBase> testResults)
         {
             this.SupportsExampleResults = supportsExampleResults;
             this.TestResults = testResults;
         }
 
-        protected MultipleTestResults(bool supportsExampleResults, IConfiguration configuration, ISingleResultLoader singleResultLoader, IExampleSignatureBuilder exampleSignatureBuilder)
+        protected MultipleTestRunsBase(bool supportsExampleResults, IConfiguration configuration, ISingleResultLoader singleResultLoader, IExampleSignatureBuilder exampleSignatureBuilder)
         {
             if (exampleSignatureBuilder == null)
             {
