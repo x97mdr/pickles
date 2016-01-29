@@ -68,9 +68,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.SpecRun
             }
         }
 
-        private static Mock<ITestResults> SetupStubForGetFeatureResult(Feature feature, TestResult resultOfGetFeatureResult)
+        private static Mock<SingleTestRunBase> SetupStubForGetFeatureResult(Feature feature, TestResult resultOfGetFeatureResult)
         {
-            var testResults1 = new Mock<ITestResults>();
+            var testResults1 = new Mock<SingleTestRunBase>();
             testResults1.Setup(ti => ti.GetFeatureResult(feature)).Returns(resultOfGetFeatureResult);
             return testResults1;
         }
