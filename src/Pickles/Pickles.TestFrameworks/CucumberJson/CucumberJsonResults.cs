@@ -25,7 +25,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
     public class CucumberJsonResults : MultipleTestRunsBase<CucumberJsonSingleResults>
     {
         public CucumberJsonResults(IConfiguration configuration, CucumberJsonSingleResultLoader singleResultLoader, CucumberJsonExampleSignatureBuilder exampleSignatureBuilder)
-            : base(configuration, singleResultLoader, exampleSignatureBuilder)
+            : base(false, configuration, singleResultLoader, exampleSignatureBuilder)
         {
         }
     }

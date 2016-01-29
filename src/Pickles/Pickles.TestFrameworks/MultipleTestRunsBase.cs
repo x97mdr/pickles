@@ -7,8 +7,8 @@ namespace PicklesDoc.Pickles.TestFrameworks
     public abstract class MultipleTestRunsBase<TSingleTestRun> : MultipleTestResults
         where TSingleTestRun : SingleTestRunBase
     {
-        protected MultipleTestRunsBase(IConfiguration configuration, ISingleResultLoader singleResultLoader, IExampleSignatureBuilder exampleSignatureBuilder)
-            : base(true, configuration, singleResultLoader)
+        protected MultipleTestRunsBase(bool supportsExampleResults, IConfiguration configuration, ISingleResultLoader singleResultLoader, IExampleSignatureBuilder exampleSignatureBuilder)
+            : base(supportsExampleResults, configuration, singleResultLoader)
         {
             this.SetExampleSignatureBuilder(exampleSignatureBuilder);
         }

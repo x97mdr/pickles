@@ -25,7 +25,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
     public class XUnit2Results : MultipleTestRunsBase<XUnit2SingleResults>
     {
         public XUnit2Results(IConfiguration configuration, XUnit2SingleResultLoader singleResultLoader, XUnitExampleSignatureBuilder exampleSignatureBuilder)
-            : base(configuration, singleResultLoader, exampleSignatureBuilder)
+            : base(true, configuration, singleResultLoader, exampleSignatureBuilder)
         {
         }
     }
