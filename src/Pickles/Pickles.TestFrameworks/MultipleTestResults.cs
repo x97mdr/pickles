@@ -66,7 +66,10 @@ namespace PicklesDoc.Pickles.TestFrameworks
             return results;
         }
 
-        protected abstract ITestResults ConstructSingleTestResult(FileInfoBase fileInfo);
+        protected ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
+        {
+            return this.singleResultLoader.Load(fileInfo);
+        }
 
         public TestResult GetFeatureResult(Feature feature)
         {

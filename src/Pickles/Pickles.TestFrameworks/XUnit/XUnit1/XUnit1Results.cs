@@ -19,27 +19,17 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.IO.Abstractions;
-
-using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
 {
     public class XUnit1Results : XUnitResultsBase<XUnit1SingleResult>
     {
-        private readonly ISingleResultLoader singleResultLoader = new XUnit1SingleResultLoader();
-
         public XUnit1Results(
             IConfiguration configuration,
             XUnit1SingleResultLoader singleResultLoader,
             XUnitExampleSignatureBuilder exampleSignatureBuilder)
             : base(configuration, singleResultLoader, exampleSignatureBuilder)
         {
-        }
-
-        protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
-        {
-            return this.singleResultLoader.Load(fileInfo);
         }
     }
 }

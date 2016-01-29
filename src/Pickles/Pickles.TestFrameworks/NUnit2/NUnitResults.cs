@@ -19,7 +19,6 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.IO.Abstractions;
 using System.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
@@ -28,8 +27,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
 {
     public class NUnitResults : MultipleTestResults
     {
-        private readonly NUnit2SingleResultLoader singleResultLoader = new NUnit2SingleResultLoader();
-
         public NUnitResults(IConfiguration configuration, NUnit2SingleResultLoader singleResultLoader, NUnitExampleSignatureBuilder exampleSignatureBuilder)
             : base(true, configuration, singleResultLoader)
         {
@@ -49,11 +46,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
             var results = TestResults.OfType<NUnitSingleResults>().Select(tr => tr.GetExampleResult(scenarioOutline, arguments)).ToArray();
 
             return EvaluateTestResults(results);
-        }
-
-        protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
-        {
-            return this.singleResultLoader.Load(fileInfo);
         }
     }
 }

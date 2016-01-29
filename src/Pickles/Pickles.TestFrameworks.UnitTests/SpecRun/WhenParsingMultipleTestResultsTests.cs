@@ -66,12 +66,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.SpecRun
             {
                 throw new NotSupportedException();
             }
-
-            protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
-            {
-                // not needed since we use the other constructor
-                throw new NotSupportedException();
-            }
         }
 
         private static Mock<ITestResults> SetupStubForGetFeatureResult(Feature feature, TestResult resultOfGetFeatureResult)

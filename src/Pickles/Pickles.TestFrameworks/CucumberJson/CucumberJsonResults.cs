@@ -19,7 +19,6 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.IO.Abstractions;
 
 using PicklesDoc.Pickles.ObjectModel;
 
@@ -27,8 +26,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
 {
     public class CucumberJsonResults : MultipleTestResults
     {
-        private readonly ISingleResultLoader singleResultLoader = new CucumberJsonSingleResultLoader();
-
         public CucumberJsonResults(IConfiguration configuration, CucumberJsonSingleResultLoader singleResultLoader)
             : base(false, configuration, singleResultLoader)
         {
@@ -37,11 +34,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
         public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
         {
             throw new NotSupportedException();
-        }
-
-        protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
-        {
-            return this.singleResultLoader.Load(fileInfo);
         }
     }
 }
