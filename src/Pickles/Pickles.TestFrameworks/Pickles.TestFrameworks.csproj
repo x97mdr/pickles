@@ -54,11 +54,13 @@
     <Compile Include="CucumberJson\Step.cs" />
     <Compile Include="CucumberJson\Tag.cs" />
     <Compile Include="CucumberJson\CucumberJsonSingleResultLoader.cs" />
+    <Compile Include="IExampleSignatureBuilder.cs" />
     <Compile Include="ISingleResultLoader.cs" />
     <Compile Include="MsTest\MsTestResults.cs" />
     <Compile Include="MsTest\MsTestSingleResults.cs" />
     <Compile Include="MsTest\MsTestSingleResultLoader.cs" />
     <Compile Include="MultipleTestResults.cs" />
+    <Compile Include="MultipleTestRunsBase.cs" />
     <Compile Include="NUnit2\NUnitExampleSignatureBuilder.cs" />
     <Compile Include="NUnit2\NUnitResults.cs" />
     <Compile Include="NUnit2\NUnitSingleResults.cs" />
@@ -71,6 +73,7 @@
       <DependentUpon>results-example-nunit3.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SingleTestRunBase.cs" />
     <Compile Include="SpecRun\Factory.cs" />
     <Compile Include="SpecRun\Feature.cs" />
     <Compile Include="SpecRun\Scenario.cs" />
@@ -79,7 +82,6 @@
     <Compile Include="SpecRun\SpecRunSingleResultLoader.cs" />
     <Compile Include="XDocumentLoader.cs" />
     <Compile Include="XmlDeserializer.cs" />
-    <Compile Include="XUnit\IExampleSignatureBuilder.cs" />
     <Compile Include="XUnit\XUnit1\XUnit1SingleResultLoader.cs" />
     <Compile Include="XUnit\XUnit2\XUnit2SingleResultLoader.cs" />
     <Compile Include="XUnit\xUnitExampleSignatureBuilder.cs" />
@@ -90,8 +92,6 @@
     </Compile>
     <Compile Include="XUnit\XUnit2\XUnit2Results.cs" />
     <Compile Include="XUnit\XUnit2\XUnit2SingleResults.cs" />
-    <Compile Include="XUnit\XUnitResultsBase.cs" />
-    <Compile Include="XUnit\XUnitSingleResultsBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NUnit3\results-example-nunit3.xsd">

@@ -18,12 +18,11 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Text.RegularExpressions;
 
 using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.TestFrameworks.XUnit
+namespace PicklesDoc.Pickles.TestFrameworks
 {
     public interface IExampleSignatureBuilder
     {

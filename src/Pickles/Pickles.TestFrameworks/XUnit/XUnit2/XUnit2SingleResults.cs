@@ -27,7 +27,7 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
 {
-    public class XUnit2SingleResults : XUnitSingleResultsBase
+    public class XUnit2SingleResults : SingleTestRunBase
     {
         private readonly assemblies resultsDocument;
 

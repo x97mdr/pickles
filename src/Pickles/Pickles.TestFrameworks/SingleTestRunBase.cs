@@ -4,13 +4,13 @@ using System.Text.RegularExpressions;
 
 using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.TestFrameworks.XUnit
+namespace PicklesDoc.Pickles.TestFrameworks
 {
-    public abstract class XUnitSingleResultsBase : ITestResults
+    public abstract class SingleTestRunBase : ITestResults
     {
-        internal IExampleSignatureBuilder ExampleSignatureBuilder { get; set; }
-
         public abstract bool SupportsExampleResults { get; }
+
+        internal IExampleSignatureBuilder ExampleSignatureBuilder { get; set; }
 
         public abstract TestResult GetFeatureResult(Feature feature);
 
