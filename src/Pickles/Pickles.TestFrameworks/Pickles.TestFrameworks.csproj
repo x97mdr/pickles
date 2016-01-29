@@ -61,6 +61,7 @@
     <Compile Include="NUnit2\NUnitResults.cs" />
     <Compile Include="NUnit2\NUnitSingleResults.cs" />
     <Compile Include="NUnit2\NUnit2SingleResultLoader.cs" />
+    <Compile Include="NUnit3\NUnit3SingleResultLoader.cs" />
     <Compile Include="NUnit3\NUnit3ExampleSignatureBuilder.cs" />
     <Compile Include="NUnit3\NUnit3Results.cs" />
     <Compile Include="NUnit3\NUnit3SingleResult.cs" />

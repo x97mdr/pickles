@@ -27,7 +27,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit3
 {
     public class NUnit3Results : MultipleTestResults
     {
-        private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
+        private readonly NUnit3SingleResultLoader singleResultLoader = new NUnit3SingleResultLoader();
 
         public NUnit3Results(IConfiguration configuration, NUnit3ExampleSignatureBuilder exampleSignatureBuilder)
             : base(true, configuration)
@@ -52,7 +52,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit3
 
         protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
         {
-            return new NUnit3SingleResult(DocumentLoader.Load(fileInfo));
+            return this.singleResultLoader.Load(fileInfo);
         }
     }
 }
