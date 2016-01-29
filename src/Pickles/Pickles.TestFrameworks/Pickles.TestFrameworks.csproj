@@ -76,6 +76,7 @@
     <Compile Include="SpecRun\Scenario.cs" />
     <Compile Include="SpecRun\SpecRunResults.cs" />
     <Compile Include="SpecRun\SpecRunSingleResults.cs" />
+    <Compile Include="SpecRun\SpecRunSingleResultLoader.cs" />
     <Compile Include="XDocumentLoader.cs" />
     <Compile Include="XmlDeserializer.cs" />
     <Compile Include="XUnit\XUnit1\XUnit1SingleResultLoader.cs" />

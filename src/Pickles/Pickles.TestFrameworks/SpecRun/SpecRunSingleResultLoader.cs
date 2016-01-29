@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="SpecRunResults.cs" company="PicklesDoc">
+//  <copyright file="SpecRunSingleResultLoader.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -25,23 +25,11 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 {
-    public class SpecRunResults : MultipleTestResults
+    public class SpecRunSingleResultLoader : ISingleResultLoader
     {
-        private readonly ISingleResultLoader singleResultLoader = new SpecRunSingleResultLoader();
-
-        public SpecRunResults(IConfiguration configuration)
-            : base(false, configuration)
+        public ITestResults Load(FileInfoBase fileInfo)
         {
-        }
-
-        public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
-        {
-            throw new NotSupportedException();
-        }
-
-        protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
-        {
-            return this.singleResultLoader.Load(fileInfo);
+            return new SpecRunSingleResults(fileInfo);
         }
     }
 }
