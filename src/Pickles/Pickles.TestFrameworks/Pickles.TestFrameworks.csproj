@@ -78,6 +78,7 @@
     <Compile Include="SpecRun\Factory.cs" />
     <Compile Include="SpecRun\Feature.cs" />
     <Compile Include="SpecRun\Scenario.cs" />
+    <Compile Include="SpecRun\SpecRunExampleSignatureBuilder.cs" />
     <Compile Include="SpecRun\SpecRunResults.cs" />
     <Compile Include="SpecRun\SpecRunSingleResults.cs" />
     <Compile Include="SpecRun\SpecRunSingleResultLoader.cs" />

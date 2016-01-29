@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="SpecRunResults.cs" company="PicklesDoc">
+//  <copyright file="SpecRunExampleSignatureBuilder.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -19,14 +19,17 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Text.RegularExpressions;
+
+using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 {
-    public class SpecRunResults : MultipleTestRunsBase<SpecRunSingleResults>
+    public class SpecRunExampleSignatureBuilder : IExampleSignatureBuilder
     {
-        public SpecRunResults(IConfiguration configuration, SpecRunSingleResultLoader singleResultLoader, SpecRunExampleSignatureBuilder exampleSignatureBuilder)
-            : base(configuration, singleResultLoader, exampleSignatureBuilder)
+        public Regex Build(ScenarioOutline scenarioOutline, string[] row)
         {
+            throw new NotSupportedException();
         }
     }
 }

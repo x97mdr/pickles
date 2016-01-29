@@ -32,7 +32,7 @@ using Scenario = PicklesDoc.Pickles.ObjectModel.Scenario;
 
 namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 {
-    public class SpecRunSingleResults : ITestResults
+    public class SpecRunSingleResults : SingleTestRunBase
     {
         private readonly List<Feature> specRunFeatures;
 
@@ -44,13 +44,13 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
                 resultsDocument.Descendants("feature").Select(Parser.SpecRun.Factory.ToSpecRunFeature).ToList();
         }
 
-        public TestResult GetFeatureResult(ObjectModel.Feature feature)
+        public override bool SupportsExampleResults
         {
-            if (this.specRunFeatures == null)
-            {
-                return TestResult.Inconclusive;
-            }
+            get { return false; }
+        }
 
+        public override TestResult GetFeatureResult(ObjectModel.Feature feature)
+        {
             var specRunFeature = this.FindSpecRunFeature(feature);
 
             if (specRunFeature == null)
@@ -64,13 +64,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
             return result;
         }
 
-        public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
+        public override TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
         {
-            if (this.specRunFeatures == null)
-            {
-                return TestResult.Inconclusive;
-            }
-
             var specRunFeature = this.FindSpecRunFeature(scenarioOutline.Feature);
 
             if (specRunFeature == null)
@@ -90,13 +85,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
             return result;
         }
 
-        public TestResult GetScenarioResult(Scenario scenario)
+        public override TestResult GetScenarioResult(Scenario scenario)
         {
-            if (this.specRunFeatures == null)
-            {
-                return TestResult.Inconclusive;
-            }
-
             var specRunFeature = this.FindSpecRunFeature(scenario.Feature);
 
             if (specRunFeature == null)
@@ -114,14 +104,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
             return StringToTestResult(specRunScenario.Result);
         }
 
-        public TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+        public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
         {
             throw new NotSupportedException();
-        }
-
-        public bool SupportsExampleResults
-        {
-            get { return false; }
         }
 
         private static TestResult StringsToTestResult(IEnumerable<string> results)
