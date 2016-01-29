@@ -44,16 +44,16 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
             }
         }
 
-        protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
-        {
-            return this.singleResultLoader.Load(fileInfo);
-        }
-
         public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] arguments)
         {
             var results = TestResults.OfType<NUnitSingleResults>().Select(tr => tr.GetExampleResult(scenarioOutline, arguments)).ToArray();
 
             return EvaluateTestResults(results);
+        }
+
+        protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
+        {
+            return this.singleResultLoader.Load(fileInfo);
         }
     }
 }
