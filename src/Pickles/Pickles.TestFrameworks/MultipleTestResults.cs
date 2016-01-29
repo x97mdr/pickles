@@ -50,37 +50,11 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         public abstract TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues);
 
-        private IEnumerable<ITestResults> GetSingleTestResults(IConfiguration configuration)
-        {
-            ITestResults[] results;
-
-            if (configuration.HasTestResults)
-            {
-                results = configuration.TestResultsFiles.Select(this.ConstructSingleTestResult).ToArray();
-            }
-            else
-            {
-                results = new ITestResults[0];
-            }
-
-            return results;
-        }
-
-        protected ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
-        {
-            return this.singleResultLoader.Load(fileInfo);
-        }
-
         public TestResult GetFeatureResult(Feature feature)
         {
             var results = this.TestResults.Select(tr => tr.GetFeatureResult(feature)).ToArray();
 
             return EvaluateTestResults(results);
-        }
-
-        protected static TestResult EvaluateTestResults(TestResult[] results)
-        {
-            return results.Merge(true);
         }
 
         public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
@@ -95,6 +69,32 @@ namespace PicklesDoc.Pickles.TestFrameworks
             var results = this.TestResults.Select(tr => tr.GetScenarioResult(scenario)).ToArray();
 
             return EvaluateTestResults(results);
+        }
+
+        protected static TestResult EvaluateTestResults(TestResult[] results)
+        {
+            return results.Merge(true);
+        }
+
+        protected ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
+        {
+            return this.singleResultLoader.Load(fileInfo);
+        }
+
+        private IEnumerable<ITestResults> GetSingleTestResults(IConfiguration configuration)
+        {
+            ITestResults[] results;
+
+            if (configuration.HasTestResults)
+            {
+                results = configuration.TestResultsFiles.Select(this.ConstructSingleTestResult).ToArray();
+            }
+            else
+            {
+                results = new ITestResults[0];
+            }
+
+            return results;
         }
     }
 }
