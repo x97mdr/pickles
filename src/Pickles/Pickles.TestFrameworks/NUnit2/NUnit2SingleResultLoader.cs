@@ -22,7 +22,6 @@ using System;
 using System.IO.Abstractions;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.TestFrameworks.XUnit;
 
 namespace PicklesDoc.Pickles.TestFrameworks.NUnit2
 {
