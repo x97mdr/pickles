@@ -61,11 +61,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.SpecRun
                 : base(false, testResults)
             {
             }
-
-            public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
-            {
-                throw new NotSupportedException();
-            }
         }
 
         private static Mock<SingleTestRunBase> SetupStubForGetFeatureResult(Feature feature, TestResult resultOfGetFeatureResult)

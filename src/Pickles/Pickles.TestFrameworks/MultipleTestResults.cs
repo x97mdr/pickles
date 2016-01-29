@@ -37,18 +37,45 @@ namespace PicklesDoc.Pickles.TestFrameworks
             this.TestResults = testResults;
         }
 
-        protected MultipleTestResults(bool supportsExampleResults, IConfiguration configuration, ISingleResultLoader singleResultLoader)
+        protected MultipleTestResults(bool supportsExampleResults, IConfiguration configuration, ISingleResultLoader singleResultLoader, IExampleSignatureBuilder exampleSignatureBuilder)
         {
+            if (exampleSignatureBuilder == null)
+            {
+                throw new ArgumentNullException(nameof(exampleSignatureBuilder));
+            }
+
             this.SupportsExampleResults = supportsExampleResults;
             this.singleResultLoader = singleResultLoader;
             this.TestResults = this.GetSingleTestResults(configuration);
+
+            this.SetExampleSignatureBuilder(exampleSignatureBuilder);
+        }
+
+        private void SetExampleSignatureBuilder(IExampleSignatureBuilder exampleSignatureBuilder)
+        {
+            foreach (var testResult in this.TestResults)
+            {
+                testResult.ExampleSignatureBuilder = exampleSignatureBuilder;
+            }
         }
 
         public bool SupportsExampleResults { get; }
 
         protected IEnumerable<SingleTestRunBase> TestResults { get; }
 
-        public abstract TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues);
+        public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] arguments)
+        {
+            if (SupportsExampleResults)
+            {
+                var results = TestResults.Select(tr => tr.GetExampleResult(scenarioOutline, arguments)).ToArray();
+
+                return EvaluateTestResults(results);
+            }
+            else
+            {
+                return TestResult.Passed;
+            }
+        }
 
         public TestResult GetFeatureResult(Feature feature)
         {

@@ -62,7 +62,6 @@
     <Compile Include="MsTest\MsTestSingleResults.cs" />
     <Compile Include="MsTest\MsTestSingleResultLoader.cs" />
     <Compile Include="MultipleTestResults.cs" />
-    <Compile Include="MultipleTestRunsBase.cs" />
     <Compile Include="NUnit\NUnitExampleSignatureBuilder.cs" />
     <Compile Include="NUnit\NUnit2\NUnit2Results.cs" />
     <Compile Include="NUnit\NUnit2\NUnit2SingleResults.cs" />
