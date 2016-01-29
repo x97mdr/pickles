@@ -7,11 +7,11 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
 {
     public class XUnit1SingleResultLoader : ISingleResultLoader
     {
-        private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
+        private readonly XDocumentLoader documentLoader = new XDocumentLoader();
 
         public ITestResults Load(FileInfoBase fileInfo)
         {
-            return new XUnit1SingleResult(DocumentLoader.Load(fileInfo));
+            return new XUnit1SingleResult(this.documentLoader.Load(fileInfo));
         }
     }
 }
