@@ -1,4 +1,6 @@
-﻿using PicklesDoc.Pickles.ObjectModel;
+﻿using System.Collections.Generic;
+
+using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.XUnit
 {
@@ -33,6 +35,33 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit
             }
 
             return result;
+        }
+
+        protected TestResult DetermineAggregateResult(IEnumerable<TestResult> exampleResults)
+        {
+            int passedCount = 0;
+            int failedCount = 0;
+            int skippedCount = 0;
+
+            foreach (TestResult result in exampleResults)
+            {
+                if (result == TestResult.Inconclusive)
+                {
+                    skippedCount++;
+                }
+
+                if (result == TestResult.Passed)
+                {
+                    passedCount++;
+                }
+
+                if (result == TestResult.Failed)
+                {
+                    failedCount++;
+                }
+            }
+
+            return this.GetAggregateResult(passedCount, failedCount, skippedCount);
         }
     }
 }

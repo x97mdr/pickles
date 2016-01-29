@@ -55,36 +55,13 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
             int failedCount = int.Parse(featureElement.Attribute("failed").Value);
             int skippedCount = int.Parse(featureElement.Attribute("skipped").Value);
 
-            return GetAggregateResult(passedCount, failedCount, skippedCount);
+            return this.GetAggregateResult(passedCount, failedCount, skippedCount);
         }
 
         public override TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
         {
-            IEnumerable<XElement> exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
-            int passedCount = 0;
-            int failedCount = 0;
-            int skippedCount = 0;
-
-            foreach (XElement exampleElement in exampleElements)
-            {
-                TestResult result = this.GetResultFromElement(exampleElement);
-                if (result == TestResult.Inconclusive)
-                {
-                    skippedCount++;
-                }
-
-                if (result == TestResult.Passed)
-                {
-                    passedCount++;
-                }
-
-                if (result == TestResult.Failed)
-                {
-                    failedCount++;
-                }
-            }
-
-            return this.GetAggregateResult(passedCount, failedCount, skippedCount);
+            IEnumerable<TestResult> exampleResults = this.GetScenarioOutlineElements(scenarioOutline).Select(this.GetResultFromElement);
+            return this.DetermineAggregateResult(exampleResults);
         }
 
         public override TestResult GetScenarioResult(Scenario scenario)
