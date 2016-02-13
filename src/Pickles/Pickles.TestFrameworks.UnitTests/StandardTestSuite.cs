@@ -32,6 +32,17 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         {
         }
 
+        public void ThenCanReadFeatureResultSuccessfully()
+        {
+            // Write out the embedded test results file
+            var results = ParseResultsFile();
+
+            var feature = this.AdditionFeature();
+            TestResult result = results.GetFeatureResult(feature);
+
+            Check.That(result).IsEqualTo(TestResult.Failed);
+        }
+
         public void ThenCanReadBackgroundResultSuccessfully()
         {
             var background = new Scenario { Name = "Background", Feature = this.AdditionFeature() };
@@ -80,6 +91,12 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
             TestResult result = results.GetScenarioOutlineResult(scenarioOutline);
 
             Check.That(result).IsEqualTo(TestResult.Passed);
+
+            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "40", "50", "90" });
+            Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
+
+            TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "60", "70", "130" });
+            Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
         }
 
         public void ThenCanReadSuccessfulScenarioResultSuccessfully()
@@ -124,6 +141,43 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
             var result = results.GetScenarioResult(inconclusiveScenario);
 
             Check.That(result).IsEqualTo(TestResult.Inconclusive);
+        }
+
+        public void ThenCanReadNotFoundScenarioCorrectly()
+        {
+            var results = ParseResultsFile();
+            var notFoundScenario = new Scenario
+            {
+                Name = "Not in the file at all!",
+                Feature = this.AdditionFeature()
+            };
+
+            var result = results.GetScenarioResult(notFoundScenario);
+
+            Check.That(result).IsEqualTo(TestResult.Inconclusive);
+        }
+
+        public void ThenCanReadNotFoundFeatureCorrectly()
+        {
+            var results = ParseResultsFile();
+            var result = results.GetFeatureResult(new Feature { Name = "NotInTheFile" });
+
+            Check.That(result).IsEqualTo(TestResult.Inconclusive);
+        }
+
+        public void ThenCanReadResultsWithBackslashes()
+        {
+            var results = ParseResultsFile();
+
+            var feature = new Feature { Name = "Scenario Outlines" };
+
+            var scenarioOutline = new ScenarioOutline { Name = "Deal correctly with backslashes in the examples", Feature = feature };
+
+            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+            Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
+
+            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { @"c:\Temp\" });
+            Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
         }
 
         private Feature AdditionFeature()

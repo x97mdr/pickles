@@ -87,5 +87,29 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.MsTest
         {
             base.ThenCanReadInconclusiveScenarioResultSuccessfully();
         }
+
+        [Test]
+        public new void ThenCanReadFeatureResultSuccessfully()
+        {
+            base.ThenCanReadFeatureResultSuccessfully();
+        }
+
+        [Test]
+        public new void ThenCanReadNotFoundScenarioCorrectly()
+        {
+            base.ThenCanReadNotFoundScenarioCorrectly();
+        }
+
+        [Test]
+        public new void ThenCanReadNotFoundFeatureCorrectly()
+        {
+            base.ThenCanReadNotFoundFeatureCorrectly();
+        }
+
+        [Test]
+        public new void ThenCanReadResultsWithBackslashes()
+        {
+            base.ThenCanReadResultsWithBackslashes();
+        }
     }
 }

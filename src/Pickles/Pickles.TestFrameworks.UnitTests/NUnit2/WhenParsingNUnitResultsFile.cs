@@ -20,17 +20,14 @@
 
 using System;
 
-using NFluent;
-
 using NUnit.Framework;
 
-using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2;
 
 namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
 {
     [TestFixture]
-    public class WhenParsingNUnitResultsFile : WhenParsingTestResultFiles<NUnit2Results>
+    public class WhenParsingNUnitResultsFile : StandardTestSuite<NUnit2Results>
     {
         public WhenParsingNUnitResultsFile()
             : base("NUnit2." + "results-example-nunit.xml")
@@ -38,262 +35,75 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
         }
 
         [Test]
-        public void ThenCanReadFeatureResultSuccessfully()
+        public new void ThenCanReadFeatureResultSuccessfully()
         {
-            // Write out the embedded test results file
-            var results = ParseResultsFile();
-
-            var feature = new Feature { Name = "Addition" };
-            TestResult result = results.GetFeatureResult(feature);
-
-            Check.That(result).IsEqualTo(TestResult.Failed);
+            base.ThenCanReadFeatureResultSuccessfully();
         }
 
         [Test]
-        public void ThenCanReadScenarioOutlineResultSuccessfully()
+        public new void ThenCanReadScenarioOutlineResultSuccessfully()
         {
-            var results = ParseResultsFile();
-
-            var feature = new Feature { Name = "Addition" };
-
-            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers", Feature = feature };
-            TestResult result = results.GetScenarioOutlineResult(scenarioOutline);
-
-            Check.That(result).IsEqualTo(TestResult.Passed);
-
-            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "40", "50", "90" });
-            Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
-
-            TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "60", "70", "130" });
-            Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
+            base.ThenCanReadScenarioOutlineResultSuccessfully();
         }
 
         [Test]
-        public void ThenCanReadSuccessfulScenarioResultSuccessfully()
+        public new void ThenCanReadSuccessfulScenarioResultSuccessfully()
         {
-            var results = ParseResultsFile();
-
-            var feature = new Feature { Name = "Addition" };
-
-            var passedScenario = new Scenario { Name = "Add two numbers", Feature = feature };
-            TestResult result = results.GetScenarioResult(passedScenario);
-
-            Check.That(result).IsEqualTo(TestResult.Passed);
+            base.ThenCanReadSuccessfulScenarioResultSuccessfully();
         }
 
         [Test]
-        public void ThenCanReadFailedScenarioResultSuccessfully()
+        public new void ThenCanReadFailedScenarioResultSuccessfully()
         {
-            var results = ParseResultsFile();
-            var feature = new Feature { Name = "Addition" };
-            var scenario = new Scenario { Name = "Fail to add two numbers", Feature = feature };
-            TestResult result = results.GetScenarioResult(scenario);
-
-            Check.That(result).IsEqualTo(TestResult.Failed);
+            base.ThenCanReadFailedScenarioResultSuccessfully();
         }
 
         [Test]
-        public void ThenCanReadIgnoredScenarioResultSuccessfully()
+        public new void ThenCanReadIgnoredScenarioResultSuccessfully()
         {
-            var results = ParseResultsFile();
-            var feature = new Feature { Name = "Addition" };
-            var ignoredScenario = new Scenario { Name = "Ignored adding two numbers", Feature = feature };
-            var result = results.GetScenarioResult(ignoredScenario);
-
-            Check.That(result).IsEqualTo(TestResult.Inconclusive);
+            base.ThenCanReadIgnoredScenarioResultSuccessfully();
         }
 
         [Test]
-        public void ThenCanReadInconclusiveScenarioResultSuccessfully()
+        public new void ThenCanReadInconclusiveScenarioResultSuccessfully()
         {
-            var results = ParseResultsFile();
-            var feature = new Feature { Name = "Addition" };
-            var inconclusiveScenario = new Scenario
-            {
-                Name = "Not automated adding two numbers",
-                Feature = feature
-            };
-            var result = results.GetScenarioResult(inconclusiveScenario);
-
-            Check.That(result).IsEqualTo(TestResult.Inconclusive);
+            base.ThenCanReadInconclusiveScenarioResultSuccessfully();
         }
 
         [Test]
-        public void ThenCanReadInconclusiveFeatureResultSuccessfully()
+        public new void ThenCanReadInconclusiveFeatureResultSuccessfully()
         {
-            var results = ParseResultsFile();
-            var result = results.GetFeatureResult(this.InconclusiveFeature());
-            Check.That(result).IsEqualTo(TestResult.Inconclusive);
+            base.ThenCanReadInconclusiveFeatureResultSuccessfully();
         }
 
         [Test]
-        public void ThenCanReadPassedFeatureResultSuccessfully()
+        public new void ThenCanReadPassedFeatureResultSuccessfully()
         {
-            var results = ParseResultsFile();
-            var result = results.GetFeatureResult(this.PassingFeature());
-            Check.That(result).IsEqualTo(TestResult.Passed);
+            base.ThenCanReadPassedFeatureResultSuccessfully();
         }
 
         [Test]
-        public void ThenCanReadFailedFeatureResultSuccessfully()
+        public new void ThenCanReadFailedFeatureResultSuccessfully()
         {
-            var results = ParseResultsFile();
-            var result = results.GetFeatureResult(this.FailingFeature());
-            Check.That(result).IsEqualTo(TestResult.Failed);
-        }
-
-        private Feature FailingFeature()
-        {
-            return new Feature { Name = "Failing" };
-        }
-
-        private Feature InconclusiveFeature()
-        {
-            return new Feature { Name = "Inconclusive" };
-        }
-
-        private Feature PassingFeature()
-        {
-            return new Feature { Name = "Passing" };
+            base.ThenCanReadFailedFeatureResultSuccessfully();
         }
 
         [Test]
-        public void ThenCanReadNotFoundScenarioCorrectly()
+        public new void ThenCanReadNotFoundScenarioCorrectly()
         {
-            var results = ParseResultsFile();
-            var feature = new Feature { Name = "Addition" };
-            var notFoundScenario = new Scenario
-            {
-                Name = "Not in the file at all!",
-                Feature = feature
-            };
-
-            var result = results.GetScenarioResult(notFoundScenario);
-
-            Check.That(result).IsEqualTo(TestResult.Inconclusive);
+            base.ThenCanReadNotFoundScenarioCorrectly();
         }
 
         [Test]
-        public void ThenCanReadNotFoundFeatureCorrectly()
+        public new void ThenCanReadNotFoundFeatureCorrectly()
         {
-            var results = ParseResultsFile();
-            var feature = new Feature { Name = "NotInTheFile" };
-            var result = results.GetFeatureResult(feature);
-
-            Check.That(result).IsEqualTo(TestResult.Inconclusive);
+            base.ThenCanReadNotFoundFeatureCorrectly();
         }
 
         [Test]
-        public void ThenCanReadIndividualResultsFromScenarioOutline_AllPass_ShouldBeTestResultPassed()
+        public new void ThenCanReadResultsWithBackslashes()
         {
-            var results = ParseResultsFile();
-
-            var feature = new Feature { Name = "Scenario Outlines" };
-
-            var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline where all scenarios pass", Feature = feature };
-
-            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
-            Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
-
-            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
-            Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
-
-            TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
-            Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
-
-            TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "pass_3" });
-            Check.That(exampleResult3).IsEqualTo(TestResult.Passed);
-        }
-
-        [Test]
-        public void ThenCanReadIndividualResultsFromScenarioOutline_OneInconclusive_ShouldBeTestResultInconclusive()
-        {
-            var results = ParseResultsFile();
-
-            var feature = new Feature { Name = "Scenario Outlines" };
-
-            var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline where one scenario is inconclusive", Feature = feature };
-
-            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
-            Check.That(exampleResultOutline).IsEqualTo(TestResult.Inconclusive);
-
-            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
-            Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
-
-            TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
-            Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
-
-            TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_1" });
-            Check.That(exampleResult3).IsEqualTo(TestResult.Inconclusive);
-        }
-
-        [Test]
-        public void ThenCanReadIndividualResultsFromScenarioOutline_OneFailed_ShouldBeTestResultFailed()
-        {
-            var results = ParseResultsFile();
-
-            var feature = new Feature { Name = "Scenario Outlines" };
-
-            var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline where one scenario fails", Feature = feature };
-
-            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
-            Check.That(exampleResultOutline).IsEqualTo(TestResult.Failed);
-
-            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
-            Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
-
-            TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
-            Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
-
-            TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "fail_1" });
-            Check.That(exampleResult3).IsEqualTo(TestResult.Failed);
-        }
-
-        [Test]
-        public void ThenCanReadIndividualResultsFromScenarioOutline_MultipleExampleSections_ShouldBeTestResultFailed()
-        {
-            var results = ParseResultsFile();
-
-            var feature = new Feature { Name = "Scenario Outlines" };
-
-            var scenarioOutline = new ScenarioOutline { Name = "And we can go totally bonkers with multiple example sections.", Feature = feature };
-
-            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
-            Check.That(exampleResultOutline).IsEqualTo(TestResult.Failed);
-
-            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
-            Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
-
-            TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
-            Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
-
-            TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_1" });
-            Check.That(exampleResult3).IsEqualTo(TestResult.Inconclusive);
-
-            TestResult exampleResult4 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_2" });
-            Check.That(exampleResult4).IsEqualTo(TestResult.Inconclusive);
-
-            TestResult exampleResult5 = results.GetExampleResult(scenarioOutline, new[] { "fail_1" });
-            Check.That(exampleResult5).IsEqualTo(TestResult.Failed);
-
-            TestResult exampleResult6 = results.GetExampleResult(scenarioOutline, new[] { "fail_2" });
-            Check.That(exampleResult6).IsEqualTo(TestResult.Failed);
-        }
-
-        [Test]
-        public void ThenCanReadResultsWithBackslashes()
-        {
-            var results = ParseResultsFile();
-
-            var feature = new Feature { Name = "Scenario Outlines" };
-
-            var scenarioOutline = new ScenarioOutline { Name = "Deal correctly with backslashes in the examples", Feature = feature };
-
-            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
-            Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
-
-            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { @"c:\Temp\" });
-            Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
+            base.ThenCanReadResultsWithBackslashes();
         }
     }
 }
