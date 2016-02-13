@@ -1,4 +1,4 @@
-﻿//  --------------------------------------------------------------------------------------------------------------------
+﻿    //  --------------------------------------------------------------------------------------------------------------------
 //  <copyright file="SpecRunSingleResultLoader.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
@@ -19,9 +19,11 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using System.IO.Abstractions;
-
-using PicklesDoc.Pickles.ObjectModel;
+using System.Linq;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 {
@@ -29,7 +31,44 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
     {
         public SingleTestRunBase Load(FileInfoBase fileInfo)
         {
-            return new SpecRunSingleResults(fileInfo);
+            var document = this.ReadResultsFile(fileInfo);
+            var features = this.ToFeatures(document);
+
+            return new SpecRunSingleResults(features);
+        }
+
+        private List<SpecRunFeature> ToFeatures(XDocument readResultsFile)
+        {
+            return readResultsFile.Descendants("feature").Select(Factory.ToSpecRunFeature).ToList();
+        }
+
+        private XDocument ReadResultsFile(FileInfoBase testResultsFile)
+        {
+            XDocument document;
+            using (var stream = testResultsFile.OpenRead())
+            {
+                using (var streamReader = new System.IO.StreamReader(stream))
+                {
+                    string content = streamReader.ReadToEnd();
+
+                    int begin = content.IndexOf("<!-- Pickles Begin", StringComparison.Ordinal);
+
+                    content = content.Substring(begin);
+
+                    content = content.Replace("<!-- Pickles Begin", string.Empty);
+
+                    int end = content.IndexOf("Pickles End -->", System.StringComparison.Ordinal);
+
+                    content = content.Substring(0, end);
+
+                    content = content.Replace("&lt;", "<").Replace("&gt;", ">");
+
+                    var xmlReader = XmlReader.Create(new System.IO.StringReader(content));
+                    document = XDocument.Load(xmlReader);
+                }
+            }
+
+            return document;
         }
     }
 }

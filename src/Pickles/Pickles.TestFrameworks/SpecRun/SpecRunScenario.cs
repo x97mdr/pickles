@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="Feature.cs" company="PicklesDoc">
+//  <copyright file="SpecRunScenario.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -19,14 +19,13 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
 
-namespace PicklesDoc.Pickles.Parser.SpecRun
+namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 {
-    internal class Feature
+    public class SpecRunScenario
     {
         public string Title { get; set; }
 
-        public List<Scenario> Scenarios { get; set; }
+        public string Result { get; set; }
     }
 }

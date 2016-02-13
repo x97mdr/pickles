@@ -79,8 +79,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingleTestRunBase.cs" />
     <Compile Include="SpecRun\Factory.cs" />
-    <Compile Include="SpecRun\Feature.cs" />
-    <Compile Include="SpecRun\Scenario.cs" />
+    <Compile Include="SpecRun\SpecRunFeature.cs" />
+    <Compile Include="SpecRun\SpecRunScenario.cs" />
     <Compile Include="SpecRun\SpecRunExampleSignatureBuilder.cs" />
     <Compile Include="SpecRun\SpecRunResults.cs" />
     <Compile Include="SpecRun\SpecRunSingleResults.cs" />
