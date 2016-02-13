@@ -28,7 +28,7 @@ using Newtonsoft.Json;
 
 using PicklesDoc.Pickles.ObjectModel;
 
-using Feature = PicklesDoc.Pickles.Parser.JsonResult.Feature;
+using Feature = PicklesDoc.Pickles.TestFrameworks.CucumberJson.Feature;
 
 namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
 {
@@ -65,7 +65,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
 
         public override TestResult GetScenarioResult(Scenario scenario)
         {
-            Parser.JsonResult.Element cucumberScenario = null;
+            Element cucumberScenario = null;
             var cucumberFeature = this.GetFeatureElement(scenario.Feature);
             if (cucumberFeature != null)
             {
@@ -94,7 +94,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
             return this.resultsDocument.FirstOrDefault(x => x.name == feature.Name);
         }
 
-        private TestResult GetResultFromScenario(Parser.JsonResult.Element cucumberScenario)
+        private TestResult GetResultFromScenario(Element cucumberScenario)
         {
             if (cucumberScenario == null)
             {
@@ -106,7 +106,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
             return wasSuccessful ? TestResult.Passed : TestResult.Failed;
         }
 
-        private bool CheckScenarioStatus(Parser.JsonResult.Element cucumberScenario)
+        private bool CheckScenarioStatus(Element cucumberScenario)
         {
             return cucumberScenario.steps.All(x => x.result.status == "passed");
         }

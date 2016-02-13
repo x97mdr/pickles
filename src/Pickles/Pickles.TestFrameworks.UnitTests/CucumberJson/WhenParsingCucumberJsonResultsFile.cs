@@ -27,6 +27,8 @@ using NUnit.Framework;
 using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks.CucumberJson;
 
+using Feature = PicklesDoc.Pickles.ObjectModel.Feature;
+
 namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.CucumberJson
 {
     [TestFixture]

@@ -21,7 +21,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace PicklesDoc.Pickles.Parser.JsonResult
+namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
 {
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "The lowercase name is part of an external contract.")]
     [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "The lowercase name is part of an external contract.")]
