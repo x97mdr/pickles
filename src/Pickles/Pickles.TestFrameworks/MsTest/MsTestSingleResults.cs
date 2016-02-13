@@ -57,7 +57,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
         {
             var scenarios = this.GetScenariosForFeature(feature);
 
-            var featureExecutionIds = scenarios.ExecutionIds();
+            var featureExecutionIds = scenarios.ExecutionIdElements();
 
             TestResult result = this.GetExecutionResult(featureExecutionIds);
 

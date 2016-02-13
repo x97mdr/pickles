@@ -109,7 +109,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
             return xElement != null ? new Guid(xElement.Attribute("id").Value) : Guid.Empty;
         }
 
-        internal static IEnumerable<Guid> ExecutionIds(this IEnumerable<XElement> scenarios)
+        internal static IEnumerable<Guid> ExecutionIdElements(this IEnumerable<XElement> scenarios)
         {
             return scenarios.Select(ExecutionIdElement);
         }
