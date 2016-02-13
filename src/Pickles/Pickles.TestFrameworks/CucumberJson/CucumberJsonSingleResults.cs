@@ -101,7 +101,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
                 return TestResult.Inconclusive;
             }
 
-            bool wasSuccessful = CheckScenarioStatus(cucumberScenario);
+            bool wasSuccessful = this.CheckScenarioStatus(cucumberScenario);
 
             return wasSuccessful ? TestResult.Passed : TestResult.Failed;
         }
@@ -118,7 +118,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
                 return TestResult.Inconclusive;
             }
 
-            bool wasSuccessful = cucumberFeature.elements.All(CheckScenarioStatus);
+            bool wasSuccessful = cucumberFeature.elements.All(this.CheckScenarioStatus);
 
             return wasSuccessful ? TestResult.Passed : TestResult.Failed;
         }
