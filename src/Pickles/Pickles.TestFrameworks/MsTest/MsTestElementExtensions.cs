@@ -59,14 +59,24 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
 
         internal static string Name(this XElement scenario)
         {
-            return scenario.Element(Ns + "Description").Value;
+            //// <UnitTest>
+            ////   <Description>   the name of the scenario   </Description>
+            //// </UnitTest>
+
+            return scenario.Element(Ns + "Description")?.Value ?? string.Empty;
         }
 
         internal static IEnumerable<XElement> AllExecutionResults(this XDocument document)
         {
+            //// TestRun/Results/UnitTestResult
+
+            if (document?.Root == null)
+            {
+                return new XElement[0];
+            }
+
             return document.Root.Descendants(Ns + "UnitTestResult");
         }
-
 
         /// <summary>
         /// Retrieves all potential scenarios in the test result file. "Potential" because
@@ -78,12 +88,22 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
         /// </returns>
         internal static IEnumerable<XElement> AllScenarios(this XDocument document)
         {
-            // TestRun/TestDefinitions/UnitTests that have a non-empty Description (which is the title of a Scenario).
+            //// TestRun/TestDefinitions/UnitTests that have a non-empty Description (which is the title of a Scenario).
+
+            if (document?.Root == null)
+            {
+                return new XElement[0];
+            }
+
             return document.Root.Descendants(Ns + "UnitTest").Where(s => s.Element(Ns + "Description") != null);
         }
 
         internal static Guid ExecutionIdElement(this XElement scenario)
         {
+            //// <UnitTest>
+            ////   <Execution id="   the execution id guid   " />
+            //// </UnitTest>
+
             var xElement = scenario.Element(Ns + "Execution");
 
             return xElement != null ? new Guid(xElement.Attribute("id").Value) : Guid.Empty;
@@ -96,6 +116,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
 
         internal static TestResult Outcome(this XElement scenarioResult)
         {
+            //// <UnitTestResult outcome="   the outcome   ">
+
             var outcomeAttribute = scenarioResult.Attribute("outcome")?.Value ?? Failed;
 
             switch (outcomeAttribute.ToLowerInvariant())
@@ -111,6 +133,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
 
         internal static Guid ExecutionIdAttribute(this XElement unitTestResult)
         {
+            //// <UnitTestResult executionId="   the execution id guid   ">
+
             var executionIdAttribute = unitTestResult.Attribute("executionId");
             return executionIdAttribute != null ? new Guid(executionIdAttribute.Value) : Guid.Empty;
         }
