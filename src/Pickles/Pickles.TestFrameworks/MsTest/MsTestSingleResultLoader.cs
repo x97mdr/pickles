@@ -21,8 +21,6 @@
 using System;
 using System.IO.Abstractions;
 
-using PicklesDoc.Pickles.ObjectModel;
-
 namespace PicklesDoc.Pickles.TestFrameworks.MsTest
 {
     public class MsTestSingleResultLoader : ISingleResultLoader
