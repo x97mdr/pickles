@@ -73,6 +73,9 @@
     <Compile Include="NUnit\NUnit3\results-example-nunit3.cs">
       <DependentUpon>results-example-nunit3.xsd</DependentUpon>
     </Compile>
+    <Compile Include="NUnit\NUnitSingleResultsBase.cs" />
+    <Compile Include="NUnit\NUnitXElementExtensions.cs" />
+    <Compile Include="NUnit\TestResultAndName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingleTestRunBase.cs" />
     <Compile Include="SpecRun\Factory.cs" />

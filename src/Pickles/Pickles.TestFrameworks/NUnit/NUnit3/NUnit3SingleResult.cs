@@ -27,75 +27,22 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3
 {
-    public class NUnit3SingleResult : SingleTestRunBase
+    public class NUnit3SingleResult : NUnitSingleResultsBase
     {
-        private readonly XDocument resultsDocument;
-
         public NUnit3SingleResult(XDocument resultsDocument)
+            : base(
+                resultsDocument,
+                new[]
+                    {
+                        new TestResultAndName(TestResult.Inconclusive, "Skipped"),
+                        new TestResultAndName(TestResult.Inconclusive, "Inconclusive"),
+                        new TestResultAndName(TestResult.Failed, "Failed"),
+                        new TestResultAndName(TestResult.Passed, "Passed"),
+                    })
         {
-            this.resultsDocument = resultsDocument;
         }
 
-        public override bool SupportsExampleResults
-        {
-            get { return true; }
-        }
-
-        public override TestResult GetFeatureResult(Feature feature)
-        {
-            var featureElement = this.GetFeatureElement(feature);
-
-            if (featureElement == null)
-            {
-                return TestResult.Inconclusive;
-            }
-
-            var results = featureElement.Descendants("test-case")
-                .Select(this.GetResultFromElement);
-
-            return results.Merge();
-        }
-
-        public override TestResult GetScenarioResult(Scenario scenario)
-        {
-            var scenarioElement = this.GetScenarioElement(scenario);
-
-            return this.GetResultFromElement(scenarioElement);
-        }
-
-        public override TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
-        {
-            var scenarioOutlineElement = this.GetScenarioOutlineElement(scenarioOutline);
-
-            return this.DetermineScenarioOutlineResult(scenarioOutlineElement);
-        }
-
-        public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
-        {
-            Regex exampleSignature = this.CreateSignatureRegex(scenarioOutline, exampleValues);
-
-            var examplesElement = this.GetExamplesElement(scenarioOutline, exampleSignature);
-
-            return this.GetResultFromElement(examplesElement);
-        }
-
-        private static bool IsAttributeSetToValue(XElement element, string attributeName, string expectedValue)
-        {
-            return element.Attribute(attributeName) != null
-                ? string.Equals(
-                    element.Attribute(attributeName).Value,
-                    expectedValue,
-                    StringComparison.InvariantCultureIgnoreCase)
-                : false;
-        }
-
-        private static bool IsMatchingTestCase(XElement x, Regex exampleSignature)
-        {
-            var name = x.Attribute("name");
-            return name != null && exampleSignature.IsMatch(name.Value.ToLowerInvariant().Replace(@"\", string.Empty));
-        }
-
-        private XElement GetScenarioElement(Scenario scenario)
+        protected override XElement GetScenarioElement(Scenario scenario)
         {
             XElement featureElement = this.GetFeatureElement(scenario.Feature);
             XElement scenarioElement = null;
@@ -115,17 +62,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3
             return scenarioElement;
         }
 
-        private TestResult DetermineScenarioOutlineResult(XElement scenarioOutlineElement)
-        {
-            if (scenarioOutlineElement != null)
-            {
-                return scenarioOutlineElement.Descendants("test-case").Select(this.GetResultFromElement).Merge();
-            }
-
-            return TestResult.Inconclusive;
-        }
-
-        private XElement GetScenarioOutlineElement(ScenarioOutline scenarioOutline)
+        protected override XElement GetScenarioOutlineElement(ScenarioOutline scenarioOutline)
         {
             XElement featureElement = this.GetFeatureElement(scenarioOutline.Feature);
             XElement scenarioOutlineElement = null;
@@ -143,10 +80,11 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3
                                     p.Attribute("name").Value == "Description"
                                     && p.Attribute("value").Value == scenarioOutline.Name));
             }
+
             return scenarioOutlineElement;
         }
 
-        private XElement GetFeatureElement(Feature feature)
+        protected override XElement GetFeatureElement(Feature feature)
         {
             return
                 this.resultsDocument
@@ -157,44 +95,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3
                         .Any(p => p.Attribute("name").Value == "Description" && p.Attribute("value").Value == feature.Name));
         }
 
-        private TestResult GetResultFromElement(XElement element)
-        {
-            if (element == null)
-            {
-                return TestResult.Inconclusive;
-            }
-            else if (IsAttributeSetToValue(element, "result", "Skipped"))
-            {
-                return TestResult.Inconclusive;
-            }
-            else if (IsAttributeSetToValue(element, "result", "Inconclusive"))
-            {
-                return TestResult.Inconclusive;
-            }
-            else if (IsAttributeSetToValue(element, "result", "Failed"))
-            {
-                return TestResult.Failed;
-            }
-            else if (IsAttributeSetToValue(element, "result", "Passed"))
-            {
-                return TestResult.Passed;
-            }
-            else
-            {
-                bool wasExecuted = IsAttributeSetToValue(element, "executed", "true");
-
-                if (!wasExecuted)
-                {
-                    return TestResult.Inconclusive;
-                }
-
-                bool wasSuccessful = IsAttributeSetToValue(element, "success", "true");
-
-                return wasSuccessful ? TestResult.Passed : TestResult.Failed;
-            }
-        }
-
-        private XElement GetExamplesElement(
+        protected override XElement GetExamplesElement(
             ScenarioOutline scenarioOutline,
             Regex exampleSignature)
         {
