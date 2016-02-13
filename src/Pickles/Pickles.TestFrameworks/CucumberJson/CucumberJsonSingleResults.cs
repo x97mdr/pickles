@@ -65,6 +65,13 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
 
         public override TestResult GetScenarioResult(Scenario scenario)
         {
+            var cucumberScenario = this.GetCucumberScenario(scenario);
+
+            return this.GetResultFromScenario(cucumberScenario);
+        }
+
+        private Element GetCucumberScenario(Scenario scenario)
+        {
             Element cucumberScenario = null;
             var cucumberFeature = this.GetFeatureElement(scenario.Feature);
             if (cucumberFeature != null)
@@ -72,9 +79,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
                 cucumberScenario = cucumberFeature.elements.FirstOrDefault(x => x.name == scenario.Name);
             }
 
-            return this.GetResultFromScenario(cucumberScenario);
+            return cucumberScenario;
         }
-
 
         private Feature GetFeatureElement(ObjectModel.Feature feature)
         {
