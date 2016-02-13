@@ -66,6 +66,7 @@
     <Compile Include="NUnit3\WhenParsingNunit3ResultsFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NUnit2\WhenDeterminingTheSignatureOfAnNUnitExampleRow.cs" />
+    <Compile Include="StandardTestSuite.cs" />
     <Compile Include="XUnit1\WhenDeterminingTheSignatureOfAnXUnitExampleRow.cs" />
     <Compile Include="CucumberJson\WhenParsingCucumberJsonResultsFile.cs" />
     <Compile Include="MsTest\WhenParsingMsTestResultsFile.cs" />

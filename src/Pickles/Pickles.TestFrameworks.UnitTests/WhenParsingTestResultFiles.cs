@@ -26,11 +26,13 @@ using System.Reflection;
 
 using Autofac;
 
+using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Test;
 
 namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 {
     public abstract class WhenParsingTestResultFiles<TResults> : BaseFixture
+        where TResults : ITestResults
     {
         private readonly string[] resultsFileNames;
 
@@ -39,7 +41,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
             this.resultsFileNames = resultsFileName.Split(';');
         }
 
-        protected TResults ParseResultsFile()
+        protected ITestResults ParseResultsFile()
         {
             this.AddTestResultsToConfiguration();
 
