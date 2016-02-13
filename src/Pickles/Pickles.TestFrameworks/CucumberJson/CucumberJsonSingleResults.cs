@@ -36,9 +36,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
     {
         private readonly List<Feature> resultsDocument;
 
-        public CucumberJsonSingleResults(FileInfoBase configuration)
+        public CucumberJsonSingleResults(IEnumerable<Feature> cucumberFeatures)
         {
-            this.resultsDocument = this.ReadResultsFile(configuration);
+            this.resultsDocument = cucumberFeatures.ToList();
         }
 
         public override bool SupportsExampleResults
@@ -75,19 +75,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
             return this.GetResultFromScenario(cucumberScenario);
         }
 
-        private List<Feature> ReadResultsFile(FileInfoBase testResultsFile)
-        {
-            List<Feature> result;
-            using (var stream = testResultsFile.OpenRead())
-            {
-                using (var reader = new StreamReader(stream))
-                {
-                    result = JsonConvert.DeserializeObject<List<Feature>>(reader.ReadToEnd());
-                }
-            }
-
-            return result;
-        }
 
         private Feature GetFeatureElement(ObjectModel.Feature feature)
         {

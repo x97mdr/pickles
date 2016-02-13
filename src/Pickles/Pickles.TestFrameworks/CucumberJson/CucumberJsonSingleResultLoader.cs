@@ -19,7 +19,11 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.IO.Abstractions;
+
+using Newtonsoft.Json;
 
 namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
 {
@@ -27,7 +31,21 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
     {
         public SingleTestRunBase Load(FileInfoBase fileInfo)
         {
-            return new CucumberJsonSingleResults(fileInfo);
+            return new CucumberJsonSingleResults(this.ReadResultsFile(fileInfo));
+        }
+
+        private List<Feature> ReadResultsFile(FileInfoBase testResultsFile)
+        {
+            List<Feature> result;
+            using (var stream = testResultsFile.OpenRead())
+            {
+                using (var reader = new StreamReader(stream))
+                {
+                    result = JsonConvert.DeserializeObject<List<Feature>>(reader.ReadToEnd());
+                }
+            }
+
+            return result;
         }
     }
 }
