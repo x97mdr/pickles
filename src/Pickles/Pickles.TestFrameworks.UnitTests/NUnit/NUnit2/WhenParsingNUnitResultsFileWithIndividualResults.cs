@@ -18,19 +18,19 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using NFluent;
+using System;
 
 using NUnit.Framework;
 
-using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3;
+using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2;
 
-namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit3
+namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
 {
     [TestFixture]
-    public class WhenParsingNUnitResultsFileWithIndividualResults : StandardTestSuiteForScenarioOutlines<NUnit3Results>
+    public class WhenParsingNUnitResultsFileWithIndividualResults : StandardTestSuiteForScenarioOutlines<NUnit2Results>
     {
         public WhenParsingNUnitResultsFileWithIndividualResults()
-            : base("NUnit3." + "results-example-nunit3.xml")
+            : base("NUnit.NUnit2." + "results-example-nunit.xml")
         {
         }
 

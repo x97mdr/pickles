@@ -27,13 +27,13 @@ using NUnit.Framework;
 using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2;
 
-namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
+namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
 {
     [TestFixture]
     public class WhenParsingProblematicScenarioOutlineResults : WhenParsingTestResultFiles<NUnit2Results>
     {
         public WhenParsingProblematicScenarioOutlineResults()
-            : base("NUnit2." + "results-problem-with-outline-results-nunit.xml")
+            : base("NUnit.NUnit2." + "results-problem-with-outline-results-nunit.xml")
         {
         }
 

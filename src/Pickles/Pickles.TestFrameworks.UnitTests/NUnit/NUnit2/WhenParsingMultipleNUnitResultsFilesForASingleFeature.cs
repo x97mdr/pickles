@@ -27,13 +27,13 @@ using NUnit.Framework;
 using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2;
 
-namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
+namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
 {
     [TestFixture]
     public class WhenParsingMultipleNUnitResultsFilesForASingleFeature : WhenParsingTestResultFiles<NUnit2Results>
     {
         public WhenParsingMultipleNUnitResultsFilesForASingleFeature()
-            : base("NUnit2." + @"results-example-nunit - Run 1.xml;" + "NUnit2." + "results-example-nunit - Run 2.xml")
+            : base("NUnit.NUnit2." + @"results-example-nunit - Run 1.xml;" + "NUnit.NUnit2." + "results-example-nunit - Run 2.xml")
         {
         }
 

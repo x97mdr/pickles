@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="WhenParsingnUnit3ResultsFileWithMissingTraits.cs" company="PicklesDoc">
+//  <copyright file="WhenParsingnUnit2ResultsFileWithMissingTraits.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -25,15 +25,15 @@ using NFluent;
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3;
+using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2;
 
-namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit3
+namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
 {
     [TestFixture]
-    public class WhenParsingnUnit3ResultsFileWithMissingTraits : WhenParsingTestResultFiles<NUnit3Results>
+    public class WhenParsingnUnit2ResultsFileWithMissingTraits : WhenParsingTestResultFiles<NUnit2Results>
     {
-        public WhenParsingnUnit3ResultsFileWithMissingTraits()
-            : base("NUnit3." + "results-example-nunit3-missingTraits.xml")
+        public WhenParsingnUnit2ResultsFileWithMissingTraits()
+            : base("NUnit.NUnit2." + "results-example-nunit-missingTraits.xml")
         {
         }
 

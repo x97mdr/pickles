@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="WhenDeterminingTheSignatureOfAnNunit3ExampleRow.cs" company="PicklesDoc">
+//  <copyright file="WhenDeterminingTheSignatureOfAnNUnitExampleRow.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -31,10 +31,10 @@ using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Test;
 using PicklesDoc.Pickles.TestFrameworks.NUnit;
 
-namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.Nunit3
+namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
 {
     [TestFixture]
-    public class WhenDeterminingTheSignatureOfAnNunit3ExampleRow : BaseFixture
+    public class WhenDeterminingTheSignatureOfAnNUnitExampleRow : BaseFixture
     {
         [Test]
         public void ThenCanSuccessfullyMatch()
@@ -45,7 +45,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.Nunit3
             var signatureBuilder = Container.Resolve<NUnitExampleSignatureBuilder>();
             Regex signature = signatureBuilder.Build(scenarioOutline, exampleRow);
 
-            var isMatch = signature.IsMatch("AddingSeveralNumbers(\"40\",\"50\",\"90\",System.String[])".ToLowerInvariant());
+            var isMatch = signature.IsMatch("Pickles.TestHarness.AdditionFeature.AddingSeveralNumbers(\"40\",\"50\",\"90\",System.String[])".ToLowerInvariant());
             Check.That(isMatch).IsTrue();
         }
     }

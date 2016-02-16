@@ -76,7 +76,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         [Test]
         public void ThenCanResolveAsSingletonWhenTestResultsAreNUnit()
         {
-            FileSystem.AddFile("results-example-nunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "NUnit2.results-example-nunit.xml"));
+            FileSystem.AddFile("results-example-nunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "NUnit.NUnit2.results-example-nunit.xml"));
 
             var configuration = Container.Resolve<IConfiguration>();
             configuration.TestResultsFormat = TestResultsFormat.NUnit;
@@ -176,7 +176,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         [Test]
         public void ThenCanResolveWhenTestResultsAreNUnit()
         {
-            FileSystem.AddFile("results-example-nunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "NUnit2.results-example-nunit.xml"));
+            FileSystem.AddFile("results-example-nunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "NUnit.NUnit2.results-example-nunit.xml"));
 
             var configuration = Container.Resolve<IConfiguration>();
             configuration.TestResultsFormat = TestResultsFormat.NUnit;

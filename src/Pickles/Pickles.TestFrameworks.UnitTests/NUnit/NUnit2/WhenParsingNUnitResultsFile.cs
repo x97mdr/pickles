@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="WhenParsingNunit3ResultsFile.cs" company="PicklesDoc">
+//  <copyright file="WhenParsingNUnitResultsFile.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -22,15 +22,15 @@ using System;
 
 using NUnit.Framework;
 
-using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3;
+using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2;
 
-namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.Nunit3
+namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
 {
     [TestFixture]
-    public class WhenParsingNunit3ResultsFile : StandardTestSuite<NUnit3Results>
+    public class WhenParsingNUnitResultsFile : StandardTestSuite<NUnit2Results>
     {
-        public WhenParsingNunit3ResultsFile()
-            : base("NUnit3." + "results-example-nunit3.xml")
+        public WhenParsingNUnitResultsFile()
+            : base("NUnit.NUnit2." + "results-example-nunit.xml")
         {
         }
 
@@ -65,9 +65,39 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.Nunit3
         }
 
         [Test]
+        public new void ThenCanReadInconclusiveScenarioResultSuccessfully()
+        {
+            base.ThenCanReadInconclusiveScenarioResultSuccessfully();
+        }
+
+        [Test]
+        public new void ThenCanReadInconclusiveFeatureResultSuccessfully()
+        {
+            base.ThenCanReadInconclusiveFeatureResultSuccessfully();
+        }
+
+        [Test]
+        public new void ThenCanReadPassedFeatureResultSuccessfully()
+        {
+            base.ThenCanReadPassedFeatureResultSuccessfully();
+        }
+
+        [Test]
+        public new void ThenCanReadFailedFeatureResultSuccessfully()
+        {
+            base.ThenCanReadFailedFeatureResultSuccessfully();
+        }
+
+        [Test]
         public new void ThenCanReadNotFoundScenarioCorrectly()
         {
             base.ThenCanReadNotFoundScenarioCorrectly();
+        }
+
+        [Test]
+        public new void ThenCanReadNotFoundFeatureCorrectly()
+        {
+            base.ThenCanReadNotFoundFeatureCorrectly();
         }
 
         [Test]

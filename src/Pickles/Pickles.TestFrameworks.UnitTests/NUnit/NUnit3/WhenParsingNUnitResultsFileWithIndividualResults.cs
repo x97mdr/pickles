@@ -20,20 +20,17 @@
 
 using System;
 
-using NFluent;
-
 using NUnit.Framework;
 
-using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2;
+using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3;
 
-namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit2
+namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit3
 {
     [TestFixture]
-    public class WhenParsingNUnitResultsFileWithIndividualResults : StandardTestSuiteForScenarioOutlines<NUnit2Results>
+    public class WhenParsingNUnitResultsFileWithIndividualResults : StandardTestSuiteForScenarioOutlines<NUnit3Results>
     {
         public WhenParsingNUnitResultsFileWithIndividualResults()
-            : base("NUnit2." + "results-example-nunit.xml")
+            : base("NUnit.NUnit3." + "results-example-nunit3.xml")
         {
         }
 
