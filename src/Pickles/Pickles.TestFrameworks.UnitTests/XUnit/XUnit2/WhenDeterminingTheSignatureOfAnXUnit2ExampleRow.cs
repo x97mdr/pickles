@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="WhenParsingxUnit1ResultsFileWithMissingTraits.cs" company="PicklesDoc">
+//  <copyright file="WhenDeterminingTheSignatureOfAnXUnit2ExampleRow.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -19,33 +19,34 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Text.RegularExpressions;
+
+using Autofac;
 
 using NFluent;
 
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1;
+using PicklesDoc.Pickles.Test;
+using PicklesDoc.Pickles.TestFrameworks.XUnit;
 
-namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit1
+namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit.XUnit2
 {
     [TestFixture]
-    public class WhenParsingxUnit1ResultsFileWithMissingTraits : WhenParsingTestResultFiles<XUnit1Results>
+    public class WhenDeterminingTheSignatureOfAnXUnit2ExampleRow : BaseFixture
     {
-        public WhenParsingxUnit1ResultsFileWithMissingTraits()
-            : base("XUnit1." + "results-example-xunit1-missingTraits.xml")
-        {
-        }
-
         [Test]
-        public void ThenCanReadFeatureResultWithoutThrowingException()
+        public void ThenCanSuccessfullyMatch()
         {
-            // Write out the embedded test results file
-            var results = ParseResultsFile();
+            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers" };
+            var exampleRow = new[] { "40", "50", "90" };
 
-            var feature = new Feature { Name = "Addition" };
+            var signatureBuilder = Container.Resolve<XUnitExampleSignatureBuilder>();
+            Regex signature = signatureBuilder.Build(scenarioOutline, exampleRow);
 
-            Check.ThatCode(() => results.GetFeatureResult(feature)).DoesNotThrow();
+            var isMatch = signature.IsMatch("Pickles.TestHarness.xUnit.AdditionFeature.AddingSeveralNumbers(firstNumber: \"40\", secondNumber: \"50\", result: \"90\", exampleTags: System.String[])".ToLowerInvariant());
+            Check.That(isMatch).IsTrue();
         }
     }
 }

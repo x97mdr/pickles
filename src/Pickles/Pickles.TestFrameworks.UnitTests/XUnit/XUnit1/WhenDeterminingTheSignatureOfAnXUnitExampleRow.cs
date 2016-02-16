@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="WhenDeterminingTheSignatureOfAnXUnit2ExampleRow.cs" company="PicklesDoc">
+//  <copyright file="WhenDeterminingTheSignatureOfAnXUnitExampleRow.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -31,10 +31,10 @@ using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Test;
 using PicklesDoc.Pickles.TestFrameworks.XUnit;
 
-namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit2
+namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit.XUnit1
 {
     [TestFixture]
-    public class WhenDeterminingTheSignatureOfAnXUnit2ExampleRow : BaseFixture
+    public class WhenDeterminingTheSignatureOfAnXUnitExampleRow : BaseFixture
     {
         [Test]
         public void ThenCanSuccessfullyMatch()

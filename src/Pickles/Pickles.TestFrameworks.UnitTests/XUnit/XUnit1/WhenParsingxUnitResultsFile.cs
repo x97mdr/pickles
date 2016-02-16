@@ -24,13 +24,13 @@ using NUnit.Framework;
 
 using PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1;
 
-namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit1
+namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit.XUnit1
 {
     [TestFixture]
     public class WhenParsingxUnitResultsFile : StandardTestSuite<XUnit1Results>
     {
         public WhenParsingxUnitResultsFile()
-            : base("XUnit1." + "results-example-xunit.xml")
+            : base("XUnit.XUnit1." + "results-example-xunit.xml")
         {
         }
 

@@ -27,13 +27,13 @@ using NUnit.Framework;
 using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2;
 
-namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit2
+namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit.XUnit2
 {
     [TestFixture]
     public class WhenParsingxUnit2ResultsFileWithMissingTraits : WhenParsingTestResultFiles<XUnit2Results>
     {
         public WhenParsingxUnit2ResultsFileWithMissingTraits()
-            : base("XUnit2." + "results-example-xunit2-missingTraits.xml")
+            : base("XUnit.XUnit2." + "results-example-xunit2-missingTraits.xml")
         {
         }
 

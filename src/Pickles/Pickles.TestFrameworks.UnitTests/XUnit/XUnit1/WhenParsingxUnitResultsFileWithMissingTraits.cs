@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="WhenDeterminingTheSignatureOfAnXUnitExampleRow.cs" company="PicklesDoc">
+//  <copyright file="WhenParsingxUnit1ResultsFileWithMissingTraits.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -19,34 +19,33 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Text.RegularExpressions;
-
-using Autofac;
 
 using NFluent;
 
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.Test;
-using PicklesDoc.Pickles.TestFrameworks.XUnit;
+using PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1;
 
-namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit1
+namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit.XUnit1
 {
     [TestFixture]
-    public class WhenDeterminingTheSignatureOfAnXUnitExampleRow : BaseFixture
+    public class WhenParsingxUnit1ResultsFileWithMissingTraits : WhenParsingTestResultFiles<XUnit1Results>
     {
-        [Test]
-        public void ThenCanSuccessfullyMatch()
+        public WhenParsingxUnit1ResultsFileWithMissingTraits()
+            : base("XUnit.XUnit1." + "results-example-xunit1-missingTraits.xml")
         {
-            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers" };
-            var exampleRow = new[] { "40", "50", "90" };
+        }
 
-            var signatureBuilder = Container.Resolve<XUnitExampleSignatureBuilder>();
-            Regex signature = signatureBuilder.Build(scenarioOutline, exampleRow);
+        [Test]
+        public void ThenCanReadFeatureResultWithoutThrowingException()
+        {
+            // Write out the embedded test results file
+            var results = ParseResultsFile();
 
-            var isMatch = signature.IsMatch("Pickles.TestHarness.xUnit.AdditionFeature.AddingSeveralNumbers(firstNumber: \"40\", secondNumber: \"50\", result: \"90\", exampleTags: System.String[])".ToLowerInvariant());
-            Check.That(isMatch).IsTrue();
+            var feature = new Feature { Name = "Addition" };
+
+            Check.ThatCode(() => results.GetFeatureResult(feature)).DoesNotThrow();
         }
     }
 }

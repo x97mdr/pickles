@@ -95,7 +95,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         [Test]
         public void ThenCanResolveAsSingletonWhenTestResultsArexUnit()
         {
-            FileSystem.AddFile("results-example-xunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "XUnit1.results-example-xunit.xml"));
+            FileSystem.AddFile("results-example-xunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "XUnit.XUnit1.results-example-xunit.xml"));
 
             var configuration = Container.Resolve<IConfiguration>();
             configuration.TestResultsFormat = TestResultsFormat.XUnit1;
@@ -191,7 +191,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         [Test]
         public void ThenCanResolveWhenTestResultsArexUnit()
         {
-            FileSystem.AddFile("results-example-xunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "XUnit1.results-example-xunit.xml"));
+            FileSystem.AddFile("results-example-xunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "XUnit.XUnit1.results-example-xunit.xml"));
 
             var configuration = Container.Resolve<IConfiguration>();
             configuration.TestResultsFormat = TestResultsFormat.XUnit1;

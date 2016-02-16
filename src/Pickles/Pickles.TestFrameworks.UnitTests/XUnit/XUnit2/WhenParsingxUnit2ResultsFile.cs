@@ -20,20 +20,17 @@
 
 using System;
 
-using NFluent;
-
 using NUnit.Framework;
 
-using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2;
 
-namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit2
+namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit.XUnit2
 {
     [TestFixture]
     public class WhenParsingxUnit2ResultsFile : StandardTestSuite<XUnit2Results>
     {
         public WhenParsingxUnit2ResultsFile()
-            : base("XUnit2." + "results-example-xunit2.xml")
+            : base("XUnit.XUnit2." + "results-example-xunit2.xml")
         {
         }
 
