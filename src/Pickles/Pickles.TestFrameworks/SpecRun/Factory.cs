@@ -18,11 +18,12 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace PicklesDoc.Pickles.Parser.SpecRun
+namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 {
     internal static class Factory
     {
@@ -40,24 +41,24 @@ namespace PicklesDoc.Pickles.Parser.SpecRun
                 </features>
            */
 
-        internal static Feature ToSpecRunFeature(XElement featureXml)
+        internal static SpecRunFeature ToSpecRunFeature(XElement featureXml)
         {
             var title = featureXml.Element("title");
             var scenarios = featureXml.Element("scenarios");
 
-            return new Feature
+            return new SpecRunFeature
             {
                 Title = title != null ? title.Value : string.Empty,
-                Scenarios = scenarios != null ? scenarios.Elements("scenario").Select<XElement, Scenario>(ToSpecRunScenario).ToList() : new List<Scenario>()
+                Scenarios = scenarios != null ? scenarios.Elements("scenario").Select<XElement, SpecRunScenario>(ToSpecRunScenario).ToList() : new List<SpecRunScenario>()
             };
         }
 
-        internal static Scenario ToSpecRunScenario(XElement scenarioXml)
+        internal static SpecRunScenario ToSpecRunScenario(XElement scenarioXml)
         {
             var title = scenarioXml.Element("title");
             var result = scenarioXml.Element("result");
 
-            return new Scenario
+            return new SpecRunScenario
             {
                 Title = title != null ? title.Value : string.Empty,
                 Result = result != null ? result.Value : string.Empty

@@ -31,11 +31,13 @@ using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks;
 using PicklesDoc.Pickles.TestFrameworks.CucumberJson;
 using PicklesDoc.Pickles.TestFrameworks.MsTest;
-using PicklesDoc.Pickles.TestFrameworks.NUnit2;
-using PicklesDoc.Pickles.TestFrameworks.NUnit3;
+using PicklesDoc.Pickles.TestFrameworks.NUnit;
+using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2;
+using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3;
 using PicklesDoc.Pickles.TestFrameworks.SpecRun;
-using PicklesDoc.Pickles.TestFrameworks.XUnit1;
-using PicklesDoc.Pickles.TestFrameworks.XUnit2;
+using PicklesDoc.Pickles.TestFrameworks.XUnit;
+using PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1;
+using PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2;
 
 namespace PicklesDoc.Pickles
 {
@@ -75,17 +77,25 @@ namespace PicklesDoc.Pickles
                 }
             }).SingleInstance();
 
-            builder.RegisterType<NUnitResults>();
+            builder.RegisterType<NUnit2Results>();
+            builder.RegisterType<NUnit2SingleResultLoader>();
             builder.RegisterType<NUnitExampleSignatureBuilder>();
             builder.RegisterType<NUnit3Results>();
-            builder.RegisterType<NUnit3ExampleSignatureBuilder>();
-            builder.RegisterType<XUnitResults>();
+            builder.RegisterType<NUnit3SingleResultLoader>();
+            builder.RegisterType<XUnit1Results>();
+            builder.RegisterType<XUnit1SingleResultLoader>();
             builder.RegisterType<XUnitExampleSignatureBuilder>();
             builder.RegisterType<XUnit2Results>();
-            builder.RegisterType<XUnit2ExampleSignatureBuilder>();
+            builder.RegisterType<XUnit2SingleResultLoader>();
             builder.RegisterType<MsTestResults>();
+            builder.RegisterType<MsTestSingleResultLoader>();
+            builder.RegisterType<MsTestExampleSignatureBuilder>();
             builder.RegisterType<CucumberJsonResults>();
+            builder.RegisterType<CucumberJsonSingleResultLoader>();
+            builder.RegisterType<CucumberJsonExampleSignatureBuilder>();
             builder.RegisterType<SpecRunResults>();
+            builder.RegisterType<SpecRunSingleResultLoader>();
+            builder.RegisterType<SpecRunExampleSignatureBuilder>();
 
             builder.Register<ITestResults>(c =>
             {
@@ -98,11 +108,12 @@ namespace PicklesDoc.Pickles
                 switch (configuration.TestResultsFormat)
                 {
                     case TestResultsFormat.NUnit:
-                        return c.Resolve<NUnitResults>();
+                        return c.Resolve<NUnit2Results>();
                     case TestResultsFormat.NUnit3:
                         return c.Resolve<NUnit3Results>();
-                    case TestResultsFormat.xUnit:
-                        return c.Resolve<XUnitResults>();
+                    case TestResultsFormat.XUnit:
+                    case TestResultsFormat.XUnit1:
+                        return c.Resolve<XUnit1Results>();
                     case TestResultsFormat.xUnit2:
                         return c.Resolve<XUnit2Results>();
                     case TestResultsFormat.MsTest:

@@ -19,29 +19,14 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.IO.Abstractions;
-
-using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.MsTest
 {
-    public class MsTestResults : MultipleTestResults
+    public class MsTestResults : MultipleTestRunsBase
     {
-        private static readonly XDocumentLoader DocumentLoader = new XDocumentLoader();
-
-        public MsTestResults(IConfiguration configuration)
-            : base(false, configuration)
+        public MsTestResults(IConfiguration configuration, MsTestSingleResultLoader singleResultLoader, MsTestExampleSignatureBuilder exampleSignatureBuilder)
+            : base(false, configuration, singleResultLoader, exampleSignatureBuilder)
         {
-        }
-
-        public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
-        {
-            throw new NotSupportedException();
-        }
-
-        protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
-        {
-            return new MsTestSingleResults(DocumentLoader.Load(fileInfo));
         }
     }
 }
