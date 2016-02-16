@@ -29,9 +29,12 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
     public class StandardTestSuiteForScenarioOutlines<TResults> : WhenParsingTestResultFiles<TResults>
         where TResults : ITestResults
     {
-        protected StandardTestSuiteForScenarioOutlines(string resultsFileName)
+        private readonly TestResult valueForInconclusive;
+
+        protected StandardTestSuiteForScenarioOutlines(string resultsFileName, bool treatInconclusiveAsFailed = false)
             : base(resultsFileName)
         {
+            this.valueForInconclusive = treatInconclusiveAsFailed ? TestResult.Failed : TestResult.Inconclusive;
         }
 
         public void ThenCanReadIndividualResultsFromScenarioOutline_AllPass_ShouldBeTestResultPassed()
@@ -64,7 +67,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
             var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline where one scenario is inconclusive", Feature = feature };
 
             TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
-            Check.That(exampleResultOutline).IsEqualTo(TestResult.Inconclusive);
+            Check.That(exampleResultOutline).IsEqualTo(this.valueForInconclusive);
 
             TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
             Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
@@ -73,7 +76,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
             Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
 
             TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_1" });
-            Check.That(exampleResult3).IsEqualTo(TestResult.Inconclusive);
+            Check.That(exampleResult3).IsEqualTo(this.valueForInconclusive);
         }
 
         public void ThenCanReadIndividualResultsFromScenarioOutline_OneFailed_ShouldBeTestResultFailed()
@@ -115,10 +118,10 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
             Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
 
             TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_1" });
-            Check.That(exampleResult3).IsEqualTo(TestResult.Inconclusive);
+            Check.That(exampleResult3).IsEqualTo(this.valueForInconclusive);
 
             TestResult exampleResult4 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_2" });
-            Check.That(exampleResult4).IsEqualTo(TestResult.Inconclusive);
+            Check.That(exampleResult4).IsEqualTo(this.valueForInconclusive);
 
             TestResult exampleResult5 = results.GetExampleResult(scenarioOutline, new[] { "fail_1" });
             Check.That(exampleResult5).IsEqualTo(TestResult.Failed);
