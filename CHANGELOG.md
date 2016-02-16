@@ -12,6 +12,12 @@ This project adheres to [Semantic Versioning](http://semver.org). We consider th
 
 This document is formatted according to the principles of [Keep A CHANGELOG](http://keepachangelog.com).
 
+## [Unreleased]
+
+### Added
+
+- The MsTest test result provider is now able to give the result of individual examples in a scenario outline ([#285](https://github.com/picklesdoc/pickles/issues/276)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
+
 ## [2.3.0] - 2016-01-27
 
 ### Added

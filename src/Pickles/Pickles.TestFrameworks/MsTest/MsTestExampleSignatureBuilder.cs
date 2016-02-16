@@ -29,7 +29,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
     {
         public Regex Build(ScenarioOutline scenarioOutline, string[] row)
         {
-            throw new NotSupportedException();
+            // We don't actually need this regex-based thing for MsTest results.
+            // It sucks that we have to provide one.
+            return new Regex(string.Empty);
         }
     }
 }

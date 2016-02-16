@@ -92,10 +92,10 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             Check.That(result).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "40", "50", "90" });
+            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "40", "50", "90", "180" });
             Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "60", "70", "130" });
+            TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "60", "70", "130", "260" });
             Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
         }
 

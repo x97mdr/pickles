@@ -138,5 +138,25 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
             var executionIdAttribute = unitTestResult.Attribute("executionId");
             return executionIdAttribute != null ? new Guid(executionIdAttribute.Value) : Guid.Empty;
         }
+
+        internal static string NameAttribute(this XElement element)
+        {
+            return element.Attribute("name")?.Value ?? String.Empty;
+        }
+
+        internal static List<string> DetermineValuesInScenario(this XElement element)
+        {
+            List<string> valuesInScenario = new List<string>();
+
+            foreach (var property in element.Descendants(Ns + "Property"))
+            {
+                if ((property.Descendants(Ns + "Key").FirstOrDefault()?.Value ?? string.Empty).StartsWith("Parameter:"))
+                {
+                    valuesInScenario.Add(property.Descendants(Ns + "Value").FirstOrDefault()?.Value ?? string.Empty);
+                }
+            }
+
+            return valuesInScenario;
+        }
     }
 }

@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MsTest\WhenParsingMsTestResultsFileWithMissingTraits.cs" />
+    <Compile Include="MsTest\WhenParsingMsTestResultsFileWithIndividualResults.cs" />
     <Compile Include="NUnit\NUnit2\WhenParsingnUnit2ResultsFileWithMissingTraits.cs" />
     <Compile Include="NUnit\NUnit2\WhenParsingNUnitResultsFileWithIndividualResults.cs" />
     <Compile Include="NUnit\NUnit3\WhenDeterminingTheSignatureOfAnNunit3ExampleRow.cs" />
