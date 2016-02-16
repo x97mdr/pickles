@@ -79,12 +79,14 @@
     <Compile Include="NUnit2\WhenParsingProblematicScenarioOutlineResults.cs" />
     <Compile Include="SpecRun\WhenParsingSpecRunTestResultsFile.cs" />
     <Compile Include="WhenParsingTestResultFiles.cs" />
+    <Compile Include="XUnit1\WhenParsingXUnitResultsFileWithIndividualResults.cs" />
     <Compile Include="XUnit1\WhenParsingxUnitResultsFileWithMissingTraits.cs" />
     <Compile Include="XUnit2\WhenDeterminingTheSignatureOfAnXUnit2ExampleRow.cs" />
     <Compile Include="XUnit2\WhenParsingxUnit2ResultsFileWithMissingTraits.cs" />
     <Compile Include="XUnit2\WhenParsingxUnit2ResultsFile.cs" />
     <Compile Include="XUnit1\WhenParsingxUnitResultsFile.cs" />
     <Compile Include="WhenResolvingTestResults.cs" />
+    <Compile Include="XUnit2\WhenParsingXUnitResultsFileWithIndividualResults.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CucumberJson\results-example-json.json" />
