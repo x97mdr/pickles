@@ -21,6 +21,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
@@ -50,7 +51,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
 
         public override bool SupportsExampleResults
         {
-            get { return false; }
+            get { return true; }
         }
 
         public override TestResult GetFeatureResult(Feature feature)
@@ -139,7 +140,34 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
 
         public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
         {
-            throw new NotSupportedException();
+            var scenarioElements = this.GetScenariosForScenarioOutline(scenario);
+
+            var theScenario = this.GetScenarioThatMatchesTheExampleValues(exampleValues, scenarioElements);
+
+            Guid executionId = theScenario.ExecutionIdElement();
+
+            TestResult testResult = this.GetExecutionResult(executionId);
+
+            return testResult;
+        }
+
+        private XElement GetScenarioThatMatchesTheExampleValues(string[] exampleValues, IEnumerable<XElement> scenarioElements)
+        {
+            // filter for example values
+            XElement theScenario = null;
+
+            foreach (var element in scenarioElements)
+            {
+                var valuesInScenario = element.DetermineValuesInScenario();
+
+                if (exampleValues.OrderBy(e => e).SequenceEqual(valuesInScenario.OrderBy(v => v)))
+                {
+                    theScenario = element;
+                    break;
+                }
+            }
+
+            return theScenario;
         }
     }
 }
