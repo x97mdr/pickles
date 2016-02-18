@@ -80,18 +80,13 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
 
             foreach (var exampleElement in exampleElements)
             {
-                if (ScenarioOutlineExampleIsMatch(signature, exampleElement))
+                if (this.ScenarioOutlineExampleMatcher.IsMatch(scenarioOutline, exampleValues, exampleElement))
                 {
                     return this.GetResultFromElement(exampleElement);
                 }
             }
 
             return TestResult.Inconclusive;
-        }
-
-        private static bool ScenarioOutlineExampleIsMatch(Regex signature, assembliesAssemblyCollectionTest exampleElement)
-        {
-            return signature.IsMatch(exampleElement.name.ToLowerInvariant().Replace(@"\", string.Empty));
         }
 
         private static bool HasDescriptionTrait(assembliesAssemblyCollectionTest test, string description)
