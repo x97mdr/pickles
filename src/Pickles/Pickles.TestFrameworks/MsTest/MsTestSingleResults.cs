@@ -142,7 +142,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
         {
             var scenarioElements = this.GetScenariosForScenarioOutline(scenario);
 
-            var theScenario = this.GetScenarioThatMatchesTheExampleValues(exampleValues, scenarioElements);
+            var theScenario = this.GetScenarioThatMatchesTheExampleValues(scenario, exampleValues, scenarioElements);
 
             Guid executionId = theScenario.ExecutionIdElement();
 
@@ -151,16 +151,16 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
             return testResult;
         }
 
-        private XElement GetScenarioThatMatchesTheExampleValues(string[] exampleValues, IEnumerable<XElement> scenarioElements)
+        private XElement GetScenarioThatMatchesTheExampleValues(ScenarioOutline scenarioOutline, string[] exampleValues, IEnumerable<XElement> scenarioElements)
         {
             // filter for example values
             XElement theScenario = null;
 
             foreach (var element in scenarioElements)
             {
-                var valuesInScenario = element.DetermineValuesInScenario();
+                var isMatch = this.ScenarioOutlineExampleMatcher.IsMatch(scenarioOutline, exampleValues, element);
 
-                if (exampleValues.OrderBy(e => e).SequenceEqual(valuesInScenario.OrderBy(v => v)))
+                if (isMatch)
                 {
                     theScenario = element;
                     break;

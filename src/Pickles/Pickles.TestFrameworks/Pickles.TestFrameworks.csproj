@@ -61,6 +61,7 @@
     <Compile Include="MsTest\MsTestElementExtensions.cs" />
     <Compile Include="MsTest\MsTestExampleSignatureBuilder.cs" />
     <Compile Include="MsTest\MsTestResults.cs" />
+    <Compile Include="MsTest\MsTestScenarioOutlineExampleMatcher.cs" />
     <Compile Include="MsTest\MsTestSingleResults.cs" />
     <Compile Include="MsTest\MsTestSingleResultLoader.cs" />
     <Compile Include="MultipleTestRunsBase.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="SpecRun\SpecRunScenario.cs" />
     <Compile Include="SpecRun\SpecRunExampleSignatureBuilder.cs" />
     <Compile Include="SpecRun\SpecRunResults.cs" />
+    <Compile Include="SpecRun\SpecRunScenarioOutlineExampleMatcher.cs" />
     <Compile Include="SpecRun\SpecRunSingleResults.cs" />
     <Compile Include="SpecRun\SpecRunSingleResultLoader.cs" />
     <Compile Include="XDocumentLoader.cs" />
