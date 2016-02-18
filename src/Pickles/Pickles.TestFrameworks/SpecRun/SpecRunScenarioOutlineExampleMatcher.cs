@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="SpecRunResults.cs" company="PicklesDoc">
+//  <copyright file="SpecRunScenarioOutlineExampleMatcher.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -18,15 +18,19 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
+using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 {
-    public class SpecRunResults : MultipleTestRunsBase
+    public class SpecRunScenarioOutlineExampleMatcher : IScenarioOutlineExampleMatcher
     {
-        public SpecRunResults(IConfiguration configuration, SpecRunSingleResultLoader singleResultLoader, SpecRunExampleSignatureBuilder exampleSignatureBuilder)
-            : base(true, configuration, singleResultLoader, exampleSignatureBuilder, new SpecRunScenarioOutlineExampleMatcher())
+        private readonly SpecRunExampleSignatureBuilder signatureBuilder = new SpecRunExampleSignatureBuilder();
+
+        public bool IsMatch(ScenarioOutline scenarioOutline, string[] exampleValues, object scenarioElement)
         {
+            var build = this.signatureBuilder.Build(scenarioOutline, exampleValues);
+
+            return build.IsMatch(((SpecRunScenario)scenarioElement).Title);
         }
     }
 }

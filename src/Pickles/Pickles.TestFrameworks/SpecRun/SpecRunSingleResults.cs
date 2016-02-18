@@ -106,11 +106,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 
             var specRunScenarios = FindSpecRunScenarios(scenario, specRunFeature);
 
-            var signature = this.CreateSignatureRegex(scenario, exampleValues);
-
             foreach (var specRunScenario in specRunScenarios)
             {
-                if (signature.IsMatch(specRunScenario.Title))
+                if (this.ScenarioOutlineExampleMatcher.IsMatch(scenario, exampleValues, specRunScenario))
                 {
                     return StringToTestResult(specRunScenario.Result);
                 }
