@@ -97,7 +97,26 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 
         public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
         {
-            throw new NotSupportedException();
+            var specRunFeature = this.FindSpecRunFeature(scenario.Feature);
+
+            if (specRunFeature == null)
+            {
+                return TestResult.Inconclusive;
+            }
+
+            var specRunScenarios = FindSpecRunScenarios(scenario, specRunFeature);
+
+            var signature = this.CreateSignatureRegex(scenario, exampleValues);
+
+            foreach (var specRunScenario in specRunScenarios)
+            {
+                if (signature.IsMatch(specRunScenario.Title))
+                {
+                    return StringToTestResult(specRunScenario.Result);
+                }
+            }
+
+            return TestResult.Inconclusive;
         }
 
         private static TestResult StringsToTestResult(IEnumerable<string> results)
