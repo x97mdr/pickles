@@ -26,9 +26,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
     {
         public XUnit1Results(
             IConfiguration configuration,
-            XUnit1SingleResultLoader singleResultLoader,
-            XUnitExampleSignatureBuilder exampleSignatureBuilder)
-            : base(true, configuration, singleResultLoader, exampleSignatureBuilder, new XUnit1ScenarioOutlineExampleMatcher())
+            XUnit1SingleResultLoader singleResultLoader)
+            : base(true, configuration, singleResultLoader, new XUnit1ScenarioOutlineExampleMatcher())
         {
         }
     }

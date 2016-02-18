@@ -74,8 +74,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit
 
         public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
         {
-            Regex exampleSignature = this.CreateSignatureRegex(scenarioOutline, exampleValues);
-
             var examplesElement = this.GetExamplesElement(scenarioOutline, exampleValues);
 
             return this.GetResultFromElement(examplesElement);

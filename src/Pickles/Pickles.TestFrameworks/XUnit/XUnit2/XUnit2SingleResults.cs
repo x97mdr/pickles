@@ -74,8 +74,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
 
         public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
         {
-            var signature = this.CreateSignatureRegex(scenarioOutline, exampleValues);
-
             IEnumerable<assembliesAssemblyCollectionTest> exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
 
             foreach (var exampleElement in exampleElements)

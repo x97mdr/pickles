@@ -24,8 +24,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2
 {
     public class NUnit2Results : MultipleTestRunsBase
     {
-        public NUnit2Results(IConfiguration configuration, NUnit2SingleResultLoader singleResultLoader, NUnitExampleSignatureBuilder exampleSignatureBuilder)
-            : base(true, configuration, singleResultLoader, exampleSignatureBuilder, new NUnitScenarioOutlineExampleMatcher())
+        public NUnit2Results(IConfiguration configuration, NUnit2SingleResultLoader singleResultLoader)
+            : base(true, configuration, singleResultLoader, new NUnitScenarioOutlineExampleMatcher())
         {
         }
     }

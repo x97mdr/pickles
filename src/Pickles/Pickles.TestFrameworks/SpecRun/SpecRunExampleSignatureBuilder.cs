@@ -26,7 +26,7 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 {
-    public class SpecRunExampleSignatureBuilder : IExampleSignatureBuilder
+    public class SpecRunExampleSignatureBuilder
     {
         public Regex Build(ScenarioOutline scenarioOutline, string[] row)
         {

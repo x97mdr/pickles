@@ -25,7 +25,7 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.NUnit
 {
-    public class NUnitExampleSignatureBuilder : IExampleSignatureBuilder
+    public class NUnitExampleSignatureBuilder
     {
         public Regex Build(ScenarioOutline scenarioOutline, string[] row)
         {

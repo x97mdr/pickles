@@ -25,7 +25,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
     public class SpecRunResults : MultipleTestRunsBase
     {
         public SpecRunResults(IConfiguration configuration, SpecRunSingleResultLoader singleResultLoader, SpecRunExampleSignatureBuilder exampleSignatureBuilder)
-            : base(true, configuration, singleResultLoader, exampleSignatureBuilder, new SpecRunScenarioOutlineExampleMatcher())
+            : base(true, configuration, singleResultLoader, new SpecRunScenarioOutlineExampleMatcher())
         {
         }
     }
