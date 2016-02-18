@@ -29,7 +29,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit
     {
         private readonly NUnitExampleSignatureBuilder signatureBuilder = new NUnitExampleSignatureBuilder();
 
-
         public bool IsMatch(ScenarioOutline scenarioOutline, string[] exampleValues, object scenarioElement)
         {
             var build = this.signatureBuilder.Build(scenarioOutline, exampleValues);
