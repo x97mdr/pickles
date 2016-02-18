@@ -12,6 +12,8 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         internal IExampleSignatureBuilder ExampleSignatureBuilder { get; set; }
 
+        internal IScenarioOutlineExampleMatcher ScenarioOutlineExampleMatcher { get; set; }
+
         public abstract TestResult GetFeatureResult(Feature feature);
 
         public abstract TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline);

@@ -37,7 +37,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
             this.TestResults = testResults;
         }
 
-        protected MultipleTestRunsBase(bool supportsExampleResults, IConfiguration configuration, ISingleResultLoader singleResultLoader, IExampleSignatureBuilder exampleSignatureBuilder)
+        protected MultipleTestRunsBase(bool supportsExampleResults, IConfiguration configuration, ISingleResultLoader singleResultLoader, IExampleSignatureBuilder exampleSignatureBuilder, IScenarioOutlineExampleMatcher scenarioOutlineExampleMatcher = null)
         {
             if (exampleSignatureBuilder == null)
             {
@@ -48,14 +48,15 @@ namespace PicklesDoc.Pickles.TestFrameworks
             this.singleResultLoader = singleResultLoader;
             this.TestResults = this.GetSingleTestResults(configuration);
 
-            this.SetExampleSignatureBuilder(exampleSignatureBuilder);
+            this.SetExampleSignatureBuilder(exampleSignatureBuilder, scenarioOutlineExampleMatcher ?? new ScenarioOutlineExampleMatcher());
         }
 
-        private void SetExampleSignatureBuilder(IExampleSignatureBuilder exampleSignatureBuilder)
+        private void SetExampleSignatureBuilder(IExampleSignatureBuilder exampleSignatureBuilder, IScenarioOutlineExampleMatcher scenarioOutlineExampleMatcher)
         {
             foreach (var testResult in this.TestResults)
             {
                 testResult.ExampleSignatureBuilder = exampleSignatureBuilder;
+                testResult.ScenarioOutlineExampleMatcher = scenarioOutlineExampleMatcher;
             }
         }
 
