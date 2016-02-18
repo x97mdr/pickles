@@ -37,7 +37,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 
         public override bool SupportsExampleResults
         {
-            get { return false; }
+            get { return true; }
         }
 
         public override TestResult GetFeatureResult(Feature feature)
