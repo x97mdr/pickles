@@ -81,9 +81,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2
                 .FirstOrDefault(x => x.Attribute("description").Value == feature.Name);
         }
 
-        protected override XElement GetExamplesElement(
-            ScenarioOutline scenarioOutline,
-            Regex exampleSignature)
+        protected override XElement GetExamplesElement(ScenarioOutline scenarioOutline, string[] values)
         {
             XElement featureElement = this.GetFeatureElement(scenarioOutline.Feature);
             XElement examplesElement = null;
@@ -97,7 +95,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2
                 {
                     examplesElement =
                         parameterizedTestElement.Descendants("test-case")
-                            .FirstOrDefault(x => IsMatchingTestCase(x, exampleSignature));
+                            .FirstOrDefault(x => this.ScenarioOutlineExampleMatcher.IsMatch(scenarioOutline, values, x));
                 }
             }
             return examplesElement;
