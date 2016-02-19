@@ -16,7 +16,11 @@ This document is formatted according to the principles of [Keep A CHANGELOG](htt
 
 ### Added
 
-- The MsTest test result provider is now able to give the result of individual examples in a scenario outline ([#285](https://github.com/picklesdoc/pickles/issues/276)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
+- The MsTest test result provider is now able to give the result of individual examples in a scenario outline ([#285](https://github.com/picklesdoc/pickles/issues/285)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
+
+### Fixed
+
+- Word document is corrupt if a Feature has no description ([#261](https://github.com/picklesdoc/pickles/issues/261)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
 
 ## [2.3.0] - 2016-01-27
 

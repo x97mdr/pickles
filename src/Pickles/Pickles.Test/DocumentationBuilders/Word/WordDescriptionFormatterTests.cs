@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="WordDescriptionFormatter.cs" company="PicklesDoc">
+//  <copyright file="WordDescriptionFormatterTests.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -19,24 +19,31 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using DocumentFormat.OpenXml.Wordprocessing;
-using PicklesDoc.Pickles.Extensions;
 
-namespace PicklesDoc.Pickles.DocumentationBuilders.Word
+using NFluent;
+
+using NUnit.Framework;
+
+using PicklesDoc.Pickles.DocumentationBuilders.Word;
+
+namespace PicklesDoc.Pickles.Test.DocumentationBuilders.Word
 {
-    public class WordDescriptionFormatter
+    [TestFixture]
+    public class WordDescriptionFormatterTests
     {
-        public void Format(Body body, string description)
+        [Test]
+        public void SplitDescription_NullArgument_DoesNotThrowException()
         {
-            foreach (var paragraph in SplitDescription(description))
-            {
-                body.GenerateParagraph(paragraph, "Normal");
-            }
+            Check.ThatCode(() => WordDescriptionFormatter.SplitDescription(null))
+                .DoesNotThrow();
         }
 
-        public static string[] SplitDescription(string description)
+        [Test]
+        public void SplitDescription_NullArgument_ReturnsEmptyArgument()
         {
-            return (description ?? string.Empty).Split(new string[] { "\n", "\r" }, StringSplitOptions.RemoveEmptyEntries);
+            string[] descriptions = WordDescriptionFormatter.SplitDescription(null);
+
+            Check.That(descriptions.Length).IsEqualTo(0);
         }
     }
 }
