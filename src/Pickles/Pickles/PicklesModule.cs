@@ -90,7 +90,7 @@ namespace PicklesDoc.Pickles
             builder.RegisterType<XUnit2ScenarioOutlineExampleMatcher>();
             builder.RegisterType<MsTestResults>();
             builder.RegisterType<MsTestSingleResultLoader>();
-            builder.RegisterType<MsTestExampleSignatureBuilder>();
+            builder.RegisterType<MsTestScenarioOutlineExampleMatcher>();
             builder.RegisterType<CucumberJsonResults>();
             builder.RegisterType<CucumberJsonSingleResultLoader>();
             builder.RegisterType<CucumberJsonExampleSignatureBuilder>();
