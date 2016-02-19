@@ -84,9 +84,11 @@ namespace PicklesDoc.Pickles
             builder.RegisterType<NUnit3SingleResultLoader>();
             builder.RegisterType<XUnit1Results>();
             builder.RegisterType<XUnit1SingleResultLoader>();
+            builder.RegisterType<XUnit1ScenarioOutlineExampleMatcher>();
             builder.RegisterType<XUnitExampleSignatureBuilder>();
             builder.RegisterType<XUnit2Results>();
             builder.RegisterType<XUnit2SingleResultLoader>();
+            builder.RegisterType<XUnit2ScenarioOutlineExampleMatcher>();
             builder.RegisterType<MsTestResults>();
             builder.RegisterType<MsTestSingleResultLoader>();
             builder.RegisterType<MsTestExampleSignatureBuilder>();

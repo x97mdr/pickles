@@ -24,8 +24,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
 {
     public class XUnit2Results : MultipleTestRunsBase
     {
-        public XUnit2Results(IConfiguration configuration, XUnit2SingleResultLoader singleResultLoader)
-            : base(true, configuration, singleResultLoader, new XUnit2ScenarioOutlineExampleMatcher())
+        public XUnit2Results(IConfiguration configuration, XUnit2SingleResultLoader singleResultLoader, XUnit2ScenarioOutlineExampleMatcher scenarioOutlineExampleMatcher)
+            : base(true, configuration, singleResultLoader, scenarioOutlineExampleMatcher)
         {
         }
     }
