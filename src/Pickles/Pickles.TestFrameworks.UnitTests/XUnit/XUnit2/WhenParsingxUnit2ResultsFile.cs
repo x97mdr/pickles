@@ -81,5 +81,11 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit.XUnit2
         {
             base.ThenCanReadNotFoundFeatureCorrectly();
         }
+
+        [Test]
+        public new void ThenCanReadResultOfScenarioWithFailingBackground()
+        {
+            base.ThenCanReadResultOfScenarioWithFailingBackground();
+        }
     }
 }

@@ -87,5 +87,11 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.SpecRun
         {
             base.ThenCanReadInconclusiveScenarioResultSuccessfully();
         }
+
+        [Test]
+        public new void ThenCanReadResultOfScenarioWithFailingBackground()
+        {
+            base.ThenCanReadResultOfScenarioWithFailingBackground();
+        }
     }
 }

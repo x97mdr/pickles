@@ -180,6 +180,19 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
             Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
         }
 
+        public void ThenCanReadResultOfScenarioWithFailingBackground()
+        {
+            var results = ParseResultsFile();
+
+            var feature = new Feature { Name = "Failing Background" };
+
+            var scenario = new Scenario { Name = "Add two numbers", Feature = feature };
+
+            var actualResult = results.GetScenarioResult(scenario);
+
+            Check.That(actualResult).IsEqualTo(TestResult.Failed);
+        }
+
         private Feature AdditionFeature()
         {
             return new Feature { Name = "Addition" };

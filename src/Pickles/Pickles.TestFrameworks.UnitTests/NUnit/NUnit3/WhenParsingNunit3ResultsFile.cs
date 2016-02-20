@@ -75,5 +75,11 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit3
         {
             base.ThenCanReadResultsWithBackslashes();
         }
+
+        [Test]
+        public new void ThenCanReadResultOfScenarioWithFailingBackground()
+        {
+            base.ThenCanReadResultOfScenarioWithFailingBackground();
+        }
     }
 }
