@@ -1,69 +1,521 @@
 [
   {
-    "uri": "features/one_passing_one_failing.feature",
+    "uri": "features/Addition.feature",
+    "id": "addition",
     "keyword": "Feature",
-    "id": "one-passing-scenario,-one-failing-scenario",
-    "name": "Test Feature",
-    "line": 2,
-    "description": "",
-    "tags": [
-      {
-        "name": "@a",
-        "line": 1
-      }
-    ],
+    "name": "Addition",
+    "description": "  In order to avoid silly mistakes\n  As a math idiot\n  I want to be told the sum of two numbers",
+    "line": 1,
     "elements": [
       {
-        "keyword": "Scenario",
-        "id": "one-passing-scenario,-one-failing-scenario;passing",
-        "name": "Passing",
-        "line": 5,
+        "keyword": "Background",
+        "name": "",
         "description": "",
-        "tags": [
-          {
-            "name": "@b",
-            "line": 4
-          }
-        ],
-        "type": "scenario",
+        "line": 6,
+        "type": "background",
         "steps": [
           {
             "keyword": "Given ",
-            "name": "a passing step",
-            "line": 6,
+            "name": "the calculator has clean memory",
+            "line": 7,
             "match": {
-              "location": "features/step_definitions/steps.rb:1"
+              "location": "features/step_definitions/AdditionSteps.rb:1"
             },
             "result": {
-              "status": "passed"
+              "status": "passed",
+              "duration": 0
             }
           }
         ]
       },
       {
-        "keyword": "Scenario",
-        "id": "one-passing-scenario,-one-failing-scenario;failing",
-        "name": "Failing",
-        "line": 9,
+        "id": "addition;adding-several-numbers;;2",
+        "keyword": "Scenario Outline",
+        "name": "Adding several numbers",
         "description": "",
+        "line": 19,
+        "type": "scenario",
         "tags": [
           {
-            "name": "@c",
-            "line": 8
+            "name": "@tag2",
+            "line": 9
           }
         ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have entered 60 into the calculator",
+            "line": 19,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I have entered 70 into the calculator",
+            "line": 19,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I have entered 130 into the calculator",
+            "line": 19,
+            "match": {
+                "location": "features/step_definitions/AdditionSteps.rb:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I press add",
+            "line": 19,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:10"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "the result should be 260 on the screen",
+            "line": 19,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 999000
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 6,
+        "type": "background",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "the calculator has clean memory",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "addition;adding-several-numbers;;3",
+        "keyword": "Scenario Outline",
+        "name": "Adding several numbers",
+        "description": "",
+        "line": 20,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@tag2",
+            "line": 9
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have entered 40 into the calculator",
+            "line": 20,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I have entered 50 into the calculator",
+            "line": 20,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I have entered 90 into the calculator",
+            "line": 20,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I press add",
+            "line": 20,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:10"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "the result should be 180 on the screen",
+            "line": 20,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 6,
+        "type": "background",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "the calculator has clean memory",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "addition;add-two-numbers",
+        "keyword": "Scenario",
+        "name": "Add two numbers",
+        "description": "",
+        "line": 23,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@tag1",
+            "line": 22
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have entered 1 into the calculator",
+            "line": 24,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I have entered 2 into the calculator",
+            "line": 25,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1009000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I press add",
+            "line": 26,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:10"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "the result should be 3 on the screen",
+            "line": 27,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 6,
+        "type": "background",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "the calculator has clean memory",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1002000
+            }
+          }
+        ]
+      },
+      {
+        "id": "addition;fail-to-add-two-numbers",
+        "keyword": "Scenario",
+        "name": "Fail to add two numbers",
+        "description": "",
+        "line": 30,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@tag1",
+            "line": 29
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have entered 1 into the calculator",
+            "line": 31,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I have entered 2.2 into the calculator",
+            "line": 32,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I press add",
+            "line": 33,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:10"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "the result should be 3.2 on the screen",
+            "line": 34,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 6,
+        "type": "background",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "the calculator has clean memory",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "addition;ignored-adding-two-numbers",
+        "keyword": "Scenario",
+        "name": "Ignored adding two numbers",
+        "description": "",
+        "line": 37,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@ignore",
+            "line": 36
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have entered 1 into the calculator",
+            "line": 38,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I have entered 2.2 into the calculator",
+            "line": 39,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I press add",
+            "line": 40,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:10"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "the result should be 3.2 on the screen",
+            "line": 41,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 6,
+        "type": "background",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "the calculator has clean memory",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "addition;not-automated-adding-two-numbers",
+        "keyword": "Scenario",
+        "name": "Not automated adding two numbers",
+        "description": "",
+        "line": 43,
         "type": "scenario",
         "steps": [
           {
             "keyword": "Given ",
-            "name": "a failing step",
-            "line": 10,
+            "name": "unimplemented step",
+            "line": 44,
             "match": {
-              "location": "features/step_definitions/steps.rb:5"
+              "location": "features/Addition.feature:44"
             },
             "result": {
-              "status": "failed",
-              "error_message": " (RuntimeError)\n./features/step_definitions/steps.rb:6:in /a failing step/'\nfeatures/one_passing_one_failing.feature:10:in Given a failing step'"
+              "status": "undefined"
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "unimplemented step",
+            "line": 45,
+            "match": {
+              "location": "features/Addition.feature:45"
+            },
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "unimplemented step",
+            "line": 46,
+            "match": {
+              "location": "features/Addition.feature:46"
+            },
+            "result": {
+              "status": "undefined"
             }
           }
         ]
@@ -71,16 +523,734 @@
     ]
   },
   {
-    "uri": "features/no_scenarios.feature",
+    "uri": "features/Minimal Features/Failing.feature",
+    "id": "failing",
     "keyword": "Feature",
-    "id": "no-scenarios",
-    "name": "Feature Without Scenarios",
-    "line": 2,
+    "name": "Failing",
     "description": "",
-    "tags": [
+    "line": 1,
+    "elements": [
       {
-        "name": "@a",
-        "line": 1
+        "id": "failing;failing-feature-passing-scenario",
+        "keyword": "Scenario",
+        "name": "Failing Feature Passing Scenario",
+        "description": "",
+        "line": 3,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "passing step",
+            "line": 4,
+            "match": {
+              "location": "features/step_definitions/MinimalSteps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "failing;failing-feature-inconclusive-scenario",
+        "keyword": "Scenario",
+        "name": "Failing Feature Inconclusive Scenario",
+        "description": "",
+        "line": 6,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "inconclusive step",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/MinimalSteps.rb:5"
+            },
+            "result": {
+              "status": "pending",
+              "error_message": "TODO (Cucumber::Pending)\n./features/step_definitions/MinimalSteps.rb:6:in `/^inconclusive step$/'\nfeatures/Minimal Features/Failing.feature:7:in `Then inconclusive step'",
+              "duration": 1000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "failing;failing-feature-failing-scenario",
+        "keyword": "Scenario",
+        "name": "Failing Feature Failing Scenario",
+        "description": "",
+        "line": 9,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "failing step",
+            "line": 10,
+            "match": {
+              "location": "features/step_definitions/MinimalSteps.rb:9"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "\nexpected: \"false\"\n     got: \"true\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/MinimalSteps.rb:10:in `/^failing step$/'\nfeatures/Minimal Features/Failing.feature:10:in `Then failing step'",
+              "duration": 13004000
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "uri": "features/Minimal Features/Inconclusive.feature",
+    "id": "inconclusive",
+    "keyword": "Feature",
+    "name": "Inconclusive",
+    "description": "",
+    "line": 1,
+    "elements": [
+      {
+        "id": "inconclusive;inconclusive-feature-passing-scenario",
+        "keyword": "Scenario",
+        "name": "Inconclusive Feature Passing Scenario",
+        "description": "",
+        "line": 3,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "passing step",
+            "line": 4,
+            "match": {
+              "location": "features/step_definitions/MinimalSteps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "inconclusive;inconclusive-feature-inconclusive-scenario",
+        "keyword": "Scenario",
+        "name": "Inconclusive Feature Inconclusive Scenario",
+        "description": "",
+        "line": 6,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "inconclusive step",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/MinimalSteps.rb:5"
+            },
+            "result": {
+              "status": "pending",
+              "error_message": "TODO (Cucumber::Pending)\n./features/step_definitions/MinimalSteps.rb:6:in `/^inconclusive step$/'\nfeatures/Minimal Features/Inconclusive.feature:7:in `Then inconclusive step'",
+              "duration": 0
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "uri": "features/Minimal Features/Passing.feature",
+    "id": "passing",
+    "keyword": "Feature",
+    "name": "Passing",
+    "description": "",
+    "line": 1,
+    "elements": [
+      {
+        "id": "passing;passing-feature-passing-scenario",
+        "keyword": "Scenario",
+        "name": "Passing Feature Passing Scenario",
+        "description": "",
+        "line": 3,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "passing step",
+            "line": 4,
+            "match": {
+              "location": "features/step_definitions/MinimalSteps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "uri": "features/NotAutomatedAtAll.feature",
+    "id": "not-automated-at-all",
+    "keyword": "Feature",
+    "name": "Not Automated At All",
+    "description": "",
+    "line": 1,
+    "elements": [
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 3,
+        "type": "background",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "unimplemented step",
+            "line": 4,
+            "match": {
+              "location": "features/NotAutomatedAtAll.feature:4"
+            },
+            "result": {
+              "status": "undefined"
+            }
+          }
+        ]
+      },
+      {
+        "id": "not-automated-at-all;not-automated-scenario-1",
+        "keyword": "Scenario",
+        "name": "Not automated scenario 1",
+        "description": "",
+        "line": 6,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "unimplemented step",
+            "line": 7,
+            "match": {
+              "location": "features/NotAutomatedAtAll.feature:7"
+            },
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "unimplemented step",
+            "line": 8,
+            "match": {
+              "location": "features/NotAutomatedAtAll.feature:8"
+            },
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "unimplemented step",
+            "line": 9,
+            "match": {
+              "location": "features/NotAutomatedAtAll.feature:9"
+            },
+            "result": {
+              "status": "undefined"
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 3,
+        "type": "background",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "unimplemented step",
+            "line": 4,
+            "match": {
+              "location": "features/NotAutomatedAtAll.feature:4"
+            },
+            "result": {
+              "status": "undefined"
+            }
+          }
+        ]
+      },
+      {
+        "id": "not-automated-at-all;not-automated-scenario-2",
+        "keyword": "Scenario",
+        "name": "Not automated scenario 2",
+        "description": "",
+        "line": 11,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "unimplemented step",
+            "line": 12,
+            "match": {
+              "location": "features/NotAutomatedAtAll.feature:12"
+            },
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "unimplemented step",
+            "line": 13,
+            "match": {
+              "location": "features/NotAutomatedAtAll.feature:13"
+            },
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "unimplemented step",
+            "line": 14,
+            "match": {
+              "location": "features/NotAutomatedAtAll.feature:14"
+            },
+            "result": {
+              "status": "undefined"
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 3,
+        "type": "background",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "unimplemented step",
+            "line": 4,
+            "match": {
+              "location": "features/NotAutomatedAtAll.feature:4"
+            },
+            "result": {
+              "status": "undefined"
+            }
+          }
+        ]
+      },
+      {
+        "id": "not-automated-at-all;not-automated-scenario-3",
+        "keyword": "Scenario",
+        "name": "Not automated scenario 3",
+        "description": "",
+        "line": 16,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "unimplemented step",
+            "line": 17,
+            "match": {
+              "location": "features/NotAutomatedAtAll.feature:17"
+            },
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "unimplemented step",
+            "line": 18,
+            "match": {
+              "location": "features/NotAutomatedAtAll.feature:18"
+            },
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "unimplemented step",
+            "line": 19,
+            "match": {
+              "location": "features/NotAutomatedAtAll.feature:19"
+            },
+            "result": {
+              "status": "undefined"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "uri": "features/ScenarioOutlines.feature",
+    "id": "scenario-outlines",
+    "keyword": "Feature",
+    "name": "Scenario Outlines",
+    "description": "  Here we demonstrate how we deal with scenario outlines",
+    "line": 1,
+    "elements": [
+      {
+        "id": "scenario-outlines;this-is-a-scenario-outline-where-all-scenarios-pass;;2",
+        "keyword": "Scenario Outline",
+        "name": "This is a scenario outline where all scenarios pass",
+        "description": "  This means the entire scenario outline passes.",
+        "line": 12,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "the scenario will 'pass_1'",
+            "line": 12,
+            "match": {
+              "location": "features/step_definitions/ScenarioOutlineSteps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "scenario-outlines;this-is-a-scenario-outline-where-all-scenarios-pass;;3",
+        "keyword": "Scenario Outline",
+        "name": "This is a scenario outline where all scenarios pass",
+        "description": "  This means the entire scenario outline passes.",
+        "line": 13,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "the scenario will 'pass_2'",
+            "line": 13,
+            "match": {
+              "location": "features/step_definitions/ScenarioOutlineSteps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "scenario-outlines;this-is-a-scenario-outline-where-all-scenarios-pass;;4",
+        "keyword": "Scenario Outline",
+        "name": "This is a scenario outline where all scenarios pass",
+        "description": "  This means the entire scenario outline passes.",
+        "line": 14,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "the scenario will 'pass_3'",
+            "line": 14,
+            "match": {
+              "location": "features/step_definitions/ScenarioOutlineSteps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "scenario-outlines;this-is-a-scenario-outline-where-one-scenario-is-inconclusive;;2",
+        "keyword": "Scenario Outline",
+        "name": "This is a scenario outline where one scenario is inconclusive",
+        "description": "  This means the entire scenario outline is inconclusive.",
+        "line": 25,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "the scenario will 'pass_1'",
+            "line": 25,
+            "match": {
+              "location": "features/step_definitions/ScenarioOutlineSteps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "scenario-outlines;this-is-a-scenario-outline-where-one-scenario-is-inconclusive;;3",
+        "keyword": "Scenario Outline",
+        "name": "This is a scenario outline where one scenario is inconclusive",
+        "description": "  This means the entire scenario outline is inconclusive.",
+        "line": 26,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "the scenario will 'pass_2'",
+            "line": 26,
+            "match": {
+              "location": "features/step_definitions/ScenarioOutlineSteps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "scenario-outlines;this-is-a-scenario-outline-where-one-scenario-is-inconclusive;;4",
+        "keyword": "Scenario Outline",
+        "name": "This is a scenario outline where one scenario is inconclusive",
+        "description": "  This means the entire scenario outline is inconclusive.",
+        "line": 27,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "the scenario will 'inconclusive_1'",
+            "line": 27,
+            "match": {
+              "location": "features/step_definitions/ScenarioOutlineSteps.rb:5"
+            },
+            "result": {
+              "status": "pending",
+              "error_message": "TODO (Cucumber::Pending)\n./features/step_definitions/ScenarioOutlineSteps.rb:6:in `/^the scenario will 'inconclusive_(\\d+)'$/'\nfeatures/ScenarioOutlines.feature:27:in `Then the scenario will 'inconclusive_1''\nfeatures/ScenarioOutlines.feature:21:in `Then the scenario will '<result>''",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "scenario-outlines;this-is-a-scenario-outline-where-one-scenario-fails;;2",
+        "keyword": "Scenario Outline",
+        "name": "This is a scenario outline where one scenario fails",
+        "description": "  This means the entire scenario outline fails.",
+        "line": 38,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "the scenario will 'pass_1'",
+            "line": 38,
+            "match": {
+              "location": "features/step_definitions/ScenarioOutlineSteps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "scenario-outlines;this-is-a-scenario-outline-where-one-scenario-fails;;3",
+        "keyword": "Scenario Outline",
+        "name": "This is a scenario outline where one scenario fails",
+        "description": "  This means the entire scenario outline fails.",
+        "line": 39,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "the scenario will 'pass_2'",
+            "line": 39,
+            "match": {
+              "location": "features/step_definitions/ScenarioOutlineSteps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "scenario-outlines;this-is-a-scenario-outline-where-one-scenario-fails;;4",
+        "keyword": "Scenario Outline",
+        "name": "This is a scenario outline where one scenario fails",
+        "description": "  This means the entire scenario outline fails.",
+        "line": 40,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "the scenario will 'fail_1'",
+            "line": 40,
+            "match": {
+              "location": "features/step_definitions/ScenarioOutlineSteps.rb:9"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "\nexpected: \"false\"\n     got: \"true\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/ScenarioOutlineSteps.rb:10:in `/^the scenario will 'fail_(\\d+)'$/'\nfeatures/ScenarioOutlines.feature:40:in `Then the scenario will 'fail_1''\nfeatures/ScenarioOutlines.feature:34:in `Then the scenario will '<result>''",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "scenario-outlines;and-we-can-go-totally-bonkers-with-multiple-example-sections.;;2",
+        "keyword": "Scenario Outline",
+        "name": "And we can go totally bonkers with multiple example sections.",
+        "description": "",
+        "line": 49,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "the scenario will 'pass_1'",
+            "line": 49,
+            "match": {
+              "location": "features/step_definitions/ScenarioOutlineSteps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "scenario-outlines;and-we-can-go-totally-bonkers-with-multiple-example-sections.;;3",
+        "keyword": "Scenario Outline",
+        "name": "And we can go totally bonkers with multiple example sections.",
+        "description": "",
+        "line": 50,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "the scenario will 'pass_2'",
+            "line": 50,
+            "match": {
+              "location": "features/step_definitions/ScenarioOutlineSteps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "scenario-outlines;and-we-can-go-totally-bonkers-with-multiple-example-sections.;;2",
+        "keyword": "Scenario Outline",
+        "name": "And we can go totally bonkers with multiple example sections.",
+        "description": "",
+        "line": 54,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "the scenario will 'inconclusive_1'",
+            "line": 54,
+            "match": {
+              "location": "features/step_definitions/ScenarioOutlineSteps.rb:5"
+            },
+            "result": {
+              "status": "pending",
+              "error_message": "TODO (Cucumber::Pending)\n./features/step_definitions/ScenarioOutlineSteps.rb:6:in `/^the scenario will 'inconclusive_(\\d+)'$/'\nfeatures/ScenarioOutlines.feature:54:in `Then the scenario will 'inconclusive_1''\nfeatures/ScenarioOutlines.feature:45:in `Then the scenario will '<result>''",
+              "duration": 1000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "scenario-outlines;and-we-can-go-totally-bonkers-with-multiple-example-sections.;;3",
+        "keyword": "Scenario Outline",
+        "name": "And we can go totally bonkers with multiple example sections.",
+        "description": "",
+        "line": 55,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "the scenario will 'inconclusive_2'",
+            "line": 55,
+            "match": {
+              "location": "features/step_definitions/ScenarioOutlineSteps.rb:5"
+            },
+            "result": {
+              "status": "pending",
+              "error_message": "TODO (Cucumber::Pending)\n./features/step_definitions/ScenarioOutlineSteps.rb:6:in `/^the scenario will 'inconclusive_(\\d+)'$/'\nfeatures/ScenarioOutlines.feature:55:in `Then the scenario will 'inconclusive_2''\nfeatures/ScenarioOutlines.feature:45:in `Then the scenario will '<result>''",
+              "duration": 1000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "scenario-outlines;and-we-can-go-totally-bonkers-with-multiple-example-sections.;;2",
+        "keyword": "Scenario Outline",
+        "name": "And we can go totally bonkers with multiple example sections.",
+        "description": "",
+        "line": 59,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "the scenario will 'fail_1'",
+            "line": 59,
+            "match": {
+              "location": "features/step_definitions/ScenarioOutlineSteps.rb:9"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "\nexpected: \"false\"\n     got: \"true\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/ScenarioOutlineSteps.rb:10:in `/^the scenario will 'fail_(\\d+)'$/'\nfeatures/ScenarioOutlines.feature:59:in `Then the scenario will 'fail_1''\nfeatures/ScenarioOutlines.feature:45:in `Then the scenario will '<result>''",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "scenario-outlines;and-we-can-go-totally-bonkers-with-multiple-example-sections.;;3",
+        "keyword": "Scenario Outline",
+        "name": "And we can go totally bonkers with multiple example sections.",
+        "description": "",
+        "line": 60,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "the scenario will 'fail_2'",
+            "line": 60,
+            "match": {
+              "location": "features/step_definitions/ScenarioOutlineSteps.rb:9"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "\nexpected: \"false\"\n     got: \"true\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/ScenarioOutlineSteps.rb:10:in `/^the scenario will 'fail_(\\d+)'$/'\nfeatures/ScenarioOutlines.feature:60:in `Then the scenario will 'fail_2''\nfeatures/ScenarioOutlines.feature:45:in `Then the scenario will '<result>''",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "scenario-outlines;deal-correctly-with-backslashes-in-the-examples;;2",
+        "keyword": "Scenario Outline",
+        "name": "Deal correctly with backslashes in the examples",
+        "description": "",
+        "line": 69,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "When ",
+            "name": "I have backslashes in the value, for example a 'c:\\Temp\\'",
+            "line": 69,
+            "match": {
+              "location": "features/step_definitions/ScenarioOutlineSteps.rb:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
       }
     ]
   }
