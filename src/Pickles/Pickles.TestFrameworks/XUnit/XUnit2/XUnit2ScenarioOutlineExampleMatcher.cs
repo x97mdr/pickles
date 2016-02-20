@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="SpecRunExampleSignatureBuilder.cs" company="PicklesDoc">
+//  <copyright file="XUnit2ScenarioOutlineExampleMatcher.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -18,24 +18,26 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Text;
 using System.Text.RegularExpressions;
 
 using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
+namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
 {
-    public class SpecRunExampleSignatureBuilder
+    public class XUnit2ScenarioOutlineExampleMatcher : IScenarioOutlineExampleMatcher
     {
-        public Regex Build(ScenarioOutline scenarioOutline, string[] row)
-        {
-            var stringBuilder = new StringBuilder();
-            stringBuilder.Append(scenarioOutline.Name);
-            stringBuilder.Append("(, Examples (\\d*))?");
-            stringBuilder.Append(", " + row[0]);
+        private readonly XUnitExampleSignatureBuilder signatureBuilder = new XUnitExampleSignatureBuilder();
 
-            return new Regex(stringBuilder.ToString());
+        public bool IsMatch(ScenarioOutline scenarioOutline, string[] exampleValues, object scenarioElement)
+        {
+            var build = this.signatureBuilder.Build(scenarioOutline, exampleValues);
+
+            return ScenarioOutlineExampleIsMatch((assembliesAssemblyCollectionTest)scenarioElement, build);
+        }
+
+        private bool ScenarioOutlineExampleIsMatch(assembliesAssemblyCollectionTest exampleElement, Regex signature)
+        {
+            return signature.IsMatch(exampleElement.name.ToLowerInvariant().Replace(@"\", string.Empty));
         }
     }
 }

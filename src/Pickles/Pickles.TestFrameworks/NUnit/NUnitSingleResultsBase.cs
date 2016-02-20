@@ -74,9 +74,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit
 
         public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
         {
-            Regex exampleSignature = this.CreateSignatureRegex(scenarioOutline, exampleValues);
-
-            var examplesElement = this.GetExamplesElement(scenarioOutline, exampleSignature);
+            var examplesElement = this.GetExamplesElement(scenarioOutline, exampleValues);
 
             return this.GetResultFromElement(examplesElement);
         }
@@ -130,8 +128,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit
 
         protected abstract XElement GetFeatureElement(Feature feature);
 
-        protected abstract XElement GetExamplesElement(
-            ScenarioOutline scenarioOutline,
-            Regex exampleSignature);
+        protected abstract XElement GetExamplesElement(ScenarioOutline scenarioOutline, string[] values);
     }
 }

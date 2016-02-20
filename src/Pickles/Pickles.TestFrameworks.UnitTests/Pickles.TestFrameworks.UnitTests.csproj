@@ -69,6 +69,7 @@
     <Compile Include="NUnit\NUnit3\WhenParsingNUnitResultsFileWithIndividualResults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NUnit\NUnit2\WhenDeterminingTheSignatureOfAnNUnitExampleRow.cs" />
+    <Compile Include="SpecRun\WhenParsingSpecRunTestResultsFileWithIndividualResults.cs" />
     <Compile Include="StandardTestSuite.cs" />
     <Compile Include="StandardTestSuiteForScenarioOutlines.cs" />
     <Compile Include="XUnit\XUnit1\WhenDeterminingTheSignatureOfAnXUnitExampleRow.cs" />

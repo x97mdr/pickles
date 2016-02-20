@@ -74,13 +74,11 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
 
         public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
         {
-            var signature = this.CreateSignatureRegex(scenarioOutline, exampleValues);
-
             IEnumerable<XElement> exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
 
             foreach (XElement exampleElement in exampleElements)
             {
-                if (this.ScenarioOutlineExampleIsMatch(signature, exampleElement))
+                if (this.ScenarioOutlineExampleMatcher.IsMatch(scenarioOutline, exampleValues, exampleElement))
                 {
                     return this.GetResultFromElement(exampleElement);
                 }

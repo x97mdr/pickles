@@ -55,11 +55,12 @@
     <Compile Include="CucumberJson\Step.cs" />
     <Compile Include="CucumberJson\Tag.cs" />
     <Compile Include="CucumberJson\CucumberJsonSingleResultLoader.cs" />
-    <Compile Include="IExampleSignatureBuilder.cs" />
+    <Compile Include="IScenarioOutlineExampleMatcher.cs" />
     <Compile Include="ISingleResultLoader.cs" />
     <Compile Include="MsTest\MsTestElementExtensions.cs" />
     <Compile Include="MsTest\MsTestExampleSignatureBuilder.cs" />
     <Compile Include="MsTest\MsTestResults.cs" />
+    <Compile Include="MsTest\MsTestScenarioOutlineExampleMatcher.cs" />
     <Compile Include="MsTest\MsTestSingleResults.cs" />
     <Compile Include="MsTest\MsTestSingleResultLoader.cs" />
     <Compile Include="MultipleTestRunsBase.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="NUnit\NUnit3\results-example-nunit3.cs">
       <DependentUpon>results-example-nunit3.xsd</DependentUpon>
     </Compile>
+    <Compile Include="NUnit\NUnitScenarioOutlineExampleMatcher.cs" />
     <Compile Include="NUnit\NUnitSingleResultsBase.cs" />
     <Compile Include="NUnit\NUnitXElementExtensions.cs" />
     <Compile Include="NUnit\TestResultAndName.cs" />
@@ -83,11 +85,14 @@
     <Compile Include="SpecRun\SpecRunScenario.cs" />
     <Compile Include="SpecRun\SpecRunExampleSignatureBuilder.cs" />
     <Compile Include="SpecRun\SpecRunResults.cs" />
+    <Compile Include="SpecRun\SpecRunScenarioOutlineExampleMatcher.cs" />
     <Compile Include="SpecRun\SpecRunSingleResults.cs" />
     <Compile Include="SpecRun\SpecRunSingleResultLoader.cs" />
     <Compile Include="XDocumentLoader.cs" />
     <Compile Include="XmlDeserializer.cs" />
+    <Compile Include="XUnit\XUnit1\XUnit1ScenarioOutlineExampleMatcher.cs" />
     <Compile Include="XUnit\XUnit1\XUnit1SingleResultLoader.cs" />
+    <Compile Include="XUnit\XUnit2\XUnit2ScenarioOutlineExampleMatcher.cs" />
     <Compile Include="XUnit\XUnit2\XUnit2SingleResultLoader.cs" />
     <Compile Include="XUnit\XUnitExampleSignatureBuilder.cs" />
     <Compile Include="XUnit\XUnit1\XUnit1Results.cs" />

@@ -42,7 +42,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit3
             var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers" };
             var exampleRow = new[] { "40", "50", "90" };
 
-            var signatureBuilder = Container.Resolve<NUnitExampleSignatureBuilder>();
+            var signatureBuilder = new NUnitExampleSignatureBuilder();
             Regex signature = signatureBuilder.Build(scenarioOutline, exampleRow);
 
             var isMatch = signature.IsMatch("AddingSeveralNumbers(\"40\",\"50\",\"90\",System.String[])".ToLowerInvariant());

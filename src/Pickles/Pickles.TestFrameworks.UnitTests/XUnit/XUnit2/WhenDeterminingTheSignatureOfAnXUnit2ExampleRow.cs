@@ -21,8 +21,6 @@
 using System;
 using System.Text.RegularExpressions;
 
-using Autofac;
-
 using NFluent;
 
 using NUnit.Framework;
@@ -42,7 +40,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit.XUnit2
             var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers" };
             var exampleRow = new[] { "40", "50", "90" };
 
-            var signatureBuilder = Container.Resolve<XUnitExampleSignatureBuilder>();
+            var signatureBuilder = new XUnitExampleSignatureBuilder();
             Regex signature = signatureBuilder.Build(scenarioOutline, exampleRow);
 
             var isMatch = signature.IsMatch("Pickles.TestHarness.xUnit.AdditionFeature.AddingSeveralNumbers(firstNumber: \"40\", secondNumber: \"50\", result: \"90\", exampleTags: System.String[])".ToLowerInvariant());

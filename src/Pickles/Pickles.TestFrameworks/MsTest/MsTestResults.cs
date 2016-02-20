@@ -24,8 +24,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
 {
     public class MsTestResults : MultipleTestRunsBase
     {
-        public MsTestResults(IConfiguration configuration, MsTestSingleResultLoader singleResultLoader, MsTestExampleSignatureBuilder exampleSignatureBuilder)
-            : base(true, configuration, singleResultLoader, exampleSignatureBuilder)
+        public MsTestResults(IConfiguration configuration, MsTestSingleResultLoader singleResultLoader, MsTestScenarioOutlineExampleMatcher scenarioOutlineExampleMatcher)
+            : base(true, configuration, singleResultLoader, scenarioOutlineExampleMatcher)
         {
         }
     }

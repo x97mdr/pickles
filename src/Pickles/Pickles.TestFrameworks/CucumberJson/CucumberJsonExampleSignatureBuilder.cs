@@ -25,7 +25,7 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
 {
-    public class CucumberJsonExampleSignatureBuilder : IExampleSignatureBuilder
+    public class CucumberJsonExampleSignatureBuilder
     {
         public Regex Build(ScenarioOutline scenarioOutline, string[] row)
         {
