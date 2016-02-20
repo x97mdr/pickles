@@ -83,7 +83,7 @@
                         "name": "I press add",
                         "line": 19,
                         "match": {
-                            "location": "features/step_definitions/AdditionSteps.rb:10"
+                            "location": "features/step_definitions/AdditionSteps.rb:14"
                         },
                         "result": {
                             "status": "passed",
@@ -95,11 +95,11 @@
                         "name": "the result should be 260 on the screen",
                         "line": 19,
                         "match": {
-                            "location": "features/step_definitions/AdditionSteps.rb:16"
+                            "location": "features/step_definitions/AdditionSteps.rb:20"
                         },
                         "result": {
                             "status": "passed",
-                            "duration": 999000
+                            "duration": 1001000
                         }
                     }
                 ]
@@ -180,7 +180,7 @@
                         "name": "I press add",
                         "line": 20,
                         "match": {
-                            "location": "features/step_definitions/AdditionSteps.rb:10"
+                            "location": "features/step_definitions/AdditionSteps.rb:14"
                         },
                         "result": {
                             "status": "passed",
@@ -192,11 +192,11 @@
                         "name": "the result should be 180 on the screen",
                         "line": 20,
                         "match": {
-                            "location": "features/step_definitions/AdditionSteps.rb:16"
+                            "location": "features/step_definitions/AdditionSteps.rb:20"
                         },
                         "result": {
                             "status": "passed",
-                            "duration": 499000
+                            "duration": 0
                         }
                     }
                 ]
@@ -265,7 +265,7 @@
                         "name": "I press add",
                         "line": 26,
                         "match": {
-                            "location": "features/step_definitions/AdditionSteps.rb:10"
+                            "location": "features/step_definitions/AdditionSteps.rb:14"
                         },
                         "result": {
                             "status": "passed",
@@ -277,7 +277,7 @@
                         "name": "the result should be 3 on the screen",
                         "line": 27,
                         "match": {
-                            "location": "features/step_definitions/AdditionSteps.rb:16"
+                            "location": "features/step_definitions/AdditionSteps.rb:20"
                         },
                         "result": {
                             "status": "passed",
@@ -302,7 +302,7 @@
                         },
                         "result": {
                             "status": "passed",
-                            "duration": 500000
+                            "duration": 0
                         }
                     }
                 ]
@@ -338,11 +338,12 @@
                         "name": "I have entered 2.2 into the calculator",
                         "line": 32,
                         "match": {
-                            "location": "features/step_definitions/AdditionSteps.rb:6"
+                            "location": "features/step_definitions/AdditionSteps.rb:10"
                         },
                         "result": {
-                            "status": "passed",
-                            "duration": 0
+                            "status": "failed",
+                            "error_message": "\nexpected: \"fail\"\n     got: \"this is a hacky way of making the scenario with a non-integer number\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/AdditionSteps.rb:11:in `/^I have entered (\\d+)\\.(\\d+) into the calculator$/'\nfeatures/Addition.feature:32:in `And I have entered 2.2 into the calculator",
+                            "duration": 13994000
                         }
                     },
                     {
@@ -350,11 +351,10 @@
                         "name": "I press add",
                         "line": 33,
                         "match": {
-                            "location": "features/step_definitions/AdditionSteps.rb:10"
+                            "location": "features/step_definitions/AdditionSteps.rb:14"
                         },
                         "result": {
-                            "status": "passed",
-                            "duration": 0
+                            "status": "skipped"
                         }
                     },
                     {
@@ -362,98 +362,10 @@
                         "name": "the result should be 3.2 on the screen",
                         "line": 34,
                         "match": {
-                            "location": "features/step_definitions/AdditionSteps.rb:16"
+                            "location": "features/step_definitions/AdditionSteps.rb:24"
                         },
                         "result": {
-                            "status": "failed",
-                            "error_message": "\nexpected: \"3.2\"\n     got: \"3\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/AdditionSteps.rb:17:in `/^the result should be (.*) on the screen$/'\nfeatures/Addition.feature:34:in `Then the result should be 3.2 on the screen",
-                            "duration": 12491000
-                        }
-                    }
-                ]
-            },
-            {
-                "keyword": "Background",
-                "name": "",
-                "description": "",
-                "line": 6,
-                "type": "background",
-                "steps": [
-                    {
-                        "keyword": "Given ",
-                        "name": "the calculator has clean memory",
-                        "line": 7,
-                        "match": {
-                            "location": "features/step_definitions/AdditionSteps.rb:1"
-                        },
-                        "result": {
-                            "status": "passed",
-                            "duration": 0
-                        }
-                    }
-                ]
-            },
-            {
-                "id": "addition;ignored-adding-two-numbers",
-                "keyword": "Scenario",
-                "name": "Ignored adding two numbers",
-                "description": "",
-                "line": 37,
-                "type": "scenario",
-                "tags": [
-                    {
-                        "name": "@ignore",
-                        "line": 36
-                    }
-                ],
-                "steps": [
-                    {
-                        "keyword": "Given ",
-                        "name": "I have entered 1 into the calculator",
-                        "line": 38,
-                        "match": {
-                            "location": "features/step_definitions/AdditionSteps.rb:6"
-                        },
-                        "result": {
-                            "status": "passed",
-                            "duration": 0
-                        }
-                    },
-                    {
-                        "keyword": "And ",
-                        "name": "I have entered 2.2 into the calculator",
-                        "line": 39,
-                        "match": {
-                            "location": "features/step_definitions/AdditionSteps.rb:6"
-                        },
-                        "result": {
-                            "status": "passed",
-                            "duration": 0
-                        }
-                    },
-                    {
-                        "keyword": "When ",
-                        "name": "I press add",
-                        "line": 40,
-                        "match": {
-                            "location": "features/step_definitions/AdditionSteps.rb:10"
-                        },
-                        "result": {
-                            "status": "passed",
-                            "duration": 0
-                        }
-                    },
-                    {
-                        "keyword": "Then ",
-                        "name": "the result should be 3.2 on the screen",
-                        "line": 41,
-                        "match": {
-                            "location": "features/step_definitions/AdditionSteps.rb:16"
-                        },
-                        "result": {
-                            "status": "failed",
-                            "error_message": "\nexpected: \"3.2\"\n     got: \"3\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/AdditionSteps.rb:17:in `/^the result should be (.*) on the screen$/'\nfeatures/Addition.feature:41:in `Then the result should be 3.2 on the screen",
-                            "duration": 500000
+                            "status": "skipped"
                         }
                     }
                 ]
@@ -595,7 +507,7 @@
                         "result": {
                             "status": "failed",
                             "error_message": "\nexpected: \"false\"\n     got: \"true\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/MinimalSteps.rb:10:in `/^failing step$/'\nfeatures/Minimal Features/Failing.feature:10:in `Then failing step",
-                            "duration": 510000
+                            "duration": 0
                         }
                     }
                 ]
@@ -650,7 +562,7 @@
                         "result": {
                             "status": "pending",
                             "error_message": "TODO (Cucumber::Pending)\n./features/step_definitions/MinimalSteps.rb:6:in `/^inconclusive step$/'\nfeatures/Minimal Features/Inconclusive.feature:7:in `Then inconclusive step",
-                            "duration": 501000
+                            "duration": 0
                         }
                     }
                 ]
@@ -1091,7 +1003,7 @@
                         "result": {
                             "status": "failed",
                             "error_message": "\nexpected: \"false\"\n     got: \"true\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/ScenarioOutlineSteps.rb:10:in `/^the scenario will 'fail_(\\d+)'$/'\nfeatures/ScenarioOutlines.feature:40:in `Then the scenario will 'fail_1''\nfeatures/ScenarioOutlines.feature:34:in `Then the scenario will '<result>'",
-                            "duration": 0
+                            "duration": 1001000
                         }
                     }
                 ]
