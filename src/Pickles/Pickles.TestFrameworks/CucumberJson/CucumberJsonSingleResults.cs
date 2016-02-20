@@ -20,6 +20,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
@@ -37,7 +38,10 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
 
         public override bool SupportsExampleResults
         {
-            get { return false; }
+            get
+            {
+                return false;
+            }
         }
 
         public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
@@ -64,19 +68,46 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
                 return TestResult.Inconclusive;
             }
 
-            bool wasSuccessful = cucumberFeature.elements.All(this.DoAllStepsPass);
-
-            return ConvertBooleanToTestResult(wasSuccessful);
+            return ToTestResult(cucumberFeature);
         }
 
-        private bool DoAllStepsPass(Element cucumberScenario)
+        private TestResult ToTestResult(Feature feature)
         {
-            return cucumberScenario.steps.All(x => x.result.status == "passed");
+            return feature.elements.Select(ToTestResult).Merge();
         }
 
-        private static TestResult ConvertBooleanToTestResult(bool wasSuccessful)
+        private TestResult ToTestResult(Element scenario)
         {
-            return wasSuccessful ? TestResult.Passed : TestResult.Failed;
+            return scenario.steps.Select(ToTestResult).Merge();
+        }
+
+        private TestResult ToTestResult(Step step)
+        {
+            return ToTestResult(step.result.status);
+        }
+
+        private TestResult ToTestResult(string cucumberResult)
+        {
+            switch (cucumberResult)
+            {
+                default:
+                case "skipped":
+                case "undefined":
+                case "pending":
+                    {
+                        return TestResult.Inconclusive;
+                    }
+
+                case "failed":
+                    {
+                        return TestResult.Failed;
+                    }
+
+                case "passed":
+                    {
+                        return TestResult.Passed;
+                    }
+            }
         }
 
         public override TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
@@ -111,9 +142,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
                 return TestResult.Inconclusive;
             }
 
-            bool wasSuccessful = this.DoAllStepsPass(cucumberScenario);
 
-            return ConvertBooleanToTestResult(wasSuccessful);
+            return ToTestResult(cucumberScenario);
         }
     }
 }
