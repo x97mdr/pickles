@@ -45,7 +45,22 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
 
         public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
         {
-            throw new NotSupportedException();
+            var cucumberScenarios = this.GetCucumberScenarios(scenario);
+
+            var query = cucumberScenarios.Where(cs => this.ScenarioHasStepsForAllExampleValues(cs, exampleValues))
+                .Select(ToTestResult);
+
+            return query.FirstOrDefault();
+        }
+
+        private bool ScenarioHasStepsForAllExampleValues(Element cucumberScenario, string[] exampleValues)
+        {
+            return exampleValues.All(exampleValue => this.ScenarioHasAStepWithThisExampleValue(cucumberScenario, exampleValue));
+        }
+
+        private bool ScenarioHasAStepWithThisExampleValue(Element cucumberScenario, string exampleValue)
+        {
+            return cucumberScenario.steps.Any(step => step.name.Contains(exampleValue));
         }
 
         public override TestResult GetFeatureResult(ObjectModel.Feature feature)
@@ -111,9 +126,11 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
 
         public override TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
         {
-            // Not applicable
-            return TestResult.Inconclusive;
+            var cucumberScenarios = this.GetCucumberScenarios(scenarioOutline);
+
+            return cucumberScenarios.Select(ToTestResult).Merge();
         }
+
 
         public override TestResult GetScenarioResult(Scenario scenario)
         {
@@ -132,6 +149,18 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
             }
 
             return cucumberScenario;
+        }
+
+        private IEnumerable<Element> GetCucumberScenarios(ScenarioOutline scenarioOutline)
+        {
+            IEnumerable<Element> cucumberScenarios = null;
+            var cucumberFeature = this.GetCucumberFeature(scenarioOutline.Feature);
+            if (cucumberFeature != null)
+            {
+                cucumberScenarios = cucumberFeature.elements.Where(x => x.name == scenarioOutline.Name);
+            }
+
+            return cucumberScenarios;
         }
 
         private TestResult GetResultFromScenario(Element cucumberScenario)
