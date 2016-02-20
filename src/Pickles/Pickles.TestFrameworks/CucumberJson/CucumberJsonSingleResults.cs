@@ -20,7 +20,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
@@ -40,7 +39,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
         {
             get
             {
-                return false;
+                return true;
             }
         }
 
