@@ -41,7 +41,6 @@ namespace PicklesDoc.Pickles.Test.Formatters
         public void Setup()
         {
             var fakeTestResults = new Mock<ITestResults>();
-            fakeTestResults.Setup(ftr => ftr.SupportsExampleResults).Returns(false);
 
             this.formatter = new HtmlScenarioOutlineFormatter(
                 Container.Resolve<HtmlStepFormatter>(),

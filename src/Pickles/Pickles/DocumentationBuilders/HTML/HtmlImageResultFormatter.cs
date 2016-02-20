@@ -152,7 +152,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         public XElement Format(ScenarioOutline scenarioOutline, params string[] exampleValues)
         {
-            if (this.configuration.HasTestResults && this.results.SupportsExampleResults)
+            if (this.configuration.HasTestResults)
             {
                 TestResult exampleResult = this.results.GetExampleResult(scenarioOutline, exampleValues);
 

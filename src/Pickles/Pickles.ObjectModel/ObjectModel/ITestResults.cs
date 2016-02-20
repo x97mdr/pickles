@@ -22,8 +22,6 @@ namespace PicklesDoc.Pickles.ObjectModel
 {
     public interface ITestResults
     {
-        bool SupportsExampleResults { get; }
-
         TestResult GetFeatureResult(Feature feature);
 
         TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline);

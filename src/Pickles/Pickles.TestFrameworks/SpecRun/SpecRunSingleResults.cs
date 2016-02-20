@@ -35,11 +35,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
             this.specRunFeatures = specRunFeatures.ToList();
         }
 
-        public override bool SupportsExampleResults
-        {
-            get { return true; }
-        }
-
         public override TestResult GetFeatureResult(Feature feature)
         {
             var specRunFeature = this.FindSpecRunFeature(feature);

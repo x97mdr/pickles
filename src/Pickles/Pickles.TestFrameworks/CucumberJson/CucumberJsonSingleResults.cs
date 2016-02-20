@@ -35,14 +35,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
             this.resultsDocument = cucumberFeatures.ToList();
         }
 
-        public override bool SupportsExampleResults
-        {
-            get
-            {
-                return true;
-            }
-        }
-
         public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
         {
             var cucumberScenarios = this.GetCucumberScenarios(scenario);
