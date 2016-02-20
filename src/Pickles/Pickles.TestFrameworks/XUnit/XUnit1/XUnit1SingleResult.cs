@@ -37,11 +37,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
             this.resultsDocument = resultsDocument;
         }
 
-        public override bool SupportsExampleResults
-        {
-            get { return true; }
-        }
-
         public override TestResult GetFeatureResult(Feature feature)
         {
             XElement featureElement = this.GetFeatureElement(feature);

@@ -58,7 +58,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.SpecRun
         private class TestableMultipleTestResults : MultipleTestRunsBase
         {
             public TestableMultipleTestResults(IEnumerable<SingleTestRunBase> testResults)
-                : base(false, testResults)
+                : base(testResults)
             {
             }
         }

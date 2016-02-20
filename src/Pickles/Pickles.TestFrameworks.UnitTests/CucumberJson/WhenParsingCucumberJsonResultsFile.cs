@@ -20,19 +20,14 @@
 
 using System;
 
-using NFluent;
-
 using NUnit.Framework;
 
-using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks.CucumberJson;
-
-using Feature = PicklesDoc.Pickles.ObjectModel.Feature;
 
 namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.CucumberJson
 {
     [TestFixture]
-    public class WhenParsingCucumberJsonResultsFile : WhenParsingTestResultFiles<CucumberJsonResults>
+    public class WhenParsingCucumberJsonResultsFile : StandardTestSuite<CucumberJsonResults>
     {
         public WhenParsingCucumberJsonResultsFile()
             : base("CucumberJson." + "results-example-json.json")
@@ -40,43 +35,75 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.CucumberJson
         }
 
         [Test]
-        public void ThenCanReadFeatureResultSuccessfully()
+        public new void ThenCanReadFeatureResultSuccessfully()
         {
-            var results = ParseResultsFile();
-
-            var feature = new Feature { Name = "Test Feature" };
-            TestResult result = results.GetFeatureResult(feature);
-
-            Check.That(result).IsEqualTo(TestResult.Failed);
+            base.ThenCanReadFeatureResultSuccessfully();
         }
 
         [Test]
-        public void ThenCanReadScenarioResultSuccessfully()
+        public new void ThenCanReadScenarioOutlineResultSuccessfully()
         {
-            var results = ParseResultsFile();
-
-            var feature = new Feature { Name = "Test Feature" };
-
-            var scenario1 = new Scenario { Name = "Passing", Feature = feature };
-            TestResult result1 = results.GetScenarioResult(scenario1);
-
-            Check.That(result1).IsEqualTo(TestResult.Passed);
-
-            var scenario2 = new Scenario { Name = "Failing", Feature = feature };
-            TestResult result2 = results.GetScenarioResult(scenario2);
-
-            Check.That(result2).IsEqualTo(TestResult.Failed);
+            base.ThenCanReadScenarioOutlineResultSuccessfully();
         }
 
         [Test]
-        public void ThenCanReadFeatureWithoutScenariosSuccessfully_ShouldReturnInconclusive()
+        public new void ThenCanReadSuccessfulScenarioResultSuccessfully()
         {
-            var results = ParseResultsFile();
-            var feature = new Feature { Name = "Feature Without Scenarios" };
+            base.ThenCanReadSuccessfulScenarioResultSuccessfully();
+        }
 
-            TestResult result = results.GetFeatureResult(feature);
+        [Test]
+        public new void ThenCanReadFailedScenarioResultSuccessfully()
+        {
+            base.ThenCanReadFailedScenarioResultSuccessfully();
+        }
 
-            Check.That(result).IsEqualTo(TestResult.Inconclusive);
+        [Test]
+        public new void ThenCanReadIgnoredScenarioResultSuccessfully()
+        {
+            base.ThenCanReadIgnoredScenarioResultSuccessfully();
+        }
+
+        [Test]
+        public new void ThenCanReadInconclusiveScenarioResultSuccessfully()
+        {
+            base.ThenCanReadInconclusiveScenarioResultSuccessfully();
+        }
+
+        [Test]
+        public new void ThenCanReadInconclusiveFeatureResultSuccessfully()
+        {
+            base.ThenCanReadInconclusiveFeatureResultSuccessfully();
+        }
+
+        [Test]
+        public new void ThenCanReadPassedFeatureResultSuccessfully()
+        {
+            base.ThenCanReadPassedFeatureResultSuccessfully();
+        }
+
+        [Test]
+        public new void ThenCanReadFailedFeatureResultSuccessfully()
+        {
+            base.ThenCanReadFailedFeatureResultSuccessfully();
+        }
+
+        [Test]
+        public new void ThenCanReadNotFoundScenarioCorrectly()
+        {
+            base.ThenCanReadNotFoundScenarioCorrectly();
+        }
+
+        [Test]
+        public new void ThenCanReadNotFoundFeatureCorrectly()
+        {
+            base.ThenCanReadNotFoundFeatureCorrectly();
+        }
+
+        [Test]
+        public new void ThenCanReadResultsWithBackslashes()
+        {
+            base.ThenCanReadResultsWithBackslashes();
         }
     }
 }

@@ -35,14 +35,24 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
             this.resultsDocument = cucumberFeatures.ToList();
         }
 
-        public override bool SupportsExampleResults
-        {
-            get { return false; }
-        }
-
         public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
         {
-            throw new NotSupportedException();
+            var cucumberScenarios = this.GetCucumberScenarios(scenario);
+
+            var query = cucumberScenarios.Where(cs => this.ScenarioHasStepsForAllExampleValues(cs, exampleValues))
+                .Select(ToTestResult);
+
+            return query.FirstOrDefault();
+        }
+
+        private bool ScenarioHasStepsForAllExampleValues(Element cucumberScenario, string[] exampleValues)
+        {
+            return exampleValues.All(exampleValue => this.ScenarioHasAStepWithThisExampleValue(cucumberScenario, exampleValue));
+        }
+
+        private bool ScenarioHasAStepWithThisExampleValue(Element cucumberScenario, string exampleValue)
+        {
+            return cucumberScenario.steps.Any(step => step.name.Contains(exampleValue));
         }
 
         public override TestResult GetFeatureResult(ObjectModel.Feature feature)
@@ -64,26 +74,55 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
                 return TestResult.Inconclusive;
             }
 
-            bool wasSuccessful = cucumberFeature.elements.All(this.DoAllStepsPass);
-
-            return ConvertBooleanToTestResult(wasSuccessful);
+            return ToTestResult(cucumberFeature);
         }
 
-        private bool DoAllStepsPass(Element cucumberScenario)
+        private TestResult ToTestResult(Feature feature)
         {
-            return cucumberScenario.steps.All(x => x.result.status == "passed");
+            return feature.elements.Select(ToTestResult).Merge();
         }
 
-        private static TestResult ConvertBooleanToTestResult(bool wasSuccessful)
+        private TestResult ToTestResult(Element scenario)
         {
-            return wasSuccessful ? TestResult.Passed : TestResult.Failed;
+            return scenario.steps.Select(ToTestResult).Merge();
+        }
+
+        private TestResult ToTestResult(Step step)
+        {
+            return ToTestResult(step.result.status);
+        }
+
+        private TestResult ToTestResult(string cucumberResult)
+        {
+            switch (cucumberResult)
+            {
+                default:
+                case "skipped":
+                case "undefined":
+                case "pending":
+                    {
+                        return TestResult.Inconclusive;
+                    }
+
+                case "failed":
+                    {
+                        return TestResult.Failed;
+                    }
+
+                case "passed":
+                    {
+                        return TestResult.Passed;
+                    }
+            }
         }
 
         public override TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
         {
-            // Not applicable
-            return TestResult.Inconclusive;
+            var cucumberScenarios = this.GetCucumberScenarios(scenarioOutline);
+
+            return cucumberScenarios.Select(ToTestResult).Merge();
         }
+
 
         public override TestResult GetScenarioResult(Scenario scenario)
         {
@@ -104,6 +143,18 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
             return cucumberScenario;
         }
 
+        private IEnumerable<Element> GetCucumberScenarios(ScenarioOutline scenarioOutline)
+        {
+            IEnumerable<Element> cucumberScenarios = null;
+            var cucumberFeature = this.GetCucumberFeature(scenarioOutline.Feature);
+            if (cucumberFeature != null)
+            {
+                cucumberScenarios = cucumberFeature.elements.Where(x => x.name == scenarioOutline.Name);
+            }
+
+            return cucumberScenarios;
+        }
+
         private TestResult GetResultFromScenario(Element cucumberScenario)
         {
             if (cucumberScenario == null)
@@ -111,9 +162,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
                 return TestResult.Inconclusive;
             }
 
-            bool wasSuccessful = this.DoAllStepsPass(cucumberScenario);
 
-            return ConvertBooleanToTestResult(wasSuccessful);
+            return ToTestResult(cucumberScenario);
         }
     }
 }

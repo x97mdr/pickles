@@ -27,8 +27,6 @@ namespace PicklesDoc.Pickles.TestFrameworks
 {
     public abstract class SingleTestRunBase : ITestResults
     {
-        public abstract bool SupportsExampleResults { get; }
-
         internal IScenarioOutlineExampleMatcher ScenarioOutlineExampleMatcher { get; set; }
 
         public abstract TestResult GetFeatureResult(Feature feature);

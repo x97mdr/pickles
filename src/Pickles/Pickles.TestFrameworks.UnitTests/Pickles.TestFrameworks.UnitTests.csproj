@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CucumberJson\WhenParsingCucumberJsonResultsFileWithIndividualResults.cs" />
     <Compile Include="MsTest\WhenParsingMsTestResultsFileWithMissingTraits.cs" />
     <Compile Include="MsTest\WhenParsingMsTestResultsFileWithIndividualResults.cs" />
     <Compile Include="NUnit\NUnit2\WhenParsingnUnit2ResultsFileWithMissingTraits.cs" />

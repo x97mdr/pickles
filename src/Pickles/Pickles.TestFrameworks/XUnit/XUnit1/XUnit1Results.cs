@@ -28,7 +28,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
             IConfiguration configuration,
             XUnit1SingleResultLoader singleResultLoader,
             XUnit1ScenarioOutlineExampleMatcher scenarioOutlineExampleMatcher)
-            : base(true, configuration, singleResultLoader, scenarioOutlineExampleMatcher)
+            : base(configuration, singleResultLoader, scenarioOutlineExampleMatcher)
         {
         }
     }

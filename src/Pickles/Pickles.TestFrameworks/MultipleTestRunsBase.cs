@@ -31,15 +31,13 @@ namespace PicklesDoc.Pickles.TestFrameworks
     {
         private readonly ISingleResultLoader singleResultLoader;
 
-        protected MultipleTestRunsBase(bool supportsExampleResults, IEnumerable<SingleTestRunBase> testResults)
+        protected MultipleTestRunsBase(IEnumerable<SingleTestRunBase> testResults)
         {
-            this.SupportsExampleResults = supportsExampleResults;
             this.TestResults = testResults;
         }
 
-        protected MultipleTestRunsBase(bool supportsExampleResults, IConfiguration configuration, ISingleResultLoader singleResultLoader, IScenarioOutlineExampleMatcher scenarioOutlineExampleMatcher = null)
+        protected MultipleTestRunsBase(IConfiguration configuration, ISingleResultLoader singleResultLoader, IScenarioOutlineExampleMatcher scenarioOutlineExampleMatcher = null)
         {
-            this.SupportsExampleResults = supportsExampleResults;
             this.singleResultLoader = singleResultLoader;
             this.TestResults = this.GetSingleTestResults(configuration);
 
@@ -54,22 +52,13 @@ namespace PicklesDoc.Pickles.TestFrameworks
             }
         }
 
-        public bool SupportsExampleResults { get; }
-
         protected IEnumerable<SingleTestRunBase> TestResults { get; }
 
         public TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] arguments)
         {
-            if (SupportsExampleResults)
-            {
-                var results = TestResults.Select(tr => tr.GetExampleResult(scenarioOutline, arguments)).ToArray();
+            var results = TestResults.Select(tr => tr.GetExampleResult(scenarioOutline, arguments)).ToArray();
 
-                return EvaluateTestResults(results);
-            }
-            else
-            {
-                return TestResult.Passed;
-            }
+            return EvaluateTestResults(results);
         }
 
         public TestResult GetFeatureResult(Feature feature)

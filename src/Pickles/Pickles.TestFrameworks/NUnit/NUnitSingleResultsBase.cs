@@ -36,11 +36,6 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit
             this.testResultAndNames = testResultAndNames;
         }
 
-        public override bool SupportsExampleResults
-        {
-            get { return true; }
-        }
-
         protected XDocument resultsDocument { get; }
 
         public override TestResult GetFeatureResult(Feature feature)
