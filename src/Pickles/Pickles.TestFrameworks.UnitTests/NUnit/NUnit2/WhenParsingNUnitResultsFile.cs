@@ -111,5 +111,23 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
         {
             base.ThenCanReadResultOfScenarioWithFailingBackground();
         }
+
+        [Test]
+        public new void ThenCanReadResultOfFeatureWithFailingBackground()
+        {
+            base.ThenCanReadResultOfFeatureWithFailingBackground();
+        }
+
+        [Test]
+        public new void ThenCanReadResultOfScenarioOutlineWithFailingBackground()
+        {
+            base.ThenCanReadResultOfScenarioOutlineWithFailingBackground();
+        }
+
+        [Test]
+        public new void ThenCanReadResultOfScenarioOutlineExampleWithFailingBackground()
+        {
+            base.ThenCanReadResultOfScenarioOutlineExampleWithFailingBackground();
+        }
     }
 }

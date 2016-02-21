@@ -193,6 +193,43 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
             Check.That(actualResult).IsEqualTo(TestResult.Failed);
         }
 
+        public void ThenCanReadResultOfScenarioOutlineWithFailingBackground()
+        {
+            var results = ParseResultsFile();
+
+            var feature = new Feature { Name = "Failing Background" };
+
+            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers", Feature = feature };
+
+            var actualResult = results.GetScenarioOutlineResult(scenarioOutline);
+
+            Check.That(actualResult).IsEqualTo(TestResult.Failed);
+        }
+
+        public void ThenCanReadResultOfScenarioOutlineExampleWithFailingBackground()
+        {
+            var results = ParseResultsFile();
+
+            var feature = new Feature { Name = "Failing Background" };
+
+            var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers", Feature = feature };
+
+            var actualResult = results.GetExampleResult(scenarioOutline, new string[] { "60", "70", "130", "260" });
+
+            Check.That(actualResult).IsEqualTo(TestResult.Failed);
+        }
+
+        public void ThenCanReadResultOfFeatureWithFailingBackground()
+        {
+            var results = ParseResultsFile();
+
+            var feature = new Feature { Name = "Failing Background" };
+
+            var actualResult = results.GetFeatureResult(feature);
+
+            Check.That(actualResult).IsEqualTo(TestResult.Failed);
+        }
+
         private Feature AdditionFeature()
         {
             return new Feature { Name = "Addition" };
