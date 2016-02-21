@@ -39,8 +39,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
         {
             var cucumberScenarios = this.GetCucumberScenarios(scenario);
 
-            var query = cucumberScenarios.Where(cs => this.ScenarioHasStepsForAllExampleValues(cs, exampleValues))
-                .Select(ToTestResult);
+            var query = cucumberScenarios.Where(cs => this.ScenarioHasStepsForAllExampleValues(cs.Item1, exampleValues))
+                .Select(cs => ToTestResult(cs.Item1, cs.Item2));
 
             return query.FirstOrDefault();
         }
@@ -59,32 +59,36 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
         {
             var cucumberFeature = this.GetCucumberFeature(feature);
 
-            return this.GetResultFromFeature(cucumberFeature);
+            return this.GetResultFromFeature(cucumberFeature.Item1, cucumberFeature.Item2);
         }
 
-        private Feature GetCucumberFeature(ObjectModel.Feature feature)
+        private Tuple<Feature, Element> GetCucumberFeature(ObjectModel.Feature feature)
         {
-            return this.resultsDocument.FirstOrDefault(f => f.name == feature.Name);
+            var cucumberFeature = this.resultsDocument.FirstOrDefault(f => f.name == feature.Name);
+            var background = cucumberFeature?.elements.FirstOrDefault(e => e.type == "background");
+            return new Tuple<Feature, Element>(cucumberFeature, background);
         }
 
-        private TestResult GetResultFromFeature(Feature cucumberFeature)
+        private TestResult GetResultFromFeature(Feature cucumberFeature, Element background)
         {
             if (cucumberFeature?.elements == null)
             {
                 return TestResult.Inconclusive;
             }
 
-            return ToTestResult(cucumberFeature);
+            return ToTestResult(cucumberFeature, background);
         }
 
-        private TestResult ToTestResult(Feature feature)
+        private TestResult ToTestResult(Feature feature, Element background)
         {
-            return feature.elements.Select(ToTestResult).Merge();
+            return feature.elements.Select(e => ToTestResult(e, background)).Merge();
         }
 
-        private TestResult ToTestResult(Element scenario)
+        private TestResult ToTestResult(Element scenario, Element background)
         {
-            return scenario.steps.Select(ToTestResult).Merge();
+            var steps = (background?.steps ?? new List<Step>()).Concat(scenario.steps);
+
+            return steps.Select(ToTestResult).Merge();
         }
 
         private TestResult ToTestResult(Step step)
@@ -120,7 +124,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
         {
             var cucumberScenarios = this.GetCucumberScenarios(scenarioOutline);
 
-            return cucumberScenarios.Select(ToTestResult).Merge();
+            return cucumberScenarios.Select(cs => ToTestResult(cs.Item1, cs.Item2)).Merge();
         }
 
 
@@ -128,34 +132,34 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
         {
             var cucumberScenario = this.GetCucumberScenario(scenario);
 
-            return this.GetResultFromScenario(cucumberScenario);
+            return this.GetResultFromScenario(cucumberScenario.Item1, cucumberScenario.Item2);
         }
 
-        private Element GetCucumberScenario(Scenario scenario)
+        private Tuple<Element, Element> GetCucumberScenario(Scenario scenario)
         {
             Element cucumberScenario = null;
             var cucumberFeature = this.GetCucumberFeature(scenario.Feature);
-            if (cucumberFeature != null)
+            if (cucumberFeature?.Item1 != null)
             {
-                cucumberScenario = cucumberFeature.elements.FirstOrDefault(x => x.name == scenario.Name);
+                cucumberScenario = cucumberFeature.Item1.elements.FirstOrDefault(x => x.name == scenario.Name);
             }
 
-            return cucumberScenario;
+            return new Tuple<Element, Element>(cucumberScenario, cucumberFeature?.Item2);
         }
 
-        private IEnumerable<Element> GetCucumberScenarios(ScenarioOutline scenarioOutline)
+        private IEnumerable<Tuple<Element, Element>> GetCucumberScenarios(ScenarioOutline scenarioOutline)
         {
             IEnumerable<Element> cucumberScenarios = null;
             var cucumberFeature = this.GetCucumberFeature(scenarioOutline.Feature);
-            if (cucumberFeature != null)
+            if (cucumberFeature?.Item1 != null)
             {
-                cucumberScenarios = cucumberFeature.elements.Where(x => x.name == scenarioOutline.Name);
+                cucumberScenarios = cucumberFeature.Item1.elements.Where(x => x.name == scenarioOutline.Name);
             }
 
-            return cucumberScenarios;
+            return (cucumberScenarios ?? new Element[0]).Select(cs => new Tuple<Element, Element>(cs, cucumberFeature?.Item2));
         }
 
-        private TestResult GetResultFromScenario(Element cucumberScenario)
+        private TestResult GetResultFromScenario(Element cucumberScenario, Element background)
         {
             if (cucumberScenario == null)
             {
@@ -163,7 +167,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
             }
 
 
-            return ToTestResult(cucumberScenario);
+            return ToTestResult(cucumberScenario, background);
         }
     }
 }
