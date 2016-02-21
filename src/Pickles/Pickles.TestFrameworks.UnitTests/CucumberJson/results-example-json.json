@@ -51,7 +51,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 500000
+              "duration": 0
             }
           },
           {
@@ -99,7 +99,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1000000
+              "duration": 999000
             }
           }
         ]
@@ -343,7 +343,7 @@
             "result": {
               "status": "failed",
               "error_message": "\nexpected: \"fail\"\n     got: \"this is a hacky way of making the scenario with a non-integer number\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/AdditionSteps.rb:11:in `/^I have entered (\\d+)\\.(\\d+) into the calculator$/'\nfeatures/Addition.feature:32:in `And I have entered 2.2 into the calculator'",
-              "duration": 15501000
+              "duration": 11999000
             }
           },
           {
@@ -463,6 +463,17 @@
               "error_message": "\nexpected: \"false\"\n     got: \"true\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/AdditionSteps.rb:29:in `/^the background step fails$/'\nfeatures/FailingBackground.feature:5:in `Given the background step fails'",
               "duration": 0
             }
+          },
+          {
+            "keyword": "And ",
+            "name": "the calculator has clean memory",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:1"
+            },
+            "result": {
+              "status": "skipped"
+            }
           }
         ]
       },
@@ -471,13 +482,13 @@
         "keyword": "Scenario",
         "name": "Add two numbers",
         "description": "",
-        "line": 7,
+        "line": 8,
         "type": "scenario",
         "steps": [
           {
             "keyword": "Given ",
             "name": "I have entered 50 into the calculator",
-            "line": 8,
+            "line": 9,
             "match": {
               "location": "features/step_definitions/AdditionSteps.rb:6"
             },
@@ -488,7 +499,7 @@
           {
             "keyword": "And ",
             "name": "I have entered 70 into the calculator",
-            "line": 9,
+            "line": 10,
             "match": {
               "location": "features/step_definitions/AdditionSteps.rb:6"
             },
@@ -499,7 +510,7 @@
           {
             "keyword": "When ",
             "name": "I press add",
-            "line": 10,
+            "line": 11,
             "match": {
               "location": "features/step_definitions/AdditionSteps.rb:14"
             },
@@ -510,7 +521,203 @@
           {
             "keyword": "Then ",
             "name": "the result should be 120 on the screen",
-            "line": 11,
+            "line": 12,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:20"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 4,
+        "type": "background",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "the background step fails",
+            "line": 5,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:28"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "\nexpected: \"false\"\n     got: \"true\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/AdditionSteps.rb:29:in `/^the background step fails$/'\nfeatures/FailingBackground.feature:5:in `Given the background step fails'",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "the calculator has clean memory",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:1"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ]
+      },
+      {
+        "id": "failing-background;adding-several-numbers;;2",
+        "keyword": "Scenario Outline",
+        "name": "Adding several numbers",
+        "description": "",
+        "line": 23,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have entered 60 into the calculator",
+            "line": 23,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:6"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I have entered 70 into the calculator",
+            "line": 23,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:6"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I have entered 130 into the calculator",
+            "line": 23,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:6"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I press add",
+            "line": 23,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:14"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "the result should be 260 on the screen",
+            "line": 23,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:20"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 4,
+        "type": "background",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "the background step fails",
+            "line": 5,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:28"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "\nexpected: \"false\"\n     got: \"true\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/AdditionSteps.rb:29:in `/^the background step fails$/'\nfeatures/FailingBackground.feature:5:in `Given the background step fails'",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "the calculator has clean memory",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:1"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ]
+      },
+      {
+        "id": "failing-background;adding-several-numbers;;3",
+        "keyword": "Scenario Outline",
+        "name": "Adding several numbers",
+        "description": "",
+        "line": 24,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have entered 40 into the calculator",
+            "line": 24,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:6"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I have entered 50 into the calculator",
+            "line": 24,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:6"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I have entered 90 into the calculator",
+            "line": 24,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:6"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I press add",
+            "line": 24,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:14"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "the result should be 180 on the screen",
+            "line": 24,
             "match": {
               "location": "features/step_definitions/AdditionSteps.rb:20"
             },
@@ -648,7 +855,7 @@
             "result": {
               "status": "pending",
               "error_message": "TODO (Cucumber::Pending)\n./features/step_definitions/MinimalSteps.rb:6:in `/^inconclusive step$/'\nfeatures/Minimal Features/Inconclusive.feature:7:in `Then inconclusive step'",
-              "duration": 500000
+              "duration": 0
             }
           }
         ]
@@ -1202,7 +1409,7 @@
             "result": {
               "status": "failed",
               "error_message": "\nexpected: \"false\"\n     got: \"true\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/ScenarioOutlineSteps.rb:10:in `/^the scenario will 'fail_(\\d+)'$/'\nfeatures/ScenarioOutlines.feature:59:in `Then the scenario will 'fail_1''\nfeatures/ScenarioOutlines.feature:45:in `Then the scenario will '<result>''",
-              "duration": 0
+              "duration": 500000
             }
           }
         ]
