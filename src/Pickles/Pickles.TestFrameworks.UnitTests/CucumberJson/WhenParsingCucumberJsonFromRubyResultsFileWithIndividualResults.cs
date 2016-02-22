@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="WhenParsingCucumberJsonResultsFileWithIndividualResults.cs" company="PicklesDoc">
+//  <copyright file="WhenParsingCucumberJsonFromRubyResultsFileWithIndividualResults.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -27,9 +27,9 @@ using PicklesDoc.Pickles.TestFrameworks.CucumberJson;
 namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.CucumberJson
 {
     [TestFixture]
-    public class WhenParsingCucumberJsonResultsFileWithIndividualResults : StandardTestSuiteForScenarioOutlines<CucumberJsonResults>
+    public class WhenParsingCucumberJsonFromRubyResultsFileWithIndividualResults : StandardTestSuiteForScenarioOutlines<CucumberJsonResults>
     {
-        public WhenParsingCucumberJsonResultsFileWithIndividualResults()
+        public WhenParsingCucumberJsonFromRubyResultsFileWithIndividualResults()
             : base("CucumberJson." + "results-example-json.json")
         {
         }

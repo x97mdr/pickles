@@ -59,7 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CucumberJson\WhenParsingCucumberJsonResultsFileWithIndividualResults.cs" />
+    <Compile Include="CucumberJson\WhenParsingCucumberJsonFromRubyResultsFileWithIndividualResults.cs" />
     <Compile Include="MsTest\WhenParsingMsTestResultsFileWithMissingTraits.cs" />
     <Compile Include="MsTest\WhenParsingMsTestResultsFileWithIndividualResults.cs" />
     <Compile Include="NUnit\NUnit2\WhenParsingnUnit2ResultsFileWithMissingTraits.cs" />
@@ -74,7 +74,7 @@
     <Compile Include="StandardTestSuite.cs" />
     <Compile Include="StandardTestSuiteForScenarioOutlines.cs" />
     <Compile Include="XUnit\XUnit1\WhenDeterminingTheSignatureOfAnXUnitExampleRow.cs" />
-    <Compile Include="CucumberJson\WhenParsingCucumberJsonResultsFile.cs" />
+    <Compile Include="CucumberJson\WhenParsingCucumberJsonFromRubyResultsFile.cs" />
     <Compile Include="MsTest\WhenParsingMsTestResultsFile.cs" />
     <Compile Include="MsTest\WhenParsingMultipleMsTestTestResultsFiles.cs" />
     <Compile Include="NUnit\NUnit2\WhenParsingMultipleNUnitResultsFilesForASingleFeature.cs" />
