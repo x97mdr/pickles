@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="WhenParsingMsTestResultsFile.cs" company="PicklesDoc">
+//  <copyright file="WhenParsingCucumberJsonFromJSResultsFile.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -22,40 +22,22 @@ using System;
 
 using NUnit.Framework;
 
-using PicklesDoc.Pickles.TestFrameworks.MsTest;
+using PicklesDoc.Pickles.TestFrameworks.CucumberJson;
 
-namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.MsTest
+namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.CucumberJson
 {
     [TestFixture]
-    public class WhenParsingMsTestResultsFile : StandardTestSuite<MsTestResults>
+    public class WhenParsingCucumberJsonFromJSResultsFile : StandardTestSuite<CucumberJsonResults>
     {
-        public WhenParsingMsTestResultsFile()
-            : base("MsTest." + "results-example-mstest.trx")
+        public WhenParsingCucumberJsonFromJSResultsFile()
+            : base("CucumberJson." + "results-example-cucumberjs-json.json")
         {
         }
 
         [Test]
-        public new void ThenCanReadBackgroundResultSuccessfully()
+        public new void ThenCanReadFeatureResultSuccessfully()
         {
-            base.ThenCanReadBackgroundResultSuccessfully();
-        }
-
-        [Test]
-        public new void ThenCanReadInconclusiveFeatureResultSuccessfully()
-        {
-            base.ThenCanReadInconclusiveFeatureResultSuccessfully();
-        }
-
-        [Test]
-        public new void ThenCanReadFailedFeatureResultSuccessfully()
-        {
-            base.ThenCanReadFailedFeatureResultSuccessfully();
-        }
-
-        [Test]
-        public new void ThenCanReadPassedFeatureResultSuccessfully()
-        {
-            base.ThenCanReadPassedFeatureResultSuccessfully();
+            base.ThenCanReadFeatureResultSuccessfully();
         }
 
         [Test]
@@ -89,9 +71,21 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.MsTest
         }
 
         [Test]
-        public new void ThenCanReadFeatureResultSuccessfully()
+        public new void ThenCanReadInconclusiveFeatureResultSuccessfully()
         {
-            base.ThenCanReadFeatureResultSuccessfully();
+            base.ThenCanReadInconclusiveFeatureResultSuccessfully();
+        }
+
+        [Test]
+        public new void ThenCanReadPassedFeatureResultSuccessfully()
+        {
+            base.ThenCanReadPassedFeatureResultSuccessfully();
+        }
+
+        [Test]
+        public new void ThenCanReadFailedFeatureResultSuccessfully()
+        {
+            base.ThenCanReadFailedFeatureResultSuccessfully();
         }
 
         [Test]

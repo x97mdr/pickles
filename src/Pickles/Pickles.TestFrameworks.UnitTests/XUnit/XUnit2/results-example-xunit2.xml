@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <assemblies>
-  <assembly name="C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\bin\Debug\xunit2Harness.DLL" environment="64-bit .NET 4.0.30319.42000 [collection-per-class, non-parallel]" test-framework="xUnit.net 2.1.0.3179" run-date="2016-01-21" run-time="12:56:05" config-file="C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\bin\Debug\xunit2Harness.dll.config" total="32" passed="17" failed="14" skipped="1" time="1.497" errors="0">
+  <assembly name="C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\bin\Debug\xunit2Harness.DLL" environment="64-bit .NET 4.0.30319.42000 [collection-per-class, non-parallel]" test-framework="xUnit.net 2.1.0.3179" run-date="2016-02-21" run-time="10:22:58" config-file="C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\bin\Debug\xunit2Harness.dll.config" total="34" passed="16" failed="17" skipped="1" time="1.127" errors="0">
     <errors />
-    <collection total="3" passed="0" failed="3" skipped="0" name="Test collection for Pickles.TestHarness.xunit2.NotAutomatedAtAllFeature" time="0.224">
-      <test name="Pickles.TestHarness.xunit2.NotAutomatedAtAllFeature.NotAutomatedScenario2" type="Pickles.TestHarness.xunit2.NotAutomatedAtAllFeature" method="NotAutomatedScenario2" time="0.0710899" result="Fail">
+    <collection total="3" passed="0" failed="3" skipped="0" name="Test collection for Pickles.TestHarness.xunit2.NotAutomatedAtAllFeature" time="0.060">
+      <test name="Pickles.TestHarness.xunit2.NotAutomatedAtAllFeature.NotAutomatedScenario2" type="Pickles.TestHarness.xunit2.NotAutomatedAtAllFeature" method="NotAutomatedScenario2" time="0.0224075" result="Fail">
         <traits>
           <trait name="FeatureTitle" value="Not Automated At All" />
           <trait name="Description" value="Not automated scenario 2" />
@@ -15,7 +15,7 @@
    at Pickles.TestHarness.xunit2.NotAutomatedAtAllFeature.NotAutomatedScenario2() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\NotAutomatedAtAll.feature:line 14]]></stack-trace>
         </failure>
       </test>
-      <test name="Pickles.TestHarness.xunit2.NotAutomatedAtAllFeature.NotAutomatedScenario3" type="Pickles.TestHarness.xunit2.NotAutomatedAtAllFeature" method="NotAutomatedScenario3" time="0.073689" result="Fail">
+      <test name="Pickles.TestHarness.xunit2.NotAutomatedAtAllFeature.NotAutomatedScenario3" type="Pickles.TestHarness.xunit2.NotAutomatedAtAllFeature" method="NotAutomatedScenario3" time="0.0189694" result="Fail">
         <traits>
           <trait name="FeatureTitle" value="Not Automated At All" />
           <trait name="Description" value="Not automated scenario 3" />
@@ -27,7 +27,7 @@
    at Pickles.TestHarness.xunit2.NotAutomatedAtAllFeature.NotAutomatedScenario3() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\NotAutomatedAtAll.feature:line 19]]></stack-trace>
         </failure>
       </test>
-      <test name="Pickles.TestHarness.xunit2.NotAutomatedAtAllFeature.NotAutomatedScenario1" type="Pickles.TestHarness.xunit2.NotAutomatedAtAllFeature" method="NotAutomatedScenario1" time="0.078927" result="Fail">
+      <test name="Pickles.TestHarness.xunit2.NotAutomatedAtAllFeature.NotAutomatedScenario1" type="Pickles.TestHarness.xunit2.NotAutomatedAtAllFeature" method="NotAutomatedScenario1" time="0.0184713" result="Fail">
         <traits>
           <trait name="FeatureTitle" value="Not Automated At All" />
           <trait name="Description" value="Not automated scenario 1" />
@@ -40,40 +40,114 @@
         </failure>
       </test>
     </collection>
-    <collection total="2" passed="1" failed="1" skipped="0" name="Test collection for Pickles.TestHarness.xunit2.MinimalFeatures.InconclusiveFeature" time="0.155">
-      <test name="Pickles.TestHarness.xunit2.MinimalFeatures.InconclusiveFeature.InconclusiveFeaturePassingScenario" type="Pickles.TestHarness.xunit2.MinimalFeatures.InconclusiveFeature" method="InconclusiveFeaturePassingScenario" time="0.1347008" result="Pass">
+    <collection total="3" passed="0" failed="3" skipped="0" name="Test collection for Pickles.TestHarness.xunit2.FailingBackgroundFeature" time="0.081">
+      <test name="Pickles.TestHarness.xunit2.FailingBackgroundFeature.AddingSeveralNumbers(firstNumber: &quot;60&quot;, secondNumber: &quot;70&quot;, thirdNumber: &quot;130&quot;, result: &quot;260&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.FailingBackgroundFeature" method="AddingSeveralNumbers" time="0.0596817" result="Fail">
         <traits>
-          <trait name="FeatureTitle" value="Inconclusive" />
-          <trait name="Description" value="Inconclusive Feature Passing Scenario" />
+          <trait name="FeatureTitle" value="Failing Background" />
+          <trait name="Description" value="Adding several numbers" />
+        </traits>
+        <failure exception-type="Shouldly.ChuckedAWobbly">
+          <message><![CDATA[Shouldly.ChuckedAWobbly : \n    1\n        should be\n    2\n        but was\n    1]]></message>
+          <stack-trace><![CDATA[   at Shouldly.ShouldlyCoreExtensions.AssertAwesomely[T](T actual, Func`2 specifiedConstraint, Object originalActual, Object originalExpected) in c:\TeamCity\buildAgent\work\10efaabfa8adbd4e\src\Shouldly\ShouldlyCoreExtensions.cs:line 18
+   at Shouldly.ShouldBeTestExtensions.ShouldBe[T](T actual, T expected) in c:\TeamCity\buildAgent\work\10efaabfa8adbd4e\src\Shouldly\ShouldBeTestExtensions.cs:line 17
+   at AutomationLayer.AdditionSteps.GivenTheBackgroundStepFails() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\AutomationLayer\AdditionSteps.cs:line 25
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+   at Pickles.TestHarness.xunit2.FailingBackgroundFeature.ScenarioCleanup() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\FailingBackground.feature.cs:line 0
+   at Pickles.TestHarness.xunit2.FailingBackgroundFeature.AddingSeveralNumbers(String firstNumber, String secondNumber, String thirdNumber, String result, String[] exampleTags) in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\FailingBackground.feature:line 19]]></stack-trace>
+        </failure>
+      </test>
+      <test name="Pickles.TestHarness.xunit2.FailingBackgroundFeature.AddingSeveralNumbers(firstNumber: &quot;40&quot;, secondNumber: &quot;50&quot;, thirdNumber: &quot;90&quot;, result: &quot;180&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.FailingBackgroundFeature" method="AddingSeveralNumbers" time="0.0115231" result="Fail">
+        <traits>
+          <trait name="FeatureTitle" value="Failing Background" />
+          <trait name="Description" value="Adding several numbers" />
+        </traits>
+        <failure exception-type="Shouldly.ChuckedAWobbly">
+          <message><![CDATA[Shouldly.ChuckedAWobbly : \n    1\n        should be\n    2\n        but was\n    1]]></message>
+          <stack-trace><![CDATA[   at Shouldly.ShouldlyCoreExtensions.AssertAwesomely[T](T actual, Func`2 specifiedConstraint, Object originalActual, Object originalExpected) in c:\TeamCity\buildAgent\work\10efaabfa8adbd4e\src\Shouldly\ShouldlyCoreExtensions.cs:line 18
+   at Shouldly.ShouldBeTestExtensions.ShouldBe[T](T actual, T expected) in c:\TeamCity\buildAgent\work\10efaabfa8adbd4e\src\Shouldly\ShouldBeTestExtensions.cs:line 17
+   at AutomationLayer.AdditionSteps.GivenTheBackgroundStepFails() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\AutomationLayer\AdditionSteps.cs:line 25
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+   at Pickles.TestHarness.xunit2.FailingBackgroundFeature.ScenarioCleanup() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\FailingBackground.feature.cs:line 0
+   at Pickles.TestHarness.xunit2.FailingBackgroundFeature.AddingSeveralNumbers(String firstNumber, String secondNumber, String thirdNumber, String result, String[] exampleTags) in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\FailingBackground.feature:line 19]]></stack-trace>
+        </failure>
+      </test>
+      <test name="Pickles.TestHarness.xunit2.FailingBackgroundFeature.AddTwoNumbers" type="Pickles.TestHarness.xunit2.FailingBackgroundFeature" method="AddTwoNumbers" time="0.009767" result="Fail">
+        <traits>
+          <trait name="FeatureTitle" value="Failing Background" />
+          <trait name="Description" value="Add two numbers" />
+        </traits>
+        <failure exception-type="Shouldly.ChuckedAWobbly">
+          <message><![CDATA[Shouldly.ChuckedAWobbly : \n    1\n        should be\n    2\n        but was\n    1]]></message>
+          <stack-trace><![CDATA[   at Shouldly.ShouldlyCoreExtensions.AssertAwesomely[T](T actual, Func`2 specifiedConstraint, Object originalActual, Object originalExpected) in c:\TeamCity\buildAgent\work\10efaabfa8adbd4e\src\Shouldly\ShouldlyCoreExtensions.cs:line 18
+   at Shouldly.ShouldBeTestExtensions.ShouldBe[T](T actual, T expected) in c:\TeamCity\buildAgent\work\10efaabfa8adbd4e\src\Shouldly\ShouldBeTestExtensions.cs:line 17
+   at AutomationLayer.AdditionSteps.GivenTheBackgroundStepFails() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\AutomationLayer\AdditionSteps.cs:line 25
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+   at Pickles.TestHarness.xunit2.FailingBackgroundFeature.ScenarioCleanup() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\FailingBackground.feature.cs:line 0
+   at Pickles.TestHarness.xunit2.FailingBackgroundFeature.AddTwoNumbers() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\FailingBackground.feature:line 12]]></stack-trace>
+        </failure>
+      </test>
+    </collection>
+    <collection total="3" passed="1" failed="2" skipped="0" name="Test collection for Pickles.TestHarness.xunit2.MinimalFeatures.FailingFeature" time="0.075">
+      <test name="Pickles.TestHarness.xunit2.MinimalFeatures.FailingFeature.FailingFeaturePassingScenario" type="Pickles.TestHarness.xunit2.MinimalFeatures.FailingFeature" method="FailingFeaturePassingScenario" time="0.0019403" result="Pass">
+        <traits>
+          <trait name="FeatureTitle" value="Failing" />
+          <trait name="Description" value="Failing Feature Passing Scenario" />
         </traits>
       </test>
-      <test name="Pickles.TestHarness.xunit2.MinimalFeatures.InconclusiveFeature.InconclusiveFeatureInconclusiveScenario" type="Pickles.TestHarness.xunit2.MinimalFeatures.InconclusiveFeature" method="InconclusiveFeatureInconclusiveScenario" time="0.0207078" result="Fail">
+      <test name="Pickles.TestHarness.xunit2.MinimalFeatures.FailingFeature.FailingFeatureFailingScenario" type="Pickles.TestHarness.xunit2.MinimalFeatures.FailingFeature" method="FailingFeatureFailingScenario" time="0.0702029" result="Fail">
         <traits>
-          <trait name="FeatureTitle" value="Inconclusive" />
-          <trait name="Description" value="Inconclusive Feature Inconclusive Scenario" />
+          <trait name="FeatureTitle" value="Failing" />
+          <trait name="Description" value="Failing Feature Failing Scenario" />
+        </traits>
+        <failure exception-type="Shouldly.ChuckedAWobbly">
+          <message><![CDATA[Shouldly.ChuckedAWobbly : \n    true\n        should be\n    False\n        but was\n    True]]></message>
+          <stack-trace><![CDATA[   at Shouldly.ShouldlyCoreExtensions.AssertAwesomely[T](T actual, Func`2 specifiedConstraint, Object originalActual, Object originalExpected) in c:\TeamCity\buildAgent\work\10efaabfa8adbd4e\src\Shouldly\ShouldlyCoreExtensions.cs:line 18
+   at Shouldly.ShouldBeTestExtensions.ShouldBe[T](T actual, T expected) in c:\TeamCity\buildAgent\work\10efaabfa8adbd4e\src\Shouldly\ShouldBeTestExtensions.cs:line 17
+   at AutomationLayer.MinimalFeatures.MinimalSteps.ThenFailingStep() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\AutomationLayer\MinimalFeatures\MinimalSteps.cs:line 24
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+   at Pickles.TestHarness.xunit2.MinimalFeatures.FailingFeature.ScenarioCleanup() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\Minimal Features\Failing.feature.cs:line 0
+   at Pickles.TestHarness.xunit2.MinimalFeatures.FailingFeature.FailingFeatureFailingScenario() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\Minimal Features\Failing.feature:line 10]]></stack-trace>
+        </failure>
+      </test>
+      <test name="Pickles.TestHarness.xunit2.MinimalFeatures.FailingFeature.FailingFeatureInconclusiveScenario" type="Pickles.TestHarness.xunit2.MinimalFeatures.FailingFeature" method="FailingFeatureInconclusiveScenario" time="0.0028391" result="Fail">
+        <traits>
+          <trait name="FeatureTitle" value="Failing" />
+          <trait name="Description" value="Failing Feature Inconclusive Scenario" />
         </traits>
         <failure exception-type="TechTalk.SpecFlow.SpecFlowException">
           <message><![CDATA[TechTalk.SpecFlow.SpecFlowException : Test pending: One or more step definitions are not implemented yet.\r\n  MinimalSteps.ThenInconclusiveStep()]]></message>
           <stack-trace><![CDATA[   at TechTalk.SpecFlow.UnitTestProvider.XUnitRuntimeProvider.TestPending(String message)
-   at Pickles.TestHarness.xunit2.MinimalFeatures.InconclusiveFeature.ScenarioCleanup() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\Minimal Features\Inconclusive.feature.cs:line 0
-   at Pickles.TestHarness.xunit2.MinimalFeatures.InconclusiveFeature.InconclusiveFeatureInconclusiveScenario() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\Minimal Features\Inconclusive.feature:line 7]]></stack-trace>
+   at Pickles.TestHarness.xunit2.MinimalFeatures.FailingFeature.ScenarioCleanup() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\Minimal Features\Failing.feature.cs:line 0
+   at Pickles.TestHarness.xunit2.MinimalFeatures.FailingFeature.FailingFeatureInconclusiveScenario() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\Minimal Features\Failing.feature:line 7]]></stack-trace>
         </failure>
       </test>
     </collection>
-    <collection total="6" passed="3" failed="2" skipped="1" name="Test collection for Pickles.TestHarness.xunit2.AdditionFeature" time="0.336">
-      <test name="Pickles.TestHarness.xunit2.AdditionFeature.AddingSeveralNumbers(firstNumber: &quot;60&quot;, secondNumber: &quot;70&quot;, thirdNumber: &quot;130&quot;, result: &quot;260&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.AdditionFeature" method="AddingSeveralNumbers" time="0.1003544" result="Pass">
+    <collection total="6" passed="3" failed="2" skipped="1" name="Test collection for Pickles.TestHarness.xunit2.AdditionFeature" time="0.183">
+      <test name="Pickles.TestHarness.xunit2.AdditionFeature.AddingSeveralNumbers(firstNumber: &quot;60&quot;, secondNumber: &quot;70&quot;, thirdNumber: &quot;130&quot;, result: &quot;260&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.AdditionFeature" method="AddingSeveralNumbers" time="0.0234495" result="Pass">
         <traits>
           <trait name="FeatureTitle" value="Addition" />
           <trait name="Description" value="Adding several numbers" />
         </traits>
       </test>
-      <test name="Pickles.TestHarness.xunit2.AdditionFeature.AddingSeveralNumbers(firstNumber: &quot;40&quot;, secondNumber: &quot;50&quot;, thirdNumber: &quot;90&quot;, result: &quot;180&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.AdditionFeature" method="AddingSeveralNumbers" time="0.0436448" result="Pass">
+      <test name="Pickles.TestHarness.xunit2.AdditionFeature.AddingSeveralNumbers(firstNumber: &quot;40&quot;, secondNumber: &quot;50&quot;, thirdNumber: &quot;90&quot;, result: &quot;180&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.AdditionFeature" method="AddingSeveralNumbers" time="0.0125925" result="Pass">
         <traits>
           <trait name="FeatureTitle" value="Addition" />
           <trait name="Description" value="Adding several numbers" />
         </traits>
       </test>
-      <test name="Pickles.TestHarness.xunit2.AdditionFeature.NotAutomatedAddingTwoNumbers" type="Pickles.TestHarness.xunit2.AdditionFeature" method="NotAutomatedAddingTwoNumbers" time="0.1171092" result="Fail">
+      <test name="Pickles.TestHarness.xunit2.AdditionFeature.NotAutomatedAddingTwoNumbers" type="Pickles.TestHarness.xunit2.AdditionFeature" method="NotAutomatedAddingTwoNumbers" time="0.0989061" result="Fail">
         <traits>
           <trait name="FeatureTitle" value="Addition" />
           <trait name="Description" value="Not automated adding two numbers" />
@@ -85,7 +159,7 @@
    at Pickles.TestHarness.xunit2.AdditionFeature.NotAutomatedAddingTwoNumbers() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\Addition.feature:line 46]]></stack-trace>
         </failure>
       </test>
-      <test name="Pickles.TestHarness.xunit2.AdditionFeature.AddTwoNumbers" type="Pickles.TestHarness.xunit2.AdditionFeature" method="AddTwoNumbers" time="0.0320376" result="Pass">
+      <test name="Pickles.TestHarness.xunit2.AdditionFeature.AddTwoNumbers" type="Pickles.TestHarness.xunit2.AdditionFeature" method="AddTwoNumbers" time="0.0219758" result="Pass">
         <traits>
           <trait name="FeatureTitle" value="Addition" />
           <trait name="Description" value="Add two numbers" />
@@ -98,7 +172,7 @@
         </traits>
         <reason><![CDATA[Ignored]]></reason>
       </test>
-      <test name="Pickles.TestHarness.xunit2.AdditionFeature.FailToAddTwoNumbers" type="Pickles.TestHarness.xunit2.AdditionFeature" method="FailToAddTwoNumbers" time="0.0428591" result="Fail">
+      <test name="Pickles.TestHarness.xunit2.AdditionFeature.FailToAddTwoNumbers" type="Pickles.TestHarness.xunit2.AdditionFeature" method="FailToAddTwoNumbers" time="0.0259153" result="Fail">
         <traits>
           <trait name="FeatureTitle" value="Addition" />
           <trait name="Description" value="Fail to add two numbers" />
@@ -120,38 +194,66 @@
         </failure>
       </test>
     </collection>
-    <collection total="16" passed="10" failed="6" skipped="0" name="Test collection for Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" time="0.179">
-      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereAllScenariosPass(result: &quot;pass_1&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="ThisIsAScenarioOutlineWhereAllScenariosPass" time="0.0105272" result="Pass">
+    <collection total="1" passed="1" failed="0" skipped="0" name="Test collection for Pickles.TestHarness.xunit2.MinimalFeatures.PassingFeature" time="0.002">
+      <test name="Pickles.TestHarness.xunit2.MinimalFeatures.PassingFeature.PassingFeaturePassingScenario" type="Pickles.TestHarness.xunit2.MinimalFeatures.PassingFeature" method="PassingFeaturePassingScenario" time="0.0023467" result="Pass">
+        <traits>
+          <trait name="FeatureTitle" value="Passing" />
+          <trait name="Description" value="Passing Feature Passing Scenario" />
+        </traits>
+      </test>
+    </collection>
+    <collection total="2" passed="1" failed="1" skipped="0" name="Test collection for Pickles.TestHarness.xunit2.MinimalFeatures.InconclusiveFeature" time="0.145">
+      <test name="Pickles.TestHarness.xunit2.MinimalFeatures.InconclusiveFeature.InconclusiveFeaturePassingScenario" type="Pickles.TestHarness.xunit2.MinimalFeatures.InconclusiveFeature" method="InconclusiveFeaturePassingScenario" time="0.1256481" result="Pass">
+        <traits>
+          <trait name="FeatureTitle" value="Inconclusive" />
+          <trait name="Description" value="Inconclusive Feature Passing Scenario" />
+        </traits>
+      </test>
+      <test name="Pickles.TestHarness.xunit2.MinimalFeatures.InconclusiveFeature.InconclusiveFeatureInconclusiveScenario" type="Pickles.TestHarness.xunit2.MinimalFeatures.InconclusiveFeature" method="InconclusiveFeatureInconclusiveScenario" time="0.0192484" result="Fail">
+        <traits>
+          <trait name="FeatureTitle" value="Inconclusive" />
+          <trait name="Description" value="Inconclusive Feature Inconclusive Scenario" />
+        </traits>
+        <failure exception-type="TechTalk.SpecFlow.SpecFlowException">
+          <message><![CDATA[TechTalk.SpecFlow.SpecFlowException : Test pending: One or more step definitions are not implemented yet.\r\n  MinimalSteps.ThenInconclusiveStep()]]></message>
+          <stack-trace><![CDATA[   at TechTalk.SpecFlow.UnitTestProvider.XUnitRuntimeProvider.TestPending(String message)
+   at Pickles.TestHarness.xunit2.MinimalFeatures.InconclusiveFeature.ScenarioCleanup() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\Minimal Features\Inconclusive.feature.cs:line 0
+   at Pickles.TestHarness.xunit2.MinimalFeatures.InconclusiveFeature.InconclusiveFeatureInconclusiveScenario() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\Minimal Features\Inconclusive.feature:line 7]]></stack-trace>
+        </failure>
+      </test>
+    </collection>
+    <collection total="16" passed="10" failed="6" skipped="0" name="Test collection for Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" time="0.062">
+      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereAllScenariosPass(result: &quot;pass_1&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="ThisIsAScenarioOutlineWhereAllScenariosPass" time="0.004971" result="Pass">
         <traits>
           <trait name="FeatureTitle" value="Scenario Outlines" />
           <trait name="Description" value="This is a scenario outline where all scenarios pass" />
         </traits>
       </test>
-      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereAllScenariosPass(result: &quot;pass_2&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="ThisIsAScenarioOutlineWhereAllScenariosPass" time="0.0024281" result="Pass">
+      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereAllScenariosPass(result: &quot;pass_2&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="ThisIsAScenarioOutlineWhereAllScenariosPass" time="0.0019923" result="Pass">
         <traits>
           <trait name="FeatureTitle" value="Scenario Outlines" />
           <trait name="Description" value="This is a scenario outline where all scenarios pass" />
         </traits>
       </test>
-      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereAllScenariosPass(result: &quot;pass_3&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="ThisIsAScenarioOutlineWhereAllScenariosPass" time="0.0139276" result="Pass">
+      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereAllScenariosPass(result: &quot;pass_3&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="ThisIsAScenarioOutlineWhereAllScenariosPass" time="0.0018772" result="Pass">
         <traits>
           <trait name="FeatureTitle" value="Scenario Outlines" />
           <trait name="Description" value="This is a scenario outline where all scenarios pass" />
         </traits>
       </test>
-      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereOneScenarioFails(result: &quot;pass_1&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="ThisIsAScenarioOutlineWhereOneScenarioFails" time="0.0035447" result="Pass">
+      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereOneScenarioFails(result: &quot;pass_1&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="ThisIsAScenarioOutlineWhereOneScenarioFails" time="0.0023929" result="Pass">
         <traits>
           <trait name="FeatureTitle" value="Scenario Outlines" />
           <trait name="Description" value="This is a scenario outline where one scenario fails" />
         </traits>
       </test>
-      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereOneScenarioFails(result: &quot;pass_2&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="ThisIsAScenarioOutlineWhereOneScenarioFails" time="0.012075" result="Pass">
+      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereOneScenarioFails(result: &quot;pass_2&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="ThisIsAScenarioOutlineWhereOneScenarioFails" time="0.0018778" result="Pass">
         <traits>
           <trait name="FeatureTitle" value="Scenario Outlines" />
           <trait name="Description" value="This is a scenario outline where one scenario fails" />
         </traits>
       </test>
-      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereOneScenarioFails(result: &quot;fail_1&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="ThisIsAScenarioOutlineWhereOneScenarioFails" time="0.0469343" result="Fail">
+      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereOneScenarioFails(result: &quot;fail_1&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="ThisIsAScenarioOutlineWhereOneScenarioFails" time="0.0035421" result="Fail">
         <traits>
           <trait name="FeatureTitle" value="Scenario Outlines" />
           <trait name="Description" value="This is a scenario outline where one scenario fails" />
@@ -169,19 +271,19 @@
    at Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereOneScenarioFails(String result, String[] exampleTags) in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\ScenarioOutlines.feature:line 34]]></stack-trace>
         </failure>
       </test>
-      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereOneScenarioIsInconclusive(result: &quot;pass_1&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="ThisIsAScenarioOutlineWhereOneScenarioIsInconclusive" time="0.0019647" result="Pass">
+      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereOneScenarioIsInconclusive(result: &quot;pass_1&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="ThisIsAScenarioOutlineWhereOneScenarioIsInconclusive" time="0.002466" result="Pass">
         <traits>
           <trait name="FeatureTitle" value="Scenario Outlines" />
           <trait name="Description" value="This is a scenario outline where one scenario is inconclusive" />
         </traits>
       </test>
-      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereOneScenarioIsInconclusive(result: &quot;pass_2&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="ThisIsAScenarioOutlineWhereOneScenarioIsInconclusive" time="0.0020141" result="Pass">
+      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereOneScenarioIsInconclusive(result: &quot;pass_2&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="ThisIsAScenarioOutlineWhereOneScenarioIsInconclusive" time="0.0016376" result="Pass">
         <traits>
           <trait name="FeatureTitle" value="Scenario Outlines" />
           <trait name="Description" value="This is a scenario outline where one scenario is inconclusive" />
         </traits>
       </test>
-      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereOneScenarioIsInconclusive(result: &quot;inconclusive_1&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="ThisIsAScenarioOutlineWhereOneScenarioIsInconclusive" time="0.0121832" result="Fail">
+      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereOneScenarioIsInconclusive(result: &quot;inconclusive_1&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="ThisIsAScenarioOutlineWhereOneScenarioIsInconclusive" time="0.0032505" result="Fail">
         <traits>
           <trait name="FeatureTitle" value="Scenario Outlines" />
           <trait name="Description" value="This is a scenario outline where one scenario is inconclusive" />
@@ -193,19 +295,19 @@
    at Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.ThisIsAScenarioOutlineWhereOneScenarioIsInconclusive(String result, String[] exampleTags) in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\ScenarioOutlines.feature:line 21]]></stack-trace>
         </failure>
       </test>
-      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.AndWeCanGoTotallyBonkersWithMultipleExampleSections_(result: &quot;pass_1&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="AndWeCanGoTotallyBonkersWithMultipleExampleSections_" time="0.0015561" result="Pass">
+      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.AndWeCanGoTotallyBonkersWithMultipleExampleSections_(result: &quot;pass_1&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="AndWeCanGoTotallyBonkersWithMultipleExampleSections_" time="0.0023149" result="Pass">
         <traits>
           <trait name="FeatureTitle" value="Scenario Outlines" />
           <trait name="Description" value="And we can go totally bonkers with multiple example sections." />
         </traits>
       </test>
-      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.AndWeCanGoTotallyBonkersWithMultipleExampleSections_(result: &quot;pass_2&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="AndWeCanGoTotallyBonkersWithMultipleExampleSections_" time="0.0017745" result="Pass">
+      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.AndWeCanGoTotallyBonkersWithMultipleExampleSections_(result: &quot;pass_2&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="AndWeCanGoTotallyBonkersWithMultipleExampleSections_" time="0.0019041" result="Pass">
         <traits>
           <trait name="FeatureTitle" value="Scenario Outlines" />
           <trait name="Description" value="And we can go totally bonkers with multiple example sections." />
         </traits>
       </test>
-      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.AndWeCanGoTotallyBonkersWithMultipleExampleSections_(result: &quot;inconclusive_1&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="AndWeCanGoTotallyBonkersWithMultipleExampleSections_" time="0.0154057" result="Fail">
+      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.AndWeCanGoTotallyBonkersWithMultipleExampleSections_(result: &quot;inconclusive_1&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="AndWeCanGoTotallyBonkersWithMultipleExampleSections_" time="0.0043035" result="Fail">
         <traits>
           <trait name="FeatureTitle" value="Scenario Outlines" />
           <trait name="Description" value="And we can go totally bonkers with multiple example sections." />
@@ -217,7 +319,7 @@
    at Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.AndWeCanGoTotallyBonkersWithMultipleExampleSections_(String result, String[] exampleTags) in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\ScenarioOutlines.feature:line 45]]></stack-trace>
         </failure>
       </test>
-      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.AndWeCanGoTotallyBonkersWithMultipleExampleSections_(result: &quot;inconclusive_2&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="AndWeCanGoTotallyBonkersWithMultipleExampleSections_" time="0.0026229" result="Fail">
+      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.AndWeCanGoTotallyBonkersWithMultipleExampleSections_(result: &quot;inconclusive_2&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="AndWeCanGoTotallyBonkersWithMultipleExampleSections_" time="0.0100798" result="Fail">
         <traits>
           <trait name="FeatureTitle" value="Scenario Outlines" />
           <trait name="Description" value="And we can go totally bonkers with multiple example sections." />
@@ -229,7 +331,7 @@
    at Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.AndWeCanGoTotallyBonkersWithMultipleExampleSections_(String result, String[] exampleTags) in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\ScenarioOutlines.feature:line 45]]></stack-trace>
         </failure>
       </test>
-      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.AndWeCanGoTotallyBonkersWithMultipleExampleSections_(result: &quot;fail_1&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="AndWeCanGoTotallyBonkersWithMultipleExampleSections_" time="0.0044835" result="Fail">
+      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.AndWeCanGoTotallyBonkersWithMultipleExampleSections_(result: &quot;fail_1&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="AndWeCanGoTotallyBonkersWithMultipleExampleSections_" time="0.0073942" result="Fail">
         <traits>
           <trait name="FeatureTitle" value="Scenario Outlines" />
           <trait name="Description" value="And we can go totally bonkers with multiple example sections." />
@@ -247,7 +349,7 @@
    at Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.AndWeCanGoTotallyBonkersWithMultipleExampleSections_(String result, String[] exampleTags) in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\ScenarioOutlines.feature:line 45]]></stack-trace>
         </failure>
       </test>
-      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.AndWeCanGoTotallyBonkersWithMultipleExampleSections_(result: &quot;fail_2&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="AndWeCanGoTotallyBonkersWithMultipleExampleSections_" time="0.044492" result="Fail">
+      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.AndWeCanGoTotallyBonkersWithMultipleExampleSections_(result: &quot;fail_2&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="AndWeCanGoTotallyBonkersWithMultipleExampleSections_" time="0.0050714" result="Fail">
         <traits>
           <trait name="FeatureTitle" value="Scenario Outlines" />
           <trait name="Description" value="And we can go totally bonkers with multiple example sections." />
@@ -265,60 +367,11 @@
    at Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.AndWeCanGoTotallyBonkersWithMultipleExampleSections_(String result, String[] exampleTags) in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\ScenarioOutlines.feature:line 45]]></stack-trace>
         </failure>
       </test>
-      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.DealCorrectlyWithBackslashesInTheExamples(filePath: &quot;c:\Temp\&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="DealCorrectlyWithBackslashesInTheExamples" time="0.0028134" result="Pass">
+      <test name="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature.DealCorrectlyWithBackslashesInTheExamples(filePath: &quot;c:\Temp\&quot;, exampleTags: [])" type="Pickles.TestHarness.xunit2.ScenarioOutlinesFeature" method="DealCorrectlyWithBackslashesInTheExamples" time="0.0065494" result="Pass">
         <traits>
           <trait name="FeatureTitle" value="Scenario Outlines" />
           <trait name="Description" value="Deal correctly with backslashes in the examples" />
         </traits>
-      </test>
-    </collection>
-    <collection total="1" passed="1" failed="0" skipped="0" name="Test collection for Pickles.TestHarness.xunit2.MinimalFeatures.PassingFeature" time="0.014">
-      <test name="Pickles.TestHarness.xunit2.MinimalFeatures.PassingFeature.PassingFeaturePassingScenario" type="Pickles.TestHarness.xunit2.MinimalFeatures.PassingFeature" method="PassingFeaturePassingScenario" time="0.0136907" result="Pass">
-        <traits>
-          <trait name="FeatureTitle" value="Passing" />
-          <trait name="Description" value="Passing Feature Passing Scenario" />
-        </traits>
-      </test>
-    </collection>
-    <collection total="1" passed="1" failed="0" skipped="0" name="Test collection for Pickles.TestHarness.xunit.RegularUnitTest" time="0.000">
-      <test name="Pickles.TestHarness.xunit.RegularUnitTest.ThisTestPasses" type="Pickles.TestHarness.xunit.RegularUnitTest" method="ThisTestPasses" time="0.0001869" result="Pass" />
-    </collection>
-    <collection total="3" passed="1" failed="2" skipped="0" name="Test collection for Pickles.TestHarness.xunit2.MinimalFeatures.FailingFeature" time="0.009">
-      <test name="Pickles.TestHarness.xunit2.MinimalFeatures.FailingFeature.FailingFeaturePassingScenario" type="Pickles.TestHarness.xunit2.MinimalFeatures.FailingFeature" method="FailingFeaturePassingScenario" time="0.0020817" result="Pass">
-        <traits>
-          <trait name="FeatureTitle" value="Failing" />
-          <trait name="Description" value="Failing Feature Passing Scenario" />
-        </traits>
-      </test>
-      <test name="Pickles.TestHarness.xunit2.MinimalFeatures.FailingFeature.FailingFeatureFailingScenario" type="Pickles.TestHarness.xunit2.MinimalFeatures.FailingFeature" method="FailingFeatureFailingScenario" time="0.004232" result="Fail">
-        <traits>
-          <trait name="FeatureTitle" value="Failing" />
-          <trait name="Description" value="Failing Feature Failing Scenario" />
-        </traits>
-        <failure exception-type="Shouldly.ChuckedAWobbly">
-          <message><![CDATA[Shouldly.ChuckedAWobbly : \n    true\n        should be\n    False\n        but was\n    True]]></message>
-          <stack-trace><![CDATA[   at Shouldly.ShouldlyCoreExtensions.AssertAwesomely[T](T actual, Func`2 specifiedConstraint, Object originalActual, Object originalExpected) in c:\TeamCity\buildAgent\work\10efaabfa8adbd4e\src\Shouldly\ShouldlyCoreExtensions.cs:line 18
-   at Shouldly.ShouldBeTestExtensions.ShouldBe[T](T actual, T expected) in c:\TeamCity\buildAgent\work\10efaabfa8adbd4e\src\Shouldly\ShouldBeTestExtensions.cs:line 17
-   at AutomationLayer.MinimalFeatures.MinimalSteps.ThenFailingStep() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\AutomationLayer\MinimalFeatures\MinimalSteps.cs:line 24
-   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration)
-   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
-   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
-   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
-   at Pickles.TestHarness.xunit2.MinimalFeatures.FailingFeature.ScenarioCleanup() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\Minimal Features\Failing.feature.cs:line 0
-   at Pickles.TestHarness.xunit2.MinimalFeatures.FailingFeature.FailingFeatureFailingScenario() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\Minimal Features\Failing.feature:line 10]]></stack-trace>
-        </failure>
-      </test>
-      <test name="Pickles.TestHarness.xunit2.MinimalFeatures.FailingFeature.FailingFeatureInconclusiveScenario" type="Pickles.TestHarness.xunit2.MinimalFeatures.FailingFeature" method="FailingFeatureInconclusiveScenario" time="0.0023788" result="Fail">
-        <traits>
-          <trait name="FeatureTitle" value="Failing" />
-          <trait name="Description" value="Failing Feature Inconclusive Scenario" />
-        </traits>
-        <failure exception-type="TechTalk.SpecFlow.SpecFlowException">
-          <message><![CDATA[TechTalk.SpecFlow.SpecFlowException : Test pending: One or more step definitions are not implemented yet.\r\n  MinimalSteps.ThenInconclusiveStep()]]></message>
-          <stack-trace><![CDATA[   at TechTalk.SpecFlow.UnitTestProvider.XUnitRuntimeProvider.TestPending(String message)
-   at Pickles.TestHarness.xunit2.MinimalFeatures.FailingFeature.ScenarioCleanup() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\Minimal Features\Failing.feature.cs:line 0
-   at Pickles.TestHarness.xunit2.MinimalFeatures.FailingFeature.FailingFeatureInconclusiveScenario() in C:\Dev\Code\GitHub\DirkRombauts\pickles-testresults\TestHarness\xunit2\Minimal Features\Failing.feature:line 7]]></stack-trace>
-        </failure>
       </test>
     </collection>
   </assembly>

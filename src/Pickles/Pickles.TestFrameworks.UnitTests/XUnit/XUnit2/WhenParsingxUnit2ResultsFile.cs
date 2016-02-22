@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="WhenParsingxUnitResultsFile.cs" company="PicklesDoc">
+//  <copyright file="WhenParsingxUnit2ResultsFile.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -80,6 +80,30 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit.XUnit2
         public new void ThenCanReadNotFoundFeatureCorrectly()
         {
             base.ThenCanReadNotFoundFeatureCorrectly();
+        }
+
+        [Test]
+        public new void ThenCanReadResultOfScenarioWithFailingBackground()
+        {
+            base.ThenCanReadResultOfScenarioWithFailingBackground();
+        }
+
+        [Test]
+        public new void ThenCanReadResultOfFeatureWithFailingBackground()
+        {
+            base.ThenCanReadResultOfFeatureWithFailingBackground();
+        }
+
+        [Test]
+        public new void ThenCanReadResultOfScenarioOutlineWithFailingBackground()
+        {
+            base.ThenCanReadResultOfScenarioOutlineWithFailingBackground();
+        }
+
+        [Test]
+        public new void ThenCanReadResultOfScenarioOutlineExampleWithFailingBackground()
+        {
+            base.ThenCanReadResultOfScenarioOutlineExampleWithFailingBackground();
         }
     }
 }
