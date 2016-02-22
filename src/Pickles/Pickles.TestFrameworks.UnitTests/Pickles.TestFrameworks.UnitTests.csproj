@@ -59,6 +59,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CucumberJson\WhenParsingCucumberJsonFromJSResultsFile.cs" />
+    <Compile Include="CucumberJson\WhenParsingCucumberJsonFromJSResultsFileWithIndividualResults.cs" />
     <Compile Include="CucumberJson\WhenParsingCucumberJsonFromRubyResultsFileWithIndividualResults.cs" />
     <Compile Include="MsTest\WhenParsingMsTestResultsFileWithMissingTraits.cs" />
     <Compile Include="MsTest\WhenParsingMsTestResultsFileWithIndividualResults.cs" />
@@ -140,6 +142,7 @@
     <EmbeddedResource Include="MsTest\results-example-mstest-missingTraits.trx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="CucumberJson\results-example-cucumberjs-json.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
