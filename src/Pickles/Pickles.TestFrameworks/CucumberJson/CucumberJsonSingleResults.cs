@@ -88,7 +88,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
         {
             var steps = (background?.steps ?? new List<Step>()).Concat(scenario.steps);
 
-            return steps.Select(ToTestResult).Merge();
+            return steps.Where(s => s.result != null).Select(ToTestResult).Merge();
         }
 
         private TestResult ToTestResult(Step step)
@@ -108,6 +108,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
                         return TestResult.Inconclusive;
                     }
 
+                case "ambiguous":
                 case "failed":
                     {
                         return TestResult.Failed;
