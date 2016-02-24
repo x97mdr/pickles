@@ -30,11 +30,15 @@ obj/
 [Dd]ebug*/
 [Rr]elease*/
 Ankh.NoLoad
+.vscode/
 
 #MonoDevelop files
 *.userprefs
 *.pidb
 *~
+
+#Webstorm files
+.idea/
 
 #Tooling
 _ReSharper*/
