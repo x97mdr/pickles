@@ -16,6 +16,10 @@ This document is formatted according to the principles of [Keep A CHANGELOG](htt
 
 ### Added
 
+- Enable support for VsTest ([#296](https://github.com/picklesdoc/pickles/issues/296)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
+
+### Changed
+
 - The MsTest test result provider is now able to give the result of individual examples in a scenario outline ([#285](https://github.com/picklesdoc/pickles/issues/285)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
 - The SpecFlow+ Runner (formerly SpecRun) test result provider is now able to give the result of individual examples in a scenario outline. See the [documentation](http://docs.picklesdoc.com/en/latest/IntegratingTestResultsFromSpecRun/) for an important caveat. ([#286](https://github.com/picklesdoc/pickles/issues/286)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
 - The Cucumber test result provider is now able to give the result of individual examples in a scenario outline ([#287](https://github.com/picklesdoc/pickles/issues/287)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
