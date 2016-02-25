@@ -126,6 +126,8 @@ namespace PicklesDoc.Pickles
                         return c.Resolve<CucumberJsonResults>();
                     case TestResultsFormat.SpecRun:
                         return c.Resolve<SpecRunResults>();
+                    case TestResultsFormat.VsTest:
+                        return c.Resolve<VsTestResults>();
                     default:
                         return c.Resolve<NullTestResults>();
                 }
