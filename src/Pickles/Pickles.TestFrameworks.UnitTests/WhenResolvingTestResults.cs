@@ -33,6 +33,7 @@ using PicklesDoc.Pickles.TestFrameworks.MsTest;
 using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2;
 using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3;
 using PicklesDoc.Pickles.TestFrameworks.SpecRun;
+using PicklesDoc.Pickles.TestFrameworks.VsTest;
 using PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1;
 using PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2;
 
@@ -190,6 +191,25 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         }
 
         [Test]
+        public void ThenCanResolveAsSingletonWhenTestResultsAreVsTest()
+        {
+            FileSystem.AddFile("results-example-vstest.trx", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "VsTest.results-example-vstest.trx"));
+
+            var configuration = Container.Resolve<IConfiguration>();
+            configuration.TestResultsFormat = TestResultsFormat.VsTest;
+            configuration.AddTestResultFiles(new[] { FileSystem.FileInfo.FromFileName("results-example-vstest.trx") });
+
+            var item1 = Container.Resolve<ITestResults>();
+            var item2 = Container.Resolve<ITestResults>();
+
+            Check.That(item1).IsNotNull();
+            Check.That(item1).IsInstanceOf<VsTestResults>();
+            Check.That(item2).IsNotNull();
+            Check.That(item2).IsInstanceOf<VsTestResults>();
+            Check.That(item1).IsSameReferenceThan(item2);
+        }
+
+        [Test]
         public void ThenCanResolveWhenNoTestResultsSelected()
         {
             var item = Container.Resolve<ITestResults>();
@@ -301,6 +321,21 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             Check.That(item).IsNotNull();
             Check.That(item).IsInstanceOf<SpecRunResults>();
+        }
+
+        [Test]
+        public void ThenCanResolveWhenTestResultsAreVsTest()
+        {
+            FileSystem.AddFile("results-example-vstest.trx", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "VsTest.results-example-vstest.trx"));
+
+            var configuration = Container.Resolve<IConfiguration>();
+            configuration.TestResultsFormat = TestResultsFormat.VsTest;
+            configuration.AddTestResultFiles(new[] { FileSystem.FileInfo.FromFileName("results-example-vstest.trx") });
+
+            var item1 = Container.Resolve<ITestResults>();
+
+            Check.That(item1).IsNotNull();
+            Check.That(item1).IsInstanceOf<VsTestResults>();
         }
     }
 }
