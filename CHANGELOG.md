@@ -16,7 +16,7 @@ This document is formatted according to the principles of [Keep A CHANGELOG](htt
 
 ### Added
 
-- Enable support for VsTest ([#296](https://github.com/picklesdoc/pickles/issues/296)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
+- Support for the test result format of VsTest.Console.exe ([#280](https://github.com/picklesdoc/pickles/issues/280)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
 
 ### Changed
 
