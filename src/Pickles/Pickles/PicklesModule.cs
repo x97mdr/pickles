@@ -35,6 +35,7 @@ using PicklesDoc.Pickles.TestFrameworks.NUnit;
 using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2;
 using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3;
 using PicklesDoc.Pickles.TestFrameworks.SpecRun;
+using PicklesDoc.Pickles.TestFrameworks.VsTest;
 using PicklesDoc.Pickles.TestFrameworks.XUnit;
 using PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1;
 using PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2;
@@ -96,6 +97,9 @@ namespace PicklesDoc.Pickles
             builder.RegisterType<SpecRunResults>();
             builder.RegisterType<SpecRunSingleResultLoader>();
             builder.RegisterType<SpecRunScenarioOutlineExampleMatcher>();
+            builder.RegisterType<VsTestResults>();
+            builder.RegisterType<VsTestSingleResultLoader>();
+            builder.RegisterType<VsTestScenarioOutlineExampleMatcher>();
 
             builder.Register<ITestResults>(c =>
             {
@@ -122,6 +126,8 @@ namespace PicklesDoc.Pickles
                         return c.Resolve<CucumberJsonResults>();
                     case TestResultsFormat.SpecRun:
                         return c.Resolve<SpecRunResults>();
+                    case TestResultsFormat.VsTest:
+                        return c.Resolve<VsTestResults>();
                     default:
                         return c.Resolve<NullTestResults>();
                 }

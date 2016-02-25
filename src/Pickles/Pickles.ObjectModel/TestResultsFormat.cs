@@ -65,6 +65,11 @@ namespace PicklesDoc.Pickles
         /// <summary>
         /// NUnit 3 format.
         /// </summary>
-        NUnit3
+        NUnit3,
+
+        /// <summary>
+        /// The format produced by VsTest console.
+        /// </summary>
+        VsTest
     }
 }

@@ -62,6 +62,10 @@
     <Compile Include="CucumberJson\WhenParsingCucumberJsonFromJSResultsFile.cs" />
     <Compile Include="CucumberJson\WhenParsingCucumberJsonFromJSResultsFileWithIndividualResults.cs" />
     <Compile Include="CucumberJson\WhenParsingCucumberJsonFromRubyResultsFileWithIndividualResults.cs" />
+    <Compile Include="VsTest\WhenParsingVsTestResultsFile.cs" />
+    <Compile Include="VsTest\WhenParsingVsTestResultsFileWithIndividualResults.cs" />
+    <Compile Include="VsTest\WhenParsingVsTestResultsFileWithMissingTraits.cs" />
+    <Compile Include="VsTest\WhenParsingMultipleVsTestTestResultsFiles.cs" />
     <Compile Include="MsTest\WhenParsingMsTestResultsFileWithMissingTraits.cs" />
     <Compile Include="MsTest\WhenParsingMsTestResultsFileWithIndividualResults.cs" />
     <Compile Include="NUnit\NUnit2\WhenParsingnUnit2ResultsFileWithMissingTraits.cs" />
@@ -143,6 +147,18 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CucumberJson\results-example-cucumberjs-json.json" />
+    <EmbeddedResource Include="VsTest\results-example-vstest-missingTraits.trx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VsTest\results-example-vstest - Run 1 %28failing%29.trx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VsTest\results-example-vstest - Run 2 %28passing%29.trx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VsTest\results-example-vstest.trx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

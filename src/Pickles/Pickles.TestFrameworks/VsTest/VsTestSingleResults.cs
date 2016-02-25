@@ -1,5 +1,5 @@
 //  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="MsTestSingleResults.cs" company="PicklesDoc">
+//  <copyright file="VsTestSingleResults.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -25,25 +25,23 @@ using System.Xml.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.TestFrameworks.MsTest
+namespace PicklesDoc.Pickles.TestFrameworks.VsTest
 {
     /// <summary>
-    /// The class responsible for parsing a single MS Test result file.
+    /// The class responsible for parsing a single VS Test result file.
     /// </summary>
     /// <remarks>
-    /// The MS Test result format is a bit weird in that it stores the tests and their results in
+    /// The VS Test result format is a bit weird in that it stores the tests and their results in
     /// separate lists. So in order to know the result of a scenario,
     /// we first have to identify the test definition that belongs to the scenario.
     /// Then with the id of the scenario we look up an execution id,
     /// and with the execution id we can look up the result.
     /// </remarks>
-    public class MsTestSingleResults : SingleTestRunBase
+    public class VsTestSingleResults : SingleTestRunBase
     {
-        private const string Failed = "failed";
-
         private readonly XDocument resultsDocument;
 
-        public MsTestSingleResults(XDocument resultsDocument)
+        public VsTestSingleResults(XDocument resultsDocument)
         {
             this.resultsDocument = resultsDocument;
         }
@@ -68,7 +66,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
         private IEnumerable<XElement> GetScenariosForFeature(Feature feature)
         {
             var scenarios = from scenario in this.resultsDocument.AllScenarios()
-                            where scenario.HasPropertyFeatureTitle(feature.Name)
+                            where scenario.BelongsToFeature(feature.Name)
                             select scenario;
 
             return scenarios;
@@ -107,7 +105,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
         {
             var scenarios =
                 this.GetScenariosForFeature(scenarioOutline.Feature)
-                    .Where(scenario => scenario.Name().StartsWith(scenarioOutline.Name));
+                    .Where(scenario => scenario.BelongsToScenarioOutline(scenarioOutline));
 
             return scenarios;
         }
@@ -126,8 +124,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
         private IEnumerable<XElement> GetScenariosForScenario(Scenario scenario)
         {
             var scenarios =
-                this.GetScenariosForFeature(scenario.Feature)
-                    .Where(s => s.Name() == scenario.Name);
+                this.GetScenariosForFeature(scenario.Feature);
+
+            scenarios = scenarios.Where(s => s.BelongsToScenario(scenario));
 
             return scenarios;
         }
