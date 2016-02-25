@@ -101,18 +101,7 @@
         <CheckBox Template="{StaticResource ResourceKey=myCheckBox}" Grid.Column="3" Grid.Row="7" IsChecked="{Binding Path=IsTestResultsFileValid}" Visibility="{Binding Path=IncludeTests, Converter={StaticResource ResourceKey=booleanToVisibilityConverter}}" IsEnabled="False" />
 
     <Label Content="Test Results Format" Grid.Column="0"  Grid.Row="8" VerticalAlignment="Top"/>
-    <ListBox ItemsSource="{Binding TestResultsFormatValues}" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2" IsEnabled="{Binding Path=IncludeTests}" VerticalAlignment="Top">
-      <ListBox.ItemsPanel>
-        <ItemsPanelTemplate>
-          <StackPanel Orientation="Horizontal" />
-        </ItemsPanelTemplate>
-      </ListBox.ItemsPanel>
-      <ListBox.ItemTemplate>
-        <DataTemplate>
-          <RadioButton Content="{Binding Path=Item}" GroupName="testResultsFormat" IsChecked="{Binding Path=IsSelected}"></RadioButton>
-        </DataTemplate>
-      </ListBox.ItemTemplate>
-    </ListBox>
+        <ComboBox ItemsSource="{Binding TestResultsFormatValues}" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2" IsEnabled="{Binding Path=IncludeTests}" SelectedItem="{Binding SelectedTestResultsFormat}"></ComboBox>
         <CheckBox Template="{StaticResource ResourceKey=myCheckBox}" Grid.Column="3" Grid.Row="8" IsChecked="{Binding Path=IsTestResultsFormatValid}" Visibility="{Binding Path=IncludeTests, Converter={StaticResource ResourceKey=booleanToVisibilityConverter}}" IsEnabled="False" />
 
     <Label Content="Gherkin Language" Grid.Column="0" Grid.Row="9" VerticalAlignment="Top" />

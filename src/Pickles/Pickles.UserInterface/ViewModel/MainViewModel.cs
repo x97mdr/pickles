@@ -53,7 +53,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
     {
         private readonly MultiSelectableCollection<DocumentationFormat> documentationFormats;
 
-        private readonly SelectableCollection<TestResultsFormat> testResultsFormats;
+        private readonly TestResultsFormat[] testResultsFormats;
 
         private readonly RelayCommand browseForFeatureFolderCommand;
 
@@ -107,6 +107,8 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
 
         private bool isDocumentationFormatValid;
 
+        private TestResultsFormat selectedTestResultsFormat;
+
         public MainViewModel(IMainModelSerializer mainModelSerializer, IFileSystem fileSystem)
         {
             this.documentationFormats =
@@ -115,11 +117,8 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
             this.documentationFormats.First().IsSelected = true;
             this.documentationFormats.SelectionChanged += this.DocumentationFormatsOnCollectionChanged;
 
-            this.testResultsFormats =
-                new SelectableCollection<TestResultsFormat>(
-                    Enum.GetValues(typeof(TestResultsFormat)).Cast<TestResultsFormat>());
-            this.testResultsFormats.First().IsSelected = true;
-            this.testResultsFormats.SelectionChanged += this.TestResultsFormatsOnCollectionChanged;
+            this.testResultsFormats = Enum.GetValues(typeof(TestResultsFormat)).Cast<TestResultsFormat>().ToArray();
+            this.selectedTestResultsFormat = TestResultsFormat.NUnit;
 
             this.browseForFeatureFolderCommand = new RelayCommand(this.DoBrowseForFeature);
             this.browseForOutputFolderCommand = new RelayCommand(this.DoBrowseForOutputFolder);
@@ -177,9 +176,15 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
             set { this.Set(() => this.TestResultsFile, ref this.testResultsFile, value); }
         }
 
-        public SelectableCollection<TestResultsFormat> TestResultsFormatValues
+        public IEnumerable<TestResultsFormat> TestResultsFormatValues
         {
             get { return this.testResultsFormats; }
+        }
+
+        public TestResultsFormat SelectedTestResultsFormat
+        {
+            get { return this.selectedTestResultsFormat; }
+            set { this.Set(() => this.SelectedTestResultsFormat, ref this.selectedTestResultsFormat, value); }
         }
 
         public CultureInfo SelectedLanguage
@@ -296,7 +301,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
                 ProjectVersion = this.projectVersion,
                 IncludeTestResults = this.includeTests,
                 TestResultsFile = this.testResultsFile,
-                TestResultsFormat = this.testResultsFormats.Selected,
+                TestResultsFormat = this.SelectedTestResultsFormat,
                 SelectedLanguageLcid = this.selectedLanguage.LCID,
                 DocumentationFormats =
                     this.documentationFormats.Where(item => item.IsSelected).Select(item => item.Item).ToArray(),
@@ -322,17 +327,8 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
             this.IncludeTests = mainModel.IncludeTestResults;
             this.TestResultsFile = mainModel.TestResultsFile;
 
-            foreach (var item in this.TestResultsFormatValues)
-            {
-                if (item.Item == mainModel.TestResultsFormat)
-                {
-                    item.IsSelected = true;
-                }
-                else
-                {
-                    item.IsSelected = false;
-                }
-            }
+            this.SelectedTestResultsFormat =
+                this.testResultsFormats.Where(tf => tf == mainModel.TestResultsFormat).FirstOrDefault();
 
             this.SelectedLanguage =
                 this.neutralCultures.Where(lv => lv.LCID == mainModel.SelectedLanguageLcid).FirstOrDefault();
@@ -343,11 +339,6 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
             }
 
             this.CreateDirectoryForEachOutputFormat = mainModel.CreateDirectoryForEachOutputFormat;
-        }
-
-        private void TestResultsFormatsOnCollectionChanged(object sender, EventArgs notifyCollectionChangedEventArgs)
-        {
-            this.IsTestResultsFormatValid = Enum.IsDefined(typeof(TestResultsFormat), this.testResultsFormats.Selected);
         }
 
         private void DocumentationFormatsOnCollectionChanged(object sender, EventArgs notifyCollectionChangedEventArgs)
@@ -413,6 +404,12 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
                 case "ProjectVersion":
                 {
                     this.IsProjectVersionValid = !string.IsNullOrWhiteSpace(this.projectVersion);
+                    break;
+                }
+
+                case "SelectedTestResultsFormat":
+                {
+                    this.IsTestResultsFormatValid = Enum.IsDefined(typeof(TestResultsFormat), this.selectedTestResultsFormat);
                     break;
                 }
 
@@ -492,7 +489,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
                 configuration.AddTestResultFiles(this.IncludeTests
                     ? this.testResultsFile.Split(';').Select(trf => this.fileSystem.FileInfo.FromFileName(trf)).ToArray()
                     : null);
-                configuration.TestResultsFormat = this.testResultsFormats.Selected;
+                configuration.TestResultsFormat = this.selectedTestResultsFormat;
                 configuration.Language = this.selectedLanguage != null
                     ? this.selectedLanguage.TwoLetterISOLanguageName
                     : CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
