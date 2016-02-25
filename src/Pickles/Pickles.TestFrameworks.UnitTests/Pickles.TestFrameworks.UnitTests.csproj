@@ -143,6 +143,18 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CucumberJson\results-example-cucumberjs-json.json" />
+    <EmbeddedResource Include="VsTest\results-example-vstest-missingTraits.trx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VsTest\results-example-vstest - Run 1 %28failing%29.trx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VsTest\results-example-vstest - Run 2 %28passing%29.trx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VsTest\results-example-vstest.trx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
