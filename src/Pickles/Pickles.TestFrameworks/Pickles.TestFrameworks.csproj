@@ -56,6 +56,12 @@
     <Compile Include="CucumberJson\CucumberJsonSingleResultLoader.cs" />
     <Compile Include="IScenarioOutlineExampleMatcher.cs" />
     <Compile Include="ISingleResultLoader.cs" />
+    <Compile Include="VsTest\VsTestElementExtensions.cs" />
+    <Compile Include="VsTest\VsTestExampleSignatureBuilder.cs" />
+    <Compile Include="VsTest\VsTestResults.cs" />
+    <Compile Include="VsTest\VsTestScenarioOutlineExampleMatcher.cs" />
+    <Compile Include="VsTest\VsTestSingleResultLoader.cs" />
+    <Compile Include="VsTest\VsTestSingleResults.cs" />
     <Compile Include="MsTest\MsTestElementExtensions.cs" />
     <Compile Include="MsTest\MsTestExampleSignatureBuilder.cs" />
     <Compile Include="MsTest\MsTestResults.cs" />
