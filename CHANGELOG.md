@@ -14,6 +14,8 @@ This document is formatted according to the principles of [Keep A CHANGELOG](htt
 
 ## [Unreleased]
 
+## [2.4.0] - 2016-02-26
+
 ### Added
 
 - Support for the test result format of VsTest.Console.exe ([#280](https://github.com/picklesdoc/pickles/issues/280)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
