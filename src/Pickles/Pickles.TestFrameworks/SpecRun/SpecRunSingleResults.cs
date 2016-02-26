@@ -20,37 +20,23 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO.Abstractions;
 using System.Linq;
-using System.Xml;
-using System.Xml.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;
 
-using Feature = PicklesDoc.Pickles.Parser.SpecRun.Feature;
-using Scenario = PicklesDoc.Pickles.ObjectModel.Scenario;
-
 namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 {
-    public class SpecRunSingleResults : ITestResults
+    public class SpecRunSingleResults : SingleTestRunBase
     {
-        private readonly List<Feature> specRunFeatures;
+        private readonly List<SpecRunFeature> specRunFeatures;
 
-        public SpecRunSingleResults(FileInfoBase fileInfo)
+        public SpecRunSingleResults(IEnumerable<SpecRunFeature> specRunFeatures)
         {
-            var resultsDocument = this.ReadResultsFile(fileInfo);
-
-            this.specRunFeatures =
-                resultsDocument.Descendants("feature").Select(Parser.SpecRun.Factory.ToSpecRunFeature).ToList();
+            this.specRunFeatures = specRunFeatures.ToList();
         }
 
-        public TestResult GetFeatureResult(ObjectModel.Feature feature)
+        public override TestResult GetFeatureResult(Feature feature)
         {
-            if (this.specRunFeatures == null)
-            {
-                return TestResult.Inconclusive;
-            }
-
             var specRunFeature = this.FindSpecRunFeature(feature);
 
             if (specRunFeature == null)
@@ -64,13 +50,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
             return result;
         }
 
-        public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
+        public override TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
         {
-            if (this.specRunFeatures == null)
-            {
-                return TestResult.Inconclusive;
-            }
-
             var specRunFeature = this.FindSpecRunFeature(scenarioOutline.Feature);
 
             if (specRunFeature == null)
@@ -78,7 +59,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
                 return TestResult.Inconclusive;
             }
 
-            Parser.SpecRun.Scenario[] specRunScenarios = FindSpecRunScenarios(scenarioOutline, specRunFeature);
+            SpecRunScenario[] specRunScenarios = FindSpecRunScenarios(scenarioOutline, specRunFeature);
 
             if (specRunScenarios.Length == 0)
             {
@@ -90,13 +71,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
             return result;
         }
 
-        public TestResult GetScenarioResult(Scenario scenario)
+        public override TestResult GetScenarioResult(Scenario scenario)
         {
-            if (this.specRunFeatures == null)
-            {
-                return TestResult.Inconclusive;
-            }
-
             var specRunFeature = this.FindSpecRunFeature(scenario.Feature);
 
             if (specRunFeature == null)
@@ -114,14 +90,26 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
             return StringToTestResult(specRunScenario.Result);
         }
 
-        public TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+        public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
         {
-            throw new NotSupportedException();
-        }
+            var specRunFeature = this.FindSpecRunFeature(scenario.Feature);
 
-        public bool SupportsExampleResults
-        {
-            get { return false; }
+            if (specRunFeature == null)
+            {
+                return TestResult.Inconclusive;
+            }
+
+            var specRunScenarios = FindSpecRunScenarios(scenario, specRunFeature);
+
+            foreach (var specRunScenario in specRunScenarios)
+            {
+                if (this.ScenarioOutlineExampleMatcher.IsMatch(scenario, exampleValues, specRunScenario))
+                {
+                    return StringToTestResult(specRunScenario.Result);
+                }
+            }
+
+            return TestResult.Inconclusive;
         }
 
         private static TestResult StringsToTestResult(IEnumerable<string> results)
@@ -160,50 +148,21 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
             }
         }
 
-        private static Parser.SpecRun.Scenario[] FindSpecRunScenarios(ScenarioOutline scenarioOutline, Parser.SpecRun.Feature specRunFeature)
+        private static SpecRunScenario[] FindSpecRunScenarios(ScenarioOutline scenarioOutline, SpecRunFeature specRunFeature)
         {
             return specRunFeature.Scenarios.Where(d => d.Title.StartsWith(scenarioOutline.Name + ", ")).ToArray();
         }
 
-        private static Parser.SpecRun.Scenario FindSpecRunScenario(Scenario scenario, Parser.SpecRun.Feature specRunFeature)
+        private static SpecRunScenario FindSpecRunScenario(Scenario scenario, SpecRunFeature specRunFeature)
         {
-            Parser.SpecRun.Scenario result = specRunFeature.Scenarios.FirstOrDefault(d => d.Title.Equals(scenario.Name));
+            SpecRunScenario result = specRunFeature.Scenarios.FirstOrDefault(d => d.Title.Equals(scenario.Name));
 
             return result;
         }
 
-        private Parser.SpecRun.Feature FindSpecRunFeature(ObjectModel.Feature feature)
+        private SpecRunFeature FindSpecRunFeature(Feature feature)
         {
             return this.specRunFeatures.FirstOrDefault(specRunFeature => specRunFeature.Title == feature.Name);
-        }
-
-        private XDocument ReadResultsFile(FileInfoBase testResultsFile)
-        {
-            XDocument document;
-            using (var stream = testResultsFile.OpenRead())
-            {
-                using (var streamReader = new System.IO.StreamReader(stream))
-                {
-                    string content = streamReader.ReadToEnd();
-
-                    int begin = content.IndexOf("<!-- Pickles Begin", StringComparison.Ordinal);
-
-                    content = content.Substring(begin);
-
-                    content = content.Replace("<!-- Pickles Begin", string.Empty);
-
-                    int end = content.IndexOf("Pickles End -->", System.StringComparison.Ordinal);
-
-                    content = content.Substring(0, end);
-
-                    content = content.Replace("&lt;", "<").Replace("&gt;", ">");
-
-                    var xmlReader = XmlReader.Create(new System.IO.StringReader(content));
-                    document = XDocument.Load(xmlReader);
-                }
-            }
-
-            return document;
         }
     }
 }

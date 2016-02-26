@@ -1,5 +1,5 @@
 ﻿Feature: Showing basic gherkin syntax
-In order to see that gherkin is a very simple langauge
+In order to see that gherkin is a very simple language
 As a SpecFlow evangelist
 I want to show that basic syntax
 

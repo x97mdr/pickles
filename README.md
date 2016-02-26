@@ -40,7 +40,7 @@ Supported Test Runner Integrations
 - xUnit (versions 1.x and 2.x)
 - MSTest
 - Cucumber JSON
-- SpecRun
+- SpecFlow+ Runner (formerly known as SpecRun)
 
 Contributing
 ------------

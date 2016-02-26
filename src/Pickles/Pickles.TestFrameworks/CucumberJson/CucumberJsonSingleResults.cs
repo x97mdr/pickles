@@ -20,107 +20,181 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.IO.Abstractions;
 using System.Linq;
-
-using Newtonsoft.Json;
 
 using PicklesDoc.Pickles.ObjectModel;
 
-using Feature = PicklesDoc.Pickles.Parser.JsonResult.Feature;
-
 namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
 {
-    public class CucumberJsonSingleResults : ITestResults
+    public class CucumberJsonSingleResults : SingleTestRunBase
     {
         private readonly List<Feature> resultsDocument;
 
-        public CucumberJsonSingleResults(FileInfoBase configuration)
+        public CucumberJsonSingleResults(IEnumerable<Feature> cucumberFeatures)
         {
-            this.resultsDocument = this.ReadResultsFile(configuration);
+            this.resultsDocument = cucumberFeatures.ToList();
         }
 
-        public bool SupportsExampleResults
+        public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
         {
-            get { return false; }
+            var cucumberScenarios = this.GetCucumberScenarios(scenario);
+
+            var query = cucumberScenarios.Where(cs => this.ScenarioHasStepsForAllExampleValues(cs.ScenarioBase, exampleValues))
+                .Select(cs => ToTestResult(cs.ScenarioBase, cs.Background));
+
+            return query.FirstOrDefault();
         }
 
-        public TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+        private bool ScenarioHasStepsForAllExampleValues(Element cucumberScenario, string[] exampleValues)
         {
-            throw new NotSupportedException();
+            return exampleValues.All(exampleValue => this.ScenarioHasAStepWithThisExampleValue(cucumberScenario, exampleValue));
         }
 
-        public TestResult GetFeatureResult(ObjectModel.Feature feature)
+        private bool ScenarioHasAStepWithThisExampleValue(Element cucumberScenario, string exampleValue)
         {
-            var cucumberFeature = this.GetFeatureElement(feature);
-            return this.GetResultFromFeature(cucumberFeature);
+            return cucumberScenario.steps.Any(step => step.name.Contains(exampleValue));
         }
 
-        public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
+        public override TestResult GetFeatureResult(ObjectModel.Feature feature)
         {
-            // Not applicable
-            return new TestResult();
+            var cucumberFeature = this.GetCucumberFeature(feature);
+
+            return this.GetResultFromFeature(cucumberFeature.Feature, cucumberFeature.Background);
         }
 
-        public TestResult GetScenarioResult(Scenario scenario)
+        private FeatureAndBackground GetCucumberFeature(ObjectModel.Feature feature)
         {
-            Parser.JsonResult.Element cucumberScenario = null;
-            var cucumberFeature = this.GetFeatureElement(scenario.Feature);
-            if (cucumberFeature != null)
+            var cucumberFeature = this.resultsDocument.FirstOrDefault(f => f.name == feature.Name);
+            var background = cucumberFeature?.elements.FirstOrDefault(e => e.type == "background");
+            return new FeatureAndBackground(cucumberFeature, background);
+        }
+
+        private TestResult GetResultFromFeature(Feature cucumberFeature, Element background)
+        {
+            if (cucumberFeature?.elements == null)
             {
-                cucumberScenario = cucumberFeature.elements.FirstOrDefault(x => x.name == scenario.Name);
+                return TestResult.Inconclusive;
             }
 
-            return this.GetResultFromScenario(cucumberScenario);
+            return ToTestResult(cucumberFeature, background);
         }
 
-        private List<Feature> ReadResultsFile(FileInfoBase testResultsFile)
+        private TestResult ToTestResult(Feature feature, Element background)
         {
-            List<Feature> result;
-            using (var stream = testResultsFile.OpenRead())
+            return feature.elements.Select(e => ToTestResult(e, background)).Merge();
+        }
+
+        private TestResult ToTestResult(Element scenario, Element background)
+        {
+            var steps = (background?.steps ?? new List<Step>()).Concat(scenario.steps);
+
+            return steps.Where(s => s.result != null).Select(ToTestResult).Merge();
+        }
+
+        private TestResult ToTestResult(Step step)
+        {
+            return ToTestResult(step.result.status);
+        }
+
+        private TestResult ToTestResult(string cucumberResult)
+        {
+            switch (cucumberResult)
             {
-                using (var reader = new StreamReader(stream))
-                {
-                    result = JsonConvert.DeserializeObject<List<Feature>>(reader.ReadToEnd());
-                }
+                default:
+                case "skipped":
+                case "undefined":
+                case "pending":
+                    {
+                        return TestResult.Inconclusive;
+                    }
+
+                case "ambiguous":
+                case "failed":
+                    {
+                        return TestResult.Failed;
+                    }
+
+                case "passed":
+                    {
+                        return TestResult.Passed;
+                    }
+            }
+        }
+
+        public override TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
+        {
+            var cucumberScenarios = this.GetCucumberScenarios(scenarioOutline);
+
+            return cucumberScenarios.Select(cs => ToTestResult(cs.ScenarioBase, cs.Background)).Merge();
+        }
+
+
+        public override TestResult GetScenarioResult(Scenario scenario)
+        {
+            var cucumberScenario = this.GetCucumberScenario(scenario);
+
+            return this.GetResultFromScenario(cucumberScenario.ScenarioBase, cucumberScenario.Background);
+        }
+
+        private ScenarioBaseAndBackground GetCucumberScenario(Scenario scenario)
+        {
+            Element cucumberScenario = null;
+            var cucumberFeature = this.GetCucumberFeature(scenario.Feature);
+            if (cucumberFeature?.Feature != null)
+            {
+                cucumberScenario = cucumberFeature.Feature.elements.FirstOrDefault(x => x.name == scenario.Name);
             }
 
-            return result;
+            return new ScenarioBaseAndBackground(cucumberScenario, cucumberFeature?.Background);
         }
 
-        private Feature GetFeatureElement(ObjectModel.Feature feature)
+        private IEnumerable<ScenarioBaseAndBackground> GetCucumberScenarios(ScenarioOutline scenarioOutline)
         {
-            return this.resultsDocument.FirstOrDefault(x => x.name == feature.Name);
+            IEnumerable<Element> cucumberScenarios = null;
+            var cucumberFeature = this.GetCucumberFeature(scenarioOutline.Feature);
+            if (cucumberFeature?.Feature != null)
+            {
+                cucumberScenarios = cucumberFeature.Feature.elements.Where(x => x.name == scenarioOutline.Name);
+            }
+
+            return (cucumberScenarios ?? new Element[0]).Select(cs => new ScenarioBaseAndBackground(cs, cucumberFeature?.Background));
         }
 
-        private TestResult GetResultFromScenario(Parser.JsonResult.Element cucumberScenario)
+        private TestResult GetResultFromScenario(Element cucumberScenario, Element background)
         {
             if (cucumberScenario == null)
             {
                 return TestResult.Inconclusive;
             }
 
-            bool wasSuccessful = CheckScenarioStatus(cucumberScenario);
 
-            return wasSuccessful ? TestResult.Passed : TestResult.Failed;
+            return ToTestResult(cucumberScenario, background);
         }
 
-        private static bool CheckScenarioStatus(Parser.JsonResult.Element cucumberScenario)
+        private class FeatureAndBackground
         {
-            return cucumberScenario.steps.All(x => x.result.status == "passed");
-        }
-
-        private TestResult GetResultFromFeature(Feature cucumberFeature)
-        {
-            if (cucumberFeature == null || cucumberFeature.elements == null)
+            public FeatureAndBackground(Feature feature, Element background)
             {
-                return TestResult.Inconclusive;
+                this.Feature = feature;
+                this.Background = background;
             }
 
-            bool wasSuccessful = cucumberFeature.elements.All(CheckScenarioStatus);
+            public Feature Feature { get; }
 
-            return wasSuccessful ? TestResult.Passed : TestResult.Failed;
+            public Element Background { get; }
+        }
+
+        private class ScenarioBaseAndBackground
+        {
+            public ScenarioBaseAndBackground(Element scenarioBase, Element background)
+            {
+                this.ScenarioBase = scenarioBase;
+                this.Background = background;
+            }
+
+            public Element ScenarioBase { get; }
+
+            public Element Background { get; }
         }
     }
 }

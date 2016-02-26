@@ -30,9 +30,12 @@ using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Test;
 using PicklesDoc.Pickles.TestFrameworks.CucumberJson;
 using PicklesDoc.Pickles.TestFrameworks.MsTest;
-using PicklesDoc.Pickles.TestFrameworks.NUnit2;
+using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2;
+using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3;
 using PicklesDoc.Pickles.TestFrameworks.SpecRun;
-using PicklesDoc.Pickles.TestFrameworks.XUnit1;
+using PicklesDoc.Pickles.TestFrameworks.VsTest;
+using PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1;
+using PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2;
 
 namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 {
@@ -76,7 +79,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         [Test]
         public void ThenCanResolveAsSingletonWhenTestResultsAreNUnit()
         {
-            FileSystem.AddFile("results-example-nunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "NUnit2.results-example-nunit.xml"));
+            FileSystem.AddFile("results-example-nunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "NUnit.NUnit2.results-example-nunit.xml"));
 
             var configuration = Container.Resolve<IConfiguration>();
             configuration.TestResultsFormat = TestResultsFormat.NUnit;
@@ -86,28 +89,66 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
             var item2 = Container.Resolve<ITestResults>();
 
             Check.That(item1).IsNotNull();
-            Check.That(item1).IsInstanceOf<NUnitResults>();
+            Check.That(item1).IsInstanceOf<NUnit2Results>();
             Check.That(item2).IsNotNull();
-            Check.That(item2).IsInstanceOf<NUnitResults>();
+            Check.That(item2).IsInstanceOf<NUnit2Results>();
+            Check.That(item1).IsSameReferenceThan(item2);
+        }
+
+        [Test]
+        public void ThenCanResolveAsSingletonWhenTestResultsAreNUnit3()
+        {
+            FileSystem.AddFile("results-example-nunit3.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "NUnit.NUnit3.results-example-nunit3.xml"));
+
+            var configuration = Container.Resolve<IConfiguration>();
+            configuration.TestResultsFormat = TestResultsFormat.NUnit3;
+            configuration.AddTestResultFile(FileSystem.FileInfo.FromFileName("results-example-nunit3.xml"));
+
+            var item1 = Container.Resolve<ITestResults>();
+            var item2 = Container.Resolve<ITestResults>();
+
+            Check.That(item1).IsNotNull();
+            Check.That(item1).IsInstanceOf<NUnit3Results>();
+            Check.That(item2).IsNotNull();
+            Check.That(item2).IsInstanceOf<NUnit3Results>();
             Check.That(item1).IsSameReferenceThan(item2);
         }
 
         [Test]
         public void ThenCanResolveAsSingletonWhenTestResultsArexUnit()
         {
-            FileSystem.AddFile("results-example-xunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "XUnit1.results-example-xunit.xml"));
+            FileSystem.AddFile("results-example-xunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "XUnit.XUnit1.results-example-xunit.xml"));
 
             var configuration = Container.Resolve<IConfiguration>();
-            configuration.TestResultsFormat = TestResultsFormat.xUnit;
+            configuration.TestResultsFormat = TestResultsFormat.XUnit1;
             configuration.AddTestResultFile(FileSystem.FileInfo.FromFileName("results-example-xunit.xml"));
 
             var item1 = Container.Resolve<ITestResults>();
             var item2 = Container.Resolve<ITestResults>();
 
             Check.That(item1).IsNotNull();
-            Check.That(item1).IsInstanceOf<XUnitResults>();
+            Check.That(item1).IsInstanceOf<XUnit1Results>();
             Check.That(item2).IsNotNull();
-            Check.That(item2).IsInstanceOf<XUnitResults>();
+            Check.That(item2).IsInstanceOf<XUnit1Results>();
+            Check.That(item1).IsSameReferenceThan(item2);
+        }
+
+        [Test]
+        public void ThenCanResolveAsSingletonWhenTestResultsArexUnit2()
+        {
+            FileSystem.AddFile("results-example-xunit2.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "XUnit.XUnit2.results-example-xunit2.xml"));
+
+            var configuration = Container.Resolve<IConfiguration>();
+            configuration.TestResultsFormat = TestResultsFormat.xUnit2;
+            configuration.AddTestResultFile(FileSystem.FileInfo.FromFileName("results-example-xunit2.xml"));
+
+            var item1 = Container.Resolve<ITestResults>();
+            var item2 = Container.Resolve<ITestResults>();
+
+            Check.That(item1).IsNotNull();
+            Check.That(item1).IsInstanceOf<XUnit2Results>();
+            Check.That(item2).IsNotNull();
+            Check.That(item2).IsInstanceOf<XUnit2Results>();
             Check.That(item1).IsSameReferenceThan(item2);
         }
 
@@ -150,6 +191,25 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         }
 
         [Test]
+        public void ThenCanResolveAsSingletonWhenTestResultsAreVsTest()
+        {
+            FileSystem.AddFile("results-example-vstest.trx", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "VsTest.results-example-vstest.trx"));
+
+            var configuration = Container.Resolve<IConfiguration>();
+            configuration.TestResultsFormat = TestResultsFormat.VsTest;
+            configuration.AddTestResultFiles(new[] { FileSystem.FileInfo.FromFileName("results-example-vstest.trx") });
+
+            var item1 = Container.Resolve<ITestResults>();
+            var item2 = Container.Resolve<ITestResults>();
+
+            Check.That(item1).IsNotNull();
+            Check.That(item1).IsInstanceOf<VsTestResults>();
+            Check.That(item2).IsNotNull();
+            Check.That(item2).IsInstanceOf<VsTestResults>();
+            Check.That(item1).IsSameReferenceThan(item2);
+        }
+
+        [Test]
         public void ThenCanResolveWhenNoTestResultsSelected()
         {
             var item = Container.Resolve<ITestResults>();
@@ -176,7 +236,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         [Test]
         public void ThenCanResolveWhenTestResultsAreNUnit()
         {
-            FileSystem.AddFile("results-example-nunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "NUnit2.results-example-nunit.xml"));
+            FileSystem.AddFile("results-example-nunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "NUnit.NUnit2.results-example-nunit.xml"));
 
             var configuration = Container.Resolve<IConfiguration>();
             configuration.TestResultsFormat = TestResultsFormat.NUnit;
@@ -185,22 +245,52 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
             var item = Container.Resolve<ITestResults>();
 
             Check.That(item).IsNotNull();
-            Check.That(item).IsInstanceOf<NUnitResults>();
+            Check.That(item).IsInstanceOf<NUnit2Results>();
+        }
+
+        [Test]
+        public void ThenCanResolveWhenTestResultsAreNUnit3()
+        {
+            FileSystem.AddFile("results-example-nunit3.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "NUnit.NUnit3.results-example-nunit3.xml"));
+
+            var configuration = Container.Resolve<IConfiguration>();
+            configuration.TestResultsFormat = TestResultsFormat.NUnit3;
+            configuration.AddTestResultFile(FileSystem.FileInfo.FromFileName("results-example-nunit3.xml"));
+
+            var item1 = Container.Resolve<ITestResults>();
+
+            Check.That(item1).IsNotNull();
+            Check.That(item1).IsInstanceOf<NUnit3Results>();
         }
 
         [Test]
         public void ThenCanResolveWhenTestResultsArexUnit()
         {
-            FileSystem.AddFile("results-example-xunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "XUnit1.results-example-xunit.xml"));
+            FileSystem.AddFile("results-example-xunit.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "XUnit.XUnit1.results-example-xunit.xml"));
 
             var configuration = Container.Resolve<IConfiguration>();
-            configuration.TestResultsFormat = TestResultsFormat.xUnit;
+            configuration.TestResultsFormat = TestResultsFormat.XUnit1;
             configuration.AddTestResultFile(FileSystem.FileInfo.FromFileName("results-example-xunit.xml"));
 
             var item = Container.Resolve<ITestResults>();
 
             Check.That(item).IsNotNull();
-            Check.That(item).IsInstanceOf<XUnitResults>();
+            Check.That(item).IsInstanceOf<XUnit1Results>();
+        }
+
+        [Test]
+        public void ThenCanResolveWhenTestResultsArexUnit2()
+        {
+            FileSystem.AddFile("results-example-xunit2.xml", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "XUnit.XUnit2.results-example-xunit2.xml"));
+
+            var configuration = Container.Resolve<IConfiguration>();
+            configuration.TestResultsFormat = TestResultsFormat.xUnit2;
+            configuration.AddTestResultFile(FileSystem.FileInfo.FromFileName("results-example-xunit2.xml"));
+
+            var item1 = Container.Resolve<ITestResults>();
+
+            Check.That(item1).IsNotNull();
+            Check.That(item1).IsInstanceOf<XUnit2Results>();
         }
 
         [Test]
@@ -231,6 +321,21 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             Check.That(item).IsNotNull();
             Check.That(item).IsInstanceOf<SpecRunResults>();
+        }
+
+        [Test]
+        public void ThenCanResolveWhenTestResultsAreVsTest()
+        {
+            FileSystem.AddFile("results-example-vstest.trx", RetrieveContentOfFileFromResources(TestResultsResourcePrefix + "VsTest.results-example-vstest.trx"));
+
+            var configuration = Container.Resolve<IConfiguration>();
+            configuration.TestResultsFormat = TestResultsFormat.VsTest;
+            configuration.AddTestResultFiles(new[] { FileSystem.FileInfo.FromFileName("results-example-vstest.trx") });
+
+            var item1 = Container.Resolve<ITestResults>();
+
+            Check.That(item1).IsNotNull();
+            Check.That(item1).IsInstanceOf<VsTestResults>();
         }
     }
 }

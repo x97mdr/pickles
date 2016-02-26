@@ -164,7 +164,10 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
                                     "Column 1"),
                                 new XElement(
                                     xmlns + "th",
-                                    "Column 2"))),
+                                    "Column 2"),
+                                new XElement(
+                                    xmlns + "th",
+                                    " "))),
                         new XElement(
                             xmlns + "tbody",
                             new XElement(

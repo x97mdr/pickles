@@ -27,11 +27,20 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.MsTest
 {
-    public class MsTestSingleResults : ITestResults
+    /// <summary>
+    /// The class responsible for parsing a single MS Test result file.
+    /// </summary>
+    /// <remarks>
+    /// The MS Test result format is a bit weird in that it stores the tests and their results in
+    /// separate lists. So in order to know the result of a scenario,
+    /// we first have to identify the test definition that belongs to the scenario.
+    /// Then with the id of the scenario we look up an execution id,
+    /// and with the execution id we can look up the result.
+    /// </remarks>
+    public class MsTestSingleResults : SingleTestRunBase
     {
         private const string Failed = "failed";
 
-        private static readonly XNamespace Ns = @"http://microsoft.com/schemas/VisualStudio/TeamTest/2010";
         private readonly XDocument resultsDocument;
 
         public MsTestSingleResults(XDocument resultsDocument)
@@ -39,142 +48,120 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
             this.resultsDocument = resultsDocument;
         }
 
-        public bool SupportsExampleResults
+        public override TestResult GetFeatureResult(Feature feature)
         {
-            get { return false; }
+            var scenarios = this.GetScenariosForFeature(feature);
+
+            var featureExecutionIds = scenarios.ExecutionIdElements();
+
+            TestResult result = this.GetExecutionResult(featureExecutionIds);
+
+            return result;
         }
 
-        private Guid GetScenarioExecutionId(Scenario queriedScenario)
+        /// <summary>
+        /// Retrieves all UnitTest XElements that belong to the specified feature.
+        /// </summary>
+        /// <param name="feature">The feature for which to retrieve the unit tests.</param>
+        /// <returns>A sequence of <see cref="XElement" /> instances that are called "UnitTest"
+        /// that belong to the specified feature.</returns>
+        private IEnumerable<XElement> GetScenariosForFeature(Feature feature)
         {
-            var idString =
-                (from scenario in this.AllScenariosInResultFile()
-                    let properties = PropertiesOf(scenario)
-                    where properties != null
-                    where FeatureNamePropertyExistsWith(queriedScenario.Feature.Name, among: properties)
-                    where NameOf(scenario) == queriedScenario.Name
-                    select ScenarioExecutionIdStringOf(scenario)).FirstOrDefault();
+            var scenarios = from scenario in this.resultsDocument.AllScenarios()
+                            where scenario.HasPropertyFeatureTitle(feature.Name)
+                            select scenario;
 
-            return !string.IsNullOrEmpty(idString) ? new Guid(idString) : Guid.Empty;
+            return scenarios;
+        }
+
+        private TestResult GetExecutionResult(IEnumerable<Guid> featureExecutionIds)
+        {
+            TestResult result = featureExecutionIds.Select(this.GetExecutionResult).Merge();
+            return result;
         }
 
         private TestResult GetExecutionResult(Guid scenarioExecutionId)
         {
-            var resultText =
-                (from scenarioResult in this.AllScenarioExecutionResultsInResultFile()
-                    let executionId = ResultExecutionIdOf(scenarioResult)
-                    where scenarioExecutionId == executionId
-                    let outcome = ResultOutcomeOf(scenarioResult)
-                    select outcome).FirstOrDefault() ?? string.Empty;
+            var query =
+                this.resultsDocument.AllExecutionResults()
+                    .Where(er => er.ExecutionIdAttribute() == scenarioExecutionId)
+                    .Select(sr => sr.Outcome());
 
-            switch (resultText.ToLowerInvariant())
+            var result = query.FirstOrDefault();
+
+            return result;
+        }
+
+        public override TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
+        {
+            var scenarios = this.GetScenariosForScenarioOutline(scenarioOutline);
+
+            var executionIds = scenarios.Select(scenario => scenario.ExecutionIdElement());
+
+            TestResult result = this.GetExecutionResult(executionIds);
+
+            return result;
+        }
+
+        private IEnumerable<XElement> GetScenariosForScenarioOutline(ScenarioOutline scenarioOutline)
+        {
+            var scenarios =
+                this.GetScenariosForFeature(scenarioOutline.Feature)
+                    .Where(scenario => scenario.Name().StartsWith(scenarioOutline.Name));
+
+            return scenarios;
+        }
+
+        public override TestResult GetScenarioResult(Scenario scenario)
+        {
+            var scenarios = this.GetScenariosForScenario(scenario);
+
+            Guid executionId = scenarios.Select(s => s.ExecutionIdElement()).FirstOrDefault();
+
+            TestResult testResult = this.GetExecutionResult(executionId);
+
+            return testResult;
+        }
+
+        private IEnumerable<XElement> GetScenariosForScenario(Scenario scenario)
+        {
+            var scenarios =
+                this.GetScenariosForFeature(scenario.Feature)
+                    .Where(s => s.Name() == scenario.Name);
+
+            return scenarios;
+        }
+
+        public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
+        {
+            var scenarioElements = this.GetScenariosForScenarioOutline(scenario);
+
+            var theScenario = this.GetScenarioThatMatchesTheExampleValues(scenario, exampleValues, scenarioElements);
+
+            Guid executionId = theScenario.ExecutionIdElement();
+
+            TestResult testResult = this.GetExecutionResult(executionId);
+
+            return testResult;
+        }
+
+        private XElement GetScenarioThatMatchesTheExampleValues(ScenarioOutline scenarioOutline, string[] exampleValues, IEnumerable<XElement> scenarioElements)
+        {
+            // filter for example values
+            XElement theScenario = null;
+
+            foreach (var element in scenarioElements)
             {
-                case "passed":
-                    return TestResult.Passed;
-                case Failed:
-                    return TestResult.Failed;
-                default:
-                    return TestResult.Inconclusive;
+                var isMatch = this.ScenarioOutlineExampleMatcher.IsMatch(scenarioOutline, exampleValues, element);
+
+                if (isMatch)
+                {
+                    theScenario = element;
+                    break;
+                }
             }
-        }
 
-        private static string ResultOutcomeOf(XElement scenarioResult)
-        {
-            var outcomeAttribute = scenarioResult.Attribute("outcome");
-            return outcomeAttribute != null ? outcomeAttribute.Value : Failed;
-        }
-
-        private static Guid ResultExecutionIdOf(XElement unitTestResult)
-        {
-            var executionIdAttribute = unitTestResult.Attribute("executionId");
-            return executionIdAttribute != null ? new Guid(executionIdAttribute.Value) : Guid.Empty;
-        }
-
-        public TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
-        {
-            throw new NotSupportedException();
-        }
-
-        public TestResult GetFeatureResult(Feature feature)
-        {
-            var featureExecutionIds =
-                from scenario in this.AllScenariosInResultFile()
-                let properties = PropertiesOf(scenario)
-                where properties != null
-                where FeatureNamePropertyExistsWith(feature.Name, among: properties)
-                select ScenarioExecutionIdOf(scenario);
-
-            TestResult result = featureExecutionIds.Select(this.GetExecutionResult).Merge();
-
-            return result;
-        }
-
-        public TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
-        {
-            var queriedFeatureName = scenarioOutline.Feature.Name;
-            var queriedScenarioOutlineName = scenarioOutline.Name;
-
-            var allScenariosForAFeature =
-                from scenario in this.AllScenariosInResultFile()
-                let scenarioProperties = PropertiesOf(scenario)
-                where scenarioProperties != null
-                where FeatureNamePropertyExistsWith(queriedFeatureName, among: scenarioProperties)
-                select scenario;
-
-            var scenarioOutlineExecutionIds = from scenario in allScenariosForAFeature
-                where NameOf(scenario).StartsWith(queriedScenarioOutlineName)
-                select ScenarioExecutionIdOf(scenario);
-
-            TestResult result = scenarioOutlineExecutionIds.Select(this.GetExecutionResult).Merge();
-
-            return result;
-        }
-
-        public TestResult GetScenarioResult(Scenario scenario)
-        {
-            Guid scenarioExecutionId = this.GetScenarioExecutionId(scenario);
-            return this.GetExecutionResult(scenarioExecutionId);
-        }
-
-        private static Guid ScenarioExecutionIdOf(XElement scenario)
-        {
-            return new Guid(ScenarioExecutionIdStringOf(scenario));
-        }
-
-        private static string ScenarioExecutionIdStringOf(XElement scenario)
-        {
-            return scenario.Element(Ns + "Execution").Attribute("id").Value;
-        }
-
-        private static string NameOf(XElement scenario)
-        {
-            return scenario.Element(Ns + "Description").Value;
-        }
-
-        private static XElement PropertiesOf(XElement scenariosReportes)
-        {
-            return scenariosReportes.Element(Ns + "Properties");
-        }
-
-        private static bool FeatureNamePropertyExistsWith(string featureName, XElement among)
-        {
-            var properties = among;
-            return (from property in properties.Elements(Ns + "Property")
-                let key = property.Element(Ns + "Key")
-                let value = property.Element(Ns + "Value")
-                where key.Value == "FeatureTitle" && value.Value == featureName
-                select property).Any();
-        }
-
-        private IEnumerable<XElement> AllScenariosInResultFile()
-        {
-            // Feature scenarios unit-tests should have Description. It is a scenario name
-            return
-                this.resultsDocument.Root.Descendants(Ns + "UnitTest").Where(s => s.Element(Ns + "Description") != null);
-        }
-
-        private IEnumerable<XElement> AllScenarioExecutionResultsInResultFile()
-        {
-            return this.resultsDocument.Root.Descendants(Ns + "UnitTestResult");
+            return theScenario;
         }
     }
 }

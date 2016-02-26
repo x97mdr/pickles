@@ -109,24 +109,15 @@ namespace PicklesDoc.Pickles
 
                 if (scenarioOutline != null)
                 {
-                    if (testResults.SupportsExampleResults)
+                    foreach (var example in scenarioOutline.Examples.SelectMany(e => e.TableArgument.DataRows))
                     {
-                        foreach (var example in scenarioOutline.Examples.SelectMany(e => e.TableArgument.DataRows))
-                        {
-                            example.Result = testResults.GetExampleResult(scenarioOutline, example.Cells.ToArray());
-                        }
-
-                        scenarioOutline.Result =
-                            scenarioOutline.Examples.SelectMany(e => e.TableArgument.DataRows)
-                                .Select(row => row.Result)
-                                .Merge();
-                    }
-                    else
-                    {
-                        featureElement.Result = testResults.GetScenarioOutlineResult(scenarioOutline);
+                        example.Result = testResults.GetExampleResult(scenarioOutline, example.Cells.ToArray());
                     }
 
-                    continue;
+                    scenarioOutline.Result =
+                        scenarioOutline.Examples.SelectMany(e => e.TableArgument.DataRows)
+                            .Select(row => row.Result)
+                            .Merge();
                 }
             }
         }

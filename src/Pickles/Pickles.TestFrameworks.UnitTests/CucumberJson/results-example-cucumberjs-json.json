@@ -1,0 +1,1240 @@
+[
+  {
+    "id": "Addition",
+    "name": "Addition",
+    "description": "In order to avoid silly mistakes\r\nAs a math idiot\r\nI want to be told the sum of two numbers",
+    "line": 1,
+    "keyword": "Feature",
+    "uri": "C:/Dev/Code/GitHub/DirkRombauts/pickles-testresults/TestHarness/CucumberJS/features/Addition.feature",
+    "elements": [
+      {
+        "name": "",
+        "keyword": "Background",
+        "description": "",
+        "type": "background",
+        "line": 6,
+        "steps": [
+          {
+            "name": "the calculator has clean memory",
+            "line": 7,
+            "keyword": "Given "
+          }
+        ]
+      },
+      {
+        "name": "Adding several numbers",
+        "id": "Addition;adding-several-numbers",
+        "line": 19,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@tag2",
+            "line": 9
+          }
+        ],
+        "steps": [
+          {
+            "name": "the calculator has clean memory",
+            "line": 7,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 993975
+            },
+            "match": {}
+          },
+          {
+            "name": "I have entered 60 into the calculator",
+            "line": 11,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 549749
+            },
+            "match": {}
+          },
+          {
+            "name": "I have entered 70 into the calculator",
+            "line": 12,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 109052
+            },
+            "match": {}
+          },
+          {
+            "name": "I have entered 130 into the calculator",
+            "line": 13,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 79544
+            },
+            "match": {}
+          },
+          {
+            "name": "I press add",
+            "line": 14,
+            "keyword": "When ",
+            "result": {
+              "status": "passed",
+              "duration": 170955
+            },
+            "match": {}
+          },
+          {
+            "name": "the result should be 260 on the screen",
+            "line": 15,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 211368
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Adding several numbers",
+        "id": "Addition;adding-several-numbers",
+        "line": 20,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@tag2",
+            "line": 9
+          }
+        ],
+        "steps": [
+          {
+            "name": "the calculator has clean memory",
+            "line": 7,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 110656
+            },
+            "match": {}
+          },
+          {
+            "name": "I have entered 40 into the calculator",
+            "line": 11,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 58054
+            },
+            "match": {}
+          },
+          {
+            "name": "I have entered 50 into the calculator",
+            "line": 12,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 82430
+            },
+            "match": {}
+          },
+          {
+            "name": "I have entered 90 into the calculator",
+            "line": 13,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 43942
+            },
+            "match": {}
+          },
+          {
+            "name": "I press add",
+            "line": 14,
+            "keyword": "When ",
+            "result": {
+              "status": "passed",
+              "duration": 104561
+            },
+            "match": {}
+          },
+          {
+            "name": "the result should be 180 on the screen",
+            "line": 15,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 51640
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Add two numbers",
+        "id": "Addition;add-two-numbers",
+        "line": 23,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@tag1",
+            "line": 22
+          }
+        ],
+        "steps": [
+          {
+            "name": "the calculator has clean memory",
+            "line": 7,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 123806
+            },
+            "match": {}
+          },
+          {
+            "name": "I have entered 1 into the calculator",
+            "line": 24,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 87241
+            },
+            "match": {}
+          },
+          {
+            "name": "I have entered 2 into the calculator",
+            "line": 25,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 42979
+            },
+            "match": {}
+          },
+          {
+            "name": "I press add",
+            "line": 26,
+            "keyword": "When ",
+            "result": {
+              "status": "passed",
+              "duration": 92694
+            },
+            "match": {}
+          },
+          {
+            "name": "the result should be 3 on the screen",
+            "line": 27,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 46507
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Fail to add two numbers",
+        "id": "Addition;fail-to-add-two-numbers",
+        "line": 30,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@tag1",
+            "line": 29
+          }
+        ],
+        "steps": [
+          {
+            "name": "the calculator has clean memory",
+            "line": 7,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 136315
+            },
+            "match": {}
+          },
+          {
+            "name": "I have entered 1 into the calculator",
+            "line": 31,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 151069
+            },
+            "match": {}
+          },
+          {
+            "name": "I have entered 2.2 into the calculator",
+            "line": 32,
+            "keyword": "And ",
+            "result": {
+              "status": "ambiguous"
+            },
+            "match": {}
+          },
+          {
+            "name": "I press add",
+            "line": 33,
+            "keyword": "When ",
+            "result": {
+              "status": "skipped"
+            },
+            "match": {}
+          },
+          {
+            "name": "the result should be 3.2 on the screen",
+            "line": 34,
+            "keyword": "Then ",
+            "result": {
+              "status": "skipped"
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Not automated adding two numbers",
+        "id": "Addition;not-automated-adding-two-numbers",
+        "line": 43,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "the calculator has clean memory",
+            "line": 7,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 219066
+            },
+            "match": {}
+          },
+          {
+            "name": "unimplemented step",
+            "line": 44,
+            "keyword": "Given ",
+            "result": {
+              "status": "undefined"
+            },
+            "match": {}
+          },
+          {
+            "name": "unimplemented step",
+            "line": 45,
+            "keyword": "When ",
+            "result": {
+              "status": "undefined"
+            },
+            "match": {}
+          },
+          {
+            "name": "unimplemented step",
+            "line": 46,
+            "keyword": "Then ",
+            "result": {
+              "status": "undefined"
+            },
+            "match": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Failing-Background",
+    "name": "Failing Background",
+    "description": "This feature has a failing background.",
+    "line": 1,
+    "keyword": "Feature",
+    "uri": "C:/Dev/Code/GitHub/DirkRombauts/pickles-testresults/TestHarness/CucumberJS/features/FailingBackground.feature",
+    "elements": [
+      {
+        "name": "",
+        "keyword": "Background",
+        "description": "",
+        "type": "background",
+        "line": 4,
+        "steps": [
+          {
+            "name": "the background step fails",
+            "line": 5,
+            "keyword": "Given "
+          },
+          {
+            "name": "the calculator has clean memory",
+            "line": 6,
+            "keyword": "And "
+          }
+        ]
+      },
+      {
+        "name": "Add two numbers",
+        "id": "Failing-Background;add-two-numbers",
+        "line": 8,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "the background step fails",
+            "line": 5,
+            "keyword": "Given ",
+            "result": {
+              "status": "failed",
+              "duration": 4917275,
+              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles-testresults\\TestHarness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:36:13)\n    at nextTickCallbackWith0Args (node.js:456:9)\n    at process._tickCallback (node.js:385:13)\n    at Function.Module.runMain (module.js:432:11)\n    at startup (node.js:141:18)\n    at node.js:1003:3"
+            },
+            "match": {}
+          },
+          {
+            "name": "the calculator has clean memory",
+            "line": 6,
+            "keyword": "And ",
+            "result": {
+              "status": "skipped"
+            },
+            "match": {}
+          },
+          {
+            "name": "I have entered 50 into the calculator",
+            "line": 9,
+            "keyword": "Given ",
+            "result": {
+              "status": "skipped"
+            },
+            "match": {}
+          },
+          {
+            "name": "I have entered 70 into the calculator",
+            "line": 10,
+            "keyword": "And ",
+            "result": {
+              "status": "skipped"
+            },
+            "match": {}
+          },
+          {
+            "name": "I press add",
+            "line": 11,
+            "keyword": "When ",
+            "result": {
+              "status": "skipped"
+            },
+            "match": {}
+          },
+          {
+            "name": "the result should be 120 on the screen",
+            "line": 12,
+            "keyword": "Then ",
+            "result": {
+              "status": "skipped"
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Adding several numbers",
+        "id": "Failing-Background;adding-several-numbers",
+        "line": 23,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "the background step fails",
+            "line": 5,
+            "keyword": "Given ",
+            "result": {
+              "status": "failed",
+              "duration": 744119,
+              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles-testresults\\TestHarness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:36:13)\n    at nextTickCallbackWith0Args (node.js:456:9)\n    at process._tickCallback (node.js:385:13)\n    at Function.Module.runMain (module.js:432:11)\n    at startup (node.js:141:18)\n    at node.js:1003:3"
+            },
+            "match": {}
+          },
+          {
+            "name": "the calculator has clean memory",
+            "line": 6,
+            "keyword": "And ",
+            "result": {
+              "status": "skipped"
+            },
+            "match": {}
+          },
+          {
+            "name": "I have entered 60 into the calculator",
+            "line": 15,
+            "keyword": "Given ",
+            "result": {
+              "status": "skipped"
+            },
+            "match": {}
+          },
+          {
+            "name": "I have entered 70 into the calculator",
+            "line": 16,
+            "keyword": "And ",
+            "result": {
+              "status": "skipped"
+            },
+            "match": {}
+          },
+          {
+            "name": "I have entered 130 into the calculator",
+            "line": 17,
+            "keyword": "And ",
+            "result": {
+              "status": "skipped"
+            },
+            "match": {}
+          },
+          {
+            "name": "I press add",
+            "line": 18,
+            "keyword": "When ",
+            "result": {
+              "status": "skipped"
+            },
+            "match": {}
+          },
+          {
+            "name": "the result should be 260 on the screen",
+            "line": 19,
+            "keyword": "Then ",
+            "result": {
+              "status": "skipped"
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Adding several numbers",
+        "id": "Failing-Background;adding-several-numbers",
+        "line": 24,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "the background step fails",
+            "line": 5,
+            "keyword": "Given ",
+            "result": {
+              "status": "failed",
+              "duration": 682215,
+              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles-testresults\\TestHarness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:36:13)\n    at nextTickCallbackWith0Args (node.js:456:9)\n    at process._tickCallback (node.js:385:13)\n    at Function.Module.runMain (module.js:432:11)\n    at startup (node.js:141:18)\n    at node.js:1003:3"
+            },
+            "match": {}
+          },
+          {
+            "name": "the calculator has clean memory",
+            "line": 6,
+            "keyword": "And ",
+            "result": {
+              "status": "skipped"
+            },
+            "match": {}
+          },
+          {
+            "name": "I have entered 40 into the calculator",
+            "line": 15,
+            "keyword": "Given ",
+            "result": {
+              "status": "skipped"
+            },
+            "match": {}
+          },
+          {
+            "name": "I have entered 50 into the calculator",
+            "line": 16,
+            "keyword": "And ",
+            "result": {
+              "status": "skipped"
+            },
+            "match": {}
+          },
+          {
+            "name": "I have entered 90 into the calculator",
+            "line": 17,
+            "keyword": "And ",
+            "result": {
+              "status": "skipped"
+            },
+            "match": {}
+          },
+          {
+            "name": "I press add",
+            "line": 18,
+            "keyword": "When ",
+            "result": {
+              "status": "skipped"
+            },
+            "match": {}
+          },
+          {
+            "name": "the result should be 180 on the screen",
+            "line": 19,
+            "keyword": "Then ",
+            "result": {
+              "status": "skipped"
+            },
+            "match": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Failing",
+    "name": "Failing",
+    "description": "",
+    "line": 1,
+    "keyword": "Feature",
+    "uri": "C:/Dev/Code/GitHub/DirkRombauts/pickles-testresults/TestHarness/CucumberJS/features/Minimal Features/Failing.feature",
+    "elements": [
+      {
+        "name": "Failing Feature Passing Scenario",
+        "id": "Failing;failing-feature-passing-scenario",
+        "line": 3,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "passing step",
+            "line": 4,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 147861
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Failing Feature Inconclusive Scenario",
+        "id": "Failing;failing-feature-inconclusive-scenario",
+        "line": 6,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "inconclusive step",
+            "line": 7,
+            "keyword": "Then ",
+            "result": {
+              "status": "pending"
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Failing Feature Failing Scenario",
+        "id": "Failing;failing-feature-failing-scenario",
+        "line": 9,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "failing step",
+            "line": 10,
+            "keyword": "Then ",
+            "result": {
+              "status": "failed",
+              "duration": 1813146,
+              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles-testresults\\TestHarness\\CucumberJS\\features\\stepdefinitions\\MinimalSteps.js:18:12)\n    at nextTickCallbackWith0Args (node.js:456:9)\n    at process._tickCallback (node.js:385:13)\n    at Function.Module.runMain (module.js:432:11)\n    at startup (node.js:141:18)\n    at node.js:1003:3"
+            },
+            "match": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Inconclusive",
+    "name": "Inconclusive",
+    "description": "",
+    "line": 1,
+    "keyword": "Feature",
+    "uri": "C:/Dev/Code/GitHub/DirkRombauts/pickles-testresults/TestHarness/CucumberJS/features/Minimal Features/Inconclusive.feature",
+    "elements": [
+      {
+        "name": "Inconclusive Feature Passing Scenario",
+        "id": "Inconclusive;inconclusive-feature-passing-scenario",
+        "line": 3,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "passing step",
+            "line": 4,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 135993
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Inconclusive Feature Inconclusive Scenario",
+        "id": "Inconclusive;inconclusive-feature-inconclusive-scenario",
+        "line": 6,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "inconclusive step",
+            "line": 7,
+            "keyword": "Then ",
+            "result": {
+              "status": "pending"
+            },
+            "match": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Passing",
+    "name": "Passing",
+    "description": "",
+    "line": 1,
+    "keyword": "Feature",
+    "uri": "C:/Dev/Code/GitHub/DirkRombauts/pickles-testresults/TestHarness/CucumberJS/features/Minimal Features/Passing.feature",
+    "elements": [
+      {
+        "name": "Passing Feature Passing Scenario",
+        "id": "Passing;passing-feature-passing-scenario",
+        "line": 3,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "passing step",
+            "line": 4,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 215217
+            },
+            "match": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Not-Automated-At-All",
+    "name": "Not Automated At All",
+    "description": "",
+    "line": 1,
+    "keyword": "Feature",
+    "uri": "C:/Dev/Code/GitHub/DirkRombauts/pickles-testresults/TestHarness/CucumberJS/features/NotAutomatedAtAll.feature",
+    "elements": [
+      {
+        "name": "",
+        "keyword": "Background",
+        "description": "",
+        "type": "background",
+        "line": 3,
+        "steps": [
+          {
+            "name": "unimplemented step",
+            "line": 4,
+            "keyword": "Given "
+          }
+        ]
+      },
+      {
+        "name": "Not automated scenario 1",
+        "id": "Not-Automated-At-All;not-automated-scenario-1",
+        "line": 6,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "unimplemented step",
+            "line": 4,
+            "keyword": "Given ",
+            "result": {
+              "status": "undefined"
+            },
+            "match": {}
+          },
+          {
+            "name": "unimplemented step",
+            "line": 7,
+            "keyword": "Given ",
+            "result": {
+              "status": "undefined"
+            },
+            "match": {}
+          },
+          {
+            "name": "unimplemented step",
+            "line": 8,
+            "keyword": "When ",
+            "result": {
+              "status": "undefined"
+            },
+            "match": {}
+          },
+          {
+            "name": "unimplemented step",
+            "line": 9,
+            "keyword": "Then ",
+            "result": {
+              "status": "undefined"
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Not automated scenario 2",
+        "id": "Not-Automated-At-All;not-automated-scenario-2",
+        "line": 11,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "unimplemented step",
+            "line": 4,
+            "keyword": "Given ",
+            "result": {
+              "status": "undefined"
+            },
+            "match": {}
+          },
+          {
+            "name": "unimplemented step",
+            "line": 12,
+            "keyword": "Given ",
+            "result": {
+              "status": "undefined"
+            },
+            "match": {}
+          },
+          {
+            "name": "unimplemented step",
+            "line": 13,
+            "keyword": "When ",
+            "result": {
+              "status": "undefined"
+            },
+            "match": {}
+          },
+          {
+            "name": "unimplemented step",
+            "line": 14,
+            "keyword": "Then ",
+            "result": {
+              "status": "undefined"
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Not automated scenario 3",
+        "id": "Not-Automated-At-All;not-automated-scenario-3",
+        "line": 16,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "unimplemented step",
+            "line": 4,
+            "keyword": "Given ",
+            "result": {
+              "status": "undefined"
+            },
+            "match": {}
+          },
+          {
+            "name": "unimplemented step",
+            "line": 17,
+            "keyword": "Given ",
+            "result": {
+              "status": "undefined"
+            },
+            "match": {}
+          },
+          {
+            "name": "unimplemented step",
+            "line": 18,
+            "keyword": "When ",
+            "result": {
+              "status": "undefined"
+            },
+            "match": {}
+          },
+          {
+            "name": "unimplemented step",
+            "line": 19,
+            "keyword": "Then ",
+            "result": {
+              "status": "undefined"
+            },
+            "match": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Scenario-Outlines",
+    "name": "Scenario Outlines",
+    "description": "Here we demonstrate how we deal with scenario outlines",
+    "line": 1,
+    "keyword": "Feature",
+    "uri": "C:/Dev/Code/GitHub/DirkRombauts/pickles-testresults/TestHarness/CucumberJS/features/ScenarioOutlines.feature",
+    "elements": [
+      {
+        "name": "This is a scenario outline where all scenarios pass",
+        "id": "Scenario-Outlines;this-is-a-scenario-outline-where-all-scenarios-pass",
+        "line": 12,
+        "keyword": "Scenario",
+        "description": "\r\nThis means the entire scenario outline passes.",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "the scenario will 'pass_1'",
+            "line": 8,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 258838
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "This is a scenario outline where all scenarios pass",
+        "id": "Scenario-Outlines;this-is-a-scenario-outline-where-all-scenarios-pass",
+        "line": 13,
+        "keyword": "Scenario",
+        "description": "\r\nThis means the entire scenario outline passes.",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "the scenario will 'pass_2'",
+            "line": 8,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 166785
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "This is a scenario outline where all scenarios pass",
+        "id": "Scenario-Outlines;this-is-a-scenario-outline-where-all-scenarios-pass",
+        "line": 14,
+        "keyword": "Scenario",
+        "description": "\r\nThis means the entire scenario outline passes.",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "the scenario will 'pass_3'",
+            "line": 8,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 184105
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "This is a scenario outline where one scenario is inconclusive",
+        "id": "Scenario-Outlines;this-is-a-scenario-outline-where-one-scenario-is-inconclusive",
+        "line": 25,
+        "keyword": "Scenario",
+        "description": "\r\nThis means the entire scenario outline is inconclusive.",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "the scenario will 'pass_1'",
+            "line": 21,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 191482
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "This is a scenario outline where one scenario is inconclusive",
+        "id": "Scenario-Outlines;this-is-a-scenario-outline-where-one-scenario-is-inconclusive",
+        "line": 26,
+        "keyword": "Scenario",
+        "description": "\r\nThis means the entire scenario outline is inconclusive.",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "the scenario will 'pass_2'",
+            "line": 21,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 179935
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "This is a scenario outline where one scenario is inconclusive",
+        "id": "Scenario-Outlines;this-is-a-scenario-outline-where-one-scenario-is-inconclusive",
+        "line": 27,
+        "keyword": "Scenario",
+        "description": "\r\nThis means the entire scenario outline is inconclusive.",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "the scenario will 'inconclusive_1'",
+            "line": 21,
+            "keyword": "Then ",
+            "result": {
+              "status": "pending"
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "This is a scenario outline where one scenario fails",
+        "id": "Scenario-Outlines;this-is-a-scenario-outline-where-one-scenario-fails",
+        "line": 38,
+        "keyword": "Scenario",
+        "description": "\r\nThis means the entire scenario outline fails.",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "the scenario will 'pass_1'",
+            "line": 34,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 190520
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "This is a scenario outline where one scenario fails",
+        "id": "Scenario-Outlines;this-is-a-scenario-outline-where-one-scenario-fails",
+        "line": 39,
+        "keyword": "Scenario",
+        "description": "\r\nThis means the entire scenario outline fails.",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "the scenario will 'pass_2'",
+            "line": 34,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 647255
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "This is a scenario outline where one scenario fails",
+        "id": "Scenario-Outlines;this-is-a-scenario-outline-where-one-scenario-fails",
+        "line": 40,
+        "keyword": "Scenario",
+        "description": "\r\nThis means the entire scenario outline fails.",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "the scenario will 'fail_1'",
+            "line": 34,
+            "keyword": "Then ",
+            "result": {
+              "status": "failed",
+              "duration": 750213,
+              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles-testresults\\TestHarness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:18:12)\n    at nextTickCallbackWith0Args (node.js:456:9)\n    at process._tickCallback (node.js:385:13)\n    at Function.Module.runMain (module.js:432:11)\n    at startup (node.js:141:18)\n    at node.js:1003:3"
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "And we can go totally bonkers with multiple example sections.",
+        "id": "Scenario-Outlines;and-we-can-go-totally-bonkers-with-multiple-example-sections.",
+        "line": 49,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "the scenario will 'pass_1'",
+            "line": 45,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 126372
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "And we can go totally bonkers with multiple example sections.",
+        "id": "Scenario-Outlines;and-we-can-go-totally-bonkers-with-multiple-example-sections.",
+        "line": 50,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "the scenario will 'pass_2'",
+            "line": 45,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 128938
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "And we can go totally bonkers with multiple example sections.",
+        "id": "Scenario-Outlines;and-we-can-go-totally-bonkers-with-multiple-example-sections.",
+        "line": 54,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "the scenario will 'inconclusive_1'",
+            "line": 45,
+            "keyword": "Then ",
+            "result": {
+              "status": "pending"
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "And we can go totally bonkers with multiple example sections.",
+        "id": "Scenario-Outlines;and-we-can-go-totally-bonkers-with-multiple-example-sections.",
+        "line": 55,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "the scenario will 'inconclusive_2'",
+            "line": 45,
+            "keyword": "Then ",
+            "result": {
+              "status": "pending"
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "And we can go totally bonkers with multiple example sections.",
+        "id": "Scenario-Outlines;and-we-can-go-totally-bonkers-with-multiple-example-sections.",
+        "line": 59,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "the scenario will 'fail_1'",
+            "line": 45,
+            "keyword": "Then ",
+            "result": {
+              "status": "failed",
+              "duration": 444547,
+              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles-testresults\\TestHarness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:18:12)\n    at nextTickCallbackWith0Args (node.js:456:9)\n    at process._tickCallback (node.js:385:13)\n    at Function.Module.runMain (module.js:432:11)\n    at startup (node.js:141:18)\n    at node.js:1003:3"
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "And we can go totally bonkers with multiple example sections.",
+        "id": "Scenario-Outlines;and-we-can-go-totally-bonkers-with-multiple-example-sections.",
+        "line": 60,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "the scenario will 'fail_2'",
+            "line": 45,
+            "keyword": "Then ",
+            "result": {
+              "status": "failed",
+              "duration": 443264,
+              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles-testresults\\TestHarness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:18:12)\n    at nextTickCallbackWith0Args (node.js:456:9)\n    at process._tickCallback (node.js:385:13)\n    at Function.Module.runMain (module.js:432:11)\n    at startup (node.js:141:18)\n    at node.js:1003:3"
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Deal correctly with backslashes in the examples",
+        "id": "Scenario-Outlines;deal-correctly-with-backslashes-in-the-examples",
+        "line": 69,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "I have backslashes in the value, for example a 'c:\\Temp\\'",
+            "line": 65,
+            "keyword": "When ",
+            "result": {
+              "status": "passed",
+              "duration": 192444
+            },
+            "match": {}
+          }
+        ]
+      }
+    ]
+  }
+]

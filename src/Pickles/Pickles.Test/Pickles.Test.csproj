@@ -104,6 +104,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FormattingAFeature.feature</DependentUpon>
     </Compile>
+    <Compile Include="DocumentationBuilders\Word\WordDescriptionFormatterTests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ObjectModel\Factory.cs" />
     <Compile Include="ObjectModel\Json\JsonScenarioTests.cs" />

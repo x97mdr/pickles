@@ -35,7 +35,12 @@ namespace PicklesDoc.Pickles
         /// <summary>
         /// xUnit 1 format.
         /// </summary>
-        xUnit,
+        XUnit,
+
+        /// <summary>
+        /// xUnit 1 format.
+        /// </summary>
+        XUnit1,
 
         /// <summary>
         /// Microsoft Test format.
@@ -60,6 +65,11 @@ namespace PicklesDoc.Pickles
         /// <summary>
         /// NUnit 3 format.
         /// </summary>
-        NUnit3
+        NUnit3,
+
+        /// <summary>
+        /// The format produced by VsTest console.
+        /// </summary>
+        VsTest
     }
 }

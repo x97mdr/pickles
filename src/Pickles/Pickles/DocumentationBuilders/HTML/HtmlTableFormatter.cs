@@ -39,10 +39,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         public XElement Format(Table table)
         {
-            return this.Format(table, null, false);
+            return this.Format(table, null);
         }
 
-        public XElement Format(Table table, ScenarioOutline scenarioOutline, bool includeResults)
+        public XElement Format(Table table, ScenarioOutline scenarioOutline)
         {
             if (table == null)
             {
@@ -51,10 +51,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
             var headerCells = table.HeaderRow.Cells.ToArray();
 
-            if (includeResults)
-            {
-                headerCells = headerCells.Concat(new[] { " " }).ToArray();
-            }
+            headerCells = headerCells.Concat(new[] { " " }).ToArray();
 
             return new XElement(
                 this.xmlns + "div",
@@ -70,10 +67,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                                 cell => new XElement(this.xmlns + "th", cell)))),
                     new XElement(
                         this.xmlns + "tbody",
-                        table.DataRows.Select(row => this.FormatRow(row, scenarioOutline, includeResults)))));
+                        table.DataRows.Select(row => this.FormatRow(row, scenarioOutline)))));
         }
 
-        private XElement FormatRow(TableRow row, ScenarioOutline scenarioOutline, bool includeResults)
+        private XElement FormatRow(TableRow row, ScenarioOutline scenarioOutline)
         {
             var formattedCells = row.Cells.Select(
                 cell =>
@@ -81,7 +78,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
                         this.xmlns + "td",
                         cell)).ToList();
 
-            if (includeResults && scenarioOutline != null)
+            if (scenarioOutline != null)
             {
                 formattedCells.Add(
                     new XElement(this.xmlns + "td", this.htmlImageResultFormatter.Format(scenarioOutline, row.Cells.ToArray())));

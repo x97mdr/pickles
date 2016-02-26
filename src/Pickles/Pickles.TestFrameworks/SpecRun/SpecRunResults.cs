@@ -19,27 +19,14 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.IO.Abstractions;
-
-using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 {
-    public class SpecRunResults : MultipleTestResults
+    public class SpecRunResults : MultipleTestRunsBase
     {
-        public SpecRunResults(IConfiguration configuration)
-            : base(false, configuration)
+        public SpecRunResults(IConfiguration configuration, SpecRunSingleResultLoader singleResultLoader, SpecRunScenarioOutlineExampleMatcher scenarioOutlineExampleMatcher)
+            : base(configuration, singleResultLoader, scenarioOutlineExampleMatcher)
         {
-        }
-
-        public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
-        {
-            throw new NotSupportedException();
-        }
-
-        protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
-        {
-            return new SpecRunSingleResults(fileInfo);
         }
     }
 }

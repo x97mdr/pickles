@@ -12,6 +12,27 @@ This project adheres to [Semantic Versioning](http://semver.org). We consider th
 
 This document is formatted according to the principles of [Keep A CHANGELOG](http://keepachangelog.com).
 
+## [Unreleased]
+
+## [2.4.0] - 2016-02-26
+
+### Added
+
+- Support for the test result format of VsTest.Console.exe ([#280](https://github.com/picklesdoc/pickles/issues/280)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
+
+### Changed
+
+- The MsTest test result provider is now able to give the result of individual examples in a scenario outline ([#285](https://github.com/picklesdoc/pickles/issues/285)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
+- The SpecFlow+ Runner (formerly SpecRun) test result provider is now able to give the result of individual examples in a scenario outline. See the [documentation](http://docs.picklesdoc.com/en/latest/IntegratingTestResultsFromSpecRun/) for an important caveat. ([#286](https://github.com/picklesdoc/pickles/issues/286)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
+- The Cucumber test result provider is now able to give the result of individual examples in a scenario outline ([#287](https://github.com/picklesdoc/pickles/issues/287)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
+- The GUI now uses a combobox to display the choice of test result formats ([#297](https://github.com/picklesdoc/pickles/issues/297)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
+
+
+### Fixed
+
+- Word document is corrupt if a Feature has no description ([#261](https://github.com/picklesdoc/pickles/issues/261)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
+- The Cucumber JSON test result provider should deal with background steps correctly  ([#293](https://github.com/picklesdoc/pickles/issues/293)) (by [@dirkrombauts](https://github.com/dirkrombauts) based on [an idea by MikeThomas64](https://github.com/picklesdoc/pickles/pull/251)).
+
 ## [2.3.0] - 2016-01-27
 
 ### Added

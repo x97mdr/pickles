@@ -50,33 +50,22 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.SpecRun
             Check.That(result).IsEqualTo(TestResult.Passed);
         }
 
-        private static MultipleTestResults CreateMultipleTestResults(ITestResults testResults1, ITestResults testResults2)
+        private static MultipleTestRunsBase CreateMultipleTestResults(SingleTestRunBase testResults1, SingleTestRunBase testResults2)
         {
             return new TestableMultipleTestResults(new[] { testResults1, testResults2 });
         }
 
-        private class TestableMultipleTestResults : MultipleTestResults
+        private class TestableMultipleTestResults : MultipleTestRunsBase
         {
-            public TestableMultipleTestResults(IEnumerable<ITestResults> testResults)
-                : base(false, testResults)
+            public TestableMultipleTestResults(IEnumerable<SingleTestRunBase> testResults)
+                : base(testResults)
             {
-            }
-
-            public override TestResult GetExampleResult(ScenarioOutline scenario, string[] exampleValues)
-            {
-                throw new NotSupportedException();
-            }
-
-            protected override ITestResults ConstructSingleTestResult(FileInfoBase fileInfo)
-            {
-                // not needed since we use the other constructor
-                throw new NotSupportedException();
             }
         }
 
-        private static Mock<ITestResults> SetupStubForGetFeatureResult(Feature feature, TestResult resultOfGetFeatureResult)
+        private static Mock<SingleTestRunBase> SetupStubForGetFeatureResult(Feature feature, TestResult resultOfGetFeatureResult)
         {
-            var testResults1 = new Mock<ITestResults>();
+            var testResults1 = new Mock<SingleTestRunBase>();
             testResults1.Setup(ti => ti.GetFeatureResult(feature)).Returns(resultOfGetFeatureResult);
             return testResults1;
         }
@@ -126,9 +115,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.SpecRun
             Check.That(result).IsEqualTo(TestResult.Passed);
         }
 
-        private static Mock<ITestResults> SetupStubForGetScenarioOutlineResult(TestResult resultOfGetFeatureResult)
+        private static Mock<SingleTestRunBase> SetupStubForGetScenarioOutlineResult(TestResult resultOfGetFeatureResult)
         {
-            var testResults1 = new Mock<ITestResults>();
+            var testResults1 = new Mock<SingleTestRunBase>();
             testResults1.Setup(ti => ti.GetScenarioOutlineResult(It.IsAny<ScenarioOutline>())).Returns(resultOfGetFeatureResult);
             return testResults1;
         }
@@ -178,9 +167,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.SpecRun
             Check.That(result).IsEqualTo(TestResult.Passed);
         }
 
-        private static Mock<ITestResults> SetupStubForGetScenarioResult(TestResult resultOfGetFeatureResult)
+        private static Mock<SingleTestRunBase> SetupStubForGetScenarioResult(TestResult resultOfGetFeatureResult)
         {
-            var testResults1 = new Mock<ITestResults>();
+            var testResults1 = new Mock<SingleTestRunBase>();
             testResults1.Setup(ti => ti.GetScenarioResult(It.IsAny<Scenario>())).Returns(resultOfGetFeatureResult);
             return testResults1;
         }

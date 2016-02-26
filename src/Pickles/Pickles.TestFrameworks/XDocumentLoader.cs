@@ -18,6 +18,7 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
+using System.IO;
 using System.IO.Abstractions;
 using System.Xml;
 using System.Xml.Linq;
@@ -31,9 +32,16 @@ namespace PicklesDoc.Pickles.TestFrameworks
             XDocument document;
             using (var stream = fileInfo.OpenRead())
             {
-                XmlReader xmlReader = XmlReader.Create(stream);
-                document = XDocument.Load(xmlReader);
+                document = this.Load(stream);
             }
+
+            return document;
+        }
+
+        public XDocument Load(Stream stream)
+        {
+            XmlReader xmlReader = XmlReader.Create(stream);
+            var document = XDocument.Load(xmlReader);
 
             return document;
         }
