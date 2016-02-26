@@ -180,6 +180,21 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
             Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
         }
 
+        public void ThenCanReadResultsWithParenthesis()
+        {
+            var results = ParseResultsFile();
+
+            var feature = new Feature { Name = "Scenario Outlines" };
+
+            var scenarioOutline = new ScenarioOutline { Name = "Deal correctly with parenthesis in the examples", Feature = feature };
+
+            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+            Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
+
+            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { @"This is a description (and more)" });
+            Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
+        }
+
         public void ThenCanReadResultOfScenarioWithFailingBackground()
         {
             var results = ParseResultsFile();

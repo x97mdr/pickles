@@ -99,7 +99,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 999000
+              "duration": 1000000
             }
           }
         ]
@@ -343,7 +343,7 @@
             "result": {
               "status": "failed",
               "error_message": "\nexpected: \"fail\"\n     got: \"this is a hacky way of making the scenario with a non-integer number\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/AdditionSteps.rb:11:in `/^I have entered (\\d+)\\.(\\d+) into the calculator$/'\nfeatures/Addition.feature:32:in `And I have entered 2.2 into the calculator'",
-              "duration": 11999000
+              "duration": 12991000
             }
           },
           {
@@ -777,7 +777,7 @@
             "result": {
               "status": "pending",
               "error_message": "TODO (Cucumber::Pending)\n./features/step_definitions/MinimalSteps.rb:6:in `/^inconclusive step$/'\nfeatures/Minimal Features/Failing.feature:7:in `Then inconclusive step'",
-              "duration": 0
+              "duration": 999000
             }
           }
         ]
@@ -1409,7 +1409,7 @@
             "result": {
               "status": "failed",
               "error_message": "\nexpected: \"false\"\n     got: \"true\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/ScenarioOutlineSteps.rb:10:in `/^the scenario will 'fail_(\\d+)'$/'\nfeatures/ScenarioOutlines.feature:59:in `Then the scenario will 'fail_1''\nfeatures/ScenarioOutlines.feature:45:in `Then the scenario will '<result>''",
-              "duration": 500000
+              "duration": 0
             }
           }
         ]
@@ -1451,6 +1451,28 @@
             "line": 69,
             "match": {
               "location": "features/step_definitions/ScenarioOutlineSteps.rb:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "scenario-outlines;deal-correctly-with-parenthesis-in-the-examples;;2",
+        "keyword": "Scenario Outline",
+        "name": "Deal correctly with parenthesis in the examples",
+        "description": "",
+        "line": 78,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "When ",
+            "name": "I have parenthesis in the value, for example a 'This is a description (and more)'",
+            "line": 78,
+            "match": {
+              "location": "features/step_definitions/ScenarioOutlineSteps.rb:17"
             },
             "result": {
               "status": "passed",

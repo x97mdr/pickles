@@ -35,7 +35,11 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit
 
             foreach (string value in row)
             {
-                stringBuilder.AppendFormat("(.*): \"{0}\", ", value.ToLowerInvariant().Replace(@"\", string.Empty).Replace(@"$", @"\$"));
+                stringBuilder.AppendFormat("(.*): \"{0}\", ", value.ToLowerInvariant()
+                    .Replace(@"\", string.Empty)
+                    .Replace(@"$", @"\$")
+                    .Replace(@"(", @"\(")
+                    .Replace(@")", @"\)"));
             }
 
             stringBuilder.Remove(stringBuilder.Length - 2, 2);
