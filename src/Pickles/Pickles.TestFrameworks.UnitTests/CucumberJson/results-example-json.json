@@ -343,7 +343,7 @@
             "result": {
               "status": "failed",
               "error_message": "\nexpected: \"fail\"\n     got: \"this is a hacky way of making the scenario with a non-integer number\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/AdditionSteps.rb:11:in `/^I have entered (\\d+)\\.(\\d+) into the calculator$/'\nfeatures/Addition.feature:32:in `And I have entered 2.2 into the calculator'",
-              "duration": 12991000
+              "duration": 15003000
             }
           },
           {
@@ -777,7 +777,7 @@
             "result": {
               "status": "pending",
               "error_message": "TODO (Cucumber::Pending)\n./features/step_definitions/MinimalSteps.rb:6:in `/^inconclusive step$/'\nfeatures/Minimal Features/Failing.feature:7:in `Then inconclusive step'",
-              "duration": 999000
+              "duration": 0
             }
           }
         ]
@@ -1162,7 +1162,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 0
+              "duration": 1011000
             }
           }
         ]
@@ -1229,7 +1229,7 @@
             "result": {
               "status": "pending",
               "error_message": "TODO (Cucumber::Pending)\n./features/step_definitions/ScenarioOutlineSteps.rb:6:in `/^the scenario will 'inconclusive_(\\d+)'$/'\nfeatures/ScenarioOutlines.feature:27:in `Then the scenario will 'inconclusive_1''\nfeatures/ScenarioOutlines.feature:21:in `Then the scenario will '<result>''",
-              "duration": 0
+              "duration": 994000
             }
           }
         ]
@@ -1340,7 +1340,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 0
+              "duration": 1000000
             }
           }
         ]
@@ -1469,7 +1469,7 @@
         "steps": [
           {
             "keyword": "When ",
-            "name": "I have parenthesis in the value, for example a 'This is a description (and more)'",
+            "name": "I have parenthesis in the value, for example an 'This is a description (and more)'",
             "line": 78,
             "match": {
               "location": "features/step_definitions/ScenarioOutlineSteps.rb:17"
