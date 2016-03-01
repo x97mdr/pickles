@@ -12,7 +12,11 @@ This project adheres to [Semantic Versioning](http://semver.org). We consider th
 
 This document is formatted according to the principles of [Keep A CHANGELOG](http://keepachangelog.com).
 
-## [Unreleased]
+## [2.4.1] - 2016-03-01
+
+### Fixed
+
+- Scenario Outline with parenthesis parses correctly and reports the correct result ([#299](https://github.com/picklesdoc/pickles/pull/299)) (by [@ocsurfnut](https://github.com/ocsurfnut))
 
 ## [2.4.0] - 2016-02-26
 
@@ -32,7 +36,7 @@ This document is formatted according to the principles of [Keep A CHANGELOG](htt
 
 - Word document is corrupt if a Feature has no description ([#261](https://github.com/picklesdoc/pickles/issues/261)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
 - The Cucumber JSON test result provider should deal with background steps correctly  ([#293](https://github.com/picklesdoc/pickles/issues/293)) (by [@dirkrombauts](https://github.com/dirkrombauts) based on [an idea by MikeThomas64](https://github.com/picklesdoc/pickles/pull/251)).
-- Scenario Outline with parenthesis parses correctly and reports the correct result ([PR#299](https://github.com/picklesdoc/pickles/pull/299)) (by [@ocsurfnut](https://github.com/ocsurfnut))
+
 
 ## [2.3.0] - 2016-01-27
 
