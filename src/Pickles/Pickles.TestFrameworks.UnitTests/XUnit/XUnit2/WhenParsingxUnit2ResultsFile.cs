@@ -77,6 +77,12 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit.XUnit2
         }
 
         [Test]
+        public new void ThenCanReadResultsWithParenthesis()
+        {
+            base.ThenCanReadResultsWithParenthesis();
+        }
+
+        [Test]
         public new void ThenCanReadNotFoundFeatureCorrectly()
         {
             base.ThenCanReadNotFoundFeatureCorrectly();

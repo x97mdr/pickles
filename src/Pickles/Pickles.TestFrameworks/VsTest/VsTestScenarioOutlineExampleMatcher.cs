@@ -31,7 +31,17 @@ namespace PicklesDoc.Pickles.TestFrameworks.VsTest
         {
             var element = (XElement)scenarioElement;
 
-            var isMatch = element.Name().ToUpperInvariant().EndsWith(exampleValues[0].Replace(":", "").Replace("\\", "").ToUpperInvariant());
+            var isMatch = element.Name().ToUpperInvariant()
+                .EndsWith(
+                    exampleValues[0]
+                        .Replace(" ", string.Empty)
+                        .Replace(":", string.Empty)
+                        .Replace("\\", string.Empty)
+                        .Replace("(", string.Empty)
+                        .Replace(")", string.Empty)
+                        .ToUpperInvariant()
+                );
+
             return isMatch;
         }
     }
