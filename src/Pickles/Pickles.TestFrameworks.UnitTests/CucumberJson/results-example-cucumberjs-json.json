@@ -5,7 +5,7 @@
     "description": "In order to avoid silly mistakes\r\nAs a math idiot\r\nI want to be told the sum of two numbers",
     "line": 1,
     "keyword": "Feature",
-    "uri": "C:/Dev/Code/GitHub/DirkRombauts/pickles-testresults/TestHarness/CucumberJS/features/Addition.feature",
+    "uri": "C:/src/pickles-testresults/TestHarness/CucumberJS/features/Addition.feature",
     "elements": [
       {
         "name": "",
@@ -41,7 +41,7 @@
             "keyword": "Given ",
             "result": {
               "status": "passed",
-              "duration": 993975
+              "duration": 699285
             },
             "match": {}
           },
@@ -51,7 +51,7 @@
             "keyword": "Given ",
             "result": {
               "status": "passed",
-              "duration": 549749
+              "duration": 367430
             },
             "match": {}
           },
@@ -61,7 +61,7 @@
             "keyword": "And ",
             "result": {
               "status": "passed",
-              "duration": 109052
+              "duration": 48668
             },
             "match": {}
           },
@@ -71,7 +71,7 @@
             "keyword": "And ",
             "result": {
               "status": "passed",
-              "duration": 79544
+              "duration": 48952
             },
             "match": {}
           },
@@ -81,7 +81,7 @@
             "keyword": "When ",
             "result": {
               "status": "passed",
-              "duration": 170955
+              "duration": 151412
             },
             "match": {}
           },
@@ -91,7 +91,7 @@
             "keyword": "Then ",
             "result": {
               "status": "passed",
-              "duration": 211368
+              "duration": 97906
             },
             "match": {}
           }
@@ -117,7 +117,7 @@
             "keyword": "Given ",
             "result": {
               "status": "passed",
-              "duration": 110656
+              "duration": 75706
             },
             "match": {}
           },
@@ -127,7 +127,7 @@
             "keyword": "Given ",
             "result": {
               "status": "passed",
-              "duration": 58054
+              "duration": 40414
             },
             "match": {}
           },
@@ -137,7 +137,7 @@
             "keyword": "And ",
             "result": {
               "status": "passed",
-              "duration": 82430
+              "duration": 37284
             },
             "match": {}
           },
@@ -147,7 +147,7 @@
             "keyword": "And ",
             "result": {
               "status": "passed",
-              "duration": 43942
+              "duration": 58060
             },
             "match": {}
           },
@@ -157,7 +157,7 @@
             "keyword": "When ",
             "result": {
               "status": "passed",
-              "duration": 104561
+              "duration": 198942
             },
             "match": {}
           },
@@ -167,7 +167,7 @@
             "keyword": "Then ",
             "result": {
               "status": "passed",
-              "duration": 51640
+              "duration": 48099
             },
             "match": {}
           }
@@ -193,7 +193,7 @@
             "keyword": "Given ",
             "result": {
               "status": "passed",
-              "duration": 123806
+              "duration": 53506
             },
             "match": {}
           },
@@ -203,7 +203,7 @@
             "keyword": "Given ",
             "result": {
               "status": "passed",
-              "duration": 87241
+              "duration": 40415
             },
             "match": {}
           },
@@ -213,7 +213,7 @@
             "keyword": "And ",
             "result": {
               "status": "passed",
-              "duration": 42979
+              "duration": 36999
             },
             "match": {}
           },
@@ -223,7 +223,7 @@
             "keyword": "When ",
             "result": {
               "status": "passed",
-              "duration": 92694
+              "duration": 39845
             },
             "match": {}
           },
@@ -233,7 +233,7 @@
             "keyword": "Then ",
             "result": {
               "status": "passed",
-              "duration": 46507
+              "duration": 37853
             },
             "match": {}
           }
@@ -259,7 +259,7 @@
             "keyword": "Given ",
             "result": {
               "status": "passed",
-              "duration": 136315
+              "duration": 48668
             },
             "match": {}
           },
@@ -269,7 +269,7 @@
             "keyword": "Given ",
             "result": {
               "status": "passed",
-              "duration": 151069
+              "duration": 36430
             },
             "match": {}
           },
@@ -316,7 +316,7 @@
             "keyword": "Given ",
             "result": {
               "status": "passed",
-              "duration": 219066
+              "duration": 76845
             },
             "match": {}
           },
@@ -357,7 +357,7 @@
     "description": "This feature has a failing background.",
     "line": 1,
     "keyword": "Feature",
-    "uri": "C:/Dev/Code/GitHub/DirkRombauts/pickles-testresults/TestHarness/CucumberJS/features/FailingBackground.feature",
+    "uri": "C:/src/pickles-testresults/TestHarness/CucumberJS/features/FailingBackground.feature",
     "elements": [
       {
         "name": "",
@@ -392,8 +392,8 @@
             "keyword": "Given ",
             "result": {
               "status": "failed",
-              "duration": 4917275,
-              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles-testresults\\TestHarness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:36:13)\n    at nextTickCallbackWith0Args (node.js:456:9)\n    at process._tickCallback (node.js:385:13)\n    at Function.Module.runMain (module.js:432:11)\n    at startup (node.js:141:18)\n    at node.js:1003:3"
+              "duration": 1630811,
+              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\src\\pickles-testresults\\TestHarness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:36:13)\n    at process._tickCallback (node.js:355:11)\n    at Function.Module.runMain (module.js:503:11)\n    at startup (node.js:129:16)\n    at node.js:814:3"
             },
             "match": {}
           },
@@ -458,8 +458,8 @@
             "keyword": "Given ",
             "result": {
               "status": "failed",
-              "duration": 744119,
-              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles-testresults\\TestHarness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:36:13)\n    at nextTickCallbackWith0Args (node.js:456:9)\n    at process._tickCallback (node.js:385:13)\n    at Function.Module.runMain (module.js:432:11)\n    at startup (node.js:141:18)\n    at node.js:1003:3"
+              "duration": 383654,
+              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\src\\pickles-testresults\\TestHarness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:36:13)\n    at process._tickCallback (node.js:355:11)\n    at Function.Module.runMain (module.js:503:11)\n    at startup (node.js:129:16)\n    at node.js:814:3"
             },
             "match": {}
           },
@@ -533,8 +533,8 @@
             "keyword": "Given ",
             "result": {
               "status": "failed",
-              "duration": 682215,
-              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles-testresults\\TestHarness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:36:13)\n    at nextTickCallbackWith0Args (node.js:456:9)\n    at process._tickCallback (node.js:385:13)\n    at Function.Module.runMain (module.js:432:11)\n    at startup (node.js:141:18)\n    at node.js:1003:3"
+              "duration": 346939,
+              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\src\\pickles-testresults\\TestHarness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:36:13)\n    at process._tickCallback (node.js:355:11)\n    at Function.Module.runMain (module.js:503:11)\n    at startup (node.js:129:16)\n    at node.js:814:3"
             },
             "match": {}
           },
@@ -602,7 +602,7 @@
     "description": "",
     "line": 1,
     "keyword": "Feature",
-    "uri": "C:/Dev/Code/GitHub/DirkRombauts/pickles-testresults/TestHarness/CucumberJS/features/Minimal Features/Failing.feature",
+    "uri": "C:/src/pickles-testresults/TestHarness/CucumberJS/features/Minimal Features/Failing.feature",
     "elements": [
       {
         "name": "Failing Feature Passing Scenario",
@@ -618,7 +618,7 @@
             "keyword": "Then ",
             "result": {
               "status": "passed",
-              "duration": 147861
+              "duration": 120390
             },
             "match": {}
           }
@@ -657,8 +657,8 @@
             "keyword": "Then ",
             "result": {
               "status": "failed",
-              "duration": 1813146,
-              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles-testresults\\TestHarness\\CucumberJS\\features\\stepdefinitions\\MinimalSteps.js:18:12)\n    at nextTickCallbackWith0Args (node.js:456:9)\n    at process._tickCallback (node.js:385:13)\n    at Function.Module.runMain (module.js:432:11)\n    at startup (node.js:141:18)\n    at node.js:1003:3"
+              "duration": 223418,
+              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\src\\pickles-testresults\\TestHarness\\CucumberJS\\features\\stepdefinitions\\MinimalSteps.js:18:12)\n    at process._tickCallback (node.js:355:11)\n    at Function.Module.runMain (module.js:503:11)\n    at startup (node.js:129:16)\n    at node.js:814:3"
             },
             "match": {}
           }
@@ -672,7 +672,7 @@
     "description": "",
     "line": 1,
     "keyword": "Feature",
-    "uri": "C:/Dev/Code/GitHub/DirkRombauts/pickles-testresults/TestHarness/CucumberJS/features/Minimal Features/Inconclusive.feature",
+    "uri": "C:/src/pickles-testresults/TestHarness/CucumberJS/features/Minimal Features/Inconclusive.feature",
     "elements": [
       {
         "name": "Inconclusive Feature Passing Scenario",
@@ -688,7 +688,7 @@
             "keyword": "Then ",
             "result": {
               "status": "passed",
-              "duration": 135993
+              "duration": 44114
             },
             "match": {}
           }
@@ -721,7 +721,7 @@
     "description": "",
     "line": 1,
     "keyword": "Feature",
-    "uri": "C:/Dev/Code/GitHub/DirkRombauts/pickles-testresults/TestHarness/CucumberJS/features/Minimal Features/Passing.feature",
+    "uri": "C:/src/pickles-testresults/TestHarness/CucumberJS/features/Minimal Features/Passing.feature",
     "elements": [
       {
         "name": "Passing Feature Passing Scenario",
@@ -737,7 +737,7 @@
             "keyword": "Then ",
             "result": {
               "status": "passed",
-              "duration": 215217
+              "duration": 60622
             },
             "match": {}
           }
@@ -751,7 +751,7 @@
     "description": "",
     "line": 1,
     "keyword": "Feature",
-    "uri": "C:/Dev/Code/GitHub/DirkRombauts/pickles-testresults/TestHarness/CucumberJS/features/NotAutomatedAtAll.feature",
+    "uri": "C:/src/pickles-testresults/TestHarness/CucumberJS/features/NotAutomatedAtAll.feature",
     "elements": [
       {
         "name": "",
@@ -913,7 +913,7 @@
     "description": "Here we demonstrate how we deal with scenario outlines",
     "line": 1,
     "keyword": "Feature",
-    "uri": "C:/Dev/Code/GitHub/DirkRombauts/pickles-testresults/TestHarness/CucumberJS/features/ScenarioOutlines.feature",
+    "uri": "C:/src/pickles-testresults/TestHarness/CucumberJS/features/ScenarioOutlines.feature",
     "elements": [
       {
         "name": "This is a scenario outline where all scenarios pass",
@@ -929,7 +929,7 @@
             "keyword": "Then ",
             "result": {
               "status": "passed",
-              "duration": 258838
+              "duration": 96482
             },
             "match": {}
           }
@@ -949,7 +949,7 @@
             "keyword": "Then ",
             "result": {
               "status": "passed",
-              "duration": 166785
+              "duration": 36145
             },
             "match": {}
           }
@@ -969,7 +969,7 @@
             "keyword": "Then ",
             "result": {
               "status": "passed",
-              "duration": 184105
+              "duration": 33583
             },
             "match": {}
           }
@@ -989,7 +989,7 @@
             "keyword": "Then ",
             "result": {
               "status": "passed",
-              "duration": 191482
+              "duration": 34437
             },
             "match": {}
           }
@@ -1009,7 +1009,7 @@
             "keyword": "Then ",
             "result": {
               "status": "passed",
-              "duration": 179935
+              "duration": 45538
             },
             "match": {}
           }
@@ -1048,7 +1048,7 @@
             "keyword": "Then ",
             "result": {
               "status": "passed",
-              "duration": 190520
+              "duration": 39845
             },
             "match": {}
           }
@@ -1068,7 +1068,7 @@
             "keyword": "Then ",
             "result": {
               "status": "passed",
-              "duration": 647255
+              "duration": 36430
             },
             "match": {}
           }
@@ -1088,8 +1088,8 @@
             "keyword": "Then ",
             "result": {
               "status": "failed",
-              "duration": 750213,
-              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles-testresults\\TestHarness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:18:12)\n    at nextTickCallbackWith0Args (node.js:456:9)\n    at process._tickCallback (node.js:385:13)\n    at Function.Module.runMain (module.js:432:11)\n    at startup (node.js:141:18)\n    at node.js:1003:3"
+              "duration": 287740,
+              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\src\\pickles-testresults\\TestHarness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:18:12)\n    at process._tickCallback (node.js:355:11)\n    at Function.Module.runMain (module.js:503:11)\n    at startup (node.js:129:16)\n    at node.js:814:3"
             },
             "match": {}
           }
@@ -1109,7 +1109,7 @@
             "keyword": "Then ",
             "result": {
               "status": "passed",
-              "duration": 126372
+              "duration": 37853
             },
             "match": {}
           }
@@ -1129,7 +1129,7 @@
             "keyword": "Then ",
             "result": {
               "status": "passed",
-              "duration": 128938
+              "duration": 36430
             },
             "match": {}
           }
@@ -1187,8 +1187,8 @@
             "keyword": "Then ",
             "result": {
               "status": "failed",
-              "duration": 444547,
-              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles-testresults\\TestHarness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:18:12)\n    at nextTickCallbackWith0Args (node.js:456:9)\n    at process._tickCallback (node.js:385:13)\n    at Function.Module.runMain (module.js:432:11)\n    at startup (node.js:141:18)\n    at node.js:1003:3"
+              "duration": 499489,
+              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\src\\pickles-testresults\\TestHarness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:18:12)\n    at process._tickCallback (node.js:355:11)\n    at Function.Module.runMain (module.js:503:11)\n    at startup (node.js:129:16)\n    at node.js:814:3"
             },
             "match": {}
           }
@@ -1208,8 +1208,8 @@
             "keyword": "Then ",
             "result": {
               "status": "failed",
-              "duration": 443264,
-              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles-testresults\\TestHarness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:18:12)\n    at nextTickCallbackWith0Args (node.js:456:9)\n    at process._tickCallback (node.js:385:13)\n    at Function.Module.runMain (module.js:432:11)\n    at startup (node.js:141:18)\n    at node.js:1003:3"
+              "duration": 353200,
+              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\src\\pickles-testresults\\TestHarness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:18:12)\n    at process._tickCallback (node.js:355:11)\n    at Function.Module.runMain (module.js:503:11)\n    at startup (node.js:129:16)\n    at node.js:814:3"
             },
             "match": {}
           }
@@ -1229,7 +1229,27 @@
             "keyword": "When ",
             "result": {
               "status": "passed",
-              "duration": 192444
+              "duration": 142020
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Deal correctly with parenthesis in the examples",
+        "id": "Scenario-Outlines;deal-correctly-with-parenthesis-in-the-examples",
+        "line": 78,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "I have parenthesis in the value, for example an 'This is a description (and more)'",
+            "line": 74,
+            "keyword": "When ",
+            "result": {
+              "status": "passed",
+              "duration": 78837
             },
             "match": {}
           }

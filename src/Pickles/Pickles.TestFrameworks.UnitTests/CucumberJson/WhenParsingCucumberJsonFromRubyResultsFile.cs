@@ -107,6 +107,12 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.CucumberJson
         }
 
         [Test]
+        public new void ThenCanReadResultsWithParenthesis()
+        {
+            base.ThenCanReadResultsWithParenthesis();
+        }
+
+        [Test]
         public new void ThenCanReadResultOfScenarioWithFailingBackground()
         {
             base.ThenCanReadResultOfScenarioWithFailingBackground();

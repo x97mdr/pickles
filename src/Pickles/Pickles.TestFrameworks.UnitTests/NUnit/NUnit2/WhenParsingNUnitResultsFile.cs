@@ -107,6 +107,12 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
         }
 
         [Test]
+        public new void ThenCanReadResultsWithParenthesis()
+        {
+            base.ThenCanReadResultsWithParenthesis();
+        }
+
+        [Test]
         public new void ThenCanReadResultOfScenarioWithFailingBackground()
         {
             base.ThenCanReadResultOfScenarioWithFailingBackground();
