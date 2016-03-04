@@ -37,7 +37,6 @@ using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2;
 using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3;
 using PicklesDoc.Pickles.TestFrameworks.SpecRun;
 using PicklesDoc.Pickles.TestFrameworks.VsTest;
-using PicklesDoc.Pickles.TestFrameworks.XUnit;
 using PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1;
 using PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2;
 
