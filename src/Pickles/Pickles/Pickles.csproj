@@ -51,6 +51,10 @@
       <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FeatureSwitcher, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FeatureSwitcher.1.1.0\lib\4.0\FeatureSwitcher.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Gherkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=86496cfa5b4a5851, processorArchitecture=MSIL">
       <HintPath>..\packages\Gherkin.3.2.0\lib\net45\Gherkin.dll</HintPath>
       <Private>True</Private>
