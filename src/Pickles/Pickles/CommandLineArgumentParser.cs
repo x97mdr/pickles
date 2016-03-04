@@ -38,6 +38,7 @@ namespace PicklesDoc.Pickles
         public const string HelpLanguageFeatureFiles = "the language of the feature files";
         public const string HelpDocumentationFormat = "the format of the output documentation";
         public const string HelpTestResultsFormat = "the format of the linked test results (nunit|xunit)";
+        public const string HelpIncludeExperimentalFeatures = "whether to include experimental features";
 
         public const string HelpTestResultsFile =
             "the path to the linked test results file (can be a semicolon-separated list of files)";
@@ -54,6 +55,7 @@ namespace PicklesDoc.Pickles
         private string testResultsFile;
         private string testResultsFormat;
         private bool versionRequested;
+        private bool includeExperimentalFeatures;
 
         public CommandLineArgumentParser(IFileSystem fileSystem)
         {
@@ -69,7 +71,8 @@ namespace PicklesDoc.Pickles
                 { "l|language=", HelpLanguageFeatureFiles, v => this.language = v },
                 { "df|documentation-format=", HelpDocumentationFormat, v => this.documentationFormat = v },
                 { "v|version", v => this.versionRequested = v != null },
-                { "h|?|help", v => this.helpRequested = v != null }
+                { "h|?|help", v => this.helpRequested = v != null },
+                { "exp|include-experimental-features", HelpIncludeExperimentalFeatures, v => includeExperimentalFeatures = v != null }
             };
         }
 
@@ -136,6 +139,12 @@ namespace PicklesDoc.Pickles
                 configuration.DocumentationFormat =
                     (DocumentationFormat)Enum.Parse(typeof(DocumentationFormat), this.documentationFormat, true);
             }
+
+            if (this.includeExperimentalFeatures)
+            {
+                configuration.EnableExperimentalFeatures();
+            }
+
 
             return true;
         }
