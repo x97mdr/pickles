@@ -65,6 +65,14 @@ namespace PicklesDoc.Pickles.Test
             get { return (MockFileSystem)this.Container.Resolve<IFileSystem>(); }
         }
 
+        protected IConfiguration Configuration
+        {
+            get
+            {
+                return this.Container.Resolve<IConfiguration>();
+            }
+        }
+
         [TearDown]
         public void TearDown()
         {
