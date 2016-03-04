@@ -198,6 +198,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Runner.cs" />
+    <Compile Include="StrikeMarkdownProvider.cs" />
     <Compile Include="TestFrameworks\NullTestResults.cs" />
   </ItemGroup>
   <ItemGroup>
