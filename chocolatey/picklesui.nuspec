@@ -57,6 +57,7 @@ Optionally, *Pickles* can **integrate test results**, so that your stakeholders 
         <file src="PicklesDoc.Pickles.ObjectModel.dll" target="tools" />
         <file src="PicklesDoc.Pickles.TestFrameworks.dll" target="tools" />
         <file src="System.IO.Abstractions.dll" target="tools" />
+        <file src="FeatureSwitcher.dll" target="tools" />
         <file src="System.Windows.Interactivity.dll" target="tools" />
         <file src="picklesui.exe" target="tools" />
         <file src="picklesui.exe.gui" target="tools" />
