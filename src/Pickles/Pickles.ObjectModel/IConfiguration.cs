@@ -45,6 +45,8 @@ namespace PicklesDoc.Pickles
 
         string SystemUnderTestVersion { get; set; }
 
+        bool ShouldIncludeExperimentalFeatures { get; }
+
         void AddTestResultFile(FileInfoBase fileInfoBase);
 
         void AddTestResultFiles(IEnumerable<FileInfoBase> fileInfoBases);

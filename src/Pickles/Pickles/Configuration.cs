@@ -71,13 +71,17 @@ namespace PicklesDoc.Pickles
 
         public void EnableExperimentalFeatures()
         {
+            this.ShouldIncludeExperimentalFeatures = true;
             Features.Are.AlwaysEnabled();
         }
 
         public void DisableExperimentalFeatures()
         {
+            this.ShouldIncludeExperimentalFeatures = false;
             Features.Are.AlwaysDisabled();
         }
+
+        public bool ShouldIncludeExperimentalFeatures { get; private set; }
 
         public void AddTestResultFile(FileInfoBase fileInfoBase)
         {
