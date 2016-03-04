@@ -46,6 +46,7 @@
       <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
     <Grid.ColumnDefinitions>
@@ -108,9 +109,10 @@
     <ComboBox ItemsSource="{Binding LanguageValues}" Grid.Column="1" SelectedItem="{Binding SelectedLanguage}" Grid.Row="9"  Grid.ColumnSpan="2" DisplayMemberPath="NativeName" VerticalAlignment="Top"/>
         <CheckBox Template="{StaticResource ResourceKey=myCheckBox}" Grid.Column="3" Grid.Row="9" IsChecked="{Binding Path=IsLanguageValid}" IsEnabled="False" VerticalAlignment="Top"/>
 
+        <mahapps:ToggleSwitch Header="Include Experimental Features" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2" IsChecked="{Binding Path=IncludeExperimentalFeatures, Mode=TwoWay}" Margin="0,0,0,5" />
 
 
-    <Button Command="{Binding GeneratePickles}" Content="Generate" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" Padding="15" Grid.ColumnSpan="2" Margin="0,20" />
-        <nlogViewer:NlogViewer x:Name="logCtrl" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="11" LevelWidth="auto" ExceptionWidth="auto" MessageWidth="auto" />
+        <Button Command="{Binding GeneratePickles}" Content="Generate" Grid.Row="11" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" Padding="15" Grid.ColumnSpan="2" Margin="0,20" />
+        <nlogViewer:NlogViewer x:Name="logCtrl" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="12" LevelWidth="auto" ExceptionWidth="auto" MessageWidth="auto" />
   </Grid>
 </mahapps:MetroWindow>

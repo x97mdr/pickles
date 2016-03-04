@@ -109,6 +109,8 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
 
         private TestResultsFormat selectedTestResultsFormat;
 
+        private bool includeExperimentalFeatures;
+
         public MainViewModel(IMainModelSerializer mainModelSerializer, IFileSystem fileSystem)
         {
             this.documentationFormats =
@@ -291,6 +293,12 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
             set { this.Set(() => this.CreateDirectoryForEachOutputFormat, ref this.createDirectoryForEachOutputFormat, value); }
         }
 
+        public bool IncludeExperimentalFeatures
+        {
+            get { return this.includeExperimentalFeatures; }
+            set { this.Set(nameof(this.IncludeExperimentalFeatures), ref this.includeExperimentalFeatures, value); }
+        }
+
         public void SaveToSettings()
         {
             MainModel mainModel = new MainModel
@@ -305,7 +313,8 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
                 SelectedLanguageLcid = this.selectedLanguage.LCID,
                 DocumentationFormats =
                     this.documentationFormats.Where(item => item.IsSelected).Select(item => item.Item).ToArray(),
-                CreateDirectoryForEachOutputFormat = this.createDirectoryForEachOutputFormat
+                CreateDirectoryForEachOutputFormat = this.createDirectoryForEachOutputFormat,
+                IncludeExperimentalFeatures = this.includeExperimentalFeatures
             };
 
             this.mainModelSerializer.Write(mainModel);
@@ -339,6 +348,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
             }
 
             this.CreateDirectoryForEachOutputFormat = mainModel.CreateDirectoryForEachOutputFormat;
+            this.IncludeExperimentalFeatures = mainModel.IncludeExperimentalFeatures;
         }
 
         private void DocumentationFormatsOnCollectionChanged(object sender, EventArgs notifyCollectionChangedEventArgs)
@@ -495,6 +505,16 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
                     : CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
 
                 configuration.DocumentationFormat = documentationFormat;
+
+                if (this.includeExperimentalFeatures)
+                {
+                    configuration.EnableExperimentalFeatures();
+                }
+                else
+                {
+                    configuration.DisableExperimentalFeatures();
+                }
+
                 var runner = container.Resolve<Runner>();
                 runner.Run(container);
             }
