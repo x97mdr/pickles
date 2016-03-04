@@ -48,5 +48,9 @@ namespace PicklesDoc.Pickles
         void AddTestResultFile(FileInfoBase fileInfoBase);
 
         void AddTestResultFiles(IEnumerable<FileInfoBase> fileInfoBases);
+
+        void EnableExperimentalFeatures();
+
+        void DisableExperimentalFeatures();
     }
 }

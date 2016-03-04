@@ -76,6 +76,8 @@ namespace PicklesDoc.Pickles.Test
         [TearDown]
         public void TearDown()
         {
+            this.Configuration.DisableExperimentalFeatures();
+
             this.container?.Dispose();
 
             this.container = null;

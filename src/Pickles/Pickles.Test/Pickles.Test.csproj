@@ -172,6 +172,7 @@
     <Compile Include="WhenParsingFeatureFiles.cs" />
     <Compile Include="WhenParsingLocalizedFeatureFiles.cs" />
     <Compile Include="WhenResolvingADocumentationBuilder.cs" />
+    <Compile Include="WhenResolvingAMarkdownProvider.cs" />
     <Compile Include="WhenWorkingWithHtmlResources.cs" />
   </ItemGroup>
   <ItemGroup>
