@@ -27,6 +27,16 @@ Try
                         -SystemUnderTestVersion $SystemUnderTestVersion  `
                         -TestResultsFormat $TestResultsFormat  `
                         -TestResultsFile $TestResultsFile
+
+        # Call pickles with experimental features
+        Pickle-Features -FeatureDirectory $FeatureDirectory  `
+                        -OutputDirectory $OutputDirectory  `
+                        -DocumentationFormat $DocumentationFormat `
+                        -SystemUnderTestName $SystemUnderTestName  `
+                        -SystemUnderTestVersion $SystemUnderTestVersion  `
+                        -TestResultsFormat $TestResultsFormat  `
+                        -TestResultsFile $TestResultsFile `
+                        -IncludeExperimentalFeatures
     }
 
     exit 0
