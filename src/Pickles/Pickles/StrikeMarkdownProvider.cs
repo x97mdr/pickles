@@ -17,13 +17,25 @@
 //  limitations under the License.
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
+using Strike.Jint;
+
 namespace PicklesDoc.Pickles
 {
     public class StrikeMarkdownProvider : IMarkdownProvider
     {
+        private readonly Markdownify markdownify;
+
+        public StrikeMarkdownProvider()
+        {
+            this.markdownify = new Markdownify();
+        }
+
         public string Transform(string text)
         {
-            throw new System.NotImplementedException();
+            return this.markdownify.Transform(text);
         }
     }
 }
