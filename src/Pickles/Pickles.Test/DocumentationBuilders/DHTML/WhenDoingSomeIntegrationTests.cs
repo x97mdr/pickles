@@ -32,7 +32,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.DHTML
         {
             var conf = new Configuration();
             conf.OutputFolder = FileSystem.DirectoryInfo.FromDirectoryName(@"d:\output");
-            var resourceWriter = new DhtmlResourceWriter(FileSystem);
+            var resourceWriter = new DhtmlResourceWriter(FileSystem, conf);
             resourceWriter.WriteTo(conf.OutputFolder.FullName);
         }
 
