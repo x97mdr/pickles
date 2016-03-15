@@ -59,6 +59,9 @@
       <HintPath>..\packages\Gherkin.3.2.0\lib\net45\Gherkin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Jint">
+      <HintPath>..\packages.nonnuget\Strike.Jint\Jint.dll</HintPath>
+    </Reference>
     <Reference Include="MarkdownDeep, Version=1.5.4615.26275, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MarkdownDeep.NET.1.5\lib\.NetFramework 3.5\MarkdownDeep.dll</HintPath>
@@ -78,6 +81,9 @@
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Strike.Jint">
+      <HintPath>..\packages.nonnuget\Strike.Jint\Strike.Jint.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
