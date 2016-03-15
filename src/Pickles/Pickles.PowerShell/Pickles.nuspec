@@ -53,6 +53,8 @@
     <file src="PicklesDoc.Pickles.PowerShell.dll" target="tools" />
     <file src="System.IO.Abstractions.dll" target="tools" />
     <file src="FeatureSwitcher.dll" target="tools" />
+    <file src="Strike.Jint.dll" target="tools" />
+    <file src="Jint.dll" target="tools" />
     <file src="init.ps1" target="tools\init.ps1" />
   </files>
 </package>
