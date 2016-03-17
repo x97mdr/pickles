@@ -81,8 +81,29 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
 #line 11
     testRunner.Then("the result should be", "<div id=\"feature\">\r\n  <h1>a feature</h1>\r\n  <div class=\"description\">\r\n    <p>Inc" +
-                    "luding a picture: <img src=\"./image.png\" /></p>\r\n  </div>\r\n  <ul id=\"scenarios\" " +
-                    "/>\r\n</div>", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                    "luding a picture: <img src=\"./image.png\" alt=\"\" /></p>\r\n  </div>\r\n  <ul id=\"scen" +
+                    "arios\" />\r\n</div>", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Description with image with extra attributes should render correctly")]
+        public virtual void DescriptionWithImageWithExtraAttributesShouldRenderCorrectly()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Description with image with extra attributes should render correctly", ((string[])(null)));
+#line 22
+       this.ScenarioSetup(scenarioInfo);
+#line hidden
+#line 24
+  testRunner.Given("I have this feature description", "Including a picture: ![alt text](./image.png \"Image Title\")", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 28
+    testRunner.When("I generate the documentation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 29
+    testRunner.Then("the result should be", "<div id=\"feature\">\r\n  <h1>a feature</h1>\r\n  <div class=\"description\">\r\n    <p>Inc" +
+                    "luding a picture: <img src=\"./image.png\" alt=\"alt text\" title=\"Image Title\" /></" +
+                    "p>\r\n  </div>\r\n  <ul id=\"scenarios\" />\r\n</div>", ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
