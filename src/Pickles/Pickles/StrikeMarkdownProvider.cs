@@ -20,6 +20,7 @@
 
 using System;
 
+using Strike;
 using Strike.Jint;
 
 namespace PicklesDoc.Pickles
@@ -30,7 +31,9 @@ namespace PicklesDoc.Pickles
 
         public StrikeMarkdownProvider()
         {
-            this.markdownify = new Markdownify();
+            this.markdownify = new Markdownify(
+                new Options { Xhtml = true },
+                new RenderMethods());
         }
 
         public string Transform(string text)
