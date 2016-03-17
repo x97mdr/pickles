@@ -55,5 +55,8 @@ namespace PicklesDoc.Pickles.UserInterface.Settings
 
         [DataMember(Name = "createDirectoryForEachOutputFormat", IsRequired = false)]
         public bool CreateDirectoryForEachOutputFormat { get; set; }
+
+        [DataMember(Name = "includeExperimentalFeatures", IsRequired = false)]
+        public bool IncludeExperimentalFeatures { get; set; }
     }
 }

@@ -35,6 +35,9 @@ Target "CreatePackageCommandLine" (fun _ ->
         cmdDir + "PicklesDoc.Pickles.ObjectModel.dll";
         cmdDir + "PicklesDoc.Pickles.TestFrameworks.dll";
         cmdDir + "System.IO.Abstractions.dll";
+        cmdDir + "FeatureSwitcher.dll";
+        cmdDir + "Strike.Jint.dll";
+        cmdDir + "Jint.dll";
         cmdDir + "pickles.exe";
         cmdDir + "NLog.config" ]
 
@@ -64,6 +67,9 @@ Target "CreatePackageMsBuild" (fun _ ->
         msBuildDir + "PicklesDoc.Pickles.ObjectModel.dll";
         msBuildDir + "PicklesDoc.Pickles.TestFrameworks.dll";
         msBuildDir + "System.IO.Abstractions.dll";
+        msBuildDir + "FeatureSwitcher.dll";
+        msBuildDir + "Strike.Jint.dll";
+        msBuildDir + "Jint.dll";
         msBuildDir + "PicklesDoc.Pickles.MSBuild.Tasks.dll";
         msBuildDir + "build/Pickles.MSBuild.targets";]
 
@@ -94,6 +100,9 @@ Target "CreatePackagePowerShell" (fun _ ->
         powerShellDir + "PicklesDoc.Pickles.TestFrameworks.dll";
         powerShellDir + "PicklesDoc.Pickles.PowerShell.dll";
         powerShellDir + "System.IO.Abstractions.dll";
+        powerShellDir + "FeatureSwitcher.dll";
+        powerShellDir + "Strike.Jint.dll";
+        powerShellDir + "Jint.dll";
         "src/Pickles/Pickles.PowerShell/init.ps1"  ]
 
     NuGet (fun p ->

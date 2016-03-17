@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="IConfiguration.cs" company="PicklesDoc">
+//  <copyright file="StrikeMarkdownProvider.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -18,41 +18,27 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.IO.Abstractions;
+using System;
+
+using Strike;
+using Strike.Jint;
 
 namespace PicklesDoc.Pickles
 {
-    public interface IConfiguration
+    public class StrikeMarkdownProvider : IMarkdownProvider
     {
-        DirectoryInfoBase FeatureFolder { get; set; }
+        private readonly Markdownify markdownify;
 
-        DirectoryInfoBase OutputFolder { get; set; }
+        public StrikeMarkdownProvider()
+        {
+            this.markdownify = new Markdownify(
+                new Options { Xhtml = true },
+                new RenderMethods());
+        }
 
-        DocumentationFormat DocumentationFormat { get; set; }
-
-        string Language { get; set; }
-
-        TestResultsFormat TestResultsFormat { get; set; }
-
-        bool HasTestResults { get; }
-
-        FileInfoBase TestResultsFile { get; }
-
-        IEnumerable<FileInfoBase> TestResultsFiles { get; }
-
-        string SystemUnderTestName { get; set; }
-
-        string SystemUnderTestVersion { get; set; }
-
-        bool ShouldIncludeExperimentalFeatures { get; }
-
-        void AddTestResultFile(FileInfoBase fileInfoBase);
-
-        void AddTestResultFiles(IEnumerable<FileInfoBase> fileInfoBases);
-
-        void EnableExperimentalFeatures();
-
-        void DisableExperimentalFeatures();
+        public string Transform(string text)
+        {
+            return this.markdownify.Transform(text);
+        }
     }
 }

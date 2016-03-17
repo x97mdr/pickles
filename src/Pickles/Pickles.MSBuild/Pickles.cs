@@ -47,6 +47,8 @@ namespace PicklesDoc.Pickles.MSBuild
 
         public string DocumentationFormat { get; set; }
 
+        public string IncludeExperimentalFeatures { get; set; }
+
         public override bool Execute()
         {
             try
@@ -108,6 +110,16 @@ namespace PicklesDoc.Pickles.MSBuild
             if (!string.IsNullOrEmpty(this.DocumentationFormat))
             {
                 configuration.DocumentationFormat = (DocumentationFormat)Enum.Parse(typeof(DocumentationFormat), this.DocumentationFormat, true);
+            }
+
+            bool shouldEnableExperimentalFeatures;
+
+            if (bool.TryParse(this.IncludeExperimentalFeatures, out shouldEnableExperimentalFeatures))
+            {
+                if (shouldEnableExperimentalFeatures)
+                {
+                    configuration.EnableExperimentalFeatures();
+                }
             }
         }
     }

@@ -33,6 +33,9 @@ Target "CreatePackage CMD" (fun _ ->
         cmdDir + "PicklesDoc.Pickles.ObjectModel.dll";
         cmdDir + "PicklesDoc.Pickles.TestFrameworks.dll";
         cmdDir + "System.IO.Abstractions.dll";
+        cmdDir + "FeatureSwitcher.dll";
+        cmdDir + "Strike.Jint.dll";
+        cmdDir + "Jint.dll";
         cmdDir + "pickles.exe";
         cmdDir + "NLog.config" ]
 
@@ -70,6 +73,9 @@ Target "CreatePackage GUI" (fun _ ->
         guiDir + "PicklesDoc.Pickles.ObjectModel.dll";
         guiDir + "PicklesDoc.Pickles.TestFrameworks.dll";
         guiDir + "System.IO.Abstractions.dll";
+        guiDir + "FeatureSwitcher.dll";
+        guiDir + "Strike.Jint.dll";
+        guiDir + "Jint.dll";
         guiDir + "System.Windows.Interactivity.dll";
         guiDir + "picklesui.exe";
         guiDir + "NLog.config";

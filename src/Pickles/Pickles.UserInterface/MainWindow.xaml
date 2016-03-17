@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                      xmlns:mahapps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                      xmlns:nlogViewer="clr-namespace:NlogViewer;assembly=NlogViewer"
-                     Title="Pickles" Height="600" Width="800" Loaded="MetroWindow_Loaded" Closed="MetroWindow_Closed"  DataContextChanged="MainWindow_OnDataContextChanged"
+                     Title="Pickles" Height="700" Width="800" Loaded="MetroWindow_Loaded" Closed="MetroWindow_Closed"  DataContextChanged="MainWindow_OnDataContextChanged"
                      DataContext="{Binding Main, Source={StaticResource Locator}}"
                      Icon="Pickles.ico">
   <Window.TaskbarItemInfo>
@@ -39,6 +39,7 @@
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
@@ -101,16 +102,17 @@
         <CheckBox Template="{StaticResource ResourceKey=myCheckBox}" Grid.Column="3" Grid.Row="7" IsChecked="{Binding Path=IsTestResultsFileValid}" Visibility="{Binding Path=IncludeTests, Converter={StaticResource ResourceKey=booleanToVisibilityConverter}}" IsEnabled="False" />
 
     <Label Content="Test Results Format" Grid.Column="0"  Grid.Row="8" VerticalAlignment="Top"/>
-        <ComboBox ItemsSource="{Binding TestResultsFormatValues}" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2" IsEnabled="{Binding Path=IncludeTests}" SelectedItem="{Binding SelectedTestResultsFormat}"></ComboBox>
+        <ComboBox ItemsSource="{Binding TestResultsFormatValues}" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2" IsEnabled="{Binding Path=IncludeTests}" SelectedItem="{Binding SelectedTestResultsFormat}" VerticalAlignment="Top"></ComboBox>
         <CheckBox Template="{StaticResource ResourceKey=myCheckBox}" Grid.Column="3" Grid.Row="8" IsChecked="{Binding Path=IsTestResultsFormatValid}" Visibility="{Binding Path=IncludeTests, Converter={StaticResource ResourceKey=booleanToVisibilityConverter}}" IsEnabled="False" />
 
     <Label Content="Gherkin Language" Grid.Column="0" Grid.Row="9" VerticalAlignment="Top" />
     <ComboBox ItemsSource="{Binding LanguageValues}" Grid.Column="1" SelectedItem="{Binding SelectedLanguage}" Grid.Row="9"  Grid.ColumnSpan="2" DisplayMemberPath="NativeName" VerticalAlignment="Top"/>
         <CheckBox Template="{StaticResource ResourceKey=myCheckBox}" Grid.Column="3" Grid.Row="9" IsChecked="{Binding Path=IsLanguageValid}" IsEnabled="False" VerticalAlignment="Top"/>
 
+        <mahapps:ToggleSwitch Header="Include Experimental Features" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2" IsChecked="{Binding Path=IncludeExperimentalFeatures, Mode=TwoWay}" Margin="0,0,0,5" />
 
 
-    <Button Command="{Binding GeneratePickles}" Content="Generate" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" Padding="15" Grid.ColumnSpan="2" Margin="0,20" />
-        <nlogViewer:NlogViewer x:Name="logCtrl" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="11" LevelWidth="auto" ExceptionWidth="auto" MessageWidth="auto" />
+        <Button Command="{Binding GeneratePickles}" Content="Generate" Grid.Row="11" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" Padding="15" Grid.ColumnSpan="2" Margin="0,20" />
+        <nlogViewer:NlogViewer x:Name="logCtrl" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="12" LevelWidth="auto" ExceptionWidth="auto" MessageWidth="auto" />
   </Grid>
 </mahapps:MetroWindow>

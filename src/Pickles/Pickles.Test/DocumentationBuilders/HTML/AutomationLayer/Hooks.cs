@@ -19,6 +19,7 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Linq;
 using Autofac;
 using TechTalk.SpecFlow;
 
@@ -34,6 +35,12 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML.AutomationLayer
             builder.RegisterAssemblyTypes(typeof(Runner).Assembly);
             builder.RegisterModule<PicklesModule>();
             CurrentScenarioContext.Container = builder.Build();
+
+            if (ScenarioContext.Current.ScenarioInfo.Tags.Contains("enableExperimentalFeatures"))
+            {
+                var configuration = CurrentScenarioContext.Container.Resolve<IConfiguration>();
+                configuration.EnableExperimentalFeatures();
+            }
         }
 
         [AfterScenario]

@@ -23,6 +23,8 @@ using System.Collections.Generic;
 using System.IO.Abstractions;
 using System.Reflection;
 
+using FeatureSwitcher.Configuration;
+
 using NLog;
 
 namespace PicklesDoc.Pickles
@@ -66,6 +68,20 @@ namespace PicklesDoc.Pickles
         public string SystemUnderTestName { get; set; }
 
         public string SystemUnderTestVersion { get; set; }
+
+        public void EnableExperimentalFeatures()
+        {
+            this.ShouldIncludeExperimentalFeatures = true;
+            Features.Are.AlwaysEnabled();
+        }
+
+        public void DisableExperimentalFeatures()
+        {
+            this.ShouldIncludeExperimentalFeatures = false;
+            Features.Are.AlwaysDisabled();
+        }
+
+        public bool ShouldIncludeExperimentalFeatures { get; private set; }
 
         public void AddTestResultFile(FileInfoBase fileInfoBase)
         {
