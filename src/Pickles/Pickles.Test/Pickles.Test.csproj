@@ -103,6 +103,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="DocumentationBuilders\HTML\StrikeMarkdownProviderTests.cs" />
     <Compile Include="DocumentationBuilders\JSON\AutomationLayer\StepDefinitions.cs" />
     <Compile Include="DocumentationBuilders\JSON\FormattingAFeature.feature.cs">
       <AutoGen>True</AutoGen>
