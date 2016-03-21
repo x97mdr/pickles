@@ -27,14 +27,32 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
 {
     public class DhtmlResourceWriter : ResourceWriter
     {
-        public DhtmlResourceWriter(IFileSystem fileSystem)
+        private readonly IConfiguration configuration;
+
+        public DhtmlResourceWriter(IFileSystem fileSystem, IConfiguration configuration)
             : base(fileSystem, "PicklesDoc.Pickles.Resources.Dhtml.")
         {
+            this.configuration = configuration;
         }
 
         public void WriteTo(string folder)
         {
-            this.WriteTextFile(folder, "Index.html");
+            if (this.configuration.ShouldIncludeExperimentalFeatures)
+            {
+                string mathScript = @"    <script type=""text/x-mathjax-config"">
+        MathJax.Hub.Config({ tex2jax: { inlineMath: [['$', '$'], ['\\(','\\)']]}
+});
+    </script>
+    <script type=""text/javascript"" src=""https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"">
+    </script>
+";
+
+                this.WriteTextFile(folder, "Index.html", "#### EMBED EXPERIMENTALS ####", mathScript);
+            }
+            else
+            {
+                this.WriteTextFile(folder, "Index.html", "#### EMBED EXPERIMENTALS ####", "");
+            }
             this.WriteTextFile(folder, "pickledFeatures.js");
 
             string cssFolder = this.FileSystem.Path.Combine(folder, "css");
@@ -65,6 +83,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
             this.WriteScript(scriptsFolder, "stringFormatting.js");
             this.WriteScript(scriptsFolder, "typeaheadList.js");
             this.WriteScript(scriptsFolder, "underscore-min.js");
+            this.WriteScript(scriptsFolder, "Chart.min.js");
+            this.WriteScript(scriptsFolder, "Chart.StackedBar.js");
+            this.WriteScript(scriptsFolder, "picklesOverview.js");
         }
 
         private void EnsureFolder(string cssFolder)

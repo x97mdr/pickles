@@ -30,11 +30,15 @@ obj/
 [Dd]ebug*/
 [Rr]elease*/
 Ankh.NoLoad
+.vscode/
 
 #MonoDevelop files
 *.userprefs
 *.pidb
 *~
+
+#Webstorm files
+.idea/
 
 #Tooling
 _ReSharper*/
@@ -82,3 +86,4 @@ packages/Chocolatey/
 # Fody
 !src/Pickles/packages/Fody*/build/*
 src/Pickles/.vs/config/applicationhost.config
+src/Pickles/Pickles/PortabilityAnalysis.html

@@ -34,7 +34,7 @@ namespace PicklesDoc.Pickles.Test
         [Test]
         public void ThenCanResolveIDocumentationBuilderAsHtmlDocumentationBuilderAsSingletonIfTheUserSelectsHtmlOutput()
         {
-            var configuration = Container.Resolve<IConfiguration>();
+            var configuration = this.Configuration;
             configuration.DocumentationFormat = DocumentationFormat.Html;
 
             var item1 = Container.Resolve<IDocumentationBuilder>();
@@ -50,7 +50,7 @@ namespace PicklesDoc.Pickles.Test
         [Test]
         public void ThenCanResolveIDocumentationBuilderAsWordDocumentationBuilderIfTheUserSelectsWordOutput()
         {
-            var configuration = Container.Resolve<IConfiguration>();
+            var configuration = this.Configuration;
             configuration.DocumentationFormat = DocumentationFormat.Word;
 
             var item = Container.Resolve<IDocumentationBuilder>();
@@ -62,7 +62,7 @@ namespace PicklesDoc.Pickles.Test
         [Test]
         public void ThenCanResolveIDocumentationBuilderAsWordDocumentationBuilderAsSingletonIfTheUserSelectsWordOutput()
         {
-            var configuration = Container.Resolve<IConfiguration>();
+            var configuration = this.Configuration;
             configuration.DocumentationFormat = DocumentationFormat.Word;
 
             var item1 = Container.Resolve<IDocumentationBuilder>();
@@ -78,7 +78,7 @@ namespace PicklesDoc.Pickles.Test
         [Test]
         public void ThenCanResolveIDocumentationBuilderAsExcelDocumentationBuilderIfTheUserSelectsExcelOutput()
         {
-            var configuration = Container.Resolve<IConfiguration>();
+            var configuration = this.Configuration;
             configuration.DocumentationFormat = DocumentationFormat.Excel;
 
             var item = Container.Resolve<IDocumentationBuilder>();
@@ -90,7 +90,7 @@ namespace PicklesDoc.Pickles.Test
         [Test]
         public void ThenCanResolveIDocumentationBuilderAsExcelDocumentationBuilderAsSingletonIfTheUserSelectsExcelOutput()
         {
-            var configuration = Container.Resolve<IConfiguration>();
+            var configuration = this.Configuration;
             configuration.DocumentationFormat = DocumentationFormat.Excel;
 
             var item1 = Container.Resolve<IDocumentationBuilder>();

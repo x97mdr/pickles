@@ -10,7 +10,22 @@ This project adheres to [Semantic Versioning](http://semver.org). We consider th
   - The settings file of the GUI runner
   - The JSON output of the JSON format
 
+Features in Experimental are subject to change and removal without being considered breaking.
+
 This document is formatted according to the principles of [Keep A CHANGELOG](http://keepachangelog.com).
+
+
+## [2.5.0] - 2016-03-21
+
+### Added
+
+- Experimental features - see the [documentation](http://docs.picklesdoc.com/en/latest/ExperimentalFeatures/) (by [@dirkrombauts](https://github.com/dirkrombauts)).
+
+### Experimental
+
+- Using a different MarkDown component. Warning: it is not entirely compatible with the static HTML version. ([#269](https://github.com/picklesdoc/pickles/issues/269)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
+- Enabling mathematics in the description elements in the DHTML version. Warning: requires internet connectivity. ([#281](https://github.com/picklesdoc/pickles/issues/281)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
+- Overview Dashboard on DHTML Pickles Site with Summary Charts by Namespace and Tags ([#295](https://github.com/picklesdoc/pickles/pull/295)) (by [@ocsurfnut](https://github.com/ocsurfnut))
 
 ## [2.4.1] - 2016-03-01
 

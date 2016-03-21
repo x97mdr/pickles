@@ -55,6 +55,9 @@ namespace PicklesDoc.Pickles.PowerShell
         [Parameter(HelpMessage = CommandLineArgumentParser.HelpDocumentationFormat, Mandatory = false)]
         public string DocumentationFormat { get; set; }
 
+        [Parameter(HelpMessage = CommandLineArgumentParser.HelpIncludeExperimentalFeatures, Mandatory = false)]
+        public SwitchParameter IncludeExperimentalFeatures { get; set; }
+
         protected override void ProcessRecord()
         {
             var builder = new ContainerBuilder();
@@ -102,6 +105,11 @@ namespace PicklesDoc.Pickles.PowerShell
             if (!string.IsNullOrEmpty(this.Language))
             {
                 configuration.Language = this.Language;
+            }
+
+            if (this.IncludeExperimentalFeatures.IsPresent)
+            {
+                configuration.EnableExperimentalFeatures();
             }
         }
 

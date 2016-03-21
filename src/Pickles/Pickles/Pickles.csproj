@@ -51,9 +51,16 @@
       <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FeatureSwitcher, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FeatureSwitcher.1.1.0\lib\4.0\FeatureSwitcher.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Gherkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=86496cfa5b4a5851, processorArchitecture=MSIL">
       <HintPath>..\packages\Gherkin.3.2.0\lib\net45\Gherkin.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Jint">
+      <HintPath>..\packages.nonnuget\Strike.Jint\Jint.dll</HintPath>
     </Reference>
     <Reference Include="MarkdownDeep, Version=1.5.4615.26275, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -74,6 +81,9 @@
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Strike.Jint">
+      <HintPath>..\packages.nonnuget\Strike.Jint\Strike.Jint.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -177,6 +187,7 @@
     <Compile Include="Extensions\TreeNodeExtensions.cs" />
     <Compile Include="Extensions\UriExtensions.cs" />
     <Compile Include="FeatureParseException.cs" />
+    <Compile Include="FeatureToggles\AlternateMarkdownProvider.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IMarkdownProvider.cs" />
     <Compile Include="LanguageServices.cs" />
@@ -194,6 +205,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Runner.cs" />
+    <Compile Include="StrikeMarkdownProvider.cs" />
     <Compile Include="TestFrameworks\NullTestResults.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -313,6 +325,21 @@
       <Project>{599BCF0C-8FB4-4727-A902-160C4E7D8FB0}</Project>
       <Name>Pickles.TestFrameworks</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\Chart.min.js">
+      <Link>Resources\Dhtml\js\Chart.min.js</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\Chart.StackedBar.js">
+      <Link>Resources\Dhtml\js\Chart.StackedBar.js</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\Pickles.BaseDhtmlFiles\js\picklesOverview.js">
+      <Link>Resources\Dhtml\js\picklesOverview.js</Link>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

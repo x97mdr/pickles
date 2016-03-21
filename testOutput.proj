@@ -23,6 +23,6 @@
 	<UsingTask AssemblyFile=".\deploy\nuget\packages\Pickles.MSBuild.$(Version)\tools\PicklesDoc.Pickles.MSBuild.Tasks.dll" TaskName="Pickles" />
 	<Target Name="document">
 		<MakeDir Directories="$(OutputPath)%(OutputFormat.Name)\" />
-		<Pickles FeatureDirectory="$(FeatureDirectory)" OutputDirectory="$(OutputPath)%(OutputFormat.Name)\" DocumentationFormat="%(OutputFormat.Name)" />
+		<Pickles FeatureDirectory="$(FeatureDirectory)" OutputDirectory="$(OutputPath)%(OutputFormat.Name)\" DocumentationFormat="%(OutputFormat.Name)" IncludeExperimentalFeatures="$(ShouldIncludeExperimentalFeatures)" />
 	</Target>
 </Project>

@@ -25,6 +25,11 @@
     margin-left: 15px;
 }
 
+.navbar .overview {
+    padding-top: 8px;
+    font-weight: bolder;
+}
+
 .navbar-below {
     margin-top: -1px;
     margin-left: 10px;
@@ -36,6 +41,9 @@
     width: 180px;
     background-color: black;
     color: rgb(173, 173, 173);
+    -webkit-transition: height 400ms;
+    transition: height 400ms;
+    overflow: hidden;
 }
 
     .navbar-below div {
@@ -172,3 +180,79 @@ li.step {
 .table-condensed td {
     padding: 5px 8px;
 }
+
+/* Overview Styles */
+.modal-host {
+    display: block;
+    width: 100%;
+}
+
+.modal-overlay {
+    margin-top: 40px;
+    background: white;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    opacity: 0;
+    overflow: hidden;
+    -ms-transform: scale(0.5);
+    transform: scale(0.5);
+    -webkit-transition: all 0.75s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: all 0.75s cubic-bezier(0.19, 1, 0.22, 1);
+    overflow-y: auto;
+}
+
+.modal-overlay-visible {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: all 0.75s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: all 0.75s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: 10;
+}
+
+.modal-box {
+    padding: 1em .75em;
+    position: relative;
+    margin: 1em auto;
+    width: 95%;
+}
+
+#overallCompleteCanvas-container, #overallCompleteSummary {
+    width: 50%;
+}
+
+#overallCompleteSummary ul {
+    font-size: 1.3em;
+    list-style: none;
+}
+
+#overallCompleteSummary ul * {
+    vertical-align: middle;
+}
+
+#overallCompleteSummary span {
+    display: inline-block;
+    margin: 5px;
+    text-align: center;
+}
+
+#overallCompleteSummary .color-key {
+    background-color: lightyellow;
+    display: inline-block;
+    padding: 0px 10px;
+    min-width: 25px;
+    line-height: 42px;
+}
+
+h3.header {
+    text-align: center;
+    margin: 20px 0px 5px 0px;
+    line-height: 32px;
+}
+
+

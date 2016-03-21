@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="IJsonFeatureElement.cs" company="PicklesDoc">
+//  <copyright file="AlternateMarkdownProvider.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -18,22 +18,11 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
+using FeatureSwitcher;
+
+namespace PicklesDoc.Pickles.FeatureToggles
 {
-    using System.Collections.Generic;
-
-    public interface IJsonFeatureElement
+    public class AlternateMarkdownProvider : IFeature
     {
-        JsonFeature Feature { get; set; }
-
-        string Name { get; set; }
-
-        string Description { get; set; }
-
-        List<JsonStep> Steps { get; set; }
-
-        List<string> Tags { get; set; }
-
-        JsonTestResult Result { get; set; }
     }
 }

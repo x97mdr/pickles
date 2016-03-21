@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="IJsonFeatureElement.cs" company="PicklesDoc">
+//  <copyright file="StrikeMarkdownProviderTests.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -18,22 +18,24 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
+using NFluent;
+
+using NUnit.Framework;
+
+namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML
 {
-    using System.Collections.Generic;
-
-    public interface IJsonFeatureElement
+    [TestFixture]
+    public class StrikeMarkdownProviderTests
     {
-        JsonFeature Feature { get; set; }
+        [Test]
+        public void ShouldRenderHrAsClosed()
+        {
+            var strikeMarkdownProvider = new StrikeMarkdownProvider();
 
-        string Name { get; set; }
+            var result = strikeMarkdownProvider.Transform("---");
+            var relevantPart = result.Substring(0, 5);
 
-        string Description { get; set; }
-
-        List<JsonStep> Steps { get; set; }
-
-        List<string> Tags { get; set; }
-
-        JsonTestResult Result { get; set; }
+            Check.That(relevantPart).IsEqualTo("<hr/>");
+        }
     }
 }

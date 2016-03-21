@@ -85,7 +85,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
 
         private void WriteResources()
         {
-            var dhtmlResourceWriter = new DhtmlResourceWriter(this.fileSystem);
+            var dhtmlResourceWriter = new DhtmlResourceWriter(this.fileSystem, this.configuration);
             dhtmlResourceWriter.WriteTo(this.configuration.OutputFolder.FullName);
         }
 

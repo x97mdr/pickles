@@ -28,12 +28,13 @@ namespace PicklesDoc.Pickles
         {
             writeToLog("Generating documentation based on the following parameters");
             writeToLog("----------------------------------------------------------");
-            writeToLog($"Feature Directory         : {configuration.FeatureFolder.FullName}");
-            writeToLog($"Output Directory          : {configuration.OutputFolder.FullName}");
-            writeToLog($"Project Name              : {configuration.SystemUnderTestName}");
-            writeToLog($"Project Version           : {configuration.SystemUnderTestVersion}");
-            writeToLog($"Language                  : {configuration.Language}");
-            writeToLog($"Incorporate Test Results? : {(configuration.HasTestResults ? "Yes" : "No")}");
+            writeToLog($"Feature Directory              : {configuration.FeatureFolder.FullName}");
+            writeToLog($"Output Directory               : {configuration.OutputFolder.FullName}");
+            writeToLog($"Project Name                   : {configuration.SystemUnderTestName}");
+            writeToLog($"Project Version                : {configuration.SystemUnderTestVersion}");
+            writeToLog($"Language                       : {configuration.Language}");
+            writeToLog($"Incorporate Test Results?      : {(configuration.HasTestResults ? "Yes" : "No")}");
+            writeToLog($"Include Experimental Features? : {(configuration.ShouldIncludeExperimentalFeatures ? "Yes" : "No")}");
 
             if (configuration.HasTestResults)
             {

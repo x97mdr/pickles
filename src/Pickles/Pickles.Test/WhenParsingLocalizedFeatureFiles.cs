@@ -51,7 +51,7 @@ Egenskap: Test egenskap
         När den körs
         Så skall jag se att det inträffat";
 
-            var configuration = this.Container.Resolve<IConfiguration>();
+            var configuration = this.Configuration;
             var parser = new FeatureParser(FileSystem, configuration);
             Feature feature = parser.Parse(new StringReader(featureText));
 
@@ -103,7 +103,7 @@ Egenskap: Test egenskap
         När den körs
         Så skall jag se att det inträffat";
 
-            var configuration = this.Container.Resolve<IConfiguration>();
+            var configuration = this.Configuration;
 
             configuration.Language = "sv";
 

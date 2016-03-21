@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="IJsonFeatureElement.cs" company="PicklesDoc">
+//  <copyright file="StrikeMarkdownProvider.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -18,22 +18,27 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
+using System;
+
+using Strike;
+using Strike.Jint;
+
+namespace PicklesDoc.Pickles
 {
-    using System.Collections.Generic;
-
-    public interface IJsonFeatureElement
+    public class StrikeMarkdownProvider : IMarkdownProvider
     {
-        JsonFeature Feature { get; set; }
+        private readonly Markdownify markdownify;
 
-        string Name { get; set; }
+        public StrikeMarkdownProvider()
+        {
+            this.markdownify = new Markdownify(
+                new Options { Xhtml = true },
+                new RenderMethods());
+        }
 
-        string Description { get; set; }
-
-        List<JsonStep> Steps { get; set; }
-
-        List<string> Tags { get; set; }
-
-        JsonTestResult Result { get; set; }
+        public string Transform(string text)
+        {
+            return this.markdownify.Transform(text).Replace("&nbsp;", string.Empty);
+        }
     }
 }

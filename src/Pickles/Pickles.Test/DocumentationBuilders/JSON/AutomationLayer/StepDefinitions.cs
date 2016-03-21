@@ -38,7 +38,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.JSON.AutomationLayer
         [Given("I have this feature description")]
         public void IHaveThisFeatureDescription(string featureDescription)
         {
-            var configuration = this.Container.Resolve<IConfiguration>();
+            var configuration = this.Configuration;
             FeatureParser parser = new FeatureParser(this.FileSystem, configuration);
 
             var feature = parser.Parse(new StringReader(featureDescription));
@@ -49,7 +49,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.JSON.AutomationLayer
         [When(@"I generate the documentation")]
         public void WhenIGenerateTheJsonDocumentation()
         {
-            var configuration = this.Container.Resolve<IConfiguration>();
+            var configuration = this.Configuration;
             configuration.OutputFolder = this.FileSystem.DirectoryInfo.FromDirectoryName(@"c:\output\");
             var jsonDocumentationBuilder = this.Container.Resolve<JsonDocumentationBuilder>();
 

@@ -71,11 +71,23 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
 
         protected void WriteTextFile(string folder, string filename)
         {
+            this.WriteTextFile(folder, filename, null, null);
+        }
+
+        protected void WriteTextFile(string folder, string filename, string toBeReplaced, string replacement)
+        {
             string path = this.fileSystem.Path.Combine(folder, filename);
 
             using (var reader = GetResourceStreamReader(this.namespaceOfResources + filename))
             {
-                this.fileSystem.File.WriteAllText(path, reader.ReadToEnd());
+                var contents = reader.ReadToEnd();
+
+                if (!string.IsNullOrWhiteSpace(toBeReplaced))
+                {
+                    contents = contents.Replace(toBeReplaced, replacement ?? string.Empty);
+                }
+
+                this.fileSystem.File.WriteAllText(path, contents);
             }
         }
 
