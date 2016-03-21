@@ -83,6 +83,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
             this.WriteScript(scriptsFolder, "stringFormatting.js");
             this.WriteScript(scriptsFolder, "typeaheadList.js");
             this.WriteScript(scriptsFolder, "underscore-min.js");
+            this.WriteScript(scriptsFolder, "Chart.min.js");
+            this.WriteScript(scriptsFolder, "Chart.StackedBar.js");
+            this.WriteScript(scriptsFolder, "picklesOverview.js");
         }
 
         private void EnsureFolder(string cssFolder)
