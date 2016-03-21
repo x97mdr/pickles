@@ -1,5 +1,5 @@
 @echo off
-set "picklesVersion=2.4.1"
+set "picklesVersion=2.5.0"
 
 cls
 
