@@ -75,7 +75,6 @@ Scenario: A simple feature
               }
             }
           ],
-          "Configuration": {
         """
 
 @json
@@ -263,5 +262,4 @@ Scenario: A feature with a table
               }
             }
           ],
-          "Configuration": {
         """
