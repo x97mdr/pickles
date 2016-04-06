@@ -96,6 +96,7 @@ namespace PicklesDoc.Pickles.ObjectModel
 
             configurationStore.CreateMap<G.Feature, Feature>()
                 .ForMember(t => t.FeatureElements, opt => opt.ResolveUsing(s => s.ScenarioDefinitions))
+                .ForMember(t => t.Description, opt => opt.NullSubstitute(string.Empty))
                 .AfterMap(
                     (sourceFeature, targetFeature) =>
                         {
