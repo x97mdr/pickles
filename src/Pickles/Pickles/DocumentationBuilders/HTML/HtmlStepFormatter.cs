@@ -19,8 +19,8 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Linq;
 using System.Xml.Linq;
-
 using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
@@ -45,13 +45,42 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.HTML
             this.xmlns = HtmlNamespace.Xhtml;
         }
 
+        protected XElement FormatComments(Step step, CommentType type)
+        {
+            XElement comment = new XElement(this.xmlns + "span", new XAttribute("class", "comment"));
+
+            foreach (var stepComment in step.Comments.Where(o => o.Type == type))
+            {
+                comment.Add(stepComment.Text.Trim());
+                comment.Add(new XElement(this.xmlns + "br"));
+            }
+            comment.LastNode.Remove();
+
+            return comment;
+        }
+
         public XElement Format(Step step)
         {
-            var li = new XElement(
-                this.xmlns + "li",
-                new XAttribute("class", "step"),
-                new XElement(this.xmlns + "span", new XAttribute("class", "keyword"), step.NativeKeyword),
-                step.Name);
+            XElement li;
+
+            XElement beforeStepComments = null;
+            XElement afterStepComments = null;
+            if (step.Comments.Any(o => o.Type == CommentType.StepComment))
+            {
+                beforeStepComments = this.FormatComments(step, CommentType.StepComment);
+            }
+            if (step.Comments.Any(o => o.Type == CommentType.AfterLastStepComment))
+            {
+                afterStepComments = this.FormatComments(step, CommentType.AfterLastStepComment);
+            }
+
+            li = new XElement(
+                    this.xmlns + "li",
+                    new XAttribute("class", "step"),
+                    beforeStepComments,
+                    new XElement(this.xmlns + "span", new XAttribute("class", "keyword"), step.NativeKeyword),
+                    step.Name,
+                    afterStepComments);
 
             if (step.TableArgument != null)
             {

@@ -18,10 +18,17 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+
 namespace PicklesDoc.Pickles.ObjectModel
 {
     public class Step
     {
+        public Step()
+        {
+            this.Comments = new List<Comment>();
+        }
+
         public Keyword Keyword { get; set; }
 
         public string NativeKeyword { get; set; }
@@ -31,5 +38,9 @@ namespace PicklesDoc.Pickles.ObjectModel
         public Table TableArgument { get; set; }
 
         public string DocStringArgument { get; set; }
+
+        public Location Location { get; set; }
+
+        public List<Comment> Comments { get; set; }
     }
 }
