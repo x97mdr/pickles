@@ -28,6 +28,16 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML.AutomationLayer
     [Binding]
     public class Hooks
     {
+        private readonly ScenarioContext scenarioContext;
+
+        public Hooks(CurrentScenarioContext currentScenarioContext, ScenarioContext scenarioContext)
+        {
+            this.CurrentScenarioContext = currentScenarioContext;
+            this.scenarioContext = scenarioContext;
+        }
+
+        private CurrentScenarioContext CurrentScenarioContext { get; }
+
         [BeforeScenario]
         public void BeforeScenario()
         {
@@ -36,7 +46,7 @@ namespace PicklesDoc.Pickles.Test.DocumentationBuilders.HTML.AutomationLayer
             builder.RegisterModule<PicklesModule>();
             CurrentScenarioContext.Container = builder.Build();
 
-            if (ScenarioContext.Current.ScenarioInfo.Tags.Contains("enableExperimentalFeatures"))
+            if (this.scenarioContext.ScenarioInfo.Tags.Contains("enableExperimentalFeatures"))
             {
                 var configuration = CurrentScenarioContext.Container.Resolve<IConfiguration>();
                 configuration.EnableExperimentalFeatures();
