@@ -147,9 +147,19 @@ My doc string line 2");
             return background;
         }
 
-        internal G.Feature CreateFeature(string name, string description, string[] tags = null, G.Background background = null, G.ScenarioDefinition[] scenarioDefinitions = null, G.Comment[] comments = null, G.Location location = null)
+        internal G.GherkinDocument CreateGherkinDocument(string name, string description, string[] tags = null, G.Background background = null, G.ScenarioDefinition[] scenarioDefinitions = null, G.Comment[] comments = null, G.Location location = null)
         {
-            return new G.Feature((tags ?? new string[0]).Select(this.CreateTag).ToArray(), location, null, "Feature", name, description, background, scenarioDefinitions, comments);
+            var nonNullScenarioDefinitions = scenarioDefinitions ?? new G.ScenarioDefinition[0];
+            return new G.GherkinDocument(
+                new G.Feature(
+                    (tags ?? new string[0]).Select(this.CreateTag).ToArray(),
+                    location,
+                    null,
+                    "Feature",
+                    name,
+                    description,
+                    background != null ? new G.ScenarioDefinition[] { background }.Concat(nonNullScenarioDefinitions).ToArray() : nonNullScenarioDefinitions),
+                comments);
         }
     }
 }
