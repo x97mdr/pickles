@@ -32,8 +32,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.IO.Abstractions, Version=2.0.0.123, Culture=neutral, PublicKeyToken=d480b5b72fb413da, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.Abstractions.2.0.0.123\lib\net40\System.IO.Abstractions.dll</HintPath>
+    <Reference Include="System.IO.Abstractions, Version=2.0.0.124, Culture=neutral, PublicKeyToken=d480b5b72fb413da, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Abstractions.2.0.0.124\lib\net40\System.IO.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="DocumentationFormat.cs" />
     <Compile Include="IConfiguration.cs" />
+    <Compile Include="ObjectModel\Location.cs" />
     <Compile Include="ObjectModel\Example.cs" />
     <Compile Include="ObjectModel\Feature.cs" />
     <Compile Include="ObjectModel\IFeatureElement.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="ObjectModel\Scenario.cs" />
     <Compile Include="ObjectModel\ScenarioOutline.cs" />
     <Compile Include="ObjectModel\Step.cs" />
+    <Compile Include="ObjectModel\Comment.cs" />
     <Compile Include="ObjectModel\Table.cs" />
     <Compile Include="ObjectModel\TableRow.cs" />
     <Compile Include="ObjectModel\TestResult.cs" />

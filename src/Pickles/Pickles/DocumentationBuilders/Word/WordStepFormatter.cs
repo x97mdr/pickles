@@ -19,6 +19,7 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Linq;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Wordprocessing;
 using PicklesDoc.Pickles.Extensions;
@@ -61,10 +62,35 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
         {
             // HACK - We need to generate a custom paragraph here because 2 Run objects are needed to allow for the bolded keyword
             var paragraph = new Paragraph(new ParagraphProperties(new ParagraphStyleId { Val = "Normal" }));
+
+            // Add comments before step
+            if (step.Comments.Any(o => o.Type == CommentType.StepComment))
+            {
+                foreach (var comment in step.Comments.Where(o => o.Type == CommentType.StepComment))
+                {
+                    paragraph.Append(new Run(new RunProperties(new Italic()), new Text(comment.Text)));
+                    paragraph.Append(new Break());
+                }
+            }
+
+            // Add step
             paragraph.Append(new Run(new RunProperties(new Bold()), new Text(step.NativeKeyword)));
             var nameText = new Text { Space = SpaceProcessingModeValues.Preserve };
             nameText.Text = " " + step.Name;
             paragraph.Append(new Run(nameText));
+
+            // Add comments after step
+            if (step.Comments.Any(o => o.Type == CommentType.AfterLastStepComment))
+            {
+                paragraph.Append(new Break());
+
+                foreach (var comment in step.Comments.Where(o => o.Type == CommentType.AfterLastStepComment))
+                {
+                    paragraph.Append(new Run(new RunProperties(new Italic()), new Text(comment.Text)));
+                    paragraph.Append(new Break());
+                }
+            }
+
             return paragraph;
         }
     }

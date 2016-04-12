@@ -51,9 +51,24 @@ namespace PicklesDoc.Pickles.ObjectModel
 
             configurationStore.CreateMap<G.DocString, string>().ConstructUsing(docString => docString.Content);
 
+            configurationStore.CreateMap<G.Location, Location>()
+                .ForMember(t => t.Column, opt => opt.MapFrom(s => s.Column))
+                .ForMember(t => t.Line, opt => opt.MapFrom(s => s.Line));
+
+            configurationStore.CreateMap<G.Comment, Comment>()
+                .ForMember(t => t.Text, opt => opt.MapFrom(s => s.Text))
+                .ForMember(t => t.Location, opt => opt.MapFrom(s => s.Location))
+                .AfterMap(
+                    (sourceComment, targetComment) =>
+                    {
+                        targetComment.Text = targetComment.Text.Trim();
+                    }
+                );
+
             configurationStore.CreateMap<G.Step, Step>()
                 .ForMember(t => t.NativeKeyword, opt => opt.MapFrom(s => s.Keyword))
                 .ForMember(t => t.Name, opt => opt.MapFrom(s => s.Text))
+                .ForMember(t => t.Location, opt => opt.MapFrom(s => s.Location))
                 .ForMember(t => t.DocStringArgument, opt => opt.MapFrom(s => s.Argument is G.DocString ? s.Argument : null))
                 .ForMember(t => t.TableArgument, opt => opt.MapFrom(s => s.Argument is G.DataTable ? s.Argument : null));
 
@@ -61,7 +76,8 @@ namespace PicklesDoc.Pickles.ObjectModel
                 .ConstructUsing(tag => tag.Name);
 
             configurationStore.CreateMap<G.Scenario, Scenario>()
-                .ForMember(t => t.Description, opt => opt.NullSubstitute(string.Empty));
+                .ForMember(t => t.Description, opt => opt.NullSubstitute(string.Empty))
+                .ForMember(t => t.Location, opt => opt.MapFrom(s => s.Location));
 
             configurationStore.CreateMap<IEnumerable<G.TableRow>, Table>()
                 .ForMember(t => t.HeaderRow, opt => opt.MapFrom(s => s.Take(1).Single()))
@@ -71,7 +87,8 @@ namespace PicklesDoc.Pickles.ObjectModel
                 .ForMember(t => t.TableArgument, opt => opt.MapFrom(s => ((G.IHasRows)s).Rows));
 
             configurationStore.CreateMap<G.ScenarioOutline, ScenarioOutline>()
-                .ForMember(t => t.Description, opt => opt.NullSubstitute(string.Empty));
+                .ForMember(t => t.Description, opt => opt.NullSubstitute(string.Empty))
+                .ForMember(t => t.Location, opt => opt.MapFrom(s => s.Location));
 
             configurationStore.CreateMap<G.Background, Scenario>()
                 .ForMember(t => t.Description, opt => opt.NullSubstitute(string.Empty));
@@ -79,6 +96,11 @@ namespace PicklesDoc.Pickles.ObjectModel
             configurationStore.CreateMap<G.ScenarioDefinition, IFeatureElement>().ConvertUsing(
                 sd =>
                 {
+                    if (sd == null)
+                    {
+                        return null;
+                    }
+
                     var scenario = sd as G.Scenario;
                     if (scenario != null)
                     {
@@ -91,14 +113,56 @@ namespace PicklesDoc.Pickles.ObjectModel
                         return this.mapper.Map<ScenarioOutline>(scenarioOutline);
                     }
 
-                    throw new ArgumentException("Only arguments of type Scenario and ScenarioOutline are supported.");
+                    var background = sd as G.Background;
+                    if (background != null)
+                    {
+                        return this.mapper.Map<Scenario>(background);
+                    }
+
+                    throw new ArgumentException("Only arguments of type Scenario, ScenarioOutline and Background are supported.");
                 });
 
-            configurationStore.CreateMap<G.Feature, Feature>()
-                .ForMember(t => t.FeatureElements, opt => opt.ResolveUsing(s => s.ScenarioDefinitions))
+            configurationStore.CreateMap<G.GherkinDocument, Feature>()
+                .ForMember(t => t.Background, opt => opt.ResolveUsing(s => s.Feature.Children.SingleOrDefault(c => c is G.Background) as G.Background))
+                .ForMember(t => t.Comments, opt => opt.ResolveUsing(s => s.Comments))
+                .ForMember(t => t.Description, opt => opt.ResolveUsing(s => s.Feature.Description))
+                .ForMember(t => t.FeatureElements, opt => opt.ResolveUsing(s => s.Feature.Children.Where(c => !(c is G.Background))))
+                .ForMember(t => t.Name, opt => opt.ResolveUsing(s => s.Feature.Name))
+                .ForMember(t => t.Tags, opt => opt.ResolveUsing(s => s.Feature.Tags))
+
+
+                .ForMember(t => t.Description, opt => opt.NullSubstitute(string.Empty))
                 .AfterMap(
                     (sourceFeature, targetFeature) =>
                         {
+                            foreach (var comment in targetFeature.Comments.ToArray())
+                            {
+                                // Find the related feature
+                                var relatedFeatureElement = targetFeature.FeatureElements.LastOrDefault(x => x.Location.Line < comment.Location.Line);
+                                // Find the step to which the comment is related to
+                                if (relatedFeatureElement != null)
+                                {
+                                    var stepAfterComment = relatedFeatureElement.Steps.FirstOrDefault(x => x.Location.Line > comment.Location.Line);
+                                    if (stepAfterComment != null)
+                                    {
+                                        // Comment is before a step
+                                        comment.Type = CommentType.StepComment;
+                                        stepAfterComment.Comments.Add(comment);
+                                    }
+                                    else
+                                    {
+                                        // Comment is located after the last step
+                                        var stepBeforeComment = relatedFeatureElement.Steps.LastOrDefault(x => x.Location.Line < comment.Location.Line);
+                                        if (stepBeforeComment != null && stepBeforeComment == relatedFeatureElement.Steps.Last())
+                                        {
+
+                                            comment.Type = CommentType.AfterLastStepComment;
+                                            stepBeforeComment.Comments.Add(comment);
+                                        }
+                                    }
+                                }
+                            }
+
                             foreach (var featureElement in targetFeature.FeatureElements.ToArray())
                             {
                                 featureElement.Feature = targetFeature;
@@ -146,6 +210,16 @@ namespace PicklesDoc.Pickles.ObjectModel
             return this.mapper.Map<string>(tag);
         }
 
+        public Comment MapToComment(G.Comment comment)
+        {
+            return this.mapper.Map<Comment>(comment);
+        }
+
+        public Location MapToLocation(G.Location location)
+        {
+            return this.mapper.Map<Location>(location);
+        }
+
         public Scenario MapToScenario(G.Scenario scenario)
         {
             return this.mapper.Map<Scenario>(scenario);
@@ -166,9 +240,9 @@ namespace PicklesDoc.Pickles.ObjectModel
             return this.mapper.Map<Scenario>(background);
         }
 
-        public Feature MapToFeature(G.Feature feature)
+        public Feature MapToFeature(G.GherkinDocument gherkinDocument)
         {
-            return this.mapper.Map<Feature>(feature);
+            return this.mapper.Map<Feature>(gherkinDocument);
         }
 
         public void Dispose()

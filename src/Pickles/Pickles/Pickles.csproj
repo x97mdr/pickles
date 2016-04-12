@@ -56,7 +56,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Gherkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=86496cfa5b4a5851, processorArchitecture=MSIL">
-      <HintPath>..\packages\Gherkin.3.2.0\lib\net45\Gherkin.dll</HintPath>
+      <HintPath>..\packages\Gherkin.4.0.0\lib\net45\Gherkin.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Jint">
@@ -71,7 +71,7 @@
       <HintPath>..\packages\NDesk.Options.0.2.1\lib\NDesk.Options.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NGenerics, Version=1.4.1.0, Culture=neutral, PublicKeyToken=e4b41be133ea7faf, processorArchitecture=MSIL">
@@ -88,8 +88,8 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.IO.Abstractions, Version=2.0.0.123, Culture=neutral, PublicKeyToken=d480b5b72fb413da, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.Abstractions.2.0.0.123\lib\net40\System.IO.Abstractions.dll</HintPath>
+    <Reference Include="System.IO.Abstractions, Version=2.0.0.124, Culture=neutral, PublicKeyToken=d480b5b72fb413da, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Abstractions.2.0.0.124\lib\net40\System.IO.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
@@ -152,6 +152,7 @@
     <Compile Include="DocumentationBuilders\JSON\JsonMapper.cs" />
     <Compile Include="DocumentationBuilders\JSON\JsonScenario.cs" />
     <Compile Include="DocumentationBuilders\JSON\JsonScenarioOutline.cs" />
+    <Compile Include="DocumentationBuilders\JSON\JsonComment.cs" />
     <Compile Include="DocumentationBuilders\JSON\JsonStep.cs" />
     <Compile Include="DocumentationBuilders\JSON\JsonTable.cs" />
     <Compile Include="DocumentationBuilders\JSON\JsonTableRow.cs" />

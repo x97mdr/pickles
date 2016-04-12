@@ -17,7 +17,7 @@ Scenario: A simple feature
             When I press C
             Then the screen should be empty
         """
-	When I generate the documentation
+    When I generate the documentation
     Then the JSON file should contain
         """
         {
@@ -35,22 +35,30 @@ Scenario: A simple feature
                       {
                         "Keyword": "Given",
                         "NativeKeyword": "Given ",
-                        "Name": "I have entered 50 into the calculator"
+                        "Name": "I have entered 50 into the calculator",
+                        "StepComments": [],
+                        "AfterLastStepComments": []
                       },
                       {
                         "Keyword": "And",
                         "NativeKeyword": "And ",
-                        "Name": "I have entered 70 into the calculator"
+                        "Name": "I have entered 70 into the calculator",
+                        "StepComments": [],
+                        "AfterLastStepComments": []
                       },
                       {
                         "Keyword": "When",
                         "NativeKeyword": "When ",
-                        "Name": "I press C"
+                        "Name": "I press C",
+                        "StepComments": [],
+                        "AfterLastStepComments": []
                       },
                       {
                         "Keyword": "Then",
                         "NativeKeyword": "Then ",
-                        "Name": "the screen should be empty"
+                        "Name": "the screen should be empty",
+                        "StepComments": [],
+                        "AfterLastStepComments": []
                       }
                     ],
                     "Tags": [
@@ -75,7 +83,6 @@ Scenario: A simple feature
               }
             }
           ],
-          "Configuration": {
         """
 
 @json
@@ -117,7 +124,7 @@ Scenario: A feature with a table
             When I click on the table heading
             Then the table body should collapse
         """
-	When I generate the documentation
+    When I generate the documentation
     Then the JSON file should contain
         """
         {
@@ -231,17 +238,23 @@ Scenario: A feature with a table
                               "105"
                             ]
                           ]
-                        }
+                        },
+                        "StepComments": [],
+                        "AfterLastStepComments": []
                       },
                       {
                         "Keyword": "When",
                         "NativeKeyword": "When ",
-                        "Name": "I click on the table heading"
+                        "Name": "I click on the table heading",
+                        "StepComments": [],
+                        "AfterLastStepComments": []
                       },
                       {
                         "Keyword": "Then",
                         "NativeKeyword": "Then ",
-                        "Name": "the table body should collapse"
+                        "Name": "the table body should collapse",
+                        "StepComments": [],
+                        "AfterLastStepComments": []
                       }
                     ],
                     "Tags": [],
@@ -263,5 +276,4 @@ Scenario: A feature with a table
               }
             }
           ],
-          "Configuration": {
         """

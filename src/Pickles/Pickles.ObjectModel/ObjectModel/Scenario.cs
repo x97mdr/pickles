@@ -30,8 +30,6 @@ namespace PicklesDoc.Pickles.ObjectModel
             this.Tags = new List<string>();
         }
 
-        #region IFeatureElement Members
-
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -44,6 +42,6 @@ namespace PicklesDoc.Pickles.ObjectModel
 
         public Feature Feature { get; set; }
 
-        #endregion
+        public Location Location { get; set; }
     }
 }
