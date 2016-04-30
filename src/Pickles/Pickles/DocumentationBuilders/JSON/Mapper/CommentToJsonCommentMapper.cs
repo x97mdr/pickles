@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="JsonStep.cs" company="PicklesDoc">
+//  <copyright file="CommentToJsonCommentMapper.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -18,25 +18,20 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
+using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
+namespace PicklesDoc.Pickles.DocumentationBuilders.JSON.Mapper
 {
-    public class JsonStep
+    public class CommentToJsonCommentMapper
     {
-        public JsonKeyword Keyword { get; set; }
+        public JsonComment Map(Comment comment)
+        {
+            if (comment == null)
+            {
+                return null;
+            }
 
-        public string NativeKeyword { get; set; }
-
-        public string Name { get; set; }
-
-        public JsonTable TableArgument { get; set; }
-
-        public string DocStringArgument { get; set; }
-
-        public List<JsonComment> StepComments { get; set; }
-
-        public List<JsonComment> AfterLastStepComments { get; set; }
+            return new JsonComment { Text = comment.Text };
+        }
     }
 }

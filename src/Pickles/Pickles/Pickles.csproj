@@ -39,10 +39,6 @@
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="ClosedXML, Version=0.76.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
       <HintPath>..\packages\ClosedXML.0.76.0\lib\net40-client\ClosedXML.dll</HintPath>
       <Private>True</Private>
@@ -157,6 +153,16 @@
     <Compile Include="DocumentationBuilders\JSON\JsonTable.cs" />
     <Compile Include="DocumentationBuilders\JSON\JsonTableRow.cs" />
     <Compile Include="DocumentationBuilders\JSON\JsonTestResult.cs" />
+    <Compile Include="DocumentationBuilders\JSON\Mapper\CommentToJsonCommentMapper.cs" />
+    <Compile Include="DocumentationBuilders\JSON\Mapper\ExampleToJsonExampleMapper.cs" />
+    <Compile Include="DocumentationBuilders\JSON\Mapper\FeatureToJsonFeatureMapper.cs" />
+    <Compile Include="DocumentationBuilders\JSON\Mapper\KeywordToJsonKeywordMapper.cs" />
+    <Compile Include="DocumentationBuilders\JSON\Mapper\ScenarioToJsonScenarioMapper.cs" />
+    <Compile Include="DocumentationBuilders\JSON\Mapper\ScenarioOutlineToJsonScenarioOutlineMapper.cs" />
+    <Compile Include="DocumentationBuilders\JSON\Mapper\StepToJsonStepMapper.cs" />
+    <Compile Include="DocumentationBuilders\JSON\Mapper\TableRowToJsonTableRowMapper.cs" />
+    <Compile Include="DocumentationBuilders\JSON\Mapper\TableToJsonTableMapper.cs" />
+    <Compile Include="DocumentationBuilders\JSON\Mapper\TestResultToJsonTestResultMapper.cs" />
     <Compile Include="DocumentationBuilders\Word\TableOfContentsAdder\PtOpenXmlUtil.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
@@ -193,7 +199,6 @@
     <Compile Include="IMarkdownProvider.cs" />
     <Compile Include="LanguageServices.cs" />
     <Compile Include="MarkdownProvider.cs" />
-    <Compile Include="ObjectModel\KeywordResolver.cs" />
     <Compile Include="ObjectModel\Mapper.cs" />
     <Compile Include="DirectoryCrawler\DirectoryTreeCrawler.cs" />
     <Compile Include="FeatureParser.cs" />

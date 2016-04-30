@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="JsonMapper.cs" company="PicklesDoc">
+//  <copyright file="KeywordToJsonKeywordMapper.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -21,28 +21,42 @@
 using System;
 using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
+namespace PicklesDoc.Pickles.DocumentationBuilders.JSON.Mapper
 {
-    public class JsonMapper
+    public class KeywordToJsonKeywordMapper
     {
-        public JsonFeature Map(Feature feature)
+        public JsonKeyword Map(Keyword keyword)
         {
-            return this.ToJsonFeature(feature);
-        }
+            switch (keyword)
+            {
+                case Keyword.Given:
+                {
+                    return JsonKeyword.Given;
+                }
 
-        public JsonTestResult Map(TestResult testResult)
-        {
-            return this.ToJsonTestResult(testResult);
-        }
+                case Keyword.When:
+                {
+                    return JsonKeyword.When;
+                }
 
-        private JsonTestResult ToJsonTestResult(TestResult testResult)
-        {
-            return new Mapper.TestResultToJsonTestResultMapper().Map(testResult);
-        }
+                case Keyword.Then:
+                {
+                    return JsonKeyword.Then;
+                }
 
-        private JsonFeature ToJsonFeature(Feature feature)
-        {
-            return new Mapper.FeatureToJsonFeatureMapper().Map(feature);
+                case Keyword.And:
+                {
+                    return JsonKeyword.And;
+                }
+
+                case Keyword.But:
+                {
+                    return JsonKeyword.But;
+                }
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(keyword), keyword, null);
+            }
         }
     }
 }

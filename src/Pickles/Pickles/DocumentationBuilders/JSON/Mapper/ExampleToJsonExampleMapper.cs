@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="JsonStep.cs" company="PicklesDoc">
+//  <copyright file="ExampleToJsonExampleMapper.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -18,25 +18,32 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
+using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
+namespace PicklesDoc.Pickles.DocumentationBuilders.JSON.Mapper
 {
-    public class JsonStep
+    public class ExampleToJsonExampleMapper
     {
-        public JsonKeyword Keyword { get; set; }
+        private readonly TableToJsonTableMapper tableMapper;
 
-        public string NativeKeyword { get; set; }
+        public ExampleToJsonExampleMapper()
+        {
+            this.tableMapper = new TableToJsonTableMapper();
+        }
 
-        public string Name { get; set; }
+        public JsonExample Map(Example example)
+        {
+            if (example == null)
+            {
+                return null;
+            }
 
-        public JsonTable TableArgument { get; set; }
-
-        public string DocStringArgument { get; set; }
-
-        public List<JsonComment> StepComments { get; set; }
-
-        public List<JsonComment> AfterLastStepComments { get; set; }
+            return new JsonExample
+            {
+                Name = example.Name,
+                Description = example.Description,
+                TableArgument = this.tableMapper.Map(example.TableArgument)
+            };
+        }
     }
 }

@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="JsonStep.cs" company="PicklesDoc">
+//  <copyright file="TableRowToJsonTableRowMapper.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -18,25 +18,30 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
+using PicklesDoc.Pickles.ObjectModel;
 
-namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
+namespace PicklesDoc.Pickles.DocumentationBuilders.JSON.Mapper
 {
-    public class JsonStep
+    public class TableRowToJsonTableRowMapper
     {
-        public JsonKeyword Keyword { get; set; }
+        private readonly TestResultToJsonTestResultMapper testResultMapper;
 
-        public string NativeKeyword { get; set; }
+        public TableRowToJsonTableRowMapper()
+        {
+            this.testResultMapper = new TestResultToJsonTestResultMapper();
+        }
 
-        public string Name { get; set; }
+        public JsonTableRow Map(TableRow tableRow)
+        {
+            if (tableRow == null)
+            {
+                return null;
+            }
 
-        public JsonTable TableArgument { get; set; }
-
-        public string DocStringArgument { get; set; }
-
-        public List<JsonComment> StepComments { get; set; }
-
-        public List<JsonComment> AfterLastStepComments { get; set; }
+            return new JsonTableRow(tableRow.Cells.ToArray())
+            {
+                Result = this.testResultMapper.Map(tableRow.Result)
+            };
+        }
     }
 }

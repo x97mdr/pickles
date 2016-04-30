@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="JsonTableRowTests.cs" company="PicklesDoc">
+//  <copyright file="CommentToJsonCommentMapperTests.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -21,37 +21,39 @@
 using NFluent;
 using NUnit.Framework;
 using PicklesDoc.Pickles.DocumentationBuilders.JSON;
+using PicklesDoc.Pickles.DocumentationBuilders.JSON.Mapper;
 using PicklesDoc.Pickles.ObjectModel;
-using PicklesDoc.Pickles.TestFrameworks;
 
 namespace PicklesDoc.Pickles.Test.ObjectModel.Json
 {
     [TestFixture]
-    public class JsonTableRowTests
+    public class CommentToJsonCommentMapperTests
     {
         [Test]
-        public void TableRowWithCells_Always_ConvertsToJsonTableRow()
+        public void Map_Null_ReturnsNull()
         {
-            var tableRow = new TableRow { Cells = { "cell 1", "cell 2" } };
+            var mapper = CreateMapper();
 
-            var jsonMapper = new JsonMapper();
+            JsonComment result = mapper.Map(null);
 
-            JsonTableRow jsonTableRow = jsonMapper.Map(tableRow);
+            Check.That(result).IsNull();
+        }
 
-            Check.That(jsonTableRow).ContainsExactly("cell 1", "cell 2");
+        private static CommentToJsonCommentMapper CreateMapper()
+        {
+            return new CommentToJsonCommentMapper();
         }
 
         [Test]
-        public void TableRowWithTestResult_Always_ConvertsToJsonTableRowWithTestResult()
+        public void Map_NotNull_ReturnsJsonCommentWithSameText()
         {
-            var tableRow = new TableRow { Result = TestResult.Passed };
+            Comment comment = new Comment { Text = "Some comment" };
 
-            var jsonMapper = new JsonMapper();
+            var mapper = CreateMapper();
 
-            JsonTableRow jsonTableRow = jsonMapper.Map(tableRow);
+            var result = mapper.Map(comment);
 
-            Check.That(jsonTableRow.Result.WasExecuted).IsEqualTo(true);
-            Check.That(jsonTableRow.Result.WasSuccessful).IsEqualTo(true);
+            Check.That(result.Text).IsEqualTo("Some comment");
         }
     }
 }
