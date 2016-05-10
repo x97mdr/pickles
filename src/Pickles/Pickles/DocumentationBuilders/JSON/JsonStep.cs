@@ -40,4 +40,3 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
         public List<JsonComment> AfterLastStepComments { get; set; }
     }
 }
-using PicklesDoc.Pickles.ObjectModel;
