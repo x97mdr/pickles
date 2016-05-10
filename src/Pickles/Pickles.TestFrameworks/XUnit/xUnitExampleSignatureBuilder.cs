@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -31,15 +30,13 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit
         public Regex Build(ScenarioOutline scenarioOutline, string[] row)
         {
             var stringBuilder = new StringBuilder();
-            stringBuilder.Append(scenarioOutline.Name.ToLowerInvariant().Replace(" ", string.Empty) + "\\(");
+
+            var name = SpecFlowNameMapping.Build(scenarioOutline.Name.ToLowerInvariant());
+            stringBuilder.Append(name).Append("\\(");
 
             foreach (string value in row)
             {
-                stringBuilder.AppendFormat("(.*): \"{0}\", ", value.ToLowerInvariant()
-                    .Replace(@"\", string.Empty)
-                    .Replace(@"$", @"\$")
-                    .Replace(@"(", @"\(")
-                    .Replace(@")", @"\)"));
+                stringBuilder.AppendFormat("(.*): \"{0}\", ", Regex.Escape(value.ToLowerInvariant()));
             }
 
             stringBuilder.Remove(stringBuilder.Length - 2, 2);

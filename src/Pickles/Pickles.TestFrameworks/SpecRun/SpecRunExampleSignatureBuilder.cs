@@ -31,9 +31,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
         public Regex Build(ScenarioOutline scenarioOutline, string[] row)
         {
             var stringBuilder = new StringBuilder();
-            stringBuilder.Append(scenarioOutline.Name);
+            stringBuilder.Append(Regex.Escape(scenarioOutline.Name));
             stringBuilder.Append("(, Examples (\\d*))?");
-            stringBuilder.Append(", " + row[0]);
+            stringBuilder.Append(", " + Regex.Escape(row[0]));
 
             return new Regex(stringBuilder.ToString());
         }

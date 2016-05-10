@@ -67,8 +67,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NGenerics.1.4.1.0\lib\net35\NGenerics.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=3.2.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.2.0\lib\net45\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.2.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -114,8 +114,17 @@
     <Compile Include="DocumentationBuilders\Word\WordDescriptionFormatterTests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ObjectModel\Factory.cs" />
+    <Compile Include="ObjectModel\Json\CommentToJsonCommentMapperTests.cs" />
+    <Compile Include="ObjectModel\Json\ExampleToJsonExampleMapperTests.cs" />
+    <Compile Include="ObjectModel\Json\FeatureToJsonFeatureMapperTests.cs" />
     <Compile Include="ObjectModel\Json\JsonScenarioTests.cs" />
-    <Compile Include="ObjectModel\Json\JsonTableRowTests.cs" />
+    <Compile Include="ObjectModel\Json\KeywordToJsonKeywordMapperTests.cs" />
+    <Compile Include="ObjectModel\Json\ScenarioToJsonScenarioMapperTests.cs" />
+    <Compile Include="ObjectModel\Json\ScenarioOutlineToJsonScenarioOutlineMapperTests.cs" />
+    <Compile Include="ObjectModel\Json\StepToJsonStepMapperTests.cs" />
+    <Compile Include="ObjectModel\Json\TableRowToJsonTableRowMapperTests.cs" />
+    <Compile Include="ObjectModel\Json\TableToJsonTableMapperTests.cs" />
+    <Compile Include="ObjectModel\Json\TestResultToJsonTestResultMapperTests.cs" />
     <Compile Include="ObjectModel\MapperTestsForComment.cs" />
     <Compile Include="ObjectModel\MapperTestsForDataTable.cs" />
     <Compile Include="ObjectModel\MapperTestsForDocString.cs" />

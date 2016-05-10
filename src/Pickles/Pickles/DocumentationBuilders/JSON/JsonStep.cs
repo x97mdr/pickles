@@ -20,7 +20,6 @@
 
 using System;
 using System.Collections.Generic;
-using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
 {
@@ -41,3 +40,4 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
         public List<JsonComment> AfterLastStepComments { get; set; }
     }
 }
+using PicklesDoc.Pickles.ObjectModel;

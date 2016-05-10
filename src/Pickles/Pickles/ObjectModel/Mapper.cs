@@ -21,241 +21,302 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
-using AutoMapper.Mappers;
 using G = Gherkin.Ast;
 
 namespace PicklesDoc.Pickles.ObjectModel
 {
-    public class Mapper : IDisposable
+    public class Mapper
     {
-        private readonly MappingEngine mapper;
+        private readonly LanguageServices languageServices;
 
         public Mapper(string featureLanguage = LanguageServices.DefaultLanguage)
         {
-            var configurationStore = new ConfigurationStore(new TypeMapFactory(), MapperRegistry.Mappers);
-
-            this.mapper = new MappingEngine(configurationStore);
-
-            configurationStore.CreateMap<string, Keyword>().ConvertUsing(new KeywordResolver(featureLanguage));
-
-            configurationStore.CreateMap<G.TableCell, string>()
-                .ConstructUsing(cell => cell.Value);
-
-            configurationStore.CreateMap<G.TableRow, TableRow>()
-                .ConstructUsing(row => new TableRow(row.Cells.Select(this.mapper.Map<string>)));
-
-            configurationStore.CreateMap<G.DataTable, Table>()
-                .ForMember(t => t.HeaderRow, opt => opt.MapFrom(dt => dt.Rows.Take(1).Single()))
-                .ForMember(t => t.DataRows, opt => opt.MapFrom(dt => dt.Rows.Skip(1)));
-
-            configurationStore.CreateMap<G.DocString, string>().ConstructUsing(docString => docString.Content);
-
-            configurationStore.CreateMap<G.Location, Location>()
-                .ForMember(t => t.Column, opt => opt.MapFrom(s => s.Column))
-                .ForMember(t => t.Line, opt => opt.MapFrom(s => s.Line));
-
-            configurationStore.CreateMap<G.Comment, Comment>()
-                .ForMember(t => t.Text, opt => opt.MapFrom(s => s.Text))
-                .ForMember(t => t.Location, opt => opt.MapFrom(s => s.Location))
-                .AfterMap(
-                    (sourceComment, targetComment) =>
-                    {
-                        targetComment.Text = targetComment.Text.Trim();
+            this.languageServices = new LanguageServices(featureLanguage);
                     }
-                );
-
-            configurationStore.CreateMap<G.Step, Step>()
-                .ForMember(t => t.NativeKeyword, opt => opt.MapFrom(s => s.Keyword))
-                .ForMember(t => t.Name, opt => opt.MapFrom(s => s.Text))
-                .ForMember(t => t.Location, opt => opt.MapFrom(s => s.Location))
-                .ForMember(t => t.DocStringArgument, opt => opt.MapFrom(s => s.Argument is G.DocString ? s.Argument : null))
-                .ForMember(t => t.TableArgument, opt => opt.MapFrom(s => s.Argument is G.DataTable ? s.Argument : null));
-
-            configurationStore.CreateMap<G.Tag, string>()
-                .ConstructUsing(tag => tag.Name);
-
-            configurationStore.CreateMap<G.Scenario, Scenario>()
-                .ForMember(t => t.Description, opt => opt.NullSubstitute(string.Empty))
-                .ForMember(t => t.Location, opt => opt.MapFrom(s => s.Location));
-
-            configurationStore.CreateMap<IEnumerable<G.TableRow>, Table>()
-                .ForMember(t => t.HeaderRow, opt => opt.MapFrom(s => s.Take(1).Single()))
-                .ForMember(t => t.DataRows, opt => opt.MapFrom(s => s.Skip(1)));
-
-            configurationStore.CreateMap<G.Examples, Example>()
-                .ForMember(t => t.TableArgument, opt => opt.MapFrom(s => ((G.IHasRows)s).Rows));
-
-            configurationStore.CreateMap<G.ScenarioOutline, ScenarioOutline>()
-                .ForMember(t => t.Description, opt => opt.NullSubstitute(string.Empty))
-                .ForMember(t => t.Location, opt => opt.MapFrom(s => s.Location));
-
-            configurationStore.CreateMap<G.Background, Scenario>()
-                .ForMember(t => t.Description, opt => opt.NullSubstitute(string.Empty));
-
-            configurationStore.CreateMap<G.ScenarioDefinition, IFeatureElement>().ConvertUsing(
-                sd =>
-                {
-                    if (sd == null)
-                    {
-                        return null;
-                    }
-
-                    var scenario = sd as G.Scenario;
-                    if (scenario != null)
-                    {
-                        return this.mapper.Map<Scenario>(scenario);
-                    }
-
-                    var scenarioOutline = sd as G.ScenarioOutline;
-                    if (scenarioOutline != null)
-                    {
-                        return this.mapper.Map<ScenarioOutline>(scenarioOutline);
-                    }
-
-                    var background = sd as G.Background;
-                    if (background != null)
-                    {
-                        return this.mapper.Map<Scenario>(background);
-                    }
-
-                    throw new ArgumentException("Only arguments of type Scenario, ScenarioOutline and Background are supported.");
-                });
-
-            configurationStore.CreateMap<G.GherkinDocument, Feature>()
-                .ForMember(t => t.Background, opt => opt.ResolveUsing(s => s.Feature.Children.SingleOrDefault(c => c is G.Background) as G.Background))
-                .ForMember(t => t.Comments, opt => opt.ResolveUsing(s => s.Comments))
-                .ForMember(t => t.Description, opt => opt.ResolveUsing(s => s.Feature.Description))
-                .ForMember(t => t.FeatureElements, opt => opt.ResolveUsing(s => s.Feature.Children.Where(c => !(c is G.Background))))
-                .ForMember(t => t.Name, opt => opt.ResolveUsing(s => s.Feature.Name))
-                .ForMember(t => t.Tags, opt => opt.ResolveUsing(s => s.Feature.Tags))
-
-
-                .ForMember(t => t.Description, opt => opt.NullSubstitute(string.Empty))
-                .AfterMap(
-                    (sourceFeature, targetFeature) =>
-                        {
-                            foreach (var comment in targetFeature.Comments.ToArray())
-                            {
-                                // Find the related feature
-                                var relatedFeatureElement = targetFeature.FeatureElements.LastOrDefault(x => x.Location.Line < comment.Location.Line);
-                                // Find the step to which the comment is related to
-                                if (relatedFeatureElement != null)
-                                {
-                                    var stepAfterComment = relatedFeatureElement.Steps.FirstOrDefault(x => x.Location.Line > comment.Location.Line);
-                                    if (stepAfterComment != null)
-                                    {
-                                        // Comment is before a step
-                                        comment.Type = CommentType.StepComment;
-                                        stepAfterComment.Comments.Add(comment);
-                                    }
-                                    else
-                                    {
-                                        // Comment is located after the last step
-                                        var stepBeforeComment = relatedFeatureElement.Steps.LastOrDefault(x => x.Location.Line < comment.Location.Line);
-                                        if (stepBeforeComment != null && stepBeforeComment == relatedFeatureElement.Steps.Last())
-                                        {
-
-                                            comment.Type = CommentType.AfterLastStepComment;
-                                            stepBeforeComment.Comments.Add(comment);
-                                        }
-                                    }
-                                }
-                            }
-
-                            foreach (var featureElement in targetFeature.FeatureElements.ToArray())
-                            {
-                                featureElement.Feature = targetFeature;
-                            }
-
-                            if (targetFeature.Background != null)
-                            {
-                                targetFeature.Background.Feature = targetFeature;
-                            }
-                        });
-        }
 
         public string MapToString(G.TableCell cell)
         {
-            return this.mapper.Map<string>(cell);
+            return cell?.Value;
         }
 
         public TableRow MapToTableRow(G.TableRow tableRow)
         {
-            return this.mapper.Map<TableRow>(tableRow);
+            if (tableRow == null)
+            {
+                return null;
+            }
+
+            return new TableRow(tableRow.Cells.Select(this.MapToString));
         }
 
         public Table MapToTable(G.DataTable dataTable)
         {
-            return this.mapper.Map<Table>(dataTable);
+            if (dataTable == null)
+            {
+                return null;
+            }
+
+            var tableRows = dataTable.Rows;
+            return this.MapToTable(tableRows);
+        }
+
+        public Table MapToTable(IEnumerable<G.TableRow> tableRows)
+        {
+            return new Table
+            {
+                HeaderRow = this.MapToTableRow(tableRows.First()),
+                DataRows = tableRows.Skip(1).Select(this.MapToTableRow).ToList()
+            };
         }
 
         public string MapToString(G.DocString docString)
         {
-            return this.mapper.Map<string>(docString);
+            return docString?.Content;
         }
 
         public Step MapToStep(G.Step step)
         {
-            return this.mapper.Map<Step>(step);
+            if (step == null)
+            {
+                return null;
+            }
+
+            return new Step
+            {
+                Location = this.MapToLocation(step.Location),
+                DocStringArgument = step.Argument is G.DocString ? this.MapToString((G.DocString) step.Argument) : null,
+                Keyword = this.MapToKeyword(step.Keyword),
+                NativeKeyword = step.Keyword,
+                Name = step.Text,
+                TableArgument = step.Argument is G.DataTable ? this.MapToTable((G.DataTable) step.Argument) : null,
+            };
         }
 
         public Keyword MapToKeyword(string keyword)
         {
-            return this.mapper.Map<Keyword>(keyword);
+            if (keyword == null)
+            {
+                return default(Keyword);
+            }
+
+            keyword = keyword.Trim();
+
+            if (this.languageServices.WhenStepKeywords.Contains(keyword))
+            {
+                return Keyword.When;
+            }
+
+            if (this.languageServices.GivenStepKeywords.Contains(keyword))
+            {
+                return Keyword.Given;
+            }
+
+            if (this.languageServices.ThenStepKeywords.Contains(keyword))
+            {
+                return Keyword.Then;
+            }
+
+            if (this.languageServices.AndStepKeywords.Contains(keyword))
+            {
+                return Keyword.And;
+            }
+
+            if (this.languageServices.ButStepKeywords.Contains(keyword))
+            {
+                return Keyword.But;
+            }
+
+            throw new ArgumentOutOfRangeException("keyword");
         }
 
         public string MapToString(G.Tag tag)
         {
-            return this.mapper.Map<string>(tag);
+            return tag?.Name;
         }
 
         public Comment MapToComment(G.Comment comment)
         {
-            return this.mapper.Map<Comment>(comment);
+            if (comment == null)
+            {
+                return null;
+            }
+
+            return new Comment
+            {
+                Text = comment.Text.Trim(),
+                Location = this.MapToLocation(comment.Location)
+            };
         }
 
         public Location MapToLocation(G.Location location)
         {
-            return this.mapper.Map<Location>(location);
+            return location != null ? new Location { Column = location.Column, Line = location.Line } : null;
         }
 
         public Scenario MapToScenario(G.Scenario scenario)
         {
-            return this.mapper.Map<Scenario>(scenario);
+            if (scenario == null)
+            {
+                return null;
+            }
+
+            return new Scenario
+            {
+                Description = scenario.Description ?? string.Empty,
+                Location = this.MapToLocation(scenario.Location),
+                Name = scenario.Name,
+                Steps = scenario.Steps.Select(this.MapToStep).ToList(),
+                Tags = scenario.Tags.Select(this.MapToString).ToList()
+            };
         }
 
         public Example MapToExample(G.Examples examples)
         {
-            return this.mapper.Map<Example>(examples);
+            if (examples == null)
+            {
+                return null;
+            }
+
+            return new Example
+            {
+                Description = examples.Description,
+                Name = examples.Name,
+                TableArgument = this.MapToTable(((G.IHasRows) examples).Rows)
+            };
         }
 
         public ScenarioOutline MapToScenarioOutline(G.ScenarioOutline scenarioOutline)
         {
-            return this.mapper.Map<ScenarioOutline>(scenarioOutline);
+            if (scenarioOutline == null)
+            {
+                return null;
+            }
+
+            return new ScenarioOutline
+            {
+                Description = scenarioOutline.Description ?? string.Empty,
+                Examples = (scenarioOutline.Examples ?? new G.Examples[0]).Select(this.MapToExample).ToList(),
+                Location = this.MapToLocation(scenarioOutline.Location),
+                Name = scenarioOutline.Name,
+                Steps = scenarioOutline.Steps.Select(this.MapToStep).ToList(),
+                Tags = scenarioOutline.Tags.Select(this.MapToString).ToList()
+            };
         }
 
         public Scenario MapToScenario(G.Background background)
         {
-            return this.mapper.Map<Scenario>(background);
+            if (background == null)
+            {
+                return null;
+            }
+
+            return new Scenario
+            {
+                Description = background.Description ?? string.Empty,
+                Location = this.MapToLocation(background.Location),
+                Name = background.Name,
+                Steps = background.Steps.Select(this.MapToStep).ToList(),
+            };
         }
 
         public Feature MapToFeature(G.GherkinDocument gherkinDocument)
         {
-            return this.mapper.Map<Feature>(gherkinDocument);
-        }
-
-        public void Dispose()
-        {
-            this.Dispose(true);
-        }
-
-        protected virtual void Dispose(bool isDisposing)
-        {
-            if (isDisposing)
+            if (gherkinDocument == null)
             {
-                this.mapper.Dispose();
+                return null;
             }
+
+            var feature = new Feature();
+
+            var background = gherkinDocument.Feature.Children.SingleOrDefault(c => c is G.Background) as G.Background;
+            if (background != null)
+            {
+                feature.AddBackground(this.MapToScenario(background));
+            }
+
+            feature.Comments.AddRange((gherkinDocument.Comments ?? new G.Comment[0]).Select(this.MapToComment));
+
+            feature.Description = gherkinDocument.Feature.Description ?? string.Empty;
+
+            foreach (var featureElement in gherkinDocument.Feature.Children.Where(c => !(c is G.Background)))
+            {
+                feature.AddFeatureElement(this.MapToFeatureElement(featureElement));
+            }
+
+            feature.Name = gherkinDocument.Feature.Name;
+
+            foreach (var tag in gherkinDocument.Feature.Tags)
+            {
+                feature.AddTag(this.MapToString(tag));
+            }
+
+            foreach (var comment in feature.Comments.ToArray())
+            {
+                // Find the related feature
+                var relatedFeatureElement = feature.FeatureElements.LastOrDefault(x => x.Location.Line < comment.Location.Line);
+                // Find the step to which the comment is related to
+                if (relatedFeatureElement != null)
+        {
+                    var stepAfterComment = relatedFeatureElement.Steps.FirstOrDefault(x => x.Location.Line > comment.Location.Line);
+                    if (stepAfterComment != null)
+                    {
+                        // Comment is before a step
+                        comment.Type = CommentType.StepComment;
+                        stepAfterComment.Comments.Add(comment);
+        }
+                    else
+                    {
+                        // Comment is located after the last step
+                        var stepBeforeComment = relatedFeatureElement.Steps.LastOrDefault(x => x.Location.Line < comment.Location.Line);
+                        if (stepBeforeComment != null && stepBeforeComment == relatedFeatureElement.Steps.Last())
+                        {
+
+                            comment.Type = CommentType.AfterLastStepComment;
+                            stepBeforeComment.Comments.Add(comment);
+                        }
+                    }
+                }
+            }
+
+            foreach (var featureElement in feature.FeatureElements.ToArray())
+            {
+                featureElement.Feature = feature;
+            }
+
+            if (feature.Background != null)
+            {
+                feature.Background.Feature = feature;
+            }
+
+            return feature;
+        }
+
+        private IFeatureElement MapToFeatureElement(G.ScenarioDefinition sd)
+        {
+            if (sd == null)
+            {
+                return null;
+            }
+
+            var scenario = sd as G.Scenario;
+            if (scenario != null)
+            {
+                return this.MapToScenario(scenario);
+            }
+
+            var scenarioOutline = sd as G.ScenarioOutline;
+            if (scenarioOutline != null)
+            {
+                return this.MapToScenarioOutline(scenarioOutline);
+            }
+
+            var background = sd as G.Background;
+            if (background != null)
+            {
+                return this.MapToScenario(background);
+            }
+
+            throw new ArgumentException("Only arguments of type Scenario, ScenarioOutline and Background are supported.");
         }
     }
 }
