@@ -26,12 +26,12 @@ This document is formatted according to the principles of [Keep A CHANGELOG](htt
 
 ### Changed
 
-- Remove Dependency on AutoMapper ([#333](https://github.com/picklesdoc/pickles/issues/323)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
+- Remove Dependency on AutoMapper ([#333](https://github.com/picklesdoc/pickles/issues/333)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
 - Update DHTML version to use Knockout version 3.4.0 ([#325](https://github.com/picklesdoc/pickles/issues/325)) (by [@dirkrombauts](https://github.com/dirkrombauts)).
 
 ### Fixed
 
-- General handling of special characters in scenario outline inputs, and XUnit failed, if multiple TestResults.xml were used ([336]()) (by [@magicmonty](https://github.com/magicmonty)).
+- General handling of special characters in scenario outline inputs, and XUnit failed, if multiple TestResults.xml were used ([336](https://github.com/picklesdoc/pickles/issues/336)) (by [@magicmonty](https://github.com/magicmonty)).
 - SpecFlow conformant name mapping in other test result providers ([#326](https://github.com/picklesdoc/pickles/issues/326)) (by [@danielpullwitt](https://github.com/danielpullwitt)).
 
 ## [2.6.0] - 2016-04-12
