@@ -18,6 +18,7 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -27,6 +28,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit
 {
     public class XUnitExampleSignatureBuilder
     {
+        private const int MaxExampleValueLength = 50;
+
         public Regex Build(ScenarioOutline scenarioOutline, string[] row)
         {
             var stringBuilder = new StringBuilder();
@@ -34,10 +37,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit
             var name = SpecFlowNameMapping.Build(scenarioOutline.Name.ToLowerInvariant());
             stringBuilder.Append(name).Append("\\(");
 
-            foreach (string value in row)
-            {
-                stringBuilder.AppendFormat("(.*): \"{0}\", ", Regex.Escape(value.ToLowerInvariant()));
-            }
+            foreach (var value in row.Select(v => v.Length > MaxExampleValueLength ? new { Value = v.Substring(0, MaxExampleValueLength), Ellipsis = "..." } : new { Value = v, Ellipsis = "" }))
+                stringBuilder.AppendFormat("(.*): \"{0}\"{1}, ", Regex.Escape(value.Value.ToLowerInvariant()), value.Ellipsis);
 
             stringBuilder.Remove(stringBuilder.Length - 2, 2);
 
