@@ -14,6 +14,14 @@ Features in Experimental are subject to change and removal without being conside
 
 This document is formatted according to the principles of [Keep A CHANGELOG](http://keepachangelog.com).
 
+## [2.6.2] - 2016-05-11
+
+### Fixed
+
+- Command line help does not list all possible test result formats ([340](https://github.com/picklesdoc/pickles/issues/340)) (by [@magicmonty](https://github.com/magicmonty)).
+- Some examples were not recognized ([#343](https://github.com/picklesdoc/pickles/issues/343)) (by [@danielpullwitt](https://github.com/danielpullwitt)).
+
+
 ## [2.6.1] - 2016-05-10
 
 ### Changed
