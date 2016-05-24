@@ -14,6 +14,13 @@ Features in Experimental are subject to change and removal without being conside
 
 This document is formatted according to the principles of [Keep A CHANGELOG](http://keepachangelog.com).
 
+## [2.6.3] - 2016-05-24
+
+### Fixed
+
+- Fix path handling for Unix and Mac ([344](https://github.com/picklesdoc/pickles/issues/344)) (by [@jboffel](https://github.com/jboffel)).
+
+
 ## [2.6.2] - 2016-05-11
 
 ### Fixed
