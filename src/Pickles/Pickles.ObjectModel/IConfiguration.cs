@@ -54,5 +54,11 @@ namespace PicklesDoc.Pickles
         void EnableExperimentalFeatures();
 
         void DisableExperimentalFeatures();
+
+        bool ShouldEnableComments { get; }
+
+        void EnableComments();
+
+        void DisableComments();
     }
 }
