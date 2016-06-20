@@ -47,11 +47,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
     </script>
 ";
 
-                this.WriteTextFile(folder, "Index.html", "#### EMBED EXPERIMENTALS ####", mathScript);
+                this.WriteTextFile(folder, "Index.html", "<!-- #### EMBED EXPERIMENTALS #### -->", mathScript);
             }
             else
             {
-                this.WriteTextFile(folder, "Index.html", "#### EMBED EXPERIMENTALS ####", "");
+                this.WriteTextFile(folder, "Index.html", "<!-- #### EMBED EXPERIMENTALS #### -->", "");
             }
             this.WriteTextFile(folder, "pickledFeatures.js");
 
@@ -65,6 +65,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.DHTML
             this.EnsureFolder(imagesFolder);
             this.WriteImage(imagesFolder, "glyphicons-halflings-white.png");
             this.WriteImage(imagesFolder, "glyphicons-halflings.png");
+            this.WriteImage(imagesFolder, "link.png");
 
             string scriptsFolder = this.FileSystem.Path.Combine(folder, "js");
             this.EnsureFolder(scriptsFolder);
