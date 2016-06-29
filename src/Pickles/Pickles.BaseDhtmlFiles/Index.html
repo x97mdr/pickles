@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -14,7 +14,7 @@
     <!--[if lt IE 9]>
       <script src="js/html5.js"></script>
     <![endif]-->
-    #### EMBED EXPERIMENTALS ####
+    <!-- #### EMBED EXPERIMENTALS #### -->
 </head>
 
 <body data-bind="style: { overflow: overviewVisible() ? 'hidden' : 'auto' }">
@@ -173,7 +173,7 @@
                                 </em>
                             </div>
 
-                            <div class="scenario">
+                            <div class="scenario" data-bind="attr: { id: Slug }">
                                 <div data-bind="template: { name: 'testResults-template', data: Result }"></div>
 
                                 <div>
@@ -195,6 +195,9 @@
 
                                 </div>
 
+                                <a class="scenario-link clickable" data-bind="ifnot: $root.disableScenarioLinks, click: $root.getLink" title="Get Link for Scenario">
+                                    <img alt="Get Link for Scenario" src="img/link.png">
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -254,6 +257,25 @@
                 </div>
             </div>
         </div>
+        <div id="scenarioLinkModal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" data-bind="with: selectedScenario">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Scenario Link</h4>
+                        <div class="scenario-name" data-bind="text: Name"></div>
+                    </div>
+                    <div class="modal-body">
+                        <textarea id="clipboardText" data-bind="text: link, click: $root.followLink" rows="5" readonly></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <i class="icon-ok" data-bind="visible: $root.linkCopied"></i>
+                        <button type="button" class="btn btn-primary" data-bind="click: $root.copyLinkToClipboard">Copy to Clipboard</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Le javascript
@@ -290,11 +312,22 @@
 
             self.ShowAllLinks = ko.observable(false);
             self.overviewVisible = ko.observable(false);
+            self.selectedScenario = ko.observable(null);
+            self.disableScenarioLinks = ko.observable(window.location.protocol.match(/file/));
+            self.linkCopied = ko.observable(false);
 
             self.setCurrentFeature = function () {
-                if (window.location.hash != '') {
-                    var featureFromHashLocation = findFeatureByRelativeFolder(removeBeginningHash(window.location.hash), features);
-                    self.updateCurrentFeature(featureFromHashLocation);
+                var currentFeatureRelativeFolder = FeatureNavigation.getCurrent();
+                if (currentFeatureRelativeFolder != '') {
+                    var currentFeature = findFeatureByRelativeFolder(currentFeatureRelativeFolder, features) || self.originalFeaturesList()[0];
+                    // preserve hash value (incoming request)
+                    var hash = window.location.hash;
+                    self.updateCurrentFeature(currentFeature);
+                    window.location.hash = hash;
+                    // smooth-scroll to hashed slug
+                    setTimeout(function() {
+                        smoothScrollToScenarioAnchor(window.location.hash);
+                    }, 250);
                 } else {
                     self.updateCurrentFeature(self.originalFeaturesList()[0]);
                 }
@@ -317,9 +350,9 @@
                         self.overview.createByRootFolderChart($('#byRootFolderCanvas').get(0).getContext('2d'));
                         self.overview.createNotTestedByRootFolderChart($('#notTestedbyRootFolderCanvas').get(0).getContext('2d'));
                         self.totals(self.overview.getTotalsData());
-                    } else {
-                        $('.modal-overlay').scrollTop(0);
                     }
+                } else {
+                    smoothScrollToScenarioAnchor(window.location.hash);
                 }
             };
 
@@ -357,9 +390,8 @@
 
             self.updateCurrentFeature = function (feature) {
                 self.currentFeature(feature);
-                document.location.hash = feature.RelativeFolder;
                 document.title = feature.Feature.Name;
-                window.scroll(0, 0);
+                FeatureNavigation.setCurrent(feature.RelativeFolder);
                 highlightSearchString(self.whatToSearchFor());
             };
 
@@ -383,12 +415,56 @@
                 expandContractDirectoryLinks(self.featuresByFolder().SubDirectories);
             };
 
+            self.getLink = function(scenario) {
+                self.linkCopied(false);
+                scenario.link = FeatureNavigation.getCurrentLink(scenario.Slug);
+                self.selectedScenario(scenario);
+                $('#scenarioLinkModal').modal('show');
+            };
+
+            self.followLink = function(scenario) {
+                window.open(scenario.link);
+            };
+
+            self.copyLinkToClipboard = function() {
+                self.linkCopied(false);
+
+                $('#clipboardText').select();
+
+                try {
+                    var result = document.execCommand('copy');
+                    if (!result) {
+                        console.error('Copy to clipboard not supported in this browser');
+                    }
+                }
+                catch(ex) {
+                    console.error(ex);
+                }
+
+                document.getSelection().removeAllRanges();
+                self.linkCopied(true);
+            };
+
             function expandContractDirectoryLinks(subDirs) {
                 $.each(subDirs, function (key, value) {
                     value.IsExpanded(self.ShowAllLinks());
                     expandContractDirectoryLinks(value.SubDirectories);
                 });
-            };
+            }
+
+            function smoothScrollToScenarioAnchor(anchorId) {
+                var anchor = $(anchorId);
+                var anchorOffset = anchor.offset();
+                if (anchorOffset != null) {
+                    $('html, body').animate({
+                        scrollTop: anchorOffset.top - 75
+                    }, { complete: function() { anchor.addClass('scenario-active') } });
+
+                    return true;
+                }
+
+                return false;
+            }
 
             // Hide / show detailed areas
             self.toggleDetail = function (element) {
