@@ -1,5 +1,5 @@
 @echo off
-set "picklesVersion=2.8.1"
+set "picklesVersion=2.8.2"
 
 cls
 
@@ -21,6 +21,7 @@ call %%A.cmd %picklesVersion%
 if errorlevel 1 goto handleerror1orhigher
 )
 
+call DeployOutput.cmd %picklesVersion%
 
 @ECHO all fine
 goto end
