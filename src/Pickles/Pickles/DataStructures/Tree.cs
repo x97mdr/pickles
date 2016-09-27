@@ -21,6 +21,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 using PicklesDoc.Pickles.DirectoryCrawler;
 
@@ -32,6 +33,8 @@ namespace PicklesDoc.Pickles.DataStructures
 
         public Tree(INode currentNode)
         {
+            if (currentNode == null) throw new ArgumentNullException(nameof(currentNode));
+
             this.currentNode = currentNode;
             this.ChildNodes = new List<Tree>();
         }
@@ -51,7 +54,7 @@ namespace PicklesDoc.Pickles.DataStructures
             List<INode> result = new List<INode>();
             result.Add(this.currentNode);
 
-            foreach(var childNode in this.ChildNodes)
+            foreach(var childNode in this.ChildNodes.OrderBy(n => n.Data.Name))
             {
                 using (var enumerator = childNode.GetEnumerator())
                 {
@@ -72,12 +75,18 @@ namespace PicklesDoc.Pickles.DataStructures
 
         public void Add(Tree node)
         {
+            if (node == null) throw new ArgumentNullException(nameof(node));
+
             this.ChildNodes.Add(node);
         }
 
-        public void Add(INode node)
+        public Tree Add(INode node)
         {
-            this.Add(new Tree(node));
+            if (node == null) throw new ArgumentNullException(nameof(node));
+
+            var tree = new Tree(node);
+            this.Add(tree);
+            return tree;
         }
     }
 }
