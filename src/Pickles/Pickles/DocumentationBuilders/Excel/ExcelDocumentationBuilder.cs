@@ -22,9 +22,8 @@ using System;
 using System.IO.Abstractions;
 using System.Reflection;
 using ClosedXML.Excel;
-using NGenerics.DataStructures.Trees;
-using NGenerics.Patterns.Visitor;
 using NLog;
+using PicklesDoc.Pickles.DataStructures;
 using PicklesDoc.Pickles.DirectoryCrawler;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
@@ -56,7 +55,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
             this.fileSystem = fileSystem;
         }
 
-        public void Build(GeneralTree<INode> features)
+        public void Build(Tree features)
         {
             if (Log.IsInfoEnabled)
             {
@@ -66,7 +65,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
             string spreadsheetPath = this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, "features.xlsx");
             using (var workbook = new XLWorkbook())
             {
-                var actionVisitor = new ActionVisitor<INode>(node =>
+                foreach (var node in features)
                 {
                     var featureDirectoryTreeNode =
                         node as FeatureNode;
@@ -82,9 +81,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
                             worksheet,
                             featureDirectoryTreeNode.Feature);
                     }
-                });
-
-                features.AcceptVisitor(actionVisitor);
+                }
 
                 this.excelTableOfContentsFormatter.Format(workbook, features);
 

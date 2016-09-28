@@ -1,5 +1,5 @@
 @echo off
-set "picklesVersion=2.8.2"
+set "picklesVersion=2.8.3"
 
 cls
 
@@ -20,8 +20,6 @@ FOR %%A IN (testRunnerCmd testRunnerMsBuild testRunnerPowerShell) DO (
 call %%A.cmd %picklesVersion%
 if errorlevel 1 goto handleerror1orhigher
 )
-
-call DeployOutput.cmd %picklesVersion%
 
 @ECHO all fine
 goto end

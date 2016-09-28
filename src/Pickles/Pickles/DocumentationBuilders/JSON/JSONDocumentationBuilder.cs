@@ -24,9 +24,8 @@ using System.IO.Abstractions;
 using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using NGenerics.DataStructures.Trees;
-using NGenerics.Patterns.Visitor;
 using NLog;
+using PicklesDoc.Pickles.DataStructures;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.ObjectModel;
 
@@ -59,7 +58,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
 
         #region IDocumentationBuilder Members
 
-        public void Build(GeneralTree<INode> features)
+        public void Build(Tree features)
         {
             if (Log.IsInfoEnabled)
             {
@@ -68,7 +67,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
 
             var featuresToFormat = new List<JsonFeatureWithMetaInfo>();
 
-            var actionVisitor = new ActionVisitor<INode>(node =>
+            foreach (var node in features)
             {
                 var featureTreeNode =
                     node as FeatureNode;
@@ -89,9 +88,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
                                 featureTreeNode));
                     }
                 }
-            });
-
-            features.AcceptVisitor(actionVisitor);
+            }
 
             this.CreateFile(this.OutputFilePath, this.GenerateJson(featuresToFormat));
         }
@@ -176,7 +173,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
                             .Where(s => filteredScenarios.Contains(s))
                             .ToList();
 
-                        return new 
+                        return new
                             {
                                 Folder = folder,
                                 Total = scenariosInFolder.Count,
@@ -221,8 +218,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.JSON
                     NotTestedFolders = topLevelNotTestedFolderSummary,
                     Scenarios = new
                         {
-                            Total = filteredScenarios.Count, 
-                            Passing = filteredScenarios.LongCount(x => x.Result.WasExecuted && x.Result.WasSuccessful), 
+                            Total = filteredScenarios.Count,
+                            Passing = filteredScenarios.LongCount(x => x.Result.WasExecuted && x.Result.WasSuccessful),
                             Failing = filteredScenarios.LongCount(x => x.Result.WasExecuted && !x.Result.WasSuccessful),
                             Inconclusive = filteredScenarios.LongCount(x => !x.Result.WasExecuted)
                         },
