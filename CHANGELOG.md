@@ -14,6 +14,17 @@ Features in Experimental are subject to change and removal without being conside
 
 This document is formatted according to the principles of [Keep A CHANGELOG](http://keepachangelog.com).
 
+## [2.9.0] - 2016-10-07
+
+### Changed
+
+- Show parser failures and quit with an error ([379](https://github.com/picklesdoc/pickles/pull/379)) (by [@Sjaaky](https://github.com/Sjaaky)).
+
+### Fixed
+
+- Fix Importing Test Results Failure for MsTest for Ignored Scenarios ([378](https://github.com/picklesdoc/pickles/pull/378)) (by [@wbagit](https://github.com/wbagit)).
+- Better Dealing with Special Characters in Scenario Examples ([375](https://github.com/picklesdoc/pickles/pull/375)) (by [@thopark](https://github.com/thopark)).
+
 ## [2.8.3] - 2016-09-28
 
 ### Fixed
