@@ -44,8 +44,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DirectoryCrawler\INode.cs" />
+    <Compile Include="DataStructures\Tree.cs" />
+    <Compile Include="DirectoryCrawler\FeatureNode.cs" />
+    <Compile Include="DirectoryCrawler\FolderNode.cs" />
+    <Compile Include="DirectoryCrawler\ImageNode.cs" />
+    <Compile Include="DirectoryCrawler\MarkdownNode.cs" />
     <Compile Include="DocumentationFormat.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\TreeNodeExtensions.cs" />
+    <Compile Include="Extensions\UriExtensions.cs" />
     <Compile Include="IConfiguration.cs" />
+    <Compile Include="DocumentationBuilders\IDocumentationBuilder.cs" />
+    <Compile Include="ILanguageServices.cs" />
+    <Compile Include="IMarkdownProvider.cs" />
     <Compile Include="ObjectModel\Location.cs" />
     <Compile Include="ObjectModel\Example.cs" />
     <Compile Include="ObjectModel\Feature.cs" />
@@ -66,6 +78,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

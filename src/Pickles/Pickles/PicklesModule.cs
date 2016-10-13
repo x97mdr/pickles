@@ -21,10 +21,10 @@
 using Autofac;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders;
-using PicklesDoc.Pickles.DocumentationBuilders.DHTML;
+using PicklesDoc.Pickles.DocumentationBuilders.Dhtml;
 using PicklesDoc.Pickles.DocumentationBuilders.Excel;
-using PicklesDoc.Pickles.DocumentationBuilders.HTML;
-using PicklesDoc.Pickles.DocumentationBuilders.JSON;
+using PicklesDoc.Pickles.DocumentationBuilders.Html;
+using PicklesDoc.Pickles.DocumentationBuilders.Json;
 using PicklesDoc.Pickles.DocumentationBuilders.Word;
 using PicklesDoc.Pickles.FeatureToggles;
 using PicklesDoc.Pickles.ObjectModel;
@@ -51,9 +51,44 @@ namespace PicklesDoc.Pickles
             builder.RegisterType<FeatureNodeFactory>().SingleInstance();
 
             builder.RegisterType<HtmlDocumentationBuilder>().SingleInstance();
+            builder.RegisterType<HtmlHeaderFormatter>().SingleInstance();
+            builder.RegisterType<HtmlContentFormatter>().SingleInstance();
+            builder.RegisterType<HtmlDocumentFormatter>().SingleInstance();
+            builder.RegisterType<HtmlResourceSet>().SingleInstance();
+            builder.RegisterType<HtmlImageResultFormatter>().SingleInstance();
+            builder.RegisterType<HtmlIndexFormatter>().SingleInstance();
+            builder.RegisterType<HtmlFeatureFormatter>().SingleInstance();
+            builder.RegisterType<HtmlScenarioFormatter>().SingleInstance();
+            builder.RegisterType<HtmlScenarioOutlineFormatter>().SingleInstance();
+            builder.RegisterType<HtmlDescriptionFormatter>().SingleInstance();
+            builder.RegisterType<HtmlStepFormatter>().SingleInstance();
+            builder.RegisterType<HtmlTableFormatter>().SingleInstance();
+            builder.RegisterType<HtmlMultilineStringFormatter>().SingleInstance();
+
             builder.RegisterType<WordDocumentationBuilder>().SingleInstance();
+            builder.RegisterType<WordScenarioFormatter>().SingleInstance();
+            builder.RegisterType<WordScenarioOutlineFormatter>().SingleInstance();
+            builder.RegisterType<WordStyleApplicator>().SingleInstance();
+            builder.RegisterType<WordDescriptionFormatter>().SingleInstance();
+            builder.RegisterType<WordBackgroundFormatter>().SingleInstance();
+            builder.RegisterType<WordFeatureFormatter>().SingleInstance();
+            builder.RegisterType<WordFontApplicator>().SingleInstance();
+            builder.RegisterType<WordHeaderFooterFormatter>().SingleInstance();
+            builder.RegisterType<WordStepFormatter>().SingleInstance();
+            builder.RegisterType<WordTableFormatter>().SingleInstance();
+
             builder.RegisterType<JsonDocumentationBuilder>().SingleInstance();
+
             builder.RegisterType<ExcelDocumentationBuilder>().SingleInstance();
+            builder.RegisterType<ExcelFeatureFormatter>().SingleInstance();
+            builder.RegisterType<ExcelSheetNameGenerator>().SingleInstance();
+            builder.RegisterType<ExcelTableOfContentsFormatter>().SingleInstance();
+            builder.RegisterType<ExcelScenarioFormatter>().SingleInstance();
+            builder.RegisterType<ExcelScenarioOutlineFormatter>().SingleInstance();
+            builder.RegisterType<ExcelStepFormatter>().SingleInstance();
+            builder.RegisterType<ExcelTableFormatter>().SingleInstance();
+            builder.RegisterType<ExcelDocumentStringFormatter>().SingleInstance();
+
             builder.RegisterType<DhtmlDocumentationBuilder>().SingleInstance();
 
             builder.Register<IDocumentationBuilder>(c =>
@@ -132,7 +167,7 @@ namespace PicklesDoc.Pickles
                 }
             }).SingleInstance();
 
-            builder.RegisterType<LanguageServices>().UsingConstructor(typeof(IConfiguration)).SingleInstance();
+            builder.RegisterType<LanguageServices>().As<ILanguageServices>().UsingConstructor(typeof(IConfiguration)).SingleInstance();
 
             builder.RegisterType<HtmlMarkdownFormatter>().SingleInstance();
             builder.RegisterType<HtmlResourceWriter>().SingleInstance();
