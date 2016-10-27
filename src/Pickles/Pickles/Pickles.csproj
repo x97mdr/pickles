@@ -122,7 +122,6 @@
     <Compile Include="Runner.cs" />
     <Compile Include="StrikeMarkdownProvider.cs" />
     <Compile Include="TestFrameworks\NullTestResults.cs" />
-    <Compile Include="DataStructures\Tree.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
