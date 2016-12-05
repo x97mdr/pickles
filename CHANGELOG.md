@@ -25,6 +25,7 @@ This document is formatted according to the principles of [Keep A CHANGELOG](htt
 
 * Null reference error when running with MsTest trx results file ([356](https://github.com/picklesdoc/pickles/issues/356)) (by [@dirkrombauts](https://github.com/dirkrombauts))
 * Test result file is read as null in CucumberJson when elements is missing ([390](https://github.com/picklesdoc/pickles/issues/390)) (by [@dirkrombauts](https://github.com/dirkrombauts))
+* DHTML version sorts features and folders in descending order ([383](https://github.com/picklesdoc/pickles/issues/383)) (by [@aquilanl](https://github.com/aquilanl))
 
 ## [2.10.0] - 2016-10-22
 
