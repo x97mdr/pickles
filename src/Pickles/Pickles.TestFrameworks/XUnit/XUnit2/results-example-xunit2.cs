@@ -60,19 +60,19 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2 {
         private System.DateTime runtimeField;
         
         private string configfileField;
-        
+
         private int totalField;
-        
+
         private int passedField;
-        
+
         private int failedField;
-        
+
         private int skippedField;
-        
+
         private decimal timeField;
-        
+
         private int errors1Field;
-        
+
         /// <remarks/>
         public object errors {
             get {
@@ -161,7 +161,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2 {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int total {
             get {
                 return this.totalField;
@@ -172,7 +172,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2 {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int passed {
             get {
                 return this.passedField;
@@ -183,7 +183,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2 {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int failed {
             get {
                 return this.failedField;
@@ -194,7 +194,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2 {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int skipped {
             get {
                 return this.skippedField;
@@ -216,7 +216,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2 {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute("errors")]
+        [XmlAttribute("errors")]
         public int errors1 {
             get {
                 return this.errors1Field;
@@ -236,15 +236,15 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2 {
     public partial class assembliesAssemblyCollection {
         
         private assembliesAssemblyCollectionTest[] testField;
-        
+
         private int totalField;
-        
+
         private int passedField;
-        
+
         private int failedField;
-        
+
         private int skippedField;
-        
+
         private string nameField;
         
         private decimal timeField;
@@ -261,7 +261,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2 {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int total {
             get {
                 return this.totalField;
@@ -272,7 +272,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2 {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int passed {
             get {
                 return this.passedField;
@@ -283,7 +283,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2 {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int failed {
             get {
                 return this.failedField;
@@ -294,7 +294,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2 {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int skipped {
             get {
                 return this.skippedField;

@@ -14,6 +14,26 @@ Features in Experimental are subject to change and removal without being conside
 
 This document is formatted according to the principles of [Keep A CHANGELOG](http://keepachangelog.com).
 
+## [2.11.1] - 2016-12-16
+
+### Fixed
+
+- Enable Pickles to deal with ignored scenario examples in VsTest Result Provider ([340](https://github.com/picklesdoc/pickles/pull/340)) (by [@dirkrombauts](https://github.com/dirkrombauts))
+- Enable xUnit Test Result Provider to Deal with more than 255 Scenarios in a File ([405](https://github.com/picklesdoc/pickles/pull/405)) (by [@dirkrombauts](https://github.com/dirkrombauts))
+
+## [2.11.0] - 2016-12-05
+
+### Changed
+
+- Enable xUnit Test Result Provider to Deal with more than 255 Scenarios in a File ([397](https://github.com/picklesdoc/pickles/pull/397)) (by [@eugene-sea](https://github.com/eugene-sea))
+- Several external libraries were update to their newest versions ([394](https://github.com/picklesdoc/pickles/pull/394)) (by [@dirkrombauts](https://github.com/dirkrombauts))
+
+### Fixed
+
+- Null reference error when running with MsTest trx results file ([356](https://github.com/picklesdoc/pickles/issues/356)) (by [@dirkrombauts](https://github.com/dirkrombauts))
+- Test result file is read as null in CucumberJson when elements is missing ([390](https://github.com/picklesdoc/pickles/issues/390)) (by [@dirkrombauts](https://github.com/dirkrombauts))
+- DHTML version sorts features and folders in descending order ([383](https://github.com/picklesdoc/pickles/issues/383)) (by [@aquilanl](https://github.com/aquilanl))
+
 ## [2.10.0] - 2016-10-22
 
 ### Changed
