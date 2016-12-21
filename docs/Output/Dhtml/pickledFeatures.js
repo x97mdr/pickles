@@ -2056,7 +2056,25 @@ jsonPWrapper ({
               "WasExecuted": false,
               "WasSuccessful": false
             }
-          },
+          }
+        ],
+        "Result": {
+          "WasExecuted": false,
+          "WasSuccessful": false
+        },
+        "Tags": []
+      },
+      "Result": {
+        "WasExecuted": false,
+        "WasSuccessful": false
+      }
+    },
+    {
+      "RelativeFolder": "Features\\09CallingStepsFromSteps\\CallingStepsFromSteps.feature",
+      "Feature": {
+        "Name": "Calling Steps from StepDefinitions",
+        "Description": "In order to create steps of a higher abstraction  \r\nAs a SpecFlow evangelist  \r\nI want reuse other steps in my step definitions",
+        "FeatureElements": [
           {
             "Name": "Feature with multiple contexts",
             "Slug": "feature-with-multiple-contexts",
@@ -2115,7 +2133,25 @@ jsonPWrapper ({
               "WasExecuted": false,
               "WasSuccessful": false
             }
-          },
+          }
+        ],
+        "Result": {
+          "WasExecuted": false,
+          "WasSuccessful": false
+        },
+        "Tags": []
+      },
+      "Result": {
+        "WasExecuted": false,
+        "WasSuccessful": false
+      }
+    },
+    {
+      "RelativeFolder": "Features\\10StepTransformation\\StepTransformation.feature",
+      "Feature": {
+        "Name": "Step Argument Transformations",
+        "Description": "In order to reduce the amount of code and repetitive tasks in my steps  \r\nAs a SpecFlow evanglist  \r\nI want to define reusable transformations for my step arguments",
+        "FeatureElements": [
           {
             "Name": "Feature with a dependent context",
             "Slug": "feature-with-a-dependent-context",
@@ -2299,6 +2335,13 @@ jsonPWrapper ({
                 "Name": "that",
                 "StepComments": [],
                 "AfterLastStepComments": []
+              },
+              {
+                "Keyword": "And",
+                "NativeKeyword": "And ",
+                "Name": "its sub-context is set",
+                "StepComments": [],
+                "AfterLastStepComments": []
               }
             ],
             "Tags": [],
@@ -2341,6 +2384,13 @@ jsonPWrapper ({
                 "Keyword": "Then",
                 "NativeKeyword": "Then ",
                 "Name": "that: <test2>",
+                "StepComments": [],
+                "AfterLastStepComments": []
+              },
+              {
+                "Keyword": "And",
+                "NativeKeyword": "And ",
+                "Name": "the context was created by the feature with a single context scenario",
                 "StepComments": [],
                 "AfterLastStepComments": []
               }
@@ -2505,6 +2555,13 @@ jsonPWrapper ({
                 "AfterLastStepComments": []
               },
               {
+                "Keyword": "And",
+                "NativeKeyword": "And ",
+                "Name": "I have entered 70 into the calculator",
+                "StepComments": [],
+                "AfterLastStepComments": []
+              },
+              {
                 "Keyword": "When",
                 "NativeKeyword": "When ",
                 "Name": "I click on the table heading",
@@ -2519,7 +2576,9 @@ jsonPWrapper ({
                 "AfterLastStepComments": []
               }
             ],
-            "Tags": [],
+            "Tags": [
+              "@nestedFolders"
+            ],
             "Result": {
               "WasExecuted": false,
               "WasSuccessful": false
@@ -2589,7 +2648,25 @@ jsonPWrapper ({
               "WasExecuted": false,
               "WasSuccessful": false
             }
-          },
+          }
+        ],
+        "Result": {
+          "WasExecuted": false,
+          "WasSuccessful": false
+        },
+        "Tags": []
+      },
+      "Result": {
+        "WasExecuted": false,
+        "WasSuccessful": false
+      }
+    },
+    {
+      "RelativeFolder": "Features\\14MarkdownExample\\MarkdownExamples.feature",
+      "Feature": {
+        "Name": "Sample Markdown Feature",
+        "Description": "# Header 1\r\n\r\n## Header 2\r\n\r\n### Header 3\r\n\r\n#### Header 4\r\n\r\n##### Header 5\r\n\r\n###### Header 6\r\n\r\nThis is a *significant* word\r\n\r\n1. Ordered #1\r\n2. Ordered #2\r\n3. Ordered #3\r\n\r\n- Unordered #1\r\n- Unordered #2\r\n- Unordered #3\r\n\r\nHorizontal Rule:\r\n- - -\r\n\r\nTable example:\r\n\r\n| First Header  | Second Header |\r\n| ------------- | ------------- |\r\n| Content Cell  | Content Cell  |\r\n| Content Cell  | Content Cell  |\r\n\r\n- - -\r\n\r\nIncluding a picture: ![](./image.png)",
+        "FeatureElements": [
           {
             "Name": "Subtract two numbers",
             "Slug": "subtract-two-numbers",
@@ -2608,7 +2685,16 @@ jsonPWrapper ({
                 "Name": "I have entered 70 into the calculator",
                 "StepComments": [],
                 "AfterLastStepComments": []
-              },
+              }
+            ],
+            "Tags": [],
+            "Result": {
+              "WasExecuted": false,
+              "WasSuccessful": false
+            }
+          },
+          {
+            "Examples": [
               {
                 "Keyword": "When",
                 "NativeKeyword": "When ",
