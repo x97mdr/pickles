@@ -14,6 +14,16 @@ Features in Experimental are subject to change and removal without being conside
 
 This document is formatted according to the principles of [Keep A CHANGELOG](http://keepachangelog.com).
 
+## [2.12.0] - 2017-01-26
+
+### Added
+
+- Adding Cucumber JSON Documentation Builder ([413](https://github.com/picklesdoc/pickles/pull/413)) (by [armsteadj1](https://github.com/armsteadj1), [jgrossrieder](https://github.com/jgrossrieder) and [dgrekov](https://github.com/dgrekov))
+
+### Fixed
+
+- Fixes hiding topnav when printing ([411](https://github.com/picklesdoc/pickles/pull/411)) (by [bliles](https://github.com/bliles))
+
 ## [2.11.1] - 2016-12-16
 
 ### Fixed
