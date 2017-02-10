@@ -14,6 +14,16 @@ Features in Experimental are subject to change and removal without being conside
 
 This document is formatted according to the principles of [Keep A CHANGELOG](http://keepachangelog.com).
 
+## [2.13.0] - 2017-02-10
+
+### Added
+
+- Improved Tag Support: Tags in Excel and Tags for Examples Blocks in Json, Dhtml, Html, and Word formats ([424](https://github.com/picklesdoc/pickles/pull/424)) (by [@pleveill](https://github.com/pleveill))
+
+### Fixed
+
+- Fix problem of NUnit 3.6 and truncation ([425](https://github.com/picklesdoc/pickles/pull/425)) (by [@dirkrombauts](https://github.com/dirkrombauts))
+
 ## [2.12.0] - 2017-01-26
 
 ### Added
