@@ -576,14 +576,14 @@
       {
         "keyword": "Scenario Outline",
         "name": "Add two negative numbers with many examples",
-        "line": 26,
+        "line": 28,
         "type": "scenario_outline",
         "tags": [],
         "steps": [
           {
             "keyword": "Given",
             "name": "I enter <number 1> into the calculator",
-            "line": 27,
+            "line": 29,
             "result": {
               "status": "inconclusive",
               "duration": 1
@@ -592,7 +592,7 @@
           {
             "keyword": "And",
             "name": "I enter <number 2> into the calculator",
-            "line": 28,
+            "line": 30,
             "result": {
               "status": "inconclusive",
               "duration": 1
@@ -601,7 +601,7 @@
           {
             "keyword": "When",
             "name": "I perform add",
-            "line": 29,
+            "line": 31,
             "result": {
               "status": "inconclusive",
               "duration": 1
@@ -610,7 +610,7 @@
           {
             "keyword": "Then",
             "name": "the result should be <result>",
-            "line": 30,
+            "line": 32,
             "result": {
               "status": "inconclusive",
               "duration": 1
