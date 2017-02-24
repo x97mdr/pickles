@@ -14,6 +14,13 @@ Features in Experimental are subject to change and removal without being conside
 
 This document is formatted according to the principles of [Keep A CHANGELOG](http://keepachangelog.com).
 
+## [2.14.0] - 2017-02-24
+
+### Added
+
+- Add wildcard support for test result files ([435](https://github.com/picklesdoc/pickles/pull/435)) (by [@Autom8edChaos](https://github.com/Autom8edChaos))
+- Exclude Feature or Scenario by Tag ([433](https://github.com/picklesdoc/pickles/pull/433)) (by [@Wil75](https://github.com/Wil75))
+
 ## [2.13.0] - 2017-02-10
 
 ### Added

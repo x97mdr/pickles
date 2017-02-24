@@ -26,6 +26,7 @@ using System.Reflection;
 using NDesk.Options;
 
 using TextWriter = System.IO.TextWriter;
+using PicklesDoc.Pickles.Extensions;
 
 namespace PicklesDoc.Pickles
 {
@@ -40,6 +41,7 @@ namespace PicklesDoc.Pickles
         public const string HelpTestResultsFormat = "the format of the linked test results (nunit|nunit3|xunit|xunit2|mstest |cucumberjson|specrun|vstest)";
         public const string HelpIncludeExperimentalFeatures = "whether to include experimental features";
         public const string HelpEnableComments = "whether to enable comments in the output";
+        public const string HelpExcludeTags = "exclude scenarios that match this tag";
 
         public const string HelpTestResultsFile =
             "the path to the linked test results file (can be a semicolon-separated list of files)";
@@ -58,6 +60,7 @@ namespace PicklesDoc.Pickles
         private bool versionRequested;
         private bool includeExperimentalFeatures;
         private string enableCommentsValue;
+        private string excludeTags;
 
         public CommandLineArgumentParser(IFileSystem fileSystem)
         {
@@ -75,7 +78,8 @@ namespace PicklesDoc.Pickles
                 { "v|version", v => this.versionRequested = v != null },
                 { "h|?|help", v => this.helpRequested = v != null },
                 { "exp|include-experimental-features", HelpIncludeExperimentalFeatures, v => this.includeExperimentalFeatures = v != null },
-                { "cmt|enableComments=", HelpEnableComments, v => this.enableCommentsValue = v }
+                { "cmt|enableComments=", HelpEnableComments, v => this.enableCommentsValue = v },
+                { "et|excludeTags=", HelpExcludeTags, v => this.excludeTags = v }
             };
         }
 
@@ -117,9 +121,8 @@ namespace PicklesDoc.Pickles
 
             if (!string.IsNullOrEmpty(this.testResultsFile))
             {
-                var files = this.testResultsFile.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-
-                configuration.AddTestResultFiles(files.Select(f => this.fileSystem.FileInfo.FromFileName(f)));
+                configuration.AddTestResultFiles(
+                    PathExtensions.GetAllFilesFromPathAndFileNameWithOptionalSemicolonsAndWildCards(this.testResultsFile, this.fileSystem));
             }
 
             if (!string.IsNullOrEmpty(this.systemUnderTestName))
@@ -146,6 +149,11 @@ namespace PicklesDoc.Pickles
             if (this.includeExperimentalFeatures)
             {
                 configuration.EnableExperimentalFeatures();
+            }
+
+            if (!string.IsNullOrEmpty(this.excludeTags))
+            {
+                configuration.ExcludeTags = this.excludeTags;
             }
 
             bool enableComments;

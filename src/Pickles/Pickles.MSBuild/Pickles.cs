@@ -24,6 +24,8 @@ using System.Reflection;
 using Autofac;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
+using PicklesDoc.Pickles.Extensions;
+using System.Linq;
 
 namespace PicklesDoc.Pickles.MSBuild
 {
@@ -50,6 +52,8 @@ namespace PicklesDoc.Pickles.MSBuild
         public string IncludeExperimentalFeatures { get; set; }
 
         public string EnableComments { get; set; }
+
+        public string ExcludeTags { get; set; }
 
         public override bool Execute()
         {
@@ -96,7 +100,8 @@ namespace PicklesDoc.Pickles.MSBuild
 
             if (!string.IsNullOrEmpty(this.ResultsFile))
             {
-                configuration.AddTestResultFile(fileSystem.FileInfo.FromFileName(this.ResultsFile));
+                configuration.AddTestResultFiles(
+                    PathExtensions.GetAllFilesFromPathAndFileNameWithOptionalSemicolonsAndWildCards(this.ResultsFile, fileSystem));
             }
 
             if (!string.IsNullOrEmpty(this.SystemUnderTestName))
@@ -112,6 +117,11 @@ namespace PicklesDoc.Pickles.MSBuild
             if (!string.IsNullOrEmpty(this.DocumentationFormat))
             {
                 configuration.DocumentationFormat = (DocumentationFormat)Enum.Parse(typeof(DocumentationFormat), this.DocumentationFormat, true);
+            }
+            
+            if (!string.IsNullOrEmpty(this.ExcludeTags))
+            {
+                configuration.ExcludeTags = this.ExcludeTags;
             }
 
             bool shouldEnableExperimentalFeatures;

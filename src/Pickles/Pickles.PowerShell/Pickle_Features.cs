@@ -25,6 +25,8 @@ using System.IO.Abstractions;
 using System.Management.Automation;
 using System.Reflection;
 using Autofac;
+using PicklesDoc.Pickles.Extensions;
+using System.Linq;
 
 namespace PicklesDoc.Pickles.PowerShell
 {
@@ -61,6 +63,9 @@ namespace PicklesDoc.Pickles.PowerShell
         [Parameter(HelpMessage = CommandLineArgumentParser.HelpEnableComments, Mandatory = false)]
         public string EnableComments { get; set; }
 
+        [Parameter(HelpMessage = CommandLineArgumentParser.HelpExcludeTags, Mandatory = false)]
+        public string ExcludeTags { get; set; }
+
         protected override void ProcessRecord()
         {
             var builder = new ContainerBuilder();
@@ -95,7 +100,8 @@ namespace PicklesDoc.Pickles.PowerShell
 
             if (!string.IsNullOrEmpty(this.TestResultsFile))
             {
-                configuration.AddTestResultFile(fileSystem.FileInfo.FromFileName(this.TestResultsFile));
+                configuration.AddTestResultFiles(
+                    PathExtensions.GetAllFilesFromPathAndFileNameWithOptionalSemicolonsAndWildCards(this.TestResultsFile, fileSystem));
             }
 
             configuration.SystemUnderTestName = this.SystemUnderTestName;
@@ -118,6 +124,11 @@ namespace PicklesDoc.Pickles.PowerShell
             if (this.IncludeExperimentalFeatures.IsPresent)
             {
                 configuration.EnableExperimentalFeatures();
+            }
+
+            if (!string.IsNullOrEmpty(this.ExcludeTags))
+            {
+                configuration.ExcludeTags = this.ExcludeTags;
             }
 
             bool shouldEnableComments;
