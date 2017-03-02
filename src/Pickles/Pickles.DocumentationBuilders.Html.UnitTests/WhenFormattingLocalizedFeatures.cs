@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="JsonScenarioTests.cs" company="PicklesDoc">
+//  <copyright file="WhenFormattingLocalizedFeatures.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -18,39 +18,46 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
+using System.IO;
+using Autofac;
 using NFluent;
 using NUnit.Framework;
-
-using PicklesDoc.Pickles.DocumentationBuilders.Json;
 using PicklesDoc.Pickles.ObjectModel;
+using PicklesDoc.Pickles.Test;
 
-namespace PicklesDoc.Pickles.Test.ObjectModel.Json
+namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests
 {
     [TestFixture]
-    public class JsonScenarioTests
+    public class WhenFormattingLocalizedFeatures : BaseFixture
     {
-        private readonly Factory factory = new Factory();
-
         [Test]
-        public void MapToScenario_Always_MapsFeatureProperty()
+        public void ThenShouldLocalizeExamplesKeyword()
         {
-            var feature = new Feature
-                              {
-                                  Name = "My Feature",
-                                  Description = "My Description",
-                                  FeatureElements = { new Scenario { Name = "My Feature" } }
-                              };
+            string featureText =
+@"# language: nl-NL
+Functionaliteit: Test het abstract scenario
 
-            var mapper = new JsonMapper(new LanguageServicesRegistry());
+Abstract Scenario: Het Scenario
+    Stel dat ik 50 ingeef
+    En dat ik 70 ingeef
+    Als ik plus druk
+    Dan moet het resultaat 120 zijn
 
-            var mappedFeature = mapper.Map(feature);
+Voorbeelden:
+    | a |
+    | 1 |
+    | 2 |
+";
 
-            Check.That(mappedFeature.FeatureElements.Count).IsEqualTo(1);
+            var parser = new FeatureParser(FileSystem, this.Configuration);
+            Feature feature = parser.Parse(new StringReader(featureText));
 
-            var mappedScenario = mappedFeature.FeatureElements[0] as JsonScenario;
+            var formatter = Container.Resolve<HtmlFeatureFormatter>();
+            var output = formatter.Format(feature);
 
-            Check.That(mappedScenario.Feature).IsSameReferenceThan(mappedFeature);
+            var value = output.ToString();
+            Check.That(value).Contains("Voorbeelden");
+
         }
-
     }
 }

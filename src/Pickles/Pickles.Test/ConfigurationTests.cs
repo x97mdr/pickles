@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------------------------------------
-//  <copyright file="JsonMapper.cs" company="PicklesDoc">
+//  <copyright file="ConfigurationTests.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
 //
@@ -18,39 +18,38 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
+using NFluent;
+using NUnit.Framework;
 
-using PicklesDoc.Pickles.ObjectModel;
-
-namespace PicklesDoc.Pickles.DocumentationBuilders.Json
+namespace PicklesDoc.Pickles.Test
 {
-    public class JsonMapper
+    [TestFixture]
+    public class ConfigurationTests
     {
-        private readonly ILanguageServicesRegistry languageServicesRegistry;
-
-        public JsonMapper(ILanguageServicesRegistry languageServicesRegistry)
+        [Test]
+        public void Constructor_Default_SetsLanguageToEnglish()
         {
-            this.languageServicesRegistry = languageServicesRegistry;
+            var configuration = new Configuration();
+
+            Check.That(configuration.Language).IsEqualTo("en");
         }
 
-        public JsonFeature Map(Feature feature)
+        [Test]
+        public void Constructor_WithLanguageServicesRegistryThatDefaultsToDutch_SetsLangugageToDutch()
         {
-            return this.ToJsonFeature(feature);
+            var configuration = new Configuration(new DutchDefaultingLanguageServicesRegistry());
+
+            Check.That(configuration.Language).IsEqualTo("nl");
         }
 
-        public JsonTestResult Map(TestResult testResult)
+        public class DutchDefaultingLanguageServicesRegistry : ILanguageServicesRegistry
         {
-            return this.ToJsonTestResult(testResult);
-        }
+            public ILanguageServices GetLanguageServicesForLanguage(string language)
+            {
+                throw new System.NotImplementedException();
+            }
 
-        private JsonTestResult ToJsonTestResult(TestResult testResult)
-        {
-            return new Mapper.TestResultToJsonTestResultMapper().Map(testResult);
-        }
-
-        private JsonFeature ToJsonFeature(Feature feature)
-        {
-            return new Mapper.FeatureToJsonFeatureMapper(this.languageServicesRegistry).Map(feature);
+            public string DefaultLanguage => "nl";
         }
     }
 }

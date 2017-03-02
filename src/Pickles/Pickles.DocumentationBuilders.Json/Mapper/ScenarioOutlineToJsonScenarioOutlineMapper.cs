@@ -32,11 +32,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Json.Mapper
         private readonly StepToJsonStepMapper stepMapper;
         private readonly ExampleToJsonExampleMapper exampleMapper;
 
-        public ScenarioOutlineToJsonScenarioOutlineMapper()
+        public ScenarioOutlineToJsonScenarioOutlineMapper(ILanguageServicesRegistry languageServicesRegistry)
         {
             this.resultMapper = new TestResultToJsonTestResultMapper();
             this.stepMapper = new StepToJsonStepMapper();
-            this.exampleMapper = new ExampleToJsonExampleMapper();
+            this.exampleMapper = new ExampleToJsonExampleMapper(languageServicesRegistry);
         }
 
         public JsonScenarioOutline Map(ScenarioOutline scenarioOutline)
@@ -48,7 +48,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Json.Mapper
 
             return new JsonScenarioOutline
             {
-                Examples = (scenarioOutline.Examples ?? new List<Example>()).Select(this.exampleMapper.Map).ToList(),
+                Examples = (scenarioOutline.Examples ?? new List<Example>()).Select(example => this.exampleMapper.Map(example, scenarioOutline.Feature?.Language)).ToList(),
                 Steps = (scenarioOutline.Steps ?? new List<Step>()).Select(this.stepMapper.Map).ToList(),
                 Tags = (scenarioOutline.Tags ?? new List<string>()).ToList(),
                 Name = scenarioOutline.Name,
