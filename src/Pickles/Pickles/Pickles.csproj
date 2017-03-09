@@ -100,11 +100,13 @@
     <Compile Include="CultureAwareDialectProvider.cs" />
     <Compile Include="DescriptionProcessor.cs" />
     <Compile Include="DirectoryCrawler\ImageFileDetector.cs" />
+    <Compile Include="DirectoryCrawler\ParsingReport.cs" />
     <Compile Include="Extensions\PathExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="DirectoryCrawler\FeatureNodeFactory.cs" />
     <Compile Include="FeatureParseException.cs" />
     <Compile Include="FeatureToggles\AlternateMarkdownProvider.cs" />
+    <Compile Include="FileSystemBasedFeatureParser.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="LanguageServices.cs" />
     <Compile Include="LanguageServicesRegistry.cs" />
