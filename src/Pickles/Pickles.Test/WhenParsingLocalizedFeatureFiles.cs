@@ -52,7 +52,7 @@ Egenskap: Test egenskap
         Så skall jag se att det inträffat";
 
             var configuration = this.Configuration;
-            var parser = new FeatureParser(FileSystem, configuration);
+            var parser = this.CreateParser(configuration);
             Feature feature = parser.Parse(new StringReader(featureText));
 
             Check.That(feature).IsNotNull();
@@ -86,6 +86,11 @@ Så att beställaren kan förstå dem".ComparisonNormalize());
             Check.That(thenStep.Name).IsEqualTo("skall jag se att det inträffat");
             Check.That(thenStep.DocStringArgument).IsNull();
             Check.That(thenStep.TableArgument).IsNull();
+        }
+
+        private FeatureParser CreateParser(IConfiguration configuration)
+        {
+            return new FeatureParser(configuration);
         }
 
         [Test]
@@ -107,7 +112,7 @@ Egenskap: Test egenskap
 
             configuration.Language = "sv";
 
-            var parser = new FeatureParser(FileSystem, configuration);
+            var parser = this.CreateParser(configuration);
             Feature feature = parser.Parse(new StringReader(featureText));
 
             Check.That(feature).IsNotNull();
@@ -142,6 +147,7 @@ Så att beställaren kan förstå dem".ComparisonNormalize());
             Check.That(thenStep.DocStringArgument).IsNull();
             Check.That(thenStep.TableArgument).IsNull();
         }
+
         [Test]
         public void WhenIndicatingTheLanguageAndCultureInTheFeature_ThenCanParseTheFeature()
         {
@@ -156,7 +162,7 @@ Scenario: Het Scenario
     Dan moet het resultaat 120 zijn";
 
             var configuration = this.Configuration;
-            var parser = new FeatureParser(FileSystem, configuration);
+            var parser = this.CreateParser(configuration);
             Feature feature = parser.Parse(new StringReader(featureText));
 
             Check.That(feature).IsNotNull();

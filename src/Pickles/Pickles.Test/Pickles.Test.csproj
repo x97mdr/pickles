@@ -98,11 +98,16 @@
     </Compile>
     <Compile Include="AssertExtensions.cs" />
     <Compile Include="BaseFixture.cs" />
+    <Compile Include="ConfigurationTests.cs" />
     <Compile Include="DataStructures\TreeTests.cs" />
     <Compile Include="DescriptionProcessorTests.cs" />
     <Compile Include="DirectoryCrawlers\ImageFileDetectorTests.cs" />
     <Compile Include="DirectoryCrawlers\RelevantFileDetectorTests.cs" />
+    <Compile Include="FeatureNodeFactoryTests.cs" />
+    <Compile Include="FeatureParserTests.cs" />
+    <Compile Include="FileSystemBasedFeatureParserTests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="LanguageServicesRegistryTests.cs" />
     <Compile Include="ObjectModel\Factory.cs" />
     <Compile Include="ObjectModel\Json\CommentToJsonCommentMapperTests.cs" />
     <Compile Include="ObjectModel\Json\ExampleToJsonExampleMapperTests.cs" />

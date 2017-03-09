@@ -21,11 +21,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
+using PicklesDoc.Pickles.Extensions;
+
 using G = Gherkin.Ast;
 
 namespace PicklesDoc.Pickles.ObjectModel
 {
-    using PicklesDoc.Pickles.Extensions;
 
     public class Mapper
     {
@@ -33,12 +35,7 @@ namespace PicklesDoc.Pickles.ObjectModel
 
         private readonly ILanguageServices languageServices;
 
-        public Mapper(string featureLanguage = LanguageServices.DefaultLanguage)
-            : this(new Configuration(), featureLanguage)
-        {
-        }
-
-        public Mapper(IConfiguration configuration, string featureLanguage = LanguageServices.DefaultLanguage)
+        public Mapper(IConfiguration configuration, string featureLanguage)
         {
             this.configuration = configuration;
             this.languageServices = new LanguageServices(featureLanguage);
@@ -303,6 +300,8 @@ namespace PicklesDoc.Pickles.ObjectModel
             {
                 feature.Background.Feature = feature;
             }
+
+            feature.Language = gherkinDocument.Feature.Language ?? "en";
 
             return feature;
         }

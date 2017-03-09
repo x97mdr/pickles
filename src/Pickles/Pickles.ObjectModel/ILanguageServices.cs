@@ -32,5 +32,9 @@ namespace PicklesDoc.Pickles
         string[] AndStepKeywords { get; }
 
         string[] ButStepKeywords { get; }
+
+        string[] ExamplesKeywords { get; }
+
+        string Language { get; }
     }
 }

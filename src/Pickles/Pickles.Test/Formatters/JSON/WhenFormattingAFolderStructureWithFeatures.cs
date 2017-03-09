@@ -35,9 +35,11 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
 
         public void Setup()
         {
+            var rootPath = FileSystem.DirectoryInfo.FromDirectoryName(FileSystemPrefix);
+
             this.AddFakeFolderStructures();
 
-            Tree features = Container.Resolve<DirectoryTreeCrawler>().Crawl(FileSystemPrefix);
+            Tree features = Container.Resolve<DirectoryTreeCrawler>().Crawl(rootPath, new ParsingReport());
 
             var outputDirectory = FileSystem.DirectoryInfo.FromDirectoryName(OutputDirectory);
             if (!outputDirectory.Exists)
@@ -51,7 +53,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
                 DocumentationFormat = DocumentationFormat.Json
             };
 
-            var jsonDocumentationBuilder = new JsonDocumentationBuilder(configuration, null, FileSystem);
+            var jsonDocumentationBuilder = new JsonDocumentationBuilder(configuration, null, FileSystem, new LanguageServicesRegistry());
             jsonDocumentationBuilder.Build(features);
         }
 

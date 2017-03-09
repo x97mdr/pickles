@@ -19,7 +19,6 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.IO.Abstractions;
 using System.Linq;
 using PicklesDoc.Pickles.ObjectModel;
 
@@ -29,39 +28,13 @@ namespace PicklesDoc.Pickles
 {
     public class FeatureParser
     {
-        private readonly IFileSystem fileSystem;
-
         private readonly IConfiguration configuration;
 
         private readonly DescriptionProcessor descriptionProcessor = new DescriptionProcessor();
 
-        public FeatureParser(IFileSystem fileSystem, IConfiguration configuration)
+        public FeatureParser(IConfiguration configuration)
         {
-            this.fileSystem = fileSystem;
             this.configuration = configuration;
-        }
-
-        public Feature Parse(string filename)
-        {
-            Feature feature = null;
-            using (var reader = this.fileSystem.FileInfo.FromFileName(filename).OpenText())
-            {
-                try
-                {
-                    feature = this.Parse(reader);
-                }
-                catch (Exception e)
-                {
-                    string message =
-                        $"There was an error parsing the feature file here: {this.fileSystem.Path.GetFullPath(filename)}" + Environment.NewLine +
-                        $"Errormessage was:'{e.Message}'";
-                    throw new FeatureParseException(message, e);
-                }
-
-                reader.Close();
-            }
-
-            return feature;
         }
 
         public Feature Parse(TextReader featureFileReader)
@@ -69,17 +42,24 @@ namespace PicklesDoc.Pickles
             var language = this.DetermineLanguage();
             var gherkinParser = new Gherkin.Parser();
 
-            Gherkin.Ast.GherkinDocument gherkinDocument = gherkinParser.Parse(
-                new Gherkin.TokenScanner(featureFileReader),
-                new Gherkin.TokenMatcher(new CultureAwareDialectProvider(language)));
+            try
+            {
+                Gherkin.Ast.GherkinDocument gherkinDocument = gherkinParser.Parse(
+                    new Gherkin.TokenScanner(featureFileReader),
+                    new Gherkin.TokenMatcher(new CultureAwareDialectProvider(language)));
 
-            Feature result = new Mapper(this.configuration, gherkinDocument.Feature.Language).MapToFeature(gherkinDocument);
-            result = this.RemoveFeatureWithExcludeTags(result);
+                Feature result = new Mapper(this.configuration, gherkinDocument.Feature.Language).MapToFeature(gherkinDocument);
+                result = this.RemoveFeatureWithExcludeTags(result);
 
-            if (result != null)
-                this.descriptionProcessor.Process(result);
+                if (result != null)
+                    this.descriptionProcessor.Process(result);
 
-            return result;
+                return result;
+            }
+            catch (Gherkin.CompositeParserException exception)
+            {
+                throw new FeatureParseException("Unable to parse feature", exception);
+            }
         }
 
         private string DetermineLanguage()
