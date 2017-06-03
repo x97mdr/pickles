@@ -19,7 +19,9 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.IO;
 using System.IO.Abstractions;
+using System.Text;
 using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles
@@ -30,30 +32,39 @@ namespace PicklesDoc.Pickles
 
         private readonly FeatureParser parser;
 
+        private readonly EncodingDetector encodingDetector;
+
         public FileSystemBasedFeatureParser(FeatureParser parser, IFileSystem fileSystem)
         {
             this.parser = parser;
             this.fileSystem = fileSystem;
+            this.encodingDetector = new EncodingDetector(this.fileSystem);
         }
 
         public Feature Parse(string filename)
         {
             Feature feature = null;
-            using (var reader = this.fileSystem.FileInfo.FromFileName(filename).OpenText())
+            var encoding = this.encodingDetector.GetEncoding(filename);
+            using (var fileStream = this.fileSystem.FileInfo.FromFileName(filename).OpenRead())
             {
-                try
+                using (var specificEncoderReader = new StreamReader(fileStream, encoding))
                 {
-                    feature = this.parser.Parse(reader);
-                }
-                catch (FeatureParseException e)
-                {
-                    string message =
-                        $"There was an error parsing the feature file here: {this.fileSystem.Path.GetFullPath(filename)}" + Environment.NewLine +
-                        $"Errormessage was: '{e.Message}'";
-                    throw new FeatureParseException(message, e);
-                }
+                    try
+                    {
+                        feature = this.parser.Parse(specificEncoderReader);
+                    }
+                    catch (FeatureParseException e)
+                    {
+                        string message =
+                            $"There was an error parsing the feature file here: {this.fileSystem.Path.GetFullPath(filename)}" +
+                            Environment.NewLine +
+                            $"Errormessage was: '{e.Message}'";
+                        throw new FeatureParseException(message, e);
+                    }
+                    specificEncoderReader.Close();
 
-                reader.Close();
+                }
+                fileStream.Close();
             }
 
             return feature;
