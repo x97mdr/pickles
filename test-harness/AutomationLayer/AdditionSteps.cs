@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Shouldly;
+using NFluent;
 using TechTalk.SpecFlow;
 
 namespace AutomationLayer
@@ -22,13 +22,13 @@ namespace AutomationLayer
         [Given(@"the background step fails")]
         public void GivenTheBackgroundStepFails()
         {
-            1.ShouldBe(2);
+            MarkTestAs.Failing();
         }
 
         [Given(@"I have entered (.*) into the calculator")]
-        public void GivenIHaveEnteredIntoTheCalculator(Decimal p0)
+        public void GivenIHaveEnteredIntoTheCalculator(decimal operand)
         {
-            this.numbersList.Add((int)p0);
+            this.numbersList.Add((int)operand);
         }
 
         [When(@"I press add")]
@@ -41,9 +41,9 @@ namespace AutomationLayer
         }
 
         [Then(@"the result should be (.*) on the screen")]
-        public void ThenTheResultShouldBeOnTheScreen(int p0)
+        public void ThenTheResultShouldBeOnTheScreen(int expectedResult)
         {
-            this.result.ShouldBe(p0);
+            Check.That(this.result).IsEqualTo(expectedResult);
         }
     }
 }
