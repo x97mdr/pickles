@@ -14,7 +14,7 @@ Features in Experimental are subject to change and removal without being conside
 
 This document is formatted according to the principles of [Keep A CHANGELOG](http://keepachangelog.com).
 
-## Unreleased
+## [2.16.1] - 2017-08-07
 
 ### Fixed
 
