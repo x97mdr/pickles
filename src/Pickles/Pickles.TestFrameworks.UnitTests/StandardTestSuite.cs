@@ -283,6 +283,19 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
           Check.That(actualResult).IsEqualTo(TestResult.Passed);
         }
 
+        public void ThenCanReadResultOfScenarioWithDanishCharacters()
+        {
+            var results = ParseResultsFile();
+
+            var feature = new Feature { Name = "Scenarios With Special Characters" };
+
+            var scenario = new Scenario {Name = "This is a scenario with danish characters זרו ֶ״ֵ", Feature = feature };
+
+            var actualResult = results.GetScenarioResult(scenario);
+
+            Check.That(actualResult).IsEqualTo(TestResult.Passed);
+        }
+
         public void ThenCanReadResultOfScenarioOutlineWithAmpersand()
         {
           var results = ParseResultsFile();

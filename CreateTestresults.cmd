@@ -22,7 +22,8 @@ call cucumber --format json_pretty --out "%~dp0\results-example-json.json" --tag
 cd "%~dp0"
 
 cd "%~dp0\test-harness\CucumberJS"
-call ..\..\node_modules\.bin\cucumber-js --format json:"..\..\results-example-cucumberjs-json.json" --tags ~@ignore
+call ..\..\node_modules\.bin\cucumber-js --format json:"..\..\results-example-cucumberjs-json.json"
+REM the tags do not seem to work - remember to manually remove the ignored scenarios from the result --tags 'not @ignore'
 cd "%~dp0"
 
 rmdir /s /q "%~dp0\TestResults\"
@@ -46,6 +47,7 @@ move "%~dp0\results-example-json.json" "%~dp0\src\Pickles\Pickles.TestFrameworks
 ECHO Moving MSTest results
 move "%~dp0\results-example-mstest.trx" "%~dp0\src\Pickles\Pickles.TestFrameworks.UnitTests\MsTest\"
 ECHO Moving CucumberJS JSON results
+ECHO The tags do not seem to work - remember to manually remove the ignored scenarios from the result
 move "%~dp0\results-example-cucumberjs-json.json" "%~dp0\src\Pickles\Pickles.TestFrameworks.UnitTests\CucumberJSON\"
 ECHO Moving VSTest results
 move "%~dp0\results-example-vstest.trx" "%~dp0\src\Pickles\Pickles.TestFrameworks.UnitTests\VsTest\"

@@ -46,3 +46,6 @@ Scenario Outline: This is a scenario outline with ampersand &
   Examples: 
     | result |
     | pass_1 |
+
+Scenario: This is a scenario with danish characters æøå ÆØÅ
+  Then the step with danish characters like æøå and ÆØÅ shall pass
