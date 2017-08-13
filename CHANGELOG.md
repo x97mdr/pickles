@@ -16,6 +16,20 @@ This document is formatted according to the principles of [Keep A CHANGELOG](htt
 
 ## Unreleased
 
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.16.2] - 2017-08-13
+
 ### Fixed
 
 - Pickles is unable to deal with Danish characters ([477](https://github.com/picklesdoc/pickles/pull/477)) (by [@s991116](https://github.com/s991116))
@@ -584,7 +598,7 @@ Some things went wrong during the publication of versions 0.17.0 and 0.17.1. The
 ## [0.7.0] - 2012-08-07
 
 
-## [0.6.0] [SKIPPED]
+## [0.6.0] - [SKIPPED]
 
 
 ## [0.5.0] - 2012-03-13
