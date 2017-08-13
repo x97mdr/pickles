@@ -164,6 +164,21 @@ this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("This is a scenario with danish characters æøå ÆØÅ")]
+        public virtual void ThisIsAScenarioWithDanishCharactersAEoaAEOA()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("This is a scenario with danish characters æøå ÆØÅ", ((string[])(null)));
+#line 49
+this.ScenarioSetup(scenarioInfo);
+#line 4
+this.FeatureBackground();
+#line 50
+  testRunner.Then("the step with danish characters like æøå and ÆØÅ shall pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

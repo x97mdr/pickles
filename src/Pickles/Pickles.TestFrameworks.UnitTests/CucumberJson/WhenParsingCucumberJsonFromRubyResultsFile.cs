@@ -155,6 +155,12 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.CucumberJson
         }
 
         [Test]
+        public new void ThenCanReadResultOfScenarioWithDanishCharacters()
+        {
+            base.ThenCanReadResultOfScenarioWithDanishCharacters();
+        }
+
+        [Test]
         public new void ThenCanReadResultOfScenarioOutlineWithAmpersand()
         {
           base.ThenCanReadResultOfScenarioOutlineWithAmpersand();

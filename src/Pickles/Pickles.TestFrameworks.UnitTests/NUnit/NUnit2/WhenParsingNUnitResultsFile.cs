@@ -155,6 +155,13 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
         }
 
         [Test]
+        public new void ThenCanReadResultOfScenarioWithDanishCharacters()
+        {
+            base.ThenCanReadResultOfScenarioWithDanishCharacters();
+        }
+
+
+        [Test]
         public new void ThenCanReadResultOfScenarioOutlineWithAmpersand()
         {
           base.ThenCanReadResultOfScenarioOutlineWithAmpersand();

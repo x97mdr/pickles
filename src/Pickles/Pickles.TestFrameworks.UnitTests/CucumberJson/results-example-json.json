@@ -99,7 +99,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1001000
+              "duration": 1049000
             }
           }
         ]
@@ -343,7 +343,7 @@
             "result": {
               "status": "failed",
               "error_message": "\nexpected: \"fail\"\n     got: \"this is a hacky way of making the scenario with a non-integer number\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/AdditionSteps.rb:11:in `/^I have entered (\\d+)\\.(\\d+) into the calculator$/'\nfeatures/Addition.feature:32:in `And I have entered 2.2 into the calculator'",
-              "duration": 22006000
+              "duration": 16043000
             }
           },
           {
@@ -461,7 +461,7 @@
             "result": {
               "status": "failed",
               "error_message": "\nexpected: \"false\"\n     got: \"true\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/AdditionSteps.rb:29:in `/^the background step fails$/'\nfeatures/FailingBackground.feature:5:in `Given the background step fails'",
-              "duration": 502000
+              "duration": 0
             }
           },
           {
@@ -646,7 +646,7 @@
             "result": {
               "status": "failed",
               "error_message": "\nexpected: \"false\"\n     got: \"true\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/AdditionSteps.rb:29:in `/^the background step fails$/'\nfeatures/FailingBackground.feature:5:in `Given the background step fails'",
-              "duration": 1001000
+              "duration": 0
             }
           },
           {
@@ -772,12 +772,12 @@
             "name": "inconclusive step",
             "line": 7,
             "match": {
-              "location": "features/step_definitions/MinimalSteps.rb:5"
+              "location": "features/step_definitions/MinimalSteps.rb:9"
             },
             "result": {
               "status": "pending",
-              "error_message": "TODO (Cucumber::Pending)\n./features/step_definitions/MinimalSteps.rb:6:in `/^inconclusive step$/'\nfeatures/Minimal Features/Failing.feature:7:in `Then inconclusive step'",
-              "duration": 1000000
+              "error_message": "TODO (Cucumber::Pending)\n./features/step_definitions/MinimalSteps.rb:10:in `/^inconclusive step$/'\nfeatures/Minimal Features/Failing.feature:7:in `Then inconclusive step'",
+              "duration": 0
             }
           }
         ]
@@ -795,11 +795,11 @@
             "name": "failing step",
             "line": 10,
             "match": {
-              "location": "features/step_definitions/MinimalSteps.rb:9"
+              "location": "features/step_definitions/MinimalSteps.rb:13"
             },
             "result": {
               "status": "failed",
-              "error_message": "\nexpected: \"false\"\n     got: \"true\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/MinimalSteps.rb:10:in `/^failing step$/'\nfeatures/Minimal Features/Failing.feature:10:in `Then failing step'",
+              "error_message": "\nexpected: \"false\"\n     got: \"true\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/MinimalSteps.rb:14:in `/^failing step$/'\nfeatures/Minimal Features/Failing.feature:10:in `Then failing step'",
               "duration": 0
             }
           }
@@ -850,12 +850,12 @@
             "name": "inconclusive step",
             "line": 7,
             "match": {
-              "location": "features/step_definitions/MinimalSteps.rb:5"
+              "location": "features/step_definitions/MinimalSteps.rb:9"
             },
             "result": {
               "status": "pending",
-              "error_message": "TODO (Cucumber::Pending)\n./features/step_definitions/MinimalSteps.rb:6:in `/^inconclusive step$/'\nfeatures/Minimal Features/Inconclusive.feature:7:in `Then inconclusive step'",
-              "duration": 1004000
+              "error_message": "TODO (Cucumber::Pending)\n./features/step_definitions/MinimalSteps.rb:10:in `/^inconclusive step$/'\nfeatures/Minimal Features/Inconclusive.feature:7:in `Then inconclusive step'",
+              "duration": 0
             }
           }
         ]
@@ -1296,7 +1296,7 @@
             "result": {
               "status": "failed",
               "error_message": "\nexpected: \"false\"\n     got: \"true\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/ScenarioOutlineSteps.rb:10:in `/^the scenario will 'fail_(\\d+)'$/'\nfeatures/ScenarioOutlines.feature:40:in `Then the scenario will 'fail_1''\nfeatures/ScenarioOutlines.feature:34:in `Then the scenario will '<result>''",
-              "duration": 0
+              "duration": 1003000
             }
           }
         ]
@@ -1363,7 +1363,7 @@
             "result": {
               "status": "pending",
               "error_message": "TODO (Cucumber::Pending)\n./features/step_definitions/ScenarioOutlineSteps.rb:6:in `/^the scenario will 'inconclusive_(\\d+)'$/'\nfeatures/ScenarioOutlines.feature:54:in `Then the scenario will 'inconclusive_1''\nfeatures/ScenarioOutlines.feature:45:in `Then the scenario will '<result>''",
-              "duration": 1001000
+              "duration": 0
             }
           }
         ]
@@ -1409,7 +1409,7 @@
             "result": {
               "status": "failed",
               "error_message": "\nexpected: \"false\"\n     got: \"true\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/ScenarioOutlineSteps.rb:10:in `/^the scenario will 'fail_(\\d+)'$/'\nfeatures/ScenarioOutlines.feature:59:in `Then the scenario will 'fail_1''\nfeatures/ScenarioOutlines.feature:45:in `Then the scenario will '<result>''",
-              "duration": 1001000
+              "duration": 0
             }
           }
         ]
@@ -1432,7 +1432,7 @@
             "result": {
               "status": "failed",
               "error_message": "\nexpected: \"false\"\n     got: \"true\"\n\n(compared using eql?)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/ScenarioOutlineSteps.rb:10:in `/^the scenario will 'fail_(\\d+)'$/'\nfeatures/ScenarioOutlines.feature:60:in `Then the scenario will 'fail_2''\nfeatures/ScenarioOutlines.feature:45:in `Then the scenario will '<result>''",
-              "duration": 1012000
+              "duration": 1000000
             }
           }
         ]
@@ -1697,7 +1697,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 0
+              "duration": 1032000
             }
           },
           {
@@ -2122,6 +2122,49 @@
             "line": 47,
             "match": {
               "location": "features/step_definitions/ScenarioOutlineSteps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 4,
+        "type": "background",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "the calculator has clean memory",
+            "line": 5,
+            "match": {
+              "location": "features/step_definitions/AdditionSteps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "scenarios-with-special-characters;this-is-a-scenario-with-danish-characters-æøå-ÆØÅ",
+        "keyword": "Scenario",
+        "name": "This is a scenario with danish characters æøå ÆØÅ",
+        "description": "",
+        "line": 49,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "the scenario with danish characters like æøå and ÆØÅ shall pass",
+            "line": 50,
+            "match": {
+              "location": "features/step_definitions/MinimalSteps.rb:5"
             },
             "result": {
               "status": "passed",

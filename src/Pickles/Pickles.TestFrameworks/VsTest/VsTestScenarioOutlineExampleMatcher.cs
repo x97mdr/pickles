@@ -43,7 +43,13 @@ namespace PicklesDoc.Pickles.TestFrameworks.VsTest
                 .Replace("Ä", "A")
                 .Replace("Ö", "O")
                 .Replace("Ü", "U")
-                .Replace("ß", "B");
+                .Replace("ß", "B")
+                .Replace("æ", "ae")
+                .Replace('ø', 'o')
+                .Replace('å', 'a')
+                .Replace("Æ", "AE")
+                .Replace('Ø', 'O')
+                .Replace('Å', 'A');
 
       var isMatch = element.Name().ToUpperInvariant()
                 .EndsWith(matchValue);

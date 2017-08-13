@@ -251,6 +251,22 @@ this.FeatureBackground();
         {
             this.ThisIsAScenarioOutlineWithAmpersand("pass_1", ((string[])(null)));
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("This is a scenario with danish characters æøå ÆØÅ")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Scenarios With Special Characters")]
+        public virtual void ThisIsAScenarioWithDanishCharactersAEoaAEOA()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("This is a scenario with danish characters æøå ÆØÅ", ((string[])(null)));
+#line 49
+this.ScenarioSetup(scenarioInfo);
+#line 4
+this.FeatureBackground();
+#line 50
+  testRunner.Then("the step with danish characters like æøå and ÆØÅ shall pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

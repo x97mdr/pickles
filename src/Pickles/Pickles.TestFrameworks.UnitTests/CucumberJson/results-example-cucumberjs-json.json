@@ -1,1993 +1,1931 @@
 [
   {
     "description": "  In order to avoid silly mistakes\n  As a math idiot\n  I want to be told the sum of two numbers",
+    "keyword": "Feature",
+    "name": "Addition",
+    "line": 1,
+    "id": "addition",
+    "tags": [],
+    "uri": "features\\Addition.feature",
     "elements": [
       {
         "id": "addition;adding-several-numbers",
         "keyword": "Scenario",
         "line": 19,
         "name": "Adding several numbers",
-        "steps": [
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "name": "the calculator has clean memory",
-            "result": {
-              "status": "passed",
-              "duration": 2580939
-            },
-            "line": 7,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:10"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "name": "I have entered 60 into the calculator",
-            "result": {
-              "status": "passed",
-              "duration": 880198
-            },
-            "line": 11,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:15"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And ",
-            "name": "I have entered 70 into the calculator",
-            "result": {
-              "status": "passed",
-              "duration": 133926
-            },
-            "line": 12,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:15"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And ",
-            "name": "I have entered 130 into the calculator",
-            "result": {
-              "status": "passed",
-              "duration": 130765
-            },
-            "line": 13,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:15"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I press add",
-            "result": {
-              "status": "passed",
-              "duration": 360691
-            },
-            "line": 14,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:25"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "name": "the result should be 260 on the screen",
-            "result": {
-              "status": "passed",
-              "duration": 161185
-            },
-            "line": 15,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:30"
-            }
-          }
-        ],
         "tags": [
           {
             "name": "@tag2",
             "line": 9
           }
         ],
-        "type": "scenario"
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the calculator has clean memory",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:10"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 11,
+            "name": "I have entered 60 into the calculator",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 12,
+            "name": "I have entered 70 into the calculator",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 13,
+            "name": "I have entered 130 into the calculator",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:15"
+            },
+            "result": {
+              "status": "passed"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 14,
+            "name": "I press add",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:25"
+            },
+            "result": {
+              "status": "passed"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 15,
+            "name": "the result should be 260 on the screen",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:30"
+            },
+            "result": {
+              "status": "passed"
+            }
+          }
+        ]
       },
       {
         "id": "addition;adding-several-numbers",
         "keyword": "Scenario",
         "line": 20,
         "name": "Adding several numbers",
-        "steps": [
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "name": "the calculator has clean memory",
-            "result": {
-              "status": "passed",
-              "duration": 138667
-            },
-            "line": 7,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:10"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "name": "I have entered 40 into the calculator",
-            "result": {
-              "status": "passed",
-              "duration": 78618
-            },
-            "line": 11,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:15"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And ",
-            "name": "I have entered 50 into the calculator",
-            "result": {
-              "status": "passed",
-              "duration": 96395
-            },
-            "line": 12,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:15"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And ",
-            "name": "I have entered 90 into the calculator",
-            "result": {
-              "status": "passed",
-              "duration": 245333
-            },
-            "line": 13,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:15"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I press add",
-            "result": {
-              "status": "passed",
-              "duration": 112593
-            },
-            "line": 14,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:25"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "name": "the result should be 180 on the screen",
-            "result": {
-              "status": "passed",
-              "duration": 286024
-            },
-            "line": 15,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:30"
-            }
-          }
-        ],
         "tags": [
           {
             "name": "@tag2",
             "line": 9
           }
         ],
-        "type": "scenario"
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the calculator has clean memory",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:10"
+            },
+            "result": {
+              "status": "passed"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 11,
+            "name": "I have entered 40 into the calculator",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:15"
+            },
+            "result": {
+              "status": "passed"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 12,
+            "name": "I have entered 50 into the calculator",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 13,
+            "name": "I have entered 90 into the calculator",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:15"
+            },
+            "result": {
+              "status": "passed"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 14,
+            "name": "I press add",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:25"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 15,
+            "name": "the result should be 180 on the screen",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:30"
+            },
+            "result": {
+              "status": "passed"
+            }
+          }
+        ]
       },
       {
         "id": "addition;add-two-numbers",
         "keyword": "Scenario",
         "line": 23,
         "name": "Add two numbers",
-        "steps": [
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "name": "the calculator has clean memory",
-            "result": {
-              "status": "passed",
-              "duration": 114568
-            },
-            "line": 7,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:10"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "name": "I have entered 1 into the calculator",
-            "result": {
-              "status": "passed",
-              "duration": 83358
-            },
-            "line": 24,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:15"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And ",
-            "name": "I have entered 2 into the calculator",
-            "result": {
-              "status": "passed",
-              "duration": 101926
-            },
-            "line": 25,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:15"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I press add",
-            "result": {
-              "status": "passed",
-              "duration": 176198
-            },
-            "line": 26,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:25"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "name": "the result should be 3 on the screen",
-            "result": {
-              "status": "passed",
-              "duration": 140642
-            },
-            "line": 27,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:30"
-            }
-          }
-        ],
         "tags": [
           {
             "name": "@tag1",
             "line": 22
           }
         ],
-        "type": "scenario"
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the calculator has clean memory",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:10"
+            },
+            "result": {
+              "status": "passed"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 24,
+            "name": "I have entered 1 into the calculator",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:15"
+            },
+            "result": {
+              "status": "passed"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 25,
+            "name": "I have entered 2 into the calculator",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:15"
+            },
+            "result": {
+              "status": "passed"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 26,
+            "name": "I press add",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:25"
+            },
+            "result": {
+              "status": "passed"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 27,
+            "name": "the result should be 3 on the screen",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:30"
+            },
+            "result": {
+              "status": "passed"
+            }
+          }
+        ]
       },
       {
         "id": "addition;fail-to-add-two-numbers",
         "keyword": "Scenario",
         "line": 30,
         "name": "Fail to add two numbers",
-        "steps": [
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "name": "the calculator has clean memory",
-            "result": {
-              "status": "passed",
-              "duration": 119703
-            },
-            "line": 7,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:10"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "name": "I have entered 1 into the calculator",
-            "result": {
-              "status": "passed",
-              "duration": 108247
-            },
-            "line": 31,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:15"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And ",
-            "name": "I have entered 2.2 into the calculator",
-            "result": {
-              "status": "ambiguous"
-            },
-            "line": 32
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I press add",
-            "result": {
-              "status": "skipped"
-            },
-            "line": 33,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:25"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "name": "the result should be 3.2 on the screen",
-            "result": {
-              "status": "skipped"
-            },
-            "line": 34,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:30"
-            }
-          }
-        ],
         "tags": [
           {
             "name": "@tag1",
             "line": 29
           }
         ],
-        "type": "scenario"
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the calculator has clean memory",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:10"
+            },
+            "result": {
+              "status": "passed"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 31,
+            "name": "I have entered 1 into the calculator",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 32,
+            "name": "I have entered 2.2 into the calculator",
+            "result": {
+              "status": "ambiguous"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 33,
+            "name": "I press add",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:25"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 34,
+            "name": "the result should be 3.2 on the screen",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:30"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ]
       },
       {
         "id": "addition;not-automated-adding-two-numbers",
         "keyword": "Scenario",
         "line": 43,
         "name": "Not automated adding two numbers",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
-            "name": "the calculator has clean memory",
-            "result": {
-              "status": "passed",
-              "duration": 218864
-            },
             "line": 7,
+            "name": "the calculator has clean memory",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:10"
+              "location": "features\\stepdefinitions\\AdditionSteps.js:10"
+            },
+            "result": {
+              "status": "passed"
             }
           },
           {
             "arguments": [],
             "keyword": "Given ",
+            "line": 44,
             "name": "unimplemented step",
             "result": {
               "status": "undefined"
-            },
-            "line": 44
+            }
           },
           {
             "arguments": [],
             "keyword": "When ",
+            "line": 45,
             "name": "unimplemented step",
             "result": {
               "status": "undefined"
-            },
-            "line": 45
+            }
           },
           {
             "arguments": [],
             "keyword": "Then ",
+            "line": 46,
             "name": "unimplemented step",
             "result": {
               "status": "undefined"
-            },
-            "line": 46
+            }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       }
-    ],
-    "id": "addition",
-    "keyword": "Feature",
-    "line": 1,
-    "name": "Addition",
-    "tags": [],
-    "uri": "C:/Dev/Code/GitHub/DirkRombauts/pickles/test-harness/CucumberJS/features/Addition.feature"
+    ]
   },
   {
     "description": "This feature has a failing background.",
+    "keyword": "Feature",
+    "name": "Failing Background",
+    "line": 1,
+    "id": "failing-background",
+    "tags": [],
+    "uri": "features\\FailingBackground.feature",
     "elements": [
       {
         "id": "failing-background;add-two-numbers",
         "keyword": "Scenario",
         "line": 8,
         "name": "Add two numbers",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
+            "line": 5,
             "name": "the background step fails",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:35"
+            },
             "result": {
               "status": "failed",
-              "duration": 1048889,
-              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:36:13)\n    at process._tickCallback (node.js:355:11)\n    at Function.Module.runMain (module.js:503:11)\n    at startup (node.js:129:16)\n    at node.js:814:3"
-            },
-            "line": 5,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:35"
+              "duration": 1,
+              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\Others\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:36:12)"
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
+            "line": 6,
             "name": "the calculator has clean memory",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:10"
+            },
             "result": {
               "status": "skipped"
-            },
-            "line": 6,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:10"
             }
           },
           {
             "arguments": [],
             "keyword": "Given ",
+            "line": 9,
             "name": "I have entered 50 into the calculator",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:15"
+            },
             "result": {
               "status": "skipped"
-            },
-            "line": 9,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:15"
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
+            "line": 10,
             "name": "I have entered 70 into the calculator",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:15"
+            },
             "result": {
               "status": "skipped"
-            },
-            "line": 10,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:15"
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
+            "line": 11,
             "name": "I press add",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:25"
+            },
             "result": {
               "status": "skipped"
-            },
-            "line": 11,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:25"
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
+            "line": 12,
             "name": "the result should be 120 on the screen",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:30"
+            },
             "result": {
               "status": "skipped"
-            },
-            "line": 12,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:30"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "failing-background;adding-several-numbers",
         "keyword": "Scenario",
         "line": 23,
         "name": "Adding several numbers",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
+            "line": 5,
             "name": "the background step fails",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:35"
+            },
             "result": {
               "status": "failed",
-              "duration": 264691,
-              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:36:13)\n    at process._tickCallback (node.js:355:11)\n    at Function.Module.runMain (module.js:503:11)\n    at startup (node.js:129:16)\n    at node.js:814:3"
-            },
-            "line": 5,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:35"
+              "duration": 1,
+              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\Others\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:36:12)"
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
+            "line": 6,
             "name": "the calculator has clean memory",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:10"
+            },
             "result": {
               "status": "skipped"
-            },
-            "line": 6,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:10"
             }
           },
           {
             "arguments": [],
             "keyword": "Given ",
-            "name": "I have entered 60 into the calculator",
-            "result": {
-              "status": "skipped"
-            },
             "line": 15,
+            "name": "I have entered 60 into the calculator",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:15"
+              "location": "features\\stepdefinitions\\AdditionSteps.js:15"
+            },
+            "result": {
+              "status": "skipped"
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "name": "I have entered 70 into the calculator",
-            "result": {
-              "status": "skipped"
-            },
             "line": 16,
+            "name": "I have entered 70 into the calculator",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:15"
+              "location": "features\\stepdefinitions\\AdditionSteps.js:15"
+            },
+            "result": {
+              "status": "skipped"
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
+            "line": 17,
             "name": "I have entered 130 into the calculator",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:15"
+            },
             "result": {
               "status": "skipped"
-            },
-            "line": 17,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:15"
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
+            "line": 18,
             "name": "I press add",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:25"
+            },
             "result": {
               "status": "skipped"
-            },
-            "line": 18,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:25"
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
+            "line": 19,
             "name": "the result should be 260 on the screen",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:30"
+            },
             "result": {
               "status": "skipped"
-            },
-            "line": 19,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:30"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "failing-background;adding-several-numbers",
         "keyword": "Scenario",
         "line": 24,
         "name": "Adding several numbers",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
+            "line": 5,
             "name": "the background step fails",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:35"
+            },
             "result": {
               "status": "failed",
-              "duration": 162766,
-              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:36:13)\n    at process._tickCallback (node.js:355:11)\n    at Function.Module.runMain (module.js:503:11)\n    at startup (node.js:129:16)\n    at node.js:814:3"
-            },
-            "line": 5,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:35"
+              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\Others\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:36:12)"
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
+            "line": 6,
             "name": "the calculator has clean memory",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:10"
+            },
             "result": {
               "status": "skipped"
-            },
-            "line": 6,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:10"
             }
           },
           {
             "arguments": [],
             "keyword": "Given ",
-            "name": "I have entered 40 into the calculator",
-            "result": {
-              "status": "skipped"
-            },
             "line": 15,
+            "name": "I have entered 40 into the calculator",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:15"
+              "location": "features\\stepdefinitions\\AdditionSteps.js:15"
+            },
+            "result": {
+              "status": "skipped"
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "name": "I have entered 50 into the calculator",
-            "result": {
-              "status": "skipped"
-            },
             "line": 16,
+            "name": "I have entered 50 into the calculator",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:15"
+              "location": "features\\stepdefinitions\\AdditionSteps.js:15"
+            },
+            "result": {
+              "status": "skipped"
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
+            "line": 17,
             "name": "I have entered 90 into the calculator",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:15"
+            },
             "result": {
               "status": "skipped"
-            },
-            "line": 17,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:15"
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
+            "line": 18,
             "name": "I press add",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:25"
+            },
             "result": {
               "status": "skipped"
-            },
-            "line": 18,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:25"
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
+            "line": 19,
             "name": "the result should be 180 on the screen",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:30"
+            },
             "result": {
               "status": "skipped"
-            },
-            "line": 19,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:30"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       }
-    ],
-    "id": "failing-background",
-    "keyword": "Feature",
-    "line": 1,
-    "name": "Failing Background",
-    "tags": [],
-    "uri": "C:/Dev/Code/GitHub/DirkRombauts/pickles/test-harness/CucumberJS/features/FailingBackground.feature"
+    ]
   },
   {
+    "keyword": "Feature",
+    "name": "Failing",
+    "line": 1,
+    "id": "failing",
+    "tags": [],
+    "uri": "features\\Minimal Features\\Failing.feature",
     "elements": [
       {
         "id": "failing;failing-feature-passing-scenario",
         "keyword": "Scenario",
         "line": 3,
         "name": "Failing Feature Passing Scenario",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Then ",
-            "name": "passing step",
-            "result": {
-              "status": "passed",
-              "duration": 159210
-            },
             "line": 4,
+            "name": "passing step",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\MinimalSteps.js:7"
+              "location": "features\\stepdefinitions\\MinimalSteps.js:14"
+            },
+            "result": {
+              "status": "passed"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "failing;failing-feature-inconclusive-scenario",
         "keyword": "Scenario",
         "line": 6,
         "name": "Failing Feature Inconclusive Scenario",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Then ",
-            "name": "inconclusive step",
-            "result": {
-              "status": "pending"
-            },
             "line": 7,
+            "name": "inconclusive step",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\MinimalSteps.js:12"
+              "location": "features\\stepdefinitions\\MinimalSteps.js:20"
+            },
+            "result": {
+              "status": "pending",
+              "duration": 1
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "failing;failing-feature-failing-scenario",
         "keyword": "Scenario",
         "line": 9,
         "name": "Failing Feature Failing Scenario",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Then ",
+            "line": 10,
             "name": "failing step",
+            "match": {
+              "location": "features\\stepdefinitions\\MinimalSteps.js:26"
+            },
             "result": {
               "status": "failed",
-              "duration": 233086,
-              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\MinimalSteps.js:18:12)\n    at process._tickCallback (node.js:355:11)\n    at Function.Module.runMain (module.js:503:11)\n    at startup (node.js:129:16)\n    at node.js:814:3"
-            },
-            "line": 10,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\MinimalSteps.js:17"
+              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\Others\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\MinimalSteps.js:28:20)"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       }
-    ],
-    "id": "failing",
-    "keyword": "Feature",
-    "line": 1,
-    "name": "Failing",
-    "tags": [],
-    "uri": "C:/Dev/Code/GitHub/DirkRombauts/pickles/test-harness/CucumberJS/features/Minimal Features/Failing.feature"
+    ]
   },
   {
+    "keyword": "Feature",
+    "name": "Inconclusive",
+    "line": 1,
+    "id": "inconclusive",
+    "tags": [],
+    "uri": "features\\Minimal Features\\Inconclusive.feature",
     "elements": [
       {
         "id": "inconclusive;inconclusive-feature-passing-scenario",
         "keyword": "Scenario",
         "line": 3,
         "name": "Inconclusive Feature Passing Scenario",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Then ",
-            "name": "passing step",
-            "result": {
-              "status": "passed",
-              "duration": 119704
-            },
             "line": 4,
+            "name": "passing step",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\MinimalSteps.js:7"
+              "location": "features\\stepdefinitions\\MinimalSteps.js:14"
+            },
+            "result": {
+              "status": "passed"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "inconclusive;inconclusive-feature-inconclusive-scenario",
         "keyword": "Scenario",
         "line": 6,
         "name": "Inconclusive Feature Inconclusive Scenario",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Then ",
+            "line": 7,
             "name": "inconclusive step",
+            "match": {
+              "location": "features\\stepdefinitions\\MinimalSteps.js:20"
+            },
             "result": {
               "status": "pending"
-            },
-            "line": 7,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\MinimalSteps.js:12"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       }
-    ],
-    "id": "inconclusive",
-    "keyword": "Feature",
-    "line": 1,
-    "name": "Inconclusive",
-    "tags": [],
-    "uri": "C:/Dev/Code/GitHub/DirkRombauts/pickles/test-harness/CucumberJS/features/Minimal Features/Inconclusive.feature"
+    ]
   },
   {
+    "keyword": "Feature",
+    "name": "Passing",
+    "line": 1,
+    "id": "passing",
+    "tags": [],
+    "uri": "features\\Minimal Features\\Passing.feature",
     "elements": [
       {
         "id": "passing;passing-feature-passing-scenario",
         "keyword": "Scenario",
         "line": 3,
         "name": "Passing Feature Passing Scenario",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Then ",
-            "name": "passing step",
-            "result": {
-              "status": "passed",
-              "duration": 101531
-            },
             "line": 4,
+            "name": "passing step",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\MinimalSteps.js:7"
+              "location": "features\\stepdefinitions\\MinimalSteps.js:14"
+            },
+            "result": {
+              "status": "passed"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       }
-    ],
-    "id": "passing",
-    "keyword": "Feature",
-    "line": 1,
-    "name": "Passing",
-    "tags": [],
-    "uri": "C:/Dev/Code/GitHub/DirkRombauts/pickles/test-harness/CucumberJS/features/Minimal Features/Passing.feature"
+    ]
   },
   {
+    "keyword": "Feature",
+    "name": "Not Automated At All",
+    "line": 1,
+    "id": "not-automated-at-all",
+    "tags": [],
+    "uri": "features\\NotAutomatedAtAll.feature",
     "elements": [
       {
         "id": "not-automated-at-all;not-automated-scenario-1",
         "keyword": "Scenario",
         "line": 6,
         "name": "Not automated scenario 1",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
+            "line": 4,
             "name": "unimplemented step",
             "result": {
               "status": "undefined"
-            },
-            "line": 4
+            }
           },
           {
             "arguments": [],
             "keyword": "Given ",
+            "line": 7,
             "name": "unimplemented step",
             "result": {
               "status": "undefined"
-            },
-            "line": 7
+            }
           },
           {
             "arguments": [],
             "keyword": "When ",
+            "line": 8,
             "name": "unimplemented step",
             "result": {
               "status": "undefined"
-            },
-            "line": 8
+            }
           },
           {
             "arguments": [],
             "keyword": "Then ",
+            "line": 9,
             "name": "unimplemented step",
             "result": {
               "status": "undefined"
-            },
-            "line": 9
+            }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "not-automated-at-all;not-automated-scenario-2",
         "keyword": "Scenario",
         "line": 11,
         "name": "Not automated scenario 2",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
+            "line": 4,
             "name": "unimplemented step",
             "result": {
               "status": "undefined"
-            },
-            "line": 4
+            }
           },
           {
             "arguments": [],
             "keyword": "Given ",
+            "line": 12,
             "name": "unimplemented step",
             "result": {
               "status": "undefined"
-            },
-            "line": 12
+            }
           },
           {
             "arguments": [],
             "keyword": "When ",
+            "line": 13,
             "name": "unimplemented step",
             "result": {
               "status": "undefined"
-            },
-            "line": 13
+            }
           },
           {
             "arguments": [],
             "keyword": "Then ",
+            "line": 14,
             "name": "unimplemented step",
             "result": {
               "status": "undefined"
-            },
-            "line": 14
+            }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "not-automated-at-all;not-automated-scenario-3",
         "keyword": "Scenario",
         "line": 16,
         "name": "Not automated scenario 3",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
+            "line": 4,
             "name": "unimplemented step",
             "result": {
               "status": "undefined"
-            },
-            "line": 4
+            }
           },
           {
             "arguments": [],
             "keyword": "Given ",
+            "line": 17,
             "name": "unimplemented step",
             "result": {
               "status": "undefined"
-            },
-            "line": 17
+            }
           },
           {
             "arguments": [],
             "keyword": "When ",
+            "line": 18,
             "name": "unimplemented step",
             "result": {
               "status": "undefined"
-            },
-            "line": 18
+            }
           },
           {
             "arguments": [],
             "keyword": "Then ",
+            "line": 19,
             "name": "unimplemented step",
             "result": {
               "status": "undefined"
-            },
-            "line": 19
+            }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       }
-    ],
-    "id": "not-automated-at-all",
-    "keyword": "Feature",
-    "line": 1,
-    "name": "Not Automated At All",
-    "tags": [],
-    "uri": "C:/Dev/Code/GitHub/DirkRombauts/pickles/test-harness/CucumberJS/features/NotAutomatedAtAll.feature"
+    ]
   },
   {
     "description": "  Here we demonstrate how we deal with scenario outlines",
+    "keyword": "Feature",
+    "name": "Scenario Outlines",
+    "line": 1,
+    "id": "scenario-outlines",
+    "tags": [],
+    "uri": "features\\ScenarioOutlines.feature",
     "elements": [
       {
+        "description": "  This means the entire scenario outline passes.",
         "id": "scenario-outlines;this-is-a-scenario-outline-where-all-scenarios-pass",
         "keyword": "Scenario",
         "line": 12,
         "name": "This is a scenario outline where all scenarios pass",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Then ",
-            "name": "the scenario will 'pass_1'",
-            "result": {
-              "status": "passed",
-              "duration": 271803
-            },
             "line": 8,
+            "name": "the scenario will 'pass_1'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:7"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:8"
+            },
+            "result": {
+              "status": "passed"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
+        "description": "  This means the entire scenario outline passes.",
         "id": "scenario-outlines;this-is-a-scenario-outline-where-all-scenarios-pass",
         "keyword": "Scenario",
         "line": 13,
         "name": "This is a scenario outline where all scenarios pass",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Then ",
-            "name": "the scenario will 'pass_2'",
-            "result": {
-              "status": "passed",
-              "duration": 167111
-            },
             "line": 8,
+            "name": "the scenario will 'pass_2'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:7"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:8"
+            },
+            "result": {
+              "status": "passed"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
+        "description": "  This means the entire scenario outline passes.",
         "id": "scenario-outlines;this-is-a-scenario-outline-where-all-scenarios-pass",
         "keyword": "Scenario",
         "line": 14,
         "name": "This is a scenario outline where all scenarios pass",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Then ",
-            "name": "the scenario will 'pass_3'",
-            "result": {
-              "status": "passed",
-              "duration": 86123
-            },
             "line": 8,
+            "name": "the scenario will 'pass_3'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:7"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:8"
+            },
+            "result": {
+              "status": "passed"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
+        "description": "  This means the entire scenario outline is inconclusive.",
         "id": "scenario-outlines;this-is-a-scenario-outline-where-one-scenario-is-inconclusive",
         "keyword": "Scenario",
         "line": 25,
         "name": "This is a scenario outline where one scenario is inconclusive",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Then ",
-            "name": "the scenario will 'pass_1'",
-            "result": {
-              "status": "passed",
-              "duration": 123654
-            },
             "line": 21,
+            "name": "the scenario will 'pass_1'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:7"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:8"
+            },
+            "result": {
+              "status": "passed"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
+        "description": "  This means the entire scenario outline is inconclusive.",
         "id": "scenario-outlines;this-is-a-scenario-outline-where-one-scenario-is-inconclusive",
         "keyword": "Scenario",
         "line": 26,
         "name": "This is a scenario outline where one scenario is inconclusive",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Then ",
-            "name": "the scenario will 'pass_2'",
-            "result": {
-              "status": "passed",
-              "duration": 78617
-            },
             "line": 21,
+            "name": "the scenario will 'pass_2'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:7"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:8"
+            },
+            "result": {
+              "status": "passed"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
+        "description": "  This means the entire scenario outline is inconclusive.",
         "id": "scenario-outlines;this-is-a-scenario-outline-where-one-scenario-is-inconclusive",
         "keyword": "Scenario",
         "line": 27,
         "name": "This is a scenario outline where one scenario is inconclusive",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Then ",
+            "line": 21,
             "name": "the scenario will 'inconclusive_1'",
+            "match": {
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:13"
+            },
             "result": {
               "status": "pending"
-            },
-            "line": 21,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:12"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
+        "description": "  This means the entire scenario outline fails.",
         "id": "scenario-outlines;this-is-a-scenario-outline-where-one-scenario-fails",
         "keyword": "Scenario",
         "line": 38,
         "name": "This is a scenario outline where one scenario fails",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Then ",
-            "name": "the scenario will 'pass_1'",
-            "result": {
-              "status": "passed",
-              "duration": 102321
-            },
             "line": 34,
+            "name": "the scenario will 'pass_1'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:7"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:8"
+            },
+            "result": {
+              "status": "passed"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
+        "description": "  This means the entire scenario outline fails.",
         "id": "scenario-outlines;this-is-a-scenario-outline-where-one-scenario-fails",
         "keyword": "Scenario",
         "line": 39,
         "name": "This is a scenario outline where one scenario fails",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Then ",
-            "name": "the scenario will 'pass_2'",
-            "result": {
-              "status": "passed",
-              "duration": 94420
-            },
             "line": 34,
+            "name": "the scenario will 'pass_2'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:7"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:8"
+            },
+            "result": {
+              "status": "passed"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
+        "description": "  This means the entire scenario outline fails.",
         "id": "scenario-outlines;this-is-a-scenario-outline-where-one-scenario-fails",
         "keyword": "Scenario",
         "line": 40,
         "name": "This is a scenario outline where one scenario fails",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Then ",
+            "line": 34,
             "name": "the scenario will 'fail_1'",
+            "match": {
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:18"
+            },
             "result": {
               "status": "failed",
-              "duration": 227950,
-              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:18:12)\n    at process._tickCallback (node.js:355:11)\n    at Function.Module.runMain (module.js:503:11)\n    at startup (node.js:129:16)\n    at node.js:814:3"
-            },
-            "line": 34,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:17"
+              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\Others\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:19:12)"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "scenario-outlines;and-we-can-go-totally-bonkers-with-multiple-example-sections.",
         "keyword": "Scenario",
         "line": 49,
         "name": "And we can go totally bonkers with multiple example sections.",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Then ",
-            "name": "the scenario will 'pass_1'",
-            "result": {
-              "status": "passed",
-              "duration": 77432
-            },
             "line": 45,
+            "name": "the scenario will 'pass_1'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:7"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:8"
+            },
+            "result": {
+              "status": "passed"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "scenario-outlines;and-we-can-go-totally-bonkers-with-multiple-example-sections.",
         "keyword": "Scenario",
         "line": 50,
         "name": "And we can go totally bonkers with multiple example sections.",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Then ",
+            "line": 45,
             "name": "the scenario will 'pass_2'",
+            "match": {
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:8"
+            },
             "result": {
               "status": "passed",
-              "duration": 133531
-            },
-            "line": 45,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:7"
+              "duration": 1
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "scenario-outlines;and-we-can-go-totally-bonkers-with-multiple-example-sections.",
         "keyword": "Scenario",
         "line": 54,
         "name": "And we can go totally bonkers with multiple example sections.",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Then ",
+            "line": 45,
             "name": "the scenario will 'inconclusive_1'",
+            "match": {
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:13"
+            },
             "result": {
               "status": "pending"
-            },
-            "line": 45,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:12"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "scenario-outlines;and-we-can-go-totally-bonkers-with-multiple-example-sections.",
         "keyword": "Scenario",
         "line": 55,
         "name": "And we can go totally bonkers with multiple example sections.",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Then ",
+            "line": 45,
             "name": "the scenario will 'inconclusive_2'",
+            "match": {
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:13"
+            },
             "result": {
               "status": "pending"
-            },
-            "line": 45,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:12"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "scenario-outlines;and-we-can-go-totally-bonkers-with-multiple-example-sections.",
         "keyword": "Scenario",
         "line": 59,
         "name": "And we can go totally bonkers with multiple example sections.",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Then ",
+            "line": 45,
             "name": "the scenario will 'fail_1'",
+            "match": {
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:18"
+            },
             "result": {
               "status": "failed",
-              "duration": 110617,
-              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:18:12)\n    at process._tickCallback (node.js:355:11)\n    at Function.Module.runMain (module.js:503:11)\n    at startup (node.js:129:16)\n    at node.js:814:3"
-            },
-            "line": 45,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:17"
+              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\Others\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:19:12)"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "scenario-outlines;and-we-can-go-totally-bonkers-with-multiple-example-sections.",
         "keyword": "Scenario",
         "line": 60,
         "name": "And we can go totally bonkers with multiple example sections.",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Then ",
+            "line": 45,
             "name": "the scenario will 'fail_2'",
+            "match": {
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:18"
+            },
             "result": {
               "status": "failed",
-              "duration": 162766,
-              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:18:12)\n    at process._tickCallback (node.js:355:11)\n    at Function.Module.runMain (module.js:503:11)\n    at startup (node.js:129:16)\n    at node.js:814:3"
-            },
-            "line": 45,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:17"
+              "error_message": "AssertionError: 'true' == 'false'\n    at World.<anonymous> (C:\\Dev\\Code\\GitHub\\Others\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:19:12)"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "scenario-outlines;deal-correctly-with-backslashes-in-the-examples",
         "keyword": "Scenario",
         "line": 69,
         "name": "Deal correctly with backslashes in the examples",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "When ",
+            "line": 65,
             "name": "I have backslashes in the value, for example a 'c:\\Temp\\'",
+            "match": {
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:23"
+            },
             "result": {
               "status": "passed",
-              "duration": 247704
-            },
-            "line": 65,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:22"
+              "duration": 1
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "scenario-outlines;deal-correctly-with-parenthesis-in-the-examples",
         "keyword": "Scenario",
         "line": 78,
         "name": "Deal correctly with parenthesis in the examples",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "When ",
+            "line": 74,
             "name": "I have parenthesis in the value, for example an 'This is a description (and more)'",
+            "match": {
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:28"
+            },
             "result": {
               "status": "passed",
-              "duration": 255210
-            },
-            "line": 74,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:27"
+              "duration": 2
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "scenario-outlines;deal-correctly-with-overlong-example-values",
         "keyword": "Scenario",
         "line": 88,
         "name": "Deal correctly with overlong example values",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "When ",
+            "line": 82,
             "name": "I have a field with value 'Please enter a valid two letter country code (e.g. DE)!'",
+            "match": {
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:38"
+            },
             "result": {
               "status": "passed",
-              "duration": 239012
-            },
-            "line": 82,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:37"
+              "duration": 1
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
+            "line": 83,
             "name": "I have a field with value 'This is just a very very very veery long error message!'",
+            "match": {
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:38"
+            },
             "result": {
               "status": "passed",
-              "duration": 61630
-            },
-            "line": 83,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:37"
+              "duration": 1
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
+            "line": 84,
             "name": "the scenario will 'pass_1'",
+            "match": {
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:8"
+            },
             "result": {
               "status": "passed",
-              "duration": 163951
-            },
-            "line": 84,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:7"
+              "duration": 1
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       }
-    ],
-    "id": "scenario-outlines",
-    "keyword": "Feature",
-    "line": 1,
-    "name": "Scenario Outlines",
-    "tags": [],
-    "uri": "C:/Dev/Code/GitHub/DirkRombauts/pickles/test-harness/CucumberJS/features/ScenarioOutlines.feature"
+    ]
   },
   {
     "description": "  Here we demonstrate usage of special characters in scenario names",
+    "keyword": "Feature",
+    "name": "Scenarios With Special Characters",
+    "line": 1,
+    "id": "scenarios-with-special-characters",
+    "tags": [],
+    "uri": "features\\ScenariosWithSpecialCharacters.feature",
     "elements": [
       {
         "id": "scenarios-with-special-characters;this-is-a-scenario-with-parentheses,-hyphen-and-comma-(10-20,-30-40)",
         "keyword": "Scenario",
         "line": 7,
         "name": "This is a scenario with parentheses, hyphen and comma (10-20, 30-40)",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
-            "name": "the calculator has clean memory",
-            "result": {
-              "status": "passed",
-              "duration": 94025
-            },
             "line": 5,
+            "name": "the calculator has clean memory",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:10"
+              "location": "features\\stepdefinitions\\AdditionSteps.js:10"
+            },
+            "result": {
+              "status": "passed"
             }
           },
           {
             "arguments": [],
             "keyword": "Given ",
-            "name": "I have entered 50 into the calculator",
-            "result": {
-              "status": "passed",
-              "duration": 207012
-            },
             "line": 8,
+            "name": "I have entered 50 into the calculator",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:15"
+              "location": "features\\stepdefinitions\\AdditionSteps.js:15"
+            },
+            "result": {
+              "status": "passed"
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
+            "line": 9,
             "name": "I have entered 70 into the calculator",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:15"
+            },
             "result": {
               "status": "passed",
-              "duration": 192395
-            },
-            "line": 9,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:15"
+              "duration": 1
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "name": "I press add",
-            "result": {
-              "status": "passed",
-              "duration": 66766
-            },
             "line": 10,
+            "name": "I press add",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:25"
+              "location": "features\\stepdefinitions\\AdditionSteps.js:25"
+            },
+            "result": {
+              "status": "passed"
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "name": "the result should be 120 on the screen",
-            "result": {
-              "status": "passed",
-              "duration": 69136
-            },
             "line": 11,
+            "name": "the result should be 120 on the screen",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:30"
+              "location": "features\\stepdefinitions\\AdditionSteps.js:30"
+            },
+            "result": {
+              "status": "passed"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "scenarios-with-special-characters;this-is-a-scenario-outline-with-parentheses,-hyphen-and-comma-(10-20,-30-40)",
         "keyword": "Scenario",
         "line": 19,
         "name": "This is a scenario outline with parentheses, hyphen and comma (10-20, 30-40)",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
-            "name": "the calculator has clean memory",
-            "result": {
-              "status": "passed",
-              "duration": 103901
-            },
             "line": 5,
+            "name": "the calculator has clean memory",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:10"
+              "location": "features\\stepdefinitions\\AdditionSteps.js:10"
+            },
+            "result": {
+              "status": "passed"
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "name": "the scenario will 'pass_1'",
-            "result": {
-              "status": "passed",
-              "duration": 90864
-            },
             "line": 15,
+            "name": "the scenario will 'pass_1'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:7"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:8"
+            },
+            "result": {
+              "status": "passed"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "scenarios-with-special-characters;this-scenario-contains-examples-with-regex-special-characters",
         "keyword": "Scenario",
         "line": 27,
         "name": "This scenario contains examples with Regex-special characters",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
-            "name": "the calculator has clean memory",
-            "result": {
-              "status": "passed",
-              "duration": 97186
-            },
             "line": 5,
+            "name": "the calculator has clean memory",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:10"
+              "location": "features\\stepdefinitions\\AdditionSteps.js:10"
+            },
+            "result": {
+              "status": "passed"
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "name": "I have special characters for regexes in the value, for example a '**'",
-            "result": {
-              "status": "passed",
-              "duration": 105087
-            },
             "line": 22,
+            "name": "I have special characters for regexes in the value, for example a '**'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:32"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:33"
+            },
+            "result": {
+              "status": "passed"
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "name": "the scenario will 'pass_1'",
-            "result": {
-              "status": "passed",
-              "duration": 80987
-            },
             "line": 23,
+            "name": "the scenario will 'pass_1'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:7"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:8"
+            },
+            "result": {
+              "status": "passed"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "scenarios-with-special-characters;this-scenario-contains-examples-with-regex-special-characters",
         "keyword": "Scenario",
         "line": 28,
         "name": "This scenario contains examples with Regex-special characters",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
-            "name": "the calculator has clean memory",
-            "result": {
-              "status": "passed",
-              "duration": 146963
-            },
             "line": 5,
+            "name": "the calculator has clean memory",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:10"
+              "location": "features\\stepdefinitions\\AdditionSteps.js:10"
+            },
+            "result": {
+              "status": "passed"
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "name": "I have special characters for regexes in the value, for example a '++'",
-            "result": {
-              "status": "passed",
-              "duration": 105086
-            },
             "line": 22,
+            "name": "I have special characters for regexes in the value, for example a '++'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:32"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:33"
+            },
+            "result": {
+              "status": "passed"
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "name": "the scenario will 'pass_1'",
-            "result": {
-              "status": "passed",
-              "duration": 70716
-            },
             "line": 23,
+            "name": "the scenario will 'pass_1'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:7"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:8"
+            },
+            "result": {
+              "status": "passed"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "scenarios-with-special-characters;this-scenario-contains-examples-with-regex-special-characters",
         "keyword": "Scenario",
         "line": 29,
         "name": "This scenario contains examples with Regex-special characters",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
-            "name": "the calculator has clean memory",
-            "result": {
-              "status": "passed",
-              "duration": 84543
-            },
             "line": 5,
+            "name": "the calculator has clean memory",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:10"
+              "location": "features\\stepdefinitions\\AdditionSteps.js:10"
+            },
+            "result": {
+              "status": "passed"
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "name": "I have special characters for regexes in the value, for example a '.*'",
-            "result": {
-              "status": "passed",
-              "duration": 63605
-            },
             "line": 22,
+            "name": "I have special characters for regexes in the value, for example a '.*'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:32"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:33"
+            },
+            "result": {
+              "status": "passed"
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "name": "the scenario will 'pass_1'",
-            "result": {
-              "status": "passed",
-              "duration": 64395
-            },
             "line": 23,
+            "name": "the scenario will 'pass_1'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:7"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:8"
+            },
+            "result": {
+              "status": "passed"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "scenarios-with-special-characters;this-scenario-contains-examples-with-regex-special-characters",
         "keyword": "Scenario",
         "line": 30,
         "name": "This scenario contains examples with Regex-special characters",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
-            "name": "the calculator has clean memory",
-            "result": {
-              "status": "passed",
-              "duration": 263111
-            },
             "line": 5,
+            "name": "the calculator has clean memory",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:10"
+              "location": "features\\stepdefinitions\\AdditionSteps.js:10"
+            },
+            "result": {
+              "status": "passed"
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "name": "I have special characters for regexes in the value, for example a '[]'",
-            "result": {
-              "status": "passed",
-              "duration": 71506
-            },
             "line": 22,
+            "name": "I have special characters for regexes in the value, for example a '[]'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:32"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:33"
+            },
+            "result": {
+              "status": "passed"
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "name": "the scenario will 'pass_1'",
-            "result": {
-              "status": "passed",
-              "duration": 81383
-            },
             "line": 23,
+            "name": "the scenario will 'pass_1'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:7"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:8"
+            },
+            "result": {
+              "status": "passed"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "scenarios-with-special-characters;this-scenario-contains-examples-with-regex-special-characters",
         "keyword": "Scenario",
         "line": 31,
         "name": "This scenario contains examples with Regex-special characters",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
-            "name": "the calculator has clean memory",
-            "result": {
-              "status": "passed",
-              "duration": 69136
-            },
             "line": 5,
+            "name": "the calculator has clean memory",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:10"
+              "location": "features\\stepdefinitions\\AdditionSteps.js:10"
+            },
+            "result": {
+              "status": "passed"
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "name": "I have special characters for regexes in the value, for example a '{}'",
-            "result": {
-              "status": "passed",
-              "duration": 55704
-            },
             "line": 22,
+            "name": "I have special characters for regexes in the value, for example a '{}'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:32"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:33"
+            },
+            "result": {
+              "status": "passed"
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "name": "the scenario will 'pass_1'",
-            "result": {
-              "status": "passed",
-              "duration": 111803
-            },
             "line": 23,
+            "name": "the scenario will 'pass_1'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:7"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:8"
+            },
+            "result": {
+              "status": "passed"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "scenarios-with-special-characters;this-scenario-contains-examples-with-regex-special-characters",
         "keyword": "Scenario",
         "line": 32,
         "name": "This scenario contains examples with Regex-special characters",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
-            "name": "the calculator has clean memory",
-            "result": {
-              "status": "passed",
-              "duration": 74667
-            },
             "line": 5,
+            "name": "the calculator has clean memory",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:10"
+              "location": "features\\stepdefinitions\\AdditionSteps.js:10"
+            },
+            "result": {
+              "status": "passed"
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "name": "I have special characters for regexes in the value, for example a '()'",
-            "result": {
-              "status": "passed",
-              "duration": 57679
-            },
             "line": 22,
+            "name": "I have special characters for regexes in the value, for example a '()'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:32"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:33"
+            },
+            "result": {
+              "status": "passed"
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "name": "the scenario will 'pass_1'",
-            "result": {
-              "status": "passed",
-              "duration": 55309
-            },
             "line": 23,
+            "name": "the scenario will 'pass_1'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:7"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:8"
+            },
+            "result": {
+              "status": "passed"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "scenarios-with-special-characters;this-scenario-contains-examples-with-regex-special-characters",
         "keyword": "Scenario",
         "line": 33,
         "name": "This scenario contains examples with Regex-special characters",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
-            "name": "the calculator has clean memory",
-            "result": {
-              "status": "passed",
-              "duration": 67950
-            },
             "line": 5,
+            "name": "the calculator has clean memory",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:10"
+              "location": "features\\stepdefinitions\\AdditionSteps.js:10"
+            },
+            "result": {
+              "status": "passed"
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "name": "I have special characters for regexes in the value, for example a '^.*(?<foo>BAR)\\s[^0-9]{3,4}A+$'",
-            "result": {
-              "status": "passed",
-              "duration": 55308
-            },
             "line": 22,
+            "name": "I have special characters for regexes in the value, for example a '^.*(?<foo>BAR)\\s[^0-9]{3,4}A+$'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:32"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:33"
+            },
+            "result": {
+              "status": "passed"
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
+            "line": 23,
             "name": "the scenario will 'pass_1'",
+            "match": {
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:8"
+            },
             "result": {
               "status": "passed",
-              "duration": 55703
-            },
-            "line": 23,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:7"
+              "duration": 1
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "scenarios-with-special-characters;this-is-a-scenario-outline-with-german-umlauts-äöüß-äöü",
         "keyword": "Scenario",
         "line": 40,
         "name": "This is a scenario outline with german umlauts äöüß ÄÖÜ",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
-            "name": "the calculator has clean memory",
-            "result": {
-              "status": "passed",
-              "duration": 65976
-            },
             "line": 5,
+            "name": "the calculator has clean memory",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:10"
+              "location": "features\\stepdefinitions\\AdditionSteps.js:10"
+            },
+            "result": {
+              "status": "passed"
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "name": "the scenario will 'pass_1'",
-            "result": {
-              "status": "passed",
-              "duration": 56099
-            },
             "line": 36,
+            "name": "the scenario will 'pass_1'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:7"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:8"
+            },
+            "result": {
+              "status": "passed"
             }
           }
-        ],
-        "tags": [],
-        "type": "scenario"
+        ]
       },
       {
         "id": "scenarios-with-special-characters;this-is-a-scenario-outline-with-ampersand-&",
         "keyword": "Scenario",
         "line": 47,
         "name": "This is a scenario outline with ampersand &",
+        "tags": [],
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
+            "line": 5,
             "name": "the calculator has clean memory",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:10"
+            },
             "result": {
               "status": "passed",
-              "duration": 125630
-            },
-            "line": 5,
-            "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\AdditionSteps.js:10"
+              "duration": 1
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "name": "the scenario will 'pass_1'",
-            "result": {
-              "status": "passed",
-              "duration": 64791
-            },
             "line": 43,
+            "name": "the scenario will 'pass_1'",
             "match": {
-              "location": "C:\\Dev\\Code\\GitHub\\DirkRombauts\\pickles\\test-harness\\CucumberJS\\features\\stepdefinitions\\ScenarioOutlineSteps.js:7"
+              "location": "features\\stepdefinitions\\ScenarioOutlineSteps.js:8"
+            },
+            "result": {
+              "status": "passed"
             }
           }
-        ],
+        ]
+      },
+      {
+        "id": "scenarios-with-special-characters;this-is-a-scenario-with-danish-characters-æøå-æøå",
+        "keyword": "Scenario",
+        "line": 49,
+        "name": "This is a scenario with danish characters æøå ÆØÅ",
         "tags": [],
-        "type": "scenario"
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "the calculator has clean memory",
+            "match": {
+              "location": "features\\stepdefinitions\\AdditionSteps.js:10"
+            },
+            "result": {
+              "status": "passed"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 50,
+            "name": "the step with danish characters like æøå and ÆØÅ shall pass",
+            "match": {
+              "location": "features\\stepdefinitions\\MinimalSteps.js:8"
+            },
+            "result": {
+              "status": "passed"
+            }
+          }
+        ]
       }
-    ],
-    "id": "scenarios-with-special-characters",
-    "keyword": "Feature",
-    "line": 1,
-    "name": "Scenarios With Special Characters",
-    "tags": [],
-    "uri": "C:/Dev/Code/GitHub/DirkRombauts/pickles/test-harness/CucumberJS/features/ScenariosWithSpecialCharacters.feature"
+    ]
   }
 ]

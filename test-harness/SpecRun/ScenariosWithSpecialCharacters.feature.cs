@@ -186,6 +186,20 @@ this.FeatureBackground();
             this.ThisIsAScenarioOutlineWithGermanUmlautsAouBAOU("pass_1", ((string[])(null)));
         }
         
+        [TechTalk.SpecRun.ScenarioAttribute("This is a scenario with danish characters æøå ÆØÅ", SourceLine=49)]
+        public virtual void ThisIsAScenarioWithDanishCharactersAEoaAEOA()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("This is a scenario with danish characters æøå ÆØÅ", ((string[])(null)));
+#line 50
+this.ScenarioSetup(scenarioInfo);
+#line 4
+this.FeatureBackground();
+#line 51
+  testRunner.Then("the step with danish characters like æøå and ÆØÅ shall pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
         [TechTalk.SpecRun.TestRunCleanup()]
         public virtual void TestRunCleanup()
         {
