@@ -41,7 +41,9 @@ Target "CreatePackage CMD" (fun _ ->
         cmdDir + "Strike.Jint.dll";
         cmdDir + "Jint.dll";
         cmdDir + "pickles.exe";
-        cmdDir + "NLog.config" ]
+        cmdDir + "NLog.config";
+        "./LICENSE.txt";
+        "./VERIFICATION.txt";]
 
     WriteFile (packagingDir + "version.ps1") [("$version = \"" + version + "\"")]
     NuGet (fun p ->
@@ -86,7 +88,9 @@ Target "CreatePackage GUI" (fun _ ->
         guiDir + "System.Windows.Interactivity.dll";
         guiDir + "picklesui.exe";
         guiDir + "NLog.config";
-        guiDir + "PicklesUI.exe.config"]
+        guiDir + "PicklesUI.exe.config";
+        "./LICENSE.txt";
+        "./VERIFICATION.txt";]
 
     WriteFile (packagingDir + "version.ps1") [("$version = \"" + version + "\"")]
     WriteFile (packagingDir + "picklesui.exe.gui") [("")]

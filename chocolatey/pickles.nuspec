@@ -58,6 +58,8 @@ Optionally, *Pickles* can **integrate test results**, so that your stakeholders 
         <file src="Strike.Jint.dll" target="tools" />
         <file src="Jint.dll" target="tools" />
         <file src="pickles.exe" target="tools" />
+        <file src="VERIFICATION.txt" target="tools" />
+        <file src="LICENSE.txt" target="tools" />
     </files>
 </package>
 
