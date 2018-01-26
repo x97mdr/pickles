@@ -31,13 +31,15 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
         public bool IsMatch(ScenarioOutline scenarioOutline, string[] exampleValues, object scenarioElement)
         {
             var build = this.signatureBuilder.Build(scenarioOutline, exampleValues);
-
             return ScenarioOutlineExampleIsMatch((assembliesAssemblyCollectionTest)scenarioElement, build);
         }
 
         private bool ScenarioOutlineExampleIsMatch(assembliesAssemblyCollectionTest exampleElement, Regex signature)
         {
-            return signature.IsMatch(exampleElement.name.ToLowerInvariant());
+            var testNameWithExample = exampleElement.name;
+            var testNameOnly = testNameWithExample.Split('(')[0];
+            testNameWithExample = testNameWithExample.Replace(testNameOnly, Regex.Replace(testNameOnly, @"\s+", string.Empty)).ToLowerInvariant();
+            return signature.IsMatch(exampleElement.name.ToLowerInvariant()) || signature.IsMatch(testNameWithExample);
         }
     }
 }
