@@ -20,6 +20,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using NFluent;
 using NUnit.Framework;
 
@@ -83,13 +84,26 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
                 }
             };
 
-            var mapper = CreateMapper();
+            var testResult = new JsonTestResult
+            {
+                WasExecuted = false,
+                WasSuccessful = false
+            };
 
+            var mapper = CreateMapper();
             var actual = mapper.Map(table);
 
             Check.That(actual.DataRows.Count).IsEqualTo(2);
-            Check.That(actual.DataRows[0]).ContainsExactly("cell 1-1", "cell 1-2");
-            Check.That(actual.DataRows[1]).ContainsExactly("cell 2-1", "cell 2-2");
+
+            Check.That(actual.DataRows[0].Count).IsEqualTo(3);
+            Check.That(actual.DataRows[0].OfType<string>()).ContainsExactly("cell 1-1", "cell 1-2");
+            Check.That(actual.DataRows[0].Result.WasSuccessful).Equals(false);
+            Check.That(actual.DataRows[0].Result.WasExecuted).Equals(false);
+
+            Check.That(actual.DataRows[1].Count).IsEqualTo(3);
+            Check.That(actual.DataRows[1].OfType<string>()).ContainsExactly("cell 2-1", "cell 2-2");
+            Check.That(actual.DataRows[1].Result.WasSuccessful).Equals(false);
+            Check.That(actual.DataRows[1].Result.WasExecuted).Equals(false);
         }
 
         [Test]
