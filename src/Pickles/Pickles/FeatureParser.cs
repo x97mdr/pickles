@@ -18,9 +18,7 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Gherkin;
 using PicklesDoc.Pickles.ObjectModel;
 
@@ -57,7 +55,7 @@ namespace PicklesDoc.Pickles
 
                 var languageServices = this.languageServicesRegistry.GetLanguageServicesForLanguage(gherkinDocument.Feature.Language);
                 Feature result = new Mapper(this.configuration, languageServices).MapToFeature(gherkinDocument);
-                result = this.RemoveFeatureWithExcludeTags(result);
+                result = new FeatureFilter(result, this.configuration.ExcludeTags).ExcludeScenariosByTags();
 
                 if (result != null)
                     this.descriptionProcessor.Process(result);
@@ -95,19 +93,6 @@ namespace PicklesDoc.Pickles
                 language = this.configuration.Language;
             }
             return language;
-        }
-
-        private Feature RemoveFeatureWithExcludeTags(Feature result)
-        {
-            if (result.Tags.Any(t => t.Equals($"@{configuration.ExcludeTags}", StringComparison.InvariantCultureIgnoreCase)))
-                return null;
-
-            var wantedFeatures = result.FeatureElements.Where(fe => fe.Tags.All(t => !t.Equals($"@{configuration.ExcludeTags}", StringComparison.InvariantCultureIgnoreCase))).ToList();
-
-            result.FeatureElements.Clear();
-            result.FeatureElements.AddRange(wantedFeatures);
-
-            return result;
         }
     }
 }

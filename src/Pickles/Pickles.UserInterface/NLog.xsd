@@ -1261,7 +1261,7 @@
         </xs:attribute>
         <xs:attribute name="maxArchiveFiles" type="xs:integer">
           <xs:annotation>
-            <xs:documentation>Maximum number of archive files that should be kept.</xs:documentation>
+            <xs:documentation>Way file archives are numbered.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="writeFooterOnArchivingOnly" type="xs:boolean">
@@ -1332,6 +1332,26 @@
         <xs:attribute name="forceManaged" type="xs:boolean">
           <xs:annotation>
             <xs:documentation>Gets or set a value indicating whether a managed file stream is forced, instead of using the native implementation.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="fileNameKind" type="NLog.Targets.FilePathKind">
+          <xs:annotation>
+            <xs:documentation>Is the  an absolute or relative path?</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="replaceFileContentsOnEachWrite" type="xs:boolean">
+          <xs:annotation>
+            <xs:documentation>Indicates whether to replace file contents on each write instead of appending log message at the end.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="discardAll" type="xs:boolean">
+          <xs:annotation>
+            <xs:documentation>Whether or not this target should just discard all data that its asked to write. Mostly used for when testing NLog Stack except final write</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="concurrentWriteAttemptDelay" type="xs:integer">
+          <xs:annotation>
+            <xs:documentation>Delay in milliseconds to wait before attempting to write to the file again.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="fileNameKind" type="NLog.Targets.FilePathKind">

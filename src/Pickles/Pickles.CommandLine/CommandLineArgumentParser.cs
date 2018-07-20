@@ -1,4 +1,4 @@
-﻿//  --------------------------------------------------------------------------------------------------------------------
+//  --------------------------------------------------------------------------------------------------------------------
 //  <copyright file="CommandLineArgumentParser.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
@@ -30,20 +30,6 @@ namespace PicklesDoc.Pickles.CommandLine
 {
     public class CommandLineArgumentParser
     {
-        public const string HelpFeatureDir = "directory to start scanning recursively for features";
-        public const string HelpOutputDir = "directory where output files will be placed";
-        public const string HelpSutName = "the name of the system under test";
-        public const string HelpSutVersion = "the version of the system under test";
-        public const string HelpLanguageFeatureFiles = "the language of the feature files";
-        public const string HelpDocumentationFormat = "the format of the output documentation";
-        public const string HelpTestResultsFormat = "the format of the linked test results (nunit|nunit3|xunit|xunit2|mstest |cucumberjson|specrun|vstest)";
-        public const string HelpIncludeExperimentalFeatures = "whether to include experimental features";
-        public const string HelpEnableComments = "whether to enable comments in the output";
-        public const string HelpExcludeTags = "exclude scenarios that match this tag";
-
-        public const string HelpTestResultsFile =
-            "the path to the linked test results file (can be a semicolon-separated list of files)";
-
         private readonly IFileSystem fileSystem;
         private readonly OptionSet options;
         private string documentationFormat;
@@ -59,25 +45,27 @@ namespace PicklesDoc.Pickles.CommandLine
         private bool includeExperimentalFeatures;
         private string enableCommentsValue;
         private string excludeTags;
+        private string hideTags;
 
         public CommandLineArgumentParser(IFileSystem fileSystem)
         {
             this.fileSystem = fileSystem;
             this.options = new OptionSet
             {
-                { "f|feature-directory=", HelpFeatureDir, v => this.featureDirectory = v },
-                { "o|output-directory=", HelpOutputDir, v => this.outputDirectory = v },
-                { "trfmt|test-results-format=", HelpTestResultsFormat, v => this.testResultsFormat = v },
-                { "lr|link-results-file=", HelpTestResultsFile, v => this.testResultsFile = v },
-                { "sn|system-under-test-name=", HelpSutName, v => this.systemUnderTestName = v },
-                { "sv|system-under-test-version=", HelpSutVersion, v => this.systemUnderTestVersion = v },
-                { "l|language=", HelpLanguageFeatureFiles, v => this.language = v },
-                { "df|documentation-format=", HelpDocumentationFormat, v => this.documentationFormat = v },
+                { "f|feature-directory=", CommandLineArgumentHelpTexts.HelpFeatureDir, v => this.featureDirectory = v },
+                { "o|output-directory=", CommandLineArgumentHelpTexts.HelpOutputDir, v => this.outputDirectory = v },
+                { "trfmt|test-results-format=", CommandLineArgumentHelpTexts.HelpTestResultsFormat, v => this.testResultsFormat = v },
+                { "lr|link-results-file=", CommandLineArgumentHelpTexts.HelpTestResultsFile, v => this.testResultsFile = v },
+                { "sn|system-under-test-name=", CommandLineArgumentHelpTexts.HelpSutName, v => this.systemUnderTestName = v },
+                { "sv|system-under-test-version=", CommandLineArgumentHelpTexts.HelpSutVersion, v => this.systemUnderTestVersion = v },
+                { "l|language=", CommandLineArgumentHelpTexts.HelpLanguageFeatureFiles, v => this.language = v },
+                { "df|documentation-format=", CommandLineArgumentHelpTexts.HelpDocumentationFormat, v => this.documentationFormat = v },
                 { "v|version", v => this.versionRequested = v != null },
                 { "h|?|help", v => this.helpRequested = v != null },
-                { "exp|include-experimental-features", HelpIncludeExperimentalFeatures, v => this.includeExperimentalFeatures = v != null },
-                { "cmt|enableComments=", HelpEnableComments, v => this.enableCommentsValue = v },
-                { "et|excludeTags=", HelpExcludeTags, v => this.excludeTags = v }
+                { "exp|include-experimental-features", CommandLineArgumentHelpTexts.HelpIncludeExperimentalFeatures, v => this.includeExperimentalFeatures = v != null },
+                { "cmt|enableComments=", CommandLineArgumentHelpTexts.HelpEnableComments, v => this.enableCommentsValue = v },
+                { "et|excludeTags=", CommandLineArgumentHelpTexts.HelpExcludeTags, v => this.excludeTags = v },
+                { "ht|hideTags=", CommandLineArgumentHelpTexts.HelpHideTags, v => this.hideTags = v }
             };
         }
 
@@ -152,6 +140,11 @@ namespace PicklesDoc.Pickles.CommandLine
             if (!string.IsNullOrEmpty(this.excludeTags))
             {
                 configuration.ExcludeTags = this.excludeTags;
+            }
+
+            if (!string.IsNullOrEmpty(this.hideTags))
+            {
+                configuration.HideTags = this.hideTags;
             }
 
             bool enableComments;
