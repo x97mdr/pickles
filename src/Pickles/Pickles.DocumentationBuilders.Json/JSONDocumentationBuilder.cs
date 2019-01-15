@@ -21,9 +21,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO.Abstractions;
-using System.Linq;
 using System.Reflection;
-using System.Text.RegularExpressions;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -106,7 +104,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Json
             var data = new
             {
                 Features = features,
-                Summary = this.GenerateSummary(features),
+                Summary = SummaryGenerator.GenerateSummary(features),
                 Configuration = new
                 {
                     SutName = this.configuration.SystemUnderTestName,
@@ -134,131 +132,5 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Json
             }
         }
 
-        private dynamic GenerateSummary(List<JsonFeatureWithMetaInfo> features)
-        {
-            // master lists
-            // TODO: support filtering out of certain tags
-            var filteredFeatures = features.Where(x => true).ToList();
-            var scenarios = features.SelectMany(x => x.Feature.FeatureElements).ToList();
-            var filteredScenarios = scenarios;
-
-            var scenariosByTag = features
-                .SelectMany(
-                    x => x.Feature.FeatureElements.SelectMany(
-                        e => e.Tags.Select(t => new { Tag = t, FeatureElement = e })));
-
-            var featuresByTag = features
-                .SelectMany(
-                    f => f.Feature.Tags.SelectMany(
-                        t => f.Feature.FeatureElements.Select(
-                            e => new { Tag = t, FeatureElement = e })));
-
-            var tagLookup = featuresByTag
-                .Union(scenariosByTag)
-                .Distinct()
-                .ToLookup(
-                    x => x.Tag,
-                    x => x.FeatureElement);
-
-            // calculate tag summary - total scenarios (combining features and scenarios with tags)
-            var tagSummary = tagLookup
-                .Select(g => g.Key)
-                .Select(tag =>
-                    {
-                        var scenariosWithTag = tagLookup[tag].ToList();
-
-                        return new
-                            {
-                                Tag = tag,
-                                Total = scenariosWithTag.Count,
-                                Passing = scenariosWithTag.LongCount(x => x.Result.WasExecuted && x.Result.WasSuccessful),
-                                Failing = scenariosWithTag.LongCount(x => x.Result.WasExecuted && !x.Result.WasSuccessful),
-                                Inconclusive = scenariosWithTag.LongCount(x => !x.Result.WasExecuted)
-                            };
-                    });
-
-            // calculate top-level folder summary - total scenarios (excluding filtered scenarios)
-            var topLevelFolderName = new Regex(@"^(.*?)\\\\?.*$", RegexOptions.Compiled);
-
-            var featuresByFolder = filteredFeatures
-                .SelectMany(f => f.Feature.FeatureElements.Select(
-                    e => new
-                    {
-                        Folder = topLevelFolderName.Replace(f.RelativeFolder, "$1"),
-                        Element = e
-                    }))
-                .ToLookup(x => x.Folder, x => x.Element);
-
-            var topLevelFolderSummary = featuresByFolder
-                .Select(x => x.Key)
-                .Select(folder =>
-                    {
-                        var scenariosInFolder = featuresByFolder[folder].ToList();
-
-                        return new
-                            {
-                                Folder = folder,
-                                Total = scenariosInFolder.Count,
-                                Passing = scenariosInFolder.LongCount(x => x.Result.WasExecuted && x.Result.WasSuccessful),
-                                Failing = scenariosInFolder.LongCount(x => x.Result.WasExecuted && !x.Result.WasSuccessful),
-                                Inconclusive = scenariosInFolder.LongCount(x => !x.Result.WasExecuted)
-                            };
-                    });
-
-            var notTestedScenarios = new HashSet<IJsonFeatureElement>(
-                    features
-                        .Where(f => f.Feature.Tags.Contains("@NotTested"))
-                        .SelectMany(f => f.Feature.FeatureElements)
-                        .Union(scenarios.Where(s => s.Tags.Contains("@NotTested")))
-                        .Distinct());
-
-            var notTestedScenarioByFolder = filteredFeatures
-                .SelectMany(f => f.Feature.FeatureElements.Select(
-                    e => new
-                    {
-                        Folder = topLevelFolderName.Replace(f.RelativeFolder, "$1"),
-                        Element = e
-                    }))
-                .Where(x => notTestedScenarios.Contains(x.Element))
-                .ToLookup(x => x.Folder, x => x.Element);
-
-            // calculate top-level folder summary - @NotTested scenarios only
-            var topLevelNotTestedFolderSummary = featuresByFolder
-                .Select(x => x.Key)
-                .Select(folder =>
-                    {
-                        var notTestedScenariosInFolder = notTestedScenarioByFolder[folder].ToList();
-
-                        return new
-                            {
-                                Folder = folder,
-                                Total = notTestedScenariosInFolder.Count,
-                                Passing = notTestedScenariosInFolder.LongCount(x => x.Result.WasExecuted && x.Result.WasSuccessful),
-                                Failing = notTestedScenariosInFolder.LongCount(x => x.Result.WasExecuted && !x.Result.WasSuccessful),
-                                Inconclusive = notTestedScenariosInFolder.LongCount(x => !x.Result.WasExecuted)
-                            };
-                    });
-
-            return new
-                {
-                    Tags = tagSummary,
-                    Folders = topLevelFolderSummary,
-                    NotTestedFolders = topLevelNotTestedFolderSummary,
-                    Scenarios = new
-                        {
-                            Total = filteredScenarios.Count,
-                            Passing = filteredScenarios.LongCount(x => x.Result.WasExecuted && x.Result.WasSuccessful),
-                            Failing = filteredScenarios.LongCount(x => x.Result.WasExecuted && !x.Result.WasSuccessful),
-                            Inconclusive = filteredScenarios.LongCount(x => !x.Result.WasExecuted)
-                        },
-                    Features = new
-                        {
-                            Total = filteredFeatures.Count,
-                            Passing = filteredFeatures.LongCount(x => x.Result.WasExecuted && x.Result.WasSuccessful),
-                            Failing = filteredFeatures.LongCount(x => x.Result.WasExecuted && !x.Result.WasSuccessful),
-                            Inconclusive = filteredFeatures.LongCount(x => !x.Result.WasExecuted)
-                        }
-                };
-        }
     }
 }

@@ -7,7 +7,7 @@ var PicklesOverview = function(summary) {
         createOverallTotalsChart: createOverallTotalsChart,
         createByTagChart: createByTagChart,
         createByRootFolderChart: createByRootFolderChart,
-        createNotTestedByRootFolderChart: createNotTestedByRootFolderChart
+        createByTestKindChart: createByTestKindChart,
     };
 
     /////
@@ -107,6 +107,41 @@ var PicklesOverview = function(summary) {
 
     }
 
+    function getChartDataForTestKind(labels, automatedData, notTestedData, manualData) {
+        var colors = defaultColors();
+
+        return {
+            labels: labels,
+            datasets: [
+                {
+                    fillColor: colors.failing.color,
+                    strokeColor: colors.failing.stroke,
+                    highlightFill: colors.failing.highlight,
+                    highlightStroke: colors.failing.highlightstroke,
+                    label: "NotTested Scenarios",
+                    data: notTestedData
+                },
+                {
+                    fillColor: colors.inconclusive.color,
+                    strokeColor: colors.inconclusive.stroke,
+                    highlightFill: colors.inconclusive.highlight,
+                    highlightStroke: colors.inconclusive.highlightstroke,
+                    label: "Manual Scenarios",
+                    data: manualData
+                },
+                {
+                    fillColor: colors.passing.color,
+                    strokeColor: colors.passing.stroke,
+                    highlightFill: colors.passing.highlight,
+                    highlightStroke: colors.passing.highlightstroke,
+                    label: "Automated Scenarios",
+                    data: automatedData
+                }
+            ]
+        };
+
+    }
+
     function createByTagChart(context) {
         var chart = new Chart(context);
 
@@ -128,6 +163,31 @@ var PicklesOverview = function(summary) {
 
         var data = getChartData(labels, passingData, failingData, inconclusiveData);
         var options = { };
+
+        chart.StackedBar(data, options);
+    }
+
+    function createByTestKindChart(context) {
+        var chart = new Chart(context);
+
+        var labels = [];
+        var automatedData = [];
+        var notTestedData = [];
+        var manualData = [];
+
+        summary.FoldersWithTestKinds.sort(function (a, b) {
+            return a.Folder.localeCompare(b.Folder);
+        });
+
+        summary.FoldersWithTestKinds.slice(0, 20).forEach(function (folder) {
+            labels.push(folder.Folder);
+            automatedData.push(folder.Automated);
+            notTestedData.push(folder.NotTested);
+            manualData.push(folder.Manual);
+        });
+
+        var data = getChartDataForTestKind(labels, automatedData, notTestedData, manualData);
+        var options = {};
 
         chart.StackedBar(data, options);
     }
@@ -159,9 +219,5 @@ var PicklesOverview = function(summary) {
 
     function createByRootFolderChart(context) {
         internalCreateByRootFolderChart(context, summary.Folders);
-    }
-
-    function createNotTestedByRootFolderChart(context) {
-        internalCreateByRootFolderChart(context, summary.NotTestedFolders);
     }
 };
