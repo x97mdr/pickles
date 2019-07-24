@@ -1,3 +1,10 @@
+Time to pass on the torch
+=========================
+
+For the past year or more, I’ve had very little time to devote to Pickles. My professional interests have taken a different direction, so development of Pickles basically stalled.
+
+Do you want to bring new enthusiasm to Pickles? Do you want to take over active development and maintenance at Pickles? Comment on [this issue](https://github.com/picklesdoc/pickles/issues/577), or contact me directly at dirk dot rombauts at picklesdoc dot com
+
 Pickles
 =======
 
