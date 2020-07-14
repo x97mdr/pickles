@@ -14,19 +14,63 @@ Features in Experimental are subject to change and removal without being conside
 
 This document is formatted according to the principles of [Keep A CHANGELOG](http://keepachangelog.com).
 
-## Unreleased
+## [2.21.0] - 2020-07-14
 
 ### Added
 
-### Changed
-
-### Deprecated
-
-### Removed
+- First Draft of the MarkDown output format. Expect some rough edges here. ([237](https://github.com/picklesdoc/pickles/issues/237)) (by [@darrencomeau](https://github.com/darrencomeau))
 
 ### Fixed
 
-### Security
+- Improve performance of VS Test results file parsing ([586](https://github.com/picklesdoc/pickles/pull/586)) (by [@tlecomte](https://github.com/tlecomte))
+- Fix matching of scenario outline with duplicate values with VsTest ([542](https://github.com/picklesdoc/pickles/pull/542)) (by [@rik-smeets](https://github.com/rik-smeets) and [@jvandertil](https://github.com/jvandertil))
+
+## [2.20.1] - 2018-10-17
+
+### Fixed
+
+- Javascript error in dhtml doc ([553](https://github.com/picklesdoc/pickles/issues/553)) (by [@dirkrombauts](https://github.com/dirkrombauts))
+
+## [2.20.0] - 2018-10-09
+
+### Added
+
+- Pickles GUI: Generate equivalent PowerShell or Windows Console command line ([90](https://github.com/picklesdoc/pickles/issues/90)) (by [@magicmonty](https://github.com/magicmonty))
+
+### Fixed
+
+- Inconclusive marker shown when generating doc without test results ([545](https://github.com/picklesdoc/pickles/issues/545)) (by [@dirkrombauts](https://github.com/dirkrombauts))
+- Remove requirement for hardcoded 'Index.html' in featureSearch.js ([541](https://github.com/picklesdoc/pickles/pull/541)) (by [@szaliszali](https://github.com/szaliszali))
+- Exception in XUnit2ScenarioOutlineExampleMatcher ([548](https://github.com/picklesdoc/pickles/issues/548)) (by [@magicmonty](https://github.com/magicmonty))
+
+## [2.19.0] - 2018-07-20
+
+### Added
+
+- Hide Tags from Living Documentation ([516](https://github.com/picklesdoc/pickles/pull/516)) (by [@spacehole1](https://github.com/spacehole1))
+- Exclude Feature Files that have no included scenarios ([453](https://github.com/picklesdoc/pickles/issues/453)) (by [@janosmagyar](https://github.com/janosmagyar))
+
+### Fixed
+
+- Scenario Outline special characters workaround ([509](https://github.com/picklesdoc/pickles/pull/509)) (by [@DominikBaran](https://github.com/DominikBaran))
+- Fix example matching for VSTest ([528](https://github.com/picklesdoc/pickles/pull/528)) (by [@jvandertil](https://github.com/jvandertil))
+
+## [2.18.2] - 2018-04-28
+
+### Changed
+
+- Updated several external libraries
+
+### Fixed
+
+- Problem with Chocolatey Deployment
+
+## [2.18.1] - 2018-04-20
+
+### Fixed
+
+- More robust scenario outline example mapping by using code from SpecFlow ([519](https://github.com/picklesdoc/pickles/pull/519)) (by [@dirkrombauts](https://github.com/dirkrombauts), based on an idea by [@janosmagyar](https://github.com/janosmagyar))
+- Only the table of the examples in a scenario outline should have test results ([515](https://github.com/picklesdoc/pickles/pull/515)) (by [@spacehole1](https://github.com/spacehole1))
 
 ## [2.20.1] - 2018-10-17
 

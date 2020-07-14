@@ -1369,6 +1369,21 @@
             <xs:documentation>Delay in milliseconds to wait before attempting to write to the file again.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="forceMutexConcurrentWrites" type="xs:boolean">
+          <xs:annotation>
+            <xs:documentation>Value indicationg whether file creation calls should be synchronized by a system global mutex.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="discardAll" type="xs:boolean">
+          <xs:annotation>
+            <xs:documentation>Whether or not this target should just discard all data that its asked to write. Mostly used for when testing NLog Stack except final write</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="concurrentWriteAttemptDelay" type="xs:integer">
+          <xs:annotation>
+            <xs:documentation>Delay in milliseconds to wait before attempting to write to the file again.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="replaceFileContentsOnEachWrite" type="xs:boolean">
           <xs:annotation>
             <xs:documentation>Indicates whether to replace file contents on each write instead of appending log message at the end.</xs:documentation>

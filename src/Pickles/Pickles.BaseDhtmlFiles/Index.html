@@ -43,7 +43,7 @@
             <div data-bind="if: WasSuccessful"><span class="badge badge-success"><i class="icon-ok passed" title="Passed"></i></span></div>
             <div data-bind="if: !WasSuccessful"><span class="badge badge-important"><i class="icon-minus-sign failed" title="Failed"></i></span></div>
         </div>
-        <div style="float: right" data-bind="if: (!WasExecuted && WasExecuted)">
+        <div style="float: right" data-bind="if: (!WasExecuted && WasProvided)">
             <span class="badge badge-warning"><i class="icon-warning-sign inconclusive" title="Inconclusive"></i></span>
         </div>
     </script>
@@ -269,8 +269,8 @@
                     <canvas id="byTagCanvas"></canvas>
                 </div>
                 <div>
-                    <h3 class="header">@NotTested Scenario Summary by Root Namespace</h3>
-                    <canvas id="notTestedbyRootFolderCanvas"></canvas>
+                    <h3 class="header">Test Kind Summary by Root Namespace</h3>
+                    <canvas id="byTestKindCanvas"></canvas>
                 </div>
             </div>
         </div>
@@ -365,7 +365,7 @@
           self.overview.createOverallTotalsChart($('#overallCompleteCanvas').get(0).getContext('2d'));
           self.overview.createByTagChart($('#byTagCanvas').get(0).getContext('2d'));
           self.overview.createByRootFolderChart($('#byRootFolderCanvas').get(0).getContext('2d'));
-          self.overview.createNotTestedByRootFolderChart($('#notTestedbyRootFolderCanvas').get(0).getContext('2d'));
+          self.overview.createByTestKindChart($('#byTestKindCanvas').get(0).getContext('2d'));
           self.totals(self.overview.getTotalsData());
         }
       } else {

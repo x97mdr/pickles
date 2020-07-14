@@ -1,13 +1,13 @@
 Write-Host "Remember to build the solution first!"
 
 # NUnit2
-Start-Process -FilePath "$PSScriptRoot\test-harness\packages\NUnit.Runners.2.6.4\tools\nunit-console.exe" -ArgumentList "$PSScriptRoot\test-harness\nunit\bin\Debug\nunitHarness.dll", "/result=$PSScriptRoot\results-example-nunit.xml" -NoNewWindow -Wait
+Start-Process -FilePath "$PSScriptRoot\test-harness\packages\NUnit.Runners.2.7.0\tools\nunit-console.exe" -ArgumentList "$PSScriptRoot\test-harness\nunit\bin\Debug\nunitHarness.dll", "/result=$PSScriptRoot\results-example-nunit.xml" -NoNewWindow -Wait
 
 # NUnit 2 with NUnit3 runner 
-Start-Process -FilePath "$PSScriptRoot\test-harness\packages\NUnit.ConsoleRunner.3.6.0\tools\nunit3-console.exe" -ArgumentList "$PSScriptRoot\test-harness\nunit\bin\Debug\nunitHarness.dll", "/result=$PSScriptRoot\results-example-nunit2-with-nunit3-runner.xml" -NoNewWindow -Wait
+Start-Process -FilePath "$PSScriptRoot\test-harness\packages\NUnit.ConsoleRunner.3.9.0\tools\nunit3-console.exe" -ArgumentList "$PSScriptRoot\test-harness\nunit\bin\Debug\nunitHarness.dll", "/result=$PSScriptRoot\results-example-nunit2-with-nunit3-runner.xml" -NoNewWindow -Wait
 
 # NUnit 3
-Start-Process -FilePath "$PSScriptRoot\test-harness\packages\NUnit.ConsoleRunner.3.6.0\tools\nunit3-console.exe" -ArgumentList "$PSScriptRoot\test-harness\nunit3\bin\Debug\nunit3Harness.dll", "/result=$PSScriptRoot\results-example-nunit3.xml" -NoNewWindow -Wait
+Start-Process -FilePath "$PSScriptRoot\test-harness\packages\NUnit.ConsoleRunner.3.9.0\tools\nunit3-console.exe" -ArgumentList "$PSScriptRoot\test-harness\nunit3\bin\Debug\nunit3Harness.dll", "/result=$PSScriptRoot\results-example-nunit3.xml" -NoNewWindow -Wait
 
 # SpecRun
 Start-Process -FilePath "$PSScriptRoot\test-harness\packages\SpecRun.Runner.1.2.0\tools\specrun.exe" -ArgumentList "run default.srprofile", "/baseFolder:$PSScriptRoot\test-harness\SpecRun\bin\Debug", "/log:specrun.log", "/report:$PSScriptRoot\results-example-specrun.html" -NoNewWindow -Wait
@@ -16,7 +16,7 @@ Start-Process -FilePath "$PSScriptRoot\test-harness\packages\SpecRun.Runner.1.2.
 Start-Process -FilePath "$PSScriptRoot\test-harness\packagesNonNuget\xunit.runner\xunit.console.clr4.exe" -ArgumentList "$PSScriptRoot\test-harness\xunit\bin\Debug\xunitHarness.dll", "/xml $PSScriptRoot\results-example-xunit.xml" -NoNewWindow -Wait
 
 # XUnit 2
-Start-Process -FilePath "$PSScriptRoot\test-harness\packages\xunit.runner.console.2.1.0\tools\xunit.console.exe" -ArgumentList "$PSScriptRoot\test-harness\xunit2\bin\Debug\xunit2Harness.dll", "-xml $PSScriptRoot\results-example-xunit2.xml", "-parallel none" -NoNewWindow -Wait
+Start-Process -FilePath "$PSScriptRoot\test-harness\packages\xunit.runner.console.2.4.0\tools\net452\xunit.console.exe" -ArgumentList "$PSScriptRoot\test-harness\xunit2\bin\Debug\xunit2Harness.dll", "-xml $PSScriptRoot\results-example-xunit2.xml", "-parallel none" -NoNewWindow -Wait
 
 # MSTest
 $MSTest = Get-ChildItem -Path "${env:ProgramFiles(x86)}\Microsoft Visual Studio\2017" -Recurse | Where-Object { $_.Name -eq "MSTest.exe" } | Select-Object -First 1
@@ -35,6 +35,8 @@ Set-Location $PSScriptRoot
 # CucumberJS
 Set-Location -Path "$PSScriptRoot\test-harness\CucumberJS"
 & "$PSScriptRoot\node_modules\.bin\cucumber-js" --format json:"$PSScriptRoot\results-example-cucumberjs-json.json"
+Write-Host "Waiting for CucumberJS to finish. You might need to increase the sleep time as the test suite increases."
+Start-Sleep -s 2
 Set-Location $PSScriptRoot
 
 # VSTest

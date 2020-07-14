@@ -1,3 +1,10 @@
+The End of the Road - For Me
+=========================
+
+It's been an amazing time for me to work on Pickles. Now it's finally time for me to lay down the mantle and move on. I am leaving Pickles completely.
+
+Do you want to take over active development and maintenance at Pickles? Contact me directly at dirk dot rombauts at picklesdoc dot com. I will hand over everything Pickles-related to you. This email address will remain active until 11 December 2020.
+
 Pickles
 =======
 
