@@ -119,37 +119,6 @@ The expected value:
 	[False]
 And the calculator has clean memory
 -&gt; skipped because of previous errors
-Given I have entered 50 into the calculator
--&gt; skipped because of previous errors
-And I have entered 70 into the calculator
--&gt; skipped because of previous errors
-When I press add
--&gt; skipped because of previous errors
-Then the result should be 120 on the screen
--&gt; skipped because of previous errors
-</output><failure exception-type="NFluent.FluentCheckException"><message>NFluent.FluentCheckException : 
-The checked value is different from the expected one.
-The checked value:
-	[True]
-The expected value:
-	[False]</message><stack-trace>   at NFluent.Helpers.EqualityHelper.IsEqualTo(Object instance, Object expected)
-   at NFluent.Extensibility.Checker`2.ExecuteCheck(Action action, String negatedExceptionMessage)
-   at AutomationLayer.MarkTestAs.Failing() in C:\Git\pickles\test-harness\AutomationLayer\MarkTestAs.cs:line 15
-   at AutomationLayer.AdditionSteps.GivenTheBackgroundStepFails() in C:\Git\pickles\test-harness\AutomationLayer\AdditionSteps.cs:line 25
-   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration)
-   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
-   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
-   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
-   at Pickles.TestHarness.xunit.FailingBackgroundFeature.ScenarioCleanup()
-   at Pickles.TestHarness.xunit.FailingBackgroundFeature.AddTwoNumbers() in C:\Git\pickles\test-harness\xunit\FailingBackground.feature:line 12</stack-trace></failure></test><test name="Pickles.TestHarness.xunit.FailingBackgroundFeature.AddingSeveralNumbers(firstNumber: &quot;60&quot;, secondNumber: &quot;70&quot;, thirdNumber: &quot;130&quot;, result: &quot;260&quot;, exampleTags: System.String[])" type="Pickles.TestHarness.xunit.FailingBackgroundFeature" method="AddingSeveralNumbers" result="Fail" time="0.002"><traits><trait name="FeatureTitle" value="Failing Background" /><trait name="Description" value="Adding several numbers" /></traits><output>Given the background step fails
--&gt; error: 
-The checked value is different from the expected one.
-The checked value:
-	[True]
-The expected value:
-	[False]
-And the calculator has clean memory
--&gt; skipped because of previous errors
 Given I have entered 60 into the calculator
 -&gt; skipped because of previous errors
 And I have entered 70 into the calculator
@@ -174,7 +143,7 @@ The expected value:
    at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
    at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
    at Pickles.TestHarness.xunit.FailingBackgroundFeature.ScenarioCleanup()
-   at Pickles.TestHarness.xunit.FailingBackgroundFeature.AddingSeveralNumbers(String firstNumber, String secondNumber, String thirdNumber, String result, String[] exampleTags) in C:\Git\pickles\test-harness\xunit\FailingBackground.feature:line 19</stack-trace></failure></test><test name="Pickles.TestHarness.xunit.FailingBackgroundFeature.AddingSeveralNumbers(firstNumber: &quot;40&quot;, secondNumber: &quot;50&quot;, thirdNumber: &quot;90&quot;, result: &quot;180&quot;, exampleTags: System.String[])" type="Pickles.TestHarness.xunit.FailingBackgroundFeature" method="AddingSeveralNumbers" result="Fail" time="0.001"><traits><trait name="FeatureTitle" value="Failing Background" /><trait name="Description" value="Adding several numbers" /></traits><output>Given the background step fails
+   at Pickles.TestHarness.xunit.FailingBackgroundFeature.AddTwoNumbers() in C:\Git\pickles\test-harness\xunit\FailingBackground.feature:line 12</stack-trace></failure></test><test name="Pickles.TestHarness.xunit.FailingBackgroundFeature.AddingSeveralNumbers(firstNumber: &quot;60&quot;, secondNumber: &quot;70&quot;, thirdNumber: &quot;130&quot;, result: &quot;260&quot;, exampleTags: System.String[])" type="Pickles.TestHarness.xunit.FailingBackgroundFeature" method="AddingSeveralNumbers" result="Fail" time="0.002"><traits><trait name="FeatureTitle" value="Failing Background" /><trait name="Description" value="Adding several numbers" /></traits><output>Given the background step fails
 -&gt; error: 
 The checked value is different from the expected one.
 The checked value:
@@ -192,6 +161,37 @@ And I have entered 90 into the calculator
 When I press add
 -&gt; skipped because of previous errors
 Then the result should be 180 on the screen
+-&gt; skipped because of previous errors
+</output><failure exception-type="NFluent.FluentCheckException"><message>NFluent.FluentCheckException : 
+The checked value is different from the expected one.
+The checked value:
+	[True]
+The expected value:
+	[False]</message><stack-trace>   at NFluent.Helpers.EqualityHelper.IsEqualTo(Object instance, Object expected)
+   at NFluent.Extensibility.Checker`2.ExecuteCheck(Action action, String negatedExceptionMessage)
+   at AutomationLayer.MarkTestAs.Failing() in C:\Git\pickles\test-harness\AutomationLayer\MarkTestAs.cs:line 15
+   at AutomationLayer.AdditionSteps.GivenTheBackgroundStepFails() in C:\Git\pickles\test-harness\AutomationLayer\AdditionSteps.cs:line 25
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+   at Pickles.TestHarness.xunit.FailingBackgroundFeature.ScenarioCleanup()
+   at Pickles.TestHarness.xunit.FailingBackgroundFeature.AddingSeveralNumbers(String firstNumber, String secondNumber, String thirdNumber, String result, String[] exampleTags) in C:\Git\pickles\test-harness\xunit\FailingBackground.feature:line 19</stack-trace></failure></test><test name="Pickles.TestHarness.xunit.FailingBackgroundFeature.AddingSeveralNumbers(firstNumber: &quot;40&quot;, secondNumber: &quot;50&quot;, thirdNumber: &quot;90&quot;, result: &quot;180&quot;, exampleTags: System.String[])" type="Pickles.TestHarness.xunit.FailingBackgroundFeature" method="AddingSeveralNumbers" result="Fail" time="0.001"><traits><trait name="FeatureTitle" value="Failing Background" /><trait name="Description" value="Adding several numbers" /></traits><output>Given the background step fails
+-&gt; error: 
+The checked value is different from the expected one.
+The checked value:
+	[True]
+The expected value:
+	[False]
+And the calculator has clean memory
+-&gt; skipped because of previous errors
+Given I have entered 50 into the calculator
+-&gt; skipped because of previous errors
+And I have entered 70 into the calculator
+-&gt; skipped because of previous errors
+When I press add
+-&gt; skipped because of previous errors
+Then the result should be 120 on the screen
 -&gt; skipped because of previous errors
 </output><failure exception-type="NFluent.FluentCheckException"><message>NFluent.FluentCheckException : 
 The checked value is different from the expected one.
