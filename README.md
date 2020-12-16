@@ -1,9 +1,9 @@
-The End of the Road - For Me
+Pickles will continue!
 =========================
 
-It's been an amazing time for me to work on Pickles. Now it's finally time for me to lay down the mantle and move on. I am leaving Pickles completely.
+After the great years of taking care of Pickles, I'm happy to announce that I found someone to take over the role of managing Pickles! We are in the process of handing over everything, and will make a detailed announcement when that is done.
 
-Do you want to take over active development and maintenance at Pickles? Contact me directly at dirk dot rombauts at picklesdoc dot com. I will hand over everything Pickles-related to you. This email address will remain active until 11 December 2020.
+If you are I retested in contributing to the code - Pickles is widely used and in need of an update - create an issue where you mentioned that you want to contribute. Thanks!
 
 Pickles
 =======
