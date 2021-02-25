@@ -51,8 +51,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
 
             var headerCells = table.HeaderRow.Cells.ToArray();
 
-            headerCells = headerCells.Concat(new[] { " " }).ToArray();
-
+            if(headerCells.Length == 0)
+            {
+                headerCells = headerCells.Concat(new[] { "" }).ToArray();
+            }
+            
             return new XElement(
                 this.xmlns + "div",
                 new XAttribute("class", "table_container"),
