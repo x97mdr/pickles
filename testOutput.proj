@@ -22,6 +22,9 @@
 		<OutputFormat Include="Cucumber">
 			<Name>Cucumber</Name>
 		</OutputFormat>
+		<OutputFormat Include="Markdown">
+			<Name>Markdown</Name>
+		</OutputFormat>
 	</ItemGroup>
 	<UsingTask AssemblyFile=".\deploy\nuget\packages\Pickles.MSBuild.$(Version)\tools\PicklesDoc.Pickles.MSBuild.Tasks.dll" TaskName="Pickles" />
 	<Target Name="document">

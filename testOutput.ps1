@@ -1,5 +1,5 @@
 $version = $args[0]
-$formats = @("Html", "Dhtml", "Word", "Excel", "JSON", "Cucumber")
+$formats = @("Html", "Dhtml", "Word", "Excel", "JSON", "Cucumber", "Markdown")
 $PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
 
 Try

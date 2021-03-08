@@ -267,13 +267,13 @@ $(document).ready(function() {
             <div class="steps">
               <ul>
                 <li class="step">
-                  <span class="keyword">Given </span>I have the following person<div class="table_container"><table class="datatable"><thead><tr><th>Field</th><th>Value</th><th> </th></tr></thead><tbody><tr><td>Name</td><td>Marcus</td></tr><tr><td>Style</td><td>Butch</td></tr><tr><td>Birth date</td><td>1972-10-09</td></tr></tbody></table></div></li>
+                  <span class="keyword">Given </span>I have the following person<div class="table_container"><table class="datatable"><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>Name</td><td>Marcus</td></tr><tr><td>Style</td><td>Butch</td></tr><tr><td>Birth date</td><td>1972-10-09</td></tr></tbody></table></div></li>
                 <li class="step">
-                  <span class="keyword">Then </span>CompareToInstance should match this guy<div class="table_container"><table class="datatable"><thead><tr><th>Field</th><th>Value</th><th> </th></tr></thead><tbody><tr><td>Name</td><td>Marcus</td></tr><tr><td>Style</td><td>Butch</td></tr><tr><td>BirthDate</td><td>10/9/1972 12:00:00 AM</td></tr></tbody></table></div></li>
+                  <span class="keyword">Then </span>CompareToInstance should match this guy<div class="table_container"><table class="datatable"><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>Name</td><td>Marcus</td></tr><tr><td>Style</td><td>Butch</td></tr><tr><td>BirthDate</td><td>10/9/1972 12:00:00 AM</td></tr></tbody></table></div></li>
                 <li class="step">
-                  <span class="keyword">And </span>CompareToInstance should match this guy<div class="table_container"><table class="datatable"><thead><tr><th>Field</th><th>Value</th><th> </th></tr></thead><tbody><tr><td>Name</td><td>Marcus</td></tr><tr><td>BirthDate</td><td>10/9/1972 12:00:00 AM</td></tr></tbody></table></div></li>
+                  <span class="keyword">And </span>CompareToInstance should match this guy<div class="table_container"><table class="datatable"><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>Name</td><td>Marcus</td></tr><tr><td>BirthDate</td><td>10/9/1972 12:00:00 AM</td></tr></tbody></table></div></li>
                 <li class="step">
-                  <span class="keyword">But </span>CompareToInstance should not match this guy<span class="comment"># CompareToSet will test only the properties that you define in the table.<br /># CompareToSet does not test the order of the objects, only that one was found that matches</span><div class="table_container"><table class="datatable"><thead><tr><th>Field</th><th>Value</th><th> </th></tr></thead><tbody><tr><td>Name</td><td>Anders</td></tr><tr><td>Style</td><td>very cool</td></tr><tr><td>BirthDate</td><td>10/9/1974 12:00:00 AM</td></tr></tbody></table></div></li>
+                  <span class="keyword">But </span>CompareToInstance should not match this guy<span class="comment"># CompareToSet will test only the properties that you define in the table.<br /># CompareToSet does not test the order of the objects, only that one was found that matches</span><div class="table_container"><table class="datatable"><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>Name</td><td>Anders</td></tr><tr><td>Style</td><td>very cool</td></tr><tr><td>BirthDate</td><td>10/9/1974 12:00:00 AM</td></tr></tbody></table></div></li>
               </ul>
             </div>
             <a class="scenario-link" href="javascript:showImageLink('comparetoinstance')" title="Copy scenario link to clipboard.">
@@ -287,11 +287,11 @@ $(document).ready(function() {
             <div class="steps">
               <ul>
                 <li class="step">
-                  <span class="keyword">Given </span>I have the following persons using assist<div class="table_container"><table class="datatable"><thead><tr><th>Name</th><th>Style</th><th>Birth date</th><th> </th></tr></thead><tbody><tr><td>Marcus</td><td>Cool</td><td>1972-10-09</td></tr><tr><td>Anders</td><td>Butch</td><td>1977-01-01</td></tr><tr><td>Jocke</td><td>Soft</td><td>1974-04-04</td></tr></tbody></table></div></li>
+                  <span class="keyword">Given </span>I have the following persons using assist<div class="table_container"><table class="datatable"><thead><tr><th>Name</th><th>Style</th><th>Birth date</th></tr></thead><tbody><tr><td>Marcus</td><td>Cool</td><td>1972-10-09</td></tr><tr><td>Anders</td><td>Butch</td><td>1977-01-01</td></tr><tr><td>Jocke</td><td>Soft</td><td>1974-04-04</td></tr></tbody></table></div></li>
                 <li class="step">
-                  <span class="keyword">Then </span>CompareToSet should match this<div class="table_container"><table class="datatable"><thead><tr><th>Name</th><th>Style</th><th>BirthDate</th><th> </th></tr></thead><tbody><tr><td>Marcus</td><td>Cool</td><td>10/9/1972 12:00:00 AM</td></tr><tr><td>Anders</td><td>Butch</td><td>1/1/1977 12:00:00 AM</td></tr><tr><td>Jocke</td><td>Soft</td><td>4/4/1974 12:00:00 AM</td></tr></tbody></table></div></li>
+                  <span class="keyword">Then </span>CompareToSet should match this<div class="table_container"><table class="datatable"><thead><tr><th>Name</th><th>Style</th><th>BirthDate</th></tr></thead><tbody><tr><td>Marcus</td><td>Cool</td><td>10/9/1972 12:00:00 AM</td></tr><tr><td>Anders</td><td>Butch</td><td>1/1/1977 12:00:00 AM</td></tr><tr><td>Jocke</td><td>Soft</td><td>4/4/1974 12:00:00 AM</td></tr></tbody></table></div></li>
                 <li class="step">
-                  <span class="keyword">But </span>CompareToSet should not match this<div class="table_container"><table class="datatable"><thead><tr><th>Name</th><th>Style</th><th>BirthDate</th><th> </th></tr></thead><tbody><tr><td>Marcus</td><td>Cool</td><td>10/9/1972 12:00:00 AM</td></tr><tr><td>Anders</td><td>Butch</td><td>1/1/1977 12:00:00 AM</td></tr></tbody></table></div></li>
+                  <span class="keyword">But </span>CompareToSet should not match this<div class="table_container"><table class="datatable"><thead><tr><th>Name</th><th>Style</th><th>BirthDate</th></tr></thead><tbody><tr><td>Marcus</td><td>Cool</td><td>10/9/1972 12:00:00 AM</td></tr><tr><td>Anders</td><td>Butch</td><td>1/1/1977 12:00:00 AM</td></tr></tbody></table></div></li>
               </ul>
             </div>
             <a class="scenario-link" href="javascript:showImageLink('comparetoset')" title="Copy scenario link to clipboard.">
@@ -301,9 +301,9 @@ $(document).ready(function() {
         </ul>
       </div>
       <div id="footer">
-        <p>Test results generated for: Pickles, version 2.21.0</p>
-        <p>Generated on: 14 Juli 2020 12:05:36</p>
-        <p>Produced by Pickles, version 2.21.0.0</p>
+        <p>Test results generated for: Pickles, version 2.21.1</p>
+        <p>Generated on: 1 March 2021 18:44:28</p>
+        <p>Produced by Pickles, version 2.21.1.0</p>
       </div>
     </div>
   </body>

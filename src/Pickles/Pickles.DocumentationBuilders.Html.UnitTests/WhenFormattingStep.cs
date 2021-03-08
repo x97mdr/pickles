@@ -165,10 +165,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests
                                     "Column 1"),
                                 new XElement(
                                     this.xmlns + "th",
-                                    "Column 2"),
-                                new XElement(
-                                    this.xmlns + "th",
-                                    " "))),
+                                    "Column 2")
+                                //, new XElement(
+                                //    this.xmlns + "th",
+                                //    " ")
+                                )),
                         new XElement(
                             this.xmlns + "tbody",
                             new XElement(

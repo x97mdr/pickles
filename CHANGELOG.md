@@ -14,6 +14,11 @@ Features in Experimental are subject to change and removal without being conside
 
 This document is formatted according to the principles of [Keep A CHANGELOG](http://keepachangelog.com).
 
+## [2.21.1] - 2021-02-25
+
+### Fixed
+- Removed extra header from HTML output. ([598](https://github.com/picklesdoc/pickles/issues/598))
+
 ## [2.21.0] - 2020-07-14
 
 ### Added
