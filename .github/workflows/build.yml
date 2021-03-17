@@ -9,7 +9,12 @@ jobs:
           name: Checkout Code
 
         - name: Setup NuGet
-          uses: NuGet/setup-nuget@v1.0.2
+          uses: NuGet/setup-nuget@v1.0.5
+          #with:
+            # NuGet API Key to configure.
+            #nuget-api-key: # optional
+            # Source to scope the NuGet API Key to.
+            #nuget-api-key-source: # optional
 
         - name: Restore NuGet Packages
           run: nuget restore SimpleFrameworkApp.sln
